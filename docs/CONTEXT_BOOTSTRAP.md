@@ -4,7 +4,7 @@ Paste this into the **first message** of a new Claude session on a different acc
 
 **Before pasting:**
 - Make sure your GitHub repo is set up and contains the docs
-- Replace `[REPO_URL]` below with your actual GitHub repo URL (e.g. `https://github.com/yourusername/gsr-automation`)
+- Replace `[REPO_URL]` below with your actual GitHub repo URL (e.g. `https://github.com/Djallen7/gsr-automation`)
 - If the repo is private, you may need to either make it temporarily public OR paste the docs directly (see end of this file)
 
 ---
@@ -24,12 +24,12 @@ I'm building a post-production automation system for Genesis Science Report (GSR
 **What I need you to do now:**
 
 1. **Fetch and read these files from my GitHub repo** in this order:
-   - `[REPO_URL]/blob/main/README.md` — Project overview
-   - `[REPO_URL]/blob/main/docs/PROJECT_PLAN.md` — The phased build plan (READ THIS CAREFULLY — it has phase boundaries, exit criteria, and success rates)
-   - `[REPO_URL]/blob/main/docs/decisions/` — All ADR files (architecture decisions already locked in)
-   - `[REPO_URL]/blob/main/docs/FAILURE_MODES.md` — 12 documented risks I'm actively defending against
-   - `[REPO_URL]/blob/main/docs/OPEN_SOURCE_STACK.md` — Building blocks I've chosen for each component
-   - `[REPO_URL]/blob/main/docs/GSR_METADATA_PATTERN.md` — YouTube channel patterns the AI needs to follow
+   - `https://github.com/Djallen7/gsr-automation/blob/main/README.md` — Project overview
+   - `https://github.com/Djallen7/gsr-automation/blob/main/docs/PROJECT_PLAN.md` — The phased build plan (READ THIS CAREFULLY — it has phase boundaries, exit criteria, and success rates)
+   - `https://github.com/Djallen7/gsr-automation/blob/main/docs/decisions/` — All ADR files (architecture decisions already locked in)
+   - `https://github.com/Djallen7/gsr-automation/blob/main/docs/FAILURE_MODES.md` — 12 documented risks I'm actively defending against
+   - `https://github.com/Djallen7/gsr-automation/blob/main/docs/OPEN_SOURCE_STACK.md` — Building blocks I've chosen for each component
+   - `https://github.com/Djallen7/gsr-automation/blob/main/docs/GSR_METADATA_PATTERN.md` — YouTube channel patterns the AI needs to follow
 
 2. **After reading, summarize back to me:**
    - What phase I'm currently in

@@ -1,35 +1,30 @@
 # Genesis Science Report Production Automation
 
-Automation infrastructure for the Genesis Science Report post-production pipeline — handling file ingestion, metadata management, workflow orchestration, and operational monitoring across all GSR episodes.
+Automation system for the Genesis Science Report TV show and adjacent ministry shows. Handles file detection, AI metadata generation, approval workflows, and multi-platform distribution.
 
-> **Status:** Phase 1 of 4 — Foundation & Core Ingestion
+**Status:** Phase 1 of 4 (Core Foundation — see `docs/PROJECT_PLAN.md`)
 
----
+## Documentation
 
-## Getting Started
+- [Project Plan](docs/PROJECT_PLAN.md) — Phased build plan with success rates and exit criteria
+- [Failure Modes & Defensive Practices](docs/FAILURE_MODES.md) — 12 documented risks + countermeasures
+- [Open Source Stack](docs/OPEN_SOURCE_STACK.md) — Building blocks evaluation for each component
+- [GSR Metadata Pattern](docs/GSR_METADATA_PATTERN.md) — YouTube channel analysis, cadence, and metadata rules
+- [Architecture Decisions](docs/decisions/) — ADRs documenting major project decisions
+- [Runbooks](docs/runbooks/) — Step-by-step guides for handling operational issues
 
-_Instructions for onboarding a new collaborator will go here once Phase 1 is complete._
+## Project Structure
 
-## Architecture
-
-See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for system design and component overview.
-
-## Phase Status
-
-| Phase | Description | Status |
-|-------|-------------|--------|
-| 1 | Foundation & Core Ingestion | 🔄 In Progress |
-| 2 | Metadata & Dashboard | ⏳ Upcoming |
-| 3 | Automation & Orchestration | ⏳ Upcoming |
-| 4 | Hardening & Scale | ⏳ Upcoming |
+- `apps/` — Application code (dashboard, services)
+- `docs/` — All documentation
+- `scripts/` — Helper scripts (backup, deploy, etc.)
+- `workflows/n8n/` — Exported n8n workflow JSON files
 
 ## Contributors
 
 - Daniel Allen — Project lead
-- Miriam — _(collaborator, onboarding TBD)_
-
-_To add a new collaborator: `gh repo edit --add-collaborator <github-username>`_
+- Miriam — Co-maintainer
 
 ## License
 
-Internal use only — Genesis Science Report / Ministry of Science & Faith.
+Internal/proprietary. Not for public distribution.

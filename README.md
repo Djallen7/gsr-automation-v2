@@ -28,6 +28,8 @@ See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for system design and compone
 - Daniel Allen — Project lead
 - Miriam — _(collaborator, onboarding TBD)_
 
+_To add a new collaborator: `gh repo edit --add-collaborator <github-username>`_
+
 ## License
 
 Internal use only — Genesis Science Report / Ministry of Science & Faith.

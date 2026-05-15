@@ -1,11 +1,13 @@
 # ADR-0001: Use n8n as orchestrator, Next.js dashboard, Docker services on NAS
 
 Date: 2026-05-15
-Status: Accepted
+Status: Accepted (supplemented by ADR-0009)
 
 ## Context
 
-We need to choose the foundational architecture for the GSR automation system. The team is non-developer (broadcast TV producer + colleague), so maintainability and visual debugging matter more than performance optimization. The system runs on the existing NAS at 10.2.2.3 with remote access via Tailscale.
+We need to choose the foundational architecture for the GSR automation system. The team is non-developer (broadcast TV producer + colleague), so maintainability and visual debugging matter more than performance optimization. The system runs on an existing QNAP NAS with remote access via Tailscale.
+
+> **Update 2026-05-15:** This ADR originally referenced a single NAS at 10.2.2.3. During Week 1 setup we discovered a second QNAP at 10.2.2.5. See ADR-0009 for the two-NAS topology and which NAS hosts which workload. ADR-0001's tech-stack decision is unchanged.
 
 ## Decision
 

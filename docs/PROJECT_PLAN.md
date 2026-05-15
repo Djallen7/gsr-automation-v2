@@ -2,8 +2,8 @@
 
 **Repository purpose:** Central source of truth for the Genesis Science Report (and adjacent shows) post-production automation system. All planning docs, architecture decisions, code, runbooks, and operational documentation live here.
 
-**Last updated:** 2026-05-15
-**Owner:** [Your name]
+**Last updated:** 2026-05-15 (Week 1, mid-week — Tailscale discovery surfaced second QNAP; see ADR-0009)
+**Owner:** Daniel
 **Co-maintainer:** Miriam
 
 ---
@@ -366,6 +366,8 @@ Switching a platform between manual and automated is a configuration change, not
 6. **ADR-0006:** Tailscale for dashboard access; no custom auth
 7. **ADR-0007:** AI metadata generation is manually triggered, never automatic
 8. **ADR-0008:** Phase exit criteria must be met before starting next phase
+9. **ADR-0009:** Two-NAS topology — `DRM-QNAP3` (10.2.2.3) is primary automation host; `DRM-QNAP5` (10.2.2.5) is storage peer only
+10. **ADR-0010 (DEFERRED):** File-watcher source-of-truth strategy across the two NAS units — to be decided at start of Week 2
 
 ---
 
@@ -383,6 +385,9 @@ These get tracked as GitHub Issues with `risk` label, reviewed weekly:
 | OAuth token expiry | Refresh token logic, monitoring | Any auth failure |
 | Platform UI change (Phase 2+) | Screenshot-on-failure, fallback to manual | Playwright workflow fails |
 | Maintenance burden growth | Weekly time tracking | >3 hrs/week sustained |
+| QNAP credentials not in our possession | Capture into 1Password vault before any further infra work | Discovered 2026-05-15; tracked as `blocker` issue |
+| Single NAS hosts entire automation stack (QNAP3) | Accepted in ADR-0009; manual fallback per ADR-0003 covers outages | If QNAP3 maintenance burden exceeds spare capacity |
+| Master video files split across QNAP3 + QNAP5 | Resolve via ADR-0010 before Week 2 watcher work begins | Watcher misses a real episode that landed on QNAP5 |
 
 ---
 

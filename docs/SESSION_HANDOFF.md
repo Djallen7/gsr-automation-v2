@@ -1,76 +1,107 @@
-# Session Handoff — 2026-05-15
+# Session Handoff — 2026-05-21
 
-**Phase:** 1, Week 1 (mid-week)
+**Phase:** 1, Week 2 (Notion setup)
 **Picked up next session via:** read this file, then `docs/CONTEXT_BOOTSTRAP.md`
 
 ---
 
-## ✅ Done this session
+## What Changed This Session
 
-- **ADR-0009** (Accepted): Two-NAS topology — `DRM-QNAP3` (10.2.2.3) hosts automation, `DRM-QNAP5` (10.2.2.5) is storage peer
-- **ADR-0010** (Proposed/Deferred): File-watcher source-of-truth — decide at start of Week 2
-- **ADR-0001** supplemented with two-NAS note
-- **`docs/INFRASTRUCTURE_INVENTORY.md`** added — living source of truth for hosts, IPs, Tailscale, vault state, monitoring
-- **1Password Teams** account live, owner `dallen@davidrives.com`, vault `GSR Automation` seeded with **15 credential placeholder items** (10 phase-1, 3 phase-2, 2 phase-3)
-- **UptimeRobot** account live (free tier, `dallen@davidrives.com`), Main API key in 1Password, **1 monitor**: `dial-tone — github repo` (id 803080384). Email alerts active. Phone confirmation skipped (paid feature).
-- **Tailscale** verified on this Mac (1.98.1, signed in as `danielallen.tn@gmail.com`). MacBook Pro + DRM-EditBay3 Mac mini on the tailnet.
-- **PR #9** open with all of the above: https://github.com/Djallen7/gsr-automation/pull/9
-- **Issue #10** filed as the canonical blocker: https://github.com/Djallen7/gsr-automation/issues/10
+Architecture pivoted to cloud-first (ADR-0011, written last session 2026-05-20):
+- QNAP admin access gone — security incident
+- Notion replaces SQLite as the database
+- n8n.cloud replaces self-hosted n8n
+- Edit Bay Mac Mini sync client replaces QNAP file watcher
+
+This session: built the complete Notion import bundle.
 
 ---
 
-## 🚧 Current blocker
+## Done This Session
 
-**QNAP admin credentials for `DRM-QNAP3` and `DRM-QNAP5` are not in our possession.**
+- **`notion-import/` directory created** — full import bundle committed to repo
+  - `NOTION_SETUP_GUIDE.md` — 10-step setup walkthrough
+  - `databases/` — 6 CSV files ready to import into Notion
+  - `wiki-zip/Production_Wiki.zip` — 13 docs structured for ZIP import
 
-This blocks: Tailscale install on the QNAPs, Container Station / Docker verification, n8n deploy, any file-watcher mount config, backup setup.
+**CSV files pre-populated:**
+- `Guests.csv` — 20 guests from the roster (ICR, Discovery Institute, Logos Research, Cornwall Alliance, others)
+- `ADRs.csv` — all 6 ADRs (0001-0003, 0009-0011) with context/decision/rationale summaries
+- `DriveFiles.csv` — Graphics Tracking folder and May sheet pre-seeded
 
-Already ruled out by local search this session:
-- This Mac's Keychain (no entries for 10.2.2.3 / 10.2.2.5 / qnap / drm-qnap)
-- No live SMB mounts to either QNAP from this Mac (the live mounts are to the editor's Mac mini at 100.112.34.128, *not* to the NAS directly)
-
-Still to try (next session):
-- **Tailscale into the editor's Mac mini** (DRM-EditBay3, 100.112.34.128) — that machine almost certainly has the QNAP credentials saved in its Keychain since it accesses the NAS daily for editing
-- Check Chrome saved passwords on this Mac (`chrome://password-manager/passwords` → search `10.2.2`) — Daniel to do manually
-- Check Safari / 1Password 7 legacy on this Mac
-- Last resort: ask whoever originally set up the QNAPs (likely IT or AV consultant)
-
----
-
-## 🎯 Next session — start here
-
-1. **Read this file** + `docs/CONTEXT_BOOTSTRAP.md` + `docs/INFRASTRUCTURE_INVENTORY.md`
-2. **Confirm PR #9 is merged.** If not merged, merge it first.
-3. **Attempt QNAP credential recovery via the editor's Mac mini** — Tailscale SSH or screen-share into 100.112.34.128, look in its Keychain for SMB credentials matching 10.2.2.3 / 10.2.2.5. If found, save both to 1Password and close Issue #10.
-4. **Once unblocked,** resume Week 1 in this order:
-   - Install Tailscale package on QNAP3 + QNAP5 (App Center)
-   - Verify Container Station installed / install if not
-   - Pull n8n Docker image and start container on QNAP3
-   - Verify n8n web UI reachable via Tailscale IP
+**Production Wiki ZIP contains:**
+- Project Documentation: PROJECT_PLAN, FAILURE_MODES, SESSION_HANDOFF, CONTEXT_BOOTSTRAP
+- Reference: MASTER_CONTEXT, INFRASTRUCTURE_INVENTORY, GSR_METADATA_PATTERN, OPEN_SOURCE_STACK, GIT_CHEATSHEET
+- Decisions: All 6 ADR files
 
 ---
 
-## ⚠️ Tail items / hygiene
+## What To Do Next Session
 
-- **UptimeRobot API key** was pasted in chat once during setup. Not world-readable, but rotate at convenience (Settings → API → regenerate). I'll re-save to 1Password in one `op` command when ready.
-- **PR #9 has 4 commits** — all docs-only. No code yet.
-- **ADRs 0004–0008** from the original PROJECT_PLAN list are still unwritten. Not blocking but worth a session.
-- **Miriam not yet invited to 1Password.** Bus-factor risk (FAILURE_MODES.md #7). Invite when she's ready to participate.
-- **1Password 7 (legacy v7.9.11) still installed** alongside 1Password 8. Uninstall when convenient.
+### Immediate (30 min): Execute the Notion import
+
+1. **Download `notion-import/` folder** from this repo to your Mac
+2. **Follow `NOTION_SETUP_GUIDE.md`** step by step
+3. Steps 1-2 (import): ~30 min
+4. Steps 3-6 (configure status options, Relations, Rollups, views): ~60-90 min
+5. Step 7 (Production Hub): ~30 min
+
+### After Notion workspace is live:
+
+**Next automation milestone:**
+1. Decide sync client: **Dropbox vs Google Drive** for the Edit Bay Mac Mini watcher
+   - Dropbox: simpler, already a distribution target, no Google dependency
+   - Google Drive: team already uses it, AI Connector on Business tier
+   - **Recommendation:** Dropbox (existing account, direct distribution target)
+
+2. Set up **n8n.cloud** account
+   - Free tier: 5 workflows, 200 executions/month (may be enough for Phase 1)
+   - Starter: $20/month for unlimited executions
+   - Sign up with dallen@davidrives.com
+
+3. Install **Dropbox sync client on Edit Bay Mac Mini** (DRM-EditBay3, 100.112.34.128)
+   - Tailscale into the machine or coordinate with Jacob
+   - Set up selective sync for the finished episodes folder path
+
+4. **Write ADRs 0004-0008** (unwritten from original plan — still not blocking but still needed)
 
 ---
 
-## 🔑 Account map (for future sessions)
+## Open Blockers
+
+| Blocker | Status |
+|---------|--------|
+| Notion workspace doesn't exist yet | Unblocked — import bundle ready in `notion-import/` |
+| n8n.cloud account | Not created yet |
+| Edit Bay Mac Mini sync client | Not installed yet |
+| Sync client decision (Dropbox vs Drive) | Open — see above |
+| ADRs 0004-0008 (unwritten) | Non-blocking, low priority |
+| Miriam not in 1Password | Non-blocking, bus-factor risk |
+
+---
+
+## Key File Locations
+
+| Thing | Location |
+|-------|----------|
+| Notion import bundle | `notion-import/` in this repo |
+| Setup guide | `notion-import/NOTION_SETUP_GUIDE.md` |
+| All CSVs | `notion-import/databases/` |
+| Wiki ZIP | `notion-import/Production_Wiki.zip` |
+| Architecture doc | `docs/decisions/0011-no-qnap-admin-cloud-first-notion-db.md` |
+
+---
+
+## Account Map
 
 | System | Account | Notes |
 |--------|---------|-------|
 | Tailscale tailnet | `danielallen.tn@gmail.com` | Personal email; owns tailnet |
 | 1Password Teams | `dallen@davidrives.com` | Ministry email; owns the GSR Automation vault |
-| GitHub | `Djallen7` | Owns the `gsr-automation` repo |
-| UptimeRobot | `dallen@davidrives.com` | Free tier |
-
-Intentionally separate. See INFRASTRUCTURE_INVENTORY.md "Identity / Account Map" section.
+| GitHub | `Djallen7` | Owns `gsr-automation-v2` repo |
+| UptimeRobot | `dallen@davidrives.com` | Free tier; 1 monitor live |
+| Google Sheets (Graphics Tracking) | `dallen@davidrives.com` | fileId: `1GmdVDOP4h0k6FmOdZLMJNroz7_x4xDcErBYmdGU0890` |
 
 ---
 
-*Generated by Claude at end of session 2026-05-15.*
+*Generated by Claude Code at end of session 2026-05-21.*

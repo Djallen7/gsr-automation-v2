@@ -1,6 +1,6 @@
 # Infrastructure Inventory
 
-**Last updated:** 2026-05-15
+**Last updated:** 2026-05-20
 **Owner:** Daniel
 
 This file is the source of truth for hardware/network facts the automation depends on. Update it whenever a host is added, removed, or moves IPs. Treat it as living documentation — anything stale here will burn us during incident response.
@@ -9,12 +9,12 @@ This file is the source of truth for hardware/network facts the automation depen
 
 ## NAS Units
 
-| Hostname | LAN IP | Vendor | Web UI | Role (proposed) | Tailscale | Admin creds in 1Password |
-|----------|--------|--------|--------|-----------------|-----------|--------------------------|
-| `DRM-QNAP3` | 10.2.2.3 | QNAP (QTS) | https://10.2.2.3 (HTTPS 443, HTTP 8080) | Primary automation host (n8n, dashboard, SQLite, file-watcher) — see ADR-0009 | ❌ Not yet installed | ❌ Not yet captured |
-| `DRM-QNAP5` | 10.2.2.5 | QNAP (QTS) | https://10.2.2.5 (HTTPS 443, HTTP 8080) | Secondary storage; holds some master video files — see ADR-0010 | ❌ Not yet installed | ❌ Not yet captured |
+| Hostname | LAN IP | Vendor | Role | Access Level | Admin creds |
+|----------|--------|--------|------|-------------|-------------|
+| `DRM-QNAP3` | 10.2.2.3 | QNAP (QTS) | File storage — read-only SMB access for automation | ⚠️ Read-only SMB only. No admin. IT manages. | ❌ Not available — IT controlled |
+| `DRM-QNAP5` | 10.2.2.5 | QNAP (QTS) | Secondary file storage — read-only SMB access | ⚠️ Read-only SMB only. No admin. IT manages. | ❌ Not available — IT controlled |
 
-Identification was done by HTTPS fingerprinting on 2026-05-15: QNAP login page (`<html style="background:#007cef">`), `cgi-bin/authLogin.cgi` returning `QDocRoot` XML with `hostname` field.
+**IMPORTANT — 2026-05-20 security incident:** Admin credentials were exposed in a chat session and have been rotated by IT. Daniel no longer has or needs QNAP admin access. The automation system must not attempt to install software, configure settings, or write to the QNAP directly. The only permitted operation is reading finished episode files via the existing SMB share mounts. All automation software runs on a separate machine.
 
 ---
 

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSR Hub — Daniel (Pre-Production)</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0f0f0f; color: #e0e0e0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; height: 100vh; display: flex; flex-direction: column; }
+
+  /* Top bar */
+  .topbar { background: #1a1a1a; border-bottom: 1px solid #2a2a2a; padding: 0 20px; height: 44px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+  .topbar-brand { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: #888; text-transform: uppercase; }
+  .topbar-user { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #aaa; cursor: pointer; }
+  .avatar { width: 26px; height: 26px; border-radius: 50%; background: #2a4a3a; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: #4caf82; }
+  .role-badge { background: #1e3a2a; color: #4caf82; font-size: 10px; padding: 2px 7px; border-radius: 10px; font-weight: 600; letter-spacing: 0.05em; }
+
+  /* Layout */
+  .layout { display: flex; flex: 1; overflow: hidden; }
+
+  /* Sidebar */
+  .sidebar { width: 180px; background: #141414; border-right: 1px solid #222; padding: 16px 0; display: flex; flex-direction: column; flex-shrink: 0; }
+  .nav-section { padding: 0 12px; margin-bottom: 4px; }
+  .nav-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; color: #555; text-transform: uppercase; padding: 8px 8px 4px; }
+  .nav-item { display: flex; align-items: center; gap: 8px; padding: 6px 8px; border-radius: 6px; cursor: pointer; color: #999; font-size: 12px; margin-bottom: 1px; }
+  .nav-item:hover { background: #1e1e1e; color: #ddd; }
+  .nav-item.active { background: #1e3a2a; color: #4caf82; }
+  .nav-item .icon { font-size: 13px; width: 16px; text-align: center; }
+  .nav-divider { border: none; border-top: 1px solid #222; margin: 10px 12px; }
+  .nav-other { padding: 4px 12px; }
+  .nav-other-label { font-size: 10px; color: #444; padding: 4px 8px 2px; letter-spacing: 0.08em; text-transform: uppercase; }
+  .nav-other-item { display: flex; align-items: center; gap: 8px; padding: 5px 8px; border-radius: 6px; cursor: pointer; color: #555; font-size: 11px; }
+  .nav-other-item:hover { color: #888; }
+
+  /* Main */
+  .main { flex: 1; overflow-y: auto; padding: 20px; display: flex; gap: 16px; }
+
+  /* Center column */
+  .center-col { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+
+  /* Right column (inbox) */
+  .right-col { width: 240px; flex-shrink: 0; display: flex; flex-direction: column; gap: 14px; }
+
+  /* Cards */
+  .card { background: #1a1a1a; border: 1px solid #242424; border-radius: 8px; overflow: hidden; }
+  .card-header { padding: 10px 14px; border-bottom: 1px solid #222; display: flex; align-items: center; justify-content: space-between; }
+  .card-title { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #888; }
+  .card-action { font-size: 11px; color: #4caf82; cursor: pointer; }
+  .card-body { padding: 10px 14px; }
+
+  /* Todos */
+  .todo-item { display: flex; align-items: flex-start; gap: 10px; padding: 6px 0; border-bottom: 1px solid #1e1e1e; }
+  .todo-item:last-child { border-bottom: none; }
+  .todo-check { width: 14px; height: 14px; border: 1.5px solid #444; border-radius: 3px; flex-shrink: 0; margin-top: 1px; cursor: pointer; }
+  .todo-check.done { background: #4caf82; border-color: #4caf82; }
+  .todo-text { color: #ccc; font-size: 12px; line-height: 1.4; flex: 1; }
+  .todo-text.done { color: #555; text-decoration: line-through; }
+  .todo-tag { font-size: 10px; padding: 1px 6px; border-radius: 10px; font-weight: 500; flex-shrink: 0; }
+  .tag-guest { background: #1a2a3a; color: #6ab0f5; }
+  .tag-prod { background: #2a1a3a; color: #b06af5; }
+  .tag-graphics { background: #1a2a1a; color: #6af582; }
+  .see-week { font-size: 11px; color: #4caf82; padding: 8px 0 2px; cursor: pointer; display: block; }
+
+  /* Urgency */
+  .urgency-item { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #1e1e1e; }
+  .urgency-item:last-child { border-bottom: none; }
+  .dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+  .dot.red { background: #e05555; }
+  .dot.yellow { background: #e0b855; }
+  .dot.green { background: #4caf82; }
+  .urgency-text { flex: 1; font-size: 12px; color: #ccc; }
+  .urgency-ep { font-size: 10px; color: #666; margin-top: 1px; }
+  .urgency-action { font-size: 10px; color: #4caf82; cursor: pointer; }
+
+  /* Pipeline */
+  .pipeline-item { padding: 8px 0; border-bottom: 1px solid #1e1e1e; }
+  .pipeline-item:last-child { border-bottom: none; }
+  .pipeline-row { display: flex; align-items: center; gap: 10px; margin-bottom: 5px; }
+  .pipeline-ep { font-size: 12px; font-weight: 600; color: #ddd; width: 50px; }
+  .pipeline-phase { font-size: 11px; color: #888; flex: 1; }
+  .pipeline-pct { font-size: 11px; color: #666; width: 32px; text-align: right; }
+  .progress-bar { height: 4px; background: #242424; border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 2px; }
+  .fill-green { background: #4caf82; }
+  .fill-yellow { background: #e0b855; }
+  .fill-blue { background: #6ab0f5; }
+
+  /* Inbox */
+  .inbox-count { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 18px; background: #e05555; border-radius: 50%; font-size: 10px; font-weight: 700; color: white; }
+  .inbox-item { padding: 8px 0; border-bottom: 1px solid #1e1e1e; cursor: pointer; }
+  .inbox-item:last-child { border-bottom: none; }
+  .inbox-item:hover .inbox-item-text { color: #fff; }
+  .inbox-item-from { font-size: 10px; color: #666; margin-bottom: 2px; }
+  .inbox-item-text { font-size: 12px; color: #bbb; line-height: 1.4; }
+  .inbox-item-time { font-size: 10px; color: #555; margin-top: 2px; }
+  .inbox-new { display: inline-block; width: 6px; height: 6px; background: #4caf82; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span class="topbar-brand">GSR Production Hub</span>
+  <div class="topbar-user">
+    <span class="role-badge">Pre-Production</span>
+    <div class="avatar">D</div>
+    <span>Daniel ▾</span>
+  </div>
+</div>
+
+<div class="layout">
+  <nav class="sidebar">
+    <div class="nav-section">
+      <div class="nav-label">My Hub</div>
+      <div class="nav-item active"><span class="icon">⌂</span> Home</div>
+      <div class="nav-item"><span class="icon">📋</span> Episodes</div>
+      <div class="nav-item"><span class="icon">👥</span> Guests</div>
+      <div class="nav-item"><span class="icon">✓</span> Tasks</div>
+      <div class="nav-item"><span class="icon">📁</span> Assets</div>
+    </div>
+    <hr class="nav-divider">
+    <div class="nav-other">
+      <div class="nav-other-label">Other Hubs</div>
+      <div class="nav-other-item"><span class="icon">🎬</span> Isaac's Hub</div>
+      <div class="nav-other-item"><span class="icon">📱</span> Miriam's Hub</div>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="center-col">
+
+      <!-- Today's Focus -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Today's Focus — Thu, May 21</span>
+          <span class="card-action">+ Add task</span>
+        </div>
+        <div class="card-body">
+          <div class="todo-item">
+            <div class="todo-check done"></div>
+            <div class="todo-text done">Review S03E025 show outline</div>
+            <span class="todo-tag tag-prod">Prod</span>
+          </div>
+          <div class="todo-item">
+            <div class="todo-check"></div>
+            <div class="todo-text">Confirm guest: Dr. Nathaniel Jastrow (EP028)</div>
+            <span class="todo-tag tag-guest">Guest</span>
+          </div>
+          <div class="todo-item">
+            <div class="todo-check"></div>
+            <div class="todo-text">Approve graphics batch — EP021 Opening Monologue</div>
+            <span class="todo-tag tag-graphics">Graphics</span>
+          </div>
+          <div class="todo-item">
+            <div class="todo-check"></div>
+            <div class="todo-text">Check Basecamp — EP023 monologue script notes</div>
+            <span class="todo-tag tag-prod">Prod</span>
+          </div>
+          <div class="todo-item">
+            <div class="todo-check"></div>
+            <div class="todo-text">Send Miriam metadata draft for EP022</div>
+            <span class="todo-tag tag-prod">Prod</span>
+          </div>
+          <a class="see-week">See full week →</a>
+        </div>
+      </div>
+
+      <!-- Needs Attention -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Needs Attention</span>
+          <span class="card-action">View all</span>
+        </div>
+        <div class="card-body">
+          <div class="urgency-item">
+            <div class="dot red"></div>
+            <div style="flex:1">
+              <div class="urgency-text">Guest not confirmed — records in 8 days</div>
+              <div class="urgency-ep">EP023 · Dr. Marcus Webb · Interview 1</div>
+            </div>
+            <span class="urgency-action">Follow up →</span>
+          </div>
+          <div class="urgency-item">
+            <div class="dot red"></div>
+            <div style="flex:1">
+              <div class="urgency-text">Script overdue — needed for graphics brief</div>
+              <div class="urgency-ep">EP025 · Opening Monologue</div>
+            </div>
+            <span class="urgency-action">View →</span>
+          </div>
+          <div class="urgency-item">
+            <div class="dot yellow"></div>
+            <div style="flex:1">
+              <div class="urgency-text">3 graphics not loaded — airs in 11 days</div>
+              <div class="urgency-ep">EP021 · Opening Monologue (items 6, 12, 19)</div>
+            </div>
+            <span class="urgency-action">Graphics →</span>
+          </div>
+          <div class="urgency-item">
+            <div class="dot yellow"></div>
+            <div style="flex:1">
+              <div class="urgency-text">Thumbnail pending — Jakob hasn't started</div>
+              <div class="urgency-ep">EP022 · Miriam flagged</div>
+            </div>
+            <span class="urgency-action">View →</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Episode Pipeline -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Episode Pipeline</span>
+          <span class="card-action">Full view →</span>
+        </div>
+        <div class="card-body">
+          <div class="pipeline-item">
+            <div class="pipeline-row">
+              <span class="pipeline-ep">EP021</span>
+              <span class="pipeline-phase">Post-Production · Editing</span>
+              <span class="pipeline-pct">80%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill fill-green" style="width:80%"></div></div>
+          </div>
+          <div class="pipeline-item">
+            <div class="pipeline-row">
+              <span class="pipeline-ep">EP022</span>
+              <span class="pipeline-phase">Post-Production · Color/Audio</span>
+              <span class="pipeline-pct">55%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill fill-yellow" style="width:55%"></div></div>
+          </div>
+          <div class="pipeline-item">
+            <div class="pipeline-row">
+              <span class="pipeline-ep">EP023</span>
+              <span class="pipeline-phase">Pre-Production · Graphics</span>
+              <span class="pipeline-pct">35%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill fill-blue" style="width:35%"></div></div>
+          </div>
+          <div class="pipeline-item">
+            <div class="pipeline-row">
+              <span class="pipeline-ep">EP024</span>
+              <span class="pipeline-phase">Pre-Production · Script</span>
+              <span class="pipeline-pct">15%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill fill-blue" style="width:15%"></div></div>
+          </div>
+          <div class="pipeline-item">
+            <div class="pipeline-row">
+              <span class="pipeline-ep">EP025</span>
+              <span class="pipeline-phase">Pre-Production · Research</span>
+              <span class="pipeline-pct">5%</span>
+            </div>
+            <div class="progress-bar"><div class="progress-fill fill-blue" style="width:5%"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /center-col -->
+
+    <!-- Inbox -->
+    <div class="right-col">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Inbox</span>
+          <span class="inbox-count">3</span>
+        </div>
+        <div class="card-body">
+          <div class="inbox-item">
+            <div class="inbox-item-from"><span class="inbox-new"></span>Isaac</div>
+            <div class="inbox-item-text">EP021 Opening Monologue graphics — 2 items need your call before I can load</div>
+            <div class="inbox-item-time">10:14 AM</div>
+          </div>
+          <div class="inbox-item">
+            <div class="inbox-item-from"><span class="inbox-new"></span>Guest response</div>
+            <div class="inbox-item-text">Dr. Webb replied re: EP023 appearance — scheduling conflict, asking for alt dates</div>
+            <div class="inbox-item-time">9:02 AM</div>
+          </div>
+          <div class="inbox-item">
+            <div class="inbox-item-from"><span class="inbox-new"></span>Miriam</div>
+            <div class="inbox-item-text">EP022 thumbnail — Jakob says not this week. Do you want to reassign?</div>
+            <div class="inbox-item-time">Yesterday</div>
+          </div>
+          <div class="inbox-item">
+            <div class="inbox-item-from">System</div>
+            <div class="inbox-item-text">EP024 guest brief auto-generated from research notes. Ready to review.</div>
+            <div class="inbox-item-time">Yesterday</div>
+          </div>
+          <div class="inbox-item">
+            <div class="inbox-item-from">Jakob</div>
+            <div class="inbox-item-text">THD 392 — Leadwood audio is rough. Pulled from audio folder as workaround, flagged.</div>
+            <div class="inbox-item-time">2 days ago</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>

@@ -300,8 +300,11 @@ def seed_guests(db_id: str):
                 "Research Notes":       text_prop(row["Research Notes"]),
                 "Do Not Contact Until": date_prop(row["Do Not Contact Until"]),
             }
-            add_row(db_id, props)
-            print(f"    guest: {row['Name']}")
+            try:
+                add_row(db_id, props)
+                print(f"    guest: {row['Name']}")
+            except Exception as e:
+                print(f"    SKIP {row['Name']}: {e}")
 
 
 def seed_adrs(db_id: str):

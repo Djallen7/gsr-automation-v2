@@ -17,12 +17,9 @@ import json
 import os
 import sys
 import time
+import urllib.error
+import urllib.request
 from pathlib import Path
-
-try:
-    import requests
-except ImportError:
-    sys.exit("requests not installed — run: pip3 install requests")
 
 NOTION_TOKEN = os.environ.get("NOTION_TOKEN", "")
 PARENT_PAGE_ID = os.environ.get("NOTION_PARENT_ID", "367664ba431f802ab14ec19f4b77bb93")
@@ -41,16 +38,20 @@ HEADERS = {
 
 def api(method: str, path: str, body: dict = None) -> dict:
     url = f"https://api.notion.com/v1{path}"
-    resp = requests.request(method, url, headers=HEADERS, json=body, timeout=30)
-    if resp.status_code == 429:
-        wait = int(resp.headers.get("Retry-After", 5))
-        print(f"  rate limited — waiting {wait}s")
-        time.sleep(wait)
-        return api(method, path, body)
-    if not resp.ok:
-        print(f"  ERROR {resp.status_code}: {resp.text[:300]}")
-        resp.raise_for_status()
-    return resp.json()
+    data = json.dumps(body).encode() if body is not None else None
+    req = urllib.request.Request(url, data=data, headers=HEADERS, method=method)
+    try:
+        with urllib.request.urlopen(req, timeout=30) as resp:
+            return json.loads(resp.read())
+    except urllib.error.HTTPError as e:
+        if e.code == 429:
+            wait = int(e.headers.get("Retry-After", 5))
+            print(f"  rate limited — waiting {wait}s")
+            time.sleep(wait)
+            return api(method, path, body)
+        body_text = e.read().decode()[:300]
+        print(f"  ERROR {e.code}: {body_text}")
+        raise
 
 
 def create_database(parent_id: str, title: str, properties: dict) -> str:

@@ -1,6 +1,6 @@
-# Session Handoff — 2026-05-21
+# Session Handoff — 2026-05-21 (updated)
 
-**Phase:** 1, Week 2 (Notion setup)
+**Phase:** 1, Week 2 — Notion workspace LIVE
 **Picked up next session via:** read this file, then `docs/CONTEXT_BOOTSTRAP.md`
 
 ---
@@ -13,57 +13,77 @@ Architecture pivoted to cloud-first (ADR-0011, written last session 2026-05-20):
 - n8n.cloud replaces self-hosted n8n
 - Edit Bay Mac Mini sync client replaces QNAP file watcher
 
-This session: built the complete Notion import bundle.
+This session: Notion workspace fully set up via API script.
 
 ---
 
 ## Done This Session
 
-- **`notion-import/` directory created** — full import bundle committed to repo
-  - `NOTION_SETUP_GUIDE.md` — 10-step setup walkthrough
-  - `databases/` — 6 CSV files ready to import into Notion
-  - `wiki-zip/Production_Wiki.zip` — 13 docs structured for ZIP import
+- **Notion workspace created** — all 6 databases live under "GSR Production Workspace"
+- **`scripts/notion_setup.py`** — Python script (stdlib only, no installs needed) that creates and seeds all databases via Notion API
+- **`notion-import/database_ids.json`** — all 6 database IDs committed to repo
 
-**CSV files pre-populated:**
-- `Guests.csv` — 20 guests from the roster (ICR, Discovery Institute, Logos Research, Cornwall Alliance, others)
-- `ADRs.csv` — all 6 ADRs (0001-0003, 0009-0011) with context/decision/rationale summaries
-- `DriveFiles.csv` — Graphics Tracking folder and May sheet pre-seeded
+**Databases created and seeded:**
 
-**Production Wiki ZIP contains:**
-- Project Documentation: PROJECT_PLAN, FAILURE_MODES, SESSION_HANDOFF, CONTEXT_BOOTSTRAP
-- Reference: MASTER_CONTEXT, INFRASTRUCTURE_INVENTORY, GSR_METADATA_PATTERN, OPEN_SOURCE_STACK, GIT_CHEATSHEET
-- Decisions: All 6 ADR files
+| Database | Rows seeded |
+|----------|-------------|
+| Episodes | 0 (schema only) |
+| Guests   | 20 |
+| Tasks    | 0 (schema only) |
+| Assets   | 0 (schema only) |
+| ADRs     | 6 |
+| Drive Files | 2 |
+
+**Notion database IDs** (needed for n8n):
+
+| Database | ID |
+|----------|----|
+| Episodes | `367664ba-431f-81cb-9e7a-dc86d8d8612c` |
+| Guests   | `367664ba-431f-81bd-977c-fc4280e9b9a4` |
+| Tasks    | `367664ba-431f-8137-9bd2-c41d531bc17d` |
+| Assets   | `367664ba-431f-8144-8f9a-d9eeb4ed55d8` |
+| ADRs     | `367664ba-431f-81e6-821d-ddeba24d24ae` |
+| Drive Files | `367664ba-431f-81cd-a09c-e13f3e89c47c` |
+
+---
+
+## Cleanup Needed in Notion (do this now)
+
+The script ran twice before succeeding. Delete these duplicate/partial databases from the Notion "GSR Production Workspace" page:
+- Any "Episodes" or "Guests" databases created before the final successful run (they will be empty or have fewer than 20 guests)
+- Keep only the final set — Guests should have exactly 20 rows
+
+---
+
+## Security — Action Required
+
+**Rotate the Notion integration token.** The token `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` appeared in this session's chat. Steps:
+1. Go to notion.so/my-integrations → GSR Automation → Regenerate token
+2. Update "Notion Integration Token" in 1Password (GSR Automation vault)
+3. Done — the script reads from the env var each time, no code changes needed
 
 ---
 
 ## What To Do Next Session
 
-### Immediate (30 min): Execute the Notion import
+### 1. Notion post-setup (30-60 min in Notion UI)
+- Set up **Relations**: Tasks → Episodes, Assets → Episodes
+- Add **views**: Board view for Tasks (by Status), Gallery view for Guests
+- Build **Production Hub** page with linked database views
 
-1. **Download `notion-import/` folder** from this repo to your Mac
-2. **Follow `NOTION_SETUP_GUIDE.md`** step by step
-3. Steps 1-2 (import): ~30 min
-4. Steps 3-6 (configure status options, Relations, Rollups, views): ~60-90 min
-5. Step 7 (Production Hub): ~30 min
+### 2. Decide sync client for Edit Bay Mac Mini
+- **Dropbox** (recommended): simpler, already a distribution target, no Google dependency
+- **Google Drive**: team already uses it, AI Connector on Business tier
+- Decision unlocks the rest of Phase 1
 
-### After Notion workspace is live:
+### 3. Set up n8n.cloud account
+- Sign up at n8n.cloud with `dallen@davidrives.com`
+- Free tier: 5 workflows, 200 executions/month (enough for Phase 1 testing)
+- Starter: $20/month for production use
 
-**Next automation milestone:**
-1. Decide sync client: **Dropbox vs Google Drive** for the Edit Bay Mac Mini watcher
-   - Dropbox: simpler, already a distribution target, no Google dependency
-   - Google Drive: team already uses it, AI Connector on Business tier
-   - **Recommendation:** Dropbox (existing account, direct distribution target)
-
-2. Set up **n8n.cloud** account
-   - Free tier: 5 workflows, 200 executions/month (may be enough for Phase 1)
-   - Starter: $20/month for unlimited executions
-   - Sign up with dallen@davidrives.com
-
-3. Install **Dropbox sync client on Edit Bay Mac Mini** (DRM-EditBay3, 100.112.34.128)
-   - Tailscale into the machine or coordinate with Jacob
-   - Set up selective sync for the finished episodes folder path
-
-4. **Write ADRs 0004-0008** (unwritten from original plan — still not blocking but still needed)
+### 4. Install sync client on Edit Bay Mac Mini (DRM-EditBay3, 100.112.34.128)
+- Tailscale in or coordinate with Jacob
+- Configure selective sync pointing at finished episodes folder
 
 ---
 
@@ -71,10 +91,12 @@ This session: built the complete Notion import bundle.
 
 | Blocker | Status |
 |---------|--------|
-| Notion workspace doesn't exist yet | Unblocked — import bundle ready in `notion-import/` |
+| Notion workspace | **DONE** — 6 databases live |
+| Notion token rotation | **Needed** — token exposed in chat |
+| Notion duplicate cleanup | Needed — delete partial databases from failed runs |
 | n8n.cloud account | Not created yet |
 | Edit Bay Mac Mini sync client | Not installed yet |
-| Sync client decision (Dropbox vs Drive) | Open — see above |
+| Sync client decision (Dropbox vs Drive) | Open |
 | ADRs 0004-0008 (unwritten) | Non-blocking, low priority |
 | Miriam not in 1Password | Non-blocking, bus-factor risk |
 
@@ -84,10 +106,9 @@ This session: built the complete Notion import bundle.
 
 | Thing | Location |
 |-------|----------|
-| Notion import bundle | `notion-import/` in this repo |
-| Setup guide | `notion-import/NOTION_SETUP_GUIDE.md` |
+| Notion setup script | `scripts/notion_setup.py` |
+| Database IDs | `notion-import/database_ids.json` |
 | All CSVs | `notion-import/databases/` |
-| Wiki ZIP | `notion-import/Production_Wiki.zip` |
 | Architecture doc | `docs/decisions/0011-no-qnap-admin-cloud-first-notion-db.md` |
 
 ---
@@ -99,6 +120,7 @@ This session: built the complete Notion import bundle.
 | Tailscale tailnet | `danielallen.tn@gmail.com` | Personal email; owns tailnet |
 | 1Password Teams | `dallen@davidrives.com` | Ministry email; owns the GSR Automation vault |
 | GitHub | `Djallen7` | Owns `gsr-automation-v2` repo |
+| Notion | `dallen@davidrives.com` | GSR Production Workspace page ID: `367664ba431f802ab14ec19f4b77bb93` |
 | UptimeRobot | `dallen@davidrives.com` | Free tier; 1 monitor live |
 | Google Sheets (Graphics Tracking) | `dallen@davidrives.com` | fileId: `1GmdVDOP4h0k6FmOdZLMJNroz7_x4xDcErBYmdGU0890` |
 

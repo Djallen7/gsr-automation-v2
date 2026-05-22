@@ -1,0 +1,85 @@
+{
+  "name": "GSR — Episode Status Sync",
+  "description": "Polls Notion Episodes database every 15 minutes for status changes. When an episode moves to 'Ready to Air' or 'Aired', sends a notification.",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "minutes", "minutesInterval": 15 }]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Every 15 Minutes",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{ $vars.NOTION_EPISODES_DB_ID }}",
+        "returnAll": false,
+        "limit": 50,
+        "options": {
+          "filter": {
+            "type": "manual",
+            "value": {
+              "property": "Status",
+              "select": {
+                "equals": "Post-Production"
+              }
+            }
+          }
+        }
+      },
+      "id": "notion-query",
+      "name": "Query Episodes in Post-Production",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [460, 300],
+      "credentials": { "notionApi": { "name": "Notion GSR" } }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": false },
+          "conditions": [
+            {
+              "id": "check-upload-status",
+              "leftValue": "={{ $json.properties['Upload Status']?.select?.name }}",
+              "rightValue": "Not Started",
+              "operator": { "type": "string", "operation": "equals" }
+            }
+          ]
+        }
+      },
+      "id": "filter-needs-upload",
+      "name": "Filter: Upload Not Started",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const episodes = $input.all();\nconst report = episodes.map(ep => {\n  const props = ep.json.properties;\n  return {\n    label: props['Episode #']?.title?.[0]?.plain_text || 'Unknown',\n    status: props['Status']?.select?.name,\n    uploadStatus: props['Upload Status']?.select?.name,\n    airDate: props['Air Date']?.date?.start\n  };\n});\nreturn [{ json: { count: episodes.length, episodes: report } }];"
+      },
+      "id": "format-report",
+      "name": "Format Report",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "Every 15 Minutes": { "main": [[{ "node": "Query Episodes in Post-Production", "type": "main", "index": 0 }]] },
+    "Query Episodes in Post-Production": { "main": [[{ "node": "Filter: Upload Not Started", "type": "main", "index": 0 }]] },
+    "Filter: Upload Not Started": { "main": [[{ "node": "Format Report", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "_gsr_notes": {
+    "credentials_needed": ["Notion GSR"],
+    "variables_needed": ["NOTION_EPISODES_DB_ID"],
+    "extend_with": "Add email/Slack node after 'Format Report' to send notification"
+  }
+}

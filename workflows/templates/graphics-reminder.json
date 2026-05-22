@@ -1,0 +1,93 @@
+{
+  "name": "GSR — Graphics Due Date Reminder",
+  "description": "Runs daily at 9AM. Queries Graphics Tracking for In Progress items with due dates within 48 hours. Sends a reminder to the assigned person.",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "cronExpression", "expression": "0 9 * * *" }]
+        }
+      },
+      "id": "cron-trigger",
+      "name": "Daily 9AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{ $vars.NOTION_GRAPHICS_DB_ID }}",
+        "returnAll": true,
+        "options": {
+          "filter": {
+            "type": "manual",
+            "value": {
+              "and": [
+                { "property": "Status", "select": { "equals": "In Progress" } },
+                { "property": "Due Date", "date": { "is_not_empty": true } }
+              ]
+            }
+          }
+        }
+      },
+      "id": "query-graphics",
+      "name": "Query In-Progress Graphics",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [460, 300],
+      "credentials": { "notionApi": { "name": "Notion GSR" } }
+    },
+    {
+      "parameters": {
+        "jsCode": "const now = new Date();\nconst cutoff = new Date(now.getTime() + 48 * 60 * 60 * 1000);\n\nconst urgent = $input.all().filter(item => {\n  const due = item.json.properties['Due Date']?.date?.start;\n  if (!due) return false;\n  const dueDate = new Date(due);\n  return dueDate <= cutoff;\n});\n\nreturn urgent.map(item => {\n  const props = item.json.properties;\n  return {\n    json: {\n      description: props['Description']?.title?.[0]?.plain_text,\n      assignedTo: props['Assigned To']?.select?.name,\n      episode: props['Episode (text)']?.rich_text?.[0]?.plain_text,\n      dueDate: props['Due Date']?.date?.start,\n      show: props['Show']?.select?.name,\n      pageUrl: `https://www.notion.so/${item.json.id.replace(/-/g, '')}`\n    }\n  };\n});"
+      },
+      "id": "filter-urgent",
+      "name": "Filter Urgent (<48h)",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "conditions": [
+            {
+              "leftValue": "={{ $input.all().length }}",
+              "rightValue": 0,
+              "operator": { "type": "number", "operation": "gt" }
+            }
+          ]
+        }
+      },
+      "id": "check-has-urgent",
+      "name": "Any Urgent Items?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst byPerson = {};\nitems.forEach(item => {\n  const person = item.json.assignedTo || 'Unassigned';\n  if (!byPerson[person]) byPerson[person] = [];\n  byPerson[person].push(`• ${item.json.description} (${item.json.episode} ${item.json.show}) — Due: ${item.json.dueDate}`);\n});\n\nconst lines = Object.entries(byPerson).map(([person, tasks]) =>\n  `${person}:\\n${tasks.join('\\n')}`\n).join('\\n\\n');\n\nreturn [{ json: { message: `GSR Graphics Due Soon:\\n\\n${lines}`, count: items.length } }];"
+      },
+      "id": "format-message",
+      "name": "Format Reminder Message",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1120, 220]
+    }
+  ],
+  "connections": {
+    "Daily 9AM": { "main": [[{ "node": "Query In-Progress Graphics", "type": "main", "index": 0 }]] },
+    "Query In-Progress Graphics": { "main": [[{ "node": "Filter Urgent (<48h)", "type": "main", "index": 0 }]] },
+    "Filter Urgent (<48h)": { "main": [[{ "node": "Any Urgent Items?", "type": "main", "index": 0 }]] },
+    "Any Urgent Items?": { "main": [[{ "node": "Format Reminder Message", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "_gsr_notes": {
+    "credentials_needed": ["Notion GSR"],
+    "variables_needed": ["NOTION_GRAPHICS_DB_ID"],
+    "extend_with": "Add Slack or email node after 'Format Reminder Message' to deliver the notification"
+  }
+}

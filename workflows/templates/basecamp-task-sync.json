@@ -1,0 +1,167 @@
+{
+  "name": "GSR — Basecamp Task Sync",
+  "description": "Receives Basecamp webhooks when todos are created or completed. Mirrors the state into Notion Tasks database.",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "gsr-basecamp-sync",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Basecamp Event",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "gsr-basecamp-sync"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json;\n\n// Basecamp webhook structure: kind, recording, creator\nconst kind = body.kind;                    // 'todo_created', 'todo_completed', etc.\nconst todo = body.recording;\nconst title = todo?.title || '';\nconst completed = todo?.completed || false;\nconst basecampId = String(todo?.id || '');\nconst projectId = String(body.bucket?.id || '');\nconst projectName = body.bucket?.name || '';\nconst assignees = (todo?.assignees || []).map(a => a.name).join(', ');\nconst dueDate = todo?.due_on;\n\n// Only handle todo events\nconst todoEvents = ['todo_created', 'todo_completed', 'todo_uncompleted', 'todo_updated'];\nif (!todoEvents.includes(kind)) {\n  return [{ json: { _skip: true, kind } }];\n}\n\nreturn [{ json: { kind, title, completed, basecampId, projectId, projectName, assignees, dueDate } }];"
+      },
+      "id": "parse-event",
+      "name": "Parse Basecamp Event",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "conditions": [
+            {
+              "leftValue": "={{ $json._skip }}",
+              "rightValue": true,
+              "operator": { "type": "boolean", "operation": "notEquals" }
+            }
+          ]
+        }
+      },
+      "id": "filter-skip",
+      "name": "Filter Non-Todo Events",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "getAll",
+        "databaseId": "={{ $vars.NOTION_TASKS_DB_ID }}",
+        "returnAll": false,
+        "limit": 1,
+        "options": {
+          "filter": {
+            "type": "manual",
+            "value": {
+              "property": "Basecamp ID",
+              "rich_text": { "equals": "={{ $json.basecampId }}" }
+            }
+          }
+        }
+      },
+      "id": "find-existing",
+      "name": "Find Existing Notion Task",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [900, 300],
+      "credentials": { "notionApi": { "name": "Notion GSR" } }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "conditions": [
+            {
+              "leftValue": "={{ $json.results?.length }}",
+              "rightValue": 0,
+              "operator": { "type": "number", "operation": "equals" }
+            }
+          ]
+        }
+      },
+      "id": "is-new",
+      "name": "Is New Task?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1120, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{ $vars.NOTION_TASKS_DB_ID }}",
+        "title": "=[BC] {{ $('Parse Basecamp Event').item.json.title }}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Completed", "type": "checkbox", "checkboxValue": "={{ $('Parse Basecamp Event').item.json.completed }}" }
+          ]
+        }
+      },
+      "id": "create-task",
+      "name": "Create Task",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1340, 220],
+      "credentials": { "notionApi": { "name": "Notion GSR" } }
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "update",
+        "pageId": "={{ $json.results[0].id }}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Completed", "type": "checkbox", "checkboxValue": "={{ $('Parse Basecamp Event').item.json.completed }}" }
+          ]
+        }
+      },
+      "id": "update-task",
+      "name": "Update Existing Task",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1340, 380],
+      "credentials": { "notionApi": { "name": "Notion GSR" } }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"ok\": true }"
+      },
+      "id": "respond-ok",
+      "name": "Respond 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [460, 480]
+    }
+  ],
+  "connections": {
+    "Basecamp Event": { "main": [[{ "node": "Parse Basecamp Event", "type": "main", "index": 0 }]] },
+    "Parse Basecamp Event": {
+      "main": [[
+        { "node": "Filter Non-Todo Events", "type": "main", "index": 0 },
+        { "node": "Respond 200", "type": "main", "index": 0 }
+      ]]
+    },
+    "Filter Non-Todo Events": { "main": [[{ "node": "Find Existing Notion Task", "type": "main", "index": 0 }]] },
+    "Find Existing Notion Task": { "main": [[{ "node": "Is New Task?", "type": "main", "index": 0 }]] },
+    "Is New Task?": {
+      "main": [
+        [{ "node": "Create Task", "type": "main", "index": 0 }],
+        [{ "node": "Update Existing Task", "type": "main", "index": 0 }]
+      ]
+    }
+  },
+  "settings": { "executionOrder": "v1" },
+  "_gsr_notes": {
+    "credentials_needed": ["Notion GSR"],
+    "variables_needed": ["NOTION_TASKS_DB_ID"],
+    "basecamp_setup": [
+      "1. In Basecamp: Account Settings → Webhooks → Add webhook",
+      "2. URL: {N8N_CLOUD_WEBHOOK_BASE}gsr-basecamp-sync",
+      "3. Events: todos (created, completed, uncompleted, updated)",
+      "4. Add 'Basecamp ID' (rich_text) property to Notion Tasks first"
+    ],
+    "known_limitation": "Bidirectional sync (Notion → Basecamp) not yet implemented. This is one-way: Basecamp changes propagate to Notion."
+  }
+}

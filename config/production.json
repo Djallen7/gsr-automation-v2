@@ -1,0 +1,126 @@
+{
+  "show": {
+    "name": "God's Scientific Revolution",
+    "abbreviation": "GSR",
+    "season": "S3",
+    "season_number": 3,
+    "episode_count": 25,
+    "air_day": "Monday",
+    "air_time_et": "16:00",
+    "air_time_utc": "20:00",
+    "season_3_start_date": "2024-09-02",
+    "description": "A CNN/Fox News-style science news show exploring creation science and the evidence for design in the universe."
+  },
+
+  "segments": [
+    "Opening Monologue",
+    "The Heavens Declare",
+    "Kids Corner",
+    "Q&A",
+    "Ministry Report",
+    "Viewer Voices",
+    "Featured Resource",
+    "GSM",
+    "Interview 1",
+    "Interview 2"
+  ],
+
+  "graphics_shows": [1, 2, 3, 4, 5],
+
+  "platforms": [
+    { "id": "youtube",          "name": "YouTube",           "has_api": true,  "upload_auto": true  },
+    { "id": "rumble",           "name": "Rumble",            "has_api": false, "upload_auto": false },
+    { "id": "odysee",           "name": "Odysee",            "has_api": true,  "upload_auto": false },
+    { "id": "facebook",         "name": "Facebook",          "has_api": true,  "upload_auto": false },
+    { "id": "instagram_reels",  "name": "Instagram Reels",   "has_api": false, "upload_auto": false },
+    { "id": "website",          "name": "Website",           "has_api": false, "upload_auto": false }
+  ],
+
+  "sponsor": {
+    "description": "Episodes 1–24 of Season 3 carry a sponsor segment. Episode 25 is sponsor-free.",
+    "episodes_with_sponsor": [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24],
+    "sponsor_segment_length_sec": 60
+  },
+
+  "youtube": {
+    "default_category_id": "28",
+    "default_language": "en",
+    "title_max_length": 100,
+    "description_max_length": 5000,
+    "tags_max_count": 500,
+    "tags_max_chars": 500,
+    "thumbnail_dimensions": { "width": 1280, "height": 720 },
+    "upload_schedule": {
+      "day": "Monday",
+      "time_et": "16:00",
+      "publish_type": "scheduled"
+    },
+    "default_tags": [
+      "creation science",
+      "intelligent design",
+      "God's Scientific Revolution",
+      "GSR",
+      "science and faith",
+      "origins",
+      "apologetics"
+    ],
+    "playlist_ids": {
+      "season_3": "PLxxxxxxxxxxxxxxxxxx",
+      "kids_corner": "PLxxxxxxxxxxxxxxxxxx",
+      "interviews": "PLxxxxxxxxxxxxxxxxxx",
+      "the_heavens_declare": "PLxxxxxxxxxxxxxxxxxx"
+    }
+  },
+
+  "dropbox": {
+    "media_root": "/GSR Production/",
+    "folder_structure": {
+      "raw_footage":  "Season 3/{episode_label}/Raw/",
+      "edit_project": "Season 3/{episode_label}/Edit/",
+      "graphics":     "Season 3/{episode_label}/Graphics/",
+      "exports":      "Season 3/{episode_label}/Exports/",
+      "thumbnails":   "Season 3/{episode_label}/Thumbnails/",
+      "audio":        "Season 3/{episode_label}/Audio/"
+    },
+    "naming_convention": "{episode_label}_{descriptor}_{version}.{ext}",
+    "example": "S03EP025_Interview1_v02.mp4"
+  },
+
+  "notion": {
+    "task_priorities": ["Critical", "High", "Medium", "Low"],
+    "asset_file_types": ["Video", "Audio", "Image", "Document", "Template"],
+    "upload_statuses": ["Not Started", "Queued", "Processing", "Live", "Error", "Taken Down"],
+    "episode_statuses": ["Planning", "Pre-Production", "In Production", "Post-Production", "Aired", "Archived"],
+    "graphics_statuses": ["Not Started", "In Progress", "Loaded In", "Done", "Cancelled"],
+    "outreach_statuses": ["Lead", "Contacted", "Confirmed", "Booked", "Past Guest", "Do Not Contact"]
+  },
+
+  "n8n": {
+    "workflows": {
+      "episode_status_sync":    { "cron": "*/15 * * * *", "description": "Poll Notion for episode status changes" },
+      "youtube_upload_log":     { "trigger": "webhook",   "description": "Log YouTube upload completion to Notion" },
+      "graphics_reminder":      { "cron": "0 9 * * *",   "description": "Daily reminder for graphics with due dates < 48h" },
+      "dropbox_asset_sync":     { "trigger": "webhook",   "description": "Sync new Dropbox files to Notion Assets" },
+      "basecamp_task_sync":     { "trigger": "webhook",   "description": "Sync Basecamp todos to Notion Tasks" },
+      "episode_checklist_create": { "trigger": "notion",  "description": "Auto-create task checklist on new Episode" },
+      "weekly_report":          { "cron": "0 18 * * 0",  "description": "Sunday 6PM weekly pipeline report" }
+    }
+  },
+
+  "episode_checklist_template": [
+    { "name": "Script draft complete",       "phase": "Pre-Production", "assignee": "Daniel"  },
+    { "name": "Guests confirmed",            "phase": "Pre-Production", "assignee": "Daniel"  },
+    { "name": "Graphics list submitted",     "phase": "Pre-Production", "assignee": "Isaac"   },
+    { "name": "All graphics loaded in ProPresenter", "phase": "Pre-Production", "assignee": "Isaac" },
+    { "name": "Recording complete",          "phase": "Production",     "assignee": "Daniel"  },
+    { "name": "Raw footage to Dropbox",      "phase": "Production",     "assignee": "Jeremiah"},
+    { "name": "Edit complete",               "phase": "Post-Production","assignee": "Isaac"   },
+    { "name": "Review pass — Isaac",         "phase": "Post-Production","assignee": "Isaac"   },
+    { "name": "Final export to Dropbox",     "phase": "Post-Production","assignee": "Isaac"   },
+    { "name": "Metadata draft written",      "phase": "Post-Production","assignee": "Miriam"  },
+    { "name": "Thumbnail created",           "phase": "Post-Production","assignee": "Miriam"  },
+    { "name": "YouTube upload complete",     "phase": "Upload",         "assignee": "Miriam"  },
+    { "name": "Rumble upload complete",      "phase": "Upload",         "assignee": "Miriam"  },
+    { "name": "Episode marked Aired",        "phase": "Upload",         "assignee": "Miriam"  }
+  ]
+}

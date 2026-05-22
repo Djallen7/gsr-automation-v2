@@ -1,0 +1,77 @@
+{
+  "name": "GSR — Episode Checklist Auto-Create",
+  "description": "Triggered by a webhook when a new Episode is created in Notion. Auto-creates the standard production task checklist in the Tasks database.",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "gsr-new-episode",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "New Episode Created",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "gsr-new-episode"
+    },
+    {
+      "parameters": {
+        "jsCode": "const body = $input.first().json;\nconst episode = body.data?.object;\nconst props = episode?.properties || {};\n\nconst label = props['Episode #']?.title?.[0]?.plain_text || 'Unknown';\nconst episodePageId = episode?.id;\n\n// Standard checklist template\nconst tasks = [\n  { name: 'Script draft complete',              phase: 'Pre-Production', assignee: 'Daniel',   priority: 'High' },\n  { name: 'Guests confirmed',                   phase: 'Pre-Production', assignee: 'Daniel',   priority: 'High' },\n  { name: 'Graphics list submitted',            phase: 'Pre-Production', assignee: 'Isaac',    priority: 'Medium' },\n  { name: 'All graphics loaded in ProPresenter', phase: 'Pre-Production', assignee: 'Isaac',   priority: 'Critical' },\n  { name: 'Recording complete',                 phase: 'Production',     assignee: 'Daniel',   priority: 'Critical' },\n  { name: 'Raw footage to Dropbox',             phase: 'Production',     assignee: 'Jeremiah', priority: 'High' },\n  { name: 'Edit complete',                      phase: 'Post-Production', assignee: 'Isaac',   priority: 'Critical' },\n  { name: 'Review pass',                        phase: 'Post-Production', assignee: 'Isaac',   priority: 'High' },\n  { name: 'Final export to Dropbox',            phase: 'Post-Production', assignee: 'Isaac',   priority: 'High' },\n  { name: 'Metadata draft written',             phase: 'Post-Production', assignee: 'Miriam',  priority: 'Medium' },\n  { name: 'Thumbnail created',                  phase: 'Post-Production', assignee: 'Miriam',  priority: 'Medium' },\n  { name: 'YouTube upload complete',            phase: 'Upload',          assignee: 'Miriam',  priority: 'High' },\n  { name: 'Rumble upload complete',             phase: 'Upload',          assignee: 'Miriam',  priority: 'Medium' },\n  { name: 'Episode marked Aired',               phase: 'Upload',          assignee: 'Miriam',  priority: 'Medium' }\n];\n\nreturn tasks.map(t => ({ json: { ...t, episodeLabel: label, episodePageId } }));"
+      },
+      "id": "build-task-list",
+      "name": "Build Task List",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{ $vars.NOTION_TASKS_DB_ID }}",
+        "title": "={{ $json.episodeLabel }} — {{ $json.name }}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Priority", "type": "select",   "selectValue": "={{ $json.priority }}" },
+            { "key": "Completed", "type": "checkbox", "checkboxValue": false }
+          ]
+        }
+      },
+      "id": "create-task",
+      "name": "Create Task in Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [680, 300],
+      "credentials": { "notionApi": { "name": "Notion GSR" } }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"ok\": true }"
+      },
+      "id": "respond-ok",
+      "name": "Respond 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [900, 300]
+    }
+  ],
+  "connections": {
+    "New Episode Created": { "main": [[{ "node": "Build Task List", "type": "main", "index": 0 }]] },
+    "Build Task List": { "main": [[{ "node": "Create Task in Notion", "type": "main", "index": 0 }]] },
+    "Create Task in Notion": { "main": [[{ "node": "Respond 200", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "_gsr_notes": {
+    "credentials_needed": ["Notion GSR"],
+    "variables_needed": ["NOTION_TASKS_DB_ID"],
+    "trigger_setup": [
+      "Option A: Use Notion's built-in automation to call this webhook when a new Episode page is created",
+      "Option B: Use n8n Notion trigger (requires polling) — less immediate",
+      "Webhook URL: {N8N_CLOUD_WEBHOOK_BASE}gsr-new-episode"
+    ],
+    "known_limitation": "Task-to-Episode relations not auto-set in this template (Notion relation API via n8n is complex). Set manually or extend this workflow."
+  }
+}

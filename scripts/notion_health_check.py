@@ -87,16 +87,16 @@ EXPECTED_PROPERTIES = {
         "Basecamp Contact ID",
     },
     "tasks": {
-        "Name", "Status", "Priority", "Due Date", "Completed",
+        "Task Name", "Status", "Priority", "Due Date", "Completed",
     },
     "assets": {
-        "Name", "File Type", "Dropbox Path",
+        "Asset Name", "Type", "Dropbox Path",
     },
     "adrs": {
         "Title",
     },
     "drivefiles": {
-        "File Name", "File Extension", "Dropbox Sync Status",
+        "Name", "File Extension", "Dropbox Sync Status",
     },
     "graphics_tracking": {
         "Description", "Segment", "Graphic #", "Graphic Type",

@@ -1,9 +1,11 @@
 {
-  "episodes": "367664ba-431f-81cb-9e7a-dc86d8d8612c",
-  "guests": "367664ba-431f-81bd-977c-fc4280e9b9a4",
-  "tasks": "367664ba-431f-8137-9bd2-c41d531bc17d",
-  "assets": "367664ba-431f-8144-8f9a-d9eeb4ed55d8",
-  "adrs": "367664ba-431f-81e6-821d-ddeba24d24ae",
-  "drivefiles": "367664ba-431f-81cd-a09c-e13f3e89c47c",
-  "graphics_tracking": "367664ba-431f-81b6-acbd-fd157626b3e4"
+  "episodes": "368664ba-431f-818e-b004-e27c9d4b52da",
+  "guests": "368664ba-431f-8193-a632-f642ed42d630",
+  "tasks": "368664ba-431f-81b8-a29f-d6e1ac53f4ee",
+  "assets": "368664ba-431f-8111-bf8c-e41ce9781b4e",
+  "adrs": "368664ba-431f-8134-b3f2-ebbbaed8b609",
+  "drivefiles": "368664ba-431f-81c7-9208-e73d02f0e57c",
+  "graphics_tracking": "368664ba-431f-816c-b423-f545ca799603",
+  "platform_uploads": "368664ba-431f-8114-bc84-d6a9702a4663",
+  "metadata_drafts": "368664ba-431f-819a-8a2f-ca1070b79989"
 }

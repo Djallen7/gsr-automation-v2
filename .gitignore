@@ -1,6 +1,7 @@
 # Secrets and environment variables — NEVER commit these
 .env
 .env.*
+!.env.example
 .claude/settings.local.json
 
 # macOS system files — created automatically by Finder, not your work

@@ -1,0 +1,118 @@
+{
+  "name": "GSR — Dropbox Asset Sync",
+  "description": "Receives Dropbox webhook on file changes in the GSR Production folder. Creates or updates an Assets record in Notion.",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "gsr-dropbox-sync",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Dropbox File Change",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "gsr-dropbox-sync"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Dropbox webhook sends a challenge on first connect; respond to verify\nconst body = $input.first().json;\nif (body.challenge) {\n  return [{ json: { _challenge: body.challenge, _skipProcessing: true } }];\n}\n\n// Extract changed file paths from delta notification\nconst entries = body?.list_folder?.accounts || [];\n// Actual file details come via a separate Dropbox API call in the next node\nreturn [{ json: { accounts: entries, timestamp: new Date().toISOString() } }];"
+      },
+      "id": "parse-webhook",
+      "name": "Parse Dropbox Payload",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "url": "https://api.dropboxapi.com/2/files/list_folder/continue",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "Authorization", "value": "=Bearer {{ $vars.DROPBOX_ACCESS_TOKEN }}" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "cursor", "value": "={{ $vars.DROPBOX_CURSOR }}" }
+          ]
+        }
+      },
+      "id": "dropbox-list-changes",
+      "name": "List Dropbox Changes",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const result = $input.first().json;\nconst entries = result.entries || [];\n\n// Only process file additions in /GSR Production/\nconst newFiles = entries.filter(e =>\n  e['.tag'] === 'file' &&\n  e.path_lower.startsWith('/gsr production/')\n);\n\nreturn newFiles.map(f => ({\n  json: {\n    name: f.name,\n    path: f.path_display,\n    size_mb: Math.round(f.size / 1024 / 1024 * 100) / 100,\n    modified: f.server_modified,\n    ext: f.name.split('.').pop()?.toLowerCase() || ''\n  }\n}));"
+      },
+      "id": "extract-new-files",
+      "name": "Extract New Files",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "resource": "databasePage",
+        "operation": "create",
+        "databaseId": "={{ $vars.NOTION_ASSETS_DB_ID }}",
+        "title": "={{ $json.name }}",
+        "propertiesUi": {
+          "propertyValues": [
+            { "key": "Dropbox Path",  "type": "richText", "textValue": "={{ $json.path }}" },
+            { "key": "File Size (MB)", "type": "number",  "numberValue": "={{ $json.size_mb }}" },
+            { "key": "Dropbox Sync Status", "type": "select", "selectValue": "Synced" }
+          ]
+        }
+      },
+      "id": "create-asset",
+      "name": "Create Asset in Notion",
+      "type": "n8n-nodes-base.notion",
+      "typeVersion": 2.2,
+      "position": [1120, 300],
+      "credentials": { "notionApi": { "name": "Notion GSR" } }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"ok\": true }"
+      },
+      "id": "respond-ok",
+      "name": "Respond 200",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [460, 480]
+    }
+  ],
+  "connections": {
+    "Dropbox File Change": { "main": [[{ "node": "Parse Dropbox Payload", "type": "main", "index": 0 }]] },
+    "Parse Dropbox Payload": {
+      "main": [[
+        { "node": "Dropbox List Changes", "type": "main", "index": 0 },
+        { "node": "Respond 200", "type": "main", "index": 0 }
+      ]]
+    },
+    "List Dropbox Changes": { "main": [[{ "node": "Extract New Files", "type": "main", "index": 0 }]] },
+    "Extract New Files": { "main": [[{ "node": "Create Asset in Notion", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "_gsr_notes": {
+    "credentials_needed": ["Notion GSR"],
+    "variables_needed": ["NOTION_ASSETS_DB_ID", "DROPBOX_ACCESS_TOKEN", "DROPBOX_CURSOR"],
+    "dropbox_setup": [
+      "1. Create a Dropbox App at dropbox.com/developers",
+      "2. Set webhook URL to: {N8N_CLOUD_WEBHOOK_BASE}gsr-dropbox-sync",
+      "3. Get initial cursor by calling /files/list_folder on /GSR Production/",
+      "4. Store cursor in n8n variable DROPBOX_CURSOR (must be updated after each webhook)"
+    ]
+  }
+}

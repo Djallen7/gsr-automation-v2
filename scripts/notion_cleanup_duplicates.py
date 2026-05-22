@@ -84,12 +84,19 @@ def search_all_databases() -> list:
     return results
 
 
-def archive_database(db_id: str, name: str):
+def archive_database(db_id: str, name: str) -> bool:
     if DRY_RUN:
         print(f"  [DRY RUN] Would archive: {name} ({db_id})")
-        return
-    api("PATCH", f"/pages/{db_id}", {"archived": True})
-    print(f"  Archived: {name} ({db_id})")
+        return True
+    try:
+        api("PATCH", f"/pages/{db_id}", {"archived": True})
+        print(f"  [ARCHIVED] {name} ({db_id})")
+        return True
+    except urllib.error.HTTPError as e:
+        if e.code == 404:
+            print(f"  [MANUAL]   {name} ({db_id}) — not accessible via API, delete manually in Notion")
+            return False
+        raise
 
 
 def main():
@@ -143,12 +150,23 @@ def main():
         return
 
     print()
+    archived = 0
+    manual = []
     for db_id, name in to_archive:
-        archive_database(db_id, name)
+        ok = archive_database(db_id, name)
+        if ok:
+            archived += 1
+        else:
+            manual.append((db_id, name))
         time.sleep(0.5)
 
-    print(f"\n✓ Archived {len(to_archive)} duplicate database(s).")
-    print("  Find them in Notion's Trash to permanently delete if needed.")
+    print(f"\n✓ Archived {archived} database(s) via API.")
+    if manual:
+        print(f"\n  {len(manual)} database(s) need manual deletion in Notion:")
+        print("  (Integration lacks write access — open Notion and delete these from the sidebar)")
+        for db_id, name in manual:
+            print(f"    • {name}  (ID: {db_id})")
+        print("\n  In Notion: right-click the database → Delete → confirm")
 
 
 if __name__ == "__main__":

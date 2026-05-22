@@ -93,7 +93,7 @@ EXPECTED_PROPERTIES = {
         "Asset Name", "Type", "Dropbox Path",
     },
     "adrs": {
-        "Title",
+        "ADR #",
     },
     "drivefiles": {
         "Name", "File Extension", "Dropbox Sync Status",

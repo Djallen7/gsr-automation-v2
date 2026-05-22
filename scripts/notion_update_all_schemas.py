@@ -89,43 +89,26 @@ GUESTS_ADDITIONS = {
 }
 
 TASKS_ADDITIONS = {
-    "Priority": {
-        "select": {
-            "options": [
-                {"name": "Critical", "color": "red"},
-                {"name": "High", "color": "orange"},
-                {"name": "Medium", "color": "yellow"},
-                {"name": "Low", "color": "gray"},
-            ]
-        }
-    },
-    "Due Date": {"date": {}},
+    # Priority and Due Date already exist from notion_setup.py — skip them
+    # Adding: Critical option to Priority, plus Completed fields
     "Completed": {"checkbox": {}},
     "Completed Date": {"date": {}},
+    # Add Critical as a new Priority option by patching the existing property
+    # (done separately below via add_priority_critical)
 }
 
 ASSETS_ADDITIONS = {
-    "File Type": {
-        "select": {
-            "options": [
-                {"name": "Video", "color": "blue"},
-                {"name": "Audio", "color": "green"},
-                {"name": "Image", "color": "purple"},
-                {"name": "Document", "color": "gray"},
-                {"name": "Template", "color": "yellow"},
-            ]
-        }
-    },
+    # 'Type' already exists from notion_setup.py — adding new fields only
     "Dropbox Path": {"rich_text": {}},
     "Google Drive URL": {"url": {}},
     "Resolution": {
         "select": {
             "options": [
-                {"name": "4K", "color": "blue"},
-                {"name": "1080p", "color": "green"},
-                {"name": "720p", "color": "yellow"},
-                {"name": "SD", "color": "gray"},
-                {"name": "Audio Only", "color": "purple"},
+                {"name": "4K"},
+                {"name": "1080p"},
+                {"name": "720p"},
+                {"name": "SD"},
+                {"name": "Audio Only"},
             ]
         }
     },
@@ -136,15 +119,15 @@ DRIVEFILES_ADDITIONS = {
     "File Extension": {
         "select": {
             "options": [
-                {"name": ".mp4", "color": "blue"},
-                {"name": ".mov", "color": "blue"},
-                {"name": ".wav", "color": "green"},
-                {"name": ".mp3", "color": "green"},
-                {"name": ".pdf", "color": "red"},
-                {"name": ".psd", "color": "purple"},
-                {"name": ".ai", "color": "orange"},
-                {"name": ".png", "color": "pink"},
-                {"name": ".jpg", "color": "yellow"},
+                {"name": ".mp4"},
+                {"name": ".mov"},
+                {"name": ".wav"},
+                {"name": ".mp3"},
+                {"name": ".pdf"},
+                {"name": ".psd"},
+                {"name": ".ai"},
+                {"name": ".png"},
+                {"name": ".jpg"},
             ]
         }
     },
@@ -152,10 +135,10 @@ DRIVEFILES_ADDITIONS = {
     "Dropbox Sync Status": {
         "select": {
             "options": [
-                {"name": "Synced", "color": "green"},
-                {"name": "Pending", "color": "yellow"},
-                {"name": "Error", "color": "red"},
-                {"name": "Not Tracked", "color": "gray"},
+                {"name": "Synced"},
+                {"name": "Pending"},
+                {"name": "Error"},
+                {"name": "Not Tracked"},
             ]
         }
     },
@@ -166,10 +149,10 @@ GRAPHICS_TRACKING_ADDITIONS = {
     "Priority": {
         "select": {
             "options": [
-                {"name": "Critical", "color": "red"},
-                {"name": "High", "color": "orange"},
-                {"name": "Normal", "color": "blue"},
-                {"name": "Low", "color": "gray"},
+                {"name": "Critical"},
+                {"name": "High"},
+                {"name": "Normal"},
+                {"name": "Low"},
             ]
         }
     },
@@ -178,8 +161,8 @@ GRAPHICS_TRACKING_ADDITIONS = {
     "Approved By": {
         "select": {
             "options": [
-                {"name": "Isaac", "color": "green"},
-                {"name": "Daniel", "color": "blue"},
+                {"name": "Isaac"},
+                {"name": "Daniel"},
             ]
         }
     },

@@ -38,8 +38,8 @@ HEADERS = {
     "Notion-Version": "2022-06-28",
 }
 
-# Season 3 configuration
-SEASON = "S3"
+# Season 3 configuration — must match the option name in notion_setup.py ("Season 3")
+SEASON = "Season 3"
 PREMIERE_DATE = date(2024, 9, 2)   # Monday
 TOTAL_EPISODES = 25
 SPONSOR_THROUGH = 24               # EP001–EP024 have sponsors

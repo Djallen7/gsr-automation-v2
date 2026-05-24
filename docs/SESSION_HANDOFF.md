@@ -1,129 +1,92 @@
-# Session Handoff — 2026-05-21 (updated)
+# Session Handoff — 2026-05-23
 
-**Phase:** 1, Week 2 — Notion workspace LIVE
-**Picked up next session via:** read this file, then `docs/CONTEXT_BOOTSTRAP.md`
+**For the next Claude session, contractor, or future Daniel reading this cold.**
+**Project owner:** Daniel Allen (GitHub: Djallen7)
+**Active repo:** [github.com/Djallen7/gsr-automation-v2](https://github.com/Djallen7/gsr-automation-v2)
 
----
-
-## What Changed This Session
-
-Architecture pivoted to cloud-first (ADR-0011, written last session 2026-05-20):
-- QNAP admin access gone — security incident
-- Notion replaces SQLite as the database
-- n8n.cloud replaces self-hosted n8n
-- Edit Bay Mac Mini sync client replaces QNAP file watcher
-
-This session: Notion workspace fully set up via API script.
+V1 (`gsr-automation` without the v2 suffix) is being archived. Do not use the old name.
 
 ---
 
-## Done This Session
+## Current state
 
-- **Notion workspace created** — all 6 databases live under "GSR Production Workspace"
-- **`scripts/notion_setup.py`** — Python script (stdlib only, no installs needed) that creates and seeds all databases via Notion API
-- **`notion-import/database_ids.json`** — all 6 database IDs committed to repo
+Architecture pivoted again on 2026-05-22/23: **Supabase replaces Notion** as the backend (see ADR-0012, supersedes ADR-0011). The Notion workspace from 2026-05-21 is sunk cost — kept as wiki, not used as DB.
 
-**Databases created and seeded:**
+**Stack now:**
+- Backend: Supabase (Postgres + Realtime + Storage + Auth + Edge Functions)
+- Frontend: Next.js 15 + shadcn/ui
+- AI: Claude API
+- Servers (QNAP3/QNAP5): read-only archive, unchanged
+- n8n: deferred until Feature 3+
 
-| Database | Rows seeded |
-|----------|-------------|
-| Episodes | 0 (schema only) |
-| Guests   | 20 |
-| Tasks    | 0 (schema only) |
-| Assets   | 0 (schema only) |
-| ADRs     | 6 |
-| Drive Files | 2 |
+**First feature:** Jakob lower-thirds approval workflow. Three weeks of focused work. Nothing else gets built until Feature 1 is in production for one real episode cycle.
 
-**Notion database IDs** (needed for n8n):
-
-| Database | ID |
-|----------|----|
-| Episodes | `367664ba-431f-81cb-9e7a-dc86d8d8612c` |
-| Guests   | `367664ba-431f-81bd-977c-fc4280e9b9a4` |
-| Tasks    | `367664ba-431f-8137-9bd2-c41d531bc17d` |
-| Assets   | `367664ba-431f-8144-8f9a-d9eeb4ed55d8` |
-| ADRs     | `367664ba-431f-81e6-821d-ddeba24d24ae` |
-| Drive Files | `367664ba-431f-81cd-a09c-e13f3e89c47c` |
+The four documents that define current state — `START_HERE.md`, `ROADMAP_VISUAL.md`, `FEATURE_1_LOWER_THIRDS.md`, `DECISION_LOG_2026-05-22.md` — are at the repo root. Read them in that order.
 
 ---
 
-## Cleanup Needed in Notion (do this now)
+## What's been decided (short version)
 
-The script ran twice before succeeding. Delete these duplicate/partial databases from the Notion "GSR Production Workspace" page:
-- Any "Episodes" or "Guests" databases created before the final successful run (they will be empty or have fewer than 20 guests)
-- Keep only the final set — Guests should have exactly 20 rows
-
----
-
-## Security — Action Required
-
-**Rotate the Notion integration token.** The token `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` appeared in this session's chat. Steps:
-1. Go to notion.so/my-integrations → GSR Automation → Regenerate token
-2. Update "Notion Integration Token" in 1Password (GSR Automation vault)
-3. Done — the script reads from the env var each time, no code changes needed
+- **Backend:** Supabase. Not Notion. (ADR-0012)
+- **Frontend:** Next.js 15 + shadcn/ui. Not low-code platforms.
+- **First feature:** Jakob lower-thirds approval workflow. Not the dashboard shell, not YouTube upload.
+- **Servers:** Read-only. Working data in Supabase. Server is the archive.
+- **Tool swaps from the audit:** all deferred. None get swapped as part of foundation work.
 
 ---
 
-## What To Do Next Session
+## What hasn't been decided yet
 
-### 1. Notion post-setup (30-60 min in Notion UI)
-- Set up **Relations**: Tasks → Episodes, Assets → Episodes
-- Add **views**: Board view for Tasks (by Status), Gallery view for Guests
-- Build **Production Hub** page with linked database views
-
-### 2. Decide sync client for Edit Bay Mac Mini
-- **Dropbox** (recommended): simpler, already a distribution target, no Google dependency
-- **Google Drive**: team already uses it, AI Connector on Business tier
-- Decision unlocks the rest of Phase 1
-
-### 3. Set up n8n.cloud account
-- Sign up at n8n.cloud with `dallen@davidrives.com`
-- Free tier: 5 workflows, 200 executions/month (enough for Phase 1 testing)
-- Starter: $20/month for production use
-
-### 4. Install sync client on Edit Bay Mac Mini (DRM-EditBay3, 100.112.34.128)
-- Tailscale in or coordinate with Jacob
-- Configure selective sync pointing at finished episodes folder
+- Whether Miriam gets her own dashboard role or shares Daniel's during Feature 1 testing
+- When to introduce Daniel-2 (correspondent) and other team members
+- Final GSR brand assets (waiting on Jakob: lower-third designs, logo, color palette)
+- David Rives buy-in on Supabase (Feature 1 doesn't require it; distribution features will)
 
 ---
 
-## Open Blockers
+## What to build first
 
-| Blocker | Status |
-|---------|--------|
-| Notion workspace | **DONE** — 6 databases live |
-| Notion token rotation | **Needed** — token exposed in chat |
-| Notion duplicate cleanup | Needed — delete partial databases from failed runs |
-| n8n.cloud account | Not created yet |
-| Edit Bay Mac Mini sync client | Not installed yet |
-| Sync client decision (Dropbox vs Drive) | Open |
-| ADRs 0004-0008 (unwritten) | Non-blocking, low priority |
-| Miriam not in 1Password | Non-blocking, bus-factor risk |
+Feature 1: lower-thirds approval. Full spec in `FEATURE_1_LOWER_THIRDS.md` at repo root. Stack: Supabase + Next.js + Claude API. Nothing else.
+
+Do NOT add features outside this scope until Feature 1 is in production for one real episode cycle.
 
 ---
 
-## Key File Locations
+## How to start a productive session
 
-| Thing | Location |
-|-------|----------|
-| Notion setup script | `scripts/notion_setup.py` |
-| Database IDs | `notion-import/database_ids.json` |
-| All CSVs | `notion-import/databases/` |
-| Architecture doc | `docs/decisions/0011-no-qnap-admin-cloud-first-notion-db.md` |
-
----
-
-## Account Map
-
-| System | Account | Notes |
-|--------|---------|-------|
-| Tailscale tailnet | `danielallen.tn@gmail.com` | Personal email; owns tailnet |
-| 1Password Teams | `dallen@davidrives.com` | Ministry email; owns the GSR Automation vault |
-| GitHub | `Djallen7` | Owns `gsr-automation-v2` repo |
-| Notion | `dallen@davidrives.com` | GSR Production Workspace page ID: `367664ba431f802ab14ec19f4b77bb93` |
-| UptimeRobot | `dallen@davidrives.com` | Free tier; 1 monitor live |
-| Google Sheets (Graphics Tracking) | `dallen@davidrives.com` | fileId: `1GmdVDOP4h0k6FmOdZLMJNroz7_x4xDcErBYmdGU0890` |
+1. Read this file.
+2. Read `docs/CONTEXT_BOOTSTRAP.md` for the project context.
+3. Read `FEATURE_1_LOWER_THIRDS.md` if Daniel is asking about the lower-thirds build.
+4. Read `docs/decisions/0012-supabase-backend.md` if Daniel is asking why Supabase over Notion.
+5. Only read older docs (`MASTER_CONTEXT.md`, the tooling audit, the research charter) when the conversation requires them. They are reference, not roadmap.
+6. Anything in older docs that conflicts with the decision log: the decision log wins.
 
 ---
 
-*Generated by Claude Code at end of session 2026-05-21.*
+## Things to NOT do
+
+- Don't propose new tool swaps unless Daniel explicitly asks. The audit is reference, not a TODO list.
+- Don't redesign the data model "to be more complete." Schemas grow as features demand them.
+- Don't suggest building the dashboard shell before the first feature exists.
+- Don't write Notion-as-backend solutions. That decision is closed (ADR-0012).
+- Don't add Notion, ClickUp, Airtable, or similar "one-stop shop" recommendations. Considered and rejected.
+
+---
+
+## Context for any session
+
+- Daniel is a non-developer. He uses Claude Code for actual building. Planning/architecture happens in Claude.ai sessions.
+- Daniel works at David Rives Ministries (501(c)(3), Christian creation-science TV). Show: The Genesis Science Report (GSR). Weekly, ~58 min, Season 3.
+- Team: Daniel + Miriam as core producers, ~7-8 studio crew on shoot days.
+- Production cadence: 10-11 taping cycles/year, 2 shoot days per cycle, 5 episodes per session.
+- Working email: `dallen@davidrives.com`. Personal Tailscale account: `danielallen.tn@gmail.com`.
+
+---
+
+## Carryover from 2026-05-21 (Notion track) — for reference, not action
+
+The previous session set up a Notion workspace with 6 databases (Episodes, Guests, Tasks, Assets, ADRs, Drive Files) via `scripts/notion_setup.py`. Per ADR-0012 these are no longer the active path. Decisions still relevant from that work:
+
+- Notion integration token rotation still needed — token was exposed in chat
+- The 6 Notion DBs remain in the workspace and can be repurposed as wiki/documentation views or deleted
+- Account map (1Password Teams, GitHub, Tailscale tailnet) unchanged

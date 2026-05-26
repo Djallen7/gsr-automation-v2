@@ -13,7 +13,7 @@ Option 1 makes manual workflows feel like failure modes. Option 2 makes manual w
 
 ## Decision
 
-We adopt Option 2. Every platform has identical database schema. Only the `uploaded_by` field differs ("automation" vs "Miriam"). Switching a platform between manual and automated is a configuration change, not a redesign.
+We adopt Option 2. Every platform has identical database schema. Only the `uploaded_by` field differs ("automation" vs "Miryam"). Switching a platform between manual and automated is a configuration change, not a redesign.
 
 ## Consequences
 

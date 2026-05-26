@@ -133,7 +133,7 @@ Workaround Count:
 - ✅ Exception volume stable or declining
 - ✅ Processing speed matches Month 1
 - ✅ Documentation complete
-- ✅ Miriam can make simple changes
+- ✅ Miryam can make simple changes
 - **Fire Alarm Question**: "Are manual interventions increasing?"
 
 **90-Day Check-In: Sustainability Audit**
@@ -465,7 +465,7 @@ rules:
 ## 7. SINGLE POINT OF FAILURE (Bus Factor = 1)
 
 ### The Threat
-Only you know how the system works. Miriam gets stuck if you're unavailable.
+Only you know how the system works. Miryam gets stuck if you're unavailable.
 
 ### SPECIFIC COUNTERMEASURES
 
@@ -480,7 +480,7 @@ Only you know how the system works. Miriam gets stuck if you're unavailable.
 
 **B. Skills Matrix (Track Monthly)**
 ```
-System/Area          | You  | Miriam | Risk Level
+System/Area          | You  | Miryam | Risk Level
 ---------------------|------|--------|------------
 Backup System        |  4   |   2    | YELLOW (2)
 Database Deploy      |  4   |   1    | RED (1)
@@ -635,7 +635,7 @@ Do not suggest any other packages."
 ## 10. THE "BOSS LEAVES" SCENARIO
 
 ### The Threat
-You transition away, Miriam gets stuck with unmaintainable system.
+You transition away, Miryam gets stuck with unmaintainable system.
 
 ### SPECIFIC COUNTERMEASURES
 
@@ -695,15 +695,15 @@ Use Loom for:
 
 **C. Pair-Building Sessions (8-Week Progression)**
 ```
-Week 1-2: Observe (Miriam watches, asks questions)
-Week 3-4: Assist (Miriam helps with simple tasks)
-Week 5-6: Practice (Miriam does tasks with guidance)
-Week 7-8: Independent (Miriam works alone, asks when stuck)
+Week 1-2: Observe (Miryam watches, asks questions)
+Week 3-4: Assist (Miryam helps with simple tasks)
+Week 5-6: Practice (Miryam does tasks with guidance)
+Week 7-8: Independent (Miryam works alone, asks when stuck)
 ```
 
 ### FIRE ALARM TRIGGERS
 - Work stops completely when you're unavailable
-- Miriam hesitates to ask questions
+- Miryam hesitates to ask questions
 - "I'll show you later" becomes standard response
 - Documentation >6 months old
 
@@ -1076,7 +1076,7 @@ if (config.automationEnabled && serviceHealthy()) {
 ```
 
 **Success Criteria**:
-- ✅ Miriam can still upload manually if n8n down
+- ✅ Miryam can still upload manually if n8n down
 - ✅ Automation enhances but doesn't replace manual capability
 - ✅ All data exportable (avoiding lock-in)
 
@@ -1306,7 +1306,7 @@ def get_access_token(user_id):
 ```
 □ Create workflow documentation template
 □ Document each production workflow
-□ Share access info with Miriam
+□ Share access info with Miryam
 □ Run test outage (break something intentionally)
 □ Verify all alerts work
 □ Review Week 1 setup with team
@@ -1334,7 +1334,7 @@ def get_access_token(user_id):
 **Fire Alarm Questions**:
 - "Are you spending more time maintaining than saving?"
 - "Are manual interventions increasing?"
-- "Can Miriam complete basic tasks independently?"
+- "Can Miryam complete basic tasks independently?"
 
 **Action If Any Metric Fails**: Stop adding features, fix fundamentals
 
@@ -1346,7 +1346,7 @@ def get_access_token(user_id):
 - ✅ Exception volume: Stable or declining
 - ✅ Processing speed: Matches Month 1
 - ✅ Documentation: Complete and current
-- ✅ Miriam: Can make simple changes without help
+- ✅ Miryam: Can make simple changes without help
 
 **Complexity Check**:
 ```
@@ -1390,7 +1390,7 @@ Complexity Score = (Steps × Dependencies × Branches)
 
 ## Red Line #3: Comprehension Lost
 **Trigger**: "I don't understand how this works anymore"
-**Measurement**: Can you explain to Miriam in <30 minutes?
+**Measurement**: Can you explain to Miryam in <30 minutes?
 **Action**: Documentation sprint + pair sessions, or rebuild simpler
 
 ## Red Line #4: Team Abandonment
@@ -1578,7 +1578,7 @@ Result: [Success/Issues]
 ### Credentials & Access
 ```
 □ All credentials backed up to 1Password
-□ Miriam has access to all systems she needs
+□ Miryam has access to all systems she needs
 □ Production credentials separate from dev
 □ MFA enabled on all critical accounts
 □ Emergency access procedures documented
@@ -1637,7 +1637,7 @@ Result: [Success/Issues]
 
 ### Team Readiness
 ```
-□ Miriam trained on what to do when X breaks
+□ Miryam trained on what to do when X breaks
 □ Both team members can access everything needed
 □ Skills matrix shows bus factor ≥1.5
 □ On-call schedule defined
@@ -1659,7 +1659,7 @@ Result: [Success/Issues]
 
 # PART 10: KNOWLEDGE TRANSFER ACCELERATORS
 
-## Using AI to Onboard Miriam
+## Using AI to Onboard Miryam
 
 ### Safe AI Usage Patterns (Anthropic Study)
 ```
@@ -1669,7 +1669,7 @@ Result: [Success/Issues]
 ❌ DON'T: Use AI for debugging (negative correlation with learning)
 ```
 
-### Prompt Templates for Miriam
+### Prompt Templates for Miryam
 ```
 "Explain this code to someone with no programming experience:
 [paste code]
@@ -1686,14 +1686,14 @@ Break it into simple steps."
 ### AI-Assisted Pair Building
 ```
 Session Structure:
-1. User + Miriam + AI (ChatGPT/Claude)
+1. User + Miryam + AI (ChatGPT/Claude)
 2. Shared screen with AI chat open
 3. Task defined beforehand
 
 Process:
 1. User explains task to AI in plain English
 2. AI suggests approach
-3. Miriam asks clarifying questions to AI
+3. Miryam asks clarifying questions to AI
 4. User validates AI suggestions
 5. Implement together
 6. Document learnings
@@ -1761,9 +1761,9 @@ Priority 2 (MONTH 1):
 
 ### Week 1-2: OBSERVE (Watch & Learn)
 ```
-Miriam's Role: Watch, ask questions
+Miryam's Role: Watch, ask questions
 Session Type: User drives, narrates thinking
-Success Metric: Miriam can explain system in own words
+Success Metric: Miryam can explain system in own words
 
 Sessions:
 - System overview (90 min)
@@ -1773,8 +1773,8 @@ Sessions:
 
 ### Week 3-4: ASSIST (Help with Simple Tasks)
 ```
-Miriam's Role: Help with guided tasks
-Session Type: User drives, Miriam assists
+Miryam's Role: Help with guided tasks
+Session Type: User drives, Miryam assists
 Success Metric: Can complete basic tasks with guidance
 
 Sessions:
@@ -1785,19 +1785,19 @@ Sessions:
 
 ### Week 5-6: PRACTICE (Guided Independence)
 ```
-Miriam's Role: Do tasks with guidance
-Session Type: Miriam drives, User navigates
+Miryam's Role: Do tasks with guidance
+Session Type: Miryam drives, User navigates
 Success Metric: Can work semi-independently
 
 Sessions:
-- Miriam deploys while User watches (90 min)
-- Miriam fixes bug with hints (90 min)
-- Miriam adds feature with guidance (120 min)
+- Miryam deploys while User watches (90 min)
+- Miryam fixes bug with hints (90 min)
+- Miryam adds feature with guidance (120 min)
 ```
 
 ### Week 7-8: INDEPENDENT (Solo Work)
 ```
-Miriam's Role: Work alone, ask when stuck
+Miryam's Role: Work alone, ask when stuck
 Session Type: Solo + AI assistant + check-ins
 Success Metric: Can complete tasks independently
 
@@ -1849,7 +1849,7 @@ Activities:
 ```
 ✅ 15+ videos recorded
 ✅ All critical procedures documented
-✅ Miriam can complete basic tasks with guidance
+✅ Miryam can complete basic tasks with guidance
 ✅ Automated backups running
 ✅ 30-day check-in completed
 ✅ Complexity metrics <30
@@ -1859,7 +1859,7 @@ Activities:
 ```
 ✅ Successor Manual complete
 ✅ Bus factor improved to 1.5+
-✅ Miriam 70%+ independent
+✅ Miryam 70%+ independent
 ✅ All failure modes have countermeasures
 ✅ 90-day audit shows positive ROI
 ✅ Manual backup tested and viable
@@ -1868,7 +1868,7 @@ Activities:
 ### Month 6 (Maturity)
 ```
 ✅ Bus factor of 2 (both can do everything)
-✅ Miriam could onboard a third person
+✅ Miryam could onboard a third person
 ✅ Knowledge base is single source of truth
 ✅ System sustains without you if needed
 ✅ Zero red lines triggered
@@ -1900,7 +1900,7 @@ If you do nothing else from this guide, do these five:
 
 1. **Set up automated backups THIS WEEK** (3-2-1-1-0 rule)
 2. **Document everything as you build** (not later)
-3. **Start knowledge transfer to Miriam NOW** (not when you leave)
+3. **Start knowledge transfer to Miryam NOW** (not when you leave)
 4. **Implement hard spending caps on AI APIs** (prevent $5k surprise bills)
 5. **Test manual fallback procedures monthly** (automation will break)
 
@@ -1911,7 +1911,7 @@ You've made the decision to build. That's brave. Now execute with discipline:
 - **Automate the boring** (use mature tools)
 - **Document first** (write what it does before building)
 - **Test obsessively** (before every deployment)
-- **Share knowledge daily** (Miriam learns as you build)
+- **Share knowledge daily** (Miryam learns as you build)
 - **Monitor everything** (you can't fix what you can't see)
 - **Keep manual viable** (automation enhances, doesn't replace)
 

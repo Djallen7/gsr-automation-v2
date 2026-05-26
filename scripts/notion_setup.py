@@ -180,7 +180,7 @@ TASKS_SCHEMA = {
                     ]}},
     "Assigned To": {"select": {"options": [
                         {"name": "Daniel",  "color": "blue"},
-                        {"name": "Miriam",  "color": "purple"},
+                        {"name": "Miryam",  "color": "purple"},
                         {"name": "Jacob",   "color": "yellow"},
                         {"name": "Gabe",    "color": "orange"},
                         {"name": "Isaac",   "color": "green"},
@@ -214,7 +214,7 @@ ASSETS_SCHEMA = {
     "File Location (URL)": {"url": {}},
     "Creator":             {"select": {"options": [
                                 {"name": "Daniel",  "color": "blue"},
-                                {"name": "Miriam",  "color": "purple"},
+                                {"name": "Miryam",  "color": "purple"},
                                 {"name": "Jacob",   "color": "yellow"},
                                 {"name": "Gabe",    "color": "orange"},
                                 {"name": "Isaac",   "color": "green"},

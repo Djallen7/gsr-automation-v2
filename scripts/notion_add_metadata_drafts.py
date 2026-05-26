@@ -101,7 +101,7 @@ def main():
                 "select": {
                     "options": [
                         {"name": "Daniel", "color": "blue"},
-                        {"name": "Miriam", "color": "purple"},
+                        {"name": "Miryam", "color": "purple"},
                     ]
                 }
             },

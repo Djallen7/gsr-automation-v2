@@ -41,7 +41,7 @@ Notion Workspace (single source of truth)
     │                                  │
     ├── /daniel  → Pre-Production Hub  │
     ├── /isaac   → Graphics + Post Hub │
-    └── /miriam  → Social/Upload Hub   │
+    └── /miryam  → Social/Upload Hub   │
 ```
 
 One codebase. Role-based routing on login. All three views pull from the same Notion API calls, just filtered and arranged differently for each person.
@@ -89,7 +89,7 @@ One codebase. Role-based routing on login. All three views pull from the same No
 
 ---
 
-### Miriam — Social / Upload Hub
+### Miryam — Social / Upload Hub
 **Role:** Social Media, Uploads, YouTube/Platform Publishing  
 **Primary work zone:** Post-production delivery  
 **What she never needs to see:** Pre-production planning, guest research, episode scripts, production scheduling
@@ -101,7 +101,7 @@ One codebase. Role-based routing on login. All three views pull from the same No
 - Transcript access — per episode, for captions and social copy
 - Isaac's status sidebar — narrow panel showing where Isaac is in the editing process for each episode so she knows when something is about to land in her queue
 
-**Design principle:** Miriam's view is a *queue with status indicators*. She shouldn't have to ask anyone "is this ready?" — the UI should tell her.
+**Design principle:** Miryam's view is a *queue with status indicators*. She shouldn't have to ask anyone "is this ready?" — the UI should tell her.
 
 ---
 
@@ -140,7 +140,7 @@ Regardless of which hub, these principles apply across all three:
 │          │  │ 🔴 EP023 guest not conf. │   │               │
 │  Isaac's │  │ 🟡 EP025 script overdue  │   │               │
 │  Hub     │  │ 🟡 Graphics EP021 3 left │   │               │
-│  Miriam's│  └──────────────────────────┘   │               │
+│  Miryam's│  └──────────────────────────┘   │               │
 │  Hub     │                                  │               │
 │          │  EPISODE PIPELINE                │               │
 │          │  EP021 ████████░░ 80%  Editing   │               │
@@ -180,11 +180,11 @@ Regardless of which hub, these principles apply across all three:
 
 ---
 
-### Miriam — Home Screen Layout Concept
+### Miryam — Home Screen Layout Concept
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│ GSR PRODUCTION HUB                              [Miriam ▾]  │
+│ GSR PRODUCTION HUB                              [Miryam ▾]  │
 ├──────────┬────────────────────────────┬────────────────────-┤
 │          │  READY TO PUBLISH          │  ISAAC'S STATUS     │
 │  NAV     │                            │                     │
@@ -219,7 +219,7 @@ Regardless of which hub, these principles apply across all three:
 | Authentication for v1 | No auth (just bookmarked URLs per role) vs simple password per role | Open |
 | Mobile priority | Daniel's view mobile-first? Others desktop-only for v1? | Open |
 | Graphics Tracker — inline on Isaac's hub or always separate page? | Isaac wants it one click away, not embedded | Leaning separate |
-| Does Miriam need edit access or read-only? | She needs to mark things as uploaded/scheduled | Needs edit on specific fields |
+| Does Miryam need edit access or read-only? | She needs to mark things as uploaded/scheduled | Needs edit on specific fields |
 
 ---
 
@@ -227,10 +227,10 @@ Regardless of which hub, these principles apply across all three:
 
 - Specific episode page layouts (what does a single episode look like when you click into it?)
 - Guest database view for Daniel
-- Social scheduling workflow for Miriam
+- Social scheduling workflow for Miryam
 - How notifications/inbox items are generated and cleared
 - Mobile layout specifics
-- The actual metadata structure for Miriam's publishing panel
+- The actual metadata structure for Miryam's publishing panel
 - Whether the "Claude Cache" tab data from Graphics Tracking migrates or stays in Sheets
 
 ---
@@ -282,7 +282,7 @@ The 2024 Core Web Vitals shift to INP (Interaction to Next Paint) means responsi
 
 ### Build Order Recommendation
 
-1. **Miriam first** — simplest, most clearly defined, delivers immediate value (she currently has no purpose-built tool)
+1. **Miryam first** — simplest, most clearly defined, delivers immediate value (she currently has no purpose-built tool)
 2. **Isaac second** — well-defined workflow, editing pipeline is a known pattern
 3. **Daniel last** — most complex (inbox + urgency + todos + Apple Notes sync), and your own preferences will evolve as you watch the others work
 

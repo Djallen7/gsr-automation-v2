@@ -13,7 +13,7 @@ ADR-0011 (2026-05-20) selected Notion as the database for the cloud-first pivot 
 Subsequent design work (captured in `DECISION_LOG_2026-05-22.md`, source-of-record for this decision) re-evaluated the backend choice against the actual features being built. The first feature — Jakob's lower-thirds approval workflow — requires:
 
 - A real relational schema with foreign keys and constraints
-- Realtime updates between Jakob, Daniel, and Miriam
+- Realtime updates between Jakob, Daniel, and Miryam
 - Authenticated role-based access
 - A bespoke approval UI, not a generic database table view
 
@@ -43,7 +43,7 @@ Notion's strengths (team-editable docs, no-code views, wiki) do not map to these
 
 ## Open Questions
 
-- Whether Miriam gets her own dashboard role or shares Daniel's during Feature 1 testing
+- Whether Miryam gets her own dashboard role or shares Daniel's during Feature 1 testing
 - When to introduce Daniel-2 (correspondent) and other team members to the dashboard
 - Final GSR brand assets for the dashboard (waiting on Jakob to deliver lower-third designs, logo, color palette)
 - David Rives buy-in on Supabase (Feature 1 doesn't require it; distribution features will)

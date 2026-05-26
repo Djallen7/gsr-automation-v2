@@ -4,6 +4,8 @@
 
 **Out of scope for this feature:** ProPresenter automatic push, video transcription, episode metadata, distribution, guest pipeline, anything else. Those are later features.
 
+**Sibling doc:** [`FEATURE_1_BOOTSTRAP_IMPORT.md`](./FEATURE_1_BOOTSTRAP_IMPORT.md) defines a temporary text-only ingest path so the approval queue can run on existing Google Docs script content from day one, before Jakob's PNG upload flow is in steady use. Inserts as Stage 6.5 in the build sequence below.
+
 ---
 
 ## User stories

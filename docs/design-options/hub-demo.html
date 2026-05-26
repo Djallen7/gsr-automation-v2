@@ -27,7 +27,7 @@
   --nebula-c: rgba(20,100,80,0.08);
 }
 body.role-isaac  { --accent: var(--green);  --accent-bg: var(--green-bg);  --nebula-a: rgba(20,160,80,0.14);  --nebula-b: rgba(40,160,140,0.10); --nebula-c: rgba(60,80,200,0.07); }
-body.role-miriam { --accent: var(--purple); --accent-bg: var(--purple-bg); --nebula-a: rgba(140,40,200,0.18); --nebula-b: rgba(80,20,180,0.12);  --nebula-c: rgba(200,80,80,0.07); }
+body.role-miryam { --accent: var(--purple); --accent-bg: var(--purple-bg); --nebula-a: rgba(140,40,200,0.18); --nebula-b: rgba(80,20,180,0.12);  --nebula-c: rgba(200,80,80,0.07); }
 
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{height:100%;overflow:hidden;}
@@ -326,7 +326,7 @@ body::after {
 .seg-detail .ok{color:var(--green);}
 .seg-detail .warn{color:var(--red);}
 
-/* Miriam episode list */
+/* Miryam episode list */
 .ep-list{display:flex;flex-direction:column;}
 .ep-row{
   display:flex;align-items:center;gap:12px;padding:10px 0;
@@ -371,7 +371,7 @@ body::after {
 .pub-btn:active{transform:translateY(0);}
 .pub-btn:disabled{background:var(--bg4);color:var(--t3);cursor:not-allowed;transform:none;box-shadow:none;}
 
-/* Isaac sidebar / Miriam sidebar */
+/* Isaac sidebar / Miryam sidebar */
 .status-sidebar{background:var(--bg3);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
 .status-header{padding:10px 14px;border-bottom:1px solid var(--border);font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--t3);}
 .status-row{display:flex;align-items:center;gap:10px;padding:9px 14px;border-bottom:1px solid rgba(255,255,255,0.04);}
@@ -401,7 +401,7 @@ body::after {
   <div class="role-tabs">
     <div class="role-tab active" onclick="switchRole('daniel',this)">⌂ Daniel</div>
     <div class="role-tab" onclick="switchRole('isaac',this)">🎬 Isaac</div>
-    <div class="role-tab" onclick="switchRole('miriam',this)">📱 Miriam</div>
+    <div class="role-tab" onclick="switchRole('miryam',this)">📱 Miryam</div>
   </div>
   <div class="topbar-icons">
     <div class="icon-btn" title="Search">🔍</div>
@@ -434,7 +434,7 @@ body::after {
     <div class="nav-section">
       <div class="nav-section-label">Access</div>
       <div class="other-hub" onclick="switchRole('isaac',document.querySelectorAll('.role-tab')[1])"><span class="nav-icon">🎬</span> Isaac's Hub</div>
-      <div class="other-hub" onclick="switchRole('miriam',document.querySelectorAll('.role-tab')[2])"><span class="nav-icon">📱</span> Miriam's Hub</div>
+      <div class="other-hub" onclick="switchRole('miryam',document.querySelectorAll('.role-tab')[2])"><span class="nav-icon">📱</span> Miryam's Hub</div>
     </div>
   </nav>
 
@@ -451,12 +451,12 @@ body::after {
     <div class="nav-section">
       <div class="nav-section-label">Access</div>
       <div class="other-hub" onclick="switchRole('daniel',document.querySelectorAll('.role-tab')[0])"><span class="nav-icon">⌂</span> Daniel's Hub</div>
-      <div class="other-hub" onclick="switchRole('miriam',document.querySelectorAll('.role-tab')[2])"><span class="nav-icon">📱</span> Miriam's Hub</div>
+      <div class="other-hub" onclick="switchRole('miryam',document.querySelectorAll('.role-tab')[2])"><span class="nav-icon">📱</span> Miryam's Hub</div>
     </div>
   </nav>
 
-  <!-- ═══════════════════════════════════════════ MIRIAM SIDEBAR -->
-  <nav class="sidebar" id="sidebar-miriam" style="display:none;">
+  <!-- ═══════════════════════════════════════════ MIRYAM SIDEBAR -->
+  <nav class="sidebar" id="sidebar-miryam" style="display:none;">
     <div class="nav-section">
       <div class="nav-section-label">My Hub</div>
       <div class="nav-item active"><span class="nav-icon">⌂</span> Home</div>
@@ -535,7 +535,7 @@ body::after {
                 </div>
                 <div class="todo-item" onclick="toggleTodo(this)">
                   <div class="todo-box"></div>
-                  <div class="todo-text">Send Miriam metadata draft for EP022</div>
+                  <div class="todo-text">Send Miryam metadata draft for EP022</div>
                   <span class="todo-tag badge-blue">Prod</span>
                 </div>
               </div>
@@ -579,7 +579,7 @@ body::after {
                   <div class="urg-dot yellow"></div>
                   <div class="urg-body">
                     <div class="urg-text">Thumbnail pending — Jakob hasn't started</div>
-                    <div class="urg-ep">EP022 · Miriam flagged</div>
+                    <div class="urg-ep">EP022 · Miryam flagged</div>
                   </div>
                   <div class="urg-go">View →</div>
                 </div>
@@ -644,7 +644,7 @@ body::after {
                   <div class="inbox-dismiss" onclick="dismissInbox(this)">✕</div>
                 </div>
                 <div class="inbox-item">
-                  <div class="inbox-from"><span class="inbox-new-dot"></span>Miriam</div>
+                  <div class="inbox-from"><span class="inbox-new-dot"></span>Miryam</div>
                   <div class="inbox-text">EP022 thumbnail — Jakob says not this week. Reassign?</div>
                   <div class="inbox-time">Yesterday</div>
                   <div class="inbox-dismiss" onclick="dismissInbox(this)">✕</div>
@@ -867,8 +867,8 @@ body::after {
     </div><!-- /view-isaac -->
 
 
-    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ MIRIAM VIEW -->
-    <div class="view" id="view-miriam">
+    <!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ MIRYAM VIEW -->
+    <div class="view" id="view-miryam">
 
       <div class="stat-row">
         <div class="stat-card" style="--card-accent:var(--green);">
@@ -1021,15 +1021,15 @@ body::after {
         </div>
 
       </div><!-- /main-cols -->
-    </div><!-- /view-miriam -->
+    </div><!-- /view-miryam -->
 
   </div><!-- /content -->
 </div><!-- /app -->
 
 <script>
 // ─── Role switching ────────────────────────────────────────────
-const roleNames = { daniel:'Daniel', isaac:'Isaac', miriam:'Miriam' };
-const roleAvatars = { daniel:'D', isaac:'I', miriam:'M' };
+const roleNames = { daniel:'Daniel', isaac:'Isaac', miryam:'Miryam' };
+const roleAvatars = { daniel:'D', isaac:'I', miryam:'M' };
 
 function switchRole(role, tab) {
   // Update body class for nebula/accent
@@ -1044,7 +1044,7 @@ function switchRole(role, tab) {
   document.getElementById('view-' + role).classList.add('active');
 
   // Sidebars
-  ['daniel','isaac','miriam'].forEach(r => {
+  ['daniel','isaac','miryam'].forEach(r => {
     const s = document.getElementById('sidebar-' + r);
     if(s) s.style.display = r === role ? 'flex' : 'none';
   });
@@ -1123,7 +1123,7 @@ function switchShow(tab) {
   });
 }
 
-// ─── Miriam ep select ──────────────────────────────────────────
+// ─── Miryam ep select ──────────────────────────────────────────
 const metaData = {
   ep021: {
     label: 'EP021 — Checklist',

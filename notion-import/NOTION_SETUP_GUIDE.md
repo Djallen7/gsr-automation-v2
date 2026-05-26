@@ -277,7 +277,7 @@ Keep top-level pages to 7 or fewer. Use Cmd/Ctrl+K search instead of browsing si
 
 ## Step 10: Team Onboarding (When Ready)
 
-When adding Miriam or others:
+When adding Miryam or others:
 1. Invite at workspace level as **Member** (not Owner)
 2. Set all databases to **Can Edit Content** (not Can Edit)
 3. Create **"GSR Admins"** permission group with Full Access for you

@@ -55,7 +55,7 @@ Still to try (next session):
 - **UptimeRobot API key** was pasted in chat once during setup. Not world-readable, but rotate at convenience (Settings → API → regenerate). I'll re-save to 1Password in one `op` command when ready.
 - **PR #9 has 4 commits** — all docs-only. No code yet.
 - **ADRs 0004–0008** from the original PROJECT_PLAN list are still unwritten. Not blocking but worth a session.
-- **Miriam not yet invited to 1Password.** Bus-factor risk (FAILURE_MODES.md #7). Invite when she's ready to participate.
+- **Miryam not yet invited to 1Password.** Bus-factor risk (FAILURE_MODES.md #7). Invite when she's ready to participate.
 - **1Password 7 (legacy v7.9.11) still installed** alongside 1Password 8. Uninstall when convenient.
 
 ---

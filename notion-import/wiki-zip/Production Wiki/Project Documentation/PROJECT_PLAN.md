@@ -4,7 +4,7 @@
 
 **Last updated:** 2026-05-15 (Week 1, mid-week — Tailscale discovery surfaced second QNAP; see ADR-0009)
 **Owner:** Daniel
-**Co-maintainer:** Miriam
+**Co-maintainer:** Miryam
 
 ---
 
@@ -12,7 +12,7 @@
 
 ```
 gsr-automation/
-├── README.md                       # Project overview, quickstart for Miriam
+├── README.md                       # Project overview, quickstart for Miryam
 ├── docs/
 │   ├── PROJECT_PLAN.md             # This file — phased build plan
 │   ├── ARCHITECTURE.md             # System design, component diagram
@@ -49,7 +49,7 @@ gsr-automation/
 - One place for everything — no more scattered docs in Downloads
 - Code and docs live together — they evolve together
 - ADRs in `docs/decisions/` track WHY we made every major choice
-- Runbooks in `docs/runbooks/` are the "when X breaks" guides — critical for Miriam
+- Runbooks in `docs/runbooks/` are the "when X breaks" guides — critical for Miryam
 - All n8n workflows exported to Git daily (backup + change history)
 
 ---
@@ -98,7 +98,7 @@ episodes (
 
 platform_uploads (
   id, episode_id, platform_name, status,
-  upload_url, uploaded_at, uploaded_by,  -- "automation" OR "Miriam"
+  upload_url, uploaded_at, uploaded_by,  -- "automation" OR "Miryam"
   platform_metadata_json
 )
 ```
@@ -169,13 +169,13 @@ Switching a platform between manual and automated is a configuration change, not
 - [ ] Dashboard "Copy metadata" buttons for Rumble, Fireside, Signiant, StreamHoster
 - [ ] Dashboard "Open upload page" buttons (open platform in new tab)
 - [ ] Dashboard "Mark as uploaded" buttons (update status, prompt for URL)
-- [ ] Test full workflow with Miriam: approve in dashboard → automated YT + Dropbox → manual copy/paste for other 4
+- [ ] Test full workflow with Miryam: approve in dashboard → automated YT + Dropbox → manual copy/paste for other 4
 
 ### Week 8: Testing, documentation, knowledge transfer
 - [ ] Process 3–5 real episodes through full pipeline
 - [ ] Write all runbooks (one per failure mode)
 - [ ] Record Loom walkthroughs (deployment, recovery, daily ops)
-- [ ] Pair sessions with Miriam (observe → assist progression)
+- [ ] Pair sessions with Miryam (observe → assist progression)
 - [ ] Phase 1 retrospective: what worked, what didn't, what to fix before Phase 2
 
 ## What's explicitly OUT of Phase 1
@@ -196,12 +196,12 @@ Switching a platform between manual and automated is a configuration change, not
 ## Phase 1 Exit Criteria — must hit ALL before Phase 2
 
 1. ✅ 10 consecutive episodes processed without manual code intervention
-2. ✅ Miriam can complete full workflow independently for an episode
+2. ✅ Miryam can complete full workflow independently for an episode
 3. ✅ Average maintenance time < 1 hour/week for 4 consecutive weeks
 4. ✅ Error rate < 5% on automated uploads
 5. ✅ All runbooks tested by following them from cold start
 6. ✅ Dashboard polled, database backed up, monitoring alerting on failures
-7. ✅ All Phase 1 code in repo with Miriam having commit access
+7. ✅ All Phase 1 code in repo with Miryam having commit access
 
 **If you can't hit ALL six, do NOT start Phase 2.** Stay in Phase 1 maintenance mode until stable.
 
@@ -223,7 +223,7 @@ Switching a platform between manual and automated is a configuration change, not
 ### Signiant Google Form auto-fill (2–3 weeks)
 - [ ] Deploy Playwright service in Docker
 - [ ] Build n8n workflow: receive episode metadata → Playwright fills Google Form → submits → captures confirmation
-- [ ] Dashboard updated: Signiant platform shows "automation" instead of "Miriam" when enabled
+- [ ] Dashboard updated: Signiant platform shows "automation" instead of "Miryam" when enabled
 - [ ] Form field mapping documented (in case Google Form changes)
 - [ ] Fallback: if Playwright fails, dashboard reverts to manual workflow seamlessly
 - [ ] Runbook: `runbooks/signiant-form-fill.md`
@@ -260,7 +260,7 @@ Switching a platform between manual and automated is a configuration change, not
 **Success probability:** **45–55%**
 *Why lowest:* Fireside has no API at all; relies entirely on Playwright. FTP automation has many edge cases. These are the platforms most likely to break and stay broken.
 
-**Honest recommendation:** Seriously consider whether you need to do Phase 3. If Phases 1 and 2 are stable and Miriam is comfortable with manual workflows for Fireside/StreamHoster, **Phase 3 may not be worth the maintenance burden it adds**.
+**Honest recommendation:** Seriously consider whether you need to do Phase 3. If Phases 1 and 2 are stable and Miryam is comfortable with manual workflows for Fireside/StreamHoster, **Phase 3 may not be worth the maintenance burden it adds**.
 
 ## What gets built in Phase 3 (if proceeding)
 
@@ -287,7 +287,7 @@ Switching a platform between manual and automated is a configuration change, not
 
 1. ✅ All four deferred platforms either automated stably OR consciously kept manual
 2. ✅ Total system maintenance < 3 hours/week
-3. ✅ Bus factor of 2 (you AND Miriam can do everything)
+3. ✅ Bus factor of 2 (you AND Miryam can do everything)
 
 ---
 
@@ -381,7 +381,7 @@ These get tracked as GitHub Issues with `risk` label, reviewed weekly:
 | AI cost spike | Hard $100/mo cap, kill switch | $50 in any single month |
 | YouTube quota exceeded | Stagger uploads, request quota increase | First quota error |
 | NAS failure | 3-2-1-1-0 backups | Any backup failure |
-| Knowledge gap (Miriam) | Pair sessions, Loom videos | Miriam can't do task independently |
+| Knowledge gap (Miryam) | Pair sessions, Loom videos | Miryam can't do task independently |
 | OAuth token expiry | Refresh token logic, monitoring | Any auth failure |
 | Platform UI change (Phase 2+) | Screenshot-on-failure, fallback to manual | Playwright workflow fails |
 | Maintenance burden growth | Weekly time tracking | >3 hrs/week sustained |
@@ -402,7 +402,7 @@ These get tracked as GitHub Issues with `risk` label, reviewed weekly:
 **Monthly (last Friday, 90 min):**
 - Phase progress review
 - Update this PROJECT_PLAN.md if scope changed (commit changes)
-- Pair session with Miriam — what's confusing, what's working
+- Pair session with Miryam — what's confusing, what's working
 - Review monitoring/cost reports
 
 **End-of-Phase (when exit criteria met):**

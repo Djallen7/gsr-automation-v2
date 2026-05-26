@@ -13,7 +13,7 @@ I'm continuing work on a project from a previous Claude account. I need you to g
 
 **About me:**
 - Young, risk-averse, relatively inexperienced broadcast TV producer
-- Working with my colleague Miriam (we both have Macs)
+- Working with my colleague Miryam (we both have Macs)
 - I prefer straightforward answers and honest opinions over hedged options
 - I'm a non-developer using AI assistance to build a custom automation system
 - Default to concise, production-ready output. Deliver the deliverable, not an explanation of the deliverable.

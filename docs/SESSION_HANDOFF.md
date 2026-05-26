@@ -37,7 +37,7 @@ The four documents that define current state — `START_HERE.md`, `ROADMAP_VISUA
 
 ## What hasn't been decided yet
 
-- Whether Miriam gets her own dashboard role or shares Daniel's during Feature 1 testing
+- Whether Miryam gets her own dashboard role or shares Daniel's during Feature 1 testing
 - When to introduce Daniel-2 (correspondent) and other team members
 - Final GSR brand assets (waiting on Jakob: lower-third designs, logo, color palette)
 - David Rives buy-in on Supabase (Feature 1 doesn't require it; distribution features will)
@@ -77,7 +77,7 @@ Do NOT add features outside this scope until Feature 1 is in production for one 
 
 - Daniel is a non-developer. He uses Claude Code for actual building. Planning/architecture happens in Claude.ai sessions.
 - Daniel works at David Rives Ministries (501(c)(3), Christian creation-science TV). Show: The Genesis Science Report (GSR). Weekly, ~58 min, Season 3.
-- Team: Daniel + Miriam as core producers, ~7-8 studio crew on shoot days.
+- Team: Daniel + Miryam as core producers, ~7-8 studio crew on shoot days.
 - Production cadence: 10-11 taping cycles/year, 2 shoot days per cycle, 5 episodes per session.
 - Working email: `dallen@davidrives.com`. Personal Tailscale account: `danielallen.tn@gmail.com`.
 

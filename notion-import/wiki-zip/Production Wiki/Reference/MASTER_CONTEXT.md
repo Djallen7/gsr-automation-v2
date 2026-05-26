@@ -51,7 +51,7 @@
 ### Post-Production
 - Platform uploads to 6 destinations weekly
 - Metadata generation per platform
-- Coordinating Miriam on distribution workflow
+- Coordinating Miryam on distribution workflow
 
 ### Marketing / Promotion
 - GSR marketing and social promotion
@@ -76,7 +76,7 @@
 | Name | Role | Contact |
 |------|------|---------|
 | **David Rives** | Host, Ministry President | — |
-| **Miriam** | Co-worker, co-maintainer on automation | Works on Macs |
+| **Miryam** | Co-worker, co-maintainer on automation | Works on Macs |
 | **Jacob** | Footage transfer, editing, Heavens Declare | — |
 | **Murray** | Teleprompter | — |
 | **Robert** | Kids Corner scripts | — |
@@ -258,7 +258,7 @@
 - [ ] 8 Claude task files (GSR_Task_01 through GSR_Task_08) — unconfirmed in project, need re-upload
 - [ ] Short-form Voice DNA layer — not yet built; co-creation approach agreed but not started
 - [ ] QNAP password rotation — QnAp7627 now appears in multiple session transcripts; should be rotated
-- [ ] Miriam's 1Password invite — bus-factor risk; not yet invited
+- [ ] Miryam's 1Password invite — bus-factor risk; not yet invited
 - [ ] ADRs 0004–0008 — unwritten (not blocking, but documented gap)
 
 ---

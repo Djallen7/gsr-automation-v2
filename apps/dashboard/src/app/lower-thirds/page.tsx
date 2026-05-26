@@ -1,6 +1,23 @@
 import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 import { createClient } from '@/lib/supabase/server'
+import { GraphicCard } from './graphic-card'
+
+interface EpisodeJoin {
+  season: number
+  episode_number: number
+  title: string | null
+}
+
+interface GraphicRow {
+  id: string
+  segment: string
+  beat_number: number | null
+  initial_text: string
+  status: string
+  current_image_url: string
+  episode: EpisodeJoin | EpisodeJoin[] | null
+}
 
 export default async function LowerThirdsPage() {
   const supabase = await createClient()
@@ -15,7 +32,9 @@ export default async function LowerThirdsPage() {
        episode:episodes(season, episode_number, title)`,
     )
     .order('uploaded_at', { ascending: false })
-    .limit(50)
+    .limit(100)
+
+  const rows = (graphics ?? []) as GraphicRow[]
 
   return (
     <main className="mx-auto max-w-5xl p-8">
@@ -23,35 +42,38 @@ export default async function LowerThirdsPage() {
         <div>
           <h1 className="text-2xl font-semibold">Lower-thirds review</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Signed in as {user?.email ?? 'unknown'}. The full review grid arrives in Stage 4.
+            Signed in as {user?.email ?? 'unknown'}.
           </p>
         </div>
-        <Link href="/upload" className={buttonVariants()}>
-          Upload
-        </Link>
+        <div className="flex gap-2">
+          <Link href="/approved" className={buttonVariants({ variant: 'outline' })}>
+            Approved queue
+          </Link>
+          <Link href="/upload" className={buttonVariants()}>
+            Upload
+          </Link>
+        </div>
       </header>
 
       <section className="mt-8">
-        {graphics && graphics.length > 0 ? (
+        {rows.length > 0 ? (
           <ul className="grid gap-3">
-            {graphics.map((g) => {
+            {rows.map((g) => {
               const ep = Array.isArray(g.episode) ? g.episode[0] : g.episode
               const label = ep
                 ? `S${ep.season}E${ep.episode_number}${ep.title ? ` — ${ep.title}` : ''}`
                 : 'No episode'
               return (
-                <li
-                  key={g.id}
-                  className="flex items-center gap-4 rounded-md border p-3 text-sm"
-                >
-                  <span className="rounded bg-muted px-2 py-1 text-xs uppercase tracking-wide">
-                    {g.status}
-                  </span>
-                  <span className="text-muted-foreground">{label}</span>
-                  <span className="text-muted-foreground">
-                    {g.segment} · beat {g.beat_number ?? '—'}
-                  </span>
-                  <span className="font-medium">{g.initial_text}</span>
+                <li key={g.id}>
+                  <GraphicCard
+                    id={g.id}
+                    segment={g.segment}
+                    beatNumber={g.beat_number}
+                    initialText={g.initial_text}
+                    status={g.status}
+                    currentImageUrl={g.current_image_url}
+                    episodeLabel={label}
+                  />
                 </li>
               )
             })}

@@ -20,7 +20,7 @@ git push            # Send my commits up to GitHub (after first push is set up)
 
 ## "I want to get others' changes"
 ```bash
-git pull            # Download and apply any commits Miriam (or others) pushed
+git pull            # Download and apply any commits Miryam (or others) pushed
 ```
 
 ## "I want to try something risky"

@@ -117,10 +117,10 @@
     { "name": "Edit complete",               "phase": "Post-Production","assignee": "Isaac"   },
     { "name": "Review pass — Isaac",         "phase": "Post-Production","assignee": "Isaac"   },
     { "name": "Final export to Dropbox",     "phase": "Post-Production","assignee": "Isaac"   },
-    { "name": "Metadata draft written",      "phase": "Post-Production","assignee": "Miriam"  },
-    { "name": "Thumbnail created",           "phase": "Post-Production","assignee": "Miriam"  },
-    { "name": "YouTube upload complete",     "phase": "Upload",         "assignee": "Miriam"  },
-    { "name": "Rumble upload complete",      "phase": "Upload",         "assignee": "Miriam"  },
-    { "name": "Episode marked Aired",        "phase": "Upload",         "assignee": "Miriam"  }
+    { "name": "Metadata draft written",      "phase": "Post-Production","assignee": "Miryam"  },
+    { "name": "Thumbnail created",           "phase": "Post-Production","assignee": "Miryam"  },
+    { "name": "YouTube upload complete",     "phase": "Upload",         "assignee": "Miryam"  },
+    { "name": "Rumble upload complete",      "phase": "Upload",         "assignee": "Miryam"  },
+    { "name": "Episode marked Aired",        "phase": "Upload",         "assignee": "Miryam"  }
   ]
 }

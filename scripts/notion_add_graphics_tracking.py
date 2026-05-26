@@ -101,7 +101,7 @@ GRAPHICS_TRACKING_SCHEMA = {
         {"name": "Gabe",     "color": "orange"},
         {"name": "Jeremiah", "color": "purple"},
         {"name": "Daniel",   "color": "yellow"},
-        {"name": "Miriam",   "color": "pink"},
+        {"name": "Miryam",   "color": "pink"},
     ]}},
 
     "Notes": {"rich_text": {}},

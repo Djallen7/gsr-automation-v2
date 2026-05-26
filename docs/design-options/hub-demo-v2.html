@@ -400,10 +400,10 @@ body{
 }
 .open-full:hover{background:rgba(96,165,250,0.18);}
 
-/* ═══════════════════════════════════════════════════ MIRIAM HOME */
-.miriam-layout{flex:1;display:flex;overflow:hidden;}
-.miriam-main{flex:1;overflow:hidden;display:flex;flex-direction:column;padding:24px 24px 24px 32px;}
-.miriam-aside{
+/* ═══════════════════════════════════════════════════ MIRYAM HOME */
+.miryam-layout{flex:1;display:flex;overflow:hidden;}
+.miryam-main{flex:1;overflow:hidden;display:flex;flex-direction:column;padding:24px 24px 24px 32px;}
+.miryam-aside{
   width:240px;flex-shrink:0;padding:24px 28px 24px 0;
   display:flex;flex-direction:column;gap:14px;
 }
@@ -509,7 +509,7 @@ body{
 /* ═══════════════════════════════════════════════════ ACCENT VARS */
 :root{--accent:#60a5fa;--accent-glow:rgba(96,165,250,0.12);}
 body.role-isaac{--accent:#4ade80;--accent-glow:rgba(74,222,128,0.12);}
-body.role-miriam{--accent:#c084fc;--accent-glow:rgba(192,132,252,0.12);}
+body.role-miryam{--accent:#c084fc;--accent-glow:rgba(192,132,252,0.12);}
 
 /* Fade between views */
 .view.active .view-in{animation:viewIn 0.45s cubic-bezier(0.16,1,0.3,1) both;}
@@ -529,7 +529,7 @@ body.role-miriam{--accent:#c084fc;--accent-glow:rgba(192,132,252,0.12);}
   <div class="role-switcher">
     <div class="role-btn active" onclick="switchRole('daniel',this)">Daniel</div>
     <div class="role-btn" onclick="switchRole('isaac',this)">Isaac</div>
-    <div class="role-btn" onclick="switchRole('miriam',this)">Miriam</div>
+    <div class="role-btn" onclick="switchRole('miryam',this)">Miryam</div>
   </div>
   <div class="bar-right">
     <div class="icon-btn">🔍</div>
@@ -565,7 +565,7 @@ body.role-miriam{--accent:#c084fc;--accent-glow:rgba(192,132,252,0.12);}
   <div class="s-btn">🎬<div class="s-tooltip">Episodes</div></div>
   <div class="s-btn">📁<div class="s-tooltip">Assets</div></div>
 </nav>
-<nav class="sidebar" id="nav-miriam" style="display:none;">
+<nav class="sidebar" id="nav-miryam" style="display:none;">
   <div class="s-btn active">⌂<div class="s-tooltip">Home</div></div>
   <div class="s-btn">📺<div class="s-tooltip">Episodes</div></div>
   <div class="s-btn">📤<div class="s-tooltip">Upload Queue</div></div>
@@ -761,10 +761,10 @@ body.role-miriam{--accent:#c084fc;--accent-glow:rgba(192,132,252,0.12);}
 </div><!-- /isaac -->
 
 
-<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ MIRIAM VIEW -->
-<div class="view" id="view-miriam">
-  <div class="miriam-layout">
-    <div class="miriam-main">
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ MIRYAM VIEW -->
+<div class="view" id="view-miryam">
+  <div class="miryam-layout">
+    <div class="miryam-main">
       <div class="m-section-label">Episode Queue</div>
       <div class="ep-cards">
         <div class="m-ep-card ready selected" onclick="selectEp(this,'ep021')">
@@ -830,7 +830,7 @@ body.role-miriam{--accent:#c084fc;--accent-glow:rgba(192,132,252,0.12);}
       </div>
     </div>
 
-    <div class="miriam-aside">
+    <div class="miryam-aside">
       <div>
         <div class="m-section-label">Publish Checklist</div>
         <div class="meta-glass" id="m-meta">
@@ -860,13 +860,13 @@ body.role-miriam{--accent:#c084fc;--accent-glow:rgba(192,132,252,0.12);}
       </div>
     </div>
   </div>
-</div><!-- /miriam -->
+</div><!-- /miryam -->
 
 </div><!-- /content -->
 </div><!-- /app -->
 
 <script>
-// Miriam metadata
+// Miryam metadata
 const epMeta={
   ep021:{title:'S03 EP021 — Eyes Fixed on Things Above',rows:[['Title','ok','✓ Ready'],['Description','ok','✓ Ready'],['Thumbnail','ok','✓ Jakob 5/20'],['Transcript','ok','✓ Ready'],['YouTube','warn','⏳ Not uploaded'],['Social','warn','⏳ Not drafted']],canPub:true},
   ep022:{title:'S03 EP022 — Lights on the Moon?',rows:[['Title','ok','✓ Ready'],['Description','warn','80% done'],['Thumbnail','bad','✗ Not made'],['Transcript','ok','✓ Ready'],['YouTube','warn','⏳ Not uploaded'],['Social','warn','⏳ Not drafted']],canPub:false},
@@ -904,12 +904,12 @@ function switchRole(role,btn){
   btn.classList.add('active');
   document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
   document.getElementById('view-'+role).classList.add('active');
-  ['daniel','isaac','miriam'].forEach(r=>{
+  ['daniel','isaac','miryam'].forEach(r=>{
     const n=document.getElementById('nav-'+r);
     if(n)n.style.display=r===role?'flex':'none';
   });
-  const names={daniel:'Daniel Allen',isaac:'Isaac',miriam:'Miriam'};
-  const avs={daniel:'D',isaac:'I',miriam:'M'};
+  const names={daniel:'Daniel Allen',isaac:'Isaac',miryam:'Miryam'};
+  const avs={daniel:'D',isaac:'I',miryam:'M'};
   document.getElementById('uname').textContent=names[role];
   document.getElementById('uav').textContent=avs[role];
   setTimeout(()=>animateBars('view-'+role),60);

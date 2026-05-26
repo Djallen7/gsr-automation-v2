@@ -23,7 +23,7 @@ Automation system for the Genesis Science Report TV show and adjacent ministry s
 ## Contributors
 
 - Daniel Allen — Project lead
-- Miriam — Co-maintainer
+- Miryam — Co-maintainer
 
 ## License
 

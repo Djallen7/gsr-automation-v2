@@ -15,7 +15,7 @@ The Chokidar file watcher runs on `DRM-QNAP3` per ADR-0009, but master video fil
 
 ## Why deferred
 
-Choosing requires (a) finishing the infrastructure inventory once we have QNAP admin access, and (b) a conversation with the editor and Miriam about which option fits their workflow. Recording this ADR now so the question is not lost.
+Choosing requires (a) finishing the infrastructure inventory once we have QNAP admin access, and (b) a conversation with the editor and Miryam about which option fits their workflow. Recording this ADR now so the question is not lost.
 
 ## Trigger to resolve
 

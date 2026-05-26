@@ -44,6 +44,50 @@ interface UploadFormProps {
 
 const MAX_PNG_SIZE = 5 * 1024 * 1024
 
+const AUTOFILL_PROMPT = `You are extracting metadata for ONE lower-third graphic from a GSR (Genesis Science Report) script.
+
+INPUT: A chunk of GSR script text containing one lower-third reference, OR a description of the lower-third I want to create.
+
+OUTPUT: Return ONLY valid JSON in the exact schema below. No prose, no markdown fences, no commentary.
+
+SEGMENT ENUM (use exactly one of these):
+opening_monologue, interview_1, interview_2, kids_corner,
+genesis_science_qa, ministry_report, viewer_voices, featured_resource,
+heavens_declare, genesis_science_minute, other
+
+RULES:
+- initial_text is the on-screen lower-third copy in ALL CAPS broadcast style.
+- Never use em dashes; use a forward slash or hyphen.
+- If beat_number is unclear, omit the field (the dashboard assigns the next available for that episode + segment).
+- season and episode_number are integers. title and guest_name are strings or null.
+
+SCHEMA:
+{
+  "season": <int>,
+  "episode_number": <int>,
+  "title": <string or null>,
+  "guest_name": <string or null>,
+  "segment": <enum value>,
+  "beat_number": <int or null>,
+  "initial_text": <string>
+}
+
+Now extract the JSON for the lower-third described below:
+
+---
+[paste your script chunk or LT description here]
+---`
+
+interface AutofillPayload {
+  season?: number
+  episode_number?: number
+  title?: string | null
+  guest_name?: string | null
+  segment?: string
+  beat_number?: number | null
+  initial_text?: string
+}
+
 export function UploadForm({ episodes }: UploadFormProps) {
   const router = useRouter()
   const supabase = createClient()
@@ -55,9 +99,16 @@ export function UploadForm({ episodes }: UploadFormProps) {
   const [newSeason, setNewSeason] = useState('')
   const [newEpisodeNumber, setNewEpisodeNumber] = useState('')
   const [newTitle, setNewTitle] = useState('')
+  const [newGuestName, setNewGuestName] = useState('')
   const [segment, setSegment] = useState<Segment | ''>('')
   const [beatNumber, setBeatNumber] = useState('')
   const [initialText, setInitialText] = useState('')
+  const [autofillJson, setAutofillJson] = useState('')
+  const [autofillMessage, setAutofillMessage] = useState<
+    { kind: 'ok' | 'error'; text: string } | null
+  >(null)
+  const [showPrompt, setShowPrompt] = useState(false)
+  const [promptCopied, setPromptCopied] = useState(false)
   const [file, setFile] = useState<File | null>(null)
   const [dragActive, setDragActive] = useState(false)
   const [status, setStatus] = useState<'idle' | 'uploading' | 'error'>('idle')
@@ -97,6 +148,78 @@ export function UploadForm({ episodes }: UploadFormProps) {
     setDragActive(false)
   }
 
+  function handleAutofill() {
+    setAutofillMessage(null)
+    const raw = autofillJson.trim()
+    if (!raw) {
+      setAutofillMessage({ kind: 'error', text: 'Paste a JSON snippet first.' })
+      return
+    }
+
+    let parsed: AutofillPayload
+    try {
+      parsed = JSON.parse(raw)
+    } catch (err) {
+      setAutofillMessage({
+        kind: 'error',
+        text: `Invalid JSON: ${err instanceof Error ? err.message : String(err)}`,
+      })
+      return
+    }
+
+    const filled: string[] = []
+
+    if (typeof parsed.season === 'number' && typeof parsed.episode_number === 'number') {
+      setMode('new')
+      setNewSeason(String(parsed.season))
+      setNewEpisodeNumber(String(parsed.episode_number))
+      filled.push('episode')
+    }
+    if (typeof parsed.title === 'string') {
+      setNewTitle(parsed.title)
+      filled.push('title')
+    }
+    if (typeof parsed.guest_name === 'string') {
+      setNewGuestName(parsed.guest_name)
+      filled.push('guest')
+    }
+    if (typeof parsed.segment === 'string' && (SEGMENTS as readonly string[]).includes(parsed.segment)) {
+      setSegment(parsed.segment as Segment)
+      filled.push('segment')
+    }
+    if (typeof parsed.beat_number === 'number') {
+      setBeatNumber(String(parsed.beat_number))
+      filled.push('beat')
+    }
+    if (typeof parsed.initial_text === 'string') {
+      setInitialText(parsed.initial_text)
+      filled.push('text')
+    }
+
+    if (filled.length === 0) {
+      setAutofillMessage({
+        kind: 'error',
+        text: 'JSON parsed but no recognized fields found. Check the schema.',
+      })
+      return
+    }
+
+    setAutofillMessage({
+      kind: 'ok',
+      text: `Filled ${filled.join(', ')}. Drop your PNG and click Upload.`,
+    })
+  }
+
+  async function copyPrompt() {
+    try {
+      await navigator.clipboard.writeText(AUTOFILL_PROMPT)
+      setPromptCopied(true)
+      setTimeout(() => setPromptCopied(false), 2000)
+    } catch {
+      // clipboard API can be blocked in some contexts; user can still select+copy
+    }
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setStatus('uploading')
@@ -124,6 +247,7 @@ export function UploadForm({ episodes }: UploadFormProps) {
               season: seasonNum,
               episode_number: epNum,
               title: newTitle.trim() || null,
+              guest_name: newGuestName.trim() || null,
             },
             { onConflict: 'season,episode_number' },
           )
@@ -197,6 +321,65 @@ export function UploadForm({ episodes }: UploadFormProps) {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2 rounded-md border border-dashed border-muted-foreground/30 p-3">
+            <div className="flex items-center justify-between gap-2">
+              <label className="text-sm font-medium">
+                Paste JSON to autofill (optional)
+              </label>
+              <button
+                type="button"
+                className="text-xs text-muted-foreground underline-offset-2 hover:underline"
+                onClick={() => setShowPrompt((s) => !s)}
+              >
+                {showPrompt ? 'Hide Claude prompt' : 'Show Claude prompt'}
+              </button>
+            </div>
+            {showPrompt ? (
+              <div className="flex flex-col gap-2">
+                <p className="text-xs text-muted-foreground">
+                  Copy this prompt into Claude.ai, paste your script chunk where indicated, and the response will be JSON you can paste below.
+                </p>
+                <pre className="max-h-60 overflow-auto whitespace-pre-wrap rounded bg-muted p-2 text-xs">
+                  {AUTOFILL_PROMPT}
+                </pre>
+                <button
+                  type="button"
+                  className="self-start text-xs text-primary underline-offset-2 hover:underline"
+                  onClick={copyPrompt}
+                >
+                  {promptCopied ? 'Copied' : 'Copy prompt'}
+                </button>
+              </div>
+            ) : null}
+            <Textarea
+              placeholder='{"season": 3, "episode_number": 12, "segment": "interview_1", "initial_text": "DR. JOHN SMITH / GEOLOGIST", ...}'
+              value={autofillJson}
+              onChange={(e) => setAutofillJson(e.target.value)}
+              rows={3}
+              className="font-mono text-xs"
+            />
+            <div className="flex items-center gap-3">
+              <button
+                type="button"
+                onClick={handleAutofill}
+                className="text-sm font-medium text-primary underline-offset-2 hover:underline"
+              >
+                Fill from JSON
+              </button>
+              {autofillMessage ? (
+                <span
+                  className={
+                    autofillMessage.kind === 'ok'
+                      ? 'text-xs text-muted-foreground'
+                      : 'text-xs text-destructive'
+                  }
+                >
+                  {autofillMessage.text}
+                </span>
+              ) : null}
+            </div>
+          </div>
+
           <div className="flex flex-col gap-2">
             <label className="text-sm font-medium">Episode</label>
             {episodes.length > 0 ? (
@@ -237,7 +420,7 @@ export function UploadForm({ episodes }: UploadFormProps) {
                 </SelectContent>
               </Select>
             ) : (
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                 <Input
                   type="number"
                   min="1"
@@ -258,6 +441,11 @@ export function UploadForm({ episodes }: UploadFormProps) {
                   placeholder="Title (optional)"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
+                />
+                <Input
+                  placeholder="Guest (optional)"
+                  value={newGuestName}
+                  onChange={(e) => setNewGuestName(e.target.value)}
                 />
               </div>
             )}

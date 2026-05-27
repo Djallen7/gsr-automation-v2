@@ -38,8 +38,8 @@ from collections import Counter, defaultdict
 from typing import Optional, Iterator
 
 # ===== CONFIG - EDIT THESE =====
-CLAUDE_EXPORT_PATH = os.path.expanduser("~/Downloads/claude-export")
-CHATGPT_EXPORT_PATH = os.path.expanduser("~/Downloads/chatgpt-export")
+CLAUDE_EXPORT_PATH = "/Users/claudefix/Downloads/data-a0c958ae-c858-4f3c-8cb5-de25e9d2ac18-1779909082-527f29c8-batch-0000"
+CHATGPT_EXPORT_PATH = "/Users/claudefix/Downloads/Open AI Data Expoert"
 FORENSIC_REPORT_PATH = "/Users/claudefix/Documents/inventory-2026-05"
 OUTPUT_DIR = os.path.expanduser("~/Documents/ai-archaeology-output")
 

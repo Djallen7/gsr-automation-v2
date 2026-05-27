@@ -13,6 +13,17 @@ const RegenerateBody = z.object({
   graphicId: z.string().uuid(),
 })
 
+// Lazy singleton so the SDK client is reused across warm function invocations
+// instead of allocating per request. The boot-time env-var check runs in the
+// handler so an unset key returns a clean 500 instead of a constructor crash.
+let anthropicClient: Anthropic | null = null
+function getAnthropic(): Anthropic {
+  if (!anthropicClient) {
+    anthropicClient = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+  }
+  return anthropicClient
+}
+
 export async function POST(request: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
     return NextResponse.json(
@@ -121,7 +132,7 @@ RULES
 - No quotation marks around the result.
 - Output only the new lower-third text, nothing else.`
 
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
+  const anthropic = getAnthropic()
 
   try {
     const response = await anthropic.messages.create({

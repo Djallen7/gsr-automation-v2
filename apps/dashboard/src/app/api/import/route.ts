@@ -6,6 +6,7 @@ import { createClient } from '@/lib/supabase/server'
 // If you add a value here, also add it in a SQL migration:
 //   alter type graphic_segment add value 'new_value';
 const SEGMENTS = [
+  'show_intro',
   'opening_monologue',
   'interview_1',
   'interview_2',
@@ -16,6 +17,25 @@ const SEGMENTS = [
   'featured_resource',
   'heavens_declare',
   'genesis_science_minute',
+  'other',
+] as const
+
+// L3 type enum — must match the graphics_l3_type_check CHECK constraint.
+const L3_TYPES = [
+  'episode_intro_l3',
+  'monologue_beat',
+  'segment_graphics_title',
+  'topic_l3',
+  'guest_chyron',
+  'discussion_l3',
+  'generic_safety_net',
+  'qa_topic_l3',
+  'mr_topic_l3',
+  'mr_cta_l3',
+  'correspondent_chyron',
+  'viewer_l3',
+  'resource_l3',
+  'cta_l3',
   'other',
 ] as const
 
@@ -40,16 +60,42 @@ const ImportGraphic = z.object({
   episode_season: z.number().int().min(1).max(99),
   episode_number: z.number().int().min(1).max(999),
   segment: z.enum(SEGMENTS),
+  // Optional for back-compat with v1 imports. The v2 extraction prompt always
+  // sets it; older callers can omit it and the graphic just lacks a type.
+  l3_type: z.enum(L3_TYPES).nullable().optional(),
   beat_number: z.number().int().min(1).max(999),
-  initial_text: z.string().min(1).max(200),
+  // v2 prompt names this `primary`. v1 used `initial_text`. Accept either,
+  // prefer primary, store under graphics.initial_text.
+  primary: z.string().min(1).max(200).optional(),
+  initial_text: z.string().min(1).max(200).optional(),
+  // Variant slots from the v2 3-column system. Only meaningful for
+  // l3_type values episode_intro_l3 | segment_graphics_title | topic_l3,
+  // but we don't enforce that here; the prompt does.
+  var_1: z.string().min(1).max(200).nullable().optional(),
+  var_2: z.string().min(1).max(200).nullable().optional(),
+  source_doc: z.string().nullable().optional(),
+})
+
+const RejectedItem = z.object({
+  reason: z.string(),
+  raw_text: z.string(),
   source_doc: z.string().nullable().optional(),
 })
 
 const ImportPayload = z.object({
   episodes: z.array(ImportEpisode).min(1),
   graphics: z.array(ImportGraphic),
+  // Top-level array from the v2 prompt for over-length / unclassifiable
+  // copy lines. We acknowledge them in the response but never write them.
+  rejected: z.array(RejectedItem).optional().default([]),
   dry_run: z.boolean().optional().default(false),
 })
+
+// Resolve the canonical primary text for a graphic — primary wins, falls
+// back to initial_text for v1 callers. Validation guarantees at least one.
+function resolvePrimary(g: z.infer<typeof ImportGraphic>): string {
+  return (g.primary ?? g.initial_text) as string
+}
 
 type EpisodeKey = `${number}-${number}`
 const keyOf = (season: number, episode_number: number): EpisodeKey =>
@@ -65,6 +111,25 @@ export async function POST(request: Request) {
         ? err.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ')
         : 'Invalid JSON body.'
     return NextResponse.json({ error: message }, { status: 400 })
+  }
+
+  // After zod validates the shape, enforce: every graphic row must carry
+  // at least one of `primary` or `initial_text`. Zod can't express the
+  // OR across two optional fields cleanly, so check here.
+  const missingText = payload.graphics
+    .map((g, idx) => ({ idx, g }))
+    .filter(({ g }) => !g.primary && !g.initial_text)
+  if (missingText.length > 0) {
+    return NextResponse.json(
+      {
+        error: "graphics rows must include either 'primary' or 'initial_text'",
+        details: missingText.map(
+          ({ idx, g }) =>
+            `graphics[${idx}]: S${g.episode_season}E${g.episode_number} ${g.segment} beat ${g.beat_number}`,
+        ),
+      },
+      { status: 400 },
+    )
   }
 
   const supabase = await createClient()
@@ -168,6 +233,10 @@ export async function POST(request: Request) {
         conflicts: existingGraphicsConflicts.length,
       },
       conflicts: existingGraphicsConflicts,
+      rejected: {
+        total: payload.rejected.length,
+        items: payload.rejected,
+      },
     })
   }
 
@@ -221,8 +290,11 @@ export async function POST(request: Request) {
     return {
       episode_id,
       segment: g.segment,
+      l3_type: g.l3_type ?? null,
       beat_number: g.beat_number,
-      initial_text: g.initial_text,
+      initial_text: resolvePrimary(g),
+      var_1: g.var_1 ?? null,
+      var_2: g.var_2 ?? null,
       status: 'pending_review' as const,
       current_image_url: TEXT_ONLY_IMAGE_SENTINEL,
       uploaded_by: user.id,
@@ -273,5 +345,9 @@ export async function POST(request: Request) {
     success: true,
     episodes: { total: payload.episodes.length, new: newEpisodeCount, updated: updatedEpisodeCount },
     graphics: { total: payload.graphics.length, new: insertedGraphics?.length ?? 0 },
+    rejected: {
+      total: payload.rejected.length,
+      items: payload.rejected,
+    },
   })
 }

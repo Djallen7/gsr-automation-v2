@@ -6,17 +6,30 @@ import { useRef, useState, useTransition } from 'react'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 
+interface RejectedItem {
+  reason: string
+  raw_text: string
+  source_doc?: string | null
+}
+
+interface RejectedReport {
+  total: number
+  items: RejectedItem[]
+}
+
 type ImportResponse =
   | {
       dry_run: true
       episodes: { total: number; new: number; updated: number }
       graphics: { total: number; new: number; conflicts: number }
       conflicts: string[]
+      rejected: RejectedReport
     }
   | {
       success: true
       episodes: { total: number; new: number; updated: number }
       graphics: { total: number; new: number }
+      rejected: RejectedReport
     }
   | { error: string; details?: string[]; conflicts?: string[] }
   | { warning: string; inserted_graphics: number }
@@ -207,6 +220,8 @@ function ResultPanel({ result }: { result: ImportResponse }) {
           <div>{result.graphics.new}</div>
           <div>· conflicts:</div>
           <div>{result.graphics.conflicts}</div>
+          <div>Rejected by prompt:</div>
+          <div>{result.rejected.total}</div>
         </div>
         {result.conflicts.length > 0 && (
           <>
@@ -221,6 +236,7 @@ function ResultPanel({ result }: { result: ImportResponse }) {
             </p>
           </>
         )}
+        {result.rejected.total > 0 && <RejectedList rejected={result.rejected} />}
       </div>
     )
   }
@@ -238,8 +254,32 @@ function ResultPanel({ result }: { result: ImportResponse }) {
         <div>{result.episodes.updated}</div>
         <div>Graphics inserted:</div>
         <div>{result.graphics.new}</div>
+        <div>Rejected by prompt:</div>
+        <div>{result.rejected.total}</div>
       </div>
+      {result.rejected.total > 0 && <RejectedList rejected={result.rejected} />}
       <p className="text-xs text-muted-foreground">Redirecting to /lower-thirds…</p>
     </div>
+  )
+}
+
+function RejectedList({ rejected }: { rejected: RejectedReport }) {
+  return (
+    <details className="mt-2 text-xs">
+      <summary className="cursor-pointer font-medium">
+        {rejected.total} item(s) rejected by extraction prompt — click to view
+      </summary>
+      <ul className="mt-2 ml-4 list-disc space-y-2">
+        {rejected.items.map((item, i) => (
+          <li key={i}>
+            <span className="text-muted-foreground">{item.reason}: </span>
+            <span className="font-mono">{item.raw_text}</span>
+            {item.source_doc ? (
+              <span className="text-muted-foreground"> ({item.source_doc})</span>
+            ) : null}
+          </li>
+        ))}
+      </ul>
+    </details>
   )
 }

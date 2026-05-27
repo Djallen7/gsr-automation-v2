@@ -21,6 +21,11 @@ interface Graphic {
   episode: Episode | Episode[] | null
 }
 
+interface Variation {
+  text: string
+  variationNumber: number
+}
+
 function episodeLabel(ep: Episode | Episode[] | null): string {
   const e = Array.isArray(ep) ? ep[0] : ep
   if (!e) return 'No episode'
@@ -30,13 +35,19 @@ function episodeLabel(ep: Episode | Episode[] | null): string {
 function GraphicCard({
   graphic,
   busy,
+  regenerating,
+  variation,
   onApprove,
   onReject,
+  onRegenerate,
 }: {
   graphic: Graphic
   busy: boolean
-  onApprove: (id: string) => void
+  regenerating: boolean
+  variation: Variation | undefined
+  onApprove: (id: string, approvedText: string) => void
   onReject: (id: string) => void
+  onRegenerate: (id: string) => void
 }) {
   return (
     <Card>
@@ -57,18 +68,65 @@ function GraphicCard({
           </span>
         </div>
         <div className="flex gap-2">
-          <Button size="sm" disabled={busy} onClick={() => onApprove(graphic.id)}>
+          <Button
+            size="sm"
+            disabled={busy || regenerating}
+            onClick={() => onApprove(graphic.id, graphic.initial_text)}
+          >
             Approve
           </Button>
           <Button
             size="sm"
             variant="outline"
-            disabled={busy}
+            disabled={busy || regenerating}
             onClick={() => onReject(graphic.id)}
           >
             Reject
           </Button>
+          <Button
+            size="sm"
+            variant="ghost"
+            disabled={busy || regenerating}
+            onClick={() => onRegenerate(graphic.id)}
+          >
+            {regenerating ? 'Generating…' : 'Regenerate'}
+          </Button>
         </div>
+
+        {variation && (
+          <div className="rounded border p-3 text-xs">
+            <p className="mb-2 font-semibold uppercase tracking-wide text-muted-foreground">
+              AI variation {variation.variationNumber}
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="flex flex-col gap-2">
+                <p className="text-muted-foreground">Original</p>
+                <p className="font-medium leading-snug">{graphic.initial_text}</p>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="w-full"
+                  disabled={busy}
+                  onClick={() => onApprove(graphic.id, graphic.initial_text)}
+                >
+                  Approve original
+                </Button>
+              </div>
+              <div className="flex flex-col gap-2">
+                <p className="text-muted-foreground">Variation {variation.variationNumber}</p>
+                <p className="font-medium leading-snug">{variation.text}</p>
+                <Button
+                  size="sm"
+                  className="w-full"
+                  disabled={busy}
+                  onClick={() => onApprove(graphic.id, variation.text)}
+                >
+                  Approve this
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </CardContent>
     </Card>
   )
@@ -85,6 +143,8 @@ export function ReviewGrid({
   const [pending, setPending] = useState<Graphic[]>(initialPending)
   const [rejected, setRejected] = useState<Graphic[]>(initialRejected)
   const [processing, setProcessing] = useState<Set<string>>(new Set())
+  const [regenerating, setRegenerating] = useState<Set<string>>(new Set())
+  const [variations, setVariations] = useState<Record<string, Variation>>({})
   const [error, setError] = useState<string | null>(null)
 
   function addProcessing(id: string) {
@@ -99,7 +159,7 @@ export function ReviewGrid({
     })
   }
 
-  async function handleApprove(id: string) {
+  async function handleApprove(id: string, approvedText: string) {
     setError(null)
     addProcessing(id)
 
@@ -111,6 +171,7 @@ export function ReviewGrid({
       .from('graphics')
       .update({
         status: 'approved',
+        approved_text: approvedText,
         approved_at: new Date().toISOString(),
         approved_by: user?.id ?? null,
       })
@@ -124,6 +185,11 @@ export function ReviewGrid({
 
     setPending((prev) => prev.filter((g) => g.id !== id))
     setRejected((prev) => prev.filter((g) => g.id !== id))
+    setVariations((prev) => {
+      const next = { ...prev }
+      delete next[id]
+      return next
+    })
     removeProcessing(id)
   }
 
@@ -150,6 +216,38 @@ export function ReviewGrid({
     removeProcessing(id)
   }
 
+  async function handleRegenerate(id: string) {
+    setError(null)
+    setRegenerating((prev) => new Set(prev).add(id))
+
+    try {
+      const res = await fetch('/api/regenerate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ graphicId: id }),
+      })
+
+      const data = await res.json()
+      if (!res.ok) {
+        setError((data as { error?: string }).error ?? 'Regeneration failed')
+        return
+      }
+
+      setVariations((prev) => ({
+        ...prev,
+        [id]: { text: data.text as string, variationNumber: data.variationNumber as number },
+      }))
+    } catch {
+      setError('Regeneration failed')
+    } finally {
+      setRegenerating((prev) => {
+        const next = new Set(prev)
+        next.delete(id)
+        return next
+      })
+    }
+  }
+
   return (
     <div className="mt-8 flex flex-col gap-10">
       {error ? <p className="text-sm text-destructive">{error}</p> : null}
@@ -174,8 +272,11 @@ export function ReviewGrid({
                 key={g.id}
                 graphic={g}
                 busy={processing.has(g.id)}
+                regenerating={regenerating.has(g.id)}
+                variation={variations[g.id]}
                 onApprove={handleApprove}
                 onReject={handleReject}
+                onRegenerate={handleRegenerate}
               />
             ))}
           </div>
@@ -196,8 +297,11 @@ export function ReviewGrid({
                 key={g.id}
                 graphic={g}
                 busy={processing.has(g.id)}
+                regenerating={regenerating.has(g.id)}
+                variation={variations[g.id]}
                 onApprove={handleApprove}
                 onReject={handleReject}
+                onRegenerate={handleRegenerate}
               />
             ))}
           </div>

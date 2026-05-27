@@ -303,37 +303,90 @@ def ingest_claude_export(conn: sqlite3.Connection):
     return total
 
 
-def _flatten_gpt_mapping(mapping: dict) -> list:
-    """ChatGPT mapping is a tree. Flatten to chronological list."""
+def _flatten_gpt_mapping(mapping: dict, current_node: Optional[str] = None) -> list:
+    """ChatGPT mapping is a tree. Flatten to a chronological message list.
+
+    Newer exports store only `parent` pointers (no `children`), so the primary
+    strategy walks up from `current_node` to the root via parents and reverses.
+    Falls back to the classic children-walk, then to create_time ordering.
+    """
     if not mapping:
         return []
-    # Find root (no parent or parent not in mapping)
     nodes = mapping
+
+    # Primary: walk current_node -> root via parent pointers, then reverse.
+    if current_node and current_node in nodes:
+        chain = []
+        seen = set()
+        nid = current_node
+        while nid and nid in nodes and nid not in seen:
+            seen.add(nid)
+            node = nodes.get(nid)
+            if not isinstance(node, dict):
+                break
+            msg = node.get("message")
+            if msg:
+                chain.append(msg)
+            nid = node.get("parent")
+        chain.reverse()
+        if chain:
+            return chain
+
+    # Fallback: classic walk down from root following children[0].
     root_id = None
     for nid, node in nodes.items():
-        if not node.get("parent"):
+        if isinstance(node, dict) and not node.get("parent"):
             root_id = nid
             break
     if not root_id:
-        # fall back to any node
         root_id = next(iter(nodes))
-
     out = []
-    # DFS following children, picking the longest path (most-developed branch)
     def walk(node_id):
         node = nodes.get(node_id)
-        if not node:
+        if not isinstance(node, dict):
             return
         msg = node.get("message")
         if msg:
             out.append(msg)
         children = node.get("children") or []
         if children:
-            # follow first child (chronological in most exports)
             walk(children[0])
-
     walk(root_id)
-    return out
+    if out:
+        return out
+
+    # Last resort: every message-bearing node, ordered by create_time.
+    msgs = [node["message"] for node in nodes.values()
+            if isinstance(node, dict) and node.get("message")]
+    msgs.sort(key=lambda m: m.get("create_time") if isinstance(m, dict)
+              and isinstance(m.get("create_time"), (int, float)) else float("inf"))
+    return msgs
+
+
+def _gpt_message_text(content) -> str:
+    """Extract plain text from a ChatGPT message content blob, tolerating the
+    several content_type shapes (text, multimodal_text, code, ...) and skipping
+    non-text parts such as image-asset pointers."""
+    if content is None:
+        return ""
+    if isinstance(content, str):
+        return content
+    if not isinstance(content, dict):
+        return ""
+    parts = content.get("parts")
+    if isinstance(parts, list):
+        out = []
+        for p in parts:
+            if isinstance(p, str):
+                out.append(p)
+            elif isinstance(p, dict) and isinstance(p.get("text"), str):
+                out.append(p["text"])
+        joined = "\n".join(s for s in out if s)
+        if joined:
+            return joined
+    if isinstance(content.get("text"), str):
+        return content["text"]
+    return ""
 
 
 def ingest_gpt_export(conn: sqlite3.Connection):
@@ -382,7 +435,7 @@ def ingest_gpt_export(conn: sqlite3.Connection):
             created = ts_to_iso(conv.get("create_time"))
             updated = ts_to_iso(conv.get("update_time"))
 
-            messages_raw = _flatten_gpt_mapping(conv.get("mapping") or {})
+            messages_raw = _flatten_gpt_mapping(conv.get("mapping") or {}, conv.get("current_node"))
 
             messages = []
             char_count = 0
@@ -400,21 +453,7 @@ def ingest_gpt_export(conn: sqlite3.Connection):
                 else:
                     sender = role or "unknown"
 
-                content = m.get("content") or {}
-                text = ""
-                if isinstance(content, dict):
-                    parts = content.get("parts") or []
-                    text_parts = []
-                    for p in parts:
-                        if isinstance(p, str):
-                            text_parts.append(p)
-                        elif isinstance(p, dict):
-                            text_parts.append(p.get("text", "") or json.dumps(p)[:200])
-                    text = "\n".join(text_parts)
-                elif isinstance(content, str):
-                    text = content
-
-                text = (text or "").strip()
+                text = _gpt_message_text(m.get("content")).strip()
                 if not text:
                     continue
                 char_count += len(text)

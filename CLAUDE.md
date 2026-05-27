@@ -37,42 +37,108 @@ These rules are mandatory in every session. They exist because this system touch
 - Before any action, ask: if this goes wrong, does it fall on David to fix it?
 - If yes — redesign the approach until the answer is no
 
-## Project Stack (current as of 2026-05-27)
-
-- **Backend:** Supabase — Postgres + Realtime + Storage + Auth + Edge Functions
-- **Frontend:** Next.js **16.2.6** + React **19.2.4** + shadcn/ui (`shadcn@4`)
-- **AI:** Anthropic SDK **0.98.0** (Claude API), called from Edge Functions or server actions only — never from the client.
-- **Active app:** `apps/dashboard/` (the `hub-ui/` location in older docs is the wireframes folder, not the runtime app).
-- **Architecture decision of record:** ADR-0012 (Supabase pivot, accepted 2026-05-23). ADRs 0001 and 0011 are sunk-cost / historical.
-
-## Next.js 16 caveat (read this before writing route handlers, server actions, or App Router code)
-
-This is **not** the Next.js your training data knows. See `apps/dashboard/AGENTS.md`. Read `apps/dashboard/node_modules/next/dist/docs/` for the relevant guide before writing code. Heed deprecation notices in the build output.
-
-## Conventions
-
-- `snake_case` for tables and columns; PKs are `bigint generated always as identity` unless documented otherwise.
-- **RLS enabled on every table** before any policy is written. Service role used only in Edge Functions, never in client code.
-- Schema changes go through Supabase migrations (`apply_migration` via MCP, or the CLI). Never `execute_sql` for DDL.
-- After every schema change: regenerate TS types, run advisors, commit together.
-- Atomic state mutations (graphics approval, etc.) go through SQL RPC, not read-modify-write from a route handler.
-
-## Feature 1 — Jakob lower-thirds approval workflow
-
-Active build. Stages 2–6.5 merged (PRs #7 through #13). Do **not** propose Phase 2+ features until Feature 1 ships through one full real-episode cycle. Canonical plan: `docs/PROJECT_PLAN.md`.
-
 ## Off-limits to automation (non-negotiable)
 
 - **ProPresenter production machine** (GSN-PropRes, Tailscale 100.98.215.7) — covered by "The David rule" above.
 - **ATEM, Bitfocus Companion** — production hardware.
 - **QNAP write access** — read-only SMB only; admin doesn't exist.
-- **Notion workspace** — wiki-only after ADR-0012; do not extend the pre-pivot `scripts/notion_*.py` code.
+- **Notion workspace** — wiki-only after ADR-0012 (Supabase pivot, 2026-05-23); do not extend the pre-pivot `scripts/notion_*.py` code.
+
+---
+
+## Project State (updated 2026-05-27)
+
+**Active app:** `apps/dashboard` — Next.js 16, shadcn/ui, Supabase SSR, deployed on Vercel
+**Supabase project:** `lafkbxypmciopebentxp`
+**Active feature:** Feature 1 — Episode Graphics & Asset Tracker
+**Current stage:** Stage 7 (real episode test) — all code complete, awaiting first real episode run
+**Architecture decision of record:** ADR-0012 (Supabase pivot, accepted 2026-05-23). ADRs 0001 and 0011 are sunk-cost / historical.
+
+**What is built (main branch):**
+- `/login` — magic link auth
+- `/upload` — PNG upload (legacy, being phased out after 2 text-only episodes)
+- `/import` — text-only bulk ingest via JSON paste
+- `/lower-thirds` — review grid (approve / reject / regenerate)
+- `/approved` — approved queue with ProPresenter copy button and toggle
+- `/api/regenerate` — Claude API route (`claude-opus-4-7`), rate-limited, deduped
+- `/api/import` — bulk ingest route, dry-run + live modes, Zod-validated
+
+**13 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
+
+**BUILD_STATUS.html** at repo root — open in browser for visual build overview.
+
+---
+
+## Next.js 16 caveat (read this before writing route handlers, server actions, or App Router code)
+
+This is **not** the Next.js your training data knows. See `apps/dashboard/AGENTS.md`. Read `apps/dashboard/node_modules/next/dist/docs/` for the relevant guide before writing code. Heed deprecation notices in the build output.
+
+---
+
+## Development Conventions
+
+**Branching**
+- All feature work on a new branch off `main`
+- Branch names: `feat/short-description`, `chore/short-description`, `fix/short-description`
+- Never push directly to `main`
+- Always create a draft PR immediately after first push
+
+**Merging**
+- Use squash merge to keep main history clean
+- PR title becomes the commit message — make it descriptive
+
+**Migrations**
+- One concern per migration file
+- Filename format: `YYYYMMDDHHMMSS_snake_case_description.sql`
+- All DDL statements must be idempotent (`IF NOT EXISTS`, `OR REPLACE`, etc.)
+- After applying a migration remotely, verify with `list_migrations`
+
+**Database conventions**
+- `snake_case` for tables and columns; PKs are `bigint generated always as identity` unless documented otherwise.
+- **RLS enabled on every table** before any policy is written. Service role used only in Edge Functions or server actions, never in client code.
+- Atomic state mutations (graphics approval, etc.) go through SQL RPC, not read-modify-write from a route handler.
+- After every schema change: regenerate TS types, run advisors, commit together.
+
+**Claude API**
+- Called only from server actions or API routes, never from the client. The Anthropic key must never reach the browser.
+
+**TypeScript**
+- Run `cd apps/dashboard && npx tsc --noEmit` before committing any dashboard changes
+- Run `npx eslint src/` to check for lint errors
+- Both must be clean before a PR is opened
+
+**When you add a new page or API route**
+- Add it to the Routes section of `BUILD_STATUS.html`
+- Update `LAST_UPDATED` in `BUILD_STATUS.html`
+
+**When you complete a stage or planned item**
+- Update the status badge in `BUILD_STATUS.html`
+- Update `LAST_UPDATED`
+
+**When you apply a migration**
+- Add it to the Migrations section of `BUILD_STATUS.html`
+
+---
+
+## Session Orientation
+
+At the start of any session:
+1. Run `git status` and `git log --oneline -5` to see current state
+2. Run `git fetch origin main && git log --oneline origin/main -3` to check if main has moved
+3. Check for open PRs if continuing existing work
+4. Read `BUILD_STATUS.html` for a visual overview of what's built
+
+Read `docs/SESSION_HANDOFF.md` for historical context if needed (note: may be outdated — BUILD_STATUS.html is more current).
+
+---
 
 ## Context
 
-Read `docs/MASTER_CONTEXT.md` at the start of any session to get full project context.
-Read `docs/SESSION_HANDOFF.md` for where things left off.
-Custom Claude Code subagents (gsr-editorial, gsr-pipeline, gsr-supabase) live in `~/.claude/agents/` — invoke via the Agent tool.
+- Daniel Allen is the project owner and a non-developer. He uses Claude Code for all building.
+- Show: Genesis Science Report (GSR), Christian creation-science TV, ~58 min, weekly, Season 3
+- Team: Daniel + Miryam (core producers), ~7-8 crew on shoot days
+- David Rives is the on-screen talent and ministry director — don't break anything that affects him
+- Custom Claude Code subagents (`gsr-editorial`, `gsr-pipeline`, `gsr-supabase`) live in `~/.claude/agents/` — invoke via the Agent tool for GSR-specific copy review, pipeline domain questions, or Supabase schema work.
 
 <!-- headroom:learn:start -->
 ## Headroom Learned Patterns

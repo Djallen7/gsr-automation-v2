@@ -14,7 +14,7 @@ export function PropresenterToggle({ graphicId, added }: Props) {
   function handleChange() {
     startTransition(async () => {
       try {
-        await togglePropresenter(graphicId, added)
+        await togglePropresenter(graphicId)
       } catch (err) {
         alert(err instanceof Error ? err.message : 'Update failed.')
       }
@@ -29,6 +29,7 @@ export function PropresenterToggle({ graphicId, added }: Props) {
         disabled={isPending}
         onChange={handleChange}
         className="h-4 w-4"
+        aria-busy={isPending}
       />
       <span className={added ? 'text-muted-foreground line-through' : ''}>
         In ProPresenter

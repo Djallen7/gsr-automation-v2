@@ -1,12 +1,17 @@
 import { NextResponse } from 'next/server'
+import { z } from 'zod'
 import Anthropic from '@anthropic-ai/sdk'
 import { createClient } from '@/lib/supabase/server'
 
-const CLAUDE_MODEL = 'claude-opus-4-7'
+const CLAUDE_MODEL = process.env.ANTHROPIC_REGENERATE_MODEL ?? 'claude-opus-4-7'
 
-interface RegenerateBody {
-  graphicId?: string
-}
+const RATE_LIMIT_WINDOW_HOURS = 1
+const RATE_LIMIT_MAX_REQUESTS = 20
+const MAX_PREVIOUS_TEXTS = 8
+
+const RegenerateBody = z.object({
+  graphicId: z.string().uuid(),
+})
 
 export async function POST(request: Request) {
   if (!process.env.ANTHROPIC_API_KEY) {
@@ -16,17 +21,19 @@ export async function POST(request: Request) {
     )
   }
 
-  let body: RegenerateBody
+  let parsed: z.infer<typeof RegenerateBody>
   try {
-    body = (await request.json()) as RegenerateBody
-  } catch {
-    return NextResponse.json({ error: 'Invalid JSON body.' }, { status: 400 })
+    parsed = RegenerateBody.parse(await request.json())
+  } catch (err) {
+    const message =
+      err instanceof z.ZodError
+        ? err.issues
+            .map((issue) => `${issue.path.join('.')}: ${issue.message}`)
+            .join('; ')
+        : 'Invalid JSON body.'
+    return NextResponse.json({ error: message }, { status: 400 })
   }
-
-  const graphicId = body.graphicId
-  if (!graphicId) {
-    return NextResponse.json({ error: 'graphicId is required.' }, { status: 400 })
-  }
+  const { graphicId } = parsed
 
   const supabase = await createClient()
   const {
@@ -34,6 +41,32 @@ export async function POST(request: Request) {
   } = await supabase.auth.getUser()
   if (!user) {
     return NextResponse.json({ error: 'Not authenticated.' }, { status: 401 })
+  }
+
+  // Per-user rate limit. Inserts into regenerate_attempts on success below;
+  // here we count this user's attempts in the rolling window before issuing
+  // another (possibly expensive) Anthropic call.
+  const windowStart = new Date(
+    Date.now() - RATE_LIMIT_WINDOW_HOURS * 3_600_000,
+  ).toISOString()
+  const { count: recentCount, error: rateError } = await supabase
+    .from('regenerate_attempts')
+    .select('id', { count: 'exact', head: true })
+    .eq('user_id', user.id)
+    .gte('created_at', windowStart)
+  if (rateError) {
+    return NextResponse.json(
+      { error: 'Rate-limit check failed.' },
+      { status: 500 },
+    )
+  }
+  if ((recentCount ?? 0) >= RATE_LIMIT_MAX_REQUESTS) {
+    return NextResponse.json(
+      {
+        error: `Rate limit exceeded: ${RATE_LIMIT_MAX_REQUESTS} regenerations per ${RATE_LIMIT_WINDOW_HOURS}h.`,
+      },
+      { status: 429 },
+    )
   }
 
   const { data: graphic, error: graphicError } = await supabase
@@ -54,11 +87,19 @@ export async function POST(request: Request) {
     .eq('graphic_id', graphicId)
     .order('variation_number', { ascending: false })
 
-  const latestText = existingVariations?.[0]?.text_content ?? graphic.initial_text
-  const nextVariationNumber = (existingVariations?.[0]?.variation_number ?? 0) + 1
-  const previousTexts = (existingVariations ?? []).map((v) => v.text_content).join(' | ')
+  const latestText =
+    existingVariations?.[0]?.text_content ?? graphic.initial_text
+  const nextVariationNumber =
+    (existingVariations?.[0]?.variation_number ?? 0) + 1
+  // Cap prior-version context so prompt size doesn't grow unbounded over many regenerates.
+  const previousTexts = (existingVariations ?? [])
+    .slice(0, MAX_PREVIOUS_TEXTS)
+    .map((v) => v.text_content)
+    .join(' | ')
 
-  const episodeRow = Array.isArray(graphic.episode) ? graphic.episode[0] : graphic.episode
+  const episodeRow = Array.isArray(graphic.episode)
+    ? graphic.episode[0]
+    : graphic.episode
   const guestName = episodeRow?.guest_name ?? null
   const episodeTitle = episodeRow?.title ?? null
 
@@ -70,7 +111,7 @@ CONTEXT
 - Beat: ${graphic.beat_number ?? '?'}
 - Guest: ${guestName ?? 'unspecified'}
 - Latest version: ${latestText}
-${previousTexts ? `- All prior versions (avoid repeating): ${previousTexts}` : ''}
+${previousTexts ? `- Prior versions to avoid (last ${MAX_PREVIOUS_TEXTS}): ${previousTexts}` : ''}
 
 RULES
 - Output ONE alternative lower-third only.
@@ -116,9 +157,28 @@ RULES
       })
     if (insertError) throw insertError
 
-    return NextResponse.json({ text: newText, variationNumber: nextVariationNumber })
+    // Log this attempt for future rate-limit windows.
+    await supabase.from('regenerate_attempts').insert({
+      user_id: user.id,
+      graphic_id: graphicId,
+    })
+
+    return NextResponse.json({
+      text: newText,
+      variationNumber: nextVariationNumber,
+    })
   } catch (err) {
-    const message = err instanceof Error ? err.message : 'Regenerate failed.'
-    return NextResponse.json({ error: message }, { status: 500 })
+    // Map Anthropic overload (529) to a user-meaningful 503 without leaking raw SDK error text.
+    if (err instanceof Anthropic.APIError && err.status === 529) {
+      return NextResponse.json(
+        { error: 'Claude is overloaded. Try again in a moment.' },
+        { status: 503 },
+      )
+    }
+    console.error('regenerate route failed:', err)
+    return NextResponse.json(
+      { error: 'Regenerate failed.' },
+      { status: 500 },
+    )
   }
 }

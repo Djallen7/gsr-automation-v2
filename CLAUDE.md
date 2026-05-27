@@ -1,39 +1,42 @@
-# CLAUDE.md — Working with Daniel Allen
+# GSR Automation — Claude Code Rules
 
-## Identity
+These rules are mandatory in every session. They exist because this system touches production hardware used by a ministry team.
 
-Daniel Allen is the sole producer at David Rives Ministries (DRM), where he writes, researches, and books for **The Genesis Science Report (GSR)** — a weekly creationist science TV show anchored by David Rives. DRM's broader platform includes **Creation in the 21st Century (C21C) on TBN**, a 24/7 Creation TV channel, a 100,000 sq ft facility, and **creationsuperstore.com**. Daniel is a non-developer building real production tooling alongside writing broadcast copy. He signs guest outreach as "Daniel Allen" on David Rives' behalf. He uses AI primarily for **guest research, lower thirds, script writing, and outreach automation** — in that order of volume.
+## Security Rules
 
-## What to do
+**Credentials**
+- Never paste or expose credentials in chat
+- Always retrieve via 1Password CLI: `op item get "[item name]" --fields password --reveal`
+- Reference credentials by their 1Password item name only — never ask the user to paste a password
 
-- **Be brief and audio-scannable.** Daniel is often in the car using voice-to-text. Lead with a short rationale (1–2 sentences), then deliver the output. Defer deep detail until he asks.
-- **Just do it.** When he says "just do it," stop qualifying and execute. Over-confirmation frustrates him.
-- **Self-direct.** He delegates broadly. Make confident recommendations with reasoning rather than asking him to choose between five options.
-- **Plain English, no jargon.** Explain every technical decision in producer-friendly language. Numbered checklists work well.
-- **Copy-pasteable commands only.** Never use placeholders like `/path/to/repo` — he will paste verbatim without reading. Fill in real values.
-- **Honest risk assessment, not optimism.** Flag fragile automation, unverified claims, and credibility risks explicitly. He self-corrects toward pragmatism when given clear tradeoffs.
-- **Search project knowledge and prior conversations before launching new research.** Confirm file accessibility explicitly before promising to build on existing docs.
+**SSH & Remote Access**
+- Never SSH into any production machine without the user explicitly saying "yes, SSH into [machine name]"
+- Never attempt login to any server, NAS, or network device without that exact confirmation
 
-## What he's building
+**Before any command touching a network resource, server, or shared drive**
+- State exactly what the command will do
+- State what else is connected to or could be affected by it
+- Wait for confirmation before running
 
-- **Multi-stage GSR production pipeline**: research → scoring → booking → outreach → script prep, deployed via Apps Script. Each Claude Code prompt must be **self-contained with context baked in** (contact lists, guest-picking rules, show philosophy) — project files won't be available at runtime.
-- **Voice DNA extraction system for David Rives**: Claude Skills that extract abstract voice markers from authenticated David scripts (some corpus may be team-written or AI-drafted — apply authenticity filtering first). Keep raw samples *out* of the generation context; use the extracted markers only. Ground all authorship claims in textual evidence.
-- **Outreach tool for Christian broadcast TV stations**: static-HTML + localStorage, no backend. Visually clean, ministry-branded (not technical-looking). Ministry-appropriate tone, never corporate or salesy. Don't name specific partner stations — reference broader partnerships.
-- **Rundown Creator (RC) API integration**: source of truth for the show. Use direct API (APIKey + APIToken), not Drive exports or MCP. Two-pass finishing workflow: **Pass 1 = graphics transfer** (monologues: graphics list only; ministry reports: graphics + last line before next cue trigger). **Pass 2 = timer population.** Always use **column IDs, not column names** as field keys — writes silently fail otherwise. Save scripts with `isPlainText=false` and `\n\n` paragraph breaks. Avoid `rc_list_*` endpoints (they time out); use `rc_get_rows` with known RundownIDs.
-- **Lower thirds variation system**: 3-column Primary/Var 1/Var 2 tied to specific segments. Supabase storage expects **flat JSON arrays, not nested wrappers**.
-- **Single growing Google Doc** for email logs with bold H1/H2 headers. Save to **My Drive root** — GSR Shared Folder (owned by davidrives.com) blocks API writes. For Drive ops, use **Composio's `GOOGLEDRIVE_MOVE_FILE`/`TRASH_FILE`** directly (skip Anthropic's Drive MCP); expect large folder moves to time out.
+## Operational Rules
 
-## Locked references
+**Scope**
+- Only touch the one folder explicitly designated for the current session
+- Never access parent directories, adjacent shares, or broader network paths
+- If scope is unclear, ask before doing anything
 
-**Hook framework (check the hook guide BEFORE drafting, not after):**
-> Universal Anchor → Disruption → Stakes → Guest
+**Blast radius check**
+- Before running any command: could this affect anything other than what we're working on?
+- If yes, or if uncertain — stop and ask first
 
-Establish something the audience already owns before any fact, jargon, or name. Second-person ("You've smelled it…") beats declarative openers. The opening sentence follows directly after **"Welcome back to The Genesis Science Report"** and must carry immediate substantive weight.
+**ProPresenter**
+- All ProPresenter automation work happens on a test machine only
+- Never connect to or send commands to the production ProPresenter machine via any automated process until explicitly approved by David
 
-**Episode titles**: ~30% shorter than natural length. Always. Don't make him remind you.
+**The David rule**
+- Before any action, ask: if this goes wrong, does it fall on David to fix it?
+- If yes — redesign the approach until the answer is no
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ## Project Stack (current as of 2026-05-27)
 
 - **Backend:** Supabase — Postgres + Realtime + Storage + Auth + Edge Functions
@@ -81,71 +84,7 @@ Custom Claude Code subagents (gsr-editorial, gsr-pipeline, gsr-supabase) live in
 - Running `npx skills` from this repo root fails with ENOENT (no package.json). Either `cd ~` first or use `--global` flag.
 
 <!-- headroom:learn:end -->
-=======
----
-=======
-**Lower thirds (GSR standard)**:
-- 15 per segment, ALL CAPS, no commas, no em dashes, **60–65 characters**
-- L3 #1 = newsy hook from the intro (not a show preview)
-- L3 #2 = evergreen standalone headline (triggerable anywhere in monologue)
-- L3s #3–15 progressively advance the monologue argument
-- Guest chyron uses pipes: `DR. MICHAEL HOUTS | NASA | SPACE NUCLEAR PROPULSION`
-- Tone: punchy cable-news, biblical worldview
 
-**Script format**:
-- Teleprompter-style: short sentences, ellipsis-paced, loose paragraphs
-- `DAVID QUESTION #N` / `GRAPHIC N` / `ANDREW ANSWER #N` production cues
-- Fox News cadence: short declarative, present tense, direct address, contractions, no stacked adjective fragments
-- **"Thanks, David!"** opens guest segments; **creationsuperstore.com** CTA is the **final line** of any closer
-- **Roll cue**: `Let's take a look, right now`
-- THD tosses: up to 6 sentences, smooth gear-shift pivots
-- GSM tosses: at least 3 sentences, name the segment, angle differs from THD
-- Ministry reports: same newsy plainspoken tone as monologue (not pastoral); lead with people/outcomes, not the ministry's own actions
-- All copy must work as **standalone spoken audio** — no fragment hooks, no graphic-dependent teases
-- Intros: narrative tension, not info delivery. Vary sentence rhythm from draft 1 — flag your own repetitive short-sentence (≤5 word) patterns before delivering.
-
-**Guest workflow**:
-- Two-step approval: pitch slug-line + hook first → deep research only after approval
-- Cross-reference recent airings before pitching returning guests (e.g., Tommy Lohman has covered Behemoth, soft tissue/collagen — don't retread)
-- Anchor talking points to Daniel's **exact pitch email language**, not independent angle generation
-- Standard workflow: propose interview topics/bullets for approval, then no separate talking points or questionnaire forms needed
-- Outreach emails: short, direct, lead with science hook, one-line show credentials, specific filming dates, 48-hour response request. **No em-dashes. No fact-dump openers. Casual producer voice — not academic.**
->>>>>>> e4d36ca (Add archaeology output artifacts)
-
-**Source documents**: verbatim only — emails, spreadsheets, Apple Notes. **No AI-generated summaries or scripts.** Cross-reference interview times against Apple Notes monthly schedule before defaulting to TBD.
-
-<<<<<<< HEAD
-**Active app:** `apps/dashboard` — Next.js 16, shadcn/ui, Supabase SSR, deployed on Vercel
-**Supabase project:** `lafkbxypmciopebentxp`
-**Active feature:** Feature 1 — Episode Graphics & Asset Tracker
-**Current stage:** Stage 7 (real episode test) — all code complete, awaiting first real episode run
-=======
-**Scripts (GSR teleprompter format)**: short in-studio hook intro (2–3 paragraphs), brief credentialed guest intro (check remote vs. in-studio first), **numbered questions only — no pre-written answers**, parenthetical thank-you, David's scriptural reflection, resource mention. B-roll cues: generic and reusable; named subjects/specific footage require real source URLs.
->>>>>>> e4d36ca (Add archaeology output artifacts)
-
-**Rundown Creator defaults**: Monologue intros = `Title Graphic` type, `Not Started` status (only `Created` for PM-prefixed items), assign Isaac to monologue rows, skip reuse graphics, only modify text inside `<gfx...>` tags when editing cue names.
-
-**Mac/dev environment**: Homebrew Python blocks pip3 system-wide. Always `python3 -m venv .venv && source .venv/bin/activate` first. Use `nano` over heredocs — terminal paste truncation breaks heredocs.
-
-## Common pitfalls when helping Daniel
-
-- **Don't suggest recently-aired guests.** You don't have reliable airing data — ask, don't guess.
-- **Don't lead with facts in intros.** Universal Anchor first. He will reject fact-first hooks.
-- **Don't write three-short-beats rhetorical patterns** or repeat sentence structures across segments. He catches stylistic tics fast.
-- **Don't put creationsuperstore.com mid-paragraph.** It ends the closer.
-- **Don't write lower thirds as general topic labels.** Each must map to a specific discussion point.
-- **Don't use insincere praise** in segment transitions ("What a powerful interview…"). Functional two-sentence tosses only.
-- **Don't apply Christian framing to non-Christian guests** in their segments — let David apply it in his sign-off.
-- **Don't pitch interview topics to recurring guests without checking past coverage.**
-- **Don't fabricate creationsuperstore.com products.** If a guest's book isn't there, say so and offer a website plug instead.
-- **Don't include unverified guest credentials** without flagging them. Distinguish what the guest said themselves vs. secondary summaries.
-- **Don't reference template files by name when reliability matters** — paste template text directly into the prompt.
-- **Don't workshop solutions when prepping him for boss conversations.** Lead by extracting boss's vision/priorities. His boss sets WHAT; Daniel executes HOW.
-- **Don't ignore his solo-producer bandwidth** when scoping projects or partnerships.
-- **Don't inflate self-scoring rubrics** to force convergence. He'll adjust criteria; you maintain honesty.
-- **Don't over-explain before producing copy.** Long visible reasoning frustrates him under deadline.
-
-<<<<<<< HEAD
 ## Development Conventions
 
 **Branching**
@@ -200,17 +139,3 @@ Read `docs/SESSION_HANDOFF.md` for historical context if needed (note: may be ou
 - Show: Genesis Science Report (GSR), Christian creation-science TV, ~58 min, weekly, Season 3
 - Team: Daniel + Miryam (core producers), ~7-8 crew on shoot days
 - David Rives is the on-screen talent and ministry director — don't break anything that affects him
->>>>>>> 6773d02 (chore: tooling improvements — Playwright MCP, TS pre-commit hook, CLAUDE.md update)
-=======
-## Default to
-
-When in doubt:
-
-1. **Search project knowledge first.** Confirm what exists before generating new.
-2. **One short rationale, then the output.** No repeated confirmation requests.
-3. **Shorter, more conversational, more specific.** Cut adjectives, cut hedges, cut em-dashes.
-4. **Apply locked references automatically** (30% titles, hook framework, 60–65 char L3s, CTA placement) without being reminded.
-5. **Flag credibility risks loudly** — unverified claims, fabricated products, shaky authorship inferences. He'd rather catch it now than on-air.
-6. **Deliver under deadline pressure.** If a shoot date is imminent, pivot from planning to usable script copy immediately.
-7. **Recommend, don't poll.** Trust your judgment on organizational calls when he's given you that trust.
->>>>>>> e4d36ca (Add archaeology output artifacts)

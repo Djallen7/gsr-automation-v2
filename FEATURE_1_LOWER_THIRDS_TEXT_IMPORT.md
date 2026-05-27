@@ -150,7 +150,12 @@ EXTRACTION RULES:
   and slashes.
 - Never use em dashes. If the source uses one, replace with a forward
   slash or hyphen.
-- beat_number is the order of the LT within its segment, starting at 1.
+- beat_number is the order of the LT within its segment, starting at 1
+  and incrementing by 1 for EVERY L3 in that segment regardless of
+  l3_type. A guest_chyron at beat 1, then a discussion_l3 at beat 2,
+  then another discussion_l3 at beat 3. NEVER restart numbering inside
+  a segment when l3_type changes. The import rejects rows that collide
+  on (episode, segment, beat_number).
 - initial_text MUST be 1..200 characters. Reject longer lines and
   put them in a top-level "rejected" notes block at the end (do not
   emit them in the graphics array).

@@ -1,0 +1,919 @@
+# Decision Log
+
+Significant decisions extracted from deep-analyzed conversations.
+
+- (2026-04-21T16:17:13.298431Z) **April filming interview and science segment ideas** — Selected the Harvard ancient DNA/post-Flood genetics story as a strong segment angle for Dr. Nathaniel Jeanson (new guest)
+- (2026-04-21T16:17:13.298431Z) **April filming interview and science segment ideas** — Ruled out Dr. Hartnett due to health issues
+- (2026-04-21T16:17:13.298431Z) **April filming interview and science segment ideas** — Ruled out Stuart Burgess as too recent (just appeared)
+- (2026-04-21T16:17:13.298431Z) **April filming interview and science segment ideas** — Ruled out mitochondrial pearling for Dr. Deweese due to TV accessibility concerns and his academic communication style
+- (2026-04-21T16:17:13.298431Z) **April filming interview and science segment ideas** — Identified Spike Psarris as a viable returning guest option (last appeared January 2026)
+- (2026-04-21T16:17:13.298431Z) **April filming interview and science segment ideas** — Decided to search last 4 months rather than only recent weeks for Deweese topic options
+- (2026-04-21T16:17:13.298431Z) **April filming interview and science segment ideas** — Drafted outreach email to Dr. Nathaniel Jeanson (AiG) for the Harvard ancient DNA segment
+- (2026-04-21T22:56:46.175399Z) **YouTube episode titles and timecodes** — Use 30% shorter titles for full episodes going forward
+- (2026-04-21T22:56:46.175399Z) **YouTube episode titles and timecodes** — Segment timecodes derived from transcript files rather than a dedicated rundown tool
+- (2026-04-21T22:56:46.175399Z) **YouTube episode titles and timecodes** — Upload updated spreadsheet as a new file rather than overwriting the original due to base64 size limitations
+- (2026-04-21T22:56:46.175399Z) **YouTube episode titles and timecodes** — Store title length preference in memory after Daniel expressed frustration at it being forgotten
+- (2026-04-22T16:01:48.552571Z) **Setting up interview documents for April** — The source document should contain only raw, word-for-word information from emails and spreadsheets—no AI-written scripts or angle summaries
+- (2026-04-22T16:01:48.552571Z) **Setting up interview documents for April** — Interview times must be cross-referenced from the monthly interview schedule (Apple Notes), not assumed as TBD
+- (2026-04-22T16:01:48.552571Z) **Setting up interview documents for April** — The writing prompt for the Claude assistant should allow tone/style flexibility based on topic while staying close to the pitched angle
+- (2026-04-22T16:01:48.552571Z) **Setting up interview documents for April** — The new skill should include article research, quote-finding, and related research sourcing as part of the compilation process
+- (2026-04-22T16:01:48.552571Z) **Setting up interview documents for April** — Season 3 folder structure follows pattern: MonthName (Ep X-X) with subfolders: Interviews, Pre-Recorded Segments, Monologues, Ministry Reports, Lower Thirds
+- (2026-04-22T17:58:39.124757Z) **** — Identified 8 distinct interview segments across episodes 016-020
+- (2026-04-22T17:58:39.124757Z) **** — Planned to research Joe Hubbard/CRUK specifically before writing that interview
+- (2026-04-22T17:58:39.124757Z) **** — Organized interviews by episode number and guest
+- (2026-04-22T22:06:05.981690Z) **Planning research-driven interview segments** — Barentine interview framing: keep biblical worldview in David's host copy only, not directed at the secular guest
+- (2026-04-22T22:06:05.981690Z) **Planning research-driven interview segments** — Hook structure revised to use 'Type 3 Numbers Made Personal' approach after Daniel flagged the opening was too statement-driven
+- (2026-04-22T22:06:05.981690Z) **Planning research-driven interview segments** — No book plug for Barentine on creationsuperstore.com since his books are academic Springer titles; use website plug (darkskyconsulting.com) instead
+- (2026-04-22T22:06:05.981690Z) **Planning research-driven interview segments** — Lower thirds rewritten to stay under ~60 characters per line
+- (2026-04-22T22:06:05.981690Z) **Planning research-driven interview segments** — Tom Rogers interview built around his 10 provided talking points rather than generic creationist framing
+- (2026-04-22T22:06:05.981690Z) **Planning research-driven interview segments** — Hook-writing guidance captured in a reusable .docx document and added to project memory
+- (2026-04-23T00:19:03.274701Z) **Planning research-driven interviews with David** — Chose Option 1 (Tell Fara/Shuruppak flood layer angle) over other proposed topics for Joe Hubbard's segment
+- (2026-04-23T00:19:03.274701Z) **Planning research-driven interviews with David** — Selected FIRE and ICE DVD by Joe Hubbard from creationsuperstore.com as the resource plug after rejecting non-Joe resources
+- (2026-04-23T00:19:03.274701Z) **Planning research-driven interviews with David** — CTA (creationsuperstore.com) must end the closer, not appear mid-paragraph
+- (2026-04-23T00:19:03.274701Z) **Planning research-driven interviews with David** — Lower thirds must be tied to specific discussion questions rather than general topic points
+- (2026-04-23T00:19:03.274701Z) **Planning research-driven interviews with David** — Intro should function as a narrative setup/tension builder, not an information delivery block
+- (2026-04-23T00:50:17.144002Z) **Planning article-driven interviews with research** — Use a universal anchor hook (1-in-5 homes nuclear power) before introducing the space angle
+- (2026-04-23T00:50:17.144002Z) **Planning article-driven interviews with research** — Avoid repeating intro content in interview questions
+- (2026-04-23T00:50:17.144002Z) **Planning article-driven interviews with research** — Keep intros shorter than earlier drafts
+- (2026-04-23T00:50:17.144002Z) **Planning article-driven interviews with research** — 15 discussion lower thirds with 5 generic safety-net options included in the set
+- (2026-04-23T00:50:17.144002Z) **Planning article-driven interviews with research** — Guest chyron formatted to ~60 characters matching other lower thirds
+- (2026-04-23T00:50:17.144002Z) **Planning article-driven interviews with research** — No em dashes in lower thirds
+- (2026-04-23T00:50:17.144002Z) **Planning article-driven interviews with research** — Include DR. MICHAEL HOUTS | NASA | SPACE NUCLEAR PROPULSION as final chyron format
+- (2026-04-23T00:50:17.144002Z) **Planning article-driven interviews with research** — 5 alternate topic lower thirds provided as safety nets
+- (2026-04-23T01:35:55.723853Z) **Planning article-driven interviews with research** — Use the Nayak quote ('Objectively, ambiguity in the genetic code should be deleterious') as the anchor quote in the intro
+- (2026-04-23T01:35:55.723853Z) **Planning article-driven interviews with research** — Use a period/comma analogy to explain stop codon ambiguity, with explicit caveat that it's not a perfect fit
+- (2026-04-23T01:35:55.723853Z) **Planning article-driven interviews with research** — Structure the intro using Universal Anchor → Disruption → Stakes → Guest framework from the hook guide
+- (2026-04-23T01:35:55.723853Z) **Planning article-driven interviews with research** — Set topic L3 character count to 60-65 characters (updated from previous limit)
+- (2026-04-23T01:35:55.723853Z) **Planning article-driven interviews with research** — Deliver 15 discussion lower thirds: 10 interview-specific + 5 generic safety nets
+- (2026-04-23T01:35:55.723853Z) **Planning article-driven interviews with research** — Flag that no standalone Fabich book was confirmed on creationsuperstore.com rather than fabricating one
+- (2026-04-23T01:35:55.723853Z) **Planning article-driven interviews with research** — Provide multiple segment title alternatives when requested
+- (2026-04-23T03:07:52.326702Z) **Developing a writing system for interview scripts** — Use David's ghostwritten GSR monologues and THD scripts as voice source material rather than AI-generated samples
+- (2026-04-23T03:07:52.326702Z) **Developing a writing system for interview scripts** — Extract a 'voice DNA document' from samples rather than keeping samples in context during generation
+- (2026-04-23T03:07:52.326702Z) **Developing a writing system for interview scripts** — Use 12 THD scripts and 8 GSR monologues as the final selection pool
+- (2026-04-23T03:07:52.326702Z) **Developing a writing system for interview scripts** — Treat both THD and monologue sources as a single unified voice (not two separate triangulation points) after confirming ghostwriter mimics David closely
+- (2026-04-23T03:07:52.326702Z) **Developing a writing system for interview scripts** — Apply a two-pass rubric (ear test + craft check) to rank scripts before voice extraction
+- (2026-04-23T03:07:52.326702Z) **Developing a writing system for interview scripts** — Ensure diversity in final monologue selection (not too many on same topic like archaeology)
+- (2026-04-23T18:19:55.005262Z) **Writing show intros and segways** — AI would write intros and segues only, not relying on interview transcripts or pre-recorded segment content
+- (2026-04-23T18:19:55.005262Z) **Writing show intros and segways** — Three distinct variations per segue were requested to encourage creativity over pattern-matching
+- (2026-04-23T18:19:55.005262Z) **Writing show intros and segways** — Reference guides (Tease/Toss/Segue guide) were to be used as principles, not copied as templates
+- (2026-04-23T18:19:55.005262Z) **Writing show intros and segways** — AI identified the episode in focus as Ep016 with Frank Sherwin and Stephen Meyer as interview guests
+- (2026-04-23T20:06:33.168473Z) **Writing episode 17 broadcast copy** — Intro copy must use full spoken sentences — no fragment-heavy network style since there are no graphics to complete the thought
+- (2026-04-23T20:06:33.168473Z) **Writing episode 17 broadcast copy** — Q&A segments should be mentioned as a heads-up only, not teased with curiosity gaps
+- (2026-04-23T20:06:33.168473Z) **Writing episode 17 broadcast copy** — Segues between segments should not force thematic connections that aren't genuinely there
+- (2026-04-23T20:06:33.168473Z) **Writing episode 17 broadcast copy** — Tease copy must make sense out of context without relying on prior setup in the same episode
+- (2026-04-23T20:06:33.168473Z) **Writing episode 17 broadcast copy** — Barentine (Ep018) intro should avoid Christian framing since he is not a Christian — let David apply that frame in his own sign-off
+- (2026-04-23T21:18:03.880061Z) **Interview confirmation template for weekly guests** — Request guests to resend their Zoom location rather than conditionally asking if they've sent it
+- (2026-04-23T21:18:03.880061Z) **Interview confirmation template for weekly guests** — Clarify that interview questions are already drafted, not just being prepared
+- (2026-04-23T21:18:03.880061Z) **Interview confirmation template for weekly guests** — Correct day-of-week error: April 29 is Wednesday, April 30 is Thursday
+- (2026-04-23T21:18:03.880061Z) **Interview confirmation template for weekly guests** — Scale tone per guest relationship (formal for newer contacts, casual for colleagues like Mike/Andrew)
+- (2026-04-23T21:18:03.880061Z) **Interview confirmation template for weekly guests** — Use 'GSR' shorthand with closer contacts, spell out full show name for newer guests
+- (2026-04-23T21:18:03.880061Z) **Interview confirmation template for weekly guests** — Deliver all 8 emails as a single text file
+- (2026-04-23T21:18:03.880061Z) **Interview confirmation template for weekly guests** — Follow-up reply template kept to a single generic version rather than 8 individualized ones
+- (2026-04-23T21:18:03.880061Z) **Interview confirmation template for weekly guests** — Final follow-up stripped down to just acknowledging receipt of location, no repeated information
+- (2026-04-24T15:18:00.653831Z) **Artemis II returns humans to the Moon** — First lower third should be a newsy hook pulled from the episode intro, not a generic show preview
+- (2026-04-24T15:18:00.653831Z) **Artemis II returns humans to the Moon** — Second lower third should be a standalone evergreen headline that can be triggered at any point in the monologue
+- (2026-04-24T15:18:00.653831Z) **Artemis II returns humans to the Moon** — No em dashes allowed in any lower third copy
+- (2026-04-24T15:18:00.653831Z) **Artemis II returns humans to the Moon** — 15 lower thirds per segment is the standard package size
+- (2026-04-24T15:18:00.653831Z) **Artemis II returns humans to the Moon** — Lower thirds should advance the argument progressively, not repeat the same point
+- (2026-04-24T15:18:00.653831Z) **Artemis II returns humans to the Moon** — When asked for alts, provide 5-10 numbered options
+- (2026-04-27T11:31:49.594648Z) **Episode 17-20 transition scripts** — Use Episode 16 as a loose structural guide, but avoid similar sentence/wording patterns across episodes
+- (2026-04-27T11:31:49.594648Z) **Episode 17-20 transition scripts** — THD segues: 1-3 sentences; GSM segues: 1-2 sentences; length determined by topic complexity
+- (2026-04-27T11:31:49.594648Z) **Episode 17-20 transition scripts** — Both THD and GSM segues to end with 'let's take a look right now'
+- (2026-04-27T11:31:49.594648Z) **Episode 17-20 transition scripts** — Q&A mention in Kids Corner pitch should appear in only ~3/5 episodes, not every episode
+- (2026-04-27T11:31:49.594648Z) **Episode 17-20 transition scripts** — Viewer Voices and Featured Resource tosses should only preview content when the submission is uniquely impactful; otherwise generic toss is fine
+- (2026-04-27T11:31:49.594648Z) **Episode 17-20 transition scripts** — Avoid over-reliance on the 'three short beats' rhetorical device — use it strategically, not as default
+- (2026-04-27T11:31:49.594648Z) **Episode 17-20 transition scripts** — Pursue a 'hybrid' voice blending broadcast precision with long-form narrative gravity
+- (2026-04-27T11:31:49.594648Z) **Episode 17-20 transition scripts** — THD transitions should only connect to preceding interview if a natural link exists; forced connections to be avoided
+- (2026-04-27T11:31:49.594648Z) **Episode 17-20 transition scripts** — Develop a GSR Writer's Playbook (Option B: playbook + execution) drawing from Vice News Tonight, 60 Minutes, The Daily, The Atlantic, The New Yorker, and persuasive copywriting frameworks (AIDA, Open Loop)
+- (2026-04-27T11:31:49.594648Z) **Episode 17-20 transition scripts** — AI was instructed to update memory/instructions after reaching a good stopping point on Episode 19
+- (2026-04-27T13:51:58.309409Z) **Continuing episode transition scripts** — Keep THD tosses up to 6 sentences with a smooth gear-shift pivot rather than abrupt transitions
+- (2026-04-27T13:51:58.309409Z) **Continuing episode transition scripts** — GSM tosses must be at least 3 sentences, include the segment name, and avoid redundancy with the THD toss
+- (2026-04-27T13:51:58.309409Z) **Continuing episode transition scripts** — Use 'Let's take a look, right now' as the canonical roll cue for consistency
+- (2026-04-27T13:51:58.309409Z) **Continuing episode transition scripts** — GSM for Ep 19 pivots to a Band-Aid/everyday moment angle to differentiate from THD's internal-systems framing
+- (2026-04-27T13:51:58.309409Z) **Continuing episode transition scripts** — Sentences must be short and punchy for teleprompter readability per project context guidelines
+- (2026-04-27T15:35:13.722604Z) **GSR project file consolidation and playbook restructuring** — Consolidation target: 5-file structure (GSR_Playbook.md, GSR_Sample_Library.md, GSR_Episode_Reference.md, GSR_Production_Notes.md, plus deletion list)
+- (2026-04-27T15:35:13.722604Z) **GSR project file consolidation and playbook restructuring** — Older reference files to be absorbed into the master Playbook without contradiction
+- (2026-04-27T15:35:13.722604Z) **GSR project file consolidation and playbook restructuring** — Consolidation deprioritized mid-session in favor of immediate script writing for Episode 019
+- (2026-04-27T15:35:13.722604Z) **GSR project file consolidation and playbook restructuring** — Episode 019 content identified: Joseph Hubbard (biblical archaeology/flood deposits), Tom Rogers (atomic biology/cellular formation), two blood clotting deep dives
+- (2026-04-27T15:35:13.722604Z) **GSR project file consolidation and playbook restructuring** — Blood clotting redundancy flagged between THD and GSM segments — differentiation recommended
+- (2026-04-27T15:35:13.722604Z) **GSR project file consolidation and playbook restructuring** — Tom Rogers interview tease written with Daniel's preferred first half retained, Darwin callout added at the end
+- (2026-04-27T16:55:30.034865Z) **Uncovered ministry report content for upcoming cycle** — Keep Wonders of Creation Conference framing invitational rather than urgent since YouTube viewers see it June 2nd
+- (2026-04-27T16:55:30.034865Z) **Uncovered ministry report content for upcoming cycle** — David spoke about ICR animals but did not bring them — keep attribution to ICR
+- (2026-04-27T16:55:30.034865Z) **Uncovered ministry report content for upcoming cycle** — Maintain anchor desk/newsy tone rather than pastoral/warm tone for ministry report segments
+- (2026-04-27T16:55:30.034865Z) **Uncovered ministry report content for upcoming cycle** — Give AI full structural freedom to move topics between episodes for better flow
+- (2026-04-27T16:55:30.034865Z) **Uncovered ministry report content for upcoming cycle** — Real Life Network segment confirmed for Episode 19 but library still being organized
+- (2026-04-27T16:55:30.034865Z) **Uncovered ministry report content for upcoming cycle** — Extra line spacing added to scripts for easier copy/paste workflow
+- (2026-04-27T16:55:30.034865Z) **Uncovered ministry report content for upcoming cycle** — Pastor's Luncheon (Episode 17) happens May 21, airs June 2 — b-roll will be available in post
+- (2026-04-27T16:55:30.034865Z) **Uncovered ministry report content for upcoming cycle** — Lead Episode 17 with the people/pastors rather than the ministry to avoid self-serving tone
+- (2026-04-27T18:02:57.124122Z) **Writing glue segments for episode** — Chose a career-focused descriptor for Dr. Mike Houts over a title-only or 'program lead' framing
+- (2026-04-27T18:02:57.124122Z) **Writing glue segments for episode** — Removed insincere praise language from Viewer Voices toss in favor of functional two-sentence transitions
+- (2026-04-27T18:02:57.124122Z) **Writing glue segments for episode** — Locked in a rotation of four Viewer Voices toss lines to cycle through weekly
+- (2026-04-27T18:02:57.124122Z) **Writing glue segments for episode** — Saved Viewer Voices rotation to memory for future episodes
+- (2026-04-27T18:03:35.867577Z) **Writing glue segments for episode** — Tosses must motivate the viewer ('why are we watching this') not just describe content
+- (2026-04-27T18:03:35.867577Z) **Writing glue segments for episode** — Q&A should be mentioned briefly or not at all in tosses — don't hint at topic unless it's genuinely compelling
+- (2026-04-27T18:03:35.867577Z) **Writing glue segments for episode** — Kids Corner always previews second in the toss because it airs first after the handoff
+- (2026-04-27T18:03:35.867577Z) **Writing glue segments for episode** — Viewer Voices toss should be minimal — the segment isn't strong enough to justify heavy setup
+- (2026-04-27T18:03:35.867577Z) **Writing glue segments for episode** — Featured Resource transitions default to a standard 'Thanks [name]' format with optional ad lib unless topics naturally connect
+- (2026-04-27T18:03:35.867577Z) **Writing glue segments for episode** — Genesis Science Q&A live intro is unnecessary — segment plays directly after Kids Corner
+- (2026-04-27T18:03:35.867577Z) **Writing glue segments for episode** — Avoid creation-science jargon that general audiences won't understand (e.g., 'secular timeline')
+- (2026-04-27T18:03:35.867577Z) **Writing glue segments for episode** — Toss copy should surface the implication or 'so what,' not just restate facts
+- (2026-04-28T00:52:29.631355Z) **Creating a professional pitch deck from sponsorship materials** — Pivot from network pitch deck to sponsorship pitch deck as the primary deliverable
+- (2026-04-28T00:52:29.631355Z) **Creating a professional pitch deck from sponsorship materials** — Keep deep research task running because ~70% of findings transfer to both deck types
+- (2026-04-28T00:52:29.631355Z) **Creating a professional pitch deck from sponsorship materials** — Target three sponsorship categories: science/Christian attractions, Christian camps (Deer Run as warm lead), and Christian colleges
+- (2026-04-28T00:52:29.631355Z) **Creating a professional pitch deck from sponsorship materials** — Use aggressive-but-citable data for the deck, with conservative alternatives in a separate document
+- (2026-04-28T00:52:29.631355Z) **Creating a professional pitch deck from sponsorship materials** — Defer sample episode selection until after new graphics package is complete
+- (2026-04-28T00:52:29.631355Z) **Creating a professional pitch deck from sponsorship materials** — Build 4 mockup directions instead of 10: Metaxas-style warm prestige, blue/purple broadcast, documentary editorial, data-forward sales-card
+- (2026-04-28T00:52:29.631355Z) **Creating a professional pitch deck from sponsorship materials** — Color palette is shifting to blue/purple on black; green is now Kids Corner only
+- (2026-04-28T00:52:29.631355Z) **Creating a professional pitch deck from sponsorship materials** — End goal is a prompt Daniel can paste into a separate design tool with uploaded context files
+- (2026-04-28T13:34:40.749148Z) **💬 Good morning, Claude. Hope you…** — Task list captured in Apple Notes checklist format
+- (2026-04-28T13:34:40.749148Z) **💬 Good morning, Claude. Hope you…** — Decided to use Rundown Creator API directly rather than Drive exports as source of truth
+- (2026-04-28T13:34:40.749148Z) **💬 Good morning, Claude. Hope you…** — Separated work into Pass 1 (graphics transfer) and Pass 2 (timer fill)
+- (2026-04-28T13:34:40.749148Z) **💬 Good morning, Claude. Hope you…** — Decided monologues only need graphics list (no last lines), ministry reports need full treatment (graphics + last lines), interviews handled separately via Google Docs with comments
+- (2026-04-28T13:34:40.749148Z) **💬 Good morning, Claude. Hope you…** — Chose Option 1 for credential sharing: Daniel puts RC API credentials in a Google Doc and shares the link
+- (2026-04-28T13:34:40.749148Z) **💬 Good morning, Claude. Hope you…** — Pivoted from Cowork prompt approach to direct API automation when RC read/write capability was confirmed available
+- (2026-04-30T16:38:11.713327Z) **Improving show writing with AI guidance** — Reframe the lunch prep away from AI-centric discussion toward extracting the boss's vision and priorities
+- (2026-04-30T16:38:11.713327Z) **Improving show writing with AI guidance** — Acknowledge boss is pro-automation, so questions focus on WHAT to change, not HOW
+- (2026-04-30T16:38:11.713327Z) **Improving show writing with AI guidance** — Add a section on Daniel's realistic automation goals to avoid overpromising
+- (2026-04-30T16:38:11.713327Z) **Improving show writing with AI guidance** — Condense everything into a one-pager with a menu of automation opportunities for the boss to prioritize
+- (2026-04-30T16:38:11.713327Z) **Improving show writing with AI guidance** — Request a Google Doc be created for the talking points
+- (2026-04-30T23:39:51.690124Z) **Genesis Apologetics film partnership opportunities** — Decided not to pitch David Rives a specific partnership plan, but instead to ask him open-ended questions about what makes partnerships valuable to him
+- (2026-04-30T23:39:51.690124Z) **Genesis Apologetics film partnership opportunities** — Decided to step back from the Genesis Apologetics dinosaur DNA film as the primary POC candidate due to it being unannounced/unconfirmed
+- (2026-04-30T23:39:51.690124Z) **Genesis Apologetics film partnership opportunities** — Broadened the opportunity scouting to include films, conferences, and book launches over the next 12 months
+- (2026-04-30T23:39:51.690124Z) **Genesis Apologetics film partnership opportunities** — Recognized that leveraging David Rives as a relationship resource has been underutilized
+- (2026-04-30T23:39:51.690124Z) **Genesis Apologetics film partnership opportunities** — Identified that the full ministry apparatus (C21C on TBN, 24/7 Creation TV, theater, superstore) is the real value proposition, not just GSR
+- (2026-05-03T01:59:22.916461Z) **Orange dwarf star b-roll sources** — Keep the refinement loop within a single project session until effectiveness is proven
+- (2026-05-03T01:59:22.916461Z) **Orange dwarf star b-roll sources** — Claude scores its own responses using a 10-criterion rubric (0–100), sampling 3 images per response for quality/relevance/variety analysis
+- (2026-05-03T01:59:22.916461Z) **Orange dwarf star b-roll sources** — Claude rewrites entire affected sections; Daniel batch-applies them manually
+- (2026-05-03T01:59:22.916461Z) **Orange dwarf star b-roll sources** — Hard stop set at 25 cycles
+- (2026-05-03T01:59:22.916461Z) **Orange dwarf star b-roll sources** — Success condition lowered from 4 consecutive cycles ≥9.0 to 3-of-4 consecutive cycles ≥9.0 after structural C8 (paid-library deflection) proved a persistent ceiling
+- (2026-05-03T01:59:22.916461Z) **Orange dwarf star b-roll sources** — Final deliverables: full rewritten project knowledge file (v2.0) plus a filled-in scorecard XLSX
+- (2026-05-04T21:49:59.156478Z) **Featured resources from Creationsuperstore** — Swapped out 'Wonders Without Number' (slot 5) at Daniel's request after 'God's Amazing Animals of North America' could not be found on the Superstore
+- (2026-05-04T21:49:59.156478Z) **Featured resources from Creationsuperstore** — Swapped out slot 2 (Design and Complexity of the Cell) because it had been featured recently
+- (2026-05-04T21:49:59.156478Z) **Featured resources from Creationsuperstore** — Replaced slot 5 a second time at Daniel's request (specific replacement not confirmed in transcript)
+- (2026-05-04T21:49:59.156478Z) **Featured resources from Creationsuperstore** — Decided to fact-check all scripts against actual Creationsuperstore.com product pages after Daniel flagged fabrication risk
+- (2026-05-04T21:49:59.156478Z) **Featured resources from Creationsuperstore** — Adopted teleprompter-friendly punctuation (ellipses, short sentences) and varied cadence across all five scripts
+- (2026-05-05T18:21:33.099242Z) **Research topics for May interview segments** — Expand topic scope beyond purely YEC/creationist content to include popular mainstream science stories with optional faith tie-ins
+- (2026-05-05T18:21:33.099242Z) **Research topics for May interview segments** — Use a flexible rubric where faith resonance is weighted less and optional
+- (2026-05-05T18:21:33.099242Z) **Research topics for May interview segments** — Add a 'visual difficulty' category to the scoring rubric
+- (2026-05-05T18:21:33.099242Z) **Research topics for May interview segments** — Keep existing 30 articles and add 15-20 new mainstream science stories
+- (2026-05-05T18:21:33.099242Z) **Research topics for May interview segments** — Build the dashboard as a Google Apps Script Web App with Google Sheets as the database (free, no hosting required)
+- (2026-05-05T18:21:33.099242Z) **Research topics for May interview segments** — Use direct Anthropic API integration for guest research triggered manually via 'Find Guests' button
+- (2026-05-05T18:21:33.099242Z) **Research topics for May interview segments** — Separate the build into two prompts: Prompt 1 for plumbing/UI, Prompt 2 for seeding contact data and guest-picking rules
+- (2026-05-05T18:21:33.099242Z) **Research topics for May interview segments** — Use existing GSR_Guest_Contact_List2.xlsx (167 contacts) as seed data for Prompt 2
+- (2026-05-06T02:38:14.863279Z) **Building a David Rives content analysis agent** — Split the single monolithic agent into specialized agents: Researcher, Voice Profiler, Script Writer, Production Assistant, Email & Comms, and Dev Lead
+- (2026-05-06T02:38:14.863279Z) **Building a David Rives content analysis agent** — Use Claude Opus for heavy tasks (voice analysis, architecture) and Sonnet for script writing
+- (2026-05-06T02:38:14.863279Z) **Building a David Rives content analysis agent** — Use Google Drive as the shared context layer between agents
+- (2026-05-06T02:38:14.863279Z) **Building a David Rives content analysis agent** — Build a GSR Dev Lead agent to serve as Daniel's technical translator and system architect
+- (2026-05-06T02:38:14.863279Z) **Building a David Rives content analysis agent** — Recommend Tier 2 upgrade ($40 deposit) to resolve rate limit issues before building further
+- (2026-05-06T02:38:14.863279Z) **Building a David Rives content analysis agent** — Exclude all GSN content except David Rives opening monologues (under 10 minutes, after opening tease)
+- (2026-05-07T16:34:05.242513Z) **Lead outreach email automation system** — Dashboard built as a static HTML file (no backend) with clipboard-copy prompts rather than live API calls
+- (2026-05-07T16:34:05.242513Z) **Lead outreach email automation system** — Contact research implemented as a prompt-copy button rather than live web search within the dashboard
+- (2026-05-07T16:34:05.242513Z) **Lead outreach email automation system** — Chose Option 2 (structured sentinel-bracketed output + auto-parse paste panel) over live API integration or manual paste
+- (2026-05-07T16:34:05.242513Z) **Lead outreach email automation system** — Sender identity locked as Daniel Allen (producer), not David Rives, with a verbatim signature block
+- (2026-05-07T16:34:05.242513Z) **Lead outreach email automation system** — Programming hours corrected to 270 hours of core content plus hundreds of short-form filler episodes
+- (2026-05-07T16:34:05.242513Z) **Lead outreach email automation system** — Hard rules added against em-dashes and stiff/robotic opener paragraphs in email prompts
+- (2026-05-07T16:34:05.242513Z) **Lead outreach email automation system** — README file created to ship alongside the four deliverable files for Drive onboarding
+- (2026-05-07T16:50:37.035693Z) **Outreach email draft for KWOG Springdale** — Use Variant A (Tier 1 Independent) tone: personal warmth, peer-to-peer, fifteen-minute call ask
+- (2026-05-07T16:50:37.035693Z) **Outreach email draft for KWOG Springdale** — Lead with WGGS/WGGN social proof as anchor credibility
+- (2026-05-07T16:50:37.035693Z) **Outreach email draft for KWOG Springdale** — Emphasize educational mission alignment as primary angle for KWOG/Safe TV
+- (2026-05-07T16:50:37.035693Z) **Outreach email draft for KWOG Springdale** — Correct programming offer from '1,000 hours' to '270 hours of core programming plus hundreds of short-form filler episodes'
+- (2026-05-07T16:50:37.035693Z) **Outreach email draft for KWOG Springdale** — Update both the pitch letter template and custom instructions/team setup guide to reflect corrected hours
+- (2026-05-08T18:48:19.569208Z) **Preparing store emails for Monday** — Emails would be added one at a time with individual prompts
+- (2026-05-08T18:48:19.569208Z) **Preparing store emails for Monday** — Store emails in a Google Doc (not local file) after local file approach failed
+- (2026-05-08T18:48:19.569208Z) **Preparing store emails for Monday** — Place doc in My Drive root since GSR Shared Folder had permissions issues; Daniel will manually move it later
+- (2026-05-08T18:48:19.569208Z) **Preparing store emails for Monday** — Scrapped research sweep for Christian-worldview alternative candidates mid-session
+- (2026-05-08T18:48:19.569208Z) **Preparing store emails for Monday** — Wilson email adjusted from Tier 1 cold to Tier 4 recurring-guest tone
+- (2026-05-08T18:48:19.569208Z) **Preparing store emails for Monday** — Use H1/H2 headings for doc navigation (Google Docs outline view) rather than true tabs
+- (2026-05-08T18:48:19.569208Z) **Preparing store emails for Monday** — Daniel deleted early doc versions and requested a cleaner formatting approach
+- (2026-05-08T18:48:19.569208Z) **Preparing store emails for Monday** — Bechly flagged as having no email on file
+- (2026-05-08T18:48:19.569208Z) **Preparing store emails for Monday** — Cameron addressed as 'Mr.' not 'Dr.' due to no PhD
+- (2026-05-11T18:32:32.836513Z) **Podcast interview questions for Billy Hallowell** — Strip formal 'beats' language from CTN questions in favor of casual, conversational tone
+- (2026-05-11T18:32:32.836513Z) **Podcast interview questions for Billy Hallowell** — Add a background/intro question as Q1 for the CTN podcast
+- (2026-05-11T18:32:32.836513Z) **Podcast interview questions for Billy Hallowell** — Use ~60 character limit for lower thirds with no periods
+- (2026-05-11T18:32:32.836513Z) **Podcast interview questions for Billy Hallowell** — Use the Barentine-format script structure (hook intro, numbered questions, closing reflection) for the GSR segment
+- (2026-05-11T18:32:32.836513Z) **Podcast interview questions for Billy Hallowell** — Shorten the intro for in-studio guest vs. remote guest format
+- (2026-05-11T18:32:32.836513Z) **Podcast interview questions for Billy Hallowell** — Reframe the opening hook to avoid implying the government is announcing demons — instead set up tension between official 'non-human intelligence' framing and the spiritual counter-narrative
+- (2026-05-12T17:44:01.844708Z) **Finishing monologue graphics assignment** — Adopt a consistent <gfx> tag format placed on a new line before the triggered sentence
+- (2026-05-12T17:44:01.844708Z) **Finishing monologue graphics assignment** — Prioritize reusable, generic B-roll loops over specific short-use visuals to reduce production time
+- (2026-05-12T17:44:01.844708Z) **Finishing monologue graphics assignment** — Include source links (URLs, YouTube timestamps) directly in gfx cues when referencing specific footage
+- (2026-05-12T17:44:01.844708Z) **Finishing monologue graphics assignment** — When suggesting named/specific B-roll (e.g., Al Gore footage), always provide real citable sources
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Use Google Drive native copy tool with per-approval flow rather than Composio Drive integration
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Use 'Title Graphic' type (not 'Intro Graphic') for monologue intro graphics
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Pre-made graphics (prefix 'PM') get status 'Created'; all others get 'Not Started'
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Assignee for Opening Monologue graphics is Isaac
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Skip duplicate/reuse graphics in the tracker (list each graphic only once)
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Use isPlainText=false when saving scripts to Rundown Creator to preserve HTML formatting
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Only edit text inside <gfx...> tags when simplifying cue names; leave all other script text untouched
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Lastline field should contain the sentence ending immediately before the next row's graphic is triggered
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Add rows in rundown if monologue has more than 12 graphics, matching existing row formatting
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Graphics column in rundown should be populated with simplified cue names
+- (2026-05-12T22:22:48.937422Z) **Graphic spreadsheet adjustments** — Add AUDIO tag in format column for video clips with audio
+- (2026-05-13T00:44:45.988794Z) **Starting from show 2** — Format field = verbatim Tracker 'Graphic Type' value (e.g., 'Clip w/audio', 'B-roll', 'Title Graphic'), not a simplified label like 'AUDIO'
+- (2026-05-13T00:44:45.988794Z) **Starting from show 2** — Lastline placement based on topical relevance to motivating visual, not mechanical script position or B-roll air-time padding
+- (2026-05-13T00:44:45.988794Z) **Starting from show 2** — B-roll air time (20–60 sec) is a soft preference only; topical relevance takes priority
+- (2026-05-13T00:44:45.988794Z) **Starting from show 2** — Mid-sentence cue triggers: first half of sentence goes in preceding row's lastline
+- (2026-05-13T00:44:45.988794Z) **Starting from show 2** — Minimum 5 words required in lastline for TD readability
+- (2026-05-13T00:44:45.988794Z) **Starting from show 2** — Title Graphic is NOT always first; script/tracker order is the authority (exceptions exist when David wants a specific opening clip)
+- (2026-05-13T00:44:45.988794Z) **Starting from show 2** — AUDIO format only applies based on Tracker 'Clip w/audio' type, not script wording
+- (2026-05-13T00:44:45.988794Z) **Starting from show 2** — Uncertain audio clips get '(ask david about audio)' appended to Graphics field
+- (2026-05-13T00:44:45.988794Z) **Starting from show 2** — API writes must use column IDs as keys, not column names, to persist field values
+- (2026-05-13T00:44:45.988794Z) **Starting from show 2** — Reuse graphics carry their original Tracker type for Format
+- (2026-05-14T16:44:39.607460Z) **Personalized cold email templates for network outreach** — Keep station research dossiers as separate files from the tracking spreadsheet rather than merging them
+- (2026-05-14T16:44:39.607460Z) **Personalized cold email templates for network outreach** — Use two file formats for dossiers: .md and .docx
+- (2026-05-14T16:44:39.607460Z) **Personalized cold email templates for network outreach** — Defer actual per-station research to a separate Claude project chat with Research mode enabled
+- (2026-05-14T16:44:39.607460Z) **Personalized cold email templates for network outreach** — Use ~80% static / 20% personalized email template structure for scalable customization
+- (2026-05-14T16:44:39.607460Z) **Personalized cold email templates for network outreach** — Reference existing partners as 'stations across the country' rather than naming specific carriers to avoid implying limited reach
+- (2026-05-14T16:44:39.607460Z) **Personalized cold email templates for network outreach** — Target 50–125 word email length rather than the existing 750-word letter format
+- (2026-05-14T17:40:28.565564Z) **Automating YouTube metadata transfer to forms** — Since the platform (RLN) controls the form, writing directly to the backing Sheet was ruled out in favor of prefilled URL generation
+- (2026-05-14T17:40:28.565564Z) **Automating YouTube metadata transfer to forms** — Used YouTube Data API v3 with a provided API key to pull channel data directly rather than manual entry
+- (2026-05-14T17:40:28.565564Z) **Automating YouTube metadata transfer to forms** — Shows are organized by YouTube playlists, not title prefixes
+- (2026-05-14T17:40:28.565564Z) **Automating YouTube metadata transfer to forms** — Only pull last 2 months of YouTube uploads for the sync panel
+- (2026-05-14T17:40:28.565564Z) **Automating YouTube metadata transfer to forms** — File names will be entered manually into the queue (not auto-pulled from Drive) as a separate step
+- (2026-05-14T17:40:28.565564Z) **Automating YouTube metadata transfer to forms** — Weekly auto-sync and manual trigger button both included for YouTube data refresh
+- (2026-05-14T17:40:28.565564Z) **Automating YouTube metadata transfer to forms** — Chose RLN brand color scheme over original 'tech control room' aesthetic
+- (2026-05-14T17:40:28.565564Z) **Automating YouTube metadata transfer to forms** — Dashboard named 'RLN Metadata Upload Hub'
+- (2026-05-14T17:40:28.565564Z) **Automating YouTube metadata transfer to forms** — Queue persists across sessions via local storage
+- (2026-05-14T17:40:28.565564Z) **Automating YouTube metadata transfer to forms** — Form integration held pending resolution of prefilled URL access
+- (2026-05-14T18:13:14.843375Z) **Organizing Google Drive root into streamlined folder structure** — Keep 'GSR Shared Folder' untouched initially, then later revised to place GSR Systems & Reference and GSR Active Production contents inside it
+- (2026-05-14T18:13:14.843375Z) **Organizing Google Drive root into streamlined folder structure** — Create 3-4 top-level folders: GSR Shared Folder, Distribution & Partnerships, Archives, and a Logan/Outreach folder
+- (2026-05-14T18:13:14.843375Z) **Organizing Google Drive root into streamlined folder structure** — Rename 'GSR Distribution & Partnerships' to 'Distribution & Partnerships' to reflect broader scope
+- (2026-05-14T18:13:14.843375Z) **Organizing Google Drive root into streamlined folder structure** — Move 3 outdated Billy Hallowell files to GSR-Archive subfolder within Archives
+- (2026-05-14T18:13:14.843375Z) **Organizing Google Drive root into streamlined folder structure** — Trash 5 duplicate files rather than permanently deleting them (30-day recovery window)
+- (2026-05-14T18:13:14.843375Z) **Organizing Google Drive root into streamlined folder structure** — Add Composio Google Drive integration to gain move/trash/rename capabilities
+- (2026-05-14T18:13:14.843375Z) **Organizing Google Drive root into streamlined folder structure** — Create a README doc in Drive root with today's date, folder diagram, and organizational philosophy
+- (2026-05-14T20:23:14.930588Z) **Researching Fabich's work and related scholarship** — Segment length set at 13 minutes with 8–12 interview questions
+- (2026-05-14T20:23:14.930588Z) **Researching Fabich's work and related scholarship** — Host intro revised to Fox News broadcast cadence after Daniel flagged poor sentence flow
+- (2026-05-14T20:23:14.930588Z) **Researching Fabich's work and related scholarship** — Lower thirds standard set to minimum 15 discussion L3s per interview (10 specific + 5 fallbacks), plus topic L3 and guest chyron
+- (2026-05-14T20:23:14.930588Z) **Researching Fabich's work and related scholarship** — Intro graphic title kept to ~5 words
+- (2026-05-14T20:23:14.930588Z) **Researching Fabich's work and related scholarship** — David writes a 1:45 monologue before the Q&A begins
+- (2026-05-14T20:23:14.930588Z) **Researching Fabich's work and related scholarship** — Guest talking points to be provided to Andrew without revealing exact questions
+- (2026-05-15T03:57:00.119520Z) **Post production file management automation system** — Defer Rumble and Fireside upload automation; build dashboard to support manual copy-paste metadata workflow for those platforms instead
+- (2026-05-15T03:57:00.119520Z) **Post production file management automation system** — Defer Signiant Media Shuttle API automation; keep Google Form auto-fill as a future phase feature
+- (2026-05-15T03:57:00.119520Z) **Post production file management automation system** — Dropbox uploads do not need metadata
+- (2026-05-15T03:57:00.119520Z) **Post production file management automation system** — Use modular/service-oriented architecture with separate Docker containers orchestrated by n8n rather than one monolithic system
+- (2026-05-15T03:57:00.119520Z) **Post production file management automation system** — Use open-source battle-tested libraries (youtubeuploader, Chokidar, Dropbox SDK, better-sqlite3) as building blocks rather than writing from scratch
+- (2026-05-15T03:57:00.119520Z) **Post production file management automation system** — Build system in phases with Phase 1 focused on core features but architected with end goal in mind
+- (2026-05-15T03:57:00.119520Z) **Post production file management automation system** — Use a GitHub repository to track planning documents and version changes rather than a downloads folder
+- (2026-05-15T13:21:40.536054Z) **Voice profile generation from THD scripts** — Focus on portable voice elements (rhythm, vocabulary, framing instincts) rather than THD-specific structural patterns
+- (2026-05-15T13:21:40.536054Z) **Voice profile generation from THD scripts** — Use Claude Skills as the implementation architecture (already established preference)
+- (2026-05-15T13:21:40.536054Z) **Voice profile generation from THD scripts** — Filter scripts for authenticity before building the voice profile, rather than using all samples
+- (2026-05-15T13:21:40.536054Z) **Voice profile generation from THD scripts** — Wait for Daniel's input on which authenticity buckets to include before rebuilding the skill
+- (2026-05-15T13:21:40.536054Z) **Voice profile generation from THD scripts** — Attempt to use Filesystem MCP for direct folder access rather than manual uploads
+- (2026-05-18T18:27:52.945129Z) **Adding source information to fired chats** — Use May 18, 2026 as the cutoff date for 'last commit within past six months' when evaluating GitHub tools
+- (2026-05-18T18:27:52.945129Z) **Adding source information to fired chats** — Vale identified as a strong candidate for one of the gap categories due to active maintenance and community support
+- (2026-05-18T18:27:52.945129Z) **Adding source information to fired chats** — WhisperKit selected as best option for Apple Silicon over WhisperX (which requires CUDA 12.8)
+- (2026-05-18T18:27:52.945129Z) **Adding source information to fired chats** — Results to be compiled into GSR_Tooling_Resources.md in markdown format
+- (2026-05-19T04:21:58.455749Z) **GitHub assets integration strategy** — Decided to track GitHub resources as a markdown file within the existing gsr-automation repo rather than creating a separate repository
+- (2026-05-19T04:21:58.455749Z) **GitHub assets integration strategy** — Decided to break the full tool research into 6 sequential parts (Capture & Cleanup, Distribution & Metadata, Live Production, Graphics & Visuals, Asset Management, Production Operations) instead of one large job
+- (2026-05-19T04:21:58.455749Z) **GitHub assets integration strategy** — Decided to start with Part 1 (Capture & Cleanup) first
+- (2026-05-19T04:21:58.455749Z) **GitHub assets integration strategy** — Decided to use BATCH-003 tagging convention for new entries
+- (2026-05-19T04:21:58.455749Z) **GitHub assets integration strategy** — Chose to use existing project documents rather than researching from scratch, but hit access limitations
+- (2026-05-19T04:21:58.455749Z) **GitHub assets integration strategy** — Loosened the repo-quality bar for niche broadcast tools
+- (2026-05-19T15:28:43.726758Z) **Dr. Ming Wang studio segment preparation** — Decided not to send Dr. Wang the CTN questionnaire form since enough background info was gathered from his submitted materials
+- (2026-05-19T15:28:43.726758Z) **Dr. Ming Wang studio segment preparation** — Proposed GSR segment focus on the eye as evidence of intelligent design, leveraging Wang's scientific credentials
+- (2026-05-19T15:28:43.726758Z) **Dr. Ming Wang studio segment preparation** — Proposed CTN segment focus on faith/personal conviction, Angel Studios film, amniotic membrane patent donation, and blind orphan work
+- (2026-05-19T15:28:43.726758Z) **Dr. Ming Wang studio segment preparation** — Structured guest email to indicate no talking points or separate questions needed if Wang approves the proposed topics
+- (2026-05-19T15:28:43.726758Z) **Dr. Ming Wang studio segment preparation** — Chose to output production folder to /mnt/user-data/outputs/ rather than desktop due to sandbox limitations
+- (2026-05-19T15:28:43.726758Z) **Dr. Ming Wang studio segment preparation** — Used python-docx to create Word documents as the format for production onesheets
+- (2026-05-19T15:54:49.037517Z) **Gmail access permissions** — Narrowed full dossier scope from 7 to 5 active interview guests (excluding Hallowell who already filmed and Werner who was a pre-recorded roll-in)
+- (2026-05-19T15:54:49.037517Z) **Gmail access permissions** — Decided to anchor each guest's research angle to Daniel's actual pitch language from initial outreach emails rather than AI-generated framing
+- (2026-05-19T15:54:49.037517Z) **Gmail access permissions** — Flagged that Andrew Fabich's topic was not yet locked and needed to be drawn from Fabich's own article suggestions
+- (2026-05-19T15:54:49.037517Z) **Gmail access permissions** — Identified Coppedge's confirmation status as uncertain (two topics floated, no confirmed response)
+- (2026-05-19T15:54:49.037517Z) **Gmail access permissions** — Identified Ming Wang as already having a onesheet, reducing research needed
+- (2026-05-19T17:26:21.807705Z) **Guest interview angles and talking points** — Align talking points to original pitched angles rather than general research angles
+- (2026-05-19T17:26:21.807705Z) **Guest interview angles and talking points** — Include bolded primary sources and secondary sources in each outline for the episode production pipeline to pull quotes from
+- (2026-05-19T17:26:21.807705Z) **Guest interview angles and talking points** — Use conversational, non-academic tone in guest emails so they don't sound like Daniel studied the materials in depth
+- (2026-05-19T17:26:21.807705Z) **Guest interview angles and talking points** — Offer Legates two specific time slots: May 28 at 9:30am CT and May 29 at 10:30am CT
+- (2026-05-19T17:26:21.807705Z) **Guest interview angles and talking points** — Keep Coppedge outline dual-track: Creation Safaris as default, Iapetus in reserve pending his response
+- (2026-05-19T20:08:08.647592Z) **Interview segment and guest confirmation** — Use May 28th for the confirmation email date as explicitly stated by Daniel, despite the document showing May 29th
+- (2026-05-19T20:08:08.647592Z) **Interview segment and guest confirmation** — Disregard the provided cold open and write a new one
+- (2026-05-19T20:08:08.647592Z) **Interview segment and guest confirmation** — Shorten the intro by 25% after initial draft
+- (2026-05-19T20:08:08.647592Z) **Interview segment and guest confirmation** — Rewrite only the Clarey and Fabich intros, not the Legates intro
+- (2026-05-19T22:18:31.358343Z) **Remote access to propres playlist structures** — Use ProPresenter's HTTP API (port 49218) instead of WebSocket/remote app protocol
+- (2026-05-19T22:18:31.358343Z) **Remote access to propres playlist structures** — Use Tailscale for secure remote access instead of VPN or port forwarding
+- (2026-05-19T22:18:31.358343Z) **Remote access to propres playlist structures** — Use Python with FastMCP for the MCP server implementation
+- (2026-05-19T22:18:31.358343Z) **Remote access to propres playlist structures** — Use a virtual environment (.venv) to avoid Homebrew Python pip restrictions
+- (2026-05-19T22:18:31.358343Z) **Remote access to propres playlist structures** — Use nano editor instead of heredoc for file creation after paste truncation issues
+- (2026-05-20T15:56:08.959699Z) **Monthly ministry show lineup with CTN feature** — Outline topics across 5 shows before writing, with a research sweep in between
+- (2026-05-20T15:56:08.959699Z) **Monthly ministry show lineup with CTN feature** — Conference recap moved to Episode 21 (June 30) after air date clarification — conference happened before all episodes air
+- (2026-05-20T15:56:08.959699Z) **Monthly ministry show lineup with CTN feature** — Stegosaurus described as a remote-control robot without technical details about the costume/dog mechanism
+- (2026-05-20T15:56:08.959699Z) **Monthly ministry show lineup with CTN feature** — Pontius Pilate stone kept as a separate beat from the Petra/Jordan archaeology segment
+- (2026-05-20T15:56:08.959699Z) **Monthly ministry show lineup with CTN feature** — T-Rex leads the dino segment, stegosaurus as secondary beat
+- (2026-05-20T15:56:08.959699Z) **Monthly ministry show lineup with CTN feature** — Apple TV and iOS apps mentioned together in Show 4
+- (2026-05-20T15:56:08.959699Z) **Monthly ministry show lineup with CTN feature** — Soundbite 1A ('A Sitting Vice President Says Aliens Are Demons') selected for CTN episode as the strongest news hook
+- (2026-05-20T15:56:08.959699Z) **Monthly ministry show lineup with CTN feature** — Distribution platform for Hallowell interview corrected to YouTube (David Rives Ministries) and podcast platforms
+- (2026-05-20T18:08:29.311169Z) **Finding interview guests for May filming** — Prioritize topic/content strength and guest fit over guest likelihood to say yes
+- (2026-05-20T18:08:29.311169Z) **Finding interview guests for May filming** — Use last 2-3 months for news pegs with content strength as tiebreaker
+- (2026-05-20T18:08:29.311169Z) **Finding interview guests for May filming** — Cross-reference against May (not March) existing scheduled guests to avoid double-booking
+- (2026-05-20T18:08:29.311169Z) **Finding interview guests for May filming** — Run deep research pass on 12 approved briefs before guest-matching
+- (2026-05-20T18:08:29.311169Z) **Finding interview guests for May filming** — Create two Google Drive documents: one with researched briefs/sources, one with email drafts using standard GSR template
+- (2026-05-20T18:08:29.311169Z) **Finding interview guests for May filming** — Second research pass focused on mainstream headline-grabbing science rather than creation-side talking points
+- (2026-05-20T18:08:29.311169Z) **Finding interview guests for May filming** — Combine first batch of 12 with 20 new briefs into a single HTML approval interface
+- (2026-05-20T18:08:29.311169Z) **Finding interview guests for May filming** — Target filming dates: May 28, May 29, June 15 afternoon (possible), June 29-30 overflow
+- (2026-05-20T21:08:28.787829Z) **Server access alternatives and migration strategy** — Tailscale/direct server access ruled out due to security concerns; read-only mirroring is the new constraint
+- (2026-05-20T21:08:28.787829Z) **Server access alternatives and migration strategy** — Decided to restructure all Drive data into a new optimized system rather than patch the old one
+- (2026-05-20T21:08:28.787829Z) **Server access alternatives and migration strategy** — Chose Notion as primary database/production hub over Airtable (partly due to Airtable's nonprofit religious org disqualifier)
+- (2026-05-20T21:08:28.787829Z) **Server access alternatives and migration strategy** — Decided against Notion Business plan upgrade ($10 more/month) — Plus NP at $10/month is sufficient
+- (2026-05-20T21:08:28.787829Z) **Server access alternatives and migration strategy** — Decided against adding Coda or a second tool to handle spreadsheets — Notion-only approach chosen for simplicity
+- (2026-05-20T21:08:28.787829Z) **Server access alternatives and migration strategy** — Started Notion Business plan free personal trial at end of session to begin onboarding
+- (2026-05-21T04:42:57.444219Z) **Lower third formatting guide by segment** — Abandoned Notion migration in favor of Supabase as the data backend
+- (2026-05-21T04:42:57.444219Z) **Lower third formatting guide by segment** — Adopted a flat JSON array structure (two separate arrays: episodes and lower_thirds) instead of nested wrapper objects for Supabase REST ingestion
+- (2026-05-21T04:42:57.444219Z) **Lower third formatting guide by segment** — Retained the 3-column Primary/Var 1/Var 2 variation system as the production standard
+- (2026-05-21T04:42:57.444219Z) **Lower third formatting guide by segment** — Fixed extraction prompt to align with GSR Playbook (em dash rules, pipe-delimited chyrons, correct segment enum, L3 Type taxonomy) without breaking existing Supabase integration
+- (2026-05-21T04:42:57.444219Z) **Lower third formatting guide by segment** — Used recent L3 sets from the April filming block (Fabich, Sherwin, Thomas, Stripling, Hallowell, Werner, etc.) as test/seed data
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — Use a single flat database as starting architecture for Notion import (easier CSV migration)
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — Adopt 3-column variant system (Primary/V1/V2) as the standard
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — Use dedicated 'Discussion (Safety Net)' L3 Type for filterability rather than a flag column
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — 5 segways × 1 slot × 3 variants per episode
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — Monologue: 15 slots × 3 variants + 1 short flag × 3 variants
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — Each interview: 3 fixed slots + 15 discussion slots (10 question-following + 5 safety nets) × 3 variants
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — Ministry Report: 3 slots × 3 variants
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — Desktop app as primary platform
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — Gmail integration planned via NotionSender
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — Email section tied to status dashboard as most central hub
+- (2026-05-21T07:54:24.229636Z) **Notion lower thirds organization system design** — Master design doctrine to govern all future Notion databases in the backend
+- (2026-05-22T01:03:35.668851Z) **Filesystem reset and file rebuilding** — Chose gsr-automation-v2 over gsr-automation as the active repo after discovering two separate repos existed
+- (2026-05-22T01:03:35.668851Z) **Filesystem reset and file rebuilding** — Used ~/Documents/gsr-automation-v2 as the working clone rather than the pre-existing ~/Projects/gsr-automation
+- (2026-05-22T01:03:35.668851Z) **Filesystem reset and file rebuilding** — Added a 'gsr' shell alias to ~/.zshrc for quick navigation to the repo
+- (2026-05-22T01:03:35.668851Z) **Filesystem reset and file rebuilding** — Deferred cleanup of the two stale gsr-automation clones until git status could be checked
+- (2026-05-22T17:40:16.729260Z) **GSR automation system design flexibility** — Supabase chosen over Notion as the primary backend/database
+- (2026-05-22T17:40:16.729260Z) **GSR automation system design flexibility** — Stop building in Notion immediately rather than finishing and migrating later
+- (2026-05-22T17:40:16.729260Z) **GSR automation system design flexibility** — Notion repositioned as a docs/wiki tool only, not operational data storage
+- (2026-05-22T17:40:16.729260Z) **GSR automation system design flexibility** — Live ProPresenter mirror deprioritized in favor of thumbnail-based trust verification
+- (2026-05-22T17:40:16.729260Z) **GSR automation system design flexibility** — Jakob's graphic approval workflow: Photoshop -> folder -> dashboard thumbnail review -> approve -> ProPresenter
+- (2026-05-22T17:40:16.729260Z) **GSR automation system design flexibility** — Lower thirds workflow: AI generates -> Jakob reviews thumbnails -> approve/regenerate button with same context
+- (2026-05-22T17:40:16.729260Z) **GSR automation system design flexibility** — Supabase Pro tier ($25/month) identified as the right production tier
+- (2026-05-22T17:40:16.729260Z) **GSR automation system design flexibility** — No Supabase nonprofit discount exists; not worth pursuing
+- (2026-05-26T21:11:01.792006Z) **Pulling article links for guests** — Use Python with requests/BeautifulSoup/reportlab to fetch and create clean article PDFs
+- (2026-05-26T21:11:01.792006Z) **Pulling article links for guests** — Place margin annotations in right margin (x=534-612) rather than overlapping text
+- (2026-05-26T21:11:01.792006Z) **Pulling article links for guests** — Switch to PDF sticky note annotations to avoid covering text
+- (2026-05-26T21:11:01.792006Z) **Pulling article links for guests** — Add a dedicated summary/notes page at the end of each annotated article PDF
+- (2026-05-26T21:11:01.792006Z) **Pulling article links for guests** — Prefix each episode script .txt file with show/episode number before PDF conversion
+- (2026-05-26T21:11:01.792006Z) **Pulling article links for guests** — Design broadcast scripts with visual hierarchy: production cues in grey italic, graphic tags highlighted, section dividers
+- (2026-05-26T15:54:00.239078Z) **Interview segment topics for podcast guests** — Deweese: nuclear metabolic organization / 4D genome complexity angle
+- (2026-05-26T15:54:00.239078Z) **Interview segment topics for podcast guests** — Tomkins: protein folding probability / new genes from non-coding DNA angle
+- (2026-05-26T15:54:00.239078Z) **Interview segment topics for podcast guests** — Hebert: CO2 stability vs temperature swings over 3 million years angle
+- (2026-05-26T15:54:00.239078Z) **Interview segment topics for podcast guests** — Lohman: pivoted away from Liverpool collagen (old news) and Behemoth (already covered) to Nagatitan dragon legends / cultural memory angle
+- (2026-05-26T15:54:00.239078Z) **Interview segment topics for podcast guests** — DeWitt: brain as integrated network angle
+- (2026-05-26T15:54:00.239078Z) **Interview segment topics for podcast guests** — Lisle: JWST galaxy discovery angle
+- (2026-05-26T15:54:00.239078Z) **Interview segment topics for podcast guests** — Emails revised to actually ask guests to participate rather than assume, add end-of-June fallback date, note afternoon availability on June 15, and tone down flattery
+- (2026-05-26T15:54:00.239078Z) **Interview segment topics for podcast guests** — Talking points withheld until guest confirms
+- (2026-05-26T08:12:10.428840Z) **May interview production schedule** — Production schedule build deferred to next day ('I'll tweak with you tomorrow')
+- (2026-05-26T08:12:10.428840Z) **May interview production schedule** — Billy Hallowell's interview segment locked and excluded from timing adjustments
+- (2026-05-26T08:12:10.428840Z) **May interview production schedule** — Guest names removed from teases unless 'big time'
+- (2026-05-26T08:12:10.428840Z) **May interview production schedule** — Shift from teasy/withholding style to more informative style for this batch
+- (2026-05-26T08:12:10.428840Z) **May interview production schedule** — Show 1, 2, 3 approved and shipped; Show 4 held pending approval; Show 5 still being revised at end of conversation
+- (2026-05-26T08:12:10.428840Z) **May interview production schedule** — Teases rewritten to avoid repeating angles from episode intros and interview intros
+- (2026-05-26T08:12:10.428840Z) **May interview production schedule** — Reference Psalm 19 specifically instead of 'the Bible' in Show 5 Alt 1
+- (2026-05-26T08:07:23.170439Z) **Scraping interview scripts for lower thirds JSON** — Used Rundown Creator MCP to locate 5 May shows (RundownIDs 79, 81, 83, 82, 84) and identify interview row positions
+- (2026-05-26T08:07:23.170439Z) **Scraping interview scripts for lower thirds JSON** — Accepted uploaded .docx files from Daniel when the database scripts lacked explicit LOWER THIRDS sections
+- (2026-05-26T08:07:23.170439Z) **Scraping interview scripts for lower thirds JSON** — Used strings extraction to parse Billy Hallowell's .pages file since .iwa binary format couldn't be read directly
+- (2026-05-26T08:07:23.170439Z) **Scraping interview scripts for lower thirds JSON** — Decided to output lower thirds as a flat JSON array rather than single-object extractions matching the prompt template
+- (2026-05-26T08:07:23.170439Z) **Scraping interview scripts for lower thirds JSON** — Created broadcast-styled dark HTML reference doc with chyron-style visual treatment for use during taping
+- (2026-05-26T08:07:23.170439Z) **Scraping interview scripts for lower thirds JSON** — Stored HTML in the May interview Google Drive folder
+- (2026-05-26T08:07:23.170439Z) **Scraping interview scripts for lower thirds JSON** — Revised all lower thirds copy to remove commas and em dashes and target 60-65 character counts
+- (2026-05-26T03:47:40.166486Z) **Ping RD creator** — Use Billy Hallowell interview script as the formatting reference (not Ministry Report)
+- (2026-05-26T03:47:40.166486Z) **Ping RD creator** — Save scripts without isPlainText flag to preserve raw \n\n paragraph breaks instead of <br> tags
+- (2026-05-26T03:47:40.166486Z) **Ping RD creator** — Strip lower thirds references from rundown scripts entirely — they are handled outside the rundown
+- (2026-05-26T03:47:40.166486Z) **Ping RD creator** — Use ASCII double-hyphen (--) for em dashes, straight quotes, numbered questions, no section headers
+- (2026-05-26T03:47:40.166486Z) **Ping RD creator** — Probe rundown IDs sequentially (79=Ep021, 80=empty, 81=Ep022, 82=Ep024, 83=Ep023, 84=Ep025) rather than using list endpoints that cause MCP timeouts
+- (2026-05-26T03:47:40.166486Z) **Ping RD creator** — Update SKILL.md with formatting rules and rundown ID map for future sessions
+- (2026-05-26T00:12:49.598267Z) **Interview segment script rewrite with external references** — Locked Dan Janzen's topic as 'Five Myths' agricultural/climate angle rather than the solar geoengineering Option A
+- (2026-05-26T00:12:49.598267Z) **Interview segment script rewrite with external references** — Decided not to push anything to Google Drive until Daniel approves the content
+- (2026-05-26T00:12:49.598267Z) **Interview segment script rewrite with external references** — Removed specific credential claims (Master's from Oregon State, 'Dr.' prefix, Princeton reference) from the lead-in due to unverifiable sourcing
+- (2026-05-26T00:12:49.598267Z) **Interview segment script rewrite with external references** — Softened 'five myths' to 'some of the biggest myths' on air so skipped myths don't create audience continuity issues
+- (2026-05-26T00:12:49.598267Z) **Interview segment script rewrite with external references** — Confirmed East Africa (8 years) stat via Daniel but flagged other bio details as needing verification
+- (2026-05-26T00:12:49.598267Z) **Interview segment script rewrite with external references** — Decided Option C (skip opener, go straight to myths) was the most format-disciplined approach, with Alt 4/5 as backups if an opener is needed
+- (2026-05-26T00:12:49.598267Z) **Interview segment script rewrite with external references** — Kept 'five myths' framing in the email to Dan so he preps all five, while softening it for on-air delivery
+- (2026-05-26T00:12:49.598267Z) **Interview segment script rewrite with external references** — Email to Dan updated to convey urgency due to next-day talking points deadline
+- (2026-05-25T23:53:48.720858Z) **Graphics for interview segments** — Trimmed graphics list from ~15 to 10 to 5 to final 9 with sourced B-roll and montages
+- (2026-05-25T23:53:48.720858Z) **Graphics for interview segments** — Kept B-roll loops generic/reusable rather than topic-specific
+- (2026-05-25T23:53:48.720858Z) **Graphics for interview segments** — Title graphic capped at 6 words max
+- (2026-05-25T23:53:48.720858Z) **Graphics for interview segments** — Used column G (Notes) for URLs/license details instead of cell hover-notes
+- (2026-05-25T23:53:48.720858Z) **Graphics for interview segments** — Swapped 'Title Graphic' to 'Intro Graphic' and 'Article Screenshot' to 'Picture' to pass data validation
+- (2026-05-25T23:53:48.720858Z) **Graphics for interview segments** — Decided to use Apps Script as fallback when Composio was down
+- (2026-05-25T23:53:48.720858Z) **Graphics for interview segments** — Rejected Zapier/Make MCP as overkill; decided to evaluate reusable Apps Script library
+- (2026-05-25T23:01:12.488618Z) **Matching preproduced segments to episodes** — Confirmed segment-to-episode mapping was correct before pushing to Rundown Creator
+- (2026-05-25T23:01:12.488618Z) **Matching preproduced segments to episodes** — Pivoted from Rundown Creator to local .docx files when RC MCP timed out
+- (2026-05-25T23:01:12.488618Z) **Matching preproduced segments to episodes** — Decided to keep a consistent show opener across all episodes rather than varying it
+- (2026-05-25T23:01:12.488618Z) **Matching preproduced segments to episodes** — Settled on opener format: 'Good evening, and welcome to the Genesis Science Report. I'm David Rives. Tonight...' → hooks → 'But first...'
+- (2026-05-25T23:01:12.488618Z) **Matching preproduced segments to episodes** — Rewrote 'planetary boundary' hook for EP 021 after Daniel flagged it as jargon
+- (2026-05-25T23:01:12.488618Z) **Matching preproduced segments to episodes** — Selected Option C rewrite for the EP 021 climate hook
+- (2026-05-25T23:01:12.488618Z) **Matching preproduced segments to episodes** — Fixed teleprompter formatting by removing HTML <p> tags and using plain text with blank lines
+- (2026-05-25T23:01:12.488618Z) **Matching preproduced segments to episodes** — Conversation ended mid-task while writing toss-to-break previews (length 10-15 seconds confirmed)
+- (2026-05-25T21:35:43.159796Z) **Interview cycle status tracking** — Lower thirds to be collected in a separate document (not in Rundown Creator) and later converted to HTML
+- (2026-05-25T21:35:43.159796Z) **Interview cycle status tracking** — Graphics/B-roll assignment deferred for Legates interview — script saved to Google Doc and moved on
+- (2026-05-25T21:35:43.159796Z) **Interview cycle status tracking** — Bergman interview date shifted from 5/29 to 6/15 afternoon (June filming block), episode slot flagged as TBD
+- (2026-05-25T21:35:43.159796Z) **Interview cycle status tracking** — Bergman topic locked as Darwin's late-life doubts / 'natural preservation' / Cambridge Correspondence Project
+- (2026-05-25T21:35:43.159796Z) **Interview cycle status tracking** — Clarey intro revised to open with how water normally behaves before contrasting with the Green River anomaly
+- (2026-05-25T21:35:43.159796Z) **Interview cycle status tracking** — Creation Superstore plug required at end of each segment; book availability needs verification per guest
+- (2026-05-22T18:26:45.852190Z) **Creation Safaris podcast transcript review** — Pivot from NASA/JPL angle to Creation Safaris as the primary topic after Daniel's correction
+- (2026-05-22T18:26:45.852190Z) **Creation Safaris podcast transcript review** — Adopt 'Creation Deficit' as the central argument angle (Angle 1) rather than a promotional safari overview
+- (2026-05-22T18:26:45.852190Z) **Creation Safaris podcast transcript review** — Use Option B intro structure: argument-driven intro without embedded bio, bio folded into first question
+- (2026-05-22T18:26:45.852190Z) **Creation Safaris podcast transcript review** — Format the segment to match a provided Clarey template
+- (2025-04-04T00:29:25.817684+00:00) **Show Growth Strategies** — No explicit growth strategies or new show concepts were proposed by the AI in the visible conversation
+- (2025-04-04T00:29:25.817684+00:00) **Show Growth Strategies** — The AI instead output existing show scripts and interview segments rather than addressing the growth question
+- (2025-04-04T14:29:54.005624+00:00) **Exciting YouTube Titles** — AI generated 5 title options per transcript segment rather than a single recommendation
+- (2025-04-04T14:29:54.005624+00:00) **Exciting YouTube Titles** — Titles were tailored to blend faith-based messaging with mainstream curiosity hooks
+- (2025-04-04T14:29:54.005624+00:00) **Exciting YouTube Titles** — AI consistently offered follow-up services (thumbnails, social captions, descriptions) at the end of each response
+- (2025-04-04T15:41:00.594503+00:00) **Exciting YouTube Titles Ideas** — Titles were crafted to be curiosity-driven and click-optimized rather than purely descriptive
+- (2025-04-04T15:41:00.594503+00:00) **Exciting YouTube Titles Ideas** — Each segment received 5 distinct title options covering different angles (biblical, scientific, emotional, controversial)
+- (2025-04-04T15:41:00.594503+00:00) **Exciting YouTube Titles Ideas** — Titles were tailored to the specific topic content of each episode's segment rather than generic labels
+- (2025-04-04T17:54:44.286063+00:00) **Exciting YouTube Title Ideas** — Asked for shorter titles after initial responses were too long
+- (2025-04-04T17:54:44.286063+00:00) **Exciting YouTube Title Ideas** — Requested varying length and style for subsequent title sets
+- (2025-04-04T17:54:44.286063+00:00) **Exciting YouTube Title Ideas** — Uploaded interview scripts one at a time to get episode-specific titles
+- (2025-04-08T01:33:12.678212+00:00) **Multi-Cam Internship Program** — Decided to pitch a lean 'Minimum Viable Internship Program' with 1-2 interns rather than a full structured program
+- (2025-04-08T01:33:12.678212+00:00) **Multi-Cam Internship Program** — Chose to use a shadow-first, train-while-doing model to minimize upfront onboarding resource creation
+- (2025-04-08T01:33:12.678212+00:00) **Multi-Cam Internship Program** — Decided interns would have interns build onboarding materials as they go
+- (2025-04-08T01:33:12.678212+00:00) **Multi-Cam Internship Program** — Expanded intern scope to include pre-production tasks since only 3-4 filming days occur per month
+- (2025-04-08T01:33:12.678212+00:00) **Multi-Cam Internship Program** — Updated all materials to reflect the Wonders Center & Science Museum branding rather than just David Rives Ministries
+- (2025-04-11T18:14:45.685931+00:00) **Viewer Voices Q&A Extraction** — Requested separation of Viewer Voices testimonials from Q&A content into two distinct documents
+- (2025-04-11T18:14:45.685931+00:00) **Viewer Voices Q&A Extraction** — Intended use of testimonials as source material for graphic cards
+- (2025-04-23T20:49:35.454131+00:00) **YouTube Lookalike Segment** — The AI responded by dumping raw project content (scripts, interview questions, teleprompter segments) rather than generating a YouTube lookalike segment
+- (2025-04-23T20:49:35.454131+00:00) **YouTube Lookalike Segment** — No actual YouTube lookalike segment was produced in the visible conversation
+- (2025-05-14T15:29:45.006040+00:00) **Kids Corner Script Edits** — Daniel requested edits to opening sentences of Kids Corner scripts to make them work better as show segments
+- (2025-05-14T15:29:45.006040+00:00) **Kids Corner Script Edits** — Daniel specified adding a standard intro line 'Now its time for the kids corner' to each script
+- (2025-05-15T20:25:29.550576+00:00) **GSR Lower Thirds Guidelines** — Lower thirds should be in ALL CAPS following broadcast news conventions
+- (2025-05-15T20:25:29.550576+00:00) **GSR Lower Thirds Guidelines** — Opening monologue should have 5-10 lower thirds with the first always starting with 'ON TONIGHT'S SHOW:'
+- (2025-05-15T20:25:29.550576+00:00) **GSR Lower Thirds Guidelines** — Interview segments get a name/title lower third plus 6-8 topic lower thirds
+- (2025-05-15T20:25:29.550576+00:00) **GSR Lower Thirds Guidelines** — Genesis Science Q&A gets only one lower third paraphrasing the viewer question
+- (2025-05-15T20:25:29.550576+00:00) **GSR Lower Thirds Guidelines** — Kids Corner gets 2-3 lower thirds with an energetic, fun tone
+- (2025-05-15T20:25:29.550576+00:00) **GSR Lower Thirds Guidelines** — Ministry Report gets 1-2 lower thirds
+- (2025-05-15T20:25:29.550576+00:00) **GSR Lower Thirds Guidelines** — Viewer Voices gets one lower third paraphrasing the viewer comment
+- (2025-05-15T20:25:29.550576+00:00) **GSR Lower Thirds Guidelines** — Featured Resource gets one lower third naming the resource
+- (2025-05-15T20:25:29.550576+00:00) **GSR Lower Thirds Guidelines** — Lower thirds should tease/preview content without giving away facts not yet introduced
+- (2025-05-15T20:31:16.636736+00:00) **Lower thirds for episodes** — Generate 3 style variations per lower third segment
+- (2025-05-15T20:31:16.636736+00:00) **Lower thirds for episodes** — Organize lower thirds by episode segment type (Opening Monologue, Genesis Q&A, Kids Corner, Ministry Report, Interview Previews, Segment Transitions)
+- (2025-05-15T20:31:16.636736+00:00) **Lower thirds for episodes** — Start with Episode 32 first before proceeding to others
+- (2025-05-15T20:31:16.636736+00:00) **Lower thirds for episodes** — Output all lower thirds into a Google Doc format
+- (2025-05-15T20:41:34.772226+00:00) **Lower thirds formatting request** — Include Episode 32 along with Episodes 33-36 in the same document
+- (2025-05-15T20:41:34.772226+00:00) **Lower thirds formatting request** — Use 3 style variations per lower third segment
+- (2025-05-15T20:41:34.772226+00:00) **Lower thirds formatting request** — Cover segments: Opening Monologue, Genesis Q&A, Kids Corner, Ministry Report, Interview 1 preview, Interview 2 preview, and segment transitions
+- (2025-05-15T20:50:28.711189+00:00) **GSR Lower Thirds Guidelines** — Use ~55 characters per lower third (refined from initial ~50 character request)
+- (2025-05-15T20:50:28.711189+00:00) **GSR Lower Thirds Guidelines** — Generate one finalized set per segment rather than three variations
+- (2025-05-15T20:50:28.711189+00:00) **GSR Lower Thirds Guidelines** — Include 10 lower thirds per opening monologue
+- (2025-05-15T20:50:28.711189+00:00) **GSR Lower Thirds Guidelines** — Include 3 lower thirds each for Q&A, Kids' Corner, and Ministry Report segments
+- (2025-05-27T20:11:30.170340+00:00) **Podcast Summary and Description** — Include the monologue topic alongside both interview topics in the description after user feedback on episode 29
+- (2025-05-27T20:11:30.170340+00:00) **Podcast Summary and Description** — Use a two-part format: short summary and full description for each episode
+- (2025-05-27T20:11:30.170340+00:00) **Podcast Summary and Description** — Offer optional add-ons like social media captions and platform-specific formatting
+- (2025-05-30T21:40:57.949283+00:00) **YouTube Titles and Segments** — Titles should be exciting and clickable, not just descriptive or SEO-safe
+- (2025-05-30T21:40:57.949283+00:00) **YouTube Titles and Segments** — Each episode needs both a main YouTube title and six segment/chapter titles (Monologue, Q&A, Kids Corner, Interview 1, Ministry Report, Interview 2)
+- (2025-05-30T21:40:57.949283+00:00) **YouTube Titles and Segments** — Segment titles are used as YouTube description chapter labels next to timecodes
+- (2025-05-30T21:40:57.949283+00:00) **YouTube Titles and Segments** — After initial titles for Ep032 were too bland, Daniel requested more punchy/clickable main titles going forward
+- (2025-06-10T15:22:13.913186+00:00) **Quantum Gravity and Creation** — Consistent format established: 6 words or fewer for all segment headlines
+- (2025-06-10T15:22:13.913186+00:00) **Quantum Gravity and Creation** — Multiple alternatives ('alts') provided per segment to give options for different use cases (lower thirds, YouTube chapters, promo graphics)
+- (2025-06-10T15:22:13.913186+00:00) **Quantum Gravity and Creation** — Creationist/biblical framing incorporated into headline options where appropriate
+- (2025-06-10T15:22:13.913186+00:00) **Quantum Gravity and Creation** — URL browsing attempted for a Taylor & Francis article but failed; Daniel then pasted PDF content directly
+- (2025-06-19T19:41:19.042166+00:00) **Merged Interview Script** — Interviews are approximately 8.5 minutes each and run back-to-back
+- (2025-06-19T19:41:19.042166+00:00) **Merged Interview Script** — A transition/filler segment is needed between interviews to swap Zoom guests
+- (2025-06-20T16:01:50.108840+00:00) **Michael Oard Bio Summary** — Daniel requested a shortened version of the Michael Oard bio script
+- (2025-06-20T19:19:16.738933+00:00) **GSR Lower Thirds Requests** — Lower thirds should number 5-10 per opening monologue depending on natural thought breaks
+- (2025-06-20T19:19:16.738933+00:00) **GSR Lower Thirds Requests** — First lower third always previews the full show with 'ON TONIGHT'S SHOW' format
+- (2025-06-20T19:19:16.738933+00:00) **GSR Lower Thirds Requests** — Second lower third triggers at 'But first...' and previews the monologue topic without giving everything away
+- (2025-06-20T19:19:16.738933+00:00) **GSR Lower Thirds Requests** — Each segment type (Q&A, Kids' Corner, Ministry Report) gets its own lower thirds
+- (2025-06-20T19:19:16.738933+00:00) **GSR Lower Thirds Requests** — Episodes 12-16 were batched into a single document output
+- (2025-06-20T19:19:16.738933+00:00) **GSR Lower Thirds Requests** — Multiple season 2 episodes (37-44+) were also processed with teleprompter scripts included
+- (2025-06-20T19:20:20.877878+00:00) **Lower Thirds Creation Guide** — Lower thirds should be in ALL CAPS to match Fox News/CNN broadcast style
+- (2025-06-20T19:20:20.877878+00:00) **Lower Thirds Creation Guide** — Opening monologue should have 5-10 lower thirds starting with 'ON TONIGHT'S SHOW' previewing interviews
+- (2025-06-20T19:20:20.877878+00:00) **Lower Thirds Creation Guide** — Second lower third triggers at 'But first…' and previews the monologue topic without giving everything away
+- (2025-06-20T19:20:20.877878+00:00) **Lower Thirds Creation Guide** — Each episode's lower thirds are compiled into a single shared document that gets updated/replaced per episode
+- (2025-06-20T19:20:20.877878+00:00) **Lower Thirds Creation Guide** — Q&A, Kids' Corner, and Ministry Report each get their own lower thirds section
+- (2025-07-07T15:40:40.069821+00:00) **GSR Episode Article Topics** — Shifted from generic Christian expert suggestions to verified experts with confirmed Christian backgrounds after Daniel's feedback
+- (2025-07-07T15:40:40.069821+00:00) **GSR Episode Article Topics** — Focused sourcing on ICR, AIG, Reasons to Believe, and Christian university directories rather than general web searches
+- (2025-07-07T15:40:40.069821+00:00) **GSR Episode Article Topics** — Proceeded article-by-article rather than generating all 15 at once, allowing Daniel to direct the pace
+- (2025-07-07T21:36:16.139973+00:00) **Guest Interview Suggestions** — Use the AI as a persistent reference for the Creation Scientists list throughout the session
+- (2025-07-07T21:36:16.139973+00:00) **Guest Interview Suggestions** — Match guest recommendations to specific news article topics by scientific discipline
+- (2025-07-07T21:36:16.139973+00:00) **Guest Interview Suggestions** — Provide two primary recommendations per article, with alternatives available on request
+- (2025-07-07T21:36:16.139973+00:00) **Guest Interview Suggestions** — Include segment structure suggestions and talking points for each recommended guest
+- (2025-01-30T21:32:41.492776+00:00) **Interview Material Submission Form** — Used a two-step process: draft first, then generate HTML
+- (2025-01-30T21:32:41.492776+00:00) **Interview Material Submission Form** — Extracted color palette from GSR logo using Python image analysis
+- (2025-01-30T21:32:41.492776+00:00) **Interview Material Submission Form** — Rejected auto-extracted logo colors as too light/unharmonious and chose from manually proposed palettes instead
+- (2025-01-30T21:32:41.492776+00:00) **Interview Material Submission Form** — Selected 'Modern Minimalistic' palette (option 4: Slate Blue, Aqua Green, Off-White)
+- (2025-01-30T21:32:41.492776+00:00) **Interview Material Submission Form** — Linked guest packet to external hosted URL (https://gsrguestpacket.tiiny.site) rather than a file download
+- (2025-01-30T21:32:41.492776+00:00) **Interview Material Submission Form** — Replaced checklist section with a collapsible/accordion-style technical requirements section
+- (2025-02-01T08:00:02.552713+00:00) **AI Script Template Creation** — Decided to analyze last 5 episodes as the basis for pattern extraction
+- (2025-02-01T08:00:02.552713+00:00) **AI Script Template Creation** — Decided to include the existing new GSR template and an unfinished episode draft alongside the sample scripts
+- (2025-02-01T08:00:02.552713+00:00) **AI Script Template Creation** — Opted for a placeholder-tag approach (e.g., [INTRODUCTION], [MAIN SCIENCE STORY]) for the template system
+- (2025-02-01T08:00:02.552713+00:00) **AI Script Template Creation** — Focused the AI writer role specifically on writing transitions rather than full segments from scratch
+- (2025-02-03T19:50:38.258651+00:00) **Scriptwriting Process Optimization** — Use a structured template (GSR Script S00 Ep000) as the baseline for all future script generation
+- (2025-02-03T19:50:38.258651+00:00) **Scriptwriting Process Optimization** — Provide multiple past episode scripts for style analysis rather than relying on a single example
+- (2025-02-03T19:50:38.258651+00:00) **Scriptwriting Process Optimization** — Keep interview and segment documents separate from the main script template
+- (2025-02-03T19:50:38.258651+00:00) **Scriptwriting Process Optimization** — Plan to build a prompt system where raw information is pasted into the template and AI rewrites it to match show style
+- (2025-02-03T19:50:38.258651+00:00) **Scriptwriting Process Optimization** — Noted that early interview scripts (eps 1-11) had evolved style and should not be treated as authoritative format examples
+- (2025-02-03T22:03:02.236383+00:00) **Script Development Approach** — No clear decision was made about the script development approach since the AI did not answer the actual question asked
+- (2025-02-03T22:19:55.857012+00:00) **Ministry Report Summary** — Two events to highlight: Wild Wonders Kids Day (March 21) and Bodie Hodge Unwrapped event (April 17)
+- (2025-02-03T22:19:55.857012+00:00) **Ministry Report Summary** — Segment appears intended as a brief on-air announcement/promotional piece within the Genesis Science Report format
+- (2025-02-04T16:34:50.020587+00:00) **Interview Segment Structure Guide** — Interview structure follows: ~1-minute David overview → guest bio introduction → talking points/questions
+- (2025-02-04T16:34:50.020587+00:00) **Interview Segment Structure Guide** — Questions should be rewritten from guest-provided talking points to feel natural for David to ask on camera
+- (2025-02-04T16:34:50.020587+00:00) **Interview Segment Structure Guide** — Intro should establish context without giving too much away
+- (2025-02-04T16:34:50.020587+00:00) **Interview Segment Structure Guide** — Guest bio should be rewritten to fit the show's introduction format
+- (2025-02-04T16:34:50.020587+00:00) **Interview Segment Structure Guide** — Article text will be provided as source material for the intro
+- (2025-02-04T16:34:50.020587+00:00) **Interview Segment Structure Guide** — Guest participation via Zoom is noted but not treated as relevant to script formatting
+- (2025-02-04T18:24:22.759381+00:00) **GSM THD Transition Templates** — Use a repeatable transition template that can be slightly rephrased per episode based on topic/content
+- (2025-02-04T18:24:22.759381+00:00) **GSM THD Transition Templates** — AI was to navigate to the GSM and HeavensDeclare sections within each full script document to locate the template placeholder words
+- (2025-02-04T18:24:22.759381+00:00) **GSM THD Transition Templates** — Transcripts from pre-produced video clips would be included alongside the script to inform the transition copy
+- (2025-02-04T18:47:50.988784+00:00) **Interview Transition Analysis** — Daniel asked the AI to first demonstrate understanding by identifying existing interview transitions in episodes 16 and 2 before writing new ones
+- (2025-02-04T18:47:50.988784+00:00) **Interview Transition Analysis** — Daniel specified there should be two transitions per episode (one per interview)
+- (2025-02-04T18:47:50.988784+00:00) **Interview Transition Analysis** — The AI proceeded to display full episode scripts rather than isolating and highlighting just the transition segments
+- (2025-02-04T20:30:05.309068+00:00) **Episode Intro Template** — Daniel decided to send all example scripts first before providing the wording template
+- (2025-02-04T20:30:05.309068+00:00) **Episode Intro Template** — Daniel planned to send interview content separately when requesting each new intro
+- (2025-02-04T20:30:05.309068+00:00) **Episode Intro Template** — Daniel deferred sending the loose wording template to a later message
+- (2025-02-05T02:29:14.319348+00:00) **GSR Guest Portal Plan** — Chose multi-page site over single landing page
+- (2025-02-05T02:29:14.319348+00:00) **GSR Guest Portal Plan** — Used Bootstrap 4.4.1 framework to match Daniel's Adobe Dreamweaver setup
+- (2025-02-05T02:29:14.319348+00:00) **GSR Guest Portal Plan** — Deferred automatic email confirmation and guest login system to future development
+- (2025-02-05T02:29:14.319348+00:00) **GSR Guest Portal Plan** — Home page covers general show info; separate pages for Interview Details, Preparation Materials, Technical Requirements, and Contact
+- (2025-02-05T02:29:14.319348+00:00) **GSR Guest Portal Plan** — Navigation links to separate HTML files (interview-details.html, preparation.html, technical.html, contact.html)
+- (2025-02-05T03:35:37.501439+00:00) **GSR Guest Portal Homepage** — Used Bootstrap 4.4.1 as the base framework for the portal
+- (2025-02-05T03:35:37.501439+00:00) **GSR Guest Portal Homepage** — Adopted a specific color palette: #0B294D, #FFFFFF, #4CA3E5, #11335A
+- (2025-02-05T03:35:37.501439+00:00) **GSR Guest Portal Homepage** — Structured the site with 5 pages: Home, Interview Details, Preparation Materials, Technical Requirements, Contact
+- (2025-02-05T03:35:37.501439+00:00) **GSR Guest Portal Homepage** — Decided to incorporate GSR logos into the header/navbar
+- (2025-02-05T03:35:37.501439+00:00) **GSR Guest Portal Homepage** — Attempted to migrate content into the Archios template for a more polished design
+- (2025-02-05T03:35:37.501439+00:00) **GSR Guest Portal Homepage** — Explored Relume AI website builder as an alternative generation tool
+- (2025-02-05T16:15:48.588694+00:00) **Lower Thirds Analysis** — Lower thirds styled after major broadcast news networks (Fox News/CNN) for credibility and viewer orientation
+- (2025-02-05T16:15:48.588694+00:00) **Lower Thirds Analysis** — Lower thirds structured to function as standalone topic summaries for viewers tuning in mid-show
+- (2025-02-05T16:15:48.588694+00:00) **Lower Thirds Analysis** — Guest credentials formatted as chyrons with name, title, and affiliation
+- (2025-02-05T16:15:48.588694+00:00) **Lower Thirds Analysis** — Opening monologue teaser formatted as 'ON TONIGHT'S SHOW' headline combining two major stories
+- (2025-02-05T16:15:48.588694+00:00) **Lower Thirds Analysis** — Segment-specific lower thirds generated for interviews, Q&A, Kids Corner, Ministry Update, and Viewer Voices
+- (2025-02-05T16:27:43.952952+00:00) **Interview Lower Thirds** — Lower thirds should follow a specific format modeled after a previous episode example
+- (2025-02-05T16:27:43.952952+00:00) **Interview Lower Thirds** — Opening preview lower third should combine both interviews into one line
+- (2025-02-05T16:27:43.952952+00:00) **Interview Lower Thirds** — Monologue lower thirds should be standalone headlines (6 total)
+- (2025-02-05T16:27:43.952952+00:00) **Interview Lower Thirds** — Interview lower thirds structure: 1 broad topic overview, 1 guest name/title/credentials, then 5-6 trigger lower thirds throughout
+- (2025-02-05T16:27:43.952952+00:00) **Interview Lower Thirds** — Lower thirds should be clever, catchy, and well-worded rather than clumsy
+- (2025-02-05T16:27:43.952952+00:00) **Interview Lower Thirds** — AI was asked to analyze a previous episode's lower thirds before generating new ones to calibrate style
+- (2025-02-06T22:05:26.425675+00:00) **Genesis Science Lower Thirds** — Lower thirds organized by segment category: Genesis Science Q&A, Featured Resource, Kids Corner, Viewer Voices, Ministry Report, Generic Segments
+- (2025-02-06T22:05:26.425675+00:00) **Genesis Science Lower Thirds** — Format changed to all-caps per Daniel's request
+- (2025-02-06T22:05:26.425675+00:00) **Genesis Science Lower Thirds** — Numbering added per Daniel's request for easy triggering reference
+- (2025-02-06T22:05:26.425675+00:00) **Genesis Science Lower Thirds** — 20 transitional lower thirds generated separately for break throws
+- (2025-02-11T19:07:29.619314+00:00) **GSR Guest Portal Design** — Mute the show's vibrant colors for a more professional/readable portal aesthetic
+- (2025-02-11T19:07:29.619314+00:00) **GSR Guest Portal Design** — Use Montserrat/Poppins/Open Sans typography for readability at larger sizes
+- (2025-02-11T19:07:29.619314+00:00) **GSR Guest Portal Design** — Adopt a dark navy + teal + purple color scheme to match GSR branding without being feminine or childish
+- (2025-02-11T19:07:29.619314+00:00) **GSR Guest Portal Design** — Generate a standalone CSS stylesheet separate from the HTML
+- (2025-02-11T19:07:29.619314+00:00) **GSR Guest Portal Design** — Adapt a provided Dreamweaver template rather than building from scratch
+- (2025-02-14T20:35:36.200053+00:00) **Graphics Creation Tracking Plan** — Use a spreadsheet (not another tool) for tracking graphics
+- (2025-02-14T20:35:36.200053+00:00) **Graphics Creation Tracking Plan** — Each row represents one graphic, with multiple rows per segment
+- (2025-02-14T20:35:36.200053+00:00) **Graphics Creation Tracking Plan** — Columns include: Segment, Graphic Type, Graphic #, Description, Status, Assigned To, Due Date, File Path, Notes
+- (2025-02-14T20:35:36.200053+00:00) **Graphics Creation Tracking Plan** — Add dropdown menus for the Status column (Not Started, In Progress, Completed)
+- (2025-02-14T20:35:36.200053+00:00) **Graphics Creation Tracking Plan** — Use color coding to visually separate segments (blue headers, green segment rows, alternating gray rows)
+- (2025-02-14T20:35:36.200053+00:00) **Graphics Creation Tracking Plan** — Defined graphic counts per segment: Opening Monologue up to 10, Q&A 1, Featured Resource 1, Kids Corner 5-7, Viewer Voices 2, Ministry Update 5-15, Interviews variable
+- (2025-02-16T22:44:35.378671+00:00) **Redesign interview details page** — Use Bootstrap 4.4.1 as the CSS framework
+- (2025-02-16T22:44:35.378671+00:00) **Redesign interview details page** — Embed Google Form via iframe on the Submit Materials page
+- (2025-02-16T22:44:35.378671+00:00) **Redesign interview details page** — Extract styles and navbar from index.html programmatically using regex to apply to other pages
+- (2025-02-16T22:44:35.378671+00:00) **Redesign interview details page** — Include preparation materials guidelines content on the Submit Materials page
+- (2025-02-17T05:09:03.831223+00:00) **Website Design Ideas** — Adopted Montserrat font for modernized typography
+- (2025-02-17T05:09:03.831223+00:00) **Website Design Ideas** — Kept the existing blue color palette (#0B294D primary, #4CA3E5 secondary) but refined it
+- (2025-02-17T05:09:03.831223+00:00) **Website Design Ideas** — Added hero background image placeholder, hover effects on buttons, and embedded sample episode
+- (2025-02-17T05:09:03.831223+00:00) **Website Design Ideas** — Used Bootstrap 4.4.1 as the CSS framework
+- (2025-02-17T17:48:36.414089+00:00) **Interview Guest Selection** — Use keyword matching between article topics and guest expertise fields to generate recommendations
+- (2025-02-17T17:48:36.414089+00:00) **Interview Guest Selection** — Increase guest suggestions from 3 to 5 per article at Daniel's request
+- (2025-02-17T17:48:36.414089+00:00) **Interview Guest Selection** — Attempt to fill out a provided blank Excel template with article links, fields of science, and guest names
+- (2025-02-18T16:59:32.081490+00:00) **Form Integration Request** — Used Google Forms formResponse URL as the form action for direct POST submission
+- (2025-02-18T16:59:32.081490+00:00) **Form Integration Request** — Mapped entry.XXXXXXXX field names from the Google Form to HTML input name attributes
+- (2025-02-18T16:59:32.081490+00:00) **Form Integration Request** — Added Full Name, Chyron/Title, Location, Guest Bio, Talking Points, Graphics Upload, and Graphic Description fields
+- (2025-02-18T16:59:32.081490+00:00) **Form Integration Request** — AI eventually identified that Google Forms does not support external form submissions due to CORS restrictions and file upload limitations
+- (2025-02-21T18:05:14.250893+00:00) **Navbar and Jumbotron Sync** — Apply fixed-position navbar with rgba(0,40,73,1.00) background across all pages
+- (2025-02-21T18:05:14.250893+00:00) **Navbar and Jumbotron Sync** — Add hover effects to navbar links using color transition to --secondary and underline
+- (2025-02-21T18:05:14.250893+00:00) **Navbar and Jumbotron Sync** — Use gradient direction 'to bottom' and fixed 303px height for jumbotron matching index.html
+- (2025-02-21T18:05:14.250893+00:00) **Navbar and Jumbotron Sync** — Pursue a one-page scrollable layout rather than multi-page navigation to keep the portal minimal
+- (2025-02-21T18:05:14.250893+00:00) **Navbar and Jumbotron Sync** — Incorporate all design ideas simultaneously: animated hero, card-based sections, smooth scrolling, FontAwesome icons, Google Fonts (Montserrat)
+- (2025-02-24T19:25:34.638653+00:00) **Justice Report Segment Script** — Segment will feature rolling clips from other David Rives Ministries shows (Wonders Without Number, CTN, Unwrapped) with audio
+- (2025-02-24T19:25:34.638653+00:00) **Justice Report Segment Script** — David Rives will read an intro 'throwing' to the clip, then return after the clip with an outro
+- (2025-02-24T19:25:34.638653+00:00) **Justice Report Segment Script** — Outro will pitch viewers to watch full video on YouTube, Genesis Science Network, or attend live Unwrapped events
+- (2025-02-24T19:25:34.638653+00:00) **Justice Report Segment Script** — Format is longer and more polished than a simple toss line
+- (2025-02-24T21:26:32.411232+00:00) **GSR Marketing Graphic Help** — No clear decisions were made regarding the marketing graphic, as the AI never addressed the actual request
+- (2025-02-24T21:26:32.411232+00:00) **GSR Marketing Graphic Help** — The AI responded with a large dump of existing GSR episode scripts and interview content unrelated to graphic design
+- (2025-02-26T21:22:09.657405+00:00) **Mobile-Friendly Website Update** — Use Bootstrap 4.4.1 as the CSS framework for responsiveness
+- (2025-02-26T21:22:09.657405+00:00) **Mobile-Friendly Website Update** — Apply mobile optimizations: collapsible navbar, responsive typography, image/video scaling, touch-friendly buttons, and reduced spacing
+- (2025-02-26T21:22:09.657405+00:00) **Mobile-Friendly Website Update** — Create an updated index.html as the primary deliverable, with other pages noted as needing similar treatment
+- (2025-02-26T21:23:23.767824+00:00) **Mobile-Friendly Website Design** — Use Bootstrap's existing responsive grid rather than building a fully separate mobile site
+- (2025-02-26T21:23:23.767824+00:00) **Mobile-Friendly Website Design** — Create a shared css/styles.css file referenced across all HTML pages
+- (2025-02-26T21:23:23.767824+00:00) **Mobile-Friendly Website Design** — Replace fixed jumbotron height (450px) with min-height and flexible padding
+- (2025-02-26T21:23:23.767824+00:00) **Mobile-Friendly Website Design** — Use CSS clamp() and rem units for scalable typography
+- (2025-02-26T21:23:23.767824+00:00) **Mobile-Friendly Website Design** — Use max-width: 100% / height: auto on images to prevent horizontal overflow
+- (2025-02-26T21:23:23.767824+00:00) **Mobile-Friendly Website Design** — Add media queries targeting max-width: 576px for small screen adjustments
+- (2025-02-26T21:23:23.767824+00:00) **Mobile-Friendly Website Design** — Recommend Chrome DevTools and BrowserStack for cross-browser/device previewing
+- (2025-02-26T21:23:23.767824+00:00) **Mobile-Friendly Website Design** — Use User-Agent detection with a fallback link to switch between mobile and desktop versions
+- (2025-02-27T16:39:04.583526+00:00) **Feature Resource Script Help** — The Feature Resource segment would follow the Q&A segment in each episode
+- (2025-02-27T16:39:04.583526+00:00) **Feature Resource Script Help** — The script should be one to two minutes in length
+- (2025-02-27T16:39:04.583526+00:00) **Feature Resource Script Help** — Daniel would supply book name and description from the Creation Superstore website as input
+- (2025-02-28T20:26:49.681146+00:00) **Michael Mahone Segment Ideas** — Michael Maughon should hold a live animal during the segment to increase his comfort and confidence on camera
+- (2025-02-28T20:26:49.681146+00:00) **Michael Mahone Segment Ideas** — The segment should be structured as a 'show and tell' rather than a traditional Q&A interview
+- (2025-02-28T20:26:49.681146+00:00) **Michael Mahone Segment Ideas** — Outdoor filming with a gimbal was considered but flagged as logistically complex for live broadcast
+- (2025-02-28T20:26:49.681146+00:00) **Michael Mahone Segment Ideas** — Michael Maughon was ultimately featured in S02 Ep016 Interview 1 in what appears to be a standard interview format with topic-based questions
+- (2025-03-01T02:50:34.906655+00:00) **Lighting Setup Visuals for Studios** — Budget increased from $500 to $1000 for the lighting setup
+- (2025-03-01T02:50:34.906655+00:00) **Lighting Setup Visuals for Studios** — Lighting must be wall/ceiling-mounted to stay out of the way of musicians and camera movement
+- (2025-03-01T02:50:34.906655+00:00) **Lighting Setup Visuals for Studios** — Pink and blue smart light theme must be preserved as part of the studio aesthetic
+- (2025-03-01T02:50:34.906655+00:00) **Lighting Setup Visuals for Studios** — Considered Lowel Caselite 4 (2-pack for $100) as a potential fill light option
+- (2025-03-01T02:50:34.906655+00:00) **Lighting Setup Visuals for Studios** — Prioritized spending more on key light over fill light
+- (2025-03-04T19:07:48.409851+00:00) **GSR Segment Lower Thirds** — Lower thirds should number roughly 5-10 per opening monologue depending on natural thought breaks
+- (2025-03-04T19:07:48.409851+00:00) **GSR Segment Lower Thirds** — First lower third always previews both interviews with 'ON TONIGHT'S SHOW:'
+- (2025-03-04T19:07:48.409851+00:00) **GSR Segment Lower Thirds** — Second lower third triggers on 'But first...' and previews the monologue topic without spoiling it
+- (2025-03-04T19:07:48.409851+00:00) **GSR Segment Lower Thirds** — Remaining lower thirds track topic shifts through the monologue
+- (2025-03-04T19:07:48.409851+00:00) **GSR Segment Lower Thirds** — Separate lower thirds needed for Genesis Science Q&A, Kids' Corner, and Ministry Report segments
+- (2025-03-04T19:07:48.409851+00:00) **GSR Segment Lower Thirds** — For Ep022 and Ep025 first lower thirds, Daniel wanted them rewritten based on actual interview content rather than placeholder text
+- (2025-03-04T19:40:54.311608+00:00) **Interview Lower Thirds Creation** — First lower third should be a broad generic topic headline without specific details
+- (2025-03-04T19:40:54.311608+00:00) **Interview Lower Thirds Creation** — Second lower third should be the guest chyron with credentials separated by pipe symbols
+- (2025-03-04T19:40:54.311608+00:00) **Interview Lower Thirds Creation** — Remaining 5-6 lower thirds should vary in style, length, and tone
+- (2025-03-04T19:40:54.311608+00:00) **Interview Lower Thirds Creation** — Some lower thirds should include guest name, some should not
+- (2025-03-04T19:40:54.311608+00:00) **Interview Lower Thirds Creation** — All text must be all caps with no special symbols or checkmarks
+- (2025-03-04T19:40:54.311608+00:00) **Interview Lower Thirds Creation** — Preferred the formatting style of the first AI response (numbered list with headers) over the emoji-decorated second format
+- (2025-03-07T22:43:36.569388+00:00) **Genesis Science Network Redesign** — Use deep blue and gold color palette inspired by TBN.org
+- (2025-03-07T22:43:36.569388+00:00) **Genesis Science Network Redesign** — Keep all existing page structure and content unchanged
+- (2025-03-07T22:43:36.569388+00:00) **Genesis Science Network Redesign** — Use found images for general visuals and generated abstract background patterns
+- (2025-03-07T22:43:36.569388+00:00) **Genesis Science Network Redesign** — Implement sticky navigation with dropdowns, card-based layouts, and modernized CTAs
+- (2025-03-07T23:18:51.153260+00:00) **UI Overhaul Request** — Use AI-generated images only for patterns and backgrounds, not representational content
+- (2025-03-07T23:18:51.153260+00:00) **UI Overhaul Request** — Base new color scheme on existing site colors (dark blue and blue)
+- (2025-03-07T23:18:51.153260+00:00) **UI Overhaul Request** — Use TBN and Shalom World as design inspiration references
+- (2025-03-07T23:18:51.153260+00:00) **UI Overhaul Request** — Build site using Pyxl.ai website builder tool
+- (2025-03-07T23:18:51.153260+00:00) **UI Overhaul Request** — Only the homepage was completed; remaining pages (About, Schedule, Donate, Contact, Where to Watch, GSN Report) were not built
+- (2025-03-17T20:20:18.718688+00:00) **Interview Lower Thirds** — Requested lower thirds for the Dr. Brian Thomas dinosaur soft tissue interview
+- (2025-03-17T20:20:18.718688+00:00) **Interview Lower Thirds** — Requested a graphic title 7 words or less for the interview
+- (2025-03-17T20:20:18.718688+00:00) **Interview Lower Thirds** — Requested 3 style variations (Bold/Direct, Question-Driven, Intrigue/Tease) for the graphic title
+- (2025-03-17T20:20:18.718688+00:00) **Interview Lower Thirds** — Asked for shorter versions (5-6 words) after initial titles were too long
+- (2025-03-18T15:27:37.770621+00:00) **GSR Guest Portal Redesign** — Combine multi-page GSR portal into a single one-page Archios layout with anchor links
+- (2025-03-18T15:27:37.770621+00:00) **GSR Guest Portal Redesign** — Retain GSR color palette (#0B294D, #4CA3E5, etc.) within the Archios template structure
+- (2025-03-18T15:27:37.770621+00:00) **GSR Guest Portal Redesign** — Use Archios CSS assets and Google Fonts (Barlow, Bebas Neue) as the design base
+- (2025-11-17T17:07:59.433948+00:00) **Commercial sponsorship roadmap** — Narrowed ad offerings to only two options: pre-recorded commercial spots and host-read ads
+- (2025-11-17T17:07:59.433948+00:00) **Commercial sponsorship roadmap** — Set pricing at $75 for pre-recorded and $150 for host-read ads
+- (2025-11-17T17:07:59.433948+00:00) **Commercial sponsorship roadmap** — Decided on a 3-4 page unified single PDF for the sponsorship packet
+- (2025-11-17T17:07:59.433948+00:00) **Commercial sponsorship roadmap** — Corporate/clean/minimal aesthetic with GSR color palette
+- (2025-11-17T17:07:59.433948+00:00) **Commercial sponsorship roadmap** — Excluded table-style sections from the document layout
+- (2025-11-17T17:07:59.433948+00:00) **Commercial sponsorship roadmap** — Decided to confirm final details with boss before pitching sponsors
+- (2025-11-17T17:07:59.433948+00:00) **Commercial sponsorship roadmap** — Chose to add logo in post rather than include it in the generated PDF
+- (2025-11-19T18:21:17.801689+00:00) **Season 3 Viewer Voices** — Reporter replaces David as the one reading and responding to viewer submissions
+- (2025-11-19T18:21:17.801689+00:00) **Season 3 Viewer Voices** — Segment is pre-recorded but scripted to feel live (reporter thanks David, looks into camera like a live toss)
+- (2025-11-19T18:21:17.801689+00:00) **Season 3 Viewer Voices** — Reporter delivers the call-to-action (social media comments or comments@genesissciencenetwork.com) rather than David
+- (2025-11-19T18:21:17.801689+00:00) **Season 3 Viewer Voices** — Reporter opens with 'Hey David' instead of 'Thanks David'
+- (2025-11-19T18:21:17.801689+00:00) **Season 3 Viewer Voices** — Each segment uses varied phrasing to avoid repetition across episodes
+- (2025-11-19T18:21:17.801689+00:00) **Season 3 Viewer Voices** — David's role is reduced to a brief intro toss and a short outro button
+- (2025-11-25T18:02:26.602095+00:00) **GSR sponsorship packet** — Use ReportLab to generate the PDF programmatically
+- (2025-11-25T18:02:26.602095+00:00) **GSR sponsorship packet** — Model layout after the ATL Dev Con sponsorship packet uploaded by Daniel
+- (2025-11-25T18:02:26.602095+00:00) **GSR sponsorship packet** — Include full sponsorship agreement without condensing
+- (2025-11-25T18:02:26.602095+00:00) **GSR sponsorship packet** — Use logo placeholder text instead of actual logo image
+- (2025-11-25T18:02:26.602095+00:00) **GSR sponsorship packet** — Keep document to 3 pages maximum where possible
+- (2025-11-25T18:02:26.602095+00:00) **GSR sponsorship packet** — Adopt clean, minimal, text-only formatting without heavy design elements
+- (2025-11-25T22:10:13.657715+00:00) **Q&A segment structure** — Q&A segments will be pre-recorded on a separate set rather than filmed in the TV studio
+- (2025-11-25T22:10:13.657715+00:00) **Q&A segment structure** — Segments need to function as standalone social media content and as part of GSR
+- (2025-11-25T22:10:13.657715+00:00) **Q&A segment structure** — David will read and answer the viewer question himself within the segment
+- (2025-11-25T22:10:13.657715+00:00) **Q&A segment structure** — The segment needs an opening and a transition into the general topic before the viewer question is introduced
+- (2025-12-04T16:14:09.622543+00:00) **Fresh ideas for Carl** — The AI surfaced all uploaded scripts including multiple Carl Werner segments to provide context for the brainstorm
+- (2025-12-04T16:14:09.622543+00:00) **Fresh ideas for Carl** — No explicit new segment format or concept was finalized in the visible portion of the conversation
+- (2025-12-09T21:09:33.843128+00:00) **Quote options selection** — Decided to filter out generic quotes in favor of more distinctive, 'David-sounding' lines
+- (2025-12-09T21:09:33.843128+00:00) **Quote options selection** — Expanded scope from monologue quotes to also include expert guest interview quotes
+- (2025-12-09T21:09:33.843128+00:00) **Quote options selection** — Uploaded additional episodes mid-conversation to expand the quote pool
+- (2025-12-15T20:07:03.464722+00:00) **Interview topic strategy** — Shift from reactive headline-driven programming to theme-based episode arcs with a guiding question per episode
+- (2025-12-15T20:07:03.464722+00:00) **Interview topic strategy** — Adopt a Primary/Secondary interview model where both interviews address the same theme from different angles
+- (2025-12-15T20:07:03.464722+00:00) **Interview topic strategy** — Keep guest prep low-friction by still sending one article, but adding episode context and a defined guest lane
+- (2025-12-15T20:07:03.464722+00:00) **Interview topic strategy** — February episodes should avoid repeating January topics (human origins, fossils, dark matter, origin-of-life chemistry)
+- (2025-12-15T20:07:03.464722+00:00) **Interview topic strategy** — Each interview gets a distinct editorial angle brief to prevent guest overlap and redundancy
+- (2025-12-15T21:55:26.026801+00:00) **Guest recommendations Neanderthals topic** — Each episode gets two interview segments, each with 3 unique guest suggestions
+- (2025-12-15T21:55:26.026801+00:00) **Guest recommendations Neanderthals topic** — No guest should repeat across episodes in the planning run
+- (2025-12-15T21:55:26.026801+00:00) **Guest recommendations Neanderthals topic** — Guests must be creation-aligned and credible for GSR's audience
+- (2025-12-15T21:55:26.026801+00:00) **Guest recommendations Neanderthals topic** — Guest suggestions should match specific scientific lanes (e.g., geneticist, fossil anatomist, climate scientist) rather than being generic
+- (2025-12-15T21:55:26.026801+00:00) **Guest recommendations Neanderthals topic** — Episodes are framed around investigative angles rather than date-fighting or culture-war framing
+- (2025-12-16T18:05:24.729561+00:00) **Quote selection process** — Requested word-for-word quotes only, no paraphrasing, to allow accurate location of the quote in the source footage
+- (2025-12-16T18:05:24.729561+00:00) **Quote selection process** — Specified one quote per guest, two guests per episode
+- (2025-12-16T20:36:10.283509+00:00) **Interview invitation draft** — Shift from article-reactive format to angle-first format where articles serve as context only
+- (2025-12-16T20:36:10.283509+00:00) **Interview invitation draft** — Use future tense framing for segment descriptions ('This segment would look at...')
+- (2025-12-16T20:36:10.283509+00:00) **Interview invitation draft** — Avoid long dashes as they are perceived as AI indicators
+- (2025-12-16T20:36:10.283509+00:00) **Interview invitation draft** — Keep emails concise but include enough scope detail to reassure academic guests
+- (2025-12-16T20:36:10.283509+00:00) **Interview invitation draft** — Include explicit 'what this is not about' framing to reduce guest hesitation
+- (2025-12-16T20:36:10.283509+00:00) **Interview invitation draft** — Follow a consistent structural template across all guest invitations
+- (2025-12-22T19:38:27.780221+00:00) **Christian experts on Neanderthals** — Separated Neanderthal coverage into distinct sub-angles: physical/behavioral evidence, genetics/ancestry, tool technology, and cognitive-behavioral emergence
+- (2025-12-22T19:38:27.780221+00:00) **Christian experts on Neanderthals** — Added AI and children episode as a separate topic from the science-of-AI episode
+- (2025-12-22T19:38:27.780221+00:00) **Christian experts on Neanderthals** — Framed dark matter coverage as two distinct episodes: observational failures and speculative alternatives/model health
+- (2025-12-22T19:38:27.780221+00:00) **Christian experts on Neanderthals** — Kept origin-of-life coverage split between chemistry barriers and information/systems-level challenges
+- (2025-12-22T19:38:27.780221+00:00) **Christian experts on Neanderthals** — Evaluated Eric Hedin and Brian Miller as specific guest candidates for the cosmology model-stress episode
+- (2025-12-22T19:38:27.780221+00:00) **Christian experts on Neanderthals** — Requested additional options for the information/systems biology episode
+- (2025-12-23T16:12:51.611698+00:00) **THD Script Grouping Assistance** — AI decided to hold off grouping until all scripts were pasted, cataloging each one individually as received
+- (2025-12-23T16:12:51.611698+00:00) **THD Script Grouping Assistance** — AI flagged each script's location flexibility (studio-flex vs. must-be-on-location) in real time as a reference note
+- (2025-12-23T16:12:51.611698+00:00) **THD Script Grouping Assistance** — Scopes Trial script was identified as a must-be-on-location shoot in Dayton, TN at the courthouse
+- (2025-12-23T16:12:51.611698+00:00) **THD Script Grouping Assistance** — Most other scripts were flagged as studio-flexible or museum/nature-setting flexible
+- (2026-01-05T22:33:43.943863+00:00) **Climate Data vs Predictions** — Organize each episode into two distinct interviews with clearly separated angles and guest lanes
+- (2026-01-05T22:33:43.943863+00:00) **Climate Data vs Predictions** — Explicitly define what each interview is NOT trying to do to keep guests on-topic
+- (2026-01-05T22:33:43.943863+00:00) **Climate Data vs Predictions** — Prioritize creationist or Christian-worldview credentialed scientists for all guest recommendations
+- (2026-01-05T22:33:43.943863+00:00) **Climate Data vs Predictions** — Pair interviews thematically within episodes (e.g., past catastrophe + present instability; fossils + genetics)
+- (2026-01-05T22:33:43.943863+00:00) **Climate Data vs Predictions** — Use observational/data-first framing to avoid political or policy controversy
+- (2026-01-14T18:50:22.645850+00:00) **Museum Bias and Evolution** — Episode S02 Ep015 focuses on museum bias (Dr. Carl Werner on Smithsonian exhibits) and origin of life chemistry (Dr. Rob Stadler)
+- (2026-01-14T18:50:22.645850+00:00) **Museum Bias and Evolution** — Multiple episode scripts uploaded as context files for the AI to reference
+- (2026-01-14T18:50:22.645850+00:00) **Museum Bias and Evolution** — Show is hosted under David Rives' name/persona as the on-air talent
+- (2026-01-14T20:24:03.654244+00:00) **Interview Lower Thirds Template** — Template structure: 1-2 intro context L3s, 1 guest title chyron, 8-10 content L3s, 2 outro L3s
+- (2026-01-14T20:24:03.654244+00:00) **Interview Lower Thirds Template** — L3s must orient mid-conversation viewers to the specific topic, not just set mood
+- (2026-01-14T20:24:03.654244+00:00) **Interview Lower Thirds Template** — Style must match cable-news chyron format (declarative, short, no explanation)
+- (2026-01-14T20:24:03.654244+00:00) **Interview Lower Thirds Template** — Character limit set at approximately 50-55 characters per lower third
+- (2026-01-14T20:24:03.654244+00:00) **Interview Lower Thirds Template** — No explanations or rationale needed in the output, just the L3s themselves
+- (2025-07-16T19:53:37.666772+00:00) **Guest Invitation Email Template** — Added a subtle credibility section mentioning Seth Dillon and NASA guests to the base template
+- (2025-07-16T19:53:37.666772+00:00) **Guest Invitation Email Template** — Added a 'Possible Interview Direction' placeholder section after the article link
+- (2025-07-16T19:53:37.666772+00:00) **Guest Invitation Email Template** — Adjusted the Lisle email to reflect third-attempt context with a confident, non-desperate tone
+- (2025-07-16T19:53:37.666772+00:00) **Guest Invitation Email Template** — Decided to flow interview angle naturally into body text rather than as a separate labeled section (for Purdom email)
+- (2025-07-16T19:53:37.666772+00:00) **Guest Invitation Email Template** — Updated all emails to include alternate filming dates (July 29th afternoon and August 12th morning) in addition to primary August 7th date
+- (2025-07-16T19:53:37.666772+00:00) **Guest Invitation Email Template** — Standardized the article intro sentence to: 'I'm reaching out because we would love to have you on GSR for a remote Zoom interview to hear your insights on the following news piece:'
+- (2025-07-25T15:06:29.136935+00:00) **GSR guest list** — AI retrieved guest information from stored episode scripts/documents rather than generating a simple formatted list
+- (2025-07-25T15:06:29.136935+00:00) **GSR guest list** — AI output full teleprompter scripts and interview questions instead of a concise guest roster
+- (2025-07-30T19:00:50.871488+00:00) **Interview question rewrite** — Requested a rewrite of 8 questions down to 5 questions covering the Toumai fossil topic
+- (2025-08-28T15:10:06.169034+00:00) **Episode and Segment Titles** — Generate 3 main episode title options per episode with varied formats (question, list, contrast, twist)
+- (2025-08-28T15:10:06.169034+00:00) **Episode and Segment Titles** — Generate individual segment titles for 6–7 segments per episode
+- (2025-08-28T15:10:06.169034+00:00) **Episode and Segment Titles** — Titles kept under 60–70 characters and 7 words or fewer for segments
+- (2025-08-28T15:10:06.169034+00:00) **Episode and Segment Titles** — AI offered to also create lower-third headline variations for graphics team after each episode set
+- (2025-09-15T15:25:51.891612+00:00) **Article suggestion for interview** — Selected Dr. Artem Oganov as the interview guest for the mercury-to-gold fusion story
+- (2025-09-15T15:25:51.891612+00:00) **Article suggestion for interview** — Framed the segment around evaluating scientific legitimacy vs. pseudoscience
+- (2025-09-15T15:25:51.891612+00:00) **Article suggestion for interview** — Included a second guest, Nate Loper, in the same episode
+- (2025-09-18T23:04:43.836817+00:00) **New chat** — Lower thirds were organized by segment (Opening Monologue, Interview 1, Interview 2, Kids Corner, etc.)
+- (2025-09-18T23:04:43.836817+00:00) **New chat** — Interview questions for Brian Young were framed around a Yahoo News article about human extinction fears
+- (2025-09-18T23:04:43.836817+00:00) **New chat** — Gordon Wilson's segment focused on Chernobyl mutant dogs as an adaptation vs. evolution topic
+- (2025-09-18T23:04:43.836817+00:00) **New chat** — AI offered to format output into a Google Doc for next steps
+- (2025-09-19T18:34:38.259229+00:00) **Kids Corner Segment Analysis** — AI wrote new Kids Corner segments based on existing examples rather than just analyzing them
+- (2025-09-19T18:34:38.259229+00:00) **Kids Corner Segment Analysis** — Segments followed a consistent format: prop-based introduction, scientific facts, young-audience language, and a concluding tie-in to Biblical creation
+- (2025-09-19T18:34:38.259229+00:00) **Kids Corner Segment Analysis** — Topics covered included natural history specimens, fossils, minerals, and biology
+- (2025-09-19T18:34:38.259229+00:00) **Kids Corner Segment Analysis** — Each segment included word counts and prop notes consistent with the existing examples
+- (2025-09-25T19:42:26.620530+00:00) **Improving interview scripts** — Focus on catering tone and intro style to the specific article topic or guest being featured
+- (2025-09-25T19:42:26.620530+00:00) **Improving interview scripts** — Maintain the existing segment structure (welcome back, article summary, guest intro, questions) while varying the delivery
+- (2025-09-25T19:42:26.620530+00:00) **Improving interview scripts** — Keep the creation/biblical worldview framing consistent but vary the rhetorical approach
+- (2025-09-26T15:44:30.363400+00:00) **Interview script creation** — Interview would be ~45 minutes long with 2 ad breaks
+- (2025-09-26T15:44:30.363400+00:00) **Interview script creation** — Content would be split into 3 chunks usable as standalone GSR episode segments
+- (2025-09-26T15:44:30.363400+00:00) **Interview script creation** — Format needed to work both as a single long-form conversation and as three individual segments
+- (2025-09-26T15:44:30.363400+00:00) **Interview script creation** — Daniel planned to paste in email-sourced information to guide the script content
+- (2025-09-30T21:51:42.522848+00:00) **Script flow analysis** — Decided not to rewrite the full script due to filming in two days and semi-approval from boss
+- (2025-09-30T21:51:42.522848+00:00) **Script flow analysis** — Chose to use 'next time' language instead of 'when we come back' to allow segments to air flexibly across a month or two
+- (2025-09-30T21:51:42.522848+00:00) **Script flow analysis** — Decided outros should feel like natural monologue closings rather than explicit recaps
+- (2025-09-30T21:51:42.522848+00:00) **Script flow analysis** — Decided to add Dr. James Tour re-intro blurbs after each reset paragraph
+- (2025-09-30T21:51:42.522848+00:00) **Script flow analysis** — Adjusted tone of Tour intros to reflect his role as collaborator, not just guest
+- (2025-10-14T15:47:38.246554+00:00) **Lower thirds creation** — Lower thirds should follow Fox News/CNN style: all caps, ~55 character max, headline-driven
+- (2025-10-14T15:47:38.246554+00:00) **Lower thirds creation** — Opening monologue: 5-10 lower thirds depending on thought transitions, first one previews the full show
+- (2025-10-14T15:47:38.246554+00:00) **Lower thirds creation** — Second lower third triggers at 'But first...' and previews without jumping ahead of content
+- (2025-10-14T15:47:38.246554+00:00) **Lower thirds creation** — Interview segments, Kids' Corner, Genesis Q&A, and Ministry Report each get their own lower thirds
+- (2025-10-14T15:47:38.246554+00:00) **Lower thirds creation** — Episodes 12-16 were batched into a single canvas document for organization
+- (2025-10-14T15:47:38.246554+00:00) **Lower thirds creation** — Episode 53 was added to the existing document
+- (2025-10-14T15:47:38.246554+00:00) **Lower thirds creation** — Episode 55 was being worked on when the conversation was truncated
+- (2025-10-29T20:29:20.201657+00:00) **Kids Corner segues** — No explicit Kids Corner transition was written; the AI responded with full interview scripts and teleprompter scripts instead of targeted Kids Corner segues
+- (2026-03-25T19:12:07.683960+00:00) **Presentation Synopses Creation** — AI produced individual synopses first, then Daniel requested a unified, consistent set — AI complied
+- (2026-03-25T19:12:07.683960+00:00) **Presentation Synopses Creation** — AI used file_search to retrieve full transcript content beyond the truncated snippets shown in context
+- (2026-03-25T19:12:07.683960+00:00) **Presentation Synopses Creation** — Synopses were kept to roughly 2-3 sentences each for website use
+- (2026-03-26T18:17:39.123882+00:00) **Sponsorship Pitch Deck Redesign** — Move contract/agreement material out of the main deck into an appendix
+- (2026-03-26T18:17:39.123882+00:00) **Sponsorship Pitch Deck Redesign** — Use a dark cinematic color palette (deep navy/charcoal, bright blue accent) matching GSR's logo colors
+- (2026-03-26T18:17:39.123882+00:00) **Sponsorship Pitch Deck Redesign** — Structure deck as: cover → why the show matters → audience/distribution → sponsor value → pricing → CTA
+- (2026-03-26T18:17:39.123882+00:00) **Sponsorship Pitch Deck Redesign** — Use public domain NASA imagery (Cosmic Cliffs, Earth at night) as background assets
+- (2026-03-26T18:17:39.123882+00:00) **Sponsorship Pitch Deck Redesign** — Extract brand colors from uploaded logos programmatically before building slides
+- (2026-03-26T18:17:39.123882+00:00) **Sponsorship Pitch Deck Redesign** — Not copy the Metaxas deck closely — adapt the style for science/news/creation branding
+- (2026-03-31T16:22:55.563302+00:00) **Interview with Steve Meyer** — Initial Sunday interview date was declined by Dr. Meyer due to a prior commitment
+- (2026-03-31T16:22:55.563302+00:00) **Interview with Steve Meyer** — A new window was offered: Wednesday April 1st or Thursday morning April 2nd while Meyer is in Nashville
+- (2026-03-31T16:22:55.563302+00:00) **Interview with Steve Meyer** — Daniel had previously sent a polite follow-up suggesting future coordination before the new availability was offered
+- (2026-04-02T20:17:09.627279+00:00) **GSR Article Selection** — AI extracted articles and hyperlinks programmatically from the DOCX using Python/lxml rather than manually clicking links
+- (2026-04-02T20:17:09.627279+00:00) **GSR Article Selection** — AI categorized articles into fields (space, paleo/human, archaeology/biblical, bio/origins, climate/earth, physics/energy) to ensure variety
+- (2026-04-02T20:17:09.627279+00:00) **GSR Article Selection** — AI performed web searches to verify article substance and avoid oversensationalized headlines
+- (2026-04-02T20:17:09.627279+00:00) **GSR Article Selection** — AI added AI, Politics, and Religion/Culture War sections when Daniel requested them
+- (2026-04-02T20:17:09.627279+00:00) **GSR Article Selection** — AI attempted to generate a formatted DOCX output with all selections and links
+- (2026-04-06T18:20:05.134724+00:00) **Extracting YouTube Playlist Metadata** — Chose no-code/low-code approach over YouTube Data API due to lack of coding experience
+- (2026-04-06T18:20:05.134724+00:00) **Extracting YouTube Playlist Metadata** — Selected browser console script option over Chrome extensions for bulk extraction
+- (2026-04-06T18:20:05.134724+00:00) **Extracting YouTube Playlist Metadata** — Narrowed scope from all playlists at once to one playlist at a time for reliability
+- (2026-04-09T18:18:09.408827+00:00) **Bias in Scientific Conclusions** — Used pptxgenjs with custom helper library at /home/oai/skills/slides/pptxgenjs_helpers for slide generation
+- (2026-04-09T18:18:09.408827+00:00) **Bias in Scientific Conclusions** — Adopted a dark-theme color palette (navy/dark blue background with accent colors)
+- (2026-04-09T18:18:09.408827+00:00) **Bias in Scientific Conclusions** — Created ~11 slides covering: title, experiment setup, participant stats, dot spread visualization, ideology-stratified bar charts, modeling levers, peer review scores, and viewer prompts
+- (2026-04-09T18:18:09.408827+00:00) **Bias in Scientific Conclusions** — Used illustrative/approximate data visualizations rather than exact reproductions of published figures
+- (2026-04-09T18:18:09.408827+00:00) **Bias in Scientific Conclusions** — Added speaker notes with source citations to each slide
+- (2026-04-09T18:18:09.408827+00:00) **Bias in Scientific Conclusions** — Included a 'what this study does NOT establish' slide to avoid overclaiming
+- (2026-04-09T20:38:32.077433+00:00) **Internship Program Creation** — Internship is unpaid and must be stated clearly throughout all materials
+- (2026-04-09T20:38:32.077433+00:00) **Internship Program Creation** — Minimum age requirement of 16 or older added to all relevant documents
+- (2026-04-09T20:38:32.077433+00:00) **Internship Program Creation** — Language adjusted to be more welcoming/friendly for high school-aged applicants rather than demanding/corporate
+- (2026-04-09T20:38:32.077433+00:00) **Internship Program Creation** — Four separate documents created for the second batch: overview, social copy, handbook, Google Form blueprint
+- (2026-04-09T20:38:32.077433+00:00) **Internship Program Creation** — Separate internal starter packet created first, then intern-facing documents created as a distinct set
+- (2026-04-10T19:00:54.588928+00:00) **Importing History to Claude** — Decided not to preserve legacy writing style but instead build instructions that actively improve the show's writing quality
+- (2026-04-10T19:00:54.588928+00:00) **Importing History to Claude** — Chose to organize Claude projects into specific functional buckets: GSR Core Production, Guest Research, Writing Voice/Lower Thirds, Guest Outreach, Distribution/Metadata, and four new specialized projects (Lower Thirds, General Email/Comms, Socials, Titles/Timecodes)
+- (2026-04-10T19:00:54.588928+00:00) **Importing History to Claude** — Decided to prioritize Season 3 materials over Season 2 for reference, as segment order and tone changed
+- (2026-04-10T19:00:54.588928+00:00) **Importing History to Claude** — Decided lower thirds are on-screen graphic elements only, not teleprompter copy, adjusting character count and readability standards accordingly
+- (2026-04-10T19:00:54.588928+00:00) **Importing History to Claude** — Decided to use past Claude project conversations to inform technical parameters like L3 character counts and timecode formatting
+- (2026-04-10T21:03:50.736590+00:00) **Lower Thirds Project Prep** — Pull lower thirds examples from Season 2 and Season 3 Google Drive documents
+- (2026-04-10T21:03:50.736590+00:00) **Lower Thirds Project Prep** — Create two outputs: a sourcebook DOCX and a plain-text instruction sheet
+- (2026-04-10T21:03:50.736590+00:00) **Lower Thirds Project Prep** — Include segment-specific guidance (Opening Monologue, Kids' Corner, Ministry Report, interviews, etc.)
+- (2026-04-10T21:03:50.736590+00:00) **Lower Thirds Project Prep** — Allow Claude creative latitude on style while constraining format, length, capitalization, and tone per segment
+- (2026-04-10T21:23:23.246963+00:00) **Title Generation Guide** — Pull title data from both the 2025 and 2026 GSR Episode Titles/Timecodes Excel files
+- (2026-04-10T21:23:23.246963+00:00) **Title Generation Guide** — Normalize titles by stripping branding suffixes before analyzing patterns
+- (2026-04-10T21:23:23.246963+00:00) **Title Generation Guide** — Create both a long-form source guide (for Claude project knowledge) and a shorter instruction sheet (for Claude project instructions field)
+- (2026-04-10T21:23:23.246963+00:00) **Title Generation Guide** — Deliver files in both DOCX and plain text/MD formats for flexibility
+- (2026-04-10T21:23:23.246963+00:00) **Title Generation Guide** — Give Claude room to improve title quality while still constraining format, tone, and segment-specific rules
+- (2026-04-10T21:41:31.080875+00:00) **GSR Writing Guides** — Exclude interview writing from this guide (to be handled in a separate project)
+- (2026-04-10T21:41:31.080875+00:00) **GSR Writing Guides** — Emphasize more recent scripts over older ones when deriving style guidelines
+- (2026-04-10T21:41:31.080875+00:00) **GSR Writing Guides** — Leave Claude room to improve writing quality rather than rigidly locking in a format
+- (2026-04-10T21:41:31.080875+00:00) **GSR Writing Guides** — Incorporate David Rives' directive: teases and pre-produced segments should be more engaging, news-style, and clickbait-oriented
+- (2026-04-10T21:41:31.080875+00:00) **GSR Writing Guides** — Provide example scripts in the guide rather than just abstract rules
+- (2026-04-10T22:36:11.183350+00:00) **Claude Project Instructions** — Reframe Claude's role from copywriter to active sponsorship strategist/growth partner
+- (2026-04-10T22:36:11.183350+00:00) **Claude Project Instructions** — Acknowledge explicitly in instructions that current strategy is failing and needs to be rebuilt
+- (2026-04-10T22:36:11.183350+00:00) **Claude Project Instructions** — Include copies of original emails in the master document rather than just patterns/summaries
+- (2026-04-10T22:36:11.183350+00:00) **Claude Project Instructions** — Extract patterns from existing emails to inform improved outreach strategy
+- (2026-04-11T00:26:44.961963+00:00) **GSR Sponsorship Strategy** — Each project description was condensed to 2-3 sentences as explicitly requested after the first attempt was too long
+- (2026-04-11T00:26:44.961963+00:00) **GSR Sponsorship Strategy** — Each description emphasizes the strategic/creative partner role rather than just a writing assistant role
+- (2026-04-11T00:26:44.961963+00:00) **GSR Sponsorship Strategy** — Descriptions were written to be used as Claude project-level instructions, not conversation prompts
+- (2026-04-13T15:48:53.562375+00:00) **Pines Demon Discovery** — Locked in a standard first-time guest outreach email template based on the Dr. Beisner version
+- (2026-04-13T15:48:53.562375+00:00) **Pines Demon Discovery** — Decided returning guests like Dr. Tour do not need a self-introduction or background recitation
+- (2026-04-13T15:48:53.562375+00:00) **Pines Demon Discovery** — No em dashes to be used in emails
+- (2026-04-13T15:48:53.562375+00:00) **Pines Demon Discovery** — Scheduling windows should specify last week of April or last week of May explicitly
+- (2026-04-13T15:48:53.562375+00:00) **Pines Demon Discovery** — Interview direction blurbs should be engaging and conversational, not encyclopedic
+- (2026-04-13T15:48:53.562375+00:00) **Pines Demon Discovery** — Replied to Dr. Beisner asking for a connection to Dr. Steele, then followed up graciously when the referral hit a dead end
+- (2026-04-14T03:27:49.184324+00:00) **Optimizing Claude Prompts** — Use XML tags to structure the prompt with <context>, <goals>, <constraints>, and <continuity_instruction> sections
+- (2026-04-14T03:27:49.184324+00:00) **Optimizing Claude Prompts** — Put context at the top and instructions at the bottom for better Claude recall
+- (2026-04-14T03:27:49.184324+00:00) **Optimizing Claude Prompts** — Include David's news anchor format strength as a key asset in the prompt
+- (2026-04-14T03:27:49.184324+00:00) **Optimizing Claude Prompts** — Include the fact that 95% of guests join via Zoom as a production constraint
+- (2026-04-14T03:27:49.184324+00:00) **Optimizing Claude Prompts** — Add a continuity instruction to resume at 4AM if usage limits are hit (acknowledged as possibly non-functional)
+- (2026-04-14T03:27:49.184324+00:00) **Optimizing Claude Prompts** — Place the long prompt block in Claude Cowork project instructions, not the chat box
+- (2026-04-14T03:27:49.184324+00:00) **Optimizing Claude Prompts** — Use the chat box only for specific task-level requests
+- (2026-04-14T03:27:49.184324+00:00) **Optimizing Claude Prompts** — Frame the comparison to Creation in the 21st Century (C21C) as a cautionary reference, not a model to copy
+- (2026-04-14T03:27:49.184324+00:00) **Optimizing Claude Prompts** — Include a multi-part structured output format (11-section plan) in the chat box prompt
+- (2026-04-14T21:20:04.493265+00:00) **Email Delivery Troubleshooting** — Analyzed raw email headers to determine delivery status
+- (2026-04-14T21:20:04.493265+00:00) **Email Delivery Troubleshooting** — Identified that a cPanel forwarder was redirecting dallen@davidrives.com to dallen.davidrives@gmail.com
+- (2026-04-14T21:20:04.493265+00:00) **Email Delivery Troubleshooting** — Decided to use the mailbox-level webmail settings instead of main cPanel since Daniel lacked main cPanel credentials
+- (2026-04-14T21:20:04.493265+00:00) **Email Delivery Troubleshooting** — Directed Daniel to check Forwarders, Email Filters, and Track Delivery within the webmail settings panel
+- (2026-04-15T00:11:13.989804+00:00) **Spreadsheet Review and Fix** — Use the original spreadsheet as the structural master, not the Claude-corrected versions
+- (2026-04-15T00:11:13.989804+00:00) **Spreadsheet Review and Fix** — Do not upload the two Claude-corrected spreadsheets to avoid confusing Claude with incomplete row structures
+- (2026-04-15T00:11:13.989804+00:00) **Spreadsheet Review and Fix** — Add a Notes column at the far left with simple color coding: yellow (Richard flagged), orange (Daniel found), red (unresolvable), blue (thumbnail mismatch that can't be fixed)
+- (2026-04-15T00:11:13.989804+00:00) **Spreadsheet Review and Fix** — Prioritize David Rives Ministries YouTube playlists for verification before broader channel search
+- (2026-04-15T00:11:13.989804+00:00) **Spreadsheet Review and Fix** — Treat filename-to-guest-name matching as the strongest clue for GSR entries
+- (2026-04-15T00:11:13.989804+00:00) **Spreadsheet Review and Fix** — Use token-efficient prompt for Claude given 28% usage remaining
+- (2026-04-15T00:11:13.989804+00:00) **Spreadsheet Review and Fix** — Have ChatGPT handle preliminary spreadsheet analysis to reduce Claude token usage
+- (2026-04-16T20:59:38.152926+00:00) **Migration Doc Review** — Daniel chose to include supplementary episode/script files alongside the migration doc, likely to give the AI full context of his actual workflow
+- (2026-04-17T01:59:06.121707+00:00) **AI Title Creation Guide** — Document structured into two sections: one reflecting existing title practices, one as an instruction guide for improvements going forward
+- (2026-04-17T01:59:06.121707+00:00) **AI Title Creation Guide** — Applied new YouTube title rules: 45-70 character limits, lead with strongest angle, 3 options per episode, no emojis/ALL CAPS/clickbait
+- (2026-04-17T01:59:06.121707+00:00) **AI Title Creation Guide** — Used Aptos font with professional styling (navy headers, gray body, custom callout style)
+- (2026-04-17T01:59:06.121707+00:00) **AI Title Creation Guide** — Rendered to PNG for QA but image display encountered 401 authorization errors
+- (2026-04-17T02:12:12.724585+00:00) **File Creation Request** — Focus on recent/current style rather than older episodes
+- (2026-04-17T02:12:12.724585+00:00) **File Creation Request** — Separate interviews and segment/monologue writing into two distinct files
+- (2026-04-17T02:33:42.067633+00:00) **GSR Training Pack** — Used the DOCX skill with render-and-inspect QA loop to build the document
+- (2026-04-17T02:33:42.067633+00:00) **GSR Training Pack** — Applied Aptos font with a navy/blue color scheme matching professional document standards
+- (2026-04-17T02:33:42.067633+00:00) **GSR Training Pack** — Drew content from both the uploaded migration guide and implied knowledge of GSR workflows from past sessions
+- (2026-04-17T02:33:42.067633+00:00) **GSR Training Pack** — Rebuilt the document from scratch after first render revealed layout issues requiring correction
+- (2026-04-17T02:35:09.209708+00:00) **GSR Email Guide** — GSR_Interview_Email_System.docx scoped specifically to guest communications, not general emailing duties
+- (2026-04-17T02:35:09.209708+00:00) **GSR Email Guide** — GSR_General_Email_System.docx scoped to non-GSR/general operational communications
+- (2026-04-17T02:35:09.209708+00:00) **GSR Email Guide** — Both documents sourced from the uploaded migration guide's relevant project sections
+- (2026-04-17T02:35:09.209708+00:00) **GSR Email Guide** — Professional Aptos-font design system used consistent across both documents
+- (2026-04-17T02:35:09.209708+00:00) **GSR Email Guide** — An errant page break was identified and removed from the General Email doc before final delivery
+- (2026-04-17T02:38:21.788025+00:00) **Document Creation Request** — Used the migration guide's Project 3 (GSR Marketing & Growth) instructions as the structural basis for the DOCX
+- (2026-04-17T02:38:21.788025+00:00) **Document Creation Request** — Pulled content from the uploaded GSR Sponsorship Packet Google Doc (fetched via URL from .gdoc JSON pointer) for the PDF media kit
+- (2026-04-17T02:38:21.788025+00:00) **Document Creation Request** — Built both documents programmatically using python-docx and ReportLab respectively
+- (2026-04-17T02:38:21.788025+00:00) **Document Creation Request** — Ran QA via edge-ink pixel analysis since the contact sheet image rendering failed with 401 Unauthorized errors
+- (2026-04-17T02:38:21.788025+00:00) **Document Creation Request** — Delivered only the final files without intermediate render images
+- (2026-04-17T02:41:10.616446+00:00) **GSR Training Pack Creation** — Used the migration guide's Project 2 (GSR Guests & Outreach) section as the primary source for angle development and guest matching content
+- (2026-04-17T02:41:10.616446+00:00) **GSR Training Pack Creation** — Followed the DOCX skill render-inspect-iterate QA workflow before delivering the file
+- (2026-04-17T02:41:10.616446+00:00) **GSR Training Pack Creation** — Rendered to PNGs and created a contact sheet for visual QA before delivery
+- (2026-04-17T02:41:10.616446+00:00) **GSR Training Pack Creation** — Delivered only the final DOCX, not the intermediate render artifacts
+- (2026-04-17T02:52:38.465036+00:00) **Document Merge for AI** — AI read both DOCX files to extract their content before merging
+- (2026-04-17T02:52:38.465036+00:00) **Document Merge for AI** — AI generated a new merged DOCX programmatically using python-docx
+- (2026-04-17T02:52:38.465036+00:00) **Document Merge for AI** — AI rendered the merged DOCX to PNG pages for visual QA before delivering
+- (2026-04-17T02:52:38.465036+00:00) **Document Merge for AI** — Final deliverable was only the merged DOCX, not intermediate render images
+- (2026-02-03T21:39:37.423813+00:00) **Interview Soundbite Selection** — Requested soundbites specifically from interview portions, not host monologue sections
+- (2026-02-03T21:39:37.423813+00:00) **Interview Soundbite Selection** — Set a duration range of 20 seconds to 1 minute for usable clips
+- (2026-02-04T20:59:39.196443+00:00) **First-Time Guest Outreach** — Decided to remove the tailored 'direction' sentence initially, then later added it back as optional selectable phrases
+- (2026-02-04T20:59:39.196443+00:00) **First-Time Guest Outreach** — Decided to include the article link in the template
+- (2026-02-04T20:59:39.196443+00:00) **First-Time Guest Outreach** — Decided to include a brief neutral sentence summarizing the article
+- (2026-02-04T20:59:39.196443+00:00) **First-Time Guest Outreach** — Chose to use the PLOS ONE research article link rather than the Smithsonian article link
+- (2026-02-04T20:59:39.196443+00:00) **First-Time Guest Outreach** — Finalized a specific email to Dr. Patrick Clarke with February 13th and March 6th as filming dates
+- (2026-02-04T20:59:39.196443+00:00) **First-Time Guest Outreach** — Set Daniel's own edited version of the email as the standing master template going forward
+- (2026-02-04T20:59:39.196443+00:00) **First-Time Guest Outreach** — Added an open-ended direction sentence to give the guest flexibility
+- (2026-02-09T20:27:48.845554+00:00) **Joseph Hubbard Topics** — Focused Joseph Hubbard on ancient civilizations, biblical archaeology, and Babel topics
+- (2026-02-09T20:27:48.845554+00:00) **Joseph Hubbard Topics** — Focused Dr. Gordon Wilson on biology/ecology topics like predation and venom
+- (2026-02-09T20:27:48.845554+00:00) **Joseph Hubbard Topics** — Focused Jay Seegert on evolution/origins critiques including hominid fossils and ancient DNA
+- (2026-02-09T20:27:48.845554+00:00) **Joseph Hubbard Topics** — Focused Dr. Chris Rupe on paleoanthropology and genetics
+- (2026-02-09T20:27:48.845554+00:00) **Joseph Hubbard Topics** — Focused Brian Thomas on rapid speciation and synthetic biology
+- (2026-02-09T20:27:48.845554+00:00) **Joseph Hubbard Topics** — Focused Jeff Williams on ISS/NASA topics with recent news links
+- (2026-02-09T20:27:48.845554+00:00) **Joseph Hubbard Topics** — Correctly redirected Dr. Glenn V. Wilson away from NASA topics to soil/hydrology science
+- (2026-02-09T20:27:48.845554+00:00) **Joseph Hubbard Topics** — Pivoted to ice storms and hydrology as a timely angle for Dr. Glenn V. Wilson
+- (2026-02-11T20:19:59.118942+00:00) **GSR Network Acquisition Pitch** — Reframe sponsorship packet content into a network acquisition pitch rather than a sponsorship proposal
+- (2026-02-11T20:19:59.118942+00:00) **GSR Network Acquisition Pitch** — Include price escalation/exclusivity language to create urgency for early adopters
+- (2026-02-11T20:19:59.118942+00:00) **GSR Network Acquisition Pitch** — Use ReportLab and matplotlib to generate the PDF programmatically with brand colors (#0B294D, #4CA3E5)
+- (2026-02-11T20:19:59.118942+00:00) **GSR Network Acquisition Pitch** — Exclude or reframe self-promotional segments (Ministry Report, Viewer Voices, Featured Resource) in the program structure section
+- (2026-02-11T20:19:59.118942+00:00) **GSR Network Acquisition Pitch** — Remove mention of a central episode theme since GSR doesn't consistently have one
+- (2026-02-11T20:19:59.118942+00:00) **GSR Network Acquisition Pitch** — Frame the show as multi-topic science news rather than thematic storytelling
+- (2026-02-11T20:19:59.118942+00:00) **GSR Network Acquisition Pitch** — Present 'Community & Resource Integration' as a combined 6-minute block rather than listing individual self-promotional segments
+- (2026-02-24T18:48:50.411744+00:00) **Interview Withdrawal Response** — Clarified to Paul Nelson that the interview would focus on philosophical/conceptual angles rather than technical methods, successfully reinstating him for March 6
+- (2026-02-24T18:48:50.411744+00:00) **Interview Withdrawal Response** — Decided lobby/internet cafe was probably not ideal for Glenn's remote interview setup
+- (2026-02-24T18:48:50.411744+00:00) **Interview Withdrawal Response** — Scheduled UFO/aliens guest interview for late March or late April
+- (2026-02-24T18:48:50.411744+00:00) **Interview Withdrawal Response** — Requested a signed copy of Gordon Wilson's book for David to hold on set during the interview
+- (2026-02-24T18:48:50.411744+00:00) **Interview Withdrawal Response** — Sent David Coppedge his published interview link with tone matched to prior communication style
+- (2026-03-12T19:56:37.760281+00:00) **YouTube Title Suggestions** — Titles should be short, curiosity-driven, and punchy for YouTube
+- (2026-03-12T19:56:37.760281+00:00) **YouTube Title Suggestions** — Each segment title must be based on the actual content of that segment, not assumed
+- (2026-03-12T19:56:37.760281+00:00) **YouTube Title Suggestions** — THD, monologue, and ministry report segments require Daniel's explicit input since their topics are not always obvious from the transcript
+- (2026-03-14T19:19:52.600331+00:00) **LDS Beliefs vs Protestantism** — Use a Nelson sermon as the primary source for LDS belief comparison
+- (2026-03-14T19:19:52.600331+00:00) **LDS Beliefs vs Protestantism** — Frame the conversation as genuine inquiry rather than debate or attack
+- (2026-03-14T19:19:52.600331+00:00) **LDS Beliefs vs Protestantism** — Lead with plural marriage as the strongest example of LDS doctrinal de-emphasis
+- (2026-03-14T19:19:52.600331+00:00) **LDS Beliefs vs Protestantism** — Ask 'how do you reconcile X with Y' questions rather than yes/no challenges
+- (2026-03-14T19:19:52.600331+00:00) **LDS Beliefs vs Protestantism** — Avoid revealing the full extent of preparation so the conversation feels organic
+- (2026-03-16T16:50:14.845476+00:00) **Soundbite Selection Tips** — AI selected the segment 00:33:33;10 - 00:36:04;20 as the best soundbite (~2:31 long)
+- (2026-03-16T16:50:14.845476+00:00) **Soundbite Selection Tips** — AI prioritized clarity, visual language, and self-contained narrative over more technical or philosophical sections
+- (2026-03-17T16:18:33.575729+00:00) **Internship Handbook Draft** — AI drafted a new NDA section rather than extracting exact NDA language from the .pages file, since the binary format made reliable text extraction impossible
+- (2026-03-17T16:18:33.575729+00:00) **Internship Handbook Draft** — Handbook was kept shorter than the full employee handbook, focusing on intern-relevant policies
+- (2026-03-17T16:18:33.575729+00:00) **Internship Handbook Draft** — AI recommended the second of two simplified NDA exclusion clause rewrites for handbook use
+- (2026-03-18T15:02:28.514544+00:00) **Ultimate Engineering Interview** — Daniel supplied a detailed bio, book context, and a full list of interview questions for Stuart Burgess
+- (2026-03-18T15:02:28.514544+00:00) **Ultimate Engineering Interview** — The AI did not produce the requested Stuart Burgess interview segment and instead returned unrelated previously generated content from other episodes
+- (2026-03-18T17:00:50.097243+00:00) **UFOs and Christian Perspective** — Frame the UFO segment around how Christians should evaluate UFO claims and UAP fascination
+- (2026-03-18T17:00:50.097243+00:00) **UFOs and Christian Perspective** — Structure the conversation in a step-by-step walkthrough format consistent with existing GSR interview style
+- (2026-03-18T17:00:50.097243+00:00) **UFOs and Christian Perspective** — Include questions covering natural/man-made explanations, ancient aliens theory (von Däniken), Genesis 6 interpretations, advanced earthly technology, and biblical worldview dangers
+- (2026-03-18T17:00:50.097243+00:00) **UFOs and Christian Perspective** — Follow the same interview question format used in previous GSR episodes
+- (2026-03-20T15:00:32.191681+00:00) **Key Points Summary** — Confirmed that the first technical question to ask WGGN is whether they can ingest an HLS feed directly
+- (2026-03-20T15:00:32.191681+00:00) **Key Points Summary** — If HLS is not possible, next question is whether they use SDI connections before ordering equipment
+- (2026-03-20T15:00:32.191681+00:00) **Key Points Summary** — Decided to follow up with Laura Adams at Christian Broadcasting Ministries via email
+- (2026-03-20T15:00:32.191681+00:00) **Key Points Summary** — Email draft was produced and ready to send pending Daniel's approval
+- (2026-03-20T16:15:45.013168+00:00) **Show Intro Lower Thirds** — Varied the lead-in phrase beyond 'On Tonight's Show' to add freshness across episodes
+- (2026-03-20T16:15:45.013168+00:00) **Show Intro Lower Thirds** — Enforced a 60-70 character limit after initial options were too long
+- (2026-03-20T16:15:45.013168+00:00) **Show Intro Lower Thirds** — AI used Python-style character counting logic to verify options before presenting them
+- (2026-03-20T17:09:10.374126+00:00) **Carl Werner Interview Intro** — David will intro the Carl Werner segment without giving too much away about the content
+- (2026-03-20T17:09:10.374126+00:00) **Carl Werner Interview Intro** — Carl Werner will say 'back to you, David' at the end of his pre-recorded segment, so David needs closing remarks
+- (2026-03-20T17:09:10.374126+00:00) **Carl Werner Interview Intro** — The book plug should reference Carl Werner's series and direct viewers to creationsuperstore.com
+- (2026-03-20T17:09:10.374126+00:00) **Carl Werner Interview Intro** — The throw to video should feel live even though it is pre-recorded
+- (2026-03-20T17:09:10.374126+00:00) **Carl Werner Interview Intro** — Length of intro should use AI best judgment since it is a recurring segment

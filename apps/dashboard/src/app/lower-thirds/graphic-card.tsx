@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useTransition } from 'react'
+import Image from 'next/image'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -42,7 +44,7 @@ export function GraphicCard({
       try {
         await approveGraphic(id)
       } catch (err) {
-        alert(err instanceof Error ? err.message : 'Approve failed.')
+        toast.error(err instanceof Error ? err.message : 'Approve failed.')
       }
     })
   }
@@ -52,7 +54,7 @@ export function GraphicCard({
       try {
         await rejectGraphic(id)
       } catch (err) {
-        alert(err instanceof Error ? err.message : 'Reject failed.')
+        toast.error(err instanceof Error ? err.message : 'Reject failed.')
       }
     })
   }
@@ -90,7 +92,7 @@ export function GraphicCard({
         await adoptVariation(id, proposedText)
         setDialogOpen(false)
       } catch (err) {
-        alert(err instanceof Error ? err.message : 'Adopt failed.')
+        toast.error(err instanceof Error ? err.message : 'Adopt failed.')
       }
     })
   }
@@ -100,10 +102,11 @@ export function GraphicCard({
   return (
     <article className="flex flex-col gap-3 rounded-md border p-3">
       <div className="flex gap-3">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src={currentImageUrl}
           alt={`Lower-third for ${episodeLabel}, ${segment} beat ${beatNumber ?? '?'}`}
+          width={144}
+          height={80}
           className="h-20 w-36 shrink-0 rounded border bg-muted object-cover"
         />
         <div className="flex flex-1 flex-col gap-1 text-sm">

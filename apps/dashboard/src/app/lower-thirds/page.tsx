@@ -21,9 +21,12 @@ interface GraphicRow {
 
 export default async function LowerThirdsPage() {
   const supabase = await createClient()
+  // Middleware already verified the session — use getSession() for the
+  // email display so we don't pay a JWT-verification round trip per page load.
   const {
-    data: { user },
-  } = await supabase.auth.getUser()
+    data: { session },
+  } = await supabase.auth.getSession()
+  const email = session?.user.email ?? 'unknown'
 
   const { data: graphics } = await supabase
     .from('graphics')
@@ -42,7 +45,7 @@ export default async function LowerThirdsPage() {
         <div>
           <h1 className="text-2xl font-semibold">Lower-thirds review</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Signed in as {user?.email ?? 'unknown'}.
+            Signed in as {email}.
           </p>
         </div>
         <div className="flex gap-2">

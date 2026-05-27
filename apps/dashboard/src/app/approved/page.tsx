@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 import { createClient } from '@/lib/supabase/server'
@@ -88,10 +89,11 @@ export default async function ApprovedPage() {
                             key={g.id}
                             className="flex items-center gap-3 rounded border p-2 text-sm"
                           >
-                            {/* eslint-disable-next-line @next/next/no-img-element */}
-                            <img
+                            <Image
                               src={g.current_image_url}
                               alt={`LT ${g.segment} beat ${g.beat_number}`}
+                              width={96}
+                              height={48}
                               className="h-12 w-24 shrink-0 rounded bg-muted object-cover"
                             />
                             <span className="text-xs text-muted-foreground">

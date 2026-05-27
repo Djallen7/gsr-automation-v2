@@ -148,6 +148,20 @@ def log_stage_end(conn, stage: str, notes: str = ""):
 # STAGE 1: INGEST
 # ============================================================
 
+def _matches_target(base: str, target_filenames: list) -> bool:
+    """Match an exact target name or its split variant, e.g. a target of
+    'conversations.json' also matches 'conversations-000.json' (newer
+    ChatGPT exports chunk conversations across numbered files)."""
+    if base in target_filenames:
+        return True
+    for t in target_filenames:
+        if t.endswith(".json"):
+            stem = re.escape(t[:-len(".json")])
+            if re.fullmatch(rf"{stem}-\d+\.json", base):
+                return True
+    return False
+
+
 def find_export_files(root_path: str, target_filenames: list) -> list:
     """Find target JSON files in a directory or zip."""
     root = Path(root_path)
@@ -159,11 +173,11 @@ def find_export_files(root_path: str, target_filenames: list) -> list:
         with zipfile.ZipFile(root) as zf:
             for name in zf.namelist():
                 base = Path(name).name
-                if base in target_filenames:
+                if _matches_target(base, target_filenames):
                     found.append(("zip", root, name))
     elif root.is_dir():
         for p in root.rglob("*"):
-            if p.is_file() and p.name in target_filenames:
+            if p.is_file() and _matches_target(p.name, target_filenames):
                 found.append(("file", p, None))
     return found
 

@@ -8,18 +8,18 @@ REPO_ROOT="${CLAUDE_PROJECT_DIR:-$(git rev-parse --show-toplevel 2>/dev/null || 
 DASHBOARD="$REPO_ROOT/apps/dashboard"
 
 # Parse the bash command from hook stdin JSON
-TOOL_INPUT=$(cat 2>/dev/null || echo '{}')
 COMMAND=$(python3 -c "
 import json, sys
 try:
-    d = json.load(sys.stdin)
+    data = sys.stdin.read()
+    d = json.loads(data) if data.strip() else {}
     print(d.get('tool_input', {}).get('command', ''))
-except:
+except Exception:
     print('')
-" <<< "$TOOL_INPUT" 2>/dev/null || echo "")
+" 2>/dev/null || echo "")
 
-# Only run on git commit calls
-if [[ "$COMMAND" != *"git commit"* ]]; then
+# Only run on actual git commit commands (at start or after shell separator)
+if ! echo "$COMMAND" | grep -qE '(^|[;&])[[:space:]]*git[[:space:]]+commit'; then
   exit 0
 fi
 
@@ -30,7 +30,7 @@ if [ ! -d "$DASHBOARD/node_modules" ]; then
 fi
 
 # Skip if no dashboard source files are staged
-if ! git -C "$REPO_ROOT" diff --cached --name-only 2>/dev/null | grep -q "^apps/dashboard/src/"; then
+if ! git -C "$REPO_ROOT" diff --cached --name-only 2>/dev/null | grep -q "^apps/dashboard/"; then
   exit 0
 fi
 

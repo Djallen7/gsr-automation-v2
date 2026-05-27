@@ -1,21 +1,32 @@
 import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 import { createClient } from '@/lib/supabase/server'
+import { ReviewGrid } from './review-grid'
 
 export default async function LowerThirdsPage() {
   const supabase = await createClient()
+
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
-  const { data: graphics } = await supabase
-    .from('graphics')
-    .select(
-      `id, segment, beat_number, initial_text, status, current_image_url,
-       episode:episodes(season, episode_number, title)`,
-    )
-    .order('uploaded_at', { ascending: false })
-    .limit(50)
+  const select = `id, segment, beat_number, initial_text, status, current_image_url,
+    episode:episodes(season, episode_number, title)`
+
+  const [{ data: pending }, { data: rejected }] = await Promise.all([
+    supabase
+      .from('graphics')
+      .select(select)
+      .eq('status', 'pending_review')
+      .order('uploaded_at', { ascending: false })
+      .limit(100),
+    supabase
+      .from('graphics')
+      .select(select)
+      .eq('status', 'rejected')
+      .order('uploaded_at', { ascending: false })
+      .limit(100),
+  ])
 
   return (
     <main className="mx-auto max-w-5xl p-8">
@@ -23,45 +34,20 @@ export default async function LowerThirdsPage() {
         <div>
           <h1 className="text-2xl font-semibold">Lower-thirds review</h1>
           <p className="mt-1 text-sm text-muted-foreground">
-            Signed in as {user?.email ?? 'unknown'}. The full review grid arrives in Stage 4.
+            Signed in as {user?.email ?? 'unknown'}
           </p>
         </div>
-        <Link href="/upload" className={buttonVariants()}>
-          Upload
-        </Link>
+        <div className="flex gap-2">
+          <Link href="/approved" className={buttonVariants({ variant: 'outline' })}>
+            Approved queue
+          </Link>
+          <Link href="/upload" className={buttonVariants()}>
+            Upload
+          </Link>
+        </div>
       </header>
 
-      <section className="mt-8">
-        {graphics && graphics.length > 0 ? (
-          <ul className="grid gap-3">
-            {graphics.map((g) => {
-              const ep = Array.isArray(g.episode) ? g.episode[0] : g.episode
-              const label = ep
-                ? `S${ep.season}E${ep.episode_number}${ep.title ? ` — ${ep.title}` : ''}`
-                : 'No episode'
-              return (
-                <li
-                  key={g.id}
-                  className="flex items-center gap-4 rounded-md border p-3 text-sm"
-                >
-                  <span className="rounded bg-muted px-2 py-1 text-xs uppercase tracking-wide">
-                    {g.status}
-                  </span>
-                  <span className="text-muted-foreground">{label}</span>
-                  <span className="text-muted-foreground">
-                    {g.segment} · beat {g.beat_number ?? '—'}
-                  </span>
-                  <span className="font-medium">{g.initial_text}</span>
-                </li>
-              )
-            })}
-          </ul>
-        ) : (
-          <p className="text-sm text-muted-foreground">
-            No lower-thirds uploaded yet. Hit Upload to add the first one.
-          </p>
-        )}
-      </section>
+      <ReviewGrid initialPending={pending ?? []} initialRejected={rejected ?? []} />
     </main>
   )
 }

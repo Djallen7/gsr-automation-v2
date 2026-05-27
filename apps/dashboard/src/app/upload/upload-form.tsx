@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type ChangeEvent, type DragEvent, type FormEvent } from 'react'
+import { useId, useState, type ChangeEvent, type DragEvent, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -91,6 +91,17 @@ interface AutofillPayload {
 export function UploadForm({ episodes }: UploadFormProps) {
   const router = useRouter()
   const supabase = createClient()
+
+  const episodeSelectId = useId()
+  const seasonId = useId()
+  const episodeNumberId = useId()
+  const titleId = useId()
+  const guestId = useId()
+  const segmentId = useId()
+  const beatNumberId = useId()
+  const initialTextId = useId()
+  const fileId = useId()
+  const errorId = useId()
 
   const [mode, setMode] = useState<'existing' | 'new'>(
     episodes.length > 0 ? 'existing' : 'new',
@@ -381,19 +392,21 @@ export function UploadForm({ episodes }: UploadFormProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium">Episode</label>
+            <span className="text-sm font-medium" id={`${episodeSelectId}-label`}>Episode</span>
             {episodes.length > 0 ? (
-              <div className="flex gap-3 text-sm">
+              <div className="flex gap-3 text-sm" role="group" aria-label="Episode mode">
                 <button
                   type="button"
+                  aria-pressed={mode === 'existing'}
                   className={mode === 'existing' ? 'font-semibold' : 'text-muted-foreground'}
                   onClick={() => setMode('existing')}
                 >
                   Existing
                 </button>
-                <span className="text-muted-foreground">/</span>
+                <span className="text-muted-foreground" aria-hidden="true">/</span>
                 <button
                   type="button"
+                  aria-pressed={mode === 'new'}
                   className={mode === 'new' ? 'font-semibold' : 'text-muted-foreground'}
                   onClick={() => setMode('new')}
                 >
@@ -407,7 +420,7 @@ export function UploadForm({ episodes }: UploadFormProps) {
             )}
             {mode === 'existing' && episodes.length > 0 ? (
               <Select value={episodeId} onValueChange={(v) => setEpisodeId(v ?? '')}>
-                <SelectTrigger>
+                <SelectTrigger id={episodeSelectId} aria-labelledby={`${episodeSelectId}-label`}>
                   <SelectValue placeholder="Pick an episode" />
                 </SelectTrigger>
                 <SelectContent>
@@ -422,6 +435,8 @@ export function UploadForm({ episodes }: UploadFormProps) {
             ) : (
               <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
                 <Input
+                  id={seasonId}
+                  aria-label="Season"
                   type="number"
                   min="1"
                   placeholder="Season"
@@ -430,6 +445,8 @@ export function UploadForm({ episodes }: UploadFormProps) {
                   required={mode === 'new'}
                 />
                 <Input
+                  id={episodeNumberId}
+                  aria-label="Episode number"
                   type="number"
                   min="1"
                   placeholder="Episode #"
@@ -438,11 +455,15 @@ export function UploadForm({ episodes }: UploadFormProps) {
                   required={mode === 'new'}
                 />
                 <Input
+                  id={titleId}
+                  aria-label="Title (optional)"
                   placeholder="Title (optional)"
                   value={newTitle}
                   onChange={(e) => setNewTitle(e.target.value)}
                 />
                 <Input
+                  id={guestId}
+                  aria-label="Guest (optional)"
                   placeholder="Guest (optional)"
                   value={newGuestName}
                   onChange={(e) => setNewGuestName(e.target.value)}
@@ -452,9 +473,9 @@ export function UploadForm({ episodes }: UploadFormProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium">Segment</label>
+            <label htmlFor={segmentId} className="text-sm font-medium">Segment</label>
             <Select value={segment} onValueChange={(v) => setSegment((v as Segment) ?? '')}>
-              <SelectTrigger>
+              <SelectTrigger id={segmentId}>
                 <SelectValue placeholder="Pick a segment" />
               </SelectTrigger>
               <SelectContent>
@@ -468,8 +489,9 @@ export function UploadForm({ episodes }: UploadFormProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium">Beat number (optional)</label>
+            <label htmlFor={beatNumberId} className="text-sm font-medium">Beat number (optional)</label>
             <Input
+              id={beatNumberId}
               type="number"
               min="1"
               placeholder="Defaults to next available for this segment"
@@ -479,8 +501,9 @@ export function UploadForm({ episodes }: UploadFormProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium">Initial text</label>
+            <label htmlFor={initialTextId} className="text-sm font-medium">Initial text</label>
             <Textarea
+              id={initialTextId}
               placeholder="DR. JOHN SMITH / GEOLOGIST"
               value={initialText}
               onChange={(e) => setInitialText(e.target.value)}
@@ -490,8 +513,9 @@ export function UploadForm({ episodes }: UploadFormProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label className="text-sm font-medium">PNG file</label>
+            <span className="text-sm font-medium">PNG file</span>
             <label
+              htmlFor={fileId}
               onDrop={handleDrop}
               onDragOver={handleDragOver}
               onDragLeave={handleDragLeave}
@@ -502,6 +526,7 @@ export function UploadForm({ episodes }: UploadFormProps) {
               }`}
             >
               <input
+                id={fileId}
                 type="file"
                 accept="image/png"
                 className="sr-only"
@@ -523,12 +548,23 @@ export function UploadForm({ episodes }: UploadFormProps) {
             </label>
           </div>
 
-          <Button type="submit" disabled={status === 'uploading'}>
+          <Button
+            type="submit"
+            disabled={status === 'uploading'}
+            aria-describedby={status === 'error' && errorMessage ? errorId : undefined}
+          >
             {status === 'uploading' ? 'Uploading…' : 'Upload'}
           </Button>
 
           {status === 'error' && errorMessage ? (
-            <p className="text-sm text-destructive">{errorMessage}</p>
+            <p
+              id={errorId}
+              role="alert"
+              aria-live="polite"
+              className="text-sm text-destructive"
+            >
+              {errorMessage}
+            </p>
           ) : null}
         </form>
       </CardContent>

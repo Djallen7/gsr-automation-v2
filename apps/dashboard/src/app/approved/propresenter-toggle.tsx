@@ -1,6 +1,7 @@
 'use client'
 
 import { useTransition } from 'react'
+import { toast } from 'sonner'
 import { togglePropresenter } from './actions'
 
 interface Props {
@@ -16,7 +17,7 @@ export function PropresenterToggle({ graphicId, added }: Props) {
       try {
         await togglePropresenter(graphicId)
       } catch (err) {
-        alert(err instanceof Error ? err.message : 'Update failed.')
+        toast.error(err instanceof Error ? err.message : 'Update failed.')
       }
     })
   }

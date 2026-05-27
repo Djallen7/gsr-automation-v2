@@ -1,7 +1,7 @@
 # Feature 1 Bootstrap Import: Text-only Lower-Thirds from Script Docs
 
-**Status:** Temporary path. Sibling to `FEATURE_1_LOWER_THIRDS.md`.
-**Goal:** Make the lower-thirds approval dashboard useful from day one by ingesting existing lower-third copy from Google Docs scripts, without waiting for Jakob to migrate his PNG render workflow.
+**Status:** Historical. Superseded by `FEATURE_1_LOWER_THIRDS_TEXT_IMPORT.md` (2026-05-27 — lower-thirds are text-only forever; this is no longer a "bootstrap" path, it's the canonical one).
+**Goal (original):** Make the lower-thirds approval dashboard useful from day one by ingesting existing lower-third copy from Google Docs scripts, without waiting for Jakob to migrate his PNG render workflow.
 **Out of scope:** Image rendering, ProPresenter push, episode metadata beyond what's needed to anchor a graphic to a season + episode_number.
 
 ---

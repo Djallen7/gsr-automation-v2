@@ -34,3 +34,7 @@ workflows/n8n/*.json
 # Build output
 dist/
 build/
+
+# Python bytecode cache — regenerated automatically, not your work
+__pycache__/
+*.pyc

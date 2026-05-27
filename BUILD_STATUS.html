@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<!--
+  GSR AUTOMATION — BUILD STATUS DASHBOARD
+  ========================================
+  Open this file in a browser. No server needed.
+  The PR section loads live from the GitHub API.
+
+  AGENT INSTRUCTIONS — update this file whenever you:
+  ┌──────────────────────────────────────────────────────────────────┐
+  │  • Complete a stage         → change status in STAGES section    │
+  │  • Add a page or API route  → add a card in ROUTES section       │
+  │  • Apply a migration        → add a row in MIGRATIONS section    │
+  │  • Start a new feature      → add a row in UPCOMING section      │
+  │  • Merge a PR               → no action needed (GitHub API live) │
+  └──────────────────────────────────────────────────────────────────┘
+  Update the LAST_UPDATED constant below on every edit.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GSR Automation — Build Status</title>
+  <style>
+    :root {
+      --bg:        #0f172a;
+      --surface:   #1e293b;
+      --border:    #334155;
+      --text:      #e2e8f0;
+      --muted:     #94a3b8;
+      --done:      #22c55e;
+      --done-bg:   #14532d33;
+      --active:    #f59e0b;
+      --active-bg: #78350f33;
+      --planned:   #64748b;
+      --planned-bg:#1e293b;
+      --accent:    #6366f1;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-monospace, 'Cascadia Code', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      padding: 32px 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 20px; font-weight: 700; color: #f1f5f9; }
+    h2 { font-size: 13px; font-weight: 600; text-transform: uppercase;
+         letter-spacing: .08em; color: var(--muted); margin-bottom: 12px; }
+    header {
+      display: flex; align-items: baseline; justify-content: space-between;
+      margin-bottom: 28px; border-bottom: 1px solid var(--border); padding-bottom: 16px;
+    }
+    .meta { color: var(--muted); font-size: 12px; }
+    .grid { display: grid; gap: 16px; }
+    .grid-2 { grid-template-columns: 1fr 1fr; }
+    .grid-3 { grid-template-columns: 2fr 1fr 1fr; }
+    @media (max-width: 768px) { .grid-2, .grid-3 { grid-template-columns: 1fr; } }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    /* Status badges */
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 11px; font-weight: 600; padding: 2px 8px;
+      border-radius: 999px; white-space: nowrap;
+    }
+    .done    { background: var(--done-bg);    color: var(--done);    border: 1px solid var(--done); }
+    .active  { background: var(--active-bg);  color: var(--active);  border: 1px solid var(--active); }
+    .planned { background: var(--planned-bg); color: var(--planned); border: 1px solid var(--border); }
+    /* Stage list */
+    .stage-list { display: flex; flex-direction: column; gap: 8px; }
+    .stage {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 10px; border-radius: 6px; gap: 8px;
+    }
+    .stage.is-done    { background: var(--done-bg); }
+    .stage.is-active  { background: var(--active-bg); }
+    .stage.is-planned { background: #ffffff08; }
+    .stage-label { flex: 1; }
+    .stage-name  { color: var(--text); font-weight: 500; }
+    .stage-desc  { color: var(--muted); font-size: 11px; }
+    /* Routes grid */
+    .route-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 8px; }
+    .route {
+      padding: 8px 10px; border-radius: 6px; border: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 3px;
+    }
+    .route.page { border-color: #6366f155; background: #6366f108; }
+    .route.api  { border-color: #f59e0b55; background: #f59e0b08; }
+    .route-path { font-weight: 600; color: var(--text); }
+    .route-type { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .06em; }
+    /* Migration table */
+    .migration-list { display: flex; flex-direction: column; gap: 6px; }
+    .migration {
+      display: flex; align-items: center; gap: 8px;
+      padding: 6px 8px; border-radius: 5px; background: #ffffff05;
+    }
+    .migration .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--done); flex-shrink: 0;
+    }
+    .migration-ver  { color: var(--muted); font-size: 11px; width: 80px; flex-shrink: 0; }
+    .migration-name { color: var(--text); font-size: 12px; }
+    /* PR section */
+    .pr-list { display: flex; flex-direction: column; gap: 8px; }
+    .pr {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 12px; border-radius: 6px; background: #ffffff05;
+      border: 1px solid var(--border); gap: 12px;
+    }
+    .pr-left { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+    .pr-number { color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .pr-title { color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pr-meta  { color: var(--muted); font-size: 11px; flex-shrink: 0; }
+    .pr-open   .pr-number { color: #22c55e; }
+    .pr-merged .pr-number { color: var(--accent); }
+    .pr-closed .pr-number { color: var(--planned); }
+    #pr-loading { color: var(--muted); padding: 12px 0; }
+    /* Upcoming */
+    .upcoming-list { display: flex; flex-direction: column; gap: 8px; }
+    .upcoming-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 10px; border-radius: 6px; background: #ffffff05;
+    }
+    .upcoming-name { color: var(--text); font-weight: 500; }
+    .upcoming-desc { color: var(--muted); font-size: 11px; }
+    section { margin-bottom: 24px; }
+    .section-header { margin-bottom: 12px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div>
+    <h1>GSR Automation — Build Dashboard</h1>
+    <p class="meta">Djallen7/gsr-automation-v2 &nbsp;·&nbsp; main branch</p>
+  </div>
+  <div class="meta" id="updated"></div>
+</header>
+
+<!-- ═══════════════════════════════════════════════════════ ROW 1 -->
+<section>
+  <div class="grid grid-3">
+
+    <!-- Feature 1 stages -->
+    <div class="card">
+      <h2>Feature 1 — Episode Graphics &amp; Asset Tracker</h2>
+      <div class="stage-list">
+
+        <div class="stage is-done">
+          <div class="stage-label">
+            <div class="stage-name">Stage 0 — Account setup</div>
+            <div class="stage-desc">Supabase, Vercel, GitHub, Anthropic key</div>
+          </div>
+          <span class="badge done">✓ Done</span>
+        </div>
+
+        <div class="stage is-done">
+          <div class="stage-label">
+            <div class="stage-name">Stage 1 — Schema</div>
+            <div class="stage-desc">episodes, graphics, graphics_variations + RLS</div>
+          </div>
+          <span class="badge done">✓ Done</span>
+        </div>
+
+        <div class="stage is-done">
+          <div class="stage-label">
+            <div class="stage-name">Stage 2 — Dashboard shell</div>
+            <div class="stage-desc">Next.js 16 + shadcn/ui + magic-link auth</div>
+          </div>
+          <span class="badge done">✓ Done</span>
+        </div>
+
+        <div class="stage is-done">
+          <div class="stage-label">
+            <div class="stage-name">Stage 3 — Upload page</div>
+            <div class="stage-desc">PNG upload → Supabase Storage + DB rows</div>
+          </div>
+          <span class="badge done">✓ Done</span>
+        </div>
+
+        <div class="stage is-done">
+          <div class="stage-label">
+            <div class="stage-name">Stage 4 — Review grid</div>
+            <div class="stage-desc">Approve / Reject per graphic</div>
+          </div>
+          <span class="badge done">✓ Done</span>
+        </div>
+
+        <div class="stage is-done">
+          <div class="stage-label">
+            <div class="stage-name">Stage 5 — AI regeneration</div>
+            <div class="stage-desc">Claude API → new lower-third text variation</div>
+          </div>
+          <span class="badge done">✓ Done</span>
+        </div>
+
+        <div class="stage is-done">
+          <div class="stage-label">
+            <div class="stage-name">Stage 6 — Approved queue</div>
+            <div class="stage-desc">Approved list + ProPresenter toggle</div>
+          </div>
+          <span class="badge done">✓ Done</span>
+        </div>
+
+        <div class="stage is-done">
+          <div class="stage-label">
+            <div class="stage-name">Stage 6.5 — Text import + fonts</div>
+            <div class="stage-desc">/import page, /api/import, font overrides, copy button</div>
+          </div>
+          <span class="badge done">✓ Done</span>
+        </div>
+
+        <div class="stage is-active">
+          <div class="stage-label">
+            <div class="stage-name">Stage 7 — Real episode test</div>
+            <div class="stage-desc">Run one full episode through the workflow</div>
+          </div>
+          <span class="badge active">↻ Next</span>
+        </div>
+
+        <div class="stage is-planned">
+          <div class="stage-label">
+            <div class="stage-name">PR2 — Graphic asset tracker</div>
+            <div class="stage-desc">Clips, b-roll, pictures, propres quotes</div>
+          </div>
+          <span class="badge planned">○ Planned</span>
+        </div>
+
+        <div class="stage is-planned">
+          <div class="stage-label">
+            <div class="stage-name">Phase 2 — ProPresenter push</div>
+            <div class="stage-desc">Automate the ProPresenter handoff via API</div>
+          </div>
+          <span class="badge planned">○ Planned</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Migrations -->
+    <div class="card">
+      <h2>DB Migrations (13 applied)</h2>
+      <div class="migration-list">
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260526-0128</span><span class="migration-name">lower_thirds_schema</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260526-0138</span><span class="migration-name">lower_thirds_rls</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260526-0152</span><span class="migration-name">lower_thirds_storage</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260526-0846</span><span class="migration-name">propresenter_added_flag</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0300</span><span class="migration-name">baseline_rls</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0300</span><span class="migration-name">regenerate_rate_limit</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0300</span><span class="migration-name">propresenter_atomic_toggle</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0301</span><span class="migration-name">storage_bucket_hardening</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0352</span><span class="migration-name">add_font_fields</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0357</span><span class="migration-name">episodes_unique_key</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0439</span><span class="migration-name">audit_fixes</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0459</span><span class="migration-name">add_show_intro_segment</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0459</span><span class="migration-name">add_l3_type_and_variants</span></div>
+      </div>
+    </div>
+
+    <!-- Upcoming -->
+    <div class="card">
+      <h2>Coming After Stage 7</h2>
+      <div class="upcoming-list">
+
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-name">Retire /upload PNG page</div>
+            <div class="upcoming-desc">After 2 episodes on text-only path</div>
+          </div>
+          <span class="badge planned">○</span>
+        </div>
+
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-name">Drop current_image_url</div>
+            <div class="upcoming-desc">Clean up __text_only__ sentinel rows</div>
+          </div>
+          <span class="badge planned">○</span>
+        </div>
+
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-name">Graphic asset tracker</div>
+            <div class="upcoming-desc">Clips, b-roll, pictures, propres quotes</div>
+          </div>
+          <span class="badge planned">○</span>
+        </div>
+
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-name">ProPresenter push API</div>
+            <div class="upcoming-desc">Phase 2 — automate handoff</div>
+          </div>
+          <span class="badge planned">○</span>
+        </div>
+
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-name">Episode metadata</div>
+            <div class="upcoming-desc">Transcripts, descriptions — Feature 2</div>
+          </div>
+          <span class="badge planned">○</span>
+        </div>
+
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-name">YouTube upload</div>
+            <div class="upcoming-desc">Feature 3 — once metadata is reliable</div>
+          </div>
+          <span class="badge planned">○</span>
+        </div>
+
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-name">Guest pipeline</div>
+            <div class="upcoming-desc">Outreach / scheduling — Feature 4</div>
+          </div>
+          <span class="badge planned">○</span>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ ROW 2 -->
+<section>
+  <div class="card">
+    <h2>Pages &amp; API Routes</h2>
+    <div class="route-grid">
+      <div class="route page"><span class="route-path">/login</span><span class="route-type">page</span></div>
+      <div class="route page"><span class="route-path">/upload</span><span class="route-type">page · legacy</span></div>
+      <div class="route page"><span class="route-path">/import</span><span class="route-type">page</span></div>
+      <div class="route page"><span class="route-path">/lower-thirds</span><span class="route-type">page</span></div>
+      <div class="route page"><span class="route-path">/approved</span><span class="route-type">page</span></div>
+      <div class="route api"><span class="route-path">/api/regenerate</span><span class="route-type">POST · claude</span></div>
+      <div class="route api"><span class="route-path">/api/import</span><span class="route-type">POST · bulk ingest</span></div>
+      <div class="route api"><span class="route-path">/auth/callback</span><span class="route-type">GET · supabase</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════ ROW 3 -->
+<section>
+  <div class="card">
+    <h2>Pull Requests — live from GitHub</h2>
+    <div id="pr-list">
+      <div id="pr-loading">Loading from GitHub API…</div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // ── Last updated timestamp ─────────────────────────────────────────────────
+  // AGENTS: update this string when you edit this file
+  const LAST_UPDATED = '2026-05-27'
+  document.getElementById('updated').textContent = 'Last updated: ' + LAST_UPDATED
+
+  // ── Live PR fetch from GitHub API ──────────────────────────────────────────
+  const REPO = 'Djallen7/gsr-automation-v2'
+
+  async function loadPRs() {
+    const container = document.getElementById('pr-list')
+    try {
+      const res = await fetch(
+        `https://api.github.com/repos/${REPO}/pulls?state=all&per_page=15&sort=updated&direction=desc`
+      )
+      if (!res.ok) throw new Error(`GitHub API ${res.status}`)
+      const prs = await res.json()
+
+      if (!prs.length) {
+        container.innerHTML = '<div id="pr-loading">No pull requests found.</div>'
+        return
+      }
+
+      const html = prs.map(pr => {
+        const stateClass = pr.pull_request?.merged_at ? 'pr-merged'
+                         : pr.state === 'open'        ? 'pr-open'
+                         : 'pr-closed'
+        const stateLabel = pr.pull_request?.merged_at ? '⬡ merged'
+                         : pr.state === 'open'        ? '● open'
+                         : '○ closed'
+        const date = new Date(pr.updated_at).toLocaleDateString('en-US', {
+          month: 'short', day: 'numeric'
+        })
+        return `
+          <div class="pr ${stateClass}">
+            <div class="pr-left">
+              <span class="pr-number">#${pr.number}</span>
+              <span class="pr-title">${escHtml(pr.title)}</span>
+            </div>
+            <span class="pr-meta">${stateLabel} &nbsp;·&nbsp; ${date}</span>
+          </div>`
+      }).join('')
+
+      container.innerHTML = `<div class="pr-list">${html}</div>`
+    } catch (err) {
+      container.innerHTML = `<div id="pr-loading" style="color:#f87171">
+        Could not load PRs — ${escHtml(String(err))}
+        <br><small>GitHub API rate-limits unauthenticated requests to 60/hr.</small>
+      </div>`
+    }
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')
+  }
+
+  loadPRs()
+</script>
+</body>
+</html>

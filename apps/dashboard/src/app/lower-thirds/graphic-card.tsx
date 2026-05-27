@@ -1,6 +1,8 @@
 'use client'
 
 import { useState, useTransition } from 'react'
+import Image from 'next/image'
+import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -9,6 +11,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import { FontEditor } from '@/components/font-editor'
+import { isTextOnly } from '@/lib/text-only-sentinel'
 import { adoptVariation, approveGraphic, rejectGraphic } from './actions'
 
 interface GraphicCardProps {
@@ -19,6 +23,9 @@ interface GraphicCardProps {
   status: string
   currentImageUrl: string
   episodeLabel: string
+  fontFamily: string | null
+  fontSizePt: number | null
+  fontColor: string | null
 }
 
 export function GraphicCard({
@@ -29,6 +36,9 @@ export function GraphicCard({
   status,
   currentImageUrl,
   episodeLabel,
+  fontFamily,
+  fontSizePt,
+  fontColor,
 }: GraphicCardProps) {
   const [isPending, startTransition] = useTransition()
   const [regenerating, setRegenerating] = useState(false)
@@ -42,7 +52,7 @@ export function GraphicCard({
       try {
         await approveGraphic(id)
       } catch (err) {
-        alert(err instanceof Error ? err.message : 'Approve failed.')
+        toast.error(err instanceof Error ? err.message : 'Approve failed.')
       }
     })
   }
@@ -52,7 +62,7 @@ export function GraphicCard({
       try {
         await rejectGraphic(id)
       } catch (err) {
-        alert(err instanceof Error ? err.message : 'Reject failed.')
+        toast.error(err instanceof Error ? err.message : 'Reject failed.')
       }
     })
   }
@@ -90,22 +100,34 @@ export function GraphicCard({
         await adoptVariation(id, proposedText)
         setDialogOpen(false)
       } catch (err) {
-        alert(err instanceof Error ? err.message : 'Adopt failed.')
+        toast.error(err instanceof Error ? err.message : 'Adopt failed.')
       }
     })
   }
 
   const isPendingReview = status === 'pending_review'
 
+  const textOnly = isTextOnly(currentImageUrl)
+
   return (
     <article className="flex flex-col gap-3 rounded-md border p-3">
       <div className="flex gap-3">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={currentImageUrl}
-          alt={`Lower-third for ${episodeLabel}, ${segment} beat ${beatNumber ?? '?'}`}
-          className="h-20 w-36 shrink-0 rounded border bg-muted object-cover"
-        />
+        {textOnly ? (
+          <div
+            aria-label="Text-only graphic"
+            className="flex h-20 w-36 shrink-0 items-center justify-center rounded border bg-muted text-xs uppercase tracking-wide text-muted-foreground"
+          >
+            text-only
+          </div>
+        ) : (
+          <Image
+            src={currentImageUrl}
+            alt={`Lower-third for ${episodeLabel}, ${segment} beat ${beatNumber ?? '?'}`}
+            width={144}
+            height={80}
+            className="h-20 w-36 shrink-0 rounded border bg-muted object-cover"
+          />
+        )}
         <div className="flex flex-1 flex-col gap-1 text-sm">
           <div className="flex flex-wrap items-center gap-2 text-xs">
             <span className="rounded bg-muted px-2 py-0.5 uppercase tracking-wide">
@@ -117,6 +139,14 @@ export function GraphicCard({
             </span>
           </div>
           <p className="font-medium">{initialText}</p>
+          <FontEditor
+            graphicId={id}
+            initial={{
+              font_family: fontFamily,
+              font_size_pt: fontSizePt,
+              font_color: fontColor,
+            }}
+          />
           {regenError ? (
             <p className="text-xs text-destructive">{regenError}</p>
           ) : null}

@@ -6,6 +6,84 @@ import { useRef, useState, useTransition } from 'react'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 
+const EXTRACTION_PROMPT = `You are extracting GSR (Genesis Science Report) lower-third graphics from script documents stored in Google Drive.
+
+INPUT: A Google Drive folder, one folder per episode, named like "S3 EP12 - John Smith Interview". Inside is a script Google Doc, plus optionally a sub-folder of standalone lower-third docs.
+
+YOUR JOB: Read every script doc and any lower-third doc in the folder. Extract every lower-third (LT) copy line. Group them by segment. Return JSON in the exact schema given at the end.
+
+SEGMENT ENUM (use these exact values, no others):
+show_intro, opening_monologue, interview_1, interview_2, kids_corner, genesis_science_qa, ministry_report, viewer_voices, featured_resource, heavens_declare, genesis_science_minute, other
+
+L3_TYPE ENUM — choose the best match for every graphic:
+episode_intro_l3   → show title card / episode number (show_intro segment)
+monologue_beat     → a key point in the opening monologue
+segment_graphics_title → title card for a segment (e.g. "KIDS CORNER")
+topic_l3           → a topic header inside a segment (has var_1, var_2)
+guest_chyron       → guest name + title/role (e.g. "DR. JOHN SMITH / GEOLOGIST")
+discussion_l3      → a discussion or argument point in an interview
+generic_safety_net → fallback when nothing else fits
+qa_topic_l3        → a question or topic in Genesis Science Q&A
+mr_topic_l3        → a point in Ministry Report
+mr_cta_l3          → a call-to-action in Ministry Report
+correspondent_chyron → correspondent name + role in Heavens Declare
+viewer_l3          → a viewer question or quote in Viewer Voices
+resource_l3        → a book/resource title in Featured Resource
+cta_l3             → a donation or website call-to-action
+other              → anything that doesn't fit above
+
+HOW TO IDENTIFY LOWER-THIRDS IN THE SCRIPT:
+- Lower-thirds are written in ALL CAPS, broadcast style.
+- They appear as standalone lines, sometimes prefixed with "LT:", "LOWER THIRD:", or "GRAPHIC:".
+- A name + role pattern is common: "DR. JOHN SMITH / GEOLOGIST" → guest_chyron.
+- Segment headers like "INTERVIEW 1", "KIDS CORNER", "MINISTRY REPORT" tell you which segment enum value to use.
+- If a segment header is ambiguous, map it to the closest enum value and put the original header text in source_doc.
+
+EXTRACTION RULES:
+- Preserve the LT text exactly as written, including capitalization and slashes.
+- Never use em dashes. If the source uses one, replace with a forward slash or hyphen.
+- beat_number is the order of the LT within its segment, starting at 1.
+- primary MUST be 1..200 characters. If a line is longer, put it in the top-level "rejected" array (do not emit it in the graphics array).
+- If episode metadata is missing, leave the field as null. Do not invent values.
+- title and air_date can be inferred from the folder name when not explicit in the doc.
+
+VARIANTS (var_1, var_2):
+For l3_type values episode_intro_l3, segment_graphics_title, and topic_l3, include shorter variant versions in var_1 (medium) and var_2 (short). For all other l3_types, omit var_1 and var_2.
+
+OUTPUT: Return ONLY valid JSON matching this exact schema. No prose, no markdown fences, no commentary.
+
+{
+  "episodes": [
+    {
+      "season":         <int 1..99>,
+      "episode_number": <int 1..999>,
+      "title":          <string or null>,
+      "air_date":       <"YYYY-MM-DD" or null>,
+      "guest_name":     <string or null>
+    }
+  ],
+  "graphics": [
+    {
+      "episode_season":  <int>,
+      "episode_number":  <int>,
+      "segment":         <segment enum value>,
+      "l3_type":         <l3_type enum value>,
+      "beat_number":     <int 1..999>,
+      "primary":         <string 1..200 chars>,
+      "var_1":           <string 1..200 chars, or null if not applicable>,
+      "var_2":           <string 1..200 chars, or null if not applicable>,
+      "source_doc":      <string or null>
+    }
+  ],
+  "rejected": [
+    {
+      "reason":     <string — why it was rejected>,
+      "raw_text":   <the original text>,
+      "source_doc": <string or null>
+    }
+  ]
+}`
+
 interface RejectedItem {
   reason: string
   raw_text: string
@@ -39,8 +117,15 @@ export function ImportForm() {
   const [dryRun, setDryRun] = useState(true)
   const [result, setResult] = useState<ImportResponse | null>(null)
   const [isPending, startTransition] = useTransition()
+  const [promptCopied, setPromptCopied] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const router = useRouter()
+
+  async function copyPrompt() {
+    await navigator.clipboard.writeText(EXTRACTION_PROMPT)
+    setPromptCopied(true)
+    setTimeout(() => setPromptCopied(false), 2000)
+  }
 
   async function onFile(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0]
@@ -98,6 +183,9 @@ export function ImportForm() {
           </p>
         </div>
         <div className="flex gap-2">
+          <Button type="button" variant="outline" onClick={copyPrompt}>
+            {promptCopied ? '✓ Copied!' : 'Copy extraction prompt'}
+          </Button>
           <Link href="/lower-thirds" className={buttonVariants({ variant: 'outline' })}>
             Cancel
           </Link>

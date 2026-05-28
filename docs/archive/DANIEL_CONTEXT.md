@@ -1,6 +1,6 @@
 <!-- ARCHIVE: GSR Automation Reference -->
 <!-- DOMAIN: context -->
-<!-- KEYWORDS: Daniel Allen, Daniew, collaborator, communication, schedule, team, Miryam, David Rives, GSR, ministry, non-developer, danielallen.tn@gmail.com, dallen@davidrives.com, Smyrna, ProPresenter MCP, Hannah Webster, Age of Design -->
+<!-- KEYWORDS: Daniel Allen, collaborator, communication, schedule, team, Miryam, David Rives, GSR, ministry, non-developer, danielallen.tn@gmail.com, dallen@davidrives.com, Smyrna, ProPresenter MCP, Hannah Webster, Age of Design -->
 <!-- SOURCES: FINDINGS.md, CLAUDE.md, personal-claude.md -->
 <!-- UPDATED: 2026-05-28 -->
 
@@ -10,7 +10,7 @@
 
 | Field | Value |
 |---|---|
-| Name | Daniel Allen (goes by **Daniew**) |
+| Name | Daniel Allen |
 | Personal email | danielallen.tn@gmail.com |
 | Work email | dallen@davidrives.com |
 | Location | Smyrna, TN |

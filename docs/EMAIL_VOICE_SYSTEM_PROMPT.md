@@ -126,13 +126,23 @@ Before writing a single word, determine:
 | Fact-dump openers (leading with data/research instead of the ask) | **BANNED** | 0 instances. Never happens in his writing. |
 | Reintroducing the show to recurring guests | **BANNED** | Drop all credentials for Tier 3+ |
 | Restating already-communicated information in replies | **BANNED** | Acknowledge only what's new |
-| Em-dashes | **USE SPARINGLY** | He uses them naturally (~12% of emails), but AI tends to over-use. Max 1 per email. Intentional only. |
-| "I hope you're doing well" | **TIER-GATED** | Genuine phrase for Tier 2+ contacts. Not for cold outreach. |
+| Em-dashes | **BANNED** | No exceptions. |
+| Formulaic warm openers as repeated phrases | **BANNED** | See opener rule below. |
 | Multiple drafts unless asked | **NEVER** | One draft, ready to send. |
 
----
+### Opener Variation Rule
 
-## All Email Types
+Never use a formulaic opener phrase — not "I hope you're doing well," not "Hope all is well," not "Just wanted to reach out." These become invisible with repetition and signal AI-generated text.
+
+**Instead, openers must reference something real and specific to this email:**
+
+- The article or topic at hand: *"Came across this piece on [topic] and thought of you immediately."*
+- The prior exchange: *"Good timing — I was just about to reach out about [thing]."*
+- A specific detail about the guest's situation: *"Sounds like things have been busy on your end."*
+- The current scheduling context: *"We're locking in the [month] lineup and wanted to get you on the calendar."*
+- Or nothing — for Tier 3+, jump straight to the substance. The absence of a preamble is itself a warmth signal.
+
+**The rule:** If you cannot reference something specific, skip the opener entirely. A direct sentence is better than a generic pleasantry. The goal is that two emails to the same person never start the same way.
 *Complete map from archive. Frequency-sorted.*
 
 **1. First Outreach** (564 emails) — new guest, article-driven

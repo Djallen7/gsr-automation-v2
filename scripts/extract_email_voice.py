@@ -6,6 +6,8 @@ response behavior: what came in, what he decided to say back, and how much.
 
 Voice modeling requires pairs, not isolated outgoing emails.
 
+Supports: .eml, .emlx, .mbox, and .pst (via readpst conversion)
+
 Usage:
     python3 extract_email_voice.py
 
@@ -18,6 +20,9 @@ import json
 import email
 import mailbox
 import re
+import subprocess
+import tempfile
+import shutil
 from pathlib import Path
 from collections import defaultdict
 from email.utils import parsedate_to_datetime
@@ -294,6 +299,52 @@ def assign_relationship_tiers(threads):
 
 # ─── Main ─────────────────────────────────────────────────────────────────────
 
+def convert_pst(pst_path, tmp_dir):
+    """
+    Convert a .pst file to .mbox files using readpst (brew install libpst).
+    Returns list of .mbox paths created, or empty list if readpst not available.
+    """
+    readpst = shutil.which("readpst")
+    if not readpst:
+        print(f"  NOTE: readpst not installed — skipping {pst_path.name}")
+        print("  To include PST data: brew install libpst")
+        return []
+
+    print(f"  Converting {pst_path.name} with readpst...")
+    out_dir = Path(tmp_dir) / pst_path.stem
+    out_dir.mkdir(parents=True, exist_ok=True)
+    try:
+        subprocess.run(
+            [readpst, "-o", str(out_dir), "-r", str(pst_path)],
+            capture_output=True, timeout=120
+        )
+        return list(out_dir.rglob("*.mbox"))
+    except Exception as e:
+        print(f"  readpst error: {e}")
+        return []
+
+
+def parse_eml_file(fpath):
+    """Parse a standard .eml file."""
+    try:
+        with open(fpath, "rb") as f:
+            content = f.read()
+        return email.message_from_bytes(content)
+    except Exception:
+        return None
+
+
+def parse_emlx_file(fpath):
+    """Parse Apple Mail .emlx file (has a byte-count header line)."""
+    try:
+        with open(fpath, "rb") as f:
+            content = f.read()
+        nl = content.index(b"\n")
+        return email.message_from_bytes(content[nl + 1:])
+    except Exception:
+        return None
+
+
 def main():
     if not FOLDER.exists():
         print(f"ERROR: Email folder not found at {FOLDER}")
@@ -303,34 +354,69 @@ def main():
     all_messages = []
     file_count = 0
     error_count = 0
+    tmp_dir = tempfile.mkdtemp(prefix="gsr_pst_")
 
-    for root, dirs, files in os.walk(FOLDER):
-        for fname in files:
-            fpath = Path(root) / fname
+    try:
+        for root, dirs, files in os.walk(FOLDER):
+            # Skip spam/junk folders
+            if any(skip in root.lower() for skip in ["spam", "junk", "trash", ".ds_store"]):
+                continue
 
-            if fname.endswith(".mbox"):
-                try:
-                    for msg in mailbox.mbox(fpath):
+            for fname in files:
+                fpath = Path(root) / fname
+                if fname.startswith(".") or fname == "Icon":
+                    continue
+
+                # .pst — convert first, then process mbox output
+                if fname.lower().endswith(".pst"):
+                    mbox_files = convert_pst(fpath, tmp_dir)
+                    for mbox_path in mbox_files:
+                        try:
+                            for msg in mailbox.mbox(mbox_path):
+                                record = process_msg(msg)
+                                if record:
+                                    all_messages.append(record)
+                            file_count += 1
+                        except Exception as e:
+                            error_count += 1
+                            print(f"  mbox error {mbox_path.name}: {e}")
+
+                # Standard .mbox
+                elif fname.lower().endswith(".mbox"):
+                    try:
+                        for msg in mailbox.mbox(fpath):
+                            record = process_msg(msg)
+                            if record:
+                                all_messages.append(record)
+                        file_count += 1
+                    except Exception as e:
+                        error_count += 1
+                        print(f"  mbox error {fpath.name}: {e}")
+
+                # Standard .eml (most common export format)
+                elif fname.lower().endswith(".eml"):
+                    msg = parse_eml_file(fpath)
+                    if msg:
                         record = process_msg(msg)
                         if record:
                             all_messages.append(record)
-                    file_count += 1
-                except Exception as e:
-                    error_count += 1
-                    print(f"  mbox error {fpath.name}: {e}")
+                        file_count += 1
+                    else:
+                        error_count += 1
 
-            elif fname.endswith(".emlx"):
-                try:
-                    with open(fpath, "rb") as f:
-                        content = f.read()
-                    nl = content.index(b"\n")
-                    msg = email.message_from_bytes(content[nl + 1:])
-                    record = process_msg(msg)
-                    if record:
-                        all_messages.append(record)
-                    file_count += 1
-                except Exception:
-                    error_count += 1
+                # Apple Mail .emlx
+                elif fname.lower().endswith(".emlx"):
+                    msg = parse_emlx_file(fpath)
+                    if msg:
+                        record = process_msg(msg)
+                        if record:
+                            all_messages.append(record)
+                        file_count += 1
+                    else:
+                        error_count += 1
+
+    finally:
+        shutil.rmtree(tmp_dir, ignore_errors=True)
 
     print(f"Processed {file_count} files ({error_count} errors)")
     print(f"Total messages (both directions): {len(all_messages)}")

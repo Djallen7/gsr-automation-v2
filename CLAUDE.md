@@ -44,6 +44,12 @@ This rule exists because archaeology of 879 conversations showed repeated cycles
 - Before running any command: could this affect anything other than what we're working on?
 - If yes, or if uncertain — stop and ask first
 
+**Lower-thirds import confirmation (mandatory)**
+- Before importing any lower thirds to the dashboard, always run a dry-run first
+- Show Daniel a summary: episode count, graphic count, any rejected items
+- Ask for explicit confirmation ("Type YES to import") before executing the live import
+- Never call `/api/import` in live mode without that confirmation in the same session
+
 **ProPresenter**
 - All ProPresenter automation work happens on a test machine only
 - Never connect to or send commands to the production ProPresenter machine via any automated process until explicitly approved by David
@@ -78,7 +84,7 @@ This rule exists because archaeology of 879 conversations showed repeated cycles
 - `/api/regenerate` — Claude API route (`claude-opus-4-7`), rate-limited, deduped
 - `/api/import` — bulk ingest route, dry-run + live modes, Zod-validated
 
-**13 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
+**43 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
 
 **BUILD_STATUS.html** at repo root — open in browser for visual build overview.
 

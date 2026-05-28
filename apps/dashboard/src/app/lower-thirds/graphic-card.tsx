@@ -45,8 +45,8 @@ export function GraphicCard({
   const [regenerating, setRegenerating] = useState(false)
   const [regenError, setRegenError] = useState<string | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
-  const [proposedText, setProposedText] = useState('')
-  const [proposedVariationNumber, setProposedVariationNumber] = useState<number | null>(null)
+  const [proposedVariations, setProposedVariations] = useState<{ text: string; variationNumber: number }[]>([])
+  const [selectedIdx, setSelectedIdx] = useState(0)
 
   function handleApprove() {
     const prev = localStatus
@@ -84,15 +84,17 @@ export function GraphicCard({
         body: JSON.stringify({ graphicId: id }),
       })
       const payload = (await res.json()) as
-        | { text: string; variationNumber: number }
+        | { variations: { text: string; variationNumber: number }[] }
         | { error: string }
       if (!res.ok) {
         const message = 'error' in payload ? payload.error : 'Regenerate failed.'
         throw new Error(message)
       }
-      if (!('text' in payload)) throw new Error('Unexpected response.')
-      setProposedText(payload.text)
-      setProposedVariationNumber(payload.variationNumber)
+      if (!('variations' in payload) || payload.variations.length === 0) {
+        throw new Error('Unexpected response.')
+      }
+      setProposedVariations(payload.variations)
+      setSelectedIdx(0)
       setDialogOpen(true)
     } catch (err) {
       setRegenError(err instanceof Error ? err.message : 'Regenerate failed.')
@@ -102,9 +104,11 @@ export function GraphicCard({
   }
 
   function handleAdopt() {
+    const selected = proposedVariations[selectedIdx]
+    if (!selected) return
     startTransition(async () => {
       try {
-        await adoptVariation(id, proposedText)
+        await adoptVariation(id, selected.text)
         setDialogOpen(false)
       } catch (err) {
         toast.error(err instanceof Error ? err.message : 'Adopt failed.')
@@ -208,20 +212,39 @@ export function GraphicCard({
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Regenerated text</DialogTitle>
+            <DialogTitle>Pick a variation</DialogTitle>
             <DialogDescription>
-              Variation {proposedVariationNumber ?? '?'} — saved in history regardless of your choice.
+              All {proposedVariations.length} saved to history. Click one to select, then adopt it.
             </DialogDescription>
           </DialogHeader>
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-            <div className="flex flex-col gap-1">
-              <span className="text-xs text-muted-foreground">Original</span>
-              <p className="rounded border bg-muted p-2 text-sm">{initialText}</p>
-            </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-xs text-muted-foreground">New</span>
-              <p className="rounded border bg-muted p-2 text-sm">{proposedText}</p>
-            </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-muted-foreground">Original</span>
+            <p className="rounded border bg-muted p-2 text-sm font-mono">{initialText}</p>
+            <span className="text-xs tabular-nums text-muted-foreground">{initialText.length}/65</span>
+          </div>
+          <div className="flex flex-col gap-2">
+            <span className="text-xs text-muted-foreground">Generated variations — click to select</span>
+            {proposedVariations.map((v, i) => (
+              <button
+                key={v.variationNumber}
+                type="button"
+                onClick={() => setSelectedIdx(i)}
+                className={`rounded border p-2 text-left text-sm font-mono transition-colors ${
+                  selectedIdx === i
+                    ? 'border-primary bg-primary/10 ring-1 ring-primary'
+                    : 'border-muted bg-muted hover:bg-muted/80'
+                }`}
+              >
+                <div className="flex items-center justify-between gap-2">
+                  <span>{v.text}</span>
+                  <span className={`shrink-0 text-xs tabular-nums ${
+                    v.text.length > 65 ? 'text-destructive font-semibold' : v.text.length < 55 ? 'text-amber-500' : 'text-muted-foreground'
+                  }`}>
+                    {v.text.length}/65
+                  </span>
+                </div>
+              </button>
+            ))}
           </div>
           <div className="flex justify-end gap-2">
             <Button
@@ -231,8 +254,8 @@ export function GraphicCard({
             >
               Keep original
             </Button>
-            <Button onClick={handleAdopt} disabled={isPending}>
-              {isPending ? 'Saving…' : 'Use new'}
+            <Button onClick={handleAdopt} disabled={isPending || proposedVariations.length === 0}>
+              {isPending ? 'Saving…' : 'Use selected'}
             </Button>
           </div>
         </DialogContent>

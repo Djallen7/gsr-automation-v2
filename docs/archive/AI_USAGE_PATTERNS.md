@@ -57,6 +57,8 @@ These errors appear repeatedly across hundreds of sessions. Future sessions shou
 
 1. **Suggesting recently-aired guests** — Claude has no data on who has already appeared on GSR. Without explicit airing history context, it will suggest guests who were just on the show.
 
+2. **Fabricating product plugs** — Claude invents sponsor or product mentions that were never in the episode brief. Always verify against the actual episode doc.
+
 3. **Forgetting the 30%-shorter YouTube title rule** — GSR YouTube titles must be ~30% shorter than the full episode title. Claude routinely ignores this without explicit re-instruction each session.
 
 4. **L3 lower-thirds overshoot** — L3 (lower third, line 3) text runs too long. Claude generates copy that exceeds the character limit for the ProPresenter template.

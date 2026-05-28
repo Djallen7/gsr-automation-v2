@@ -35,7 +35,6 @@ grep -ri "ProPresenter" docs/archive/     # find files mentioning a tool
 | `BEHAVIORAL_FORENSICS.md` | intelligence | Forensic pipeline state, DuckDB tables, key queries, caveats | mac_apt, DuckDB, Timesketch, iCloud, WiFi, May 19 incident, timestamp contamination |
 | `DATA_SOURCES.md` | intelligence | Where all raw data lives — Drive IDs, local paths, repo paths | conversations.json, memories.json, archaeology_data, ChatGPT export, Google Drive IDs |
 | `AI_USAGE_PATTERNS.md` | intelligence | Claude/ChatGPT usage breakdown, recurring errors, subagents, Anti-Churn | guest research, lower thirds, YouTube titles, gsr-editorial, gsr-supabase, automation failures |
-| `GUEST_PROFILES.md` | guests | Authoritative guest roster: deceased, do-not-contact, sensitive, appeared, prospects. 168 individuals merged from 5 scans. | guests, contact list, roster, credentials, extenuating circumstances, deceased, do-not-contact, sensitive, John Mackay, Hartnett, Purdom, booking |
 
 ---
 
@@ -61,9 +60,6 @@ grep -ri "ProPresenter" docs/archive/     # find files mentioning a tool
 
 ### "Where is the archive data / Drive IDs / file paths?"
 → `DATA_SOURCES.md` — all Drive folder IDs, local data paths, file sizes, what's in each export
-
-### "Who are the GSR guests? Is [name] deceased / do-not-contact / sensitive?"
-→ `GUEST_PROFILES.md` — 168 individuals, organized into: Deceased | Do Not Contact | Sensitive | Appeared | Prospects. Ctrl+F any name before outreach.
 
 ---
 

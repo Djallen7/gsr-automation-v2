@@ -141,23 +141,24 @@ FEATURED RESOURCE: {BOOK/PRODUCT TITLE} — creationsuperstore.com (ties to Q&A 
 Q&A QUESTION: "{VIEWER QUESTION}" submitted by {NAME} via {PLATFORM}
 VIEWER VOICES: {NAME 1} from {LOCATION/SOURCE}, {NAME 2} from {LOCATION/SOURCE}
 
-FIXED SEGMENT ORDER — do not reorder:
-1.  Show open (~0:30)
-2.  Opening Monologue (~7 min) — David previews Interview 1 + Interview 2 topics, then "But first..." pivot
-3.  Commercial/Promo 1 + Ad Spot 1 (~2 min)
-4.  Genesis Science Q&A (~2 min)
-5.  Featured Resource (~2 min) — "be sure to check out [TITLE] at creationsuperstore.com"
-6.  Kids Corner (~3 min) — pre-produced; tease Interview 1 on exit
-7.  Commercial/Promo 2 + Ad Spot 2 (~2 min)
-8.  Interview 1 (~12 min)
-9.  Ad Spot 3 (~2 min)
-10. Viewer Voices (~2 min) — two named viewer testimonials
-11. Genesis Science Minute (~1 min) — pre-produced; "look at the back screen"
-12. Ministry Report (~2 min) — includes 931-212-7900 donation pitch
-13. The Heavens Declare (~3.5 min) — pre-produced; "look at the back screen"; ad-lib transition out
-14. Ad Spot 4 (~2 min)
-15. Interview 2 (~12 min)
-16. End/Credits (~1 min)
+FIXED SEGMENT ORDER — do not reorder (source: MASTER_CONTEXT.md run-of-show, RC row codes):
+1.  Show Intro (~0:30) [RC: B2]
+2.  Opening Monologue (~7 min) — David previews both interviews, then "But first..." pivot [RC: B3]
+3.  [Break]
+4.  Interview 1 (~12 min) [RC: B11 tease → C2 live] ← FIRST HALF, right after Opening Monologue
+5.  [Break]
+6.  The Heavens Declare (~3.5 min) — pre-produced; "look at the back screen" [RC: C8]
+7.  Kids Corner (~3 min) — pre-produced [RC: D2]
+8.  Genesis Science Q&A (~2 min) — pre-produced [RC: D2]
+9.  Ministry Report (~2 min) — includes 931-212-7990 donation pitch [RC: E2]
+10. Viewer Voices (~2 min) — two named viewer testimonials; rotate 4 fixed tosses [RC: E4]
+11. Featured Resource (~2 min) — "be sure to check out [TITLE] at creationsuperstore.com" [RC: E6]
+12. Genesis Science Minute (~1 min) — pre-produced; "look at the back screen" [RC: E8]
+13. [Break]
+14. Interview 2 (~12 min) [RC: E10 tease → F2 live]
+15. Closing (~1 min) [RC: F8]
+
+NOTE: TV air time on GSN is Tuesday — exact time to be confirmed. YouTube publishes Monday at 4 PM ET (the day before TV air).
 
 LOCKED SIGN-OFF (verbatim — do not alter):
 "That's it for today. Thank you for joining us on the Genesis Science Report. Until next week, keep looking up. I'm David Rives. Truly, the heavens declare the glory of God."
@@ -306,7 +307,7 @@ CHARACTER RULES (same as interview prompts):
 **When to use:** Generating lower thirds for the Ministry Report segment.
 
 > **Source:** `GSR_Ministry_Report_Lower_Thirds.pdf` — 3-beat structure (E3/E4/E5). E5 is the donate call-to-action and has been identical across Ep021–023.  
-> **⚠️ Data quality note:** Confirm the phone number is 931-212-7**90**0 (not 7990) before publishing.
+> **Phone number confirmed:** `931-212-7990` — verified 3× in LOWER_THIRDS_STYLE_GUIDE.md. Any document showing 7900 is wrong.
 
 ```
 You are writing lower-third graphics text for the Ministry Report segment of Genesis Science Report (GSR).
@@ -316,27 +317,27 @@ MINISTRY REPORT CONTENT: {brief description of what the ministry update covers t
 
 OUTPUT FORMAT — exactly 3 graphic beats:
 
-**E3** (opening beat — introduce the ministry topic):
+**Beat 1** (opening beat — introduce the ministry topic):
 - PRIMARY: {ALL CAPS} ({char count})
 - VARIANT 1: ({char count})
 - VARIANT 2: ({char count})
 
-**E4** (development beat):
+**Beat 2** (development beat):
 - PRIMARY: ({char count})
 - VARIANT 1: ({char count})
 - VARIANT 2: ({char count})
 
-**E5** (ALWAYS: donate/mission close — use standard unless specifically asked to vary):
-Standard E5 (used verbatim on Ep021, 022, 023):
-- PRIMARY: SUPPORT THE MISSION | DAVIDRIVES.COM | 931-212-7900 (51 chars)
+**Beat 3** (ALWAYS: donate/mission close — fixed, do not rewrite):
+This card runs identically on every episode (source: LOWER_THIRDS_STYLE_GUIDE.md):
+- PRIMARY: SUPPORT THE MISSION | DAVIDRIVES.COM | 931-212-7990 (51 chars)
 - VARIANT 1: {alternate donate close} ({char count})
 - VARIANT 2: {alternate donate close} ({char count})
 
 RULES:
 ✓ ALL CAPS
-✓ 55–65 chars for E3/E4
-✓ E5 pipe | separator is intentional (this is a chyron-style CTA, not a topic beat)
-✓ Verify phone number: 931-212-7900 every time
+✓ 55–65 chars for Beats 1 and 2
+✓ Beat 3 pipe | separator is intentional (chyron-style CTA, not a topic beat)
+✓ Phone number is 931-212-7**990** — verify every time
 ✓ Show char count in parentheses
 ```
 
@@ -368,15 +369,16 @@ Requirements:
 - Lead with the most compelling finding, not the guest name
 - Vary the format across 3 options: try a question, a list, and a contrast or twist
 
-**SEGMENT TITLES** (for YouTube chapter timestamps — 7 words or fewer, headline style):
+**SEGMENT TITLES** (for YouTube chapter timestamps — 7 words or fewer, headline style; order matches air order):
 - Opening Monologue: {title}
-- Genesis Science Q&A: {title}
-- Kids Corner: Kids Corner
 - Interview 1 ({guest last name}): {title}
-- Viewer Voices: Viewer Voices
-- Genesis Science Minute: Genesis Science Minute
-- Ministry Report: Ministry Report
 - The Heavens Declare: The Heavens Declare
+- Kids Corner: Kids Corner
+- Genesis Science Q&A: {title}
+- Ministry Report: Ministry Report
+- Viewer Voices: Viewer Voices
+- Featured Resource: {title}
+- Genesis Science Minute: Genesis Science Minute
 - Interview 2 ({guest last name}): {title}
 
 GSR TONE: Exciting but credible. Curious but grounded. Christian worldview audience.
@@ -760,7 +762,7 @@ CONFIRM STATUS FOR EACH PLATFORM:
    - Title, description, and tags entered
    - Chapter timestamps added to description
    - Scheduled for Monday at 4:00 PM ET (day before air)
-   - Category ID: 24 — do not change to 27 or 29
+   - Category ID: 28 (Science & Technology) — do not change to 24, 27, or 29
    - Playlists: Genesis Science Report, Season 3, [topical playlist if applicable]
    - Thumbnail: 1280×720
 
@@ -857,7 +859,7 @@ OUTPUT: Valid JSON matching this schema exactly:
     "title": "{YOUTUBE TITLE}",
     "description": "{FULL DESCRIPTION — escape newlines as \\n}",
     "tags": ["{TAG1}", "{TAG2}", "..."],
-    "category_id": "24",
+    "category_id": "28",
     "playlist_titles": ["Genesis Science Report", "Season 3"],
     "scheduled_publish": "{MONDAY BEFORE AIR DATE}T16:00:00-04:00",
     "thumbnail_url": "{1280x720 URL}"
@@ -873,7 +875,7 @@ OUTPUT: Valid JSON matching this schema exactly:
 
 VALIDATION RULES:
 - scheduled_publish is always the Monday immediately before the air_date at 16:00 ET (-04:00 EDT or -05:00 EST depending on season)
-- category_id is always "24" — never 27 (News) or 29 (Travel & Events)
+- category_id is always "28" (Science & Technology) — never 24, 27 (News), or 29 (Travel & Events)
 - tags array: exactly 9 anchor tags first, then 10–18 topical tags
 - air_date is always a Tuesday — flag if it is not
 ```
@@ -886,11 +888,13 @@ These are known issues found during the archive scan. Flag them when they come u
 
 | Issue | Detail |
 |-------|--------|
-| Ministry Report phone number | Confirm: 931-212-7**900** (not 7990). Both appear in different documents. |
+| Ministry Report phone number | **RESOLVED**: `931-212-7990` confirmed — appears 3× consistently in LOWER_THIRDS_STYLE_GUIDE.md. Any document showing 7900 is wrong. |
+| YouTube category | **RESOLVED**: `28` (Science & Technology) — confirmed by production.json. 24 (Entertainment) and 27 (News) are both wrong. |
+| TV air time | **TO CONFIRM**: Prompts say Tuesday 8 PM CST (TV broadcast on GSN). YouTube publishes Monday 4 PM ET. Exact GSN broadcast time needs verification. |
+| Crew name spelling | **TO CONFIRM**: Graphics crew is "Jakob" in AUTOMATION_ROADMAP; MASTER_CONTEXT lists "Jacob" for THD/editing. Same person or different? Confirm correct spelling. |
 | Guest email quality | Snelling/DeWitt share an email address; Faulkner has a typo; Bell email is truncated. Verify before outreach. |
 | L3 template duplicates | 10+ copies of `[Template] GSR Lower Thirds S00 Ep000.docx` with 1980-01-01 dates. Dedup to one canonical template. |
 | Cedarville sponsorship | Ended after Ep024. Remove sponsor line from descriptions for Ep025+. |
-| YouTube category | Always use 24. The production sheet has been set to 27 (News) in error on at least one episode. |
 
 ---
 

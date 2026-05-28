@@ -1,12 +1,13 @@
 {
   "show": {
-    "name": "God's Scientific Revolution",
+    "name": "Genesis Science Report",
     "abbreviation": "GSR",
     "season": "S3",
     "season_number": 3,
     "episode_count": 25,
-    "air_day": "Monday",
-    "air_time_et": "16:00",
+    "air_day": "Tuesday",
+    "youtube_publish_day": "Monday",
+    "youtube_publish_time_et": "16:00",
     "air_time_utc": "20:00",
     "season_3_start_date": "2024-09-02",
     "description": "A CNN/Fox News-style science news show exploring creation science and the evidence for design in the universe."
@@ -44,6 +45,7 @@
 
   "youtube": {
     "default_category_id": "28",
+    "_category_note": "28 = Science & Technology. Do not use 24 (Entertainment) or 27 (News).",
     "default_language": "en",
     "title_max_length": 100,
     "description_max_length": 5000,
@@ -58,7 +60,7 @@
     "default_tags": [
       "creation science",
       "intelligent design",
-      "God's Scientific Revolution",
+      "Genesis Science Report",
       "GSR",
       "science and faith",
       "origins",

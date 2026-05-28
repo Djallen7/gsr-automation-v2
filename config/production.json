@@ -88,27 +88,6 @@
     "example": "S03EP025_Interview1_v02.mp4"
   },
 
-  "notion": {
-    "task_priorities": ["Critical", "High", "Medium", "Low"],
-    "asset_file_types": ["Video", "Audio", "Image", "Document", "Template"],
-    "upload_statuses": ["Not Started", "Queued", "Processing", "Live", "Error", "Taken Down"],
-    "episode_statuses": ["Planning", "Pre-Production", "In Production", "Post-Production", "Aired", "Archived"],
-    "graphics_statuses": ["Not Started", "In Progress", "Loaded In", "Done", "Cancelled"],
-    "outreach_statuses": ["Lead", "Contacted", "Confirmed", "Booked", "Past Guest", "Do Not Contact"]
-  },
-
-  "n8n": {
-    "workflows": {
-      "episode_status_sync":    { "cron": "*/15 * * * *", "description": "Poll Notion for episode status changes" },
-      "youtube_upload_log":     { "trigger": "webhook",   "description": "Log YouTube upload completion to Notion" },
-      "graphics_reminder":      { "cron": "0 9 * * *",   "description": "Daily reminder for graphics with due dates < 48h" },
-      "dropbox_asset_sync":     { "trigger": "webhook",   "description": "Sync new Dropbox files to Notion Assets" },
-      "basecamp_task_sync":     { "trigger": "webhook",   "description": "Sync Basecamp todos to Notion Tasks" },
-      "episode_checklist_create": { "trigger": "notion",  "description": "Auto-create task checklist on new Episode" },
-      "weekly_report":          { "cron": "0 18 * * 0",  "description": "Sunday 6PM weekly pipeline report" }
-    }
-  },
-
   "episode_checklist_template": [
     { "name": "Script draft complete",       "phase": "Pre-Production", "assignee": "Daniel"  },
     { "name": "Guests confirmed",            "phase": "Pre-Production", "assignee": "Daniel"  },

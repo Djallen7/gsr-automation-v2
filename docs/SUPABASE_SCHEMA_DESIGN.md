@@ -1,6 +1,6 @@
 # GSR Supabase Schema Design
 *Synthesized from 879 conversation sessions, all applied migrations, and full Drive archive review. Updated 2026-05-28.*
-*31 migrations applied. Supabase project: `lafkbxypmciopebentxp`.*
+*43 migrations applied. Supabase project: `lafkbxypmciopebentxp`.*
 
 ---
 
@@ -139,8 +139,18 @@ One row per person. Reused across episodes.
 | organization | text | |
 | is_christian | boolean | Professing Christian; null = unknown. false = secular guest — brief David to stay on science, avoid biblical claims |
 | is_yec | boolean | Young Earth Creationist; false = apply science-first framing, avoid age/cosmology topics |
-| timezone | text | Guest's local timezone e.g. "America/Chicago" — extracted from scheduling |
-| location_city | text | City e.g. "Dallas, TX" — for scheduling context |
+| expertise_tags | text[] | Structured tag array e.g. `{"astrophysics","cosmology"}` — for filtering |
+| credentials_display | text | Display-ready credential string e.g. "Ph.D., Astrophysics, ICR" |
+| timezone | text | IANA timezone e.g. "America/Chicago" |
+| location_city | text | City/state e.g. "Dallas, TX" |
+| website | text | Personal or institutional website |
+| source | text | How we found them (referral, ICR, own search, etc.) |
+| is_deceased | boolean DEFAULT false | Prevents accidental outreach |
+| do_not_contact | boolean DEFAULT false | Hard stop — never contact again |
+| sensitive_flag | boolean DEFAULT false | Flag for guests needing special handling |
+| sensitive_notes | text | Context on the sensitivity |
+| re_approach_after | date | Don't reach out until after this date |
+| re_approach_notes | text | Why to wait and what to say when re-approaching |
 | communication_notes | text | Responsiveness, on-air performance, scheduling ease |
 | notes | text | |
 | created_at | timestamptz | |
@@ -562,7 +572,7 @@ Computed due dates + boolean flags for both guests' email lifecycle. Returns one
 
 ## Migration Log
 
-### Applied (31)
+### Applied (43)
 
 ```
 20260526070128  feature_1_lower_thirds_schema
@@ -596,19 +606,17 @@ Computed due dates + boolean flags for both guests' email lifecycle. Returns one
 20260528003100  add_content_clips
 20260528003200  add_social_posts
 20260528004000  fix_advisor_issues
-```
-
-### Pending (8 new tables — write migrations after Daniel approves this plan)
-
-```
-[next]  add_production_graphics
-[next]  add_premade_library
-[next]  add_articles (8-dim scoring, single recommended_guest_id column)
-[next]  add_shoot_sessions (monthly production cycle shoot days)
-[next]  add_booking_pipeline (pre-placement outreach + overflow tracking)
-[next]  add_outreach_drafts
-[next]  add_email_threads
-[next]  enhance_guests (add is_christian, timezone, location_city)
+20260528010000  enhance_guests_schema  (is_deceased, do_not_contact, sensitive_flag, re_approach_after, credentials_display, source, website)
+20260528010100  add_expertise_tags_to_guests
+20260528005000  enhance_guests  (is_christian, timezone, location_city)
+20260528005100  add_premade_library
+20260528005200  add_shoot_sessions
+20260528005300  add_articles  (8-dim scoring, recommended_guest_id, total_score generated)
+20260528005400  add_production_graphics  (11 types, 4 statuses, set_updated_at trigger)
+20260528005500  add_outreach_drafts
+20260528005600  add_booking_pipeline
+20260528005700  add_email_threads
+20260528005800  enhance_interview_prep_article_link
 ```
 
 ### Future (coordinate with code changes)

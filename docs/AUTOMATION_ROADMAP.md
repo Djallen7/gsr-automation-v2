@@ -58,6 +58,11 @@ Ranked by estimated friction-reduction per hour of build work.
 
 ## Deferred items added 2026-05-28
 
+### Lower thirds styles (in progress — parallel session 2026-05-28)
+**What:** Pulling lower third style/template variants from the data archive. Likely adds a style/template field to the `graphics` table or `graphics_variations`.  
+**Status:** Active work in a separate session. Do not build schema or UI for lower third styles until that session's output is merged — coordinate to avoid conflicts with the `graphics` table and `/lower-thirds` review UI.  
+**Blockers:** Awaiting output from parallel session.
+
 ### Phase 1A — Guest email workflow UI
 **What:** Dashboard page showing `v_episode_workflow` — computed email due dates for zoom link, pre-air, post-shoot, and YouTube emails per guest per episode. Mark sent via button → writes timestamp to `episode_guests`.  
 **Schema:** Ready. `episode_guests` has all 6 email timestamp columns. `v_episode_workflow` has computed due dates + sent booleans.  

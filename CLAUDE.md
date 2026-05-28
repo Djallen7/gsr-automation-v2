@@ -84,7 +84,7 @@ This rule exists because archaeology of 879 conversations showed repeated cycles
 - `/api/regenerate` — Claude API route (`claude-opus-4-7`), rate-limited, deduped
 - `/api/import` — bulk ingest route, dry-run + live modes, Zod-validated
 
-**13 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
+**43 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
 
 **BUILD_STATUS.html** at repo root — open in browser for visual build overview.
 

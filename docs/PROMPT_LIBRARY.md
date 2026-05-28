@@ -890,8 +890,8 @@ These are known issues found during the archive scan. Flag them when they come u
 |-------|--------|
 | Ministry Report phone number | **RESOLVED**: `931-212-7990` confirmed — appears 3× consistently in LOWER_THIRDS_STYLE_GUIDE.md. Any document showing 7900 is wrong. |
 | YouTube category | **RESOLVED**: `28` (Science & Technology) — confirmed by production.json. 24 (Entertainment) and 27 (News) are both wrong. |
-| TV air time | **TO CONFIRM**: Prompts say Tuesday 8 PM CST (TV broadcast on GSN). YouTube publishes Monday 4 PM ET. Exact GSN broadcast time needs verification. |
-| Crew name spelling | **TO CONFIRM**: Graphics crew is "Jakob" in AUTOMATION_ROADMAP; MASTER_CONTEXT lists "Jacob" for THD/editing. Same person or different? Confirm correct spelling. |
+| TV air time | **RESOLVED**: Tuesday 8 PM CST on GSN. YouTube publishes Monday 4 PM ET (day before air). |
+| Crew name spelling | **RESOLVED**: **Jakob** is the editor (graphics). **Jacob** (MASTER_CONTEXT) is footage transfer / THD — two different people. |
 | Guest email quality | Snelling/DeWitt share an email address; Faulkner has a typo; Bell email is truncated. Verify before outreach. |
 | L3 template duplicates | 10+ copies of `[Template] GSR Lower Thirds S00 Ep000.docx` with 1980-01-01 dates. Dedup to one canonical template. |
 | Cedarville sponsorship | Ended after Ep024. Remove sponsor line from descriptions for Ep025+. |

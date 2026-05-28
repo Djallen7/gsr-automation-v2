@@ -6,9 +6,9 @@
     "season_number": 3,
     "episode_count": 25,
     "air_day": "Tuesday",
+    "air_time_cst": "20:00",
     "youtube_publish_day": "Monday",
     "youtube_publish_time_et": "16:00",
-    "air_time_utc": "20:00",
     "season_3_start_date": "2024-09-02",
     "description": "A CNN/Fox News-style science news show exploring creation science and the evidence for design in the universe."
   },

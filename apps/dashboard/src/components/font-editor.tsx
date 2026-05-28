@@ -17,10 +17,16 @@ interface Props {
   }
 }
 
-const DEFAULT_PLACEHOLDERS = {
-  family: 'Helvetica Neue Bold',
-  size: '48',
+const DEFAULT_FONT = {
+  family: 'Collaborate Medium',
+  size: 55,
   color: '#FFFFFF',
+}
+
+const DEFAULT_PLACEHOLDERS = {
+  family: DEFAULT_FONT.family,
+  size: String(DEFAULT_FONT.size),
+  color: DEFAULT_FONT.color,
 }
 
 export function FontEditor({ graphicId, initial, placeholders }: Props) {
@@ -42,7 +48,7 @@ export function FontEditor({ graphicId, initial, placeholders }: Props) {
       initial.font_color,
     ]
       .filter(Boolean)
-      .join(' · ') || 'Default font'
+      .join(' · ') || `${DEFAULT_FONT.family} ${DEFAULT_FONT.size}pt`
 
   function save() {
     setError(null)

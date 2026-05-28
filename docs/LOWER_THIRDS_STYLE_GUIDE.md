@@ -407,6 +407,8 @@ Var 2:   MT. EVE
 
 In the current dashboard, the 3-column system is not yet fully surfaced in the UI. Primary (`initial_text`) is what the operator approves. Var 1 and Var 2 are stored but not yet displayed as alternates in the card view.
 
+**Dashboard Regenerate rule:** When the operator clicks Regenerate on a card, the AI generates **3 variations in a single API call**. All 3 are saved to `graphics_variations` and presented in the dialog simultaneously — the operator picks one and clicks "Use selected." This eliminates the need to regenerate repeatedly to find an acceptable option. Each call counts as one rate-limit unit regardless of how many variations are returned.
+
 ---
 
 ## 8. Common Mistakes (from 879 sessions of data)

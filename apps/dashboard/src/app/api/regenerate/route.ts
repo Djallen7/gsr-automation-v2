@@ -8,6 +8,7 @@ const CLAUDE_MODEL = process.env.ANTHROPIC_REGENERATE_MODEL ?? 'claude-opus-4-7'
 const RATE_LIMIT_WINDOW_HOURS = 1
 const RATE_LIMIT_MAX_REQUESTS = 20
 const MAX_PREVIOUS_TEXTS = 8
+const VARIATIONS_PER_CALL = 3
 
 const RegenerateBody = z.object({
   graphicId: z.string().uuid(),
@@ -114,69 +115,99 @@ export async function POST(request: Request) {
   const guestName = episodeRow?.guest_name ?? null
   const episodeTitle = episodeRow?.title ?? null
 
-  const userPrompt = `You are rewriting a single broadcast lower-third for the Genesis Science Report (GSR).
+  const userPrompt = `You are rewriting a broadcast lower-third for the Genesis Science Report (GSR).
 
 CONTEXT
 - Episode: S${episodeRow?.season ?? '?'}E${episodeRow?.episode_number ?? '?'}${episodeTitle ? ` (${episodeTitle})` : ''}
 - Segment: ${graphic.segment}
 - Beat: ${graphic.beat_number ?? '?'}
 - Guest: ${guestName ?? 'unspecified'}
-- Latest version: ${latestText}
+- Current text: ${latestText}
 ${previousTexts ? `- Prior versions to avoid (last ${MAX_PREVIOUS_TEXTS}): ${previousTexts}` : ''}
 
 RULES
-- Output ONE alternative lower-third only.
 - ALL CAPS broadcast style.
-- Eight words or fewer.
-- Never use em dashes. Use a forward slash or hyphen.
-- No quotation marks around the result.
-- Output only the new lower-third text, nothing else.`
+- Target exactly 65 characters (55–65 is acceptable; never over 65).
+- No em dashes, hyphens, forward slashes, commas, brackets, or parentheses.
+- No sentence-ending periods. Abbreviation periods are fine (VS. DR. PHD.).
+- Use colon or pipe as the only separators. Pipe only for chyrons (NAME | ORG | TITLE).
+- No quotation marks wrapping the line.
+- Each variation must meaningfully differ from the others in angle or phrasing.
+
+OUTPUT FORMAT — exactly this, nothing else:
+VAR 1: YOUR TEXT HERE
+VAR 2: YOUR TEXT HERE
+VAR 3: YOUR TEXT HERE`
 
   const anthropic = getAnthropic()
 
   try {
     const response = await anthropic.messages.create({
       model: CLAUDE_MODEL,
-      max_tokens: 64,
+      max_tokens: 400,
       messages: [{ role: 'user', content: userPrompt }],
     })
 
-    const newText = response.content
+    const rawText = response.content
       .filter((block) => block.type === 'text')
       .map((block) => (block.type === 'text' ? block.text : ''))
       .join('')
       .trim()
 
-    if (!newText) {
+    if (!rawText) {
       return NextResponse.json(
         { error: 'Empty response from Claude.' },
         { status: 502 },
       )
     }
 
+    // Parse VAR N: lines from the response
+    const varLines = rawText.split('\n').filter((l) => /^VAR\s+\d+:/i.test(l.trim()))
+    const parsedTexts = varLines.map((l) =>
+      l.replace(/^VAR\s+\d+:\s*/i, '').trim().toUpperCase(),
+    )
+
+    if (parsedTexts.length === 0) {
+      return NextResponse.json(
+        { error: 'Claude did not return parseable variations.' },
+        { status: 502 },
+      )
+    }
+
+    // Take up to VARIATIONS_PER_CALL; repeat last if Claude returned fewer
+    const texts: string[] = Array.from(
+      { length: VARIATIONS_PER_CALL },
+      (_, i) => parsedTexts[Math.min(i, parsedTexts.length - 1)],
+    )
+
+    // Insert all variations in one batch
+    const insertRows = texts.map((text, i) => ({
+      graphic_id: graphicId,
+      variation_number: nextVariationNumber + i,
+      text_content: text,
+      generated_by: CLAUDE_MODEL,
+      generation_context: {
+        source: 'regenerate_route',
+        previous_count: existingVariations?.length ?? 0,
+        batch_index: i,
+      },
+    }))
     const { error: insertError } = await supabase
       .from('graphics_variations')
-      .insert({
-        graphic_id: graphicId,
-        variation_number: nextVariationNumber,
-        text_content: newText,
-        generated_by: CLAUDE_MODEL,
-        generation_context: {
-          source: 'regenerate_route',
-          previous_count: existingVariations?.length ?? 0,
-        },
-      })
+      .insert(insertRows)
     if (insertError) throw insertError
 
-    // Log this attempt for future rate-limit windows.
+    // Log this attempt for future rate-limit windows (one attempt = one API call).
     await supabase.from('regenerate_attempts').insert({
       user_id: user.id,
       graphic_id: graphicId,
     })
 
     return NextResponse.json({
-      text: newText,
-      variationNumber: nextVariationNumber,
+      variations: texts.map((text, i) => ({
+        text,
+        variationNumber: nextVariationNumber + i,
+      })),
     })
   } catch (err) {
     // Map Anthropic overload (529) to a user-meaningful 503 without leaking raw SDK error text.

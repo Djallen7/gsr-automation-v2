@@ -16,7 +16,9 @@ Every lower-third, every time, no exceptions:
 | ALL CAPS | `THE CELL IS A MACHINE` | `The Cell Is A Machine` |
 | No em dashes | `DARWIN AND HIS OWN DOUBTS` | `DARWIN — HIS OWN DOUBTS` |
 | No commas | `FRANK SHERWIN \| ZOOLOGIST \| ICR` | `FRANK SHERWIN, ZOOLOGIST, ICR` |
-| No periods | `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` | `MICROBES EVERYWHERE. ORIGINS UNKNOWN.` |
+| No hyphens | `SPECIES VS. KIND: THE DISTINCTION` | `SPECIES VS. KIND - THE DISTINCTION` |
+| No sentence-ending periods | `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` | `MICROBES EVERYWHERE. ORIGINS UNKNOWN.` |
+| Abbreviation periods OK | `VS.` `DR.` `PHD.` — fine | n/a |
 | No slashes | `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` | `MICROBES EVERYWHERE / ORIGINS UNKNOWN` |
 | No brackets or parentheses | `SCIENCE 2018: 237 SOIL SITES` | `SCIENCE (2018): 237 SOIL SITES` |
 | No quotation marks wrapping the line | `THE CELL IS A MACHINE` | `"THE CELL IS A MACHINE"` |
@@ -64,21 +66,14 @@ Examples from production:
 - `DARWIN: "I WOULD HAVE USED NATURAL PRESERVATION"`
 - `LEGATES: PATTERN-MATCH TO POPULATION BOMB PEAK OIL`
 
-### Hyphen `-` — only for book-author attributions
+### Avoid: hyphens, sentence-ending periods, slashes, brackets
 
-Narrow use: pairing a resource title with an author name.
-- `CLIMATE AND ENERGY: THE CASE FOR REALISM - LEGATES`
-- `THE DARWIN EFFECT - DR. JERRY BERGMAN`
+- **Hyphens** `-` — banned. Use a colon instead. `THE ARK AND THE DARKNESS: GENESIS APOLOGETICS` not `THE ARK AND THE DARKNESS - GENESIS APOLOGETICS`.
+- **Sentence-ending periods** `.` — banned as separators or clause-enders. Abbreviation periods (`VS.`, `DR.`, `PHD.`) are fine.
+- **Slashes** `/` — banned. Rewrite using a colon or conjunction.
+- **Parentheses / brackets** `()` `[]` — banned. Rewrite citations inline: `SCIENCE 2018: 237 SOIL SITES` not `SCIENCE (2018): 237 SOIL SITES`.
 
-Outside of that specific pattern, prefer a colon over a hyphen.
-
-### Avoid: periods, slashes, brackets, parentheses
-
-- **Periods** `.` — rewrite to use a colon or conjunctions (AND, BUT, OR). `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` not `MICROBES EVERYWHERE. ORIGINS UNKNOWN.`
-- **Slashes** `/` — same fix. `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` not `MICROBES EVERYWHERE / ORIGINS UNKNOWN`.
-- **Parentheses / brackets** `()` `[]` — rewrite the citation inline. `SCIENCE 2018: 237 SOIL SITES` not `SCIENCE (2018): 237 SOIL SITES`.
-
-If avoiding a slash, period, or bracket makes the beat awkward, it is a sign the beat is trying to carry two ideas. Split it into two beats instead.
+If removing any of these makes a beat feel awkward, it is usually carrying two ideas. Split it into two beats.
 
 ---
 
@@ -224,11 +219,11 @@ PROTEINS DON'T LAST MILLIONS OF YEARS. SO HOW IS THIS HERE?
 
 **D. GUEST ATTRIBUTION** — `SPEAKER: CLAIM` or `CLAIM - SPEAKER`
 ```
-LEGATES: PATTERN-MATCH TO POPULATION BOMB, PEAK OIL
+LEGATES: PATTERN-MATCH TO POPULATION BOMB PEAK OIL
 CLAREY: FLOOD RUNOFF EXPLAINS IT WITHOUT SINKING MOUNTAINS
 BERGMAN: DARWIN MORE HONEST THAN HIS MODERN DEFENDERS
-CLIMATE AND ENERGY: THE CASE FOR REALISM - LEGATES
-THE DARWIN EFFECT - DR. JERRY BERGMAN
+CLIMATE AND ENERGY: THE CASE FOR REALISM BY LEGATES
+THE DARWIN EFFECT: DR. JERRY BERGMAN
 ```
 
 **E. STAT / CITATION** — source + number
@@ -274,7 +269,7 @@ CELLULAR ENGINEERING POINTS BEYOND BLIND CHEMISTRY
 **What not to do:**
 - Don't write discussion beats as generic topic labels: each must map to a specific claim.
 - Don't invent guest credentials — chyron must reflect what the guest provided.
-- Don't put the book plug formatted as a topic lower-third (this got rejected: `CARVED IN STONE - TIM CLAREY (CREATION SUPERSTORE)`).
+- Don't put the book plug formatted as a topic lower-third (this got rejected: `CARVED IN STONE: TIM CLAREY: CREATION SUPERSTORE`).
 
 ---
 
@@ -421,9 +416,9 @@ These mistakes appear repeatedly. The style guide exists partly because of them.
 | Mistake | Correct approach |
 |---------|-----------------|
 | Em dashes | Rewrite using a colon or conjunction. Never use. |
-| Periods `.` | Rewrite using a colon or conjunction instead. `VS` not `VS.` |
-| Slashes `/` | Rewrite using a colon or conjunction instead. |
-| Hyphen `-` as a general separator | Hyphens are only for book-author attributions (`TITLE - AUTHOR`). Not a general separator between clauses. |
+| Hyphens `-` | Banned entirely. Use a colon instead. |
+| Sentence-ending periods | Rewrite using a colon or conjunction. Abbreviation periods (`VS.` `DR.`) are fine. |
+| Slashes `/` | Rewrite using a colon or conjunction. |
 | Brackets or parentheses `()` | Rewrite the citation inline: `SCIENCE 2018:` not `SCIENCE (2018):` |
 | Commas | No commas. Rewrite the beat. |
 | Writing lower-thirds as general topic labels | Each beat must map to a specific claim or discussion point |

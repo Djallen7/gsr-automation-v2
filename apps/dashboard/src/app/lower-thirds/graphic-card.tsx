@@ -139,6 +139,9 @@ export function GraphicCard({
             </span>
           </div>
           <p className="font-medium">{initialText}</p>
+          <p className={`text-xs tabular-nums ${initialText.length > 65 ? 'text-destructive font-semibold' : 'text-muted-foreground'}`}>
+            {initialText.length}/65 chars{initialText.length > 65 ? ' — over limit' : ''}
+          </p>
           <FontEditor
             graphicId={id}
             initial={{

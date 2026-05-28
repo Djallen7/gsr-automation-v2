@@ -41,7 +41,7 @@ HOW TO IDENTIFY LOWER-THIRDS IN THE SCRIPT:
 
 EXTRACTION RULES:
 - Preserve the LT text exactly as written, including capitalization and slashes.
-- Never use em dashes. If the source uses one, replace with a forward slash or hyphen.
+- Never use em dashes, hyphens, or forward slashes. If the source uses one, replace with a colon.
 - beat_number is the order of the LT within its segment, starting at 1.
 - primary MUST be 1..200 characters. If a line is longer, put it in the top-level "rejected" array (do not emit it in the graphics array).
 - If episode metadata is missing, leave the field as null. Do not invent values.

@@ -67,24 +67,44 @@ This rule exists because archaeology of 879 conversations showed repeated cycles
 
 ---
 
-## Project State (updated 2026-05-27)
+## Project State (updated 2026-05-28)
 
 **Active app:** `apps/dashboard` — Next.js 16, shadcn/ui, Supabase SSR, deployed on Vercel
 **Supabase project:** `lafkbxypmciopebentxp`
 **Active feature:** Feature 1 — Episode Graphics & Asset Tracker
-**Current stage:** Stage 7 (real episode test) — all code complete, awaiting first real episode run
+**Current stage:** Stage 7 (real episode test) — S3 Ep001–Ep048 seeded, episode-centric UI in progress
 **Architecture decision of record:** ADR-0012 (Supabase pivot, accepted 2026-05-23). ADRs 0001 and 0011 are sunk-cost / historical.
 
 **What is built (main branch):**
 - `/login` — magic link auth
-- `/upload` — PNG upload (legacy, being phased out after 2 text-only episodes)
+- `/upload` — PNG upload (legacy, being phased out)
 - `/import` — text-only bulk ingest via JSON paste
-- `/lower-thirds` — review grid (approve / reject / regenerate)
-- `/approved` — approved queue with ProPresenter copy button and toggle
+- `/extract` — standalone script extraction form (legacy entry point)
+- `/lower-thirds` — episode list, all 48 S3 episodes with script/review/approved counts
+- `/lower-thirds/[episode_id]` — episode workspace: 12 segment rows, each with script paste, extract trigger, lower-thirds review
+- `/lower-thirds/ready` — ProPresenter output: approved lower-thirds grouped by episode → segment → beat
+- `/approved` — approved queue (flat view, kept for reference)
 - `/api/regenerate` — Claude API route (`claude-opus-4-7`), rate-limited, deduped
 - `/api/import` — bulk ingest route, dry-run + live modes, Zod-validated
+- `/api/extract-lower-thirds` — Claude extraction route, builds prompt from Supabase episode/guest context
+- `/api/scripts` — UPSERT script text per episode+segment
 
-**43 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
+**44 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
+
+## UI Architecture (Episode-Centric)
+
+The episode is the top-level organizational unit. Everything hangs off it.
+
+**Route hierarchy:**
+- `/lower-thirds` — episode list (48 S3 placeholders, status chips per episode)
+- `/lower-thirds/[episode_id]` — episode workspace with 12 segment slots
+  - Each slot: paste script → Save → Extract (Claude) → Preview → Import
+  - Pending/approved lower-thirds shown inline per segment
+- `/lower-thirds/ready` — approved output for ProPresenter copy-paste
+
+**Data flow:** Script paste → `/api/scripts` (upsert) → `/api/extract-lower-thirds` (Claude) → `/api/import` (Supabase) → review in episode workspace → approve → `/lower-thirds/ready`
+
+**Shared constant:** `src/lib/segments.ts` — single source of truth for all 12 segment values/labels.
 
 **BUILD_STATUS.html** at repo root — open in browser for visual build overview.
 

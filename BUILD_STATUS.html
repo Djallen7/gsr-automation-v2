@@ -362,12 +362,15 @@
       <div class="route page"><span class="route-path">/login</span><span class="route-type">page</span></div>
       <div class="route page"><span class="route-path">/upload</span><span class="route-type">page · legacy</span></div>
       <div class="route page"><span class="route-path">/import</span><span class="route-type">page</span></div>
-      <div class="route page"><span class="route-path">/lower-thirds</span><span class="route-type">page</span></div>
+      <div class="route page"><span class="route-path">/lower-thirds</span><span class="route-type">page · episode list</span></div>
+      <div class="route page"><span class="route-path">/lower-thirds/[episode_id]</span><span class="route-type">page · episode workspace</span></div>
+      <div class="route page"><span class="route-path">/lower-thirds/ready</span><span class="route-type">page · ProPresenter output</span></div>
       <div class="route page"><span class="route-path">/approved</span><span class="route-type">page</span></div>
-      <div class="route page"><span class="route-path">/extract</span><span class="route-type">page · script extraction</span></div>
+      <div class="route page"><span class="route-path">/extract</span><span class="route-type">page · legacy standalone</span></div>
       <div class="route api"><span class="route-path">/api/regenerate</span><span class="route-type">POST · claude</span></div>
       <div class="route api"><span class="route-path">/api/import</span><span class="route-type">POST · bulk ingest</span></div>
       <div class="route api"><span class="route-path">/api/extract-lower-thirds</span><span class="route-type">POST · claude extraction</span></div>
+      <div class="route api"><span class="route-path">/api/scripts</span><span class="route-type">POST · upsert script</span></div>
       <div class="route api"><span class="route-path">/auth/callback</span><span class="route-type">GET · supabase</span></div>
     </div>
   </div>
@@ -386,7 +389,7 @@
 <script>
   // ── Last updated timestamp ─────────────────────────────────────────────────
   // AGENTS: update this string when you edit this file
-  const LAST_UPDATED = '2026-05-28'
+  const LAST_UPDATED = '2026-05-28b'
   document.getElementById('updated').textContent = 'Last updated: ' + LAST_UPDATED
 
   // ── Live PR fetch from GitHub API ──────────────────────────────────────────

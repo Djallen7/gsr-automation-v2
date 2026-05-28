@@ -56,8 +56,11 @@ export default async function LowerThirdsPage() {
           <Link href="/approved" className={buttonVariants({ variant: 'outline' })}>
             Approved queue
           </Link>
+          <Link href="/extract" className={buttonVariants({ variant: 'outline' })}>
+            Extract from script
+          </Link>
           <Link href="/import" className={buttonVariants()}>
-            Import from script
+            Import JSON
           </Link>
         </div>
       </header>

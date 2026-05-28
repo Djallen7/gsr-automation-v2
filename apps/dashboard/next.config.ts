@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Disable Next.js telemetry in production
+  experimental: {},
   images: {
     remotePatterns: [
       {

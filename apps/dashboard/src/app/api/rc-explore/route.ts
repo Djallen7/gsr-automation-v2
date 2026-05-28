@@ -20,29 +20,24 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const rundownId = searchParams.get('rundown_id')
 
-  const action = searchParams.get('action')
+  const rowId = searchParams.get('row_id')
+
+  if (rowId) {
+    // Fetch script text for a specific row
+    const url = rcUrl('getScript', { RowID: rowId })
+    const res = await fetch(url)
+    const text = await res.text()
+    let parsed: unknown
+    try { parsed = JSON.parse(text) } catch { parsed = text }
+    return NextResponse.json({ row_id: rowId, result: parsed })
+  }
 
   if (rundownId) {
-    if (action) {
-      // Single action probe
-      const url = rcUrl(action, { RundownID: rundownId })
-      const res = await fetch(url)
-      const text = await res.text()
-      let parsed: unknown
-      try { parsed = JSON.parse(text) } catch { parsed = text }
-      return NextResponse.json({ action, rundown_id: rundownId, result: parsed })
-    }
-
-    // Probe all likely row/script actions in parallel
-    const candidates = ['getRows', 'getRundown', 'getScript', 'getRundownRows', 'getRow', 'getSegments', 'getScripts', 'exportRundown']
-    const results: Record<string, unknown> = {}
-    await Promise.all(candidates.map(async (a) => {
-      const url = rcUrl(a, { RundownID: rundownId })
-      const res = await fetch(url)
-      const text = await res.text()
-      try { results[a] = JSON.parse(text) } catch { results[a] = text }
-    }))
-    return NextResponse.json(results)
+    // Get all rows for this rundown
+    const url = rcUrl('getRows', { RundownID: rundownId })
+    const res = await fetch(url)
+    const data = await res.json()
+    return NextResponse.json(data)
   }
 
   // Return all rundowns

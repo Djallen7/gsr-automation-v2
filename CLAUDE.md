@@ -18,6 +18,21 @@ These rules are mandatory in every session. They exist because this system touch
 - State what else is connected to or could be affected by it
 - Wait for confirmation before running
 
+## Anti-Churn Rule
+
+Before designing, scoping, or building any automation in a session:
+
+**Name the deliverable and the ship date out loud first.**
+
+- What file, feature, or working output will exist when this session ends?
+- What is the target date for it to be in use?
+
+If you can't answer both, the session is planning — not building. Planning sessions end with a named task added to the queue, not code in the repo. Do not let a planning conversation drift into half-built scaffolding.
+
+If Daniel starts describing an automation idea without a named deliverable, prompt him: *"What ships at the end of this, and when does it need to be working?"* Then build toward that answer, or close the loop as a documented future task in `docs/AUTOMATION_ROADMAP.md`.
+
+This rule exists because archaeology of 879 conversations showed repeated cycles of automation design that never shipped. The fix is naming the thing before building it.
+
 ## Operational Rules
 
 **Scope**

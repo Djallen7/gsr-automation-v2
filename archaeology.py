@@ -28,6 +28,8 @@ so re-running a stage just picks up where it left off.
 import os
 import sys
 import json
+import time
+import random
 import zipfile
 import sqlite3
 import argparse
@@ -35,6 +37,7 @@ import re
 from pathlib import Path
 from datetime import datetime, timezone
 from collections import Counter, defaultdict
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional, Iterator
 
 # ===== CONFIG - EDIT THESE =====
@@ -50,6 +53,7 @@ SYNTHESIS_MODEL = "claude-opus-4-7"          # final artifact synthesis
 TIER2_TOP_N = 200                            # deep-analyze this many conversations
 MAX_MESSAGES_PER_CONV_TIER1 = 6              # how much context for cheap pass
 MAX_CHARS_PER_MESSAGE = 2000                 # truncate long messages
+MAX_WORKERS = int(os.environ.get("ARCHAEOLOGY_WORKERS", "8"))  # parallel API calls in categorize/deep
 
 # ===== END CONFIG =====
 
@@ -589,6 +593,28 @@ def llm_call(client, model: str, system: str, user: str, max_tokens: int = 1024)
     return "".join(out)
 
 
+def llm_call_retry(client, model: str, system: str, user: str,
+                   max_tokens: int = 1024, max_retries: int = 6) -> str:
+    """llm_call with exponential backoff on rate-limit / overload / transient
+    errors so the parallel stages don't drop work when limits are hit."""
+    delay = 2.0
+    for attempt in range(max_retries):
+        try:
+            return llm_call(client, model, system, user, max_tokens=max_tokens)
+        except Exception as e:
+            status = getattr(e, "status_code", None)
+            msg = str(e).lower()
+            retryable = (
+                status in (408, 409, 429, 500, 502, 503, 529)
+                or any(s in msg for s in ("rate", "overloaded", "timeout",
+                                          "connection", "429", "529", "503"))
+            )
+            if not retryable or attempt == max_retries - 1:
+                raise
+            time.sleep(delay + random.uniform(0, 1))
+            delay = min(delay * 2, 60)
+
+
 def truncate(s: str, n: int) -> str:
     if not s:
         return ""
@@ -646,47 +672,53 @@ def stage_categorize():
     client = get_anthropic_client()
 
     pending = conn.execute(
-        "SELECT id, title FROM conversations WHERE tier1_done = 0 ORDER BY created_at DESC"
+        "SELECT id, title, char_count FROM conversations WHERE tier1_done = 0 ORDER BY created_at DESC"
     ).fetchall()
-    print(f"[tier1] {len(pending)} conversations to categorize")
+    print(f"[tier1] {len(pending)} conversations to categorize ({MAX_WORKERS} workers)")
 
-    for row in tqdm(pending, desc="tier1"):
-        conv_id = row["id"]
-        excerpt = select_tier1_excerpt(conn, conv_id, MAX_MESSAGES_PER_CONV_TIER1)
+    # Prefetch excerpts (DB reads) on the main thread; mark empty ones done now.
+    work = []
+    for row in pending:
+        excerpt = select_tier1_excerpt(conn, row["id"], MAX_MESSAGES_PER_CONV_TIER1)
         if not excerpt:
-            conn.execute("UPDATE conversations SET tier1_done = 1 WHERE id = ?", (conv_id,))
-            continue
+            conn.execute("UPDATE conversations SET tier1_done = 1 WHERE id = ?", (row["id"],))
+        else:
+            work.append((row["id"], row["title"], row["char_count"] or 0, excerpt))
+    conn.commit()
 
-        user_msg = f"TITLE: {row['title']}\n\nEXCERPT:\n{excerpt}"
-        try:
-            out = llm_call(client, TIER1_MODEL, TIER1_SYSTEM, user_msg, max_tokens=500)
-            # Extract JSON
-            j = _extract_json(out)
-            category = j.get("category", "other")
-            summary = j.get("summary", "")
-            tools = json.dumps(j.get("tools_mentioned", []))
-            difficulty = 1 if j.get("difficulty_signal") else 0
-            decision = 1 if j.get("decision_signal") else 0
-            # interestingness score: longer + difficulty + decision = more interesting
-            mc = conn.execute("SELECT message_count, char_count FROM conversations WHERE id = ?", (conv_id,)).fetchone()
-            score = (mc["char_count"] or 0) / 1000.0
-            if difficulty:
+    def categorize_one(item):
+        conv_id, title, char_count, excerpt = item
+        user_msg = f"TITLE: {title}\n\nEXCERPT:\n{excerpt}"
+        out = llm_call_retry(client, TIER1_MODEL, TIER1_SYSTEM, user_msg, max_tokens=500)
+        return conv_id, char_count, _extract_json(out)
+
+    processed = 0
+    # API calls run concurrently in worker threads; all DB writes stay here.
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
+        futures = {ex.submit(categorize_one, it): it[0] for it in work}
+        for fut in tqdm(as_completed(futures), total=len(futures), desc="tier1"):
+            conv_id = futures[fut]
+            try:
+                conv_id, char_count, j = fut.result()
+            except Exception as e:
+                print(f"  WARN: tier1 failed for {conv_id}: {e}", file=sys.stderr)
+                continue
+            score = (char_count or 0) / 1000.0
+            if j.get("difficulty_signal"):
                 score += 20
-            if decision:
+            if j.get("decision_signal"):
                 score += 30
-
             conn.execute("""
                 UPDATE conversations
                 SET tier1_category = ?, tier1_summary = ?, tier1_tools_mentioned = ?,
                     tier1_done = 1, interestingness = ?
                 WHERE id = ?
-            """, (category, summary, tools, score, conv_id))
+            """, (j.get("category", "other"), j.get("summary", ""),
+                  json.dumps(j.get("tools_mentioned", [])), score, conv_id))
             conn.commit()
-        except Exception as e:
-            print(f"  WARN: tier1 failed for {conv_id}: {e}", file=sys.stderr)
-            continue
+            processed += 1
 
-    log_stage_end(conn, "categorize", notes=f"processed={len(pending)}")
+    log_stage_end(conn, "categorize", notes=f"processed={processed}")
     conn.close()
 
 
@@ -779,16 +811,16 @@ def stage_deep_analyze():
         ORDER BY interestingness DESC
         LIMIT ?
     """, (TIER2_TOP_N,)).fetchall()
-    print(f"[tier2] deep-analyzing top {len(pending)} conversations")
+    print(f"[tier2] deep-analyzing top {len(pending)} conversations ({MAX_WORKERS} workers)")
 
-    for row in tqdm(pending, desc="tier2"):
+    # Build per-conversation excerpts (DB reads) on the main thread.
+    work = []
+    for row in pending:
         conv_id = row["id"]
-        # Get the full conversation, truncated per-message
         msgs = conn.execute(
             "SELECT sender, text FROM messages WHERE conversation_id = ? ORDER BY idx",
             (conv_id,)
         ).fetchall()
-        # Cap total at ~30k chars
         budget = 30_000
         excerpt_parts = []
         for m in msgs:
@@ -799,22 +831,32 @@ def stage_deep_analyze():
                 break
             excerpt_parts.append(block)
             budget -= len(block)
-        excerpt = "\n\n".join(excerpt_parts)
+        work.append((conv_id, row["title"], "\n\n".join(excerpt_parts)))
 
-        user_msg = f"TITLE: {row['title']}\n\nFULL CONVERSATION:\n{excerpt}"
-        try:
-            out = llm_call(client, TIER2_MODEL, TIER2_SYSTEM, user_msg, max_tokens=1500)
-            j = _extract_json(out)
+    def analyze_one(item):
+        conv_id, title, excerpt = item
+        user_msg = f"TITLE: {title}\n\nFULL CONVERSATION:\n{excerpt}"
+        out = llm_call_retry(client, TIER2_MODEL, TIER2_SYSTEM, user_msg, max_tokens=1500)
+        return conv_id, _extract_json(out)
+
+    processed = 0
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
+        futures = {ex.submit(analyze_one, it): it[0] for it in work}
+        for fut in tqdm(as_completed(futures), total=len(futures), desc="tier2"):
+            conv_id = futures[fut]
+            try:
+                conv_id, j = fut.result()
+            except Exception as e:
+                print(f"  WARN: tier2 failed for {conv_id}: {e}", file=sys.stderr)
+                continue
             conn.execute(
                 "UPDATE conversations SET tier2_deep_analysis = ?, tier2_done = 1 WHERE id = ?",
                 (json.dumps(j), conv_id)
             )
             conn.commit()
-        except Exception as e:
-            print(f"  WARN: tier2 failed for {conv_id}: {e}", file=sys.stderr)
-            continue
+            processed += 1
 
-    log_stage_end(conn, "deep", notes=f"processed={len(pending)}")
+    log_stage_end(conn, "deep", notes=f"processed={processed}")
     conn.close()
 
 

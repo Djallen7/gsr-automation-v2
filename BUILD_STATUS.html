@@ -246,7 +246,7 @@
 
     <!-- Migrations -->
     <div class="card">
-      <h2>DB Migrations (13 applied)</h2>
+      <h2>DB Migrations (28 applied)</h2>
       <div class="migration-list">
         <div class="migration"><div class="dot"></div><span class="migration-ver">20260526-0128</span><span class="migration-name">lower_thirds_schema</span></div>
         <div class="migration"><div class="dot"></div><span class="migration-ver">20260526-0138</span><span class="migration-name">lower_thirds_rls</span></div>
@@ -261,6 +261,21 @@
         <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0439</span><span class="migration-name">audit_fixes</span></div>
         <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0459</span><span class="migration-name">add_show_intro_segment</span></div>
         <div class="migration"><div class="dot"></div><span class="migration-ver">20260527-0459</span><span class="migration-name">add_l3_type_and_variants</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0000</span><span class="migration-name">enhance_episodes (shoot_date, status, rc_id, drive_url, notes)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0001</span><span class="migration-name">enhance_graphics (notes, asset_source_urls, source_doc)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0002</span><span class="migration-name">add_guests</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0003</span><span class="migration-name">add_episode_guests (booking lifecycle + email timestamps)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0004</span><span class="migration-name">add_interview_prep</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0005</span><span class="migration-name">v_episode_master view</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0010</span><span class="migration-name">enhance_episodes_metadata (description, tags, youtube_url, etc.)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0011</span><span class="migration-name">add_distributions (6 platforms)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0012</span><span class="migration-name">add_transcripts</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0014</span><span class="migration-name">v_episode_workflow view (computed email due dates)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0021</span><span class="migration-name">enhance_episodes_extended_metadata (youtube_scheduled, thumbnail)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0030</span><span class="migration-name">correct_distributions_platforms (YouTube/Rumble/Dropbox/Fireside/RLN/Streamhoster)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0031</span><span class="migration-name">add_content_clips (timecodes, verbatim quote, platform_fit)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0032</span><span class="migration-name">add_social_posts (6 platforms, 9 post types)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0040</span><span class="migration-name">fix_advisor_issues (security definer views, duplicate indexes, RLS initplan)</span></div>
       </div>
     </div>
 
@@ -279,16 +294,40 @@
 
         <div class="upcoming-item">
           <div>
-            <div class="upcoming-name">Drop current_image_url</div>
-            <div class="upcoming-desc">Clean up __text_only__ sentinel rows</div>
+            <div class="upcoming-name">Drop current_image_url column</div>
+            <div class="upcoming-desc">Clean up __text_only__ sentinel rows post-Stage 7</div>
           </div>
           <span class="badge planned">○</span>
         </div>
 
         <div class="upcoming-item">
           <div>
-            <div class="upcoming-name">Graphic asset tracker</div>
-            <div class="upcoming-desc">Clips, b-roll, pictures, propres quotes</div>
+            <div class="upcoming-name">Episode hub UI</div>
+            <div class="upcoming-desc">Dashboard views for guests, booking, distributions, transcripts (schema ✓ done)</div>
+          </div>
+          <span class="badge planned">○</span>
+        </div>
+
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-name">Guest email workflow UI</div>
+            <div class="upcoming-desc">Zoom link / pre-air / YouTube sent timestamps in dashboard</div>
+          </div>
+          <span class="badge planned">○</span>
+        </div>
+
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-name">Content clips + social posts UI</div>
+            <div class="upcoming-desc">Soundbite logging, platform tracking (schema ✓ done)</div>
+          </div>
+          <span class="badge planned">○</span>
+        </div>
+
+        <div class="upcoming-item">
+          <div>
+            <div class="upcoming-name">YouTube metadata + upload</div>
+            <div class="upcoming-desc">Generate description/tags via Claude, push via API</div>
           </div>
           <span class="badge planned">○</span>
         </div>
@@ -296,31 +335,15 @@
         <div class="upcoming-item">
           <div>
             <div class="upcoming-name">ProPresenter push API</div>
-            <div class="upcoming-desc">Phase 2 — automate handoff</div>
+            <div class="upcoming-desc">Phase 2 — automate handoff from /approved</div>
           </div>
           <span class="badge planned">○</span>
         </div>
 
         <div class="upcoming-item">
           <div>
-            <div class="upcoming-name">Episode metadata</div>
-            <div class="upcoming-desc">Transcripts, descriptions — Feature 2</div>
-          </div>
-          <span class="badge planned">○</span>
-        </div>
-
-        <div class="upcoming-item">
-          <div>
-            <div class="upcoming-name">YouTube upload</div>
-            <div class="upcoming-desc">Feature 3 — once metadata is reliable</div>
-          </div>
-          <span class="badge planned">○</span>
-        </div>
-
-        <div class="upcoming-item">
-          <div>
-            <div class="upcoming-name">Guest pipeline</div>
-            <div class="upcoming-desc">Outreach / scheduling — Feature 4</div>
+            <div class="upcoming-name">CTN / WWN standalone shows</div>
+            <div class="upcoming-desc">Separate schema pass after GSR hub is stable</div>
           </div>
           <span class="badge planned">○</span>
         </div>
@@ -361,7 +384,7 @@
 <script>
   // ── Last updated timestamp ─────────────────────────────────────────────────
   // AGENTS: update this string when you edit this file
-  const LAST_UPDATED = '2026-05-27'
+  const LAST_UPDATED = '2026-05-28'
   document.getElementById('updated').textContent = 'Last updated: ' + LAST_UPDATED
 
   // ── Live PR fetch from GitHub API ──────────────────────────────────────────

@@ -1,6 +1,6 @@
 # Automation Roadmap
 
-*Cross-reference of archaeology-surfaced candidates against the existing project plan. Generated 2026-05-27.*
+*Cross-reference of archaeology-surfaced candidates against the existing project plan. Updated 2026-05-28.*
 
 ---
 
@@ -12,38 +12,34 @@ The archaeology surface almost entirely **production automation** — the upstre
 
 ---
 
-## Production automation candidates (new — not in PROJECT_PLAN.md)
+## Production automation candidates
 
 Ranked by estimated friction-reduction per hour of build work.
 
-### 1. Guest last-aired tracker
-**What it is:** A structured record of every guest's most recent air date + expertise tags + communication style rating.  
-**Why it matters:** AI suggested recently-aired guests (Burgess, Tommy Lohman) in dozens of conversations because it has no airing data. Each correction costs 2–3 turns.  
-**Build path:** Supabase table (`guests`, `guest_airings`) → query before any guest suggestion. Already adjacent to Feature 1 data model.  
-**Effort:** Low. The data model is simple and could ride on the existing Supabase project.
+### 1. ~~Guest last-aired tracker~~ ✓ DONE (2026-05-28)
+~~A structured record of every guest's most recent air date + expertise tags + communication style rating.~~
+**`guests` table** with expertise, is_yec, communication_notes + **`episode_guests`** table with booking_status and filming history is now live in Supabase. Dashboard UI still needed (see Phase 1A below).
 
-### 2. Lower thirds character-count checker
-**What it is:** Auto-flag any L3 line that exceeds 65 characters before the full package is delivered.  
-**Why it matters:** L3 overshoot was a recurring difficulty across the lower-thirds category (146 conversations). Overshoots require a full re-pass.  
-**Build path:** Could live in the Feature 1 dashboard at the point where AI-generated L3s are reviewed. A simple `text.length > 65` check with a red highlight in the approval UI.  
-**Effort:** Trivial — one UI change to Feature 1 (Stage 7+).
+### 2. ~~Lower thirds character-count checker~~ ✓ DONE (2026-05-28)
+~~Auto-flag any L3 line that exceeds 65 characters before the full package is delivered.~~
+**Implemented in `apps/dashboard/src/app/lower-thirds/graphic-card.tsx`** — amber warning at <55 chars (too short), red error at >65 chars (over limit). Full 55–65 character range enforced in the review UI.
 
 ### 3. Monthly interview package compiler
 **What it is:** At the start of each month, pull guest emails + spreadsheet entries + Apple Notes schedule + article links into one formatted document.  
-**Why it matters:** This was described in multiple conversations as a repetitive manual assembly task at the start of every filming cycle.  
+**Why it matters:** Repetitive manual assembly task at the start of every filming cycle.  
 **Build path:** Apps Script triggered on a date, reading Drive + the guest tracker.  
 **Effort:** Medium. Depends on reliable Drive access (known to be fragile — GSR Shared Folder blocks writes).
 
 ### 4. Segment timecode + YouTube title pipeline
 **What it is:** Ingest transcript → parse segment cues → generate 30%-shorter titles → write to Drive spreadsheet.  
-**Why it matters:** AI repeatedly forgot the 30%-shorter rule in the YouTube titles category (59+ conversations). Automating the pipeline bakes the rule in rather than relying on the AI remembering it per session.  
+**Why it matters:** AI repeatedly forgot the 30%-shorter rule in the YouTube titles category (59+ conversations). Automating bakes the rule in.  
 **Build path:** Python script or n8n workflow triggered on transcript completion.  
-**Effort:** Medium. Whisper transcription is already in the original Phase 1 plan; the title generation layer is additive.
+**Effort:** Medium. Whisper transcription is already in the original Phase 1 plan; title generation is additive.
 
 ### 5. News-story → angle mapper
 **What it is:** Given a guest's expertise tags, return recent creation-science-relevant news stories with suggested interview angles.  
 **Why it matters:** Guest research is the largest category (298 conversations, 34% of all volume). Even partial automation of the research-to-angle step has high leverage.  
-**Build path:** Claude API call with a system prompt containing the angle playbook + web search tool.  
+**Build path:** Claude API call with system prompt containing the angle playbook + web search tool.  
 **Effort:** Medium-high. The angle playbook and guest matching nuances need to be baked in.
 
 ### 6. creationsuperstore.com product scraper
@@ -54,17 +50,44 @@ Ranked by estimated friction-reduction per hour of build work.
 
 ### 7. Outreach follow-up workflow
 **What it is:** Standardized 48-hour follow-up timing from initial pitch through booking confirmation.  
-**Why it matters:** Multiple conversations mention managing follow-up timing manually. Standardizing it reduces dropped pitches.  
+**Why it matters:** Multiple conversations mention managing follow-up timing manually.  
 **Build path:** Apps Script or n8n with a date-tracking sheet.  
-**Effort:** Low.
+**Effort:** Low. Schema is ready (`episode_guests` email timestamps + `v_episode_workflow` computed due dates).
 
 ---
 
-## Distribution automation (already in PROJECT_PLAN.md — status update needed)
+## Deferred items added 2026-05-28
+
+### Phase 1A — Guest email workflow UI
+**What:** Dashboard page showing `v_episode_workflow` — computed email due dates for zoom link, pre-air, post-shoot, and YouTube emails per guest per episode. Mark sent via button → writes timestamp to `episode_guests`.  
+**Schema:** Ready. `episode_guests` has all 6 email timestamp columns. `v_episode_workflow` has computed due dates + sent booleans.  
+**Blockers:** None. Awaiting Feature 1 Stage 7 completion.
+
+### Content clips UI
+**What:** Dashboard page for logging soundbites — enter timecode in/out, paste verbatim quote, select segment, tag platform fit. Shows all clips per episode.  
+**Schema:** Ready. `content_clips` table is live.  
+**Blockers:** None. Awaiting post-Stage 7 roadmap.
+
+### Social posts UI
+**What:** Dashboard page for drafting and tracking social posts — write caption, add hashtags, select platform + post type, schedule or mark posted.  
+**Schema:** Ready. `social_posts` table is live, FK to `content_clips` and `episodes`.  
+**Blockers:** None. Awaiting content clips UI first.
+
+### CTN / WWN schema
+**What:** Changing the Narrative (28.5 min long-form podcast) and Wonders Without Number (29 min, sold via CreationSuperstore) have separate production structures from GSR. Need separate schema pass.  
+**Decision:** Deferred until GSR episode hub is stable and in active use.
+
+### Phase 2 — Context loss prevention
+**What:** Strategy to prevent repeated automation design cycles that never ship (879-session archaeology). Potential: CLAUDE.md rule set (Anti-Churn Rule is in place), session handoff doc, task queue doc.  
+**Decision:** Anti-Churn Rule added to CLAUDE.md. Needs operational review after Stage 7.
+
+---
+
+## Distribution automation (already in PROJECT_PLAN.md — status update)
 
 The original plan's Phase 1 (YouTube + Dropbox automation) and Phase 2 (Signiant, Rumble) are still valid goals but the architecture shifted with ADR-0012. The dashboard that was planned as n8n + SQLite is now the Supabase + Next.js app at `apps/dashboard/`.
 
-**Recommendation:** After Feature 1 ships (Stage 7), fold distribution tracking into the existing dashboard rather than building a separate system. The schema pattern from `PROJECT_PLAN.md` (episodes + platform_uploads tables) maps cleanly to Supabase.
+The `distributions` table is now live. **Recommendation:** After Feature 1 clears Stage 7, build dashboard UI for distribution tracking before separate upload automation — that gives the tracking layer first.
 
 ---
 
@@ -72,8 +95,8 @@ The original plan's Phase 1 (YouTube + Dropbox automation) and Phase 2 (Signiant
 
 | Priority | Item | Why now |
 |---|---|---|
-| 1 | Guest last-aired tracker | Prevents the #1 recurring AI error; small Supabase table |
-| 2 | L3 character-count checker | One UI change to Feature 1 approval screen |
-| 3 | Timecode + title pipeline | Highest-volume repeated manual task (YouTube category) |
-| 4 | Distribution tracking in dashboard | Folds the original PROJECT_PLAN.md goals into current stack |
+| 1 | Phase 1A — Guest email workflow UI | Schema done, high daily value for Daniel |
+| 2 | Episode hub UI (guests, distributions, transcripts) | All schema done; one dashboard view per table |
+| 3 | Content clips + social posts UI | Schema done; completes the social media workflow |
+| 4 | Timecode + title pipeline | Highest-volume repeated manual task (YouTube category) |
 | 5 | Monthly package compiler | Useful but Drive reliability is a dependency |

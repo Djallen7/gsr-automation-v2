@@ -276,6 +276,8 @@
         <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0031</span><span class="migration-name">add_content_clips (timecodes, verbatim quote, platform_fit)</span></div>
         <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0032</span><span class="migration-name">add_social_posts (6 platforms, 9 post types)</span></div>
         <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0040</span><span class="migration-name">fix_advisor_issues (security definer views, duplicate indexes, RLS initplan)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0100</span><span class="migration-name">enhance_guests_schema (is_deceased, do_not_contact, sensitive_flag/notes, re_approach, credentials_display, source, website, topic, decline_reason)</span></div>
+        <div class="migration"><div class="dot"></div><span class="migration-ver">20260528-0101</span><span class="migration-name">add_expertise_tags_to_guests (text[] GIN-indexed)</span></div>
       </div>
     </div>
 
@@ -364,6 +366,7 @@
       <div class="route page"><span class="route-path">/import</span><span class="route-type">page</span></div>
       <div class="route page"><span class="route-path">/lower-thirds</span><span class="route-type">page</span></div>
       <div class="route page"><span class="route-path">/approved</span><span class="route-type">page</span></div>
+      <div class="route page"><span class="route-path">/toolkit</span><span class="route-type">page · prompt library</span></div>
       <div class="route api"><span class="route-path">/api/regenerate</span><span class="route-type">POST · claude</span></div>
       <div class="route api"><span class="route-path">/api/import</span><span class="route-type">POST · bulk ingest</span></div>
       <div class="route api"><span class="route-path">/auth/callback</span><span class="route-type">GET · supabase</span></div>

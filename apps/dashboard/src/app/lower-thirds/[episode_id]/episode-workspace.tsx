@@ -3,6 +3,7 @@
 import { useState, useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { GraphicCard } from '../graphic-card'
 import { SEGMENTS } from '@/lib/segments'
@@ -60,6 +61,118 @@ type ExtractStage =
   | { name: 'importing' }
   | { name: 'done'; count: number }
   | { name: 'error'; message: string }
+
+interface RcSegmentPreview {
+  rc_segment: string
+  segment: string
+  char_count: number
+}
+
+function RcPanel({ episodeId }: { episodeId: string }) {
+  const router = useRouter()
+  const [rundownId, setRundownId] = useState('')
+  const [status, setStatus] = useState<'idle' | 'previewing' | 'ready' | 'importing' | 'done' | 'error'>('idle')
+  const [preview, setPreview] = useState<RcSegmentPreview[] | null>(null)
+  const [error, setError] = useState<string | null>(null)
+  const [importedCount, setImportedCount] = useState(0)
+
+  async function handlePreview() {
+    if (!rundownId.trim()) return
+    setStatus('previewing')
+    setError(null)
+    try {
+      const res = await fetch(`/api/rc-import?rundown_id=${encodeURIComponent(rundownId)}`)
+      const body = (await res.json()) as { segments?: RcSegmentPreview[]; error?: string }
+      if (!res.ok) throw new Error(body.error ?? 'Preview failed.')
+      setPreview(body.segments ?? [])
+      setStatus('ready')
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Preview failed.')
+      setStatus('error')
+    }
+  }
+
+  async function handleImport() {
+    if (!preview) return
+    setStatus('importing')
+    try {
+      const res = await fetch('/api/rc-import', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ rundown_id: Number(rundownId), episode_id: episodeId, dry_run: false }),
+      })
+      const body = (await res.json()) as { imported?: number; error?: string }
+      if (!res.ok) throw new Error(body.error ?? 'Import failed.')
+      setImportedCount(body.imported ?? 0)
+      setStatus('done')
+      router.refresh()
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Import failed.')
+      setStatus('error')
+    }
+  }
+
+  const busy = status === 'previewing' || status === 'importing'
+
+  return (
+    <div className="rounded-md border bg-muted/20 p-4">
+      <p className="mb-3 text-sm font-semibold">Pull from Rundown Creator</p>
+      <div className="flex gap-2">
+        <Input
+          type="number"
+          placeholder="Rundown ID (e.g. 79)"
+          value={rundownId}
+          onChange={(e) => { setRundownId(e.target.value); setStatus('idle'); setPreview(null) }}
+          className="w-52"
+          disabled={busy}
+        />
+        <Button
+          size="sm"
+          variant="outline"
+          onClick={handlePreview}
+          disabled={!rundownId.trim() || busy}
+        >
+          {status === 'previewing' ? 'Loading…' : 'Preview'}
+        </Button>
+      </div>
+
+      {status === 'error' && error && (
+        <p className="mt-2 text-xs text-destructive">{error}</p>
+      )}
+
+      {preview && (status === 'ready' || status === 'importing' || status === 'done') && (
+        <div className="mt-3 space-y-1">
+          <p className="text-xs text-muted-foreground">{preview.length} segments found:</p>
+          <ul className="space-y-0.5">
+            {preview.map(s => (
+              <li key={s.segment} className="text-xs">
+                <span className="font-medium">{s.rc_segment}</span>
+                <span className="mx-1.5 text-muted-foreground">→</span>
+                <span className="text-muted-foreground">{s.segment}</span>
+                <span className="ml-2 tabular-nums text-muted-foreground">
+                  {s.char_count.toLocaleString()} chars
+                </span>
+              </li>
+            ))}
+          </ul>
+          {status === 'ready' && (
+            <Button size="sm" className="mt-2" onClick={handleImport}>
+              Import {preview.length} scripts →
+            </Button>
+          )}
+          {status === 'importing' && (
+            <p className="mt-2 animate-pulse text-xs text-muted-foreground">Saving scripts…</p>
+          )}
+          {status === 'done' && (
+            <p className="mt-2 text-xs font-medium text-green-700 dark:text-green-400">
+              ✓ {importedCount} scripts imported — lower-thirds auto-generating…
+            </p>
+          )}
+        </div>
+      )}
+    </div>
+  )
+}
 
 function SegmentSlot({
   episodeId,
@@ -357,7 +470,9 @@ export function EpisodeWorkspace({
   }
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
+      <RcPanel episodeId={episode.id} />
+      <div className="space-y-2">
       {SEGMENTS.map((seg) => (
         <SegmentSlot
           key={seg.value}
@@ -369,6 +484,7 @@ export function EpisodeWorkspace({
           initialGraphics={graphicsBySegment.get(seg.value) ?? []}
         />
       ))}
+      </div>
     </div>
   )
 }

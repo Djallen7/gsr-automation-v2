@@ -25,7 +25,21 @@ Daniel Allen is the sole producer at David Rives Ministries (DRM), where he writ
 - **Lower thirds variation system**: 3-column Primary/Var 1/Var 2 tied to specific segments. Supabase storage expects **flat JSON arrays, not nested wrappers**.
 - **Single growing Google Doc** for email logs with bold H1/H2 headers. Save to **My Drive root** — GSR Shared Folder (owned by davidrives.com) blocks API writes. For Drive ops, use **Composio's `GOOGLEDRIVE_MOVE_FILE`/`TRASH_FILE`** directly (skip Anthropic's Drive MCP); expect large folder moves to time out.
 
-## Locked references
+## Pre-Air Verification Checklist
+
+**Run this before finalizing any script, L3 package, or guest intro that will go on air. Non-negotiable.**
+
+1. **Guest credentials** — Every title, degree, and affiliation must come from what the guest provided (bio, email, website), not from an AI-generated summary or secondary source. If a credential is unverified, flag it explicitly: *"flagged — verify before air."* Never smooth over uncertainty with confident phrasing.
+
+2. **On-air scientific claims** — Any number, date, study result, or named discovery stated as fact in David's script must have a traceable source (the article, the paper, the guest's own words). If a claim can't be sourced in the session context, flag it: *"source needed — confirm before air."* Do not present AI-recalled facts as verified.
+
+3. **creationsuperstore.com product plugs** — If a guest's book, video, or resource is mentioned in a script or closer, confirm it actually appears on creationsuperstore.com before including it. If it's not there, offer a website plug instead. Never fabricate a product listing.
+
+If any of the three can't be confirmed, flag it in the output — don't silently skip it. Daniel would rather catch it in review than on David's teleprompter.
+
+---
+
+
 
 **Hook framework (check the hook guide BEFORE drafting, not after):**
 > Universal Anchor → Disruption → Stakes → Guest
@@ -37,7 +51,7 @@ Establish something the audience already owns before any fact, jargon, or name. 
 ---
 
 **Lower thirds (GSR standard)**:
-- 15 per segment, ALL CAPS, no commas, no em dashes, **60–65 characters**
+- 15 per segment, ALL CAPS, no commas, no em dashes, **55–65 characters**
 - L3 #1 = newsy hook from the intro (not a show preview)
 - L3 #2 = evergreen standalone headline (triggerable anywhere in monologue)
 - L3s #3–15 progressively advance the monologue argument

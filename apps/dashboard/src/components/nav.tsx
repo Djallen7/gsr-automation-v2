@@ -7,6 +7,8 @@ const links = [
   { href: '/lower-thirds', label: 'Review' },
   { href: '/import', label: 'Import' },
   { href: '/approved', label: 'Approved' },
+  { href: '/toolkit', label: 'Toolkit' },
+  { href: '/upload', label: 'Upload' },
 ]
 
 export function Nav() {

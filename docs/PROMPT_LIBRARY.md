@@ -376,8 +376,6 @@ Requirements:
 - Kids Corner: Kids Corner
 - Genesis Science Q&A: {title}
 - Ministry Report: Ministry Report
-- Viewer Voices: Viewer Voices
-- Featured Resource: {title}
 - Genesis Science Minute: Genesis Science Minute
 - Interview 2 ({guest last name}): {title}
 

@@ -170,6 +170,7 @@ export type Database = {
           booking_status: string
           created_at: string | null
           day_before_reminder_sent_at: string | null
+          decline_reason: string | null
           episode_id: string
           filming_datetime: string | null
           guest_id: string
@@ -181,6 +182,7 @@ export type Database = {
           resource_url: string | null
           resource_verified: boolean | null
           segment: string
+          topic: string | null
           zoom_link_sent_at: string | null
           zoom_location: string | null
         }
@@ -189,6 +191,7 @@ export type Database = {
           booking_status?: string
           created_at?: string | null
           day_before_reminder_sent_at?: string | null
+          decline_reason?: string | null
           episode_id: string
           filming_datetime?: string | null
           guest_id: string
@@ -200,6 +203,7 @@ export type Database = {
           resource_url?: string | null
           resource_verified?: boolean | null
           segment: string
+          topic?: string | null
           zoom_link_sent_at?: string | null
           zoom_location?: string | null
         }
@@ -208,6 +212,7 @@ export type Database = {
           booking_status?: string
           created_at?: string | null
           day_before_reminder_sent_at?: string | null
+          decline_reason?: string | null
           episode_id?: string
           filming_datetime?: string | null
           guest_id?: string
@@ -219,6 +224,7 @@ export type Database = {
           resource_url?: string | null
           resource_verified?: boolean | null
           segment?: string
+          topic?: string | null
           zoom_link_sent_at?: string | null
           zoom_location?: string | null
         }
@@ -474,47 +480,77 @@ export type Database = {
         Row: {
           communication_notes: string | null
           created_at: string | null
+          credentials_display: string | null
+          do_not_contact: boolean
           email: string | null
           expertise: string | null
+          expertise_tags: string[] | null
           first_name: string
           id: string
+          is_deceased: boolean
           is_yec: boolean | null
           job_title: string | null
           last_name: string
           notes: string | null
           organization: string | null
           phone: string | null
+          re_approach_after: string | null
+          re_approach_notes: string | null
+          sensitive_flag: boolean
+          sensitive_notes: string | null
+          source: string | null
           title: string | null
+          website: string | null
         }
         Insert: {
           communication_notes?: string | null
           created_at?: string | null
+          credentials_display?: string | null
+          do_not_contact?: boolean
           email?: string | null
           expertise?: string | null
+          expertise_tags?: string[] | null
           first_name: string
           id?: string
+          is_deceased?: boolean
           is_yec?: boolean | null
           job_title?: string | null
           last_name: string
           notes?: string | null
           organization?: string | null
           phone?: string | null
+          re_approach_after?: string | null
+          re_approach_notes?: string | null
+          sensitive_flag?: boolean
+          sensitive_notes?: string | null
+          source?: string | null
           title?: string | null
+          website?: string | null
         }
         Update: {
           communication_notes?: string | null
           created_at?: string | null
+          credentials_display?: string | null
+          do_not_contact?: boolean
           email?: string | null
           expertise?: string | null
+          expertise_tags?: string[] | null
           first_name?: string
           id?: string
+          is_deceased?: boolean
           is_yec?: boolean | null
           job_title?: string | null
           last_name?: string
           notes?: string | null
           organization?: string | null
           phone?: string | null
+          re_approach_after?: string | null
+          re_approach_notes?: string | null
+          sensitive_flag?: boolean
+          sensitive_notes?: string | null
+          source?: string | null
           title?: string | null
+          website?: string | null
         }
         Relationships: []
       }

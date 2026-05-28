@@ -43,28 +43,44 @@ export default async function LowerThirdsPage() {
 
   const rows = (graphics ?? []) as GraphicRow[]
 
+  const pending = rows.filter(r => r.status === 'pending_review').length
+  const approved = rows.filter(r => r.status === 'approved').length
+  const rejected = rows.filter(r => r.status === 'rejected').length
+
   return (
-    <main className="mx-auto max-w-5xl p-8">
-      <header className="flex items-center justify-between gap-4">
+    <main className="mx-auto max-w-5xl px-8 py-6">
+      <header className="flex items-center justify-between gap-4 pb-5 border-b">
         <div>
-          <h1 className="text-2xl font-semibold">Lower-thirds review</h1>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Signed in as {email}.
-          </p>
+          <h1 className="text-xl font-semibold tracking-tight">Lower-thirds review</h1>
+          <div className="mt-1.5 flex items-center gap-3 text-xs">
+            {pending > 0 && (
+              <span className="rounded-full bg-amber-100 px-2 py-0.5 font-medium text-amber-800">
+                {pending} pending
+              </span>
+            )}
+            {approved > 0 && (
+              <span className="rounded-full bg-green-100 px-2 py-0.5 font-medium text-green-800">
+                {approved} approved
+              </span>
+            )}
+            {rejected > 0 && (
+              <span className="rounded-full bg-red-100 px-2 py-0.5 font-medium text-red-800">
+                {rejected} rejected
+              </span>
+            )}
+            {rows.length === 0 && (
+              <span className="text-muted-foreground">No items</span>
+            )}
+          </div>
         </div>
-        <div className="flex gap-2">
-          <Link href="/approved" className={buttonVariants({ variant: 'outline' })}>
-            Approved queue
-          </Link>
-          <Link href="/import" className={buttonVariants()}>
-            Import from script
-          </Link>
-        </div>
+        <Link href="/import" className={buttonVariants({ size: 'sm' })}>
+          Import from script
+        </Link>
       </header>
 
-      <section className="mt-8">
+      <section className="mt-5">
         {rows.length > 0 ? (
-          <ul className="grid gap-3">
+          <ul className="grid gap-2.5">
             {rows.map((g) => {
               const ep = Array.isArray(g.episode) ? g.episode[0] : g.episode
               const label = ep
@@ -89,13 +105,15 @@ export default async function LowerThirdsPage() {
             })}
           </ul>
         ) : (
-          <p className="text-sm text-muted-foreground">
-            No lower-thirds pending review. Use{' '}
-            <Link href="/import" className="underline">
-              Import from script
-            </Link>{' '}
-            to ingest text from a Claude-extracted JSON file.
-          </p>
+          <div className="rounded-lg border border-dashed p-10 text-center">
+            <p className="text-sm text-muted-foreground">
+              No lower-thirds pending review.{' '}
+              <Link href="/import" className="font-medium text-foreground underline-offset-4 hover:underline">
+                Import from script
+              </Link>{' '}
+              to get started.
+            </p>
+          </div>
         )}
       </section>
     </main>

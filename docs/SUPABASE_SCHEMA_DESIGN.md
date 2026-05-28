@@ -14,12 +14,12 @@ episodes
   │     └── lower_thirds_variations (graphics_variations)   AI regeneration history
   ├── production_graphics  [PENDING]   visual assets → Rundown Creator + Drive
   │     └── premade_library [PENDING]  reusable pre-made asset catalog
-  ├── episode_guests                   booking records — one row per slot per episode
+  ├── episode_guests                   placed interview slots — one row per slot per episode
   │     └── guests                     person roster, reused across episodes
-  │           └── filming_schedule [PENDING]  ALT slot scheduling
-  ├── interview_prep                   article sourcing + angle development
-  ├── articles [PENDING]               standalone article candidates (8-dim scored)
-  │     └── article_guest_recommendations [PENDING]   link articles to guest candidates
+  ├── booking_pipeline [PENDING]       outreach tracking before episode placement (overflow guests too)
+  ├── shoot_sessions [PENDING]         monthly production cycle shoot days (1–3 per month)
+  ├── interview_prep                   article sourcing + angle development per episode-guest
+  ├── articles [PENDING]               standalone article candidates (8-dim scored, 1 target guest each)
   ├── outreach_drafts [PENDING]        email template library by tier
   ├── email_threads [PENDING]          log of actual sent emails
   ├── distributions                    platform delivery tracking
@@ -137,10 +137,15 @@ One row per person. Reused across episodes.
 | expertise | text | e.g. "Astrophysics, Cosmology" |
 | job_title | text | |
 | organization | text | |
+| is_christian | boolean | Professing Christian; null = unknown. false = secular guest — brief David to stay on science, avoid biblical claims |
 | is_yec | boolean | Young Earth Creationist; false = apply science-first framing, avoid age/cosmology topics |
+| timezone | text | Guest's local timezone e.g. "America/Chicago" — extracted from scheduling |
+| location_city | text | City e.g. "Dallas, TX" — for scheduling context |
 | communication_notes | text | Responsiveness, on-air performance, scheduling ease |
 | notes | text | |
 | created_at | timestamptz | |
+
+**Note:** Most guests are YEC Christians; GSR is slowly expanding to non-Christian scientists to cover a wider topic range. When `is_christian = false`, David is briefed to lean on science-first framing and stewardship/design angles rather than biblical authority.
 
 **Appearance count is computed:** `SELECT COUNT(*) FROM episode_guests WHERE guest_id = ?` — used to determine outreach tier (0=cold, 1=warm, 2=returning, 3-4=recurring, 5+=direct).
 
@@ -255,7 +260,7 @@ Catalog of reusable pre-made b-roll loops and graphics built up over several yea
 
 ### `articles` [PENDING — not yet migrated]
 
-Standalone article candidates for the research pipeline. Different from `interview_prep` (which ties to a specific episode+guest). Articles exist independently and get matched to guests and episodes.
+Standalone article candidates for the research pipeline. Each article has **one target guest** — the person best suited to discuss it. When the article is used in an episode, an `interview_prep` row is created linking the article to the episode+guest.
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -265,6 +270,7 @@ Standalone article candidates for the research pipeline. Different from `intervi
 | source_publication | text | e.g. "Nature", "ICR.org", "Science Daily" |
 | published_date | date | |
 | summary | text | |
+| key_points | text | Bullet notes on the most interesting claims |
 | lane | text | creation_science / astronomy / biology / genetics / geology / archaeology / other |
 | score_scientific_clarity | int | 0–10 |
 | score_biblical_alignment | int | 0–10 |
@@ -276,47 +282,72 @@ Standalone article candidates for the research pipeline. Different from `intervi
 | score_timeliness | int | 0–10 |
 | total_score | int GENERATED | Sum of all 8 scores (0–80) |
 | yec_stance | text | yec_friendly / neutral / hostile |
-| status | text | candidate → approved → used → archived |
+| recommended_guest_id | uuid FK → guests | The one target guest identified for this article (nullable — may not be found yet) |
+| outreach_framing_notes | text | How to pitch the article to the guest — worldview framing, known friction points, backup guest if target passes |
+| status | text | scout → approved → outreach_sent → booked → used → archived |
 | added_by | uuid FK → auth.users | |
 | created_at | timestamptz | |
 
-**Scoring rubric** (from GSR Interview Tracker): each dimension 0–10, max total 80. A score ≥ 60 is broadcast-ready. Score ≥ 40 with strong guest fit warrants development.
+**Scoring rubric:** each dimension 0–10, max total 80. Score ≥ 60 is broadcast-ready. Score ≥ 40 with strong guest fit warrants development.
+
+**One article → one guest.** This is a direct column, not a junction table. If the target guest declines, update `recommended_guest_id` to the backup and revise `outreach_framing_notes`.
 
 ---
 
-### `article_guest_recommendations` [PENDING — not yet migrated]
+### `shoot_sessions` [PENDING — not yet migrated]
 
-Junction table linking article candidates to guest candidates. Built from the GSR Interview Tracker's article scoring + guest matching system.
+Each month's production cycle has 1–3 separate shoot days (e.g. May has May 28, May 29, and June 15 overflow). This table tracks those days. `episode_guests.filming_datetime` points to the specific timeslot within a session.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | uuid PK | |
-| article_id | uuid FK → articles NOT NULL | |
-| guest_id | uuid FK → guests NOT NULL | |
-| episode_id | uuid FK → episodes | Nullable — set when article is assigned to an episode |
-| christian_worldview | boolean | Guest holds biblical/Christian worldview (from Interview Tracker field) |
-| recommendation_notes | text | Why this guest + article pair works |
-| created_at | timestamptz | |
-
-UNIQUE on `(article_id, guest_id)`.
-
----
-
-### `filming_schedule` [PENDING — not yet migrated]
-
-ALT slot scheduling for interviews. `episode_guests.filming_datetime` is the confirmed primary slot — this table stores the negotiation slots including alternates.
-
-| Column | Type | Notes |
-|--------|------|-------|
-| id | uuid PK | |
-| episode_id | uuid FK → episodes NOT NULL | |
-| episode_guest_id | uuid FK → episode_guests NOT NULL | |
-| slot_type | text CHECK | primary / alt_1 / alt_2 |
-| proposed_datetime | timestamptz NOT NULL | |
-| timezone | text | Guest's local timezone (e.g. "America/Chicago") |
-| confirmed | boolean DEFAULT false | |
+| season | int NOT NULL | e.g. 3 |
+| production_month | int NOT NULL | 1–12 (the month this cycle is producing for) |
+| session_date | date NOT NULL | Actual shoot day |
+| label | text | Display label e.g. "May 28th AM", "June 15th overflow" |
+| location | text | zoom / in_studio / pre_recorded |
 | notes | text | |
 | created_at | timestamptz | |
+
+UNIQUE on `(season, production_month, session_date)`.
+
+**Why overflow sessions span into the next month:** if May fills up (5 episodes × 2 interviews = 10 slots), confirmed guests overflow to a June shoot session that still feeds May episodes airing later. The `production_month` field captures which airing cycle the session belongs to, not which calendar month it's shot in.
+
+---
+
+### `booking_pipeline` [PENDING — not yet migrated]
+
+Tracks the full outreach lifecycle before a guest is placed on a specific episode. This is the replacement for the ALT rows in the current monthly spreadsheet — confirmed guests waiting for episode placement, plus all outreach-in-progress.
+
+When a guest is confirmed and placed on an episode, the `episode_guests` row is created and `booking_pipeline.episode_guest_id` is filled in. Until then, `episode_guest_id` is null.
+
+| Column | Type | Notes |
+|--------|------|-------|
+| id | uuid PK | |
+| guest_id | uuid FK → guests NOT NULL | |
+| article_id | uuid FK → articles | The article they're being invited to discuss (nullable) |
+| outreach_tier | text CHECK | cold / warm / returning / recurring / direct |
+| status | text CHECK | outreach_sent / replied / confirmed / placed / declined / no_show / deferred |
+| target_season | int | Season they're being recruited for |
+| target_month | int | 1–12 — the production cycle (not necessarily the shoot month) |
+| shoot_session_id | uuid FK → shoot_sessions | Assigned shoot session once confirmed |
+| episode_guest_id | uuid FK → episode_guests | Filled when placed on a specific episode |
+| outreach_sent_at | timestamptz | When initial email went out |
+| last_contact_at | timestamptz | Most recent contact in either direction |
+| notes | text | Scheduling notes, location, timezone issues |
+| created_by | uuid FK → auth.users | |
+| created_at | timestamptz | |
+
+**Status values:**
+| Value | Meaning |
+|---|---|
+| `outreach_sent` | Email sent, no reply yet |
+| `replied` | Guest replied but not confirmed |
+| `confirmed` | Confirmed the date — may not have an episode assigned yet (overflow) |
+| `placed` | episode_guest_id is set; slot assigned |
+| `declined` | Guest said no |
+| `no_show` | Did not show for confirmed session |
+| `deferred` | Pushed to a future month's cycle |
 
 ---
 
@@ -567,16 +598,17 @@ Computed due dates + boolean flags for both guests' email lifecycle. Returns one
 20260528004000  fix_advisor_issues
 ```
 
-### Pending (7 new tables — write migrations after Daniel approves this plan)
+### Pending (8 new tables — write migrations after Daniel approves this plan)
 
 ```
 [next]  add_production_graphics
 [next]  add_premade_library
-[next]  add_articles (with 8-dim scoring)
-[next]  add_article_guest_recommendations
-[next]  add_filming_schedule
+[next]  add_articles (8-dim scoring, single recommended_guest_id column)
+[next]  add_shoot_sessions (monthly production cycle shoot days)
+[next]  add_booking_pipeline (pre-placement outreach + overflow tracking)
 [next]  add_outreach_drafts
 [next]  add_email_threads
+[next]  enhance_guests (add is_christian, timezone, location_city)
 ```
 
 ### Future (coordinate with code changes)

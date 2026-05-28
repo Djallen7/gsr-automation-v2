@@ -53,6 +53,9 @@ export default async function LowerThirdsPage() {
           </p>
         </div>
         <div className="flex gap-2">
+          <Link href="/toolkit" className={buttonVariants({ variant: 'ghost' })}>
+            Prompt toolkit
+          </Link>
           <Link href="/approved" className={buttonVariants({ variant: 'outline' })}>
             Approved queue
           </Link>

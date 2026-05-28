@@ -41,6 +41,7 @@ export function GraphicCard({
   fontColor,
 }: GraphicCardProps) {
   const [isPending, startTransition] = useTransition()
+  const [localStatus, setLocalStatus] = useState(status)
   const [regenerating, setRegenerating] = useState(false)
   const [regenError, setRegenError] = useState<string | null>(null)
   const [dialogOpen, setDialogOpen] = useState(false)
@@ -48,20 +49,26 @@ export function GraphicCard({
   const [proposedVariationNumber, setProposedVariationNumber] = useState<number | null>(null)
 
   function handleApprove() {
+    const prev = localStatus
+    setLocalStatus('approved')
     startTransition(async () => {
       try {
         await approveGraphic(id)
       } catch (err) {
+        setLocalStatus(prev)
         toast.error(err instanceof Error ? err.message : 'Approve failed.')
       }
     })
   }
 
   function handleReject() {
+    const prev = localStatus
+    setLocalStatus('rejected')
     startTransition(async () => {
       try {
         await rejectGraphic(id)
       } catch (err) {
+        setLocalStatus(prev)
         toast.error(err instanceof Error ? err.message : 'Reject failed.')
       }
     })
@@ -105,12 +112,19 @@ export function GraphicCard({
     })
   }
 
-  const isPendingReview = status === 'pending_review'
+  const isPendingReview = localStatus === 'pending_review'
 
   const textOnly = isTextOnly(currentImageUrl)
 
+  const cardBorder =
+    localStatus === 'approved'
+      ? 'border-green-500 bg-green-50 dark:bg-green-950/20'
+      : localStatus === 'rejected'
+        ? 'border-red-400 bg-red-50 dark:bg-red-950/20'
+        : ''
+
   return (
-    <article className="flex flex-col gap-3 rounded-md border p-3">
+    <article className={`flex flex-col gap-3 rounded-md border p-3 transition-colors ${cardBorder}`}>
       <div className="flex gap-3">
         {textOnly ? (
           <div
@@ -130,8 +144,16 @@ export function GraphicCard({
         )}
         <div className="flex flex-1 flex-col gap-1 text-sm">
           <div className="flex flex-wrap items-center gap-2 text-xs">
-            <span className="rounded bg-muted px-2 py-0.5 uppercase tracking-wide">
-              {status}
+            <span
+              className={`rounded px-2 py-0.5 uppercase tracking-wide ${
+                localStatus === 'approved'
+                  ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                  : localStatus === 'rejected'
+                    ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+                    : 'bg-muted'
+              }`}
+            >
+              {localStatus}
             </span>
             <span className="text-muted-foreground">{episodeLabel}</span>
             <span className="text-muted-foreground">

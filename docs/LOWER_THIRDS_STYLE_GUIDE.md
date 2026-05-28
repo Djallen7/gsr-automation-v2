@@ -1,7 +1,7 @@
 # GSR Lower-Thirds Style Guide
 
 **Show:** Genesis Science Report (GSR), Season 3  
-**Source:** Synthesized from 200 production records (S3 EP16–EP24), personal-claude.md, ai_usage_profile.md, recurring_difficulties.md, archaeology of 879 conversation sessions, and the live codebase  
+**Source:** Synthesized from 200 production records (S3 EP16–EP24), personal-claude.md, ai_usage_profile.md, recurring_difficulties.md, and the live codebase  
 **Last updated:** 2026-05-28  
 **Canonical truth:** This document + the Zod schema in `apps/dashboard/src/app/api/import/route.ts`
 
@@ -14,13 +14,8 @@ Every lower-third, every time, no exceptions:
 | Rule | Correct | Wrong |
 |------|---------|-------|
 | ALL CAPS | `THE CELL IS A MACHINE` | `The Cell Is A Machine` |
-| No em dashes | `DARWIN AND HIS OWN DOUBTS` | `DARWIN — HIS OWN DOUBTS` |
+| No em dashes | `DARWIN / HIS OWN DOUBTS` | `DARWIN — HIS OWN DOUBTS` |
 | No commas | `FRANK SHERWIN \| ZOOLOGIST \| ICR` | `FRANK SHERWIN, ZOOLOGIST, ICR` |
-| No hyphens | `SPECIES VS. KIND: THE DISTINCTION` | `SPECIES VS. KIND - THE DISTINCTION` |
-| No sentence-ending periods | `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` | `MICROBES EVERYWHERE. ORIGINS UNKNOWN.` |
-| Abbreviation periods OK | `VS.` `DR.` `PHD.` — fine | n/a |
-| No slashes | `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` | `MICROBES EVERYWHERE / ORIGINS UNKNOWN` |
-| No brackets or parentheses | `SCIENCE 2018: 237 SOIL SITES` | `SCIENCE (2018): 237 SOIL SITES` |
 | No quotation marks wrapping the line | `THE CELL IS A MACHINE` | `"THE CELL IS A MACHINE"` |
 | Quotation marks inside OK | `DARWIN: "I WOULD HAVE USED NATURAL PRESERVATION"` | n/a |
 | No markdown formatting | bare text | bold, tables, backticks |
@@ -31,19 +26,21 @@ Tone: punchy cable-news, biblical worldview. Every line must work standalone as 
 
 ## 2. Length
 
-**Target: 65 characters. That is the ideal.**
+**Target: 41–65 characters, 7–11 words.**
 
-- Aim for 65. Getting close (60–65) is good. Under 55 is too short. Over 65 is too long.
-- The AI regeneration prompt enforces **8 words or fewer** as a hard cap for AI-generated alternatives — but that is a constraint on the AI tool, not the human writing standard. Human-written beats average ~10 words.
+- 87% of all production records fall in the 41–65 character range.
+- Hard floor: don't write a lower-third shorter than ~40 characters unless it's a fixed title card (see Section 5.1).
+- Soft ceiling: 65 characters. Going above 65 requires deliberate justification (e.g., a three-part chyron with a long institution name).
+- The AI regeneration prompt enforces **8 words or fewer** as a hard cap for AI-generated alternatives.
 - The database field accepts up to 200 characters — that is a storage constraint, not a style target.
 
-**Common mistake:** The AI undershoots when generating alternatives. One production example: the human wrote `STUDYING CREATION IS NOT THE SAME AS REWIRING CREATION ITSELF` (62 chars) and the AI produced `OBSERVING CREATION ISN'T REENGINEERING IT` (42 chars). The human version was correct. Push AI alternatives back to length.
+**Common mistake:** The AI consistently overshoots 60–65 characters. Count before delivering.
 
 ---
 
 ## 3. Separator Guide
 
-Two separators are in regular use. Everything else should be avoided.
+Three separators exist. Each has a specific job.
 
 ### Pipe `|` — for chyrons and contact cards only
 
@@ -63,17 +60,20 @@ Examples from production:
 - `ARCHAEOPTERYX: TRANSITIONAL FORM OR DISTINCT CREATURE?`
 - `THE GENETIC CODE: ONE RULE, THREE BILLION YEARS`
 - `GULF OF MEXICO DEAD ZONE: SIZE OF MASSACHUSETTS`
-- `DARWIN: "I WOULD HAVE USED NATURAL PRESERVATION"`
-- `LEGATES: PATTERN-MATCH TO POPULATION BOMB PEAK OIL`
+- `DARWIN, 1860: "I WOULD HAVE USED NATURAL PRESERVATION"`
+- `LEGATES: PATTERN-MATCH TO POPULATION BOMB, PEAK OIL`
 
-### Avoid: hyphens, sentence-ending periods, slashes, brackets
+### Forward slash `/` — for paired attributions
 
-- **Hyphens** `-` — banned. Use a colon instead. `THE ARK AND THE DARKNESS: GENESIS APOLOGETICS` not `THE ARK AND THE DARKNESS - GENESIS APOLOGETICS`.
-- **Sentence-ending periods** `.` — banned as separators or clause-enders. Abbreviation periods (`VS.`, `DR.`, `PHD.`) are fine.
-- **Slashes** `/` — banned. Rewrite using a colon or conjunction.
-- **Parentheses / brackets** `()` `[]` — banned. Rewrite citations inline: `SCIENCE 2018: 237 SOIL SITES` not `SCIENCE (2018): 237 SOIL SITES`.
+Used when a dash or em dash would otherwise appear, or to pair a title with its subject:
+- `BEIJERINCK'S PUZZLE: MICROBES EVERYWHERE / ORIGINS UNKNOWN`
+- Do not use where a colon or pipe is the right choice.
 
-If removing any of these makes a beat feel awkward, it is usually carrying two ideas. Split it into two beats.
+### Hyphen `-` — for book-author attributions
+
+Specific to resource plugs and book citations:
+- `CLIMATE AND ENERGY: THE CASE FOR REALISM - LEGATES`
+- `THE DARWIN EFFECT - DR. JERRY BERGMAN`
 
 ---
 
@@ -111,7 +111,7 @@ DR. DAVID LEGATES | DIRECTOR OF SCIENCE | CORNWALL ALLIANCE
 DR. TIM CLAREY | RESEARCH SCIENTIST | INSTITUTE FOR CREATION RESEARCH
 DR. JERRY BERGMAN | BIOLOGIST | AUTHOR, THE DARWIN EFFECT
 DR. CARL WERNER | RESEARCHER | AUTHOR, EVOLUTION: THE GRAND EXPERIMENT
-DR. CARL WERNER | EVOLUTION: THE GRAND EXPERIMENT: 3RD EDITION
+DR. CARL WERNER | EVOLUTION: THE GRAND EXPERIMENT - 3RD EDITION
 DR. MING WANG | HARVARD & MIT EYE SURGEON | PHD, LASER PHYSICS
 DR. DAN JANZEN | EXEC. DIR., FELLOWSHIP OF CHRISTIAN FARMERS
 ```
@@ -123,17 +123,15 @@ DR. DAN JANZEN | EXEC. DIR., FELLOWSHIP OF CHRISTIAN FARMERS
 ### 5.1 Opening Monologue
 
 **Title card (beat 1):**  
-Current standard format: `DAVID'S TAKE: [TOPIC HOOK]`
+Fixed format: `DAVID'S TAKE: [TOPIC HOOK]`
 
-Production examples (EP21–EP24):
+Production examples:
 - `DAVID'S TAKE: EYES FIXED ABOVE`
 - `DAVID'S TAKE: LIGHTS ON THE MOON`
 - `DAVID'S TAKE: PLAYING GOD`
 - `DAVID'S TAKE: INCONVENIENT TRUTH`
 
 The topic hook is 2–4 words. Punchy. Teases the argument, doesn't summarize it.
-
-*Historical note:* Earlier seasons used `ON TONIGHT'S SHOW: [TOPIC A] + [TOPIC B]` for the opening card, previewing both interview topics separated by `+`. Example (pre-style-guide era, period and plus signs are legacy): `ON TONIGHT'S SHOW: THE FOSSIL RECORD VS THE BIBLE + SEARCHING FOR LIFE BEYOND EARTH`. The `DAVID'S TAKE:` format is the current Season 3 standard.
 
 **Beat 2 (newsy hook):**  
 The first substantive lower-third. Should work as a standalone cable-news headline about the episode topic. NOT a show preview. NOT "TONIGHT ON GSR."
@@ -217,13 +215,13 @@ PROTEINS DON'T LAST MILLIONS OF YEARS. SO HOW IS THIS HERE?
 "PROOF DARWIN WAS RIGHT" OR PROOF THE TIMELINE IS WRONG?
 ```
 
-**D. GUEST ATTRIBUTION** — `SPEAKER: CLAIM` or `CLAIM BY SPEAKER`
+**D. GUEST ATTRIBUTION** — `SPEAKER: CLAIM` or `CLAIM - SPEAKER`
 ```
-LEGATES: PATTERN-MATCH TO POPULATION BOMB PEAK OIL
+LEGATES: PATTERN-MATCH TO POPULATION BOMB, PEAK OIL
 CLAREY: FLOOD RUNOFF EXPLAINS IT WITHOUT SINKING MOUNTAINS
 BERGMAN: DARWIN MORE HONEST THAN HIS MODERN DEFENDERS
-CLIMATE AND ENERGY: THE CASE FOR REALISM BY LEGATES
-THE DARWIN EFFECT: DR. JERRY BERGMAN
+CLIMATE AND ENERGY: THE CASE FOR REALISM - LEGATES
+THE DARWIN EFFECT - DR. JERRY BERGMAN
 ```
 
 **E. STAT / CITATION** — source + number
@@ -235,41 +233,19 @@ PNAS STUDY: HIGH-YIELD FARMING PREVENTED 590 GIGATONS OF CO2
 OARD: 1,700 WATER GAPS IN THE APPALACHIANS ALONE
 ```
 
-**F. SHORT PUNCHY TRIPLET** — (legacy format, pre-style-guide; periods used here in production but avoid going forward)
+**F. SHORT PUNCHY TRIPLET** — period-separated
 ```
 ONE CODON. TWO PROTEINS. NO KNOWN MECHANISM
 SELECTION ACTIVELY CHOOSES. PRESERVATION IS PASSIVE.
 DOUBT IS NOT WEAKNESS. IT'S HOW SCIENCE WORKS.
 ```
 
-**Additional discussion L3 examples (Dr. Andrew Fabich / geosmin episode):**
-```
-STREPTOMYCES SPORES DRY OUT AND REACTIVATE WHEN IT RAINS
-STREPTOMYCES: SOURCE OF RAIN'S SMELL AND LIFE-SAVING DRUGS
-MICROBIOLOGY'S OLDEST PUZZLE: EVERYTHING IS EVERYWHERE
-100 YEARS OF RESEARCH AND STILL NO MECHANISM FOR HOW
-NON-SPORE BACTERIA CANNOT SURVIVE THE UPPER ATMOSPHERE
-NOAH'S FLOOD: THE MISSING GLOBAL DISTRIBUTION MECHANISM
-SPECIES VARY LOCALLY BUT THE BIBLICAL KIND IS EVERYWHERE
-```
-
-**Additional discussion L3 examples (Dr. Stephen Meyer / intelligent design):**
-```
-INSIDE THE CELL, MODERN BIOLOGY REVEALS STUNNING DESIGN
-THE CELL IS FILLED WITH CODE, MACHINES, AND COORDINATION
-SIMPLE CELLS NOW LOOK FAR MORE COMPLEX THAN EXPECTED
-MOLECULAR MACHINES DRIVE ESSENTIAL CELLULAR FUNCTIONS
-CELLULAR SYSTEMS REQUIRE PARTS WORKING TOGETHER AT ONCE
-THE MORE WE LEARN, THE HARDER LIFE IS TO DISMISS
-CELLULAR ENGINEERING POINTS BEYOND BLIND CHEMISTRY
-```
-
-**Target count:** 12–18 lower-thirds per interview segment. The 2+15 standard calls for 15 discussion beats (see Section 5.6).
+**Target count:** 12–18 lower-thirds per interview segment.
 
 **What not to do:**
 - Don't write discussion beats as generic topic labels: each must map to a specific claim.
 - Don't invent guest credentials — chyron must reflect what the guest provided.
-- Don't put the book plug formatted as a topic lower-third (this got rejected: `CARVED IN STONE: TIM CLAREY: CREATION SUPERSTORE`).
+- Don't put the book plug formatted as a topic lower-third (this got rejected: `CARVED IN STONE - TIM CLAREY (CREATION SUPERSTORE)`).
 
 ---
 
@@ -312,59 +288,7 @@ ANOTHER 'EARTH TWIN' DISCOVERED. HERE'S WHAT THE DATA ACTUALLY SHOWS
 
 ### 5.5 Other Segments (kids_corner, genesis_science_qa, viewer_voices, featured_resource, heavens_declare, genesis_science_minute)
 
-**Segment-specific counts and rules:**
-
-| Segment | Count | Notes |
-|---------|-------|-------|
-| kids_corner | 2–3 | More energetic/enthusiastic tone |
-| genesis_science_qa | 1 | Paraphrase the viewer question as a headline — one L3 only |
-| viewer_voices | 0 | No lower thirds unless explicitly instructed |
-| featured_resource | 0 | No lower thirds unless explicitly instructed |
-| heavens_declare | 1–2 | Use generic reusable transition bank; see examples below |
-| genesis_science_minute | 1–2 | Use generic reusable transition bank |
-
-**Heavens Declare / Genesis Science Minute transition bank (reusable, rotate):**
-```
-WHEN SIMPLE OBSERVATIONS REVEAL DEEPER SCIENTIFIC TRUTHS
-EXAMINING HOW ORDINARY THINGS POINT TO GREATER DESIGN
-SEEING MEANING IN THE DETAILS WE OFTEN OVERLOOK
-LOOKING AT EVERYDAY REALITIES THROUGH A SCIENTIFIC LENS
-OBSERVATIONS FROM THE NATURAL WORLD THAT STILL MATTER
-WHEN TIME-TESTED WISDOM ALIGNS WITH SCIENTIFIC DISCOVERY
-```
-
----
-
-## 5.6 Interview Package Standard: The 2+15
-
-The canonical interview segment package is:
-1. **Topic banner** (beat 1) — grabby headline; broad enough to not give away specifics
-2. **Guest chyron** (beat 2) — `NAME | DISCIPLINE | AFFILIATION`
-3. **15 discussion lower-thirds** (beats 3–17) — build a case, not a list
-
-This is called the "2+15 standard" and was modeled on the Frank Sherwin interview package established as the quality benchmark for Season 3.
-
-**What the 15 discussion beats must do:**  
-Each one should make a viewer who walks into the room mid-segment and glances at the screen immediately understand *something real* about the topic. Daniel's verbatim directive:
-
-> "A good discussion L3 should work even if someone walks into the room mid-segment and glances at the screen. If it only makes sense in context, it is too soft."
-
-**They must progress, not list:**
-> "The discussion L3s should feel like they are building a case, not listing talking points. Each one should make the viewer think 'wait, really?' or 'I did not know that.' If you could rearrange them in any order and it would not matter, they are not progressing."
-
-**Each beat must shift the frame:**
-> "Lines 2 through 6 often feel like slight variations of the same editorial beat. Each one should advance the argument or shift the frame, not restate the same idea with different words."
-
----
-
-## 5.7 Chyron Philosophy: Positioning, Not Just Information
-
-The guest chyron is not just an ID card — it is a positioning statement that tells the viewer why this guest's next 13 minutes matter.
-
-Daniel's verbatim critique of flat chyrons:
-> `DR. JEFF TOMKINS | GENETICIST | ICR` is accurate but flat. `DR. JEFF TOMKINS | GENETICIST | AUTHOR, THE DESIGN AND COMPLEXITY OF THE CELL` tells the viewer why they should care about the next 13 minutes.
-
-**Implication:** The third field of the chyron is the most editorially important. Prefer a credential, book title, or specific achievement that positions the guest's expertise over a plain institution name — unless the institution itself is the credential (e.g., `INSTITUTE FOR CREATION RESEARCH`, `NASA`).
+These segments typically use a title card (e.g., `KIDS CORNER`, `GENESIS SCIENCE Q&A`) and one or two content beats. No established multi-beat pattern exists yet in the production data — follow the same ALL CAPS, 41–65 char, no-em-dash rules.
 
 ---
 
@@ -415,26 +339,17 @@ These mistakes appear repeatedly. The style guide exists partly because of them.
 
 | Mistake | Correct approach |
 |---------|-----------------|
-| Em dashes | Rewrite using a colon or conjunction. Never use. |
-| Hyphens `-` | Banned entirely. Use a colon instead. |
-| Sentence-ending periods | Rewrite using a colon or conjunction. Abbreviation periods (`VS.` `DR.`) are fine. |
-| Slashes `/` | Rewrite using a colon or conjunction. |
-| Brackets or parentheses `()` | Rewrite the citation inline: `SCIENCE 2018:` not `SCIENCE (2018):` |
-| Commas | No commas. Rewrite the beat. |
+| Em dashes in any field | Use period, colon, forward slash, or hyphen |
 | Writing lower-thirds as general topic labels | Each beat must map to a specific claim or discussion point |
 | Formatting as markdown tables | Bare text lines, one per beat |
-| Under 60 chars | Push to 65. Short beats feel thin on screen. |
-| Over 65 chars | Trim or split into two beats. |
-| AI variation too short | Human target is 65 chars; AI compresses to ~40. Count and push back. |
+| Overshooting 60–65 char target | Count before delivering |
+| Character count drift over many beats | Audit each set against target before finalizing |
+| AI variation too short | Human style runs ~57 chars / 10 words; AI draft "OBSERVING CREATION ISN'T REENGINEERING IT" (42 chars) was rejected in favor of "STUDYING CREATION IS NOT THE SAME AS REWIRING CREATION ITSELF" (62 chars) |
 | Using pipes in topic beats | Pipes are chyron/contact only |
 | Preview-style beat 2 | Beat 2 is a newsy headline, not a tease for what's coming |
 | Fabricating guest credentials | Pull from guest's own bio/website/email only |
+| Comma usage | No commas. Period. |
 | Quotation marks wrapping the full line | Quotes are for in-text citations only |
-| Discussion L3s that only work in context | Each must work standalone; if it requires you to have been watching, it's too soft |
-| Discussion L3s that list instead of progress | Each beat must build on or shift from the last; rearrangeable beats are a failure signal |
-| Restating the same beat with different words | Every beat must advance the argument or shift the frame |
-| Flat chyron (name + title only) | Third field should position the guest; prefer a credential, book, or specific achievement |
-| Emoji or symbols in any field | Early-era style — abandoned; never use |
 
 ---
 

@@ -77,7 +77,8 @@
 |------|------|---------|
 | **David Rives** | Host, Ministry President | — |
 | **Miryam** | Co-worker, co-maintainer on automation | Works on Macs |
-| **Jacob** | Footage transfer, editing, Heavens Declare | — |
+| **Jacob** | Footage transfer | — |
+| **Jakob** | Editor, Heavens Declare graphics | — |
 | **Murray** | Teleprompter | — |
 | **Robert** | Kids Corner scripts | — |
 | **Gabe** | Video editing, GSMs, Kids Corners, production day | — |

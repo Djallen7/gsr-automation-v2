@@ -2,7 +2,8 @@
 -- Archaeology confirmed: post-shoot emails go out same day or next day after recording,
 -- not 3 days later. "Thank the guest, give estimated air date" — sent immediately after shoot.
 
-CREATE OR REPLACE VIEW v_episode_workflow AS
+DROP VIEW IF EXISTS v_episode_workflow CASCADE;
+CREATE VIEW v_episode_workflow AS
 SELECT
   e.id                                            AS episode_id,
   e.season,

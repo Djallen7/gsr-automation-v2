@@ -138,7 +138,7 @@ Production examples (EP21–EP24):
 
 The topic hook is 2–4 words. Punchy. Teases the argument, doesn't summarize it.
 
-*Historical note:* Earlier seasons used `ON TONIGHT'S SHOW: [TOPIC A] + [TOPIC B]` for the opening card, previewing both interview topics separated by `+`. Example: `ON TONIGHT'S SHOW: THE FOSSIL RECORD VS. THE BIBLE + SEARCHING FOR LIFE BEYOND EARTH`. The `DAVID'S TAKE:` format is the current Season 3 standard.
+*Historical note:* Earlier seasons used `ON TONIGHT'S SHOW: [TOPIC A] + [TOPIC B]` for the opening card, previewing both interview topics separated by `+`. Example (pre-style-guide era, period and plus signs are legacy): `ON TONIGHT'S SHOW: THE FOSSIL RECORD VS THE BIBLE + SEARCHING FOR LIFE BEYOND EARTH`. The `DAVID'S TAKE:` format is the current Season 3 standard.
 
 **Beat 2 (newsy hook):**  
 The first substantive lower-third. Should work as a standalone cable-news headline about the episode topic. NOT a show preview. NOT "TONIGHT ON GSR."
@@ -421,8 +421,9 @@ These mistakes appear repeatedly. The style guide exists partly because of them.
 | Mistake | Correct approach |
 |---------|-----------------|
 | Em dashes | Rewrite using a colon or conjunction. Never use. |
-| Periods `.` | Rewrite using a colon or conjunction instead. |
+| Periods `.` | Rewrite using a colon or conjunction instead. `VS` not `VS.` |
 | Slashes `/` | Rewrite using a colon or conjunction instead. |
+| Hyphen `-` as a general separator | Hyphens are only for book-author attributions (`TITLE - AUTHOR`). Not a general separator between clauses. |
 | Brackets or parentheses `()` | Rewrite the citation inline: `SCIENCE 2018:` not `SCIENCE (2018):` |
 | Commas | No commas. Rewrite the beat. |
 | Writing lower-thirds as general topic labels | Each beat must map to a specific claim or discussion point |

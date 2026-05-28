@@ -21,10 +21,22 @@ export async function GET(request: Request) {
   const rundownId = searchParams.get('rundown_id')
 
   if (rundownId) {
-    // Return objects (rows) for a specific rundown
-    const res = await fetch(rcUrl('getObjects', { RundownID: rundownId }))
-    const data = await res.json()
-    return NextResponse.json(data)
+    // Try multiple parameter name variants to find the right one
+    const variants = ['RundownID', 'Rundown', 'rundown_id', 'ID', 'id']
+    const results: Record<string, unknown> = {}
+
+    for (const param of variants) {
+      const url = rcUrl('getObjects', { [param]: rundownId })
+      const res = await fetch(url)
+      const text = await res.text()
+      try {
+        results[param] = JSON.parse(text)
+      } catch {
+        results[param] = text
+      }
+    }
+
+    return NextResponse.json(results)
   }
 
   // Return all rundowns
@@ -32,3 +44,4 @@ export async function GET(request: Request) {
   const data = await res.json()
   return NextResponse.json(data)
 }
+

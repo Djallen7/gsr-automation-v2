@@ -14,9 +14,10 @@ Every lower-third, every time, no exceptions:
 | Rule | Correct | Wrong |
 |------|---------|-------|
 | ALL CAPS | `THE CELL IS A MACHINE` | `The Cell Is A Machine` |
-| No em dashes | `DARWIN. HIS OWN DOUBTS.` | `DARWIN — HIS OWN DOUBTS` |
+| No em dashes | `DARWIN AND HIS OWN DOUBTS` | `DARWIN — HIS OWN DOUBTS` |
 | No commas | `FRANK SHERWIN \| ZOOLOGIST \| ICR` | `FRANK SHERWIN, ZOOLOGIST, ICR` |
-| No slashes | `MICROBES EVERYWHERE. ORIGINS UNKNOWN.` | `MICROBES EVERYWHERE / ORIGINS UNKNOWN` |
+| No periods | `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` | `MICROBES EVERYWHERE. ORIGINS UNKNOWN.` |
+| No slashes | `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` | `MICROBES EVERYWHERE / ORIGINS UNKNOWN` |
 | No brackets or parentheses | `SCIENCE 2018: 237 SOIL SITES` | `SCIENCE (2018): 237 SOIL SITES` |
 | No quotation marks wrapping the line | `THE CELL IS A MACHINE` | `"THE CELL IS A MACHINE"` |
 | Quotation marks inside OK | `DARWIN: "I WOULD HAVE USED NATURAL PRESERVATION"` | n/a |
@@ -69,14 +70,15 @@ Narrow use: pairing a resource title with an author name.
 - `CLIMATE AND ENERGY: THE CASE FOR REALISM - LEGATES`
 - `THE DARWIN EFFECT - DR. JERRY BERGMAN`
 
-Outside of that specific pattern, prefer a period or a colon over a hyphen.
+Outside of that specific pattern, prefer a colon over a hyphen.
 
-### Avoid: slashes, brackets, parentheses
+### Avoid: periods, slashes, brackets, parentheses
 
-- **Slashes** `/` — use a period or rewrite the beat instead. `MICROBES EVERYWHERE. ORIGINS UNKNOWN.` not `MICROBES EVERYWHERE / ORIGINS UNKNOWN`.
+- **Periods** `.` — rewrite to use a colon or conjunctions (AND, BUT, OR). `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` not `MICROBES EVERYWHERE. ORIGINS UNKNOWN.`
+- **Slashes** `/` — same fix. `MICROBES EVERYWHERE AND ORIGINS UNKNOWN` not `MICROBES EVERYWHERE / ORIGINS UNKNOWN`.
 - **Parentheses / brackets** `()` `[]` — rewrite the citation inline. `SCIENCE 2018: 237 SOIL SITES` not `SCIENCE (2018): 237 SOIL SITES`.
 
-If avoiding a slash or bracket makes the beat awkward, it is usually a sign the beat is trying to carry two ideas. Split it into two beats instead.
+If avoiding a slash, period, or bracket makes the beat awkward, it is a sign the beat is trying to carry two ideas. Split it into two beats instead.
 
 ---
 
@@ -238,7 +240,7 @@ PNAS STUDY: HIGH-YIELD FARMING PREVENTED 590 GIGATONS OF CO2
 OARD: 1,700 WATER GAPS IN THE APPALACHIANS ALONE
 ```
 
-**F. SHORT PUNCHY TRIPLET** — period-separated
+**F. SHORT PUNCHY TRIPLET** — (legacy format, pre-style-guide; periods used here in production but avoid going forward)
 ```
 ONE CODON. TWO PROTEINS. NO KNOWN MECHANISM
 SELECTION ACTIVELY CHOOSES. PRESERVATION IS PASSIVE.
@@ -418,8 +420,9 @@ These mistakes appear repeatedly. The style guide exists partly because of them.
 
 | Mistake | Correct approach |
 |---------|-----------------|
-| Em dashes | Replace with a period or colon. Never use. |
-| Slashes `/` | Rewrite as two clauses with a period, or use a colon. |
+| Em dashes | Rewrite using a colon or conjunction. Never use. |
+| Periods `.` | Rewrite using a colon or conjunction instead. |
+| Slashes `/` | Rewrite using a colon or conjunction instead. |
 | Brackets or parentheses `()` | Rewrite the citation inline: `SCIENCE 2018:` not `SCIENCE (2018):` |
 | Commas | No commas. Rewrite the beat. |
 | Writing lower-thirds as general topic labels | Each beat must map to a specific claim or discussion point |

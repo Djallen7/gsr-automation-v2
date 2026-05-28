@@ -228,20 +228,28 @@ Article sourcing and angle development per episode-guest.
 
 ### `premade_library` [PENDING — not yet migrated]
 
-Catalog of reusable pre-made graphics and b-roll. Production graphics rows reference this when they use a pre-made asset.
+Catalog of reusable pre-made b-roll loops and graphics built up over several years. The assets live on the production server (VideoEdit); Drive may have copies. Production graphics rows reference this when they use a pre-made asset. Primary sources are **Envato Elements** and **Storyblocks**.
 
 | Column | Type | Notes |
 |--------|------|-------|
 | id | uuid PK | |
-| name | text NOT NULL | Short identifier |
-| description | text | What it is / when to use it |
-| asset_type | text CHECK | b_roll / title_graphic / graphic / clip_with_audio / other |
-| source | text | storyblocks / nasa_svs / creation_com / own_production / other |
-| source_url | text | Origin URL (Storyblocks catalog link, NASA SVS page, etc.) |
-| drive_file_url | text | Stored copy in GSR Drive |
-| tags | text[] | Searchable tags e.g. `{"stars", "galaxy", "creation"}` |
-| notes | text | Usage restrictions, quality notes |
+| name | text NOT NULL | Short identifier e.g. "Galaxy Flythrough Loop 1" |
+| description | text | What it looks like / when to use it |
+| asset_type | text CHECK | b_roll_loop / title_graphic / graphic / clip_with_audio / other |
+| is_loop | boolean DEFAULT true | True for b-roll loops (the primary asset type here) |
+| duration_sec | int | Loop duration in seconds; null for stills/graphics |
+| source | text CHECK | envato / storyblocks / nasa_svs / creation_com / own_production / other |
+| source_url | text | Origin catalog URL (Envato/Storyblocks item page) |
+| license_type | text | subscription_envato / subscription_storyblocks / public_domain / own / other |
+| server_file_path | text | Path on VideoEdit server e.g. `/GSR/Broll/Space/galaxy_flythrough_01.mp4` |
+| drive_file_url | text | Drive copy URL if backed up there |
+| tags | text[] | Searchable tags e.g. `{"space", "galaxy", "stars", "creation"}` |
+| resolution | text | e.g. "1920x1080", "3840x2160" |
+| notes | text | Quality notes, preferred use cases, restrictions |
 | created_at | timestamptz | |
+
+**Asset type check values:** `b_roll_loop`, `title_graphic`, `graphic`, `clip_with_audio`, `other`
+**Source check values:** `envato`, `storyblocks`, `nasa_svs`, `creation_com`, `own_production`, `other`
 
 ---
 

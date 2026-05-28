@@ -14,8 +14,10 @@ Every lower-third, every time, no exceptions:
 | Rule | Correct | Wrong |
 |------|---------|-------|
 | ALL CAPS | `THE CELL IS A MACHINE` | `The Cell Is A Machine` |
-| No em dashes | `DARWIN / HIS OWN DOUBTS` | `DARWIN — HIS OWN DOUBTS` |
+| No em dashes | `DARWIN. HIS OWN DOUBTS.` | `DARWIN — HIS OWN DOUBTS` |
 | No commas | `FRANK SHERWIN \| ZOOLOGIST \| ICR` | `FRANK SHERWIN, ZOOLOGIST, ICR` |
+| No slashes | `MICROBES EVERYWHERE. ORIGINS UNKNOWN.` | `MICROBES EVERYWHERE / ORIGINS UNKNOWN` |
+| No brackets or parentheses | `SCIENCE 2018: 237 SOIL SITES` | `SCIENCE (2018): 237 SOIL SITES` |
 | No quotation marks wrapping the line | `THE CELL IS A MACHINE` | `"THE CELL IS A MACHINE"` |
 | Quotation marks inside OK | `DARWIN: "I WOULD HAVE USED NATURAL PRESERVATION"` | n/a |
 | No markdown formatting | bare text | bold, tables, backticks |
@@ -26,23 +28,19 @@ Tone: punchy cable-news, biblical worldview. Every line must work standalone as 
 
 ## 2. Length
 
-**Target: 41–65 characters, 7–11 words.**
+**Target: 65 characters. That is the ideal.**
 
-- 87% of all production records fall in the 41–65 character range.
-- Hard floor: don't write a lower-third shorter than ~40 characters unless it's a fixed title card (see Section 5.1).
-- Soft ceiling: 65 characters. Going above 65 requires deliberate justification (e.g., a three-part chyron with a long institution name).
-- The AI regeneration prompt enforces **8 words or fewer** as a hard cap for AI-generated alternatives.
+- Aim for 65. Getting close (60–65) is good. Under 55 is too short. Over 65 is too long.
+- The AI regeneration prompt enforces **8 words or fewer** as a hard cap for AI-generated alternatives — but that is a constraint on the AI tool, not the human writing standard. Human-written beats average ~10 words.
 - The database field accepts up to 200 characters — that is a storage constraint, not a style target.
 
-**Character count evolution:** Early sessions (pre-S3) targeted ~45–50 chars. Mid-period settled on 55–65. Current Season 3 standard is locked at **60–65**. When in doubt, aim for 60–65, not 41–65.
-
-**Common mistake:** The AI consistently overshoots 60–65 characters. It also undershoots when generating alternatives — one production example showed the human wrote `STUDYING CREATION IS NOT THE SAME AS REWIRING CREATION ITSELF` (62 chars) and the AI regenerated it as `OBSERVING CREATION ISN'T REENGINEERING IT` (42 chars). The human version was correct. Count before delivering.
+**Common mistake:** The AI undershoots when generating alternatives. One production example: the human wrote `STUDYING CREATION IS NOT THE SAME AS REWIRING CREATION ITSELF` (62 chars) and the AI produced `OBSERVING CREATION ISN'T REENGINEERING IT` (42 chars). The human version was correct. Push AI alternatives back to length.
 
 ---
 
 ## 3. Separator Guide
 
-Three separators exist. Each has a specific job.
+Two separators are in regular use. Everything else should be avoided.
 
 ### Pipe `|` — for chyrons and contact cards only
 
@@ -62,20 +60,23 @@ Examples from production:
 - `ARCHAEOPTERYX: TRANSITIONAL FORM OR DISTINCT CREATURE?`
 - `THE GENETIC CODE: ONE RULE, THREE BILLION YEARS`
 - `GULF OF MEXICO DEAD ZONE: SIZE OF MASSACHUSETTS`
-- `DARWIN, 1860: "I WOULD HAVE USED NATURAL PRESERVATION"`
-- `LEGATES: PATTERN-MATCH TO POPULATION BOMB, PEAK OIL`
+- `DARWIN: "I WOULD HAVE USED NATURAL PRESERVATION"`
+- `LEGATES: PATTERN-MATCH TO POPULATION BOMB PEAK OIL`
 
-### Forward slash `/` — for paired attributions
+### Hyphen `-` — only for book-author attributions
 
-Used when a dash or em dash would otherwise appear, or to pair a title with its subject:
-- `BEIJERINCK'S PUZZLE: MICROBES EVERYWHERE / ORIGINS UNKNOWN`
-- Do not use where a colon or pipe is the right choice.
-
-### Hyphen `-` — for book-author attributions
-
-Specific to resource plugs and book citations:
+Narrow use: pairing a resource title with an author name.
 - `CLIMATE AND ENERGY: THE CASE FOR REALISM - LEGATES`
 - `THE DARWIN EFFECT - DR. JERRY BERGMAN`
+
+Outside of that specific pattern, prefer a period or a colon over a hyphen.
+
+### Avoid: slashes, brackets, parentheses
+
+- **Slashes** `/` — use a period or rewrite the beat instead. `MICROBES EVERYWHERE. ORIGINS UNKNOWN.` not `MICROBES EVERYWHERE / ORIGINS UNKNOWN`.
+- **Parentheses / brackets** `()` `[]` — rewrite the citation inline. `SCIENCE 2018: 237 SOIL SITES` not `SCIENCE (2018): 237 SOIL SITES`.
+
+If avoiding a slash or bracket makes the beat awkward, it is usually a sign the beat is trying to carry two ideas. Split it into two beats instead.
 
 ---
 
@@ -417,16 +418,18 @@ These mistakes appear repeatedly. The style guide exists partly because of them.
 
 | Mistake | Correct approach |
 |---------|-----------------|
-| Em dashes in any field | Use period, colon, forward slash, or hyphen |
+| Em dashes | Replace with a period or colon. Never use. |
+| Slashes `/` | Rewrite as two clauses with a period, or use a colon. |
+| Brackets or parentheses `()` | Rewrite the citation inline: `SCIENCE 2018:` not `SCIENCE (2018):` |
+| Commas | No commas. Rewrite the beat. |
 | Writing lower-thirds as general topic labels | Each beat must map to a specific claim or discussion point |
 | Formatting as markdown tables | Bare text lines, one per beat |
-| Overshooting 60–65 char target | Count before delivering |
-| Character count drift over many beats | Audit each set against target before finalizing |
-| AI variation too short | Human style runs ~60 chars; AI consistently compresses — count and push back to length |
+| Under 60 chars | Push to 65. Short beats feel thin on screen. |
+| Over 65 chars | Trim or split into two beats. |
+| AI variation too short | Human target is 65 chars; AI compresses to ~40. Count and push back. |
 | Using pipes in topic beats | Pipes are chyron/contact only |
 | Preview-style beat 2 | Beat 2 is a newsy headline, not a tease for what's coming |
 | Fabricating guest credentials | Pull from guest's own bio/website/email only |
-| Comma usage | No commas. Period. |
 | Quotation marks wrapping the full line | Quotes are for in-text citations only |
 | Discussion L3s that only work in context | Each must work standalone; if it requires you to have been watching, it's too soft |
 | Discussion L3s that list instead of progress | Each beat must build on or shift from the last; rearrangeable beats are a failure signal |

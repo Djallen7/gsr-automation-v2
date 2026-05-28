@@ -1,23 +1,29 @@
 # GSR Email Templates — Canonical Library
 
-*Cross-referenced from 879 AI conversation summaries + 2,438 actual sent emails (June 2024 – April 2026). Do not edit the locked style rules without an actual archive correction to justify it.*
+*Cross-referenced from 879 AI conversation summaries + 2,438 actual sent emails (June 2024 – April 2026) + explicit email strategy sessions where Daniel dictated rules while building his Claude workflow. Do not edit the locked style rules without an actual archive correction to justify it.*
 
 ---
 
 ## Style Rules (Non-Negotiable)
 
-1. **No em-dashes.** They are an AI writing tell and Daniel flags them every time.
-2. **No "I hope this email finds you well" or any stiff opener.** Cut it.
-3. **No fact-dump openers.** Hook or ask first, context second.
-4. **Salutation scales with relationship:**
-   - First contact or formal: `Hello Dr. [LAST NAME],` or `Hello [Mr./Ms. LAST NAME],`
+1. **No em-dashes.** Flagged as an AI writing tell in 4+ separate sessions. Hard stop.
+2. **No "I hope this email finds you well."** That exact phrase is banned. A brief one-liner like "I hope you are doing well." is acceptable as an opener for first-contact emails only.
+3. **Angle-first, not article-reactive.** The article is context — the interview angle tied to the guest's expertise is the lead. Never open by summarizing the article.
+4. **Direction sentences use future tense.** Always: "This segment would look at..." not "This segment will be about..." or "We want to discuss..."
+5. **Direction sentences are open-ended.** Give the guest flexibility. Don't prescribe exactly what they'll say.
+6. **"What this is NOT about" framing for academic guests.** Include one line scoping out what the interview won't cover to reduce hesitation.
+7. **Salutation scales with relationship:**
+   - First contact or formal: `Hello Dr. [LAST NAME],`
    - Established/returning: `Hey [FIRST NAME],` or `Hey Dr. [LAST NAME],`
-5. **Sign as Daniel Allen, Producer, Genesis Science Network.** Never as David Rives.
-6. **No specific partner station names.** Say "stations across the country" or just list the streaming platforms.
-7. **Target length:** 75–150 words for lifecycle emails. Outreach emails can run to ~200 words max.
-8. **Returning guests:** Drop the intro paragraph entirely. Go straight to the ask.
-9. **Follow-up replies:** Acknowledge only what's new. Never restate already-communicated information.
-10. **Interview direction:** Sound like a curious producer, not a scientist. Open-ended, conversational.
+   - Show name scales too: "GSR" with close contacts, spell out "Genesis Science Report" for new contacts.
+8. **Sign as Daniel Allen, Producer, Genesis Science Network.** Never as David Rives.
+9. **No specific partner station names.** Say "stations across the country" or list streaming platforms only.
+10. **Target length:** 50–125 words for outreach. 75–150 for lifecycle emails. The previous 750-word letter format has been retired.
+11. **Two hard modes — never blur them:**
+    - First-time guest: intro + show credentials + article + angle + logistics
+    - Returning guest: skip everything, go straight to the ask
+12. **Follow-up replies:** Acknowledge only what's new. Never restate already-communicated information.
+13. **~80% static, ~20% personalized** for scalable outreach. The angle sentence and the article link are the personalization layer. Everything else is locked.
 
 ---
 
@@ -26,22 +32,24 @@
 **Subject:** Remote Zoom Interview on The Genesis Science Report
 
 ```
-Hello [Dr./Mr./Ms. LAST NAME],
+Hello Dr. [LAST NAME],
 
-This is Daniel Allen, the producer for Genesis Science Report, a science and
-news show produced by David Rives Ministries. I'm reaching out because we would
-love to have you on "GSR" for a remote Zoom interview to hear your insights on
-the following news piece:
+I hope you are doing well. This is Daniel Allen, the producer for Genesis
+Science Report, a science and news show produced by David Rives Ministries.
+
+I'm reaching out because we would love to have you on GSR for a remote Zoom
+interview to hear your insights on the following news piece:
 
 [ARTICLE TITLE / URL]
 
-[1-2 sentences on the interview angle, tied to the guest's specific expertise.
-Sound like a curious producer, not a scientist. Use future tense: "This segment
-would look at..." Don't summarize the article — say what you want to explore.]
+[ANGLE — 1-2 sentences. Tie to the guest's specific expertise, not the article
+topic. Future tense: "This segment would look at..." Open-ended — give them
+room, don't prescribe. If guest might be hesitant: add one line on what the
+interview WON'T cover. Sound like a curious producer, not a scientist.]
 
-The interview is a short Zoom session, typically 8–13 minutes. We're looking to
-record on [FILMING DATE]. I'll send over a guest packet once you confirm interest.
-A phone number is helpful for day-of coordination.
+The interview is a short, 10–12 minute Zoom session. We're looking to record
+on [FILMING DATE]. I'll send over a guest information packet once you confirm
+interest.
 
 Best,
 Daniel Allen
@@ -50,12 +58,16 @@ Producer, Genesis Science Network
 dallen@davidrives.com
 ```
 
-**Variable fields:** [Dr./Mr./Ms. LAST NAME], [ARTICLE TITLE / URL], [ANGLE — expertise-specific], [FILMING DATE]
+**Variable fields:** [LAST NAME], [ARTICLE TITLE / URL], [ANGLE], [FILMING DATE]
+
+**Structure (80% static, 20% personalized):**
+- Static: opener, show credentials, article intro line, format/logistics, sign-off
+- Personalized: article link + angle sentence (these two change per guest)
 
 **Notes:**
-- For a 48-hour response ask, add: "We'd love to have you on, and I'll reach out within 48 hours of hearing back."
-- Third-touch non-responder: cut to two sentences — article link + ask if they'd be open to it.
-- Credibility signal (if cold contact): can mention Seth Dillon or NASA guests naturally in the angle sentence, not as a name-drop paragraph.
+- Credibility signal for cold contacts: weave in a past guest name (Seth Dillon, Dr. Houts/NASA) naturally inside the angle sentence — never as a separate credentials paragraph.
+- Third-touch non-responder: cut to two sentences — article link + "Would you be open to it?"
+- Do not include a 48-hour response deadline in the first email — that belongs in a follow-up.
 
 ---
 
@@ -257,14 +269,16 @@ Daniel
 
 ## Correction Moments (Why These Rules Exist)
 
-These are real corrections Daniel made in AI sessions — preserved so the automation doesn't repeat the same mistakes.
+Real corrections Daniel made in AI sessions. Preserved so automation and future Claude sessions don't repeat them.
 
-1. **Em-dashes used despite explicit rule.** Flagged in 4+ separate sessions as an "AI writing tell."
-2. **Too formal for a returning guest.** AI included a full intro paragraph for Dr. Tour — a returning guest who needed just the ask.
-3. **Too technical/scientific tone.** The Dr. Fabich outreach and Dr. Brian Thomas angle both had to be rewritten to sound like "a curious producer" not a scientist.
-4. **Over-engineered follow-ups.** AI drafted 8 versions when Daniel wanted one generic template. Rule: one draft unless asked otherwise.
-5. **Stiff/robotic confirmation emails.** Initial drafts required rewrites for natural tone.
-6. **Unnecessary self-introduction.** AI added background recitation in emails to known guests.
-7. **Fact-dump openers.** AI led with scientific facts instead of the hook/ask.
-8. **Encyclopedic story description.** The DNA drug delivery angle was written too formally and had to be corrected toward a "more casual, natural tone."
-9. **"Too formal" was flagged explicitly** for the Gordon Wilson email; Daniel asked for "casual."
+1. **Em-dashes despite explicit rule.** Flagged as an "AI writing tell" in at least 4 sessions across Dec 2025, Feb 2026, Apr 2026, and May 2026. It's a hard ban.
+2. **Too formal for a returning guest.** AI included a full intro paragraph for Dr. Tour — who needed just the ask. Returning guests get zero intro.
+3. **Too technical/scientific tone.** Dr. Fabich outreach and Dr. Brian Thomas angle both had to be fully rewritten. The bar is: sounds like a curious producer, not someone who read the paper.
+4. **Article-reactive angle.** Early drafts summarized the article topic instead of building an angle tied to the guest's expertise. The article is context, not the interview topic.
+5. **Prescriptive direction sentence.** AI told the guest what they'd say instead of opening a door. Direction must be open-ended.
+6. **Over-engineered follow-ups.** AI drafted 8 versions when Daniel wanted one generic template. Rule: one draft unless asked otherwise.
+7. **Stiff confirmation emails.** Initial drafts required rewrites. "Dear Dr. X, This is a reminder and confirmation" is acceptable; corporate bullet formatting is not.
+8. **Unnecessary self-introduction for known guests.** AI recited the show credentials for Dr. Tour, a repeated guest. Correction: returning mode skips all of it.
+9. **Encyclopedic story description.** DNA drug delivery angle written too formally. Corrected to "more casual, natural tone."
+10. **"Too formal" for Gordon Wilson.** Daniel explicitly asked for "casual" after seeing the first draft. (Feb 2026 session.)
+11. **750-word letter format for station outreach.** Daniel's previous outreach letters ran 750 words. Explicit correction: 50–125 words target.

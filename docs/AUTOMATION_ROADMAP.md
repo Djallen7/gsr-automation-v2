@@ -74,6 +74,7 @@ The original plan's Phase 1 (YouTube + Dropbox automation) and Phase 2 (Signiant
 |---|---|---|
 | 1 | Guest last-aired tracker | Prevents the #1 recurring AI error; small Supabase table |
 | 2 | L3 character-count checker | One UI change to Feature 1 approval screen |
-| 3 | Timecode + title pipeline | Highest-volume repeated manual task (YouTube category) |
-| 4 | Distribution tracking in dashboard | Folds the original PROJECT_PLAN.md goals into current stack |
-| 5 | Monthly package compiler | Useful but Drive reliability is a dependency |
+| 3 | **Lower-thirds prompt style guide** | Requires dedicated session with Drive exports (GPT/Claude history); do not attempt without that data |
+| 4 | Timecode + title pipeline | Highest-volume repeated manual task (YouTube category) |
+| 5 | Distribution tracking in dashboard | Folds the original PROJECT_PLAN.md goals into current stack |
+| 6 | Monthly package compiler | Useful but Drive reliability is a dependency |

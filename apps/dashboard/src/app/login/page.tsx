@@ -1,13 +1,17 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { createClient } from '@/lib/supabase/client'
 
 export default function LoginPage() {
+  const router = useRouter()
   const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [mode, setMode] = useState<'password' | 'magic'>('password')
   const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
@@ -17,12 +21,22 @@ export default function LoginPage() {
     setErrorMessage(null)
 
     const supabase = createClient()
+
+    if (mode === 'password') {
+      const { error } = await supabase.auth.signInWithPassword({ email, password })
+      if (error) {
+        setStatus('error')
+        setErrorMessage(error.message)
+        return
+      }
+      router.push('/lower-thirds')
+      return
+    }
+
     const origin = window.location.origin
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: {
-        emailRedirectTo: `${origin}/auth/callback`,
-      },
+      options: { emailRedirectTo: `${origin}/auth/callback` },
     })
 
     if (error) {
@@ -40,7 +54,7 @@ export default function LoginPage() {
         <CardHeader>
           <CardTitle>GSR Dashboard</CardTitle>
           <CardDescription>
-            Sign in with the magic link we send to your email.
+            {mode === 'password' ? 'Sign in with your password.' : 'Sign in with a magic link.'}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -57,14 +71,35 @@ export default function LoginPage() {
                 required
                 placeholder="you@davidrives.com"
                 value={email}
-                onChange={(event) => setEmail(event.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
+              {mode === 'password' && (
+                <Input
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              )}
               <Button type="submit" disabled={status === 'sending'}>
-                {status === 'sending' ? 'Sending…' : 'Send magic link'}
+                {status === 'sending'
+                  ? 'Signing in…'
+                  : mode === 'password'
+                    ? 'Sign in'
+                    : 'Send magic link'}
               </Button>
               {status === 'error' && errorMessage ? (
                 <p className="text-sm text-destructive">{errorMessage}</p>
               ) : null}
+              <button
+                type="button"
+                onClick={() => { setMode(mode === 'password' ? 'magic' : 'password'); setStatus('idle'); setErrorMessage(null) }}
+                className="text-xs text-muted-foreground underline-offset-2 hover:underline"
+              >
+                {mode === 'password' ? 'Use magic link instead' : 'Use password instead'}
+              </button>
             </form>
           )}
         </CardContent>
@@ -72,3 +107,4 @@ export default function LoginPage() {
     </div>
   )
 }
+

@@ -1,0 +1,156 @@
+name: Repo Health Check
+
+on:
+  schedule:
+    - cron: '0 13 * * *'   # 8am CST / 9am CDT
+    - cron: '0 1 * * *'    # 8pm CST / 9pm CDT (next UTC day)
+  workflow_dispatch:        # manual trigger any time
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  health:
+    name: Health Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: apps/dashboard/package-lock.json
+
+      - name: Install dependencies
+        working-directory: apps/dashboard
+        run: npm ci --prefer-offline --no-audit
+
+      # ── Check 1: TypeScript ────────────────────────────────────────────────
+      - name: TypeScript
+        id: typescript
+        working-directory: apps/dashboard
+        run: npx tsc --noEmit 2>&1 | tee /tmp/ts-output.txt; exit "${PIPESTATUS[0]}"
+        continue-on-error: true
+
+      # ── Check 2: ESLint (allow the 1 pre-existing warning) ────────────────
+      - name: ESLint
+        id: eslint
+        working-directory: apps/dashboard
+        run: npx eslint src/ --max-warnings 1 2>&1 | tee /tmp/lint-output.txt; exit "${PIPESTATUS[0]}"
+        continue-on-error: true
+
+      # ── Check 3: Route consistency ─────────────────────────────────────────
+      - name: Route consistency
+        id: routes
+        run: bash scripts/check-routes.sh 2>&1 | tee /tmp/routes-output.txt; exit "${PIPESTATUS[0]}"
+        continue-on-error: true
+
+      # ── Check 4: Duplicate / stale files ──────────────────────────────────
+      - name: Duplicate and stale files
+        id: dupes
+        run: bash scripts/check-dupes.sh 2>&1 | tee /tmp/dupes-output.txt; exit "${PIPESTATUS[0]}"
+        continue-on-error: true
+
+      # ── Check 5: Config sanity ─────────────────────────────────────────────
+      - name: Config sanity
+        id: config
+        run: bash scripts/check-config.sh 2>&1 | tee /tmp/config-output.txt; exit "${PIPESTATUS[0]}"
+        continue-on-error: true
+
+      # ── Report: open/update/close GitHub issue ────────────────────────────
+      - name: Report results
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+
+            const checks = [
+              { name: 'TypeScript',    outcome: '${{ steps.typescript.outcome }}', file: '/tmp/ts-output.txt' },
+              { name: 'ESLint',        outcome: '${{ steps.eslint.outcome }}',     file: '/tmp/lint-output.txt' },
+              { name: 'Route consistency', outcome: '${{ steps.routes.outcome }}', file: '/tmp/routes-output.txt' },
+              { name: 'Duplicate files',   outcome: '${{ steps.dupes.outcome }}',  file: '/tmp/dupes-output.txt' },
+              { name: 'Config sanity', outcome: '${{ steps.config.outcome }}',     file: '/tmp/config-output.txt' },
+            ]
+
+            const LABEL = 'health-check-failure'
+
+            // Ensure label exists (idempotent)
+            try {
+              await github.rest.issues.createLabel({
+                owner: context.repo.owner, repo: context.repo.repo,
+                name: LABEL, color: 'b60205',
+                description: 'Automated health check found a problem'
+              })
+            } catch (_) { /* already exists */ }
+
+            const failed = checks.filter(c => c.outcome === 'failure')
+            const allGood = failed.length === 0
+
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              labels: LABEL, state: 'open', per_page: 5
+            })
+
+            if (allGood) {
+              for (const issue of existing.data) {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  issue_number: issue.number,
+                  body: `✅ All checks passing as of ${new Date().toUTCString()}. Closing.`
+                })
+                await github.rest.issues.update({
+                  owner: context.repo.owner, repo: context.repo.repo,
+                  issue_number: issue.number, state: 'closed'
+                })
+              }
+              core.info('All checks passed — no issue needed.')
+              return
+            }
+
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`
+            const now = new Date().toLocaleString('en-US', {
+              timeZone: 'America/Chicago', dateStyle: 'long', timeStyle: 'short'
+            })
+
+            const table = checks.map(c =>
+              `| ${c.name} | ${c.outcome === 'success' ? '✅ Pass' : '❌ Fail'} |`
+            ).join('\n')
+
+            const details = failed.map(c => {
+              let out = ''
+              try { out = fs.readFileSync(c.file, 'utf8').trim().slice(0, 3000) } catch (_) {}
+              if (!out) return ''
+              return `\n<details><summary>${c.name} output</summary>\n\n\`\`\`\n${out}\n\`\`\`\n</details>`
+            }).filter(Boolean).join('\n')
+
+            const body = [
+              `## 🔴 Health Check Failed — ${now} CST`,
+              '',
+              '| Check | Status |',
+              '|---|---|',
+              table,
+              details,
+              '',
+              `[View full run ↗](${runUrl})`,
+              '',
+              '_Fix the issues above then re-run the workflow to close this issue automatically._'
+            ].join('\n')
+
+            if (existing.data.length > 0) {
+              // Update the existing open issue with a new comment
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.data[0].number, body
+              })
+              core.info(`Updated existing issue #${existing.data[0].number}`)
+            } else {
+              const { data } = await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: '🔴 Repo health check failing',
+                body, labels: [LABEL]
+              })
+              core.info(`Created issue #${data.number}`)
+            }

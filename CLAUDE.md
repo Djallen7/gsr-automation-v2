@@ -50,9 +50,11 @@ This rule exists because archaeology of 879 conversations showed repeated cycles
 - Ask for explicit confirmation ("Type YES to import") before executing the live import
 - Never call `/api/import` in live mode without that confirmation in the same session
 
-**ProPresenter**
-- All ProPresenter automation work happens on a test machine only
-- Never connect to or send commands to the production ProPresenter machine via any automated process until explicitly approved by David
+**ProPresenter** (policy updated 2026-05-30)
+- ProPresenter runs on Daniel's desktop drive — NOT on a server. A full copy of the root folder lives on Daniel's SSD; that **SSD copy is the sanctioned build target** and carries no risk to production.
+- ProPresenter automation (building presentations from the approved graphics list, setting location tags) runs **against the SSD copy**. This is in scope — it is no longer "off-limits."
+- The **networked production machine GSN-PropRes (Tailscale 100.98.215.7) stays untouched** by any automated process.
+- Anything that would reach the **live show** still needs David's sign-off (see "The David rule").
 
 **The David rule**
 - Before any action, ask: if this goes wrong, does it fall on David to fix it?
@@ -60,7 +62,7 @@ This rule exists because archaeology of 879 conversations showed repeated cycles
 
 ## Off-limits to automation (non-negotiable)
 
-- **ProPresenter production machine** (GSN-PropRes, Tailscale 100.98.215.7) — covered by "The David rule" above.
+- **ProPresenter networked production machine** (GSN-PropRes, Tailscale 100.98.215.7) — stays untouched by automation. The **SSD copy** of the root folder is the sanctioned build target and is NOT off-limits (see "ProPresenter" under Operational Rules).
 - **ATEM, Bitfocus Companion** — production hardware.
 - **QNAP write access** — read-only SMB only; admin doesn't exist.
 - **Notion workspace** — wiki-only after ADR-0012 (Supabase pivot, 2026-05-23); do not extend the pre-pivot `scripts/notion_*.py` code.

@@ -368,8 +368,18 @@
       <div class="route page"><span class="route-path">/approved</span><span class="route-type">page</span></div>
       <div class="route page"><span class="route-path">/toolkit</span><span class="route-type">page · 20 prompts</span></div>
       <div class="route page"><span class="route-path">/update-password</span><span class="route-type">page</span></div>
+      <div class="route page"><span class="route-path">/extract</span><span class="route-type">page</span></div>
+      <div class="route page"><span class="route-path">/lower-thirds/[episode_id]</span><span class="route-type">page · workspace</span></div>
+      <div class="route page"><span class="route-path">/lower-thirds/ready</span><span class="route-type">page · ProPresenter output</span></div>
+      <div class="route page"><span class="route-path">/guests</span><span class="route-type">page</span></div>
+      <div class="route page"><span class="route-path">/workflow</span><span class="route-type">page · email due dates</span></div>
+      <div class="route page"><span class="route-path">/episodes</span><span class="route-type">page</span></div>
       <div class="route api"><span class="route-path">/api/regenerate</span><span class="route-type">POST · claude</span></div>
       <div class="route api"><span class="route-path">/api/import</span><span class="route-type">POST · bulk ingest</span></div>
+      <div class="route api"><span class="route-path">/api/extract-lower-thirds</span><span class="route-type">POST · claude extraction</span></div>
+      <div class="route api"><span class="route-path">/api/scripts</span><span class="route-type">GET/POST · scripts</span></div>
+      <div class="route api"><span class="route-path">/api/rc-explore</span><span class="route-type">GET · RC lookup</span></div>
+      <div class="route api"><span class="route-path">/api/rc-import</span><span class="route-type">POST · RC import</span></div>
       <div class="route api"><span class="route-path">/auth/callback</span><span class="route-type">GET · supabase</span></div>
     </div>
   </div>
@@ -388,7 +398,7 @@
 <script>
   // ── Last updated timestamp ─────────────────────────────────────────────────
   // AGENTS: update this string when you edit this file
-  const LAST_UPDATED = '2026-05-30'
+  const LAST_UPDATED = '2026-05-30 (merge run complete)'
   document.getElementById('updated').textContent = 'Last updated: ' + LAST_UPDATED
 
   // ── Live PR fetch from GitHub API ──────────────────────────────────────────

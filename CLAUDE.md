@@ -54,6 +54,7 @@ This rule exists because archaeology of 879 conversations showed repeated cycles
 - ProPresenter runs on Daniel's desktop drive — NOT on a server. A full copy of the root folder lives on Daniel's SSD; that **SSD copy is the sanctioned build target** and carries no risk to production.
 - ProPresenter automation (building presentations from the approved graphics list, setting location tags) runs **against the SSD copy**. This is in scope — it is no longer "off-limits."
 - The **networked production machine GSN-PropRes (Tailscale 100.98.215.7) stays untouched** by any automated process.
+- **Build invariant:** automation operates only on the local SSD build path. It must have no configured network route to GSN-PropRes; any tool pointed at `100.98.215.7` (e.g. the `~/propresenter-mcp` server) is removed/repointed for build sessions. Before building, verify the SSD copy is NOT on a sync path (Dropbox/iCloud/Resilio/rsync) to the production machine — otherwise the boundary is fiction.
 - Anything that would reach the **live show** still needs David's sign-off (see "The David rule").
 
 **The David rule**
@@ -119,6 +120,7 @@ This is **not** the Next.js your training data knows. See `apps/dashboard/AGENTS
 **Database conventions**
 - `snake_case` for tables and columns; PKs are `bigint generated always as identity` unless documented otherwise.
 - **RLS enabled on every table** before any policy is written. Service role used only in Edge Functions or server actions, never in client code.
+- **Supabase MCP defaults to read-only** (`.mcp.json` carries `read_only=true`, no `functions`/`branching`). Writing SQL / applying migrations is a deliberate opt-in: temporarily remove `read_only=true` and re-add the `functions`,`branching` features, do the migration on a branch, then revert. Never leave the default in a write-enabled state.
 - Atomic state mutations (graphics approval, etc.) go through SQL RPC, not read-modify-write from a route handler.
 - After every schema change: regenerate TS types, run advisors, commit together.
 

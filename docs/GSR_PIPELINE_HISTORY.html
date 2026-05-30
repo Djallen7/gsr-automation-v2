@@ -169,6 +169,81 @@ body.editing .edit-status{color:var(--warn)}
 </style>
 </head>
 <body>
+<!-- 12 MAY 2026 PRODUCTION CYCLE (added 2026-05-30 from conversation batch analysis) -->
+<div class="section" id="may2026">
+  <div class="sec-hdr">
+    <div class="sec-n">12</div>
+    <div><div class="sec-title">The First Real Production Cycle</div><div class="sec-desc">What actually happened in May 2026 — the first month with a real filming schedule and real automation attempts</div></div>
+  </div>
+
+  <h3>May 28-29: Five Shows Filmed</h3>
+  <p>The May filming cycle (S03 Ep021-025) is the first real test of all the automation infrastructure built since February. Five back-to-back shows were taped starting 9:30am Thursday May 28, with a second day Friday May 29 for two remaining interviews.</p>
+
+  <table>
+    <thead><tr><th>Episode</th><th>RundownID</th><th>Segment 1 (Int1)</th><th>Segment 2 (Int2)</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>S03 Ep021</td><td>79</td><td>David Legates — aquatic deoxygenation / planetary boundaries</td><td>Billy Hallowell — UAP documentary (CBN pre-produced segment)</td><td>Filmed May 28</td></tr>
+      <tr><td>S03 Ep022</td><td>81</td><td>Tim Clarey — Green River mystery</td><td>Jerry Bergman — Darwin's doubts (June 15)</td><td>Partial — Tim filmed May 29</td></tr>
+      <tr><td>S03 Ep023</td><td>83</td><td>Andrew Fabich — petrichor / smell of rain</td><td>Dan Janzen — climate and farming myths (June 15)</td><td>Partial — Andrew filmed May 29</td></tr>
+      <tr><td>S03 Ep024</td><td>82</td><td>Carl Werner — Smithsonian whale fraud Pt3 (pre-produced field report)</td><td>Dr. Ming Wang — design arguments from the eye (June 15)</td><td>Partial — Carl pre-produced</td></tr>
+      <tr><td>S03 Ep025</td><td>84</td><td><em>(TBD)</em></td><td>David Coppedge — Creation Safaris / creation deficit (June 15 or TBD)</td><td>Partial</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The Server Incident — A New Permanent Constraint</h3>
+  <div class="callout co-warn">
+    <div class="callout-title">Why Tailscale / Direct Server Access Is Permanently Off the Table</div>
+    <p>On May 20, while exploring ProPresenter API automation via Tailscale, a command accidentally shut down production servers at work. IT had to intervene. The result: no direct server tools of any kind — no Tailscale, no file watchers, no SSH — in any future automation. All automation must go through cloud APIs (Supabase, RC MCP, Google Sheets MCP) or read-only SMB mounts. This constraint is not a preference — it's an operational boundary set by a real incident.</p>
+  </div>
+
+  <h3>Tools in Active Production Use (May 2026)</h3>
+  <div class="phase-grid">
+    <div class="pc-card">
+      <div class="pc-title">Rundown Creator MCP</div>
+      <div class="pc-dates">Daily use, frequent timeouts</div>
+      <p class="pc-end">Scripts pushed to RundownIDs 79, 81-84. Monologue scripts go to B3 rows; interview scripts to C2/E2. Pattern works — instability is the only ongoing issue.</p>
+    </div>
+    <div class="pc-card">
+      <div class="pc-title">Google Sheets via Composio</div>
+      <div class="pc-dates">Partially working — went down May 28</div>
+      <p class="pc-end">May Graphics Tracker in Sheets is the source of truth for graphic assignments. Composio outage blocked writes mid-session. Native Sheets MCP requested as replacement.</p>
+    </div>
+    <div class="pc-card">
+      <div class="pc-title">Supabase Episodes Table</div>
+      <div class="pc-dates">48 rows upserted May 2026</div>
+      <p class="pc-end">All of Season 3 is in the DB. Ep1-15 have real air dates and YouTube URLs. Ep16-48 have extrapolated Tuesday dates through 2027-01-05. RSS poller Edge Function is the missing piece.</p>
+    </div>
+    <div class="pc-card">
+      <div class="pc-title">Lower Thirds HTML Tool</div>
+      <div class="pc-dates">Built May 20 — not yet Supabase-integrated</div>
+      <p class="pc-end">Interactive HTML approval tool for browsing/approving/regenerating L3s. Precursor to the dashboard. Blocked from Supabase ingestion by the JSON schema mismatch (Stage 7 blocker).</p>
+    </div>
+  </div>
+
+  <h3>What the Real Workflow Looks Like in Practice</h3>
+  <ol>
+    <li><strong>Episode planning</strong> — Segment assignments tracked in Google Sheets (May Graphics Tracker). Each show tab has columns for segment type, graphic type, description, notes.</li>
+    <li><strong>Interview booking</strong> — Daniel sends Claude-drafted email templates. Guest pipeline for May: David Legates, Tim Clarey, Jerry Bergman, Andrew Fabich, Dan Janzen, Carl Werner (field report), Dr. Ming Wang, David Coppedge, Billy Hallowell (pre-produced CBN segment).</li>
+    <li><strong>Script writing</strong> — Scripts written in Claude, uploaded to Rundown Creator via RC MCP. Plain text with <code>&lt;gfx ...&gt;</code> cue tags.</li>
+    <li><strong>Graphics brainstorming</strong> — Claude generates graphic ideas from segment scripts, writes approved choices to Sheets via Composio.</li>
+    <li><strong>Rundown population</strong> — RC MCP pushes scripts to appropriate row types (B3 monologue, C2/E2 interview, etc.). Six preproduced segments (THD, KC, Q&amp;A, VV, FR, GSM) per episode matched by filename pattern.</li>
+    <li><strong>Lower thirds</strong> — Still manual: HTML approval tool → manual ProPresenter entry. Supabase import blocked by schema mismatch.</li>
+    <li><strong>YouTube metadata</strong> — Manual. 30%-shorter title rule still not baked into automation.</li>
+  </ol>
+
+  <h3>Key Production Data Points</h3>
+  <div class="kv-grid">
+    <div><strong>YouTube channel:</strong> <code>UCNZS3IEQaAfwofwltbEBwuw</code> (David Rives Ministries)</div>
+    <div><strong>Air cadence:</strong> Episodes air Tuesdays; publish to YouTube the following Monday at ~4pm ET</div>
+    <div><strong>Last confirmed aired:</strong> S03 Ep015 (air date 2026-05-19, YouTube 2026-05-25)</div>
+    <div><strong>L3 character rule:</strong> 55-65 chars/line; no commas, no em dashes</div>
+    <div><strong>Show opening:</strong> "Good evening and welcome to The Genesis Science Report. I'm David Rives and tonight on the Genesis Science Report…"</div>
+    <div><strong>Drive graphics folder:</strong> <code>18RZ8UNF2nN67G6as-Uj5o5O3BbNFChoR</code> (canAddChildren: false)</div>
+    <div><strong>Airtable status:</strong> Disqualified — explicitly excludes religious organizations from nonprofit pricing</div>
+    <div><strong>Notion MCP:</strong> Only works in regular Claude.ai chats, not Projects — reason for Supabase pivot</div>
+  </div>
+</div>
+
 <!-- EDIT BAR -->
 <div class="edit-bar">
   <span class="edit-status" id="edit-status">Viewing</span>
@@ -204,6 +279,7 @@ body.editing .edit-status{color:var(--warn)}
     <a href="#problems" class="tl"><span class="tl-n">09</span>Open Problems</a>
     <a href="#roadmap" class="tl"><span class="tl-n">10</span>Roadmap</a>
     <a href="#lessons" class="tl"><span class="tl-n">11</span>Lessons</a>
+    <a href="#may2026" class="tl"><span class="tl-n">12</span>May 2026 Cycle</a>
   </div>
   <div style="margin-top:32px;padding:12px;background:var(--surface2);border-radius:8px;font-size:11px;color:var(--muted)">
     Synthesized from 879 conversations + 5 parallel research agents.<br>Last updated: 2026-05-30
@@ -702,27 +778,44 @@ body.editing .edit-status{color:var(--warn)}
       </div>
     </div>
   </div>
+  <h3>Hard Constraints Added May 2026</h3>
+  <div class="prob-list">
+    <div class="prob-item">
+      <div class="prob-icon">🔴</div>
+      <div>
+        <div class="prob-title">Direct Server Access Permanently Off-Limits</div>
+        <div class="prob-desc">A server incident on May 20 (Tailscale / ProPresenter exploration) required IT intervention. Direct tools running on any server (Tailscale VPN, file watchers, SSH) are now permanently off the table. All automation must go through cloud APIs or read-only SMB mounts only. The chokidar file-watcher pattern originally planned for QNAP is no longer viable.</div>
+      </div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-icon">🟠</div>
+      <div>
+        <div class="prob-title">No youtube_published_at Auto-Flip</div>
+        <div class="prob-desc">48 Season 3 episode rows are in the DB with <code>youtube_scheduled_publish_at</code> values. Without a YouTube RSS poller Edge Function, those fields never update to actual publish dates. Episode 15 (aired 2026-05-19, published 2026-05-25) is the last row with confirmed real data — all rows after it will show stale scheduled dates indefinitely.</div>
+      </div>
+    </div>
+  </div>
   <h3>Recurring Friction</h3>
   <div class="prob-list">
     <div class="prob-item">
       <div class="prob-icon">🟡</div>
       <div>
         <div class="prob-title">Rundown Creator MCP Instability</div>
-        <div class="prob-desc">Times out on list endpoints, hangs 4+ minutes, disconnects mid-session. Most RC work requires manually probing rundown IDs. Affects every session touching episode scripts.</div>
+        <div class="prob-desc">Times out on list endpoints, hangs 4+ minutes, disconnects mid-session. In active daily use for May filming cycle (RundownIDs 79, 81-84 for Ep021-025). Requires periodic restart and manual rundown ID probing on every session.</div>
+      </div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-icon">🟡</div>
+      <div>
+        <div class="prob-title">Composio Unreliable — Google Sheets MCP Needed</div>
+        <div class="prob-desc">Composio (the connector for Google Sheets writes) went entirely down on May 28 during the main graphics session, blocking sheet-write workflow. The native Google Sheets MCP from Anthropic's directory was requested as a replacement but not yet confirmed working. Single-vendor dependency for all Sheets automation.</div>
       </div>
     </div>
     <div class="prob-item">
       <div class="prob-icon">🟡</div>
       <div>
         <div class="prob-title">Google Drive Write Access Blocked</div>
-        <div class="prob-desc">GSR Shared Folder (owned by davidrives.com) blocks all API writes. Every Drive automation must target Daniel's personal My Drive then manually move. Known, documented, still creating friction.</div>
-      </div>
-    </div>
-    <div class="prob-item">
-      <div class="prob-icon">🟡</div>
-      <div>
-        <div class="prob-title">Third-Party Service Outages</div>
-        <div class="prob-desc">Composio was entirely down during the May 26 graphics session, blocking the primary sheet-write workflow for that session. Single points of failure in third-party tooling.</div>
+        <div class="prob-desc">GSR Shared Folder (ID <code>18RZ8UNF2nN67G6as-Uj5o5O3BbNFChoR</code>, owned by davidrives.com) has <code>canAddChildren: false</code>. Every Drive automation must target Daniel's personal My Drive then manually move. Known, documented, still creating friction.</div>
       </div>
     </div>
   </div>
@@ -748,11 +841,15 @@ body.editing .edit-status{color:var(--warn)}
   <h3>🔴 Immediate — Stage 7 (This Week)</h3>
   <div class="rm-item">
     <div class="rm-status"><span class="badge b-err">Blocking</span></div>
-    <div><div class="rm-title">Fix import JSON schema alignment</div><div class="rm-desc">Align extraction prompt field names with actual Supabase table definitions. Fix chyron delimiters, l3_type field, segment enum values. Test with a real episode script (not Billy Hallowell's .pages file).</div></div>
+    <div><div class="rm-title">Fix lower thirds JSON ↔ Supabase schema mismatch</div><div class="rm-desc">Run <code>list_tables</code> on the <code>lower_thirds</code> table, compare actual column names against extraction prompt output, align them. "JSON parsed but no recognized fields found" is the error. S03 Ep021-025 were filmed May 28-29 — scripts exist, import is blocked.</div></div>
   </div>
   <div class="rm-item">
     <div class="rm-status"><span class="badge b-err">Blocking</span></div>
-    <div><div class="rm-title">Run first complete episode end-to-end</div><div class="rm-desc">Import → review → approve → ProPresenter copy. One complete episode. That's the definition of Stage 7 done.</div></div>
+    <div><div class="rm-title">Run first complete episode end-to-end</div><div class="rm-desc">Import → review → approve → ProPresenter copy. One complete episode. That's the definition of Stage 7 done. Start with Ep021 (David Legates + Billy Hallowell) or Ep022 (Tim Clarey + Jerry Bergman).</div></div>
+  </div>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-warn">High priority</span></div>
+    <div><div class="rm-title">YouTube RSS poller (Supabase Edge Function)</div><div class="rm-desc">Hourly cron polling <code>youtube.com/feeds/videos.xml?channel_id=UCNZS3IEQaAfwofwltbEBwuw</code>. Parse <code>S03, EpN</code> from titles, write real <code>youtube_url</code> and <code>youtube_published_at</code> to matching episode row. Build immediately after Stage 7 — 48 rows have stale scheduled dates.</div></div>
   </div>
   <h3>🟡 Post-Stage 7 Cleanup</h3>
   <div class="rm-item">
@@ -837,8 +934,8 @@ body.editing .edit-status{color:var(--warn)}
   <hr>
 
   <div class="callout co-ok">
-    <div class="callout-title">Where the Project Stands Right Now</div>
-    <p>The GSR pipeline is one episode run away from Feature 1 being complete. The import JSON schema mismatch is the only technical blocker for Stage 7. Once fixed and one episode runs through import → review → approve → ProPresenter copy, Feature 1 is done. The schema for the next three features (guests/booking, distribution, social) is already in the database waiting for UI. The system that burned down 879 times now has 42 migrations, 9 routes, a live Vercel deployment, and a draft PR with CI running.</p>
+    <div class="callout-title">Where the Project Stands — Updated 2026-05-30</div>
+    <p>S03 Ep021-025 were filmed May 28-29 with five guests confirmed (David Legates, Tim Clarey, Andrew Fabich, Carl Werner field report, plus Jerry Bergman / Dan Janzen / Dr. Ming Wang / David Coppedge filming June 15). All 48 Season 3 episode rows are in Supabase. The lower thirds JSON schema mismatch is still the only technical blocker for Stage 7 — once fixed, the dashboard absorbs the first real episode and Feature 1 is complete. The next queue (guest email workflow UI, YouTube RSS poller, episode hub) has schema ready and zero dependencies. The system is closer to done than at any prior point — the filming happened, the data is there, one schema fix ships Stage 7.</p>
   </div>
 
   <div style="margin-top:32px;padding:18px;background:var(--surface);border-radius:12px;border:1px solid var(--border)">

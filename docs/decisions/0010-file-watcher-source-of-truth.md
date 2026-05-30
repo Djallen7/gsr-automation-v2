@@ -1,7 +1,7 @@
 # ADR-0010: File-watcher source-of-truth strategy
 
 Date: 2026-05-15
-Status: Proposed (deferred — decide at start of Phase 1 Week 2)
+Status: SUPERSEDED by ADR-0012 (Supabase pivot, 2026-05-23). Never accepted; historical record only.
 Related: ADR-0001, ADR-0009
 
 ## Question

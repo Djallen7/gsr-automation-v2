@@ -1,7 +1,7 @@
 # ADR-0009: Two-NAS topology — QNAP3 as primary automation host
 
 Date: 2026-05-15
-Status: Accepted
+Status: SUPERSEDED by ADR-0011, then ADR-0012 (Supabase pivot). Historical record only.
 Supplements: ADR-0001
 
 ## Context

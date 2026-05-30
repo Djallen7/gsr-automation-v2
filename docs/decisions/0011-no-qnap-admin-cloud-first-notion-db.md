@@ -1,7 +1,7 @@
 # ADR-0011: No QNAP Admin Access — Cloud-First Architecture with Notion Database
 
 **Date:** 2026-05-20
-**Status:** Accepted
+**Status:** SUPERSEDED by ADR-0012 (Supabase replaces Notion as DB, 2026-05-23). Historical record — Notion is wiki-only now.
 **Supersedes:** ADR-0009 (two-NAS topology), ADR-0010 (file-watcher source of truth)
 
 ---

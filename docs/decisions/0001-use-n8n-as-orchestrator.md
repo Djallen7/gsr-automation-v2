@@ -1,7 +1,7 @@
 # ADR-0001: Use n8n as orchestrator, Next.js dashboard, Docker services on NAS
 
 Date: 2026-05-15
-Status: Accepted (supplemented by ADR-0009)
+Status: SUPERSEDED by ADR-0012 (Supabase pivot, 2026-05-23). Historical record — do not build on this (n8n orchestrator path is retired).
 
 ## Context
 

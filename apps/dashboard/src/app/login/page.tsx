@@ -1,173 +1,69 @@
 'use client'
 
 import { useState, type FormEvent } from 'react'
+import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { createClient } from '@/lib/supabase/client'
-import { useRouter } from 'next/navigation'
-
-type Mode = 'password' | 'magic-link' | 'reset-sent' | 'magic-sent'
 
 export default function LoginPage() {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [mode, setMode] = useState<Mode>('password')
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
+  const [mode, setMode] = useState<'password' | 'magic'>('password')
+  const [status, setStatus] = useState<'idle' | 'sending' | 'sent' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
 
-  async function handlePasswordLogin(e: FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    setStatus('sending')
+    setErrorMessage(null)
+
     const supabase = createClient()
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
-    if (error) {
-      setError(error.message)
-      setLoading(false)
+
+    if (mode === 'password') {
+      const { error } = await supabase.auth.signInWithPassword({ email, password })
+      if (error) {
+        setStatus('error')
+        setErrorMessage(error.message)
+        return
+      }
+      router.push('/lower-thirds')
       return
     }
-    router.push('/lower-thirds')
-    router.refresh()
-  }
 
-  async function handleMagicLink(e: FormEvent) {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
-    const supabase = createClient()
+    const origin = window.location.origin
     const { error } = await supabase.auth.signInWithOtp({
       email,
-      options: { emailRedirectTo: `${window.location.origin}/auth/callback` },
+      options: { emailRedirectTo: `${origin}/auth/callback` },
     })
+
     if (error) {
-      setError(error.message)
-      setLoading(false)
+      setStatus('error')
+      setErrorMessage(error.message)
       return
     }
-    setMode('magic-sent')
-    setLoading(false)
-  }
 
-  async function handleForgotPassword() {
-    if (!email) {
-      setError('Enter your email first.')
-      return
-    }
-    setLoading(true)
-    setError(null)
-    const supabase = createClient()
-    const { error } = await supabase.auth.resetPasswordForEmail(email, {
-      redirectTo: `${window.location.origin}/auth/callback?redirect_to=/update-password`,
-    })
-    if (error) {
-      setError(error.message)
-      setLoading(false)
-      return
-    }
-    setMode('reset-sent')
-    setLoading(false)
-  }
-
-  if (mode === 'magic-sent') {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-page p-4">
-        <Card className="w-full max-w-sm">
-          <CardHeader>
-            <CardTitle>Check your email</CardTitle>
-            <CardDescription>
-              Magic link sent to <span className="font-medium text-foreground">{email}</span>.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button variant="outline" className="w-full" onClick={() => setMode('password')}>
-              Back to sign in
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    )
-  }
-
-  if (mode === 'reset-sent') {
-    return (
-      <div className="flex min-h-screen items-center justify-center bg-page p-4">
-        <Card className="w-full max-w-sm">
-          <CardHeader>
-            <CardTitle>Reset email sent</CardTitle>
-            <CardDescription>
-              Check <span className="font-medium text-foreground">{email}</span> for a password reset link.
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Button variant="outline" className="w-full" onClick={() => setMode('password')}>
-              Back to sign in
-            </Button>
-          </CardContent>
-        </Card>
-      </div>
-    )
+    setStatus('sent')
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-page p-4">
+    <div className="flex min-h-screen items-center justify-center bg-background p-4">
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <div className="mb-2 flex h-8 w-8 items-center justify-center rounded bg-primary text-[10px] font-bold tracking-widest text-primary-foreground">
-            GSR
-          </div>
-          <CardTitle>Sign in</CardTitle>
+          <CardTitle>GSR Dashboard</CardTitle>
           <CardDescription>
-            {mode === 'password'
-              ? 'Enter your email and password.'
-              : 'Enter your email to receive a magic link.'}
+            {mode === 'password' ? 'Sign in with your password.' : 'Sign in with a magic link.'}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {mode === 'password' ? (
-            <form onSubmit={handlePasswordLogin} className="flex flex-col gap-3">
-              <Input
-                type="email"
-                inputMode="email"
-                autoComplete="email"
-                required
-                placeholder="you@davidrives.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-              <Input
-                type="password"
-                autoComplete="current-password"
-                required
-                placeholder="Password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-              />
-              {error && <p className="text-sm text-destructive">{error}</p>}
-              <Button type="submit" disabled={loading}>
-                {loading ? 'Signing in…' : 'Sign in'}
-              </Button>
-              <div className="flex items-center justify-between text-xs text-muted-foreground">
-                <button
-                  type="button"
-                  className="hover:text-foreground underline-offset-4 hover:underline"
-                  onClick={handleForgotPassword}
-                  disabled={loading}
-                >
-                  Forgot password?
-                </button>
-                <button
-                  type="button"
-                  className="hover:text-foreground underline-offset-4 hover:underline"
-                  onClick={() => { setMode('magic-link'); setError(null) }}
-                >
-                  Use magic link
-                </button>
-              </div>
-            </form>
+          {status === 'sent' ? (
+            <p className="text-sm">
+              Check <span className="font-medium">{email}</span> for your sign-in link.
+            </p>
           ) : (
-            <form onSubmit={handleMagicLink} className="flex flex-col gap-3">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <Input
                 type="email"
                 inputMode="email"
@@ -177,16 +73,32 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
-              {error && <p className="text-sm text-destructive">{error}</p>}
-              <Button type="submit" disabled={loading}>
-                {loading ? 'Sending…' : 'Send magic link'}
+              {mode === 'password' && (
+                <Input
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              )}
+              <Button type="submit" disabled={status === 'sending'}>
+                {status === 'sending'
+                  ? 'Signing in…'
+                  : mode === 'password'
+                    ? 'Sign in'
+                    : 'Send magic link'}
               </Button>
+              {status === 'error' && errorMessage ? (
+                <p className="text-sm text-destructive">{errorMessage}</p>
+              ) : null}
               <button
                 type="button"
-                className="text-xs text-muted-foreground hover:text-foreground underline-offset-4 hover:underline"
-                onClick={() => { setMode('password'); setError(null) }}
+                onClick={() => { setMode(mode === 'password' ? 'magic' : 'password'); setStatus('idle'); setErrorMessage(null) }}
+                className="text-xs text-muted-foreground underline-offset-2 hover:underline"
               >
-                Sign in with password instead
+                {mode === 'password' ? 'Use magic link instead' : 'Use password instead'}
               </button>
             </form>
           )}
@@ -195,3 +107,4 @@ export default function LoginPage() {
     </div>
   )
 }
+

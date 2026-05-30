@@ -155,9 +155,26 @@ ul.lst li{color:#d1d5db;font-size:13.5px;margin-bottom:5px}
 ul.lst li::marker{color:var(--accent)}
 .kv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;color:#9ca3af}
 @media(max-width:860px){.layout{grid-template-columns:1fr}.sidebar{display:none}.main{padding:28px 20px 80px}.phase-grid{grid-template-columns:1fr}}
+/* EDIT MODE */
+.edit-bar{position:fixed;bottom:24px;right:24px;display:flex;gap:8px;z-index:1000;align-items:center}
+.edit-btn{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.edit-btn.toggle{background:var(--accent);color:#fff}
+.edit-btn.toggle.active{background:#10b981;color:#fff}
+.edit-btn.dl{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.edit-btn.dl:hover{color:var(--text)}
+.edit-status{font-size:11px;color:var(--muted);background:var(--surface);padding:5px 10px;border-radius:6px;border:1px solid var(--border)}
+body.editing [contenteditable]{outline:1px dashed #6366f145;border-radius:3px;min-height:1em}
+body.editing [contenteditable]:focus{outline:2px solid var(--accent);background:#6366f108}
+body.editing .edit-status{color:var(--warn)}
 </style>
 </head>
 <body>
+<!-- EDIT BAR -->
+<div class="edit-bar">
+  <span class="edit-status" id="edit-status">Viewing</span>
+  <button class="edit-btn dl" id="dl-btn" onclick="downloadFile()">Download</button>
+  <button class="edit-btn toggle" id="edit-btn" onclick="toggleEdit()">Edit</button>
+</div>
 <div class="layout">
 
 <!-- ═══ SIDEBAR ═══ -->
@@ -856,6 +873,73 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { rootMargin: '-15% 0px -70% 0px' });
 sections.forEach(s => { if(s.id) observer.observe(s); });
+
+// ── EDIT MODE ──────────────────────────────────────────────
+const STORE_KEY = 'gsr-pipeline-edits';
+const editBtn = document.getElementById('edit-btn');
+const editStatus = document.getElementById('edit-status');
+let editing = false;
+
+function getEditables() {
+  return document.querySelectorAll(
+    '.main p, .main h3, .main td, .main th, .main li, ' +
+    '.main .flow-title, .main .flow-desc, .main .prob-title, .main .prob-desc, ' +
+    '.main .lesson-title, .main .lesson-desc, .main .rm-title, .main .rm-desc, ' +
+    '.main .callout-title, .main .callout p, .main .callout-body, ' +
+    '.main .sec-title, .main .sec-desc, .main .card-val, .main .card-sub, ' +
+    '.main .ti-event, .main .ti-desc, .main .pc-title, .main .pc-dates, .main .pc-end, ' +
+    '.main .p-desc, .main .hero-sub, .main .stat-pill, ' +
+    '.main .pc-items li, .main .pc-n, .main .phase-end'
+  );
+}
+
+function toggleEdit() {
+  editing = !editing;
+  document.body.classList.toggle('editing', editing);
+  editBtn.textContent = editing ? 'Done Editing' : 'Edit';
+  editBtn.classList.toggle('active', editing);
+  editStatus.textContent = editing ? 'Editing — changes auto-saved' : 'Viewing';
+  getEditables().forEach(el => {
+    if (editing) el.setAttribute('contenteditable', 'true');
+    else el.removeAttribute('contenteditable');
+  });
+}
+
+// Auto-save to localStorage on any input
+document.addEventListener('input', () => {
+  if (!editing) return;
+  localStorage.setItem(STORE_KEY, document.querySelector('.main').innerHTML);
+  editStatus.textContent = 'Saved ✓';
+  setTimeout(() => { if (editing) editStatus.textContent = 'Editing — changes auto-saved'; }, 1200);
+});
+
+// Restore saved content on load
+const saved = localStorage.getItem(STORE_KEY);
+if (saved) {
+  document.querySelector('.main').innerHTML = saved;
+  editStatus.textContent = 'Restored from last session';
+  setTimeout(() => { editStatus.textContent = 'Viewing'; }, 2000);
+}
+
+// Download current state as HTML file
+function downloadFile() {
+  const clone = document.documentElement.cloneNode(true);
+  // Remove edit-bar from clone, bake in saved content
+  const bar = clone.querySelector('.edit-bar');
+  if (bar) bar.remove();
+  // Strip contenteditable attrs
+  clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+  // Inject saved main content
+  const savedMain = localStorage.getItem(STORE_KEY);
+  if (savedMain) clone.querySelector('.main').innerHTML = savedMain;
+  const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+  const blob = new Blob([html], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'GSR_PIPELINE_HISTORY.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
 </script>
 </body>
 </html>

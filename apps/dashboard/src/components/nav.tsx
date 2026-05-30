@@ -8,6 +8,9 @@ const links = [
   { href: '/import', label: 'Import' },
   { href: '/approved', label: 'Approved' },
   { href: '/toolkit', label: 'Toolkit' },
+  { href: '/guests', label: 'Guests' },
+  { href: '/workflow', label: 'Workflow' },
+  { href: '/episodes', label: 'Episodes' },
   { href: '/upload', label: 'Upload' },
 ]
 

@@ -1,92 +1,125 @@
-# Session Handoff — 2026-05-23
+# Session Handoff — 2026-05-30
 
 **For the next Claude session, contractor, or future Daniel reading this cold.**
-**Project owner:** Daniel Allen (GitHub: Djallen7)
-**Active repo:** [github.com/Djallen7/gsr-automation-v2](https://github.com/Djallen7/gsr-automation-v2)
+**Project owner:** Daniel Allen — `danielallen.tn@gmail.com` / GitHub: `Djallen7`
+**Active repo:** `github.com/Djallen7/gsr-automation-v2`
 
-V1 (`gsr-automation` without the v2 suffix) is being archived. Do not use the old name.
-
----
-
-## Current state
-
-Architecture pivoted again on 2026-05-22/23: **Supabase replaces Notion** as the backend (see ADR-0012, supersedes ADR-0011). The Notion workspace from 2026-05-21 is sunk cost — kept as wiki, not used as DB.
-
-**Stack now:**
-- Backend: Supabase (Postgres + Realtime + Storage + Auth + Edge Functions)
-- Frontend: Next.js 15 + shadcn/ui
-- AI: Claude API
-- Servers (QNAP3/QNAP5): read-only archive, unchanged
-- n8n: deferred until Feature 3+
-
-**First feature:** Jakob lower-thirds approval workflow. Three weeks of focused work. Nothing else gets built until Feature 1 is in production for one real episode cycle.
-
-The four documents that define current state — `START_HERE.md`, `ROADMAP_VISUAL.md`, `FEATURE_1_LOWER_THIRDS.md`, `DECISION_LOG_2026-05-22.md` — are at the repo root. Read them in that order.
+> **The authoritative visual overview is `BUILD_STATUS.html` at repo root — open it in a browser first.**
+> This doc covers what BUILD_STATUS.html doesn't: PR state, blockers, and what to do next.
 
 ---
 
-## What's been decided (short version)
+## What is running in production right now
 
-- **Backend:** Supabase. Not Notion. (ADR-0012)
-- **Frontend:** Next.js 15 + shadcn/ui. Not low-code platforms.
-- **First feature:** Jakob lower-thirds approval workflow. Not the dashboard shell, not YouTube upload.
-- **Servers:** Read-only. Working data in Supabase. Server is the archive.
-- **Tool swaps from the audit:** all deferred. None get swapped as part of foundation work.
+**Live Vercel deployment** — Next.js 16 dashboard, Supabase backend (`lafkbxypmciopebentxp`).
 
----
+| Route | What it does | Status |
+|---|---|---|
+| `/login` | Magic link + password auth | ✅ Live |
+| `/upload` | Legacy PNG upload (being phased out) | ✅ Live — legacy |
+| `/import` | Paste JSON → bulk ingest lower thirds | ✅ Live |
+| `/lower-thirds` | Review grid — approve / reject / regenerate | ✅ Live |
+| `/approved` | Approved queue with ProPresenter copy button | ✅ Live |
+| `/toolkit` | 20 production-grounded AI prompts | ✅ Live |
+| `/update-password` | Post-magic-link password reset | ✅ Live |
+| `/api/import` | POST bulk ingest, dry-run + live modes | ✅ Live |
+| `/api/regenerate` | POST Claude API call, rate-limited, deduped | ✅ Live |
+| `/auth/callback` | Supabase auth redirect | ✅ Live |
 
-## What hasn't been decided yet
-
-- Whether Miryam gets her own dashboard role or shares Daniel's during Feature 1 testing
-- When to introduce Daniel-2 (correspondent) and other team members
-- Final GSR brand assets (waiting on Jakob: lower-third designs, logo, color palette)
-- David Rives buy-in on Supabase (Feature 1 doesn't require it; distribution features will)
-
----
-
-## What to build first
-
-Feature 1: lower-thirds approval. Full spec in `FEATURE_1_LOWER_THIRDS.md` at repo root. Stack: Supabase + Next.js + Claude API. Nothing else.
-
-Do NOT add features outside this scope until Feature 1 is in production for one real episode cycle.
+**Database:** 43 migrations applied. Key tables: `episodes` (48 S3 rows), `guests` (175 seed guests), `lower_thirds`, `episode_guests`, `content_clips`, `social_posts`, `distributions`.
 
 ---
 
-## How to start a productive session
+## The one thing blocking forward progress
 
-1. Read this file.
-2. Read `docs/CONTEXT_BOOTSTRAP.md` for the project context.
-3. Read `FEATURE_1_LOWER_THIRDS.md` if Daniel is asking about the lower-thirds build.
-4. Read `docs/decisions/0012-supabase-backend.md` if Daniel is asking why Supabase over Notion.
-5. Only read older docs (`MASTER_CONTEXT.md`, the tooling audit, the research charter) when the conversation requires them. They are reference, not roadmap.
-6. Anything in older docs that conflicts with the decision log: the decision log wins.
+**Stage 7 is blocked by a lower thirds JSON schema mismatch.**
 
----
+The `/import` route exists. The Claude extraction prompt exists (PR #34 adds `/api/extract-lower-thirds`). They generate JSON that doesn't match the actual `lower_thirds` table column names. Error: "JSON parsed but no recognized fields found."
 
-## Things to NOT do
+**To fix:** Run `list_tables` on the Supabase `lower_thirds` table, compare columns against what `/api/import` expects (Zod schema in `apps/dashboard/src/app/api/import/route.ts`), align them. Hours of work, not days.
 
-- Don't propose new tool swaps unless Daniel explicitly asks. The audit is reference, not a TODO list.
-- Don't redesign the data model "to be more complete." Schemas grow as features demand them.
-- Don't suggest building the dashboard shell before the first feature exists.
-- Don't write Notion-as-backend solutions. That decision is closed (ADR-0012).
-- Don't add Notion, ClickUp, Airtable, or similar "one-stop shop" recommendations. Considered and rejected.
+**When Stage 7 passes:** Import one real episode (S03 Ep021-025 all filmed May 28-29) → review → approve → ProPresenter copy. Feature 1 is done.
 
 ---
 
-## Context for any session
+## Open pull requests (all draft)
 
-- Daniel is a non-developer. He uses Claude Code for actual building. Planning/architecture happens in Claude.ai sessions.
-- Daniel works at David Rives Ministries (501(c)(3), Christian creation-science TV). Show: The Genesis Science Report (GSR). Weekly, ~58 min, Season 3.
-- Team: Daniel + Miryam as core producers, ~7-8 studio crew on shoot days.
-- Production cadence: 10-11 taping cycles/year, 2 shoot days per cycle, 5 episodes per session.
-- Working email: `dallen@davidrives.com`. Personal Tailscale account: `danielallen.tn@gmail.com`.
+| PR | Branch | What it adds | Base | Action |
+|---|---|---|---|---|
+| #37 | `feat/gsr-voice-profile` | GSR voice profile, editorial agent, full project retrospective HTML doc, roadmap updates | main | **Ready to review** — merge when Daniel approves |
+| #36 | `chore/health-check-automation` | Twice-daily GitHub Actions health checks, route checker, config validator, gsr-health agent | main | Ready — merge after #37 |
+| #35 | `feat/dashboard-nav-guests-workflow-episodes` | `/guests`, `/workflow`, `/episodes` pages + nav links | ⚠️ non-main base | Needs rebase onto main before merge |
+| #34 | `feat/script-extract-pipeline` | `/extract` page + `/api/extract-lower-thirds` (Stage 7 enabler) | main | **Merge this to unblock Stage 7** |
+
+**Merge order:** #34 first (unblocks Stage 7), then #37 (docs), then #36 (health), then #35 after rebase.
 
 ---
 
-## Carryover from 2026-05-21 (Notion track) — for reference, not action
+## Key constraints to never forget
 
-The previous session set up a Notion workspace with 6 databases (Episodes, Guests, Tasks, Assets, ADRs, Drive Files) via `scripts/notion_setup.py`. Per ADR-0012 these are no longer the active path. Decisions still relevant from that work:
+1. **No Tailscale or direct server access** — server incident May 20 makes this permanently off-limits. All automation is cloud APIs or read-only SMB.
+2. **ProPresenter production machine off-limits** — "The David Rule." No automated connection to GSN-PropRes (100.98.215.7) until David Rives explicitly approves a test machine pathway.
+3. **QNAP: read-only SMB only** — no writes, no chokidar watchers.
+4. **Notion: wiki-only** — ADR-0012 (2026-05-23) closed Notion as a backend. Do not extend `scripts/notion_*.py`.
+5. **RC MCP timeouts are normal** — Rundown Creator MCP times out frequently. Requires periodic restart. This is a known issue, not something to debug unless Daniel asks.
+6. **Composio is unreliable** — went down May 28. Prefer native Google Sheets MCP if available.
 
-- Notion integration token rotation still needed — token was exposed in chat
-- The 6 Notion DBs remain in the workspace and can be repurposed as wiki/documentation views or deleted
-- Account map (1Password Teams, GitHub, Tailscale tailnet) unchanged
+---
+
+## What was filmed in May 2026
+
+S03 Ep021-025 filmed May 28-29. Rundown Creator RundownIDs: 79 (Ep021), 81 (Ep022), 83 (Ep023), 82 (Ep024), 84 (Ep025). Remaining interviews June 15: Jerry Bergman, Dan Janzen, Dr. Ming Wang, David Coppedge.
+
+Last confirmed aired episode: S03 Ep015 (air 2026-05-19, YouTube 2026-05-25).
+
+---
+
+## After Stage 7: what's next in priority order
+
+| Priority | Task | Notes |
+|---|---|---|
+| 1 | YouTube RSS poller Edge Function | Hourly cron → flip `youtube_published_at` for aired episodes. Schema ready. |
+| 2 | Guest email workflow UI (`/workflow`) | Already built in PR #35 — just needs merge after rebase |
+| 3 | Episode hub UI (`/episodes`) | Also in PR #35 |
+| 4 | Content clips + social posts UI | Schema live; no UI yet |
+| 5 | Timecode + title pipeline | Highest-volume repeated manual task |
+
+---
+
+## How to orient in a new session
+
+```bash
+git status
+git log --oneline -5
+git fetch origin main && git log --oneline origin/main -3
+```
+
+Then open `BUILD_STATUS.html` in a browser. Read CLAUDE.md for the full rules.
+Read `docs/GSR_PIPELINE_HISTORY.html` in a browser for the full project backstory.
+
+---
+
+## What NOT to do
+
+- Do not propose new tool evaluations or architecture changes. Stack is settled.
+- Do not build new dashboard features until Stage 7 completes one full episode run.
+- Do not write Notion-backend solutions. ADR-0012 closed that.
+- Do not push directly to `main`. All work on feature branches + draft PRs.
+- Do not SSH into any server without Daniel saying "yes, SSH into [machine]."
+- Do not fabricate creationsuperstore.com product plugs — always verify against the real site.
+
+---
+
+## Key files quick reference
+
+| File | Purpose |
+|---|---|
+| `CLAUDE.md` | Session rules, security, Anti-Churn Rule — read every session |
+| `BUILD_STATUS.html` | Visual build overview — open in browser |
+| `docs/AUTOMATION_ROADMAP.md` | Future task queue with priorities |
+| `docs/GSR_PIPELINE_HISTORY.html` | Full project retrospective (open in browser) |
+| `docs/GSR_VOICE_PROFILE.md` | David Rives writing voice reference |
+| `docs/PROMPT_LIBRARY.md` | 20 production prompts |
+| `apps/dashboard/AGENTS.md` | Next.js 16 caveats — read before any route work |
+| `supabase/migrations/` | 43 applied migrations |
+| `agents/gsr-editorial.md` | Editorial agent (copy to `~/.claude/agents/`) |

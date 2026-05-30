@@ -67,13 +67,24 @@ This rule exists because archaeology of 879 conversations showed repeated cycles
 
 ---
 
-## Project State (updated 2026-05-27)
+## Project State (updated 2026-05-30)
 
 **Active app:** `apps/dashboard` — Next.js 16, shadcn/ui, Supabase SSR, deployed on Vercel
 **Supabase project:** `lafkbxypmciopebentxp`
 **Active feature:** Feature 1 — Episode Graphics & Asset Tracker
-**Current stage:** Stage 7 (real episode test) — all code complete, awaiting first real episode run
+**Current stage:** Stage 7 (real episode test) — S03 Ep021-025 filmed May 28-29; lower thirds import blocked by JSON schema mismatch vs actual `lower_thirds` table columns
 **Architecture decision of record:** ADR-0012 (Supabase pivot, accepted 2026-05-23). ADRs 0001 and 0011 are sunk-cost / historical.
+
+**Episodes in DB:** All 48 Season 3 episodes upserted. Ep1-15 have real air dates + YouTube URLs; Ep16-48 have extrapolated Tuesday air dates through 2027-01-05. YouTube channel: `UCNZS3IEQaAfwofwltbEBwuw` (David Rives Ministries).
+
+**Active external tools:**
+- **Rundown Creator MCP** — in daily use; frequent timeouts, requires periodic restart
+- **Google Sheets (Composio)** — unreliable as of May 28 (went down mid-session); prefer native Google Sheets MCP when available
+- **QNAP SMB** — read-only mirror only; no write access, no chokidar watchers
+
+**Hard constraints added May 2026:**
+- **No Tailscale or direct server tools** — server incident May 20 put this permanently off-limits. All automation must go through cloud APIs or read-only SMB.
+- **ProPresenter still blocked** — "The David Rule" applies. No live connection to GSN-PropRes until David Rives explicitly approves a test machine pathway.
 
 **What is built (main branch):**
 - `/login` — magic link auth
@@ -84,7 +95,7 @@ This rule exists because archaeology of 879 conversations showed repeated cycles
 - `/api/regenerate` — Claude API route (`claude-opus-4-7`), rate-limited, deduped
 - `/api/import` — bulk ingest route, dry-run + live modes, Zod-validated
 
-**43 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
+**45 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
 
 **BUILD_STATUS.html** at repo root — open in browser for visual build overview.
 

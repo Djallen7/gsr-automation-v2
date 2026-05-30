@@ -96,12 +96,63 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 
 ---
 
+## New automation candidates surfaced May 2026
+
+### 8. YouTube RSS Poller (Supabase Edge Function)
+**What:** Hourly cron polling `https://www.youtube.com/feeds/videos.xml?channel_id=UCNZS3IEQaAfwofwltbEBwuw`. Parse `S03, EpN` from titles, write real `youtube_url` and `youtube_published_at` to matching episode row.  
+**Why:** All 48 S3 episode rows are in the DB now with `youtube_scheduled_publish_at`. Without the poller, those fields will never flip to actual publish dates — the dashboard will show stale data indefinitely.  
+**Build path:** Supabase Edge Function + pg_cron trigger. No external dependencies.  
+**Effort:** Low. Schema ready; the `episodes` table already has the target columns.  
+**Priority: High.** Build immediately after Stage 7 resolves.
+
+### 9. Lower thirds JSON → Supabase schema fix
+**What:** The `/api/import` route exists and works. The JSON extraction prompt exists. They don't speak the same column schema. Fix: audit the actual `lower_thirds` table column names against the extraction prompt output and align them.  
+**Why:** This is the only blocker for Stage 7. Once fixed, one episode runs through the full pipeline and Feature 1 is done.  
+**Build path:** Run `list_tables` on the `lower_thirds` table, compare with extraction prompt output, update the prompt or add a transform in `/api/import`.  
+**Effort:** Low — hours, not days.  
+**Priority: Critical — this IS Stage 7.**
+
+### 10. Graphics Tracker → Rundown Creator sync
+**What:** After the May Graphics Tracker (Google Sheets) is finalized per show, compare graphic rows against Rundown Creator and float/delete mismatched RC rows automatically.  
+**Why:** Currently done manually with Claude assistance every filming cycle. "Rundown and graphics tracker discrepancies" conversation showed the pain — rows float in wrong positions requiring manual audit.  
+**Build path:** Google Sheets MCP (read Tracker) + RC MCP (read/write RC rows) + diff logic.  
+**Effort:** Medium. Depends on Composio reliability (known issue) or native Sheets MCP.
+
+### 11. Interview tease → RC push codification
+**What:** The pattern of generating interview tease copy in Claude and pushing directly to RC rows via MCP is working. It just needs to be a reusable, codified skill so it doesn't require reinvention each cycle.  
+**Why:** Used every May filming session. Currently re-explained from scratch each time.  
+**Build path:** PROMPT_LIBRARY.md entry + Agent skill definition.  
+**Effort:** Low.
+
+### 12. Preproduced segment script → RC auto-population
+**What:** QNAP audio folder (read-only SMB) contains segment files with standard naming (e.g., `THD_390_DayYom`, `KC_S02_Ep021_Bobcats`). Match by filename pattern to the correct episode row and populate RC.  
+**Why:** Currently manual. Each filming cycle has 6 preproduced segments × 5 shows = 30 rows to populate by hand.  
+**Build path:** SMB read + filename regex matcher + RC MCP writer. No Tailscale needed — SMB is already mounted.  
+**Effort:** Medium. Filename patterns are known; the hard part is the RC row-type targeting.
+
+---
+
+## Active blockers (as of 2026-05-30)
+
+| Blocker | Impact | Resolution path |
+|---|---|---|
+| Lower thirds JSON ↔ `lower_thirds` column mismatch | Blocks Stage 7 | Audit `list_tables` output vs extraction prompt; align |
+| Composio unreliable | Blocks Google Sheets write automation | Switch to native Google Sheets MCP |
+| RC MCP frequent timeouts | Daily friction | Investigate MCP server restart cadence; add retry logic |
+| No `youtube_published_at` auto-flip | Episodes show stale data | Build YouTube RSS poller Edge Function |
+| ProPresenter blocked | Cannot verify slide delivery | Permanent until David approves test machine path |
+| Direct server tools off-limits | No file watchers, no SMB writes | Read-only SMB + cloud API only — constraint is permanent |
+
+---
+
 ## What to build next (after Feature 1 clears Stage 7)
 
 | Priority | Item | Why now |
 |---|---|---|
-| 1 | Phase 1A — Guest email workflow UI | Schema done, high daily value for Daniel |
-| 2 | Episode hub UI (guests, distributions, transcripts) | All schema done; one dashboard view per table |
-| 3 | Content clips + social posts UI | Schema done; completes the social media workflow |
-| 4 | Timecode + title pipeline | Highest-volume repeated manual task (YouTube category) |
-| 5 | Monthly package compiler | Useful but Drive reliability is a dependency |
+| 0 | Lower thirds schema fix (item 9 above) | **Unblocks Stage 7** |
+| 1 | YouTube RSS poller Edge Function | Schema done; data goes stale without it |
+| 2 | Phase 1A — Guest email workflow UI | Schema done, high daily value for Daniel |
+| 3 | Episode hub UI (guests, distributions, transcripts) | All schema done; one dashboard view per table |
+| 4 | Content clips + social posts UI | Schema done; completes the social media workflow |
+| 5 | Timecode + title pipeline | Highest-volume repeated manual task (YouTube category) |
+| 6 | Monthly package compiler | Useful but Drive reliability is a dependency |

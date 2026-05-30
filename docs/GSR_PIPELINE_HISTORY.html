@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GSR Pipeline — Project History &amp; Current State</title>
+<style>
+:root {
+  --bg:#0a0f1a; --surface:#111827; --surface2:#1f2937; --border:#374151;
+  --text:#f9fafb; --muted:#9ca3af; --accent:#6366f1;
+  --manual:#64748b; --qnap:#3b82f6; --notion:#8b5cf6; --supa:#10b981;
+  --done:#22c55e; --warn:#f59e0b; --err:#ef4444; --info:#38bdf8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;font-size:15px;line-height:1.7}
+.layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+/* SIDEBAR */
+.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--surface);border-right:1px solid var(--border);padding:24px 16px}
+.sb-logo{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin-bottom:4px}
+.sb-title{font-size:13px;font-weight:600;color:var(--text);margin-bottom:24px;line-height:1.4}
+.toc-group{margin-bottom:20px}
+.toc-grp-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:6px;padding:0 8px}
+.tl{display:block;padding:5px 8px;border-radius:6px;color:var(--muted);text-decoration:none;font-size:12.5px;line-height:1.4;transition:background .15s,color .15s}
+.tl:hover{background:var(--surface2);color:var(--text)}
+.tl.active{background:#6366f118;color:var(--accent)}
+.tl-n{font-size:11px;color:var(--muted);margin-right:5px}
+/* MAIN */
+.main{padding:52px 52px 120px;max-width:940px}
+/* HERO */
+.hero{margin-bottom:64px}
+.eyebrow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(--accent);margin-bottom:10px}
+h1.hero-title{font-size:38px;font-weight:800;line-height:1.15;color:var(--text);margin-bottom:12px}
+.hero-sub{font-size:15px;color:var(--muted);max-width:560px;margin-bottom:28px}
+.stat-row{display:flex;flex-wrap:wrap;gap:10px}
+.stat-pill{padding:7px 14px;background:var(--surface);border:1px solid var(--border);border-radius:999px;font-size:12.5px}
+.stat-pill strong{color:var(--accent)}
+/* SECTION */
+.section{margin-bottom:72px;scroll-margin-top:28px}
+.sec-hdr{display:flex;gap:16px;align-items:flex-start;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.sec-n{font-size:12px;font-weight:700;color:var(--muted);width:28px;flex-shrink:0;padding-top:5px}
+.sec-title{font-size:22px;font-weight:700;color:var(--text);line-height:1.3}
+.sec-desc{font-size:13px;color:var(--muted);margin-top:3px}
+h3{font-size:15px;font-weight:600;color:var(--text);margin:28px 0 12px}
+h3:first-child{margin-top:0}
+p{color:#d1d5db;margin-bottom:12px;font-size:14px}
+/* CARDS */
+.card-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px;margin-bottom:24px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px}
+.card-lbl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:6px}
+.card-val{font-size:22px;font-weight:800;color:var(--text)}
+.card-sub{font-size:12px;color:var(--muted);margin-top:3px}
+/* TIMELINE */
+.tline{position:relative;padding-left:28px;margin:24px 0}
+.tline::before{content:'';position:absolute;left:8px;top:8px;bottom:0;width:2px;background:var(--border)}
+.ti{position:relative;margin-bottom:24px}
+.ti-dot{position:absolute;left:-24px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--muted);border:2px solid var(--bg)}
+.ti-dot.done{background:var(--done)}
+.ti-dot.warn{background:var(--warn)}
+.ti-dot.err{background:var(--err)}
+.ti-dot.accent{background:var(--accent)}
+.ti-dot.supa{background:var(--supa)}
+.ti-date{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em;margin-bottom:3px}
+.ti-event{font-size:14px;font-weight:600;color:var(--text);margin-bottom:3px}
+.ti-desc{font-size:12.5px;color:var(--muted)}
+/* PHASE GRID */
+.phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+.phase-card{background:var(--surface);border-radius:12px;padding:20px;position:relative;overflow:hidden}
+.phase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.pc-manual::before{background:var(--manual)} .pc-qnap::before{background:var(--qnap)}
+.pc-notion::before{background:var(--notion)} .pc-supa::before{background:var(--supa)}
+.pc-n{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;margin-bottom:4px}
+.pc-manual .pc-n{color:var(--manual)} .pc-qnap .pc-n{color:var(--qnap)}
+.pc-notion .pc-n{color:var(--notion)} .pc-supa .pc-n{color:var(--supa)}
+.pc-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:2px}
+.pc-dates{font-size:12px;color:var(--muted);margin-bottom:12px}
+.pc-items{list-style:none;font-size:12.5px;color:#9ca3af}
+.pc-items li{padding:3px 0 3px 14px;position:relative}
+.pc-items li::before{content:'•';position:absolute;left:0}
+.pc-end{margin-top:12px;padding:7px 10px;border-radius:6px;font-size:11.5px;font-weight:600}
+.pc-manual .pc-end{background:#64748b18;color:var(--manual)}
+.pc-qnap .pc-end{background:#3b82f618;color:var(--qnap)}
+.pc-notion .pc-end{background:#8b5cf618;color:var(--notion)}
+.pc-supa .pc-end{background:#10b98118;color:var(--supa)}
+/* TABLE */
+table{width:100%;border-collapse:collapse;margin:14px 0 24px;font-size:13px}
+th{text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+td{padding:10px 12px;border-bottom:1px solid #1f293760;color:#d1d5db;vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:#ffffff05}
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:600;white-space:nowrap}
+.b-done{background:#22c55e18;color:var(--done);border:1px solid #22c55e35}
+.b-warn{background:#f59e0b18;color:var(--warn);border:1px solid #f59e0b35}
+.b-err{background:#ef444418;color:var(--err);border:1px solid #ef444435}
+.b-info{background:#38bdf818;color:var(--info);border:1px solid #38bdf835}
+.b-muted{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.b-accent{background:#6366f118;color:var(--accent);border:1px solid #6366f135}
+.b-supa{background:#10b98118;color:var(--supa);border:1px solid #10b98135}
+.b-page{background:#6366f114;color:#a5b4fc;border:1px solid #6366f128}
+.b-api{background:#f59e0b14;color:#fbbf24;border:1px solid #f59e0b28}
+/* CALLOUT */
+.callout{padding:15px 18px;border-radius:10px;margin:18px 0;border-left:3px solid}
+.callout-title{font-size:12.5px;font-weight:700;margin-bottom:4px}
+.callout p,.callout-body{font-size:13px;color:#d1d5db;line-height:1.6;margin:0}
+.co-info{background:#38bdf80e;border-color:var(--info)} .co-info .callout-title{color:var(--info)}
+.co-warn{background:#f59e0b0e;border-color:var(--warn)} .co-warn .callout-title{color:var(--warn)}
+.co-err{background:#ef44440e;border-color:var(--err)} .co-err .callout-title{color:var(--err)}
+.co-ok{background:#22c55e0e;border-color:var(--done)} .co-ok .callout-title{color:var(--done)}
+.co-accent{background:#6366f10e;border-color:var(--accent)} .co-accent .callout-title{color:var(--accent)}
+/* FLOW */
+.flow{display:flex;flex-direction:column;margin:24px 0}
+.flow-step{display:flex;gap:16px;align-items:flex-start}
+.flow-left{display:flex;flex-direction:column;align-items:center;flex-shrink:0;width:32px}
+.flow-circle{width:32px;height:32px;border-radius:50%;background:var(--surface2);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--text);flex-shrink:0}
+.flow-circle.active{background:#6366f118;border-color:var(--accent);color:var(--accent)}
+.flow-line{width:2px;flex:1;min-height:20px;background:var(--border)}
+.flow-body{padding-bottom:24px;flex:1}
+.flow-title{font-size:14px;font-weight:600;color:var(--text);padding-top:5px;margin-bottom:4px}
+.flow-desc{font-size:12.5px;color:var(--muted)}
+.flow-step:last-child .flow-line{display:none}
+/* PEOPLE */
+.person-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px;margin:18px 0}
+.person-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px}
+.p-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:2px}
+.p-role{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--accent);margin-bottom:7px}
+.p-desc{font-size:12px;color:var(--muted);line-height:1.5}
+/* TECH PILLS */
+.tech-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.tech-pill{padding:4px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;font-size:12px;font-weight:600;color:var(--text)}
+.tech-pill .ver{color:var(--muted);font-weight:400}
+/* PROBLEMS */
+.prob-list{display:flex;flex-direction:column;gap:10px;margin:14px 0}
+.prob-item{display:flex;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:13px 15px}
+.prob-icon{font-size:17px;flex-shrink:0;width:22px}
+.prob-title{font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:2px}
+.prob-desc{font-size:12.5px;color:var(--muted)}
+/* LESSONS */
+.lesson-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:16px 0}
+.lesson-card{background:var(--surface);border:1px solid #6366f128;border-radius:10px;padding:16px}
+.lesson-n{font-size:30px;font-weight:800;color:#6366f128;margin-bottom:8px;line-height:1}
+.lesson-title{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:6px}
+.lesson-desc{font-size:12px;color:var(--muted);line-height:1.6}
+/* ROADMAP */
+.rm-item{display:flex;gap:14px;padding:14px 0;border-bottom:1px solid var(--border)}
+.rm-item:last-child{border-bottom:none}
+.rm-status{width:90px;flex-shrink:0;padding-top:2px}
+.rm-title{font-size:13.5px;font-weight:600;color:var(--text);margin-bottom:3px}
+.rm-desc{font-size:12.5px;color:var(--muted)}
+/* MISC */
+hr{border:none;border-top:1px solid var(--border);margin:40px 0}
+code{font-family:ui-monospace,'Cascadia Code',monospace;font-size:12px;background:var(--surface2);padding:2px 6px;border-radius:4px;color:#a5b4fc}
+ul.lst{padding-left:18px;margin:10px 0}
+ul.lst li{color:#d1d5db;font-size:13.5px;margin-bottom:5px}
+ul.lst li::marker{color:var(--accent)}
+.kv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:12px;color:#9ca3af}
+@media(max-width:860px){.layout{grid-template-columns:1fr}.sidebar{display:none}.main{padding:28px 20px 80px}.phase-grid{grid-template-columns:1fr}}
+/* EDIT MODE */
+.edit-bar{position:fixed;bottom:24px;right:24px;display:flex;gap:8px;z-index:1000;align-items:center}
+.edit-btn{padding:9px 18px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all .15s}
+.edit-btn.toggle{background:var(--accent);color:#fff}
+.edit-btn.toggle.active{background:#10b981;color:#fff}
+.edit-btn.dl{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
+.edit-btn.dl:hover{color:var(--text)}
+.edit-status{font-size:11px;color:var(--muted);background:var(--surface);padding:5px 10px;border-radius:6px;border:1px solid var(--border)}
+body.editing [contenteditable]{outline:1px dashed #6366f145;border-radius:3px;min-height:1em}
+body.editing [contenteditable]:focus{outline:2px solid var(--accent);background:#6366f108}
+body.editing .edit-status{color:var(--warn)}
+</style>
+</head>
+<body>
+<!-- 12 MAY 2026 PRODUCTION CYCLE (added 2026-05-30 from conversation batch analysis) -->
+<div class="section" id="may2026">
+  <div class="sec-hdr">
+    <div class="sec-n">12</div>
+    <div><div class="sec-title">The First Real Production Cycle</div><div class="sec-desc">What actually happened in May 2026 — the first month with a real filming schedule and real automation attempts</div></div>
+  </div>
+
+  <h3>May 28-29: Five Shows Filmed</h3>
+  <p>The May filming cycle (S03 Ep021-025) is the first real test of all the automation infrastructure built since February. Five back-to-back shows were taped starting 9:30am Thursday May 28, with a second day Friday May 29 for two remaining interviews.</p>
+
+  <table>
+    <thead><tr><th>Episode</th><th>RundownID</th><th>Segment 1 (Int1)</th><th>Segment 2 (Int2)</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>S03 Ep021</td><td>79</td><td>David Legates — aquatic deoxygenation / planetary boundaries</td><td>Billy Hallowell — UAP documentary (CBN pre-produced segment)</td><td>Filmed May 28</td></tr>
+      <tr><td>S03 Ep022</td><td>81</td><td>Tim Clarey — Green River mystery</td><td>Jerry Bergman — Darwin's doubts (June 15)</td><td>Partial — Tim filmed May 29</td></tr>
+      <tr><td>S03 Ep023</td><td>83</td><td>Andrew Fabich — petrichor / smell of rain</td><td>Dan Janzen — climate and farming myths (June 15)</td><td>Partial — Andrew filmed May 29</td></tr>
+      <tr><td>S03 Ep024</td><td>82</td><td>Carl Werner — Smithsonian whale fraud Pt3 (pre-produced field report)</td><td>Dr. Ming Wang — design arguments from the eye (June 15)</td><td>Partial — Carl pre-produced</td></tr>
+      <tr><td>S03 Ep025</td><td>84</td><td><em>(TBD)</em></td><td>David Coppedge — Creation Safaris / creation deficit (June 15 or TBD)</td><td>Partial</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The Server Incident — A New Permanent Constraint</h3>
+  <div class="callout co-warn">
+    <div class="callout-title">Why Tailscale / Direct Server Access Is Permanently Off the Table</div>
+    <p>On May 20, while exploring ProPresenter API automation via Tailscale, a command accidentally shut down production servers at work. IT had to intervene. The result: no direct server tools of any kind — no Tailscale, no file watchers, no SSH — in any future automation. All automation must go through cloud APIs (Supabase, RC MCP, Google Sheets MCP) or read-only SMB mounts. This constraint is not a preference — it's an operational boundary set by a real incident.</p>
+  </div>
+
+  <h3>Tools in Active Production Use (May 2026)</h3>
+  <div class="phase-grid">
+    <div class="pc-card">
+      <div class="pc-title">Rundown Creator MCP</div>
+      <div class="pc-dates">Daily use, frequent timeouts</div>
+      <p class="pc-end">Scripts pushed to RundownIDs 79, 81-84. Monologue scripts go to B3 rows; interview scripts to C2/E2. Pattern works — instability is the only ongoing issue.</p>
+    </div>
+    <div class="pc-card">
+      <div class="pc-title">Google Sheets via Composio</div>
+      <div class="pc-dates">Partially working — went down May 28</div>
+      <p class="pc-end">May Graphics Tracker in Sheets is the source of truth for graphic assignments. Composio outage blocked writes mid-session. Native Sheets MCP requested as replacement.</p>
+    </div>
+    <div class="pc-card">
+      <div class="pc-title">Supabase Episodes Table</div>
+      <div class="pc-dates">48 rows upserted May 2026</div>
+      <p class="pc-end">All of Season 3 is in the DB. Ep1-15 have real air dates and YouTube URLs. Ep16-48 have extrapolated Tuesday dates through 2027-01-05. RSS poller Edge Function is the missing piece.</p>
+    </div>
+    <div class="pc-card">
+      <div class="pc-title">Lower Thirds HTML Tool</div>
+      <div class="pc-dates">Built May 20 — not yet Supabase-integrated</div>
+      <p class="pc-end">Interactive HTML approval tool for browsing/approving/regenerating L3s. Precursor to the dashboard. Blocked from Supabase ingestion by the JSON schema mismatch (Stage 7 blocker).</p>
+    </div>
+  </div>
+
+  <h3>What the Real Workflow Looks Like in Practice</h3>
+  <ol>
+    <li><strong>Episode planning</strong> — Segment assignments tracked in Google Sheets (May Graphics Tracker). Each show tab has columns for segment type, graphic type, description, notes.</li>
+    <li><strong>Interview booking</strong> — Daniel sends Claude-drafted email templates. Guest pipeline for May: David Legates, Tim Clarey, Jerry Bergman, Andrew Fabich, Dan Janzen, Carl Werner (field report), Dr. Ming Wang, David Coppedge, Billy Hallowell (pre-produced CBN segment).</li>
+    <li><strong>Script writing</strong> — Scripts written in Claude, uploaded to Rundown Creator via RC MCP. Plain text with <code>&lt;gfx ...&gt;</code> cue tags.</li>
+    <li><strong>Graphics brainstorming</strong> — Claude generates graphic ideas from segment scripts, writes approved choices to Sheets via Composio.</li>
+    <li><strong>Rundown population</strong> — RC MCP pushes scripts to appropriate row types (B3 monologue, C2/E2 interview, etc.). Six preproduced segments (THD, KC, Q&amp;A, VV, FR, GSM) per episode matched by filename pattern.</li>
+    <li><strong>Lower thirds</strong> — Still manual: HTML approval tool → manual ProPresenter entry. Supabase import blocked by schema mismatch.</li>
+    <li><strong>YouTube metadata</strong> — Manual. 30%-shorter title rule still not baked into automation.</li>
+  </ol>
+
+  <h3>Key Production Data Points</h3>
+  <div class="kv-grid">
+    <div><strong>YouTube channel:</strong> <code>UCNZS3IEQaAfwofwltbEBwuw</code> (David Rives Ministries)</div>
+    <div><strong>Air cadence:</strong> Episodes air Tuesdays; publish to YouTube the following Monday at ~4pm ET</div>
+    <div><strong>Last confirmed aired:</strong> S03 Ep015 (air date 2026-05-19, YouTube 2026-05-25)</div>
+    <div><strong>L3 character rule:</strong> 55-65 chars/line; no commas, no em dashes</div>
+    <div><strong>Show opening:</strong> "Good evening and welcome to The Genesis Science Report. I'm David Rives and tonight on the Genesis Science Report…"</div>
+    <div><strong>Drive graphics folder:</strong> <code>18RZ8UNF2nN67G6as-Uj5o5O3BbNFChoR</code> (canAddChildren: false)</div>
+    <div><strong>Airtable status:</strong> Disqualified — explicitly excludes religious organizations from nonprofit pricing</div>
+    <div><strong>Notion MCP:</strong> Only works in regular Claude.ai chats, not Projects — reason for Supabase pivot</div>
+  </div>
+</div>
+
+<!-- EDIT BAR -->
+<div class="edit-bar">
+  <span class="edit-status" id="edit-status">Viewing</span>
+  <button class="edit-btn dl" id="dl-btn" onclick="downloadFile()">Download</button>
+  <button class="edit-btn toggle" id="edit-btn" onclick="toggleEdit()">Edit</button>
+</div>
+<div class="layout">
+
+<!-- ═══ SIDEBAR ═══ -->
+<nav class="sidebar">
+  <div class="sb-logo">GSR Automation</div>
+  <div class="sb-title">Pipeline History &amp; Current State</div>
+  <div class="toc-group">
+    <div class="toc-grp-label">Overview</div>
+    <a href="#overview" class="tl"><span class="tl-n">—</span>The Big Picture</a>
+    <a href="#people" class="tl"><span class="tl-n">01</span>The People</a>
+  </div>
+  <div class="toc-group">
+    <div class="toc-grp-label">History</div>
+    <a href="#problem" class="tl"><span class="tl-n">02</span>The Manual Problem</a>
+    <a href="#timeline" class="tl"><span class="tl-n">03</span>Full Timeline</a>
+    <a href="#pivots" class="tl"><span class="tl-n">04</span>The Three Pivots</a>
+    <a href="#879" class="tl"><span class="tl-n">05</span>The 879 Problem</a>
+  </div>
+  <div class="toc-group">
+    <div class="toc-grp-label">Current State</div>
+    <a href="#built" class="tl"><span class="tl-n">06</span>What's Built</a>
+    <a href="#flow" class="tl"><span class="tl-n">07</span>Episode Flow</a>
+    <a href="#disconnect" class="tl"><span class="tl-n">08</span>The Disconnect</a>
+  </div>
+  <div class="toc-group">
+    <div class="toc-grp-label">Forward</div>
+    <a href="#problems" class="tl"><span class="tl-n">09</span>Open Problems</a>
+    <a href="#roadmap" class="tl"><span class="tl-n">10</span>Roadmap</a>
+    <a href="#lessons" class="tl"><span class="tl-n">11</span>Lessons</a>
+    <a href="#may2026" class="tl"><span class="tl-n">12</span>May 2026 Cycle</a>
+  </div>
+  <div style="margin-top:32px;padding:12px;background:var(--surface2);border-radius:8px;font-size:11px;color:var(--muted)">
+    Synthesized from 879 conversations + 5 parallel research agents.<br>Last updated: 2026-05-30
+  </div>
+</nav>
+
+<!-- ═══ MAIN ═══ -->
+<main class="main">
+
+<!-- HERO -->
+<div class="hero" id="overview">
+  <div class="eyebrow">Genesis Science Report — Automation Pipeline</div>
+  <h1 class="hero-title">How We Got Here.<br>What We Built.<br>What's Next.</h1>
+  <p class="hero-sub">A complete history of the GSR production automation project — from manual workflows through three architecture pivots to a working dashboard. Synthesized from 879 conversations, 5 parallel research agents, and the live repository.</p>
+  <div class="stat-row">
+    <div class="stat-pill"><strong>879</strong> conversations analyzed</div>
+    <div class="stat-pill"><strong>16 months</strong> of history</div>
+    <div class="stat-pill"><strong>3 pivots</strong> in 8 days</div>
+    <div class="stat-pill"><strong>42 migrations</strong> applied</div>
+    <div class="stat-pill"><strong>9 routes</strong> built</div>
+    <div class="stat-pill"><strong>209 guests</strong> seeded</div>
+    <div class="stat-pill"><strong>Stage 7</strong> current — 1 episode run to ship</div>
+  </div>
+</div>
+
+<!-- 01 PEOPLE -->
+<div class="section" id="people">
+  <div class="sec-hdr">
+    <div class="sec-n">01</div>
+    <div><div class="sec-title">The People</div><div class="sec-desc">Who is in this pipeline and what they each own</div></div>
+  </div>
+  <div class="person-grid">
+    <div class="person-card">
+      <div class="p-name">Daniel Allen</div>
+      <div class="p-role">Lead Producer / Builder</div>
+      <div class="p-desc">Writes all host copy, books guests, generates lower thirds text, manages rundowns. Non-developer. Primary builder using Claude Code. Also goes by "Mae."</div>
+    </div>
+    <div class="person-card">
+      <div class="p-name">David Rives</div>
+      <div class="p-role">Host / Ministry Director</div>
+      <div class="p-desc">Reads all Daniel's teleprompter copy on-camera. Ministry president. Has a security framework governing what automation can touch ("The David Rule" in CLAUDE.md).</div>
+    </div>
+    <div class="person-card">
+      <div class="p-name">Miryam</div>
+      <div class="p-role">Co-Producer / Post</div>
+      <div class="p-desc">Handles post-production and distribution. Primary operator of the upload workflow the pipeline is meant to automate. Co-maintainer on the project.</div>
+    </div>
+    <div class="person-card">
+      <div class="p-name">Jakob</div>
+      <div class="p-role">Graphics / Editor</div>
+      <div class="p-desc">Creates lower-third PNG graphics in Photoshop, delivers to Daniel via text/email for review. The manual loop between Jakob and Daniel is exactly what Feature 1 replaces.</div>
+    </div>
+    <div class="person-card">
+      <div class="p-name">Isaac</div>
+      <div class="p-role">Opens/Closes Graphics</div>
+      <div class="p-desc">Standard assignee for opening and closing monologue graphics. Distinct from Jakob (lower thirds).</div>
+    </div>
+    <div class="person-card">
+      <div class="p-name">Gabe</div>
+      <div class="p-role">Video Editor</div>
+      <div class="p-desc">Edits GSMs, Kids Corners; on set on production days. Works with Heavens Declare production graphics.</div>
+    </div>
+    <div class="person-card">
+      <div class="p-name">Jacob</div>
+      <div class="p-role">Footage Transfer</div>
+      <div class="p-desc">Handles raw footage transfers from camera to post. Different person from Jakob (graphics).</div>
+    </div>
+    <div class="person-card">
+      <div class="p-name">TD</div>
+      <div class="p-role">Technical Director</div>
+      <div class="p-desc">Calls graphics live on shoot days. End consumer of the rundown data that flows through ProPresenter.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 02 THE PROBLEM -->
+<div class="section" id="problem">
+  <div class="sec-hdr">
+    <div class="sec-n">02</div>
+    <div><div class="sec-title">The Manual Problem</div><div class="sec-desc">What Daniel's weekly workflow looked like before any automation</div></div>
+  </div>
+  <p>Before any automation, Daniel manually executed every one of these tasks — every week, every episode, often five times per taping cycle:</p>
+  <table>
+    <thead><tr><th>Task</th><th>Tool</th><th>Pain Point</th><th>Volume</th></tr></thead>
+    <tbody>
+      <tr><td><strong>Write all teleprompter copy</strong></td><td>Google Docs + Claude</td><td>AI started fresh each session — wrong hooks, wrong character counts, same corrections repeated</td><td>Every episode</td></tr>
+      <tr><td><strong>Guest research &amp; booking</strong></td><td>Claude + email</td><td>No persistent memory — regularly suggested recently-aired guests</td><td><strong>298 sessions</strong> (34% of all AI usage)</td></tr>
+      <tr><td><strong>Lower-thirds text</strong></td><td>Manual / Claude</td><td>ALL CAPS, 60–65 char limit — AI overshot on first pass, every time</td><td>10–20 per episode</td></tr>
+      <tr><td><strong>Lower-thirds approval loop</strong></td><td>iMessage / email</td><td>Jakob makes PNG → texts Daniel → Daniel approves over iMessage → Jakob loads into ProPresenter</td><td>Hours of back-and-forth per episode</td></tr>
+      <tr><td><strong>Build show rundowns</strong></td><td>Rundown Creator</td><td>Manual population of 15-segment rundown. RC is the single most-used tool (1,750+ sessions)</td><td>Every episode</td></tr>
+      <tr><td><strong>Multi-platform distribution</strong></td><td>Manual uploads</td><td>YouTube, Rumble, Dropbox, Fireside, Signiant, StreamHoster — different metadata requirements each</td><td>Every episode</td></tr>
+      <tr><td><strong>YouTube title/description</strong></td><td>Manual + Claude</td><td>AI forgot the 30%-shorter title rule in 59+ documented sessions</td><td>Every episode</td></tr>
+      <tr><td><strong>Guest outreach emails</strong></td><td>Gmail</td><td>5-tier email system, manually composed, no tracking or templating</td><td>Multiple per week</td></tr>
+    </tbody>
+  </table>
+  <div class="callout co-info">
+    <div class="callout-title">The Show's Scale</div>
+    <p>~5 episodes per taping cycle, ~10 cycles per year = 50 episodes of this full manual workflow annually. Two-person core team.</p>
+  </div>
+</div>
+
+<!-- 03 TIMELINE -->
+<div class="section" id="timeline">
+  <div class="sec-hdr">
+    <div class="sec-n">03</div>
+    <div><div class="sec-title">Full Timeline</div><div class="sec-desc">Every major event from first conversation to today</div></div>
+  </div>
+  <div class="tline">
+    <div class="ti">
+      <div class="ti-dot"></div>
+      <div class="ti-date">January 30, 2025</div>
+      <div class="ti-event">First AI conversations</div>
+      <div class="ti-desc">Manual scriptwriting, guest coordination, lower thirds written by hand. No system — just Claude chat sessions, starting fresh each time.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot"></div>
+      <div class="ti-date">February – March 2025</div>
+      <div class="ti-event">Guest portal attempt</div>
+      <div class="ti-desc">Multiple sessions building a professional-facing guest portal in Bootstrap HTML/CSS. Multiple redesigns (Archios template, then another). Never reached stable production use.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot"></div>
+      <div class="ti-date">April 2025</div>
+      <div class="ti-event">ProPresenter alternatives research</div>
+      <div class="ti-desc">Evaluated Flowics, Singular.live, Chyron PRIME as ProPresenter replacements. Inconclusive. ProPresenter stayed. Nothing built.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot"></div>
+      <div class="ti-date">April 2026</div>
+      <div class="ti-event">Google Apps Script era</div>
+      <div class="ti-desc">YouTube metadata pipeline, Gmail guest-tracking, internship form automation attempted. Multiple sessions blocked by: grayed-out Run button, anti-bot blocking, permissions issues. None confirmed in steady production use.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot warn"></div>
+      <div class="ti-date">May 15, 2026</div>
+      <div class="ti-event">⚡ ADR-0001 — n8n on QNAP NAS + SQLite</div>
+      <div class="ti-desc">Automation project begins in earnest. Full six-platform distribution system designed: n8n Docker on QNAP NAS, SQLite DB, Next.js dashboard, Chokidar file watcher, Tailscale VPN. FAILURE_MODES.md written same day as a defensive guide.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot err"></div>
+      <div class="ti-date">May 19, 2026</div>
+      <div class="ti-event">🔴 Security Incident — QNAP credentials exposed in chat</div>
+      <div class="ti-desc">QNAP admin credentials transmitted to Anthropic servers during a Claude Code session. IT rotated all credentials across 40+ connected devices. Daniel stripped of QNAP admin access permanently. ADR-0001 is dead — everything planned to run on the NAS is now impossible.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot warn"></div>
+      <div class="ti-date">May 20, 2026</div>
+      <div class="ti-event">⚡ ADR-0011 — Pivot to Notion + n8n.cloud</div>
+      <div class="ti-desc">Cloud-first redesign. Notion selected as database (Airtable disqualified for religious content nonprofits). n8n.cloud replaces self-hosted n8n. QNAP becomes read-only SMB archive only, no software installed.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot warn"></div>
+      <div class="ti-date">May 21, 2026</div>
+      <div class="ti-event">Notion workspace built in a day</div>
+      <div class="ti-desc">notion_setup.py creates 6 databases (Episodes, Guests, Tasks, Assets, ADRs, Drive Files). Multi-user production hub UI designed with role-based frontends for Daniel, Miryam, Isaac.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot err"></div>
+      <div class="ti-date">May 22 – 23, 2026</div>
+      <div class="ti-event">🔴 Notion abandoned — 48 hours after setup</div>
+      <div class="ti-desc">Design evaluation found Notion cannot support: relational foreign keys, realtime to non-Notion clients, binary file storage (PNG uploads), strong query semantics. All required by Feature 1. Acknowledged as sunk cost. Notion demoted to wiki-only.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot accent"></div>
+      <div class="ti-date">May 23, 2026</div>
+      <div class="ti-event">⚡ ADR-0012 — Supabase + Next.js (current stack)</div>
+      <div class="ti-desc">Supabase (Postgres + Auth + Storage + Realtime), Next.js 16, shadcn/ui, Claude API, Vercel. Critical new rule: one feature in production before touching anything else. V2 repo starts.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot accent"></div>
+      <div class="ti-date">May 23 – 27, 2026</div>
+      <div class="ti-event">Feature 1 built — 5 days</div>
+      <div class="ti-desc">42 migrations. 9 routes. Lower-thirds import → review → approve → ProPresenter copy workflow. Text-only ingest path. Guest/episode schema expansion. Toolkit with 20 prompts. All code complete by May 27.</div>
+    </div>
+    <div class="ti">
+      <div class="ti-dot supa"></div>
+      <div class="ti-date">May 27 – 30, 2026 — NOW</div>
+      <div class="ti-event">▶ Stage 7 — First real episode run pending</div>
+      <div class="ti-desc">All code complete. Import JSON schema mismatch is the only technical blocker. One full episode needs to run through import → review → approve → ProPresenter to close Stage 7.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 THE THREE PIVOTS -->
+<div class="section" id="pivots">
+  <div class="sec-hdr">
+    <div class="sec-n">04</div>
+    <div><div class="sec-title">The Three Pivots</div><div class="sec-desc">Three complete architecture changes in 8 days</div></div>
+  </div>
+  <div class="callout co-warn">
+    <div class="callout-title">The Fastest Architecture History in the Project</div>
+    <p>May 15 → ADR-0001 accepted. May 19 → security incident kills it. May 20 → ADR-0011 (Notion). May 21 → Notion built. May 22 → Notion abandoned. May 23 → ADR-0012 (Supabase). Three complete pivots in 8 days.</p>
+  </div>
+  <div class="phase-grid">
+    <div class="phase-card pc-manual">
+      <div class="pc-n">Era 0 — Pre-Automation</div>
+      <div class="pc-title">Manual + AI Chat</div>
+      <div class="pc-dates">January 2025 → May 14, 2026</div>
+      <ul class="pc-items">
+        <li>All production work done manually</li>
+        <li>Claude used as a one-off chat assistant only</li>
+        <li>879 conversations, no persistent system</li>
+        <li>Guest portal built but never shipped</li>
+        <li>Apps Script attempts, none confirmed in production</li>
+      </ul>
+      <div class="pc-end">Status: 16 months. No persistent automation produced.</div>
+    </div>
+    <div class="phase-card pc-qnap">
+      <div class="pc-n">Era 1 — ADR-0001</div>
+      <div class="pc-title">n8n on QNAP + SQLite</div>
+      <div class="pc-dates">May 15 → May 19, 2026 (4 days)</div>
+      <ul class="pc-items">
+        <li>n8n Docker self-hosted on QNAP NAS</li>
+        <li>SQLite for episode/upload status tracking</li>
+        <li>Next.js dashboard (Kiranism starter template)</li>
+        <li>Chokidar file watcher as the trigger</li>
+        <li>Tailscale VPN for remote access</li>
+        <li>Six-platform distribution target</li>
+      </ul>
+      <div class="pc-end">⚡ Killed by security incident. QNAP admin access revoked permanently.</div>
+    </div>
+    <div class="phase-card pc-notion">
+      <div class="pc-n">Era 2 — ADR-0011</div>
+      <div class="pc-title">Notion + n8n.cloud</div>
+      <div class="pc-dates">May 20 → May 22, 2026 (48 hours)</div>
+      <ul class="pc-items">
+        <li>Notion as primary database</li>
+        <li>6 databases created via Python setup script</li>
+        <li>Multi-user UI designed for Daniel, Miryam, Isaac</li>
+        <li>n8n.cloud for orchestration</li>
+        <li>Full lower-thirds architecture planned</li>
+      </ul>
+      <div class="pc-end">⚡ Abandoned by design. Notion can't do FK, realtime, file storage, or strong queries.</div>
+    </div>
+    <div class="phase-card pc-supa">
+      <div class="pc-n">Era 3 — ADR-0012 (Current)</div>
+      <div class="pc-title">Supabase + Next.js 16</div>
+      <div class="pc-dates">May 23, 2026 → Present</div>
+      <ul class="pc-items">
+        <li>Supabase: Postgres + Auth + Storage + Realtime</li>
+        <li>Next.js 16 + React 19 + shadcn/ui on Vercel</li>
+        <li>Claude API for text regeneration</li>
+        <li>42 migrations applied, 9 routes deployed</li>
+        <li>One-feature-at-a-time strategy</li>
+        <li>Anti-Churn Rule now enforced in CLAUDE.md</li>
+      </ul>
+      <div class="pc-end">Status: Active. Feature 1 code-complete. Stage 7 pending.</div>
+    </div>
+  </div>
+  <h3>What Was Originally Planned (ADR-0001)</h3>
+  <p>The original automation project was a <strong>six-platform post-production distribution system</strong> — not a lower-thirds dashboard. The lower-thirds approval feature only emerged once the QNAP architecture collapsed and the scope was reset. The original goals (YouTube, Rumble, Dropbox, Fireside, Signiant, StreamHoster automation) are still on the roadmap as Feature 3+ but were deferred to get one working feature shipped first.</p>
+</div>
+
+<!-- 05 THE 879 PROBLEM -->
+<div class="section" id="879">
+  <div class="sec-hdr">
+    <div class="sec-n">05</div>
+    <div><div class="sec-title">The 879-Conversation Problem</div><div class="sec-desc">Why the project kept designing and never shipping — and the rules built to stop it</div></div>
+  </div>
+  <div class="card-row">
+    <div class="card"><div class="card-lbl">Total conversations</div><div class="card-val">879</div><div class="card-sub">Jan 2025 – May 2026</div></div>
+    <div class="card"><div class="card-lbl">Guest research alone</div><div class="card-val">298</div><div class="card-sub">34% of all AI usage</div></div>
+    <div class="card"><div class="card-lbl">Script writing</div><div class="card-val">323</div><div class="card-sub">Scripts, LTs, outreach</div></div>
+    <div class="card"><div class="card-lbl">YT title errors</div><div class="card-val">59+</div><div class="card-sub">Same mistake, documented</div></div>
+    <div class="card"><div class="card-lbl">Friction points</div><div class="card-val">400+</div><div class="card-sub">In recurring_difficulties.md</div></div>
+  </div>
+  <h3>The Pattern the Archaeology Revealed</h3>
+  <p>The <code>archaeology.py</code> tool processed all 879 conversations and found a single dominant macro-pattern: automation planning cycles that produced design, architecture, and partial code — but no shipped production systems. This was not occasional drift. It was the modal outcome of a planning session.</p>
+  <div class="prob-list">
+    <div class="prob-item">
+      <div class="prob-icon">🔄</div>
+      <div>
+        <div class="prob-title">The Design → Scaffold → Never Ship Loop</div>
+        <div class="prob-desc">Post-production system (May 2026). Apps Script email automation (April 2026). Guest Portal (Feb 2025). Each started with a full design session. None confirmed in steady production use at close of session.</div>
+      </div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-icon">🆕</div>
+      <div>
+        <div class="prob-title">Latest-Shiny-Tool Syndrome</div>
+        <div class="prob-desc">n8n → Notion → Supabase → n8n.cloud all evaluated within one week. Each new tool required starting the design from scratch. Context switched faster than code shipped.</div>
+      </div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-icon">📋</div>
+      <div>
+        <div class="prob-title">Planning Without a Named Deliverable</div>
+        <div class="prob-desc">Extended design sessions produced documentation and scaffolding code — but no named file, feature, or date that would mark the session as done. Planning felt like progress.</div>
+      </div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-icon">🔁</div>
+      <div>
+        <div class="prob-title">400+ Recurring Friction Points Never Fixed at Source</div>
+        <div class="prob-desc">Wrong hook structure, wrong character counts, wrong credentials — each required session-by-session correction rather than one structural fix baked into the system.</div>
+      </div>
+    </div>
+  </div>
+  <h3>The Rules That Came From It</h3>
+  <div class="callout co-accent">
+    <div class="callout-title">The Anti-Churn Rule (CLAUDE.md)</div>
+    <p>Before designing, scoping, or building any automation in a session — <strong>name the deliverable and the ship date out loud first.</strong> If you can't answer both, the session is planning only. Planning sessions end with a named task in docs/AUTOMATION_ROADMAP.md, not code in the repo.</p>
+  </div>
+  <div class="callout co-accent">
+    <div class="callout-title">The One-Feature Strategy (ADR-0012)</div>
+    <p>The lower-thirds approval workflow ships before any other feature is touched. This rule is structural — written into the architecture decision record. It's also why the dashboard exists at all: it's the first thing to break the pattern.</p>
+  </div>
+</div>
+
+<!-- 06 WHAT'S BUILT -->
+<div class="section" id="built">
+  <div class="sec-hdr">
+    <div class="sec-n">06</div>
+    <div><div class="sec-title">What's Built Today</div><div class="sec-desc">Every route, table, and piece of the tech stack</div></div>
+  </div>
+  <h3>Routes</h3>
+  <table>
+    <thead><tr><th>Route</th><th>Type</th><th>Status</th><th>What It Does</th></tr></thead>
+    <tbody>
+      <tr><td><code>/login</code></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-done">Working</span></td><td>Magic-link auth via Supabase</td></tr>
+      <tr><td><code>/import</code></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-done">Primary</span></td><td>Paste JSON → dry-run preview → live ingest. Main entry point for every episode.</td></tr>
+      <tr><td><code>/lower-thirds</code></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-done">Working</span></td><td>Review grid: approve / reject / regenerate per lower-third card. Character counter (green 55–65, amber &lt;55, red &gt;65).</td></tr>
+      <tr><td><code>/approved</code></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-done">Working</span></td><td>Approved queue grouped by episode → segment. Copy button + "In ProPresenter" toggle per row.</td></tr>
+      <tr><td><code>/toolkit</code></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-done">Working</span></td><td>20 production-grounded AI prompts across 7 categories. Guest roster injected live into Prompt 01.</td></tr>
+      <tr><td><code>/upload</code></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-warn">Legacy</span></td><td>Original PNG upload to Supabase Storage. Being phased out after 2 text-only episodes.</td></tr>
+      <tr><td><code>/api/import</code></td><td><span class="badge b-api">API</span></td><td><span class="badge b-done">Working</span></td><td>POST: Zod validation, dry-run mode, upserts episodes, inserts graphics + variation_1</td></tr>
+      <tr><td><code>/api/regenerate</code></td><td><span class="badge b-api">API</span></td><td><span class="badge b-done">Working</span></td><td>POST: calls claude-opus-4-7, returns 3 variations, stores to history. Rate limit: 20/hr/user.</td></tr>
+      <tr><td><code>/update-password</code></td><td><span class="badge b-page">Page</span></td><td><span class="badge b-done">Working</span></td><td>Password reset flow</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Database — 42 Migrations</h3>
+  <table>
+    <thead><tr><th>Table(s)</th><th>UI Status</th><th>Purpose</th></tr></thead>
+    <tbody>
+      <tr><td><code>episodes, graphics, graphics_variations, regenerate_attempts</code></td><td><span class="badge b-done">Full UI</span></td><td>Feature 1 core — the entire lower-thirds workflow</td></tr>
+      <tr><td><code>guests, episode_guests</code></td><td><span class="badge b-warn">Schema only</span></td><td>Guest roster (209 seeded) + booking lifecycle (outreach → confirmed → shot → aired)</td></tr>
+      <tr><td><code>distributions</code></td><td><span class="badge b-warn">Schema only</span></td><td>6-platform delivery tracking: YouTube, Rumble, Dropbox, Fireside, RLN, StreamHoster</td></tr>
+      <tr><td><code>content_clips, social_posts</code></td><td><span class="badge b-warn">Schema only</span></td><td>Timecode tagging + 6-platform social post generation (9 post types)</td></tr>
+      <tr><td><code>transcripts</code></td><td><span class="badge b-warn">Schema only</span></td><td>Episode transcripts</td></tr>
+      <tr><td><code>outreach_drafts, booking_pipeline, email_threads, shoot_sessions, articles, production_graphics</code></td><td><span class="badge b-warn">Schema only</span></td><td>Full production + outreach hub (no UI built yet)</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:12px;color:var(--muted)">Note: BUILD_STATUS.html shows 28 migrations — it's stale by 14 entries. Actual count is 42.</p>
+
+  <h3>Tech Stack</h3>
+  <div class="tech-row">
+    <div class="tech-pill">Next.js <span class="ver">16.2.6</span></div>
+    <div class="tech-pill">React <span class="ver">19.2.4</span></div>
+    <div class="tech-pill">TypeScript</div>
+    <div class="tech-pill">Tailwind <span class="ver">v4</span></div>
+    <div class="tech-pill">shadcn/ui <span class="ver">v4.8.0</span></div>
+    <div class="tech-pill">Supabase SSR <span class="ver">0.10.3</span></div>
+    <div class="tech-pill">@anthropic-ai/sdk <span class="ver">0.98.0</span></div>
+    <div class="tech-pill">Zod <span class="ver">v4.4.3</span></div>
+    <div class="tech-pill">Vercel</div>
+    <div class="tech-pill">claude-opus-4-7</div>
+  </div>
+  <div class="callout co-warn">
+    <div class="callout-title">⚠ This is NOT standard Next.js</div>
+    <p>Next.js 16 + React 19 has breaking changes from all prior versions. The AGENTS.md warns explicitly: "APIs, conventions, and file structure may all differ from your training data." Read <code>node_modules/next/dist/docs/</code> before writing any route handler or server action.</p>
+  </div>
+</div>
+
+<!-- 07 EPISODE FLOW -->
+<div class="section" id="flow">
+  <div class="sec-hdr">
+    <div class="sec-n">07</div>
+    <div><div class="sec-title">How an Episode Moves Through the System</div><div class="sec-desc">Full pipeline from "guest booked" to "lower thirds in ProPresenter"</div></div>
+  </div>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-circle">1</div><div class="flow-line"></div></div>
+      <div class="flow-body">
+        <div class="flow-title">Guest Booked</div>
+        <div class="flow-desc">Daniel uses Prompt 01 from /toolkit (live roster injection prevents suggesting recently-aired guests). Outreach email sent. Guest confirmed and assigned to interview_1 or interview_2 in the episode_guests table.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-circle">2</div><div class="flow-line"></div></div>
+      <div class="flow-body">
+        <div class="flow-title">Script Written in Google Drive</div>
+        <div class="flow-desc">Full episode script written in a Drive folder named "S3 EP12 - Guest Name Interview." Lower-thirds copy written directly in the script doc in ALL CAPS. Rundown built in Rundown Creator (most-used tool at 1,750+ sessions).</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-circle">3</div><div class="flow-line"></div></div>
+      <div class="flow-body">
+        <div class="flow-title">Extraction Prompt Runs in Claude.ai</div>
+        <div class="flow-desc">Daniel opens Claude.ai with the Google Drive connector enabled. Clicks "Copy extraction prompt" in /import, which pre-builds a prompt. That prompt reads all docs in the episode folder and outputs structured JSON: episodes[], graphics[], rejected[].</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-circle active">4</div><div class="flow-line"></div></div>
+      <div class="flow-body">
+        <div class="flow-title">/import — Dry Run Then Live</div>
+        <div class="flow-desc">JSON pasted into the import form. Dry-run first: shows episode count, graphic count, conflicts, rejected items. Explicit confirmation required. Live import upserts episodes, inserts graphics with status=pending_review, stores variation_1 with source doc as provenance. <strong style="color:var(--warn)">← Current Stage 7 blocker: JSON field names misaligned with DB schema.</strong></div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-circle">5</div><div class="flow-line"></div></div>
+      <div class="flow-body">
+        <div class="flow-title">/lower-thirds — Review Grid</div>
+        <div class="flow-desc">Every graphic lands with status=pending_review. Each card shows: text, character counter (green 55–65 / amber under 55 / red over 65), Approve, Reject, and Regenerate. Regenerate calls the Claude API → returns 3 variation options, all stored to graphics_variations history. Daniel picks one and approves.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-circle">6</div><div class="flow-line"></div></div>
+      <div class="flow-body">
+        <div class="flow-title">/approved — ProPresenter Queue</div>
+        <div class="flow-desc">Approved graphics grouped by episode → segment → beat_number. Each row has a Copy button (copies the ALL CAPS approved text as plain string — exactly what gets pasted into ProPresenter) and an "In ProPresenter" toggle that flips atomically via SQL RPC.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-left"><div class="flow-circle">7</div></div>
+      <div class="flow-body">
+        <div class="flow-title">ProPresenter Loaded — TD Takes Over</div>
+        <div class="flow-desc">Daniel manually pastes each line into ProPresenter slides and ticks the checkbox. On shoot day, the TD calls them live. Phase 2 target: automate this handoff via ProPresenter API — currently blocked by "The David Rule" (must run on test machine first, never touch production without David's explicit sign-off).</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout co-info">
+    <div class="callout-title">Where Claude API Fits</div>
+    <p>Claude API (claude-opus-4-7) is used for exactly one step: regenerating alternative lower-third text at step 5. The extraction prompt that converts Drive docs to JSON runs in Claude.ai browser with Drive connector — it is NOT an API call from the app. Everything else is plain Next.js + Supabase.</p>
+  </div>
+</div>
+
+<!-- 08 THE DISCONNECT -->
+<div class="section" id="disconnect">
+  <div class="sec-hdr">
+    <div class="sec-n">08</div>
+    <div><div class="sec-title">The Lower Thirds Disconnect</div><div class="sec-desc">What was originally intended vs. what was built — and why it matters</div></div>
+  </div>
+  <div class="phase-grid">
+    <div class="phase-card pc-notion">
+      <div class="pc-n">Original Intent (Spec)</div>
+      <div class="pc-title">Image Review Workflow</div>
+      <div class="pc-dates">FEATURE_1_LOWER_THIRDS.md</div>
+      <ul class="pc-items">
+        <li>Jakob uploads finished PNG from Photoshop</li>
+        <li>Dashboard shows thumbnails for visual approval</li>
+        <li>Daniel (or David) approves the actual graphic file</li>
+        <li>Approved PNGs queue for ProPresenter load</li>
+        <li>Text copy is metadata attached to the graphic</li>
+      </ul>
+      <div class="pc-end">The graphic file is the artifact being approved.</div>
+    </div>
+    <div class="phase-card pc-supa">
+      <div class="pc-n">What Was Built</div>
+      <div class="pc-title">Text Review Workflow</div>
+      <div class="pc-dates">Built May 23–27, 2026</div>
+      <ul class="pc-items">
+        <li>Daniel extracts LT copy from script JSON</li>
+        <li>Dashboard shows text + character count</li>
+        <li>Daniel approves/rejects/regenerates the TEXT</li>
+        <li>Approved text copies to clipboard for ProPresenter</li>
+        <li>No PNG images — __text_only__ sentinel</li>
+      </ul>
+      <div class="pc-end">The text content is the artifact being approved.</div>
+    </div>
+  </div>
+  <h3>Why It Changed</h3>
+  <p>The text-only path was added as Stage 6.5 — a bootstrap so the dashboard could run on real content immediately before Jakob changed his PNG workflow. The first two real episodes had no completed graphics yet. Rather than block, Daniel used the dashboard for what was immediately useful: approving and refining the copy.</p>
+  <p>The graphic-approval vision isn't gone — it's Phase 2 of Feature 1, when ProPresenter API push is implemented. But the primary use case has drifted from the spec, and that's worth naming explicitly.</p>
+  <div class="callout co-warn">
+    <div class="callout-title">Technical Debt Created by This Drift</div>
+    <ul class="lst">
+      <li><code>current_image_url</code> is NOT NULL with a <code>__text_only__</code> sentinel — documented hack, scheduled for cleanup post-Stage 7</li>
+      <li><code>/upload</code> PNG page is still live but marked legacy — to be retired after 2 text-only episodes</li>
+      <li><code>FontEditor</code> component (font family/size/color per graphic) was added to /approved — not in original spec, and not relevant until real PNGs are in the system</li>
+      <li>BUILD_STATUS.html is stale by 14 migration entries</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 09 OPEN PROBLEMS -->
+<div class="section" id="problems">
+  <div class="sec-hdr">
+    <div class="sec-n">09</div>
+    <div><div class="sec-title">Open Problems</div><div class="sec-desc">What's currently broken, blocked, or creating friction</div></div>
+  </div>
+  <h3>Hard Blockers</h3>
+  <div class="prob-list">
+    <div class="prob-item">
+      <div class="prob-icon">🔴</div>
+      <div>
+        <div class="prob-title">Import JSON Schema Mismatch — Stage 7 Blocker</div>
+        <div class="prob-desc">The extraction prompt's field names are not aligned with the Supabase table definitions. "JSON parsed but no recognized fields found" error. Also: wrong chyron delimiters, missing l3_type fields, incorrect segment enum values. Must fix before first real episode import runs.</div>
+      </div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-icon">🔴</div>
+      <div>
+        <div class="prob-title">Billy Hallowell .pages Format</div>
+        <div class="prob-desc">His interview script is in Apple Pages binary — inaccessible to any extraction tool without a strings-extraction workaround. His lower thirds are blocked until the format issue is resolved.</div>
+      </div>
+    </div>
+  </div>
+  <h3>Hard Constraints Added May 2026</h3>
+  <div class="prob-list">
+    <div class="prob-item">
+      <div class="prob-icon">🔴</div>
+      <div>
+        <div class="prob-title">Direct Server Access Permanently Off-Limits</div>
+        <div class="prob-desc">A server incident on May 20 (Tailscale / ProPresenter exploration) required IT intervention. Direct tools running on any server (Tailscale VPN, file watchers, SSH) are now permanently off the table. All automation must go through cloud APIs or read-only SMB mounts only. The chokidar file-watcher pattern originally planned for QNAP is no longer viable.</div>
+      </div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-icon">🟠</div>
+      <div>
+        <div class="prob-title">No youtube_published_at Auto-Flip</div>
+        <div class="prob-desc">48 Season 3 episode rows are in the DB with <code>youtube_scheduled_publish_at</code> values. Without a YouTube RSS poller Edge Function, those fields never update to actual publish dates. Episode 15 (aired 2026-05-19, published 2026-05-25) is the last row with confirmed real data — all rows after it will show stale scheduled dates indefinitely.</div>
+      </div>
+    </div>
+  </div>
+  <h3>Recurring Friction</h3>
+  <div class="prob-list">
+    <div class="prob-item">
+      <div class="prob-icon">🟡</div>
+      <div>
+        <div class="prob-title">Rundown Creator MCP Instability</div>
+        <div class="prob-desc">Times out on list endpoints, hangs 4+ minutes, disconnects mid-session. In active daily use for May filming cycle (RundownIDs 79, 81-84 for Ep021-025). Requires periodic restart and manual rundown ID probing on every session.</div>
+      </div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-icon">🟡</div>
+      <div>
+        <div class="prob-title">Composio Unreliable — Google Sheets MCP Needed</div>
+        <div class="prob-desc">Composio (the connector for Google Sheets writes) went entirely down on May 28 during the main graphics session, blocking sheet-write workflow. The native Google Sheets MCP from Anthropic's directory was requested as a replacement but not yet confirmed working. Single-vendor dependency for all Sheets automation.</div>
+      </div>
+    </div>
+    <div class="prob-item">
+      <div class="prob-icon">🟡</div>
+      <div>
+        <div class="prob-title">Google Drive Write Access Blocked</div>
+        <div class="prob-desc">GSR Shared Folder (ID <code>18RZ8UNF2nN67G6as-Uj5o5O3BbNFChoR</code>, owned by davidrives.com) has <code>canAddChildren: false</code>. Every Drive automation must target Daniel's personal My Drive then manually move. Known, documented, still creating friction.</div>
+      </div>
+    </div>
+  </div>
+  <h3>Documented AI Failure Modes</h3>
+  <table>
+    <thead><tr><th>Failure Mode</th><th>Volume</th><th>Current Fix</th></tr></thead>
+    <tbody>
+      <tr><td>Suggesting recently-aired guests</td><td>298 documented sessions</td><td>Roster injection in Toolkit Prompt 01</td></tr>
+      <tr><td>Fabricating creationsuperstore.com products</td><td>Recurring</td><td>Manual verification before air — no automated fix yet</td></tr>
+      <tr><td>Forgetting 30%-shorter YouTube title rule</td><td>59+ sessions</td><td>Roadmap item — bake rule into automation</td></tr>
+      <tr><td>L3 character count overshoot (&gt;65 chars)</td><td>Every episode</td><td>Real-time counter in /lower-thirds (amber/red warnings)</td></tr>
+      <tr><td>Planning sessions without a named deliverable</td><td>Multiple/month historically</td><td>Anti-Churn Rule in CLAUDE.md</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- 10 ROADMAP -->
+<div class="section" id="roadmap">
+  <div class="sec-hdr">
+    <div class="sec-n">10</div>
+    <div><div class="sec-title">What's Next — The Roadmap</div><div class="sec-desc">From this week through Feature 3+</div></div>
+  </div>
+  <h3>🔴 Immediate — Stage 7 (This Week)</h3>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-err">Blocking</span></div>
+    <div><div class="rm-title">Fix lower thirds JSON ↔ Supabase schema mismatch</div><div class="rm-desc">Run <code>list_tables</code> on the <code>lower_thirds</code> table, compare actual column names against extraction prompt output, align them. "JSON parsed but no recognized fields found" is the error. S03 Ep021-025 were filmed May 28-29 — scripts exist, import is blocked.</div></div>
+  </div>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-err">Blocking</span></div>
+    <div><div class="rm-title">Run first complete episode end-to-end</div><div class="rm-desc">Import → review → approve → ProPresenter copy. One complete episode. That's the definition of Stage 7 done. Start with Ep021 (David Legates + Billy Hallowell) or Ep022 (Tim Clarey + Jerry Bergman).</div></div>
+  </div>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-warn">High priority</span></div>
+    <div><div class="rm-title">YouTube RSS poller (Supabase Edge Function)</div><div class="rm-desc">Hourly cron polling <code>youtube.com/feeds/videos.xml?channel_id=UCNZS3IEQaAfwofwltbEBwuw</code>. Parse <code>S03, EpN</code> from titles, write real <code>youtube_url</code> and <code>youtube_published_at</code> to matching episode row. Build immediately after Stage 7 — 48 rows have stale scheduled dates.</div></div>
+  </div>
+  <h3>🟡 Post-Stage 7 Cleanup</h3>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-info">Cleanup</span></div>
+    <div><div class="rm-title">Retire /upload page</div><div class="rm-desc">Phase out the legacy PNG upload flow after confirming 2 episodes on text-only path. Remove the dead code path.</div></div>
+  </div>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-info">Cleanup</span></div>
+    <div><div class="rm-title">Drop __text_only__ sentinel</div><div class="rm-desc">Clean up the current_image_url hack. Redesign the column for when real PNGs eventually attach to rows.</div></div>
+  </div>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-info">Cleanup</span></div>
+    <div><div class="rm-title">Update BUILD_STATUS.html</div><div class="rm-desc">Log the 14 missing migrations, update migration count from 28 to 42.</div></div>
+  </div>
+  <h3>Feature 2 — Episode Hub UI</h3>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-muted">Planned</span></div>
+    <div><div class="rm-title">Guests + Booking dashboard</div><div class="rm-desc">UI for guests and episode_guests tables. Full booking lifecycle visibility. 209 guests already seeded. Do-not-contact enforcement. Last-aired tracker automated.</div></div>
+  </div>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-muted">Planned</span></div>
+    <div><div class="rm-title">Guest email workflow (5-tier system)</div><div class="rm-desc">Outreach generation + tracking, pre-interview reminder, post-interview thank-you — all templated and tracked in the DB.</div></div>
+  </div>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-muted">Planned</span></div>
+    <div><div class="rm-title">ProPresenter API push (Phase 2 of Feature 1)</div><div class="rm-desc">Replace the manual copy-paste handoff. Requires: test machine approval, David sign-off, ProPresenter v7.9+ API validation. Hard-blocked by "The David Rule" until explicitly approved.</div></div>
+  </div>
+  <h3>Feature 3+ — Distribution Automation (The Original Goal)</h3>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-muted">Later</span></div>
+    <div><div class="rm-title">YouTube metadata pipeline</div><div class="rm-desc">Auto-generate title (30%-shorter rule baked in), description, tags via Claude. Push via YouTube API. Targets the single most-documented repeated error (59+ sessions).</div></div>
+  </div>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-muted">Later</span></div>
+    <div><div class="rm-title">Multi-platform distribution</div><div class="rm-desc">Rumble, Dropbox, Fireside.fm, Signiant, StreamHoster. The original ADR-0001 goal — deferred, now redesigned for the Supabase stack with distributions table already in place.</div></div>
+  </div>
+  <div class="rm-item">
+    <div class="rm-status"><span class="badge b-muted">Later</span></div>
+    <div><div class="rm-title">Content clips + social posts</div><div class="rm-desc">Timecode tagging → platform-fit social post generation (6 platforms, 9 post types). Schema already in DB.</div></div>
+  </div>
+</div>
+
+<!-- 11 LESSONS -->
+<div class="section" id="lessons">
+  <div class="sec-hdr">
+    <div class="sec-n">11</div>
+    <div><div class="sec-title">What Was Learned</div><div class="sec-desc">The distilled lessons from 879 conversations, three pivots, and one security incident</div></div>
+  </div>
+  <div class="lesson-grid">
+    <div class="lesson-card">
+      <div class="lesson-n">01</div>
+      <div class="lesson-title">Name the deliverable before building</div>
+      <div class="lesson-desc">If you can't say what file or feature will exist at the end — and when it goes live — the session is planning. Planning ends with a task in the roadmap, not scaffolding in the repo.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-n">02</div>
+      <div class="lesson-title">One working feature beats a perfect architecture</div>
+      <div class="lesson-desc">Three ADRs before one production feature shipped. The constraint "one feature first" is what finally broke the pattern. The constraint is the feature.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-n">03</div>
+      <div class="lesson-title">Security is not optional</div>
+      <div class="lesson-desc">One chat session with credentials exposed triggered an IT incident, rotated 40+ devices, and forced a complete architecture pivot. The CLAUDE.md Security Rules exist because of this exact event.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-n">04</div>
+      <div class="lesson-title">Specificity is what makes AI output usable</div>
+      <div class="lesson-desc">400+ recurring friction points all traced to AI working without specific context. Every solved problem was solved by baking the constraint into the system — not correcting it session by session.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-n">05</div>
+      <div class="lesson-title">Build for the workflow, not the tool</div>
+      <div class="lesson-desc">n8n was chosen before the workflow was defined. Notion before the data model was clear. Both abandoned because the workflow had requirements the tool couldn't meet. The current stack was chosen because Feature 1 required exactly what Supabase provides.</div>
+    </div>
+    <div class="lesson-card">
+      <div class="lesson-n">06</div>
+      <div class="lesson-title">Pragmatic drift can be productive</div>
+      <div class="lesson-desc">The text-only path was an unplanned workaround that kept the project moving. It was scope drift — but it shipped something useful before the "intended" flow was possible. Document the drift, schedule the cleanup, keep moving.</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="callout co-ok">
+    <div class="callout-title">Where the Project Stands — Updated 2026-05-30</div>
+    <p>S03 Ep021-025 were filmed May 28-29 with five guests confirmed (David Legates, Tim Clarey, Andrew Fabich, Carl Werner field report, plus Jerry Bergman / Dan Janzen / Dr. Ming Wang / David Coppedge filming June 15). All 48 Season 3 episode rows are in Supabase. The lower thirds JSON schema mismatch is still the only technical blocker for Stage 7 — once fixed, the dashboard absorbs the first real episode and Feature 1 is complete. The next queue (guest email workflow UI, YouTube RSS poller, episode hub) has schema ready and zero dependencies. The system is closer to done than at any prior point — the filming happened, the data is there, one schema fix ships Stage 7.</p>
+  </div>
+
+  <div style="margin-top:32px;padding:18px;background:var(--surface);border-radius:12px;border:1px solid var(--border)">
+    <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin-bottom:12px">Key Files Quick Reference</div>
+    <div class="kv-grid">
+      <div><code>CLAUDE.md</code> — Session rules, security, Anti-Churn</div>
+      <div><code>BUILD_STATUS.html</code> — Visual build overview (open in browser)</div>
+      <div><code>FEATURE_1_LOWER_THIRDS.md</code> — Original Feature 1 spec</div>
+      <div><code>docs/AUTOMATION_ROADMAP.md</code> — Future task queue</div>
+      <div><code>docs/GSR_VOICE_PROFILE.md</code> — Writing voice reference</div>
+      <div><code>docs/PROMPT_LIBRARY.md</code> — 20 production prompts</div>
+      <div><code>recurring_difficulties.md</code> — 400+ friction points</div>
+      <div><code>personal-claude.md</code> — Daniel's working style</div>
+      <div><code>agents/gsr-editorial.md</code> — Editorial agent definition</div>
+      <div><code>supabase/migrations/</code> — 42 DB migrations</div>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<script>
+const sections = document.querySelectorAll('.section, .hero');
+const tocLinks = document.querySelectorAll('.tl');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const id = e.target.id;
+      tocLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+    }
+  });
+}, { rootMargin: '-15% 0px -70% 0px' });
+sections.forEach(s => { if(s.id) observer.observe(s); });
+
+// ── EDIT MODE ──────────────────────────────────────────────
+const STORE_KEY = 'gsr-pipeline-edits';
+const editBtn = document.getElementById('edit-btn');
+const editStatus = document.getElementById('edit-status');
+let editing = false;
+
+function getEditables() {
+  return document.querySelectorAll(
+    '.main p, .main h3, .main td, .main th, .main li, ' +
+    '.main .flow-title, .main .flow-desc, .main .prob-title, .main .prob-desc, ' +
+    '.main .lesson-title, .main .lesson-desc, .main .rm-title, .main .rm-desc, ' +
+    '.main .callout-title, .main .callout p, .main .callout-body, ' +
+    '.main .sec-title, .main .sec-desc, .main .card-val, .main .card-sub, ' +
+    '.main .ti-event, .main .ti-desc, .main .pc-title, .main .pc-dates, .main .pc-end, ' +
+    '.main .p-desc, .main .hero-sub, .main .stat-pill, ' +
+    '.main .pc-items li, .main .pc-n, .main .phase-end'
+  );
+}
+
+function toggleEdit() {
+  editing = !editing;
+  document.body.classList.toggle('editing', editing);
+  editBtn.textContent = editing ? 'Done Editing' : 'Edit';
+  editBtn.classList.toggle('active', editing);
+  editStatus.textContent = editing ? 'Editing — changes auto-saved' : 'Viewing';
+  getEditables().forEach(el => {
+    if (editing) el.setAttribute('contenteditable', 'true');
+    else el.removeAttribute('contenteditable');
+  });
+}
+
+// Auto-save to localStorage on any input
+document.addEventListener('input', () => {
+  if (!editing) return;
+  localStorage.setItem(STORE_KEY, document.querySelector('.main').innerHTML);
+  editStatus.textContent = 'Saved ✓';
+  setTimeout(() => { if (editing) editStatus.textContent = 'Editing — changes auto-saved'; }, 1200);
+});
+
+// Restore saved content on load
+const saved = localStorage.getItem(STORE_KEY);
+if (saved) {
+  document.querySelector('.main').innerHTML = saved;
+  editStatus.textContent = 'Restored from last session';
+  setTimeout(() => { editStatus.textContent = 'Viewing'; }, 2000);
+}
+
+// Download current state as HTML file
+function downloadFile() {
+  const clone = document.documentElement.cloneNode(true);
+  // Remove edit-bar from clone, bake in saved content
+  const bar = clone.querySelector('.edit-bar');
+  if (bar) bar.remove();
+  // Strip contenteditable attrs
+  clone.querySelectorAll('[contenteditable]').forEach(el => el.removeAttribute('contenteditable'));
+  // Inject saved main content
+  const savedMain = localStorage.getItem(STORE_KEY);
+  if (savedMain) clone.querySelector('.main').innerHTML = savedMain;
+  const html = '<!DOCTYPE html>\n' + clone.outerHTML;
+  const blob = new Blob([html], { type: 'text/html' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'GSR_PIPELINE_HISTORY.html';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+</script>
+</body>
+</html>

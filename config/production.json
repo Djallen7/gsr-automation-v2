@@ -1,13 +1,14 @@
 {
   "show": {
-    "name": "God's Scientific Revolution",
+    "name": "Genesis Science Report",
     "abbreviation": "GSR",
     "season": "S3",
     "season_number": 3,
     "episode_count": 25,
-    "air_day": "Monday",
-    "air_time_et": "16:00",
-    "air_time_utc": "20:00",
+    "air_day": "Tuesday",
+    "air_time_cst": "20:00",
+    "youtube_publish_day": "Monday",
+    "youtube_publish_time_et": "16:00",
     "season_3_start_date": "2024-09-02",
     "description": "A CNN/Fox News-style science news show exploring creation science and the evidence for design in the universe."
   },
@@ -44,6 +45,7 @@
 
   "youtube": {
     "default_category_id": "28",
+    "_category_note": "28 = Science & Technology. Do not use 24 (Entertainment) or 27 (News).",
     "default_language": "en",
     "title_max_length": 100,
     "description_max_length": 5000,
@@ -58,7 +60,7 @@
     "default_tags": [
       "creation science",
       "intelligent design",
-      "God's Scientific Revolution",
+      "Genesis Science Report",
       "GSR",
       "science and faith",
       "origins",
@@ -84,27 +86,6 @@
     },
     "naming_convention": "{episode_label}_{descriptor}_{version}.{ext}",
     "example": "S03EP025_Interview1_v02.mp4"
-  },
-
-  "notion": {
-    "task_priorities": ["Critical", "High", "Medium", "Low"],
-    "asset_file_types": ["Video", "Audio", "Image", "Document", "Template"],
-    "upload_statuses": ["Not Started", "Queued", "Processing", "Live", "Error", "Taken Down"],
-    "episode_statuses": ["Planning", "Pre-Production", "In Production", "Post-Production", "Aired", "Archived"],
-    "graphics_statuses": ["Not Started", "In Progress", "Loaded In", "Done", "Cancelled"],
-    "outreach_statuses": ["Lead", "Contacted", "Confirmed", "Booked", "Past Guest", "Do Not Contact"]
-  },
-
-  "n8n": {
-    "workflows": {
-      "episode_status_sync":    { "cron": "*/15 * * * *", "description": "Poll Notion for episode status changes" },
-      "youtube_upload_log":     { "trigger": "webhook",   "description": "Log YouTube upload completion to Notion" },
-      "graphics_reminder":      { "cron": "0 9 * * *",   "description": "Daily reminder for graphics with due dates < 48h" },
-      "dropbox_asset_sync":     { "trigger": "webhook",   "description": "Sync new Dropbox files to Notion Assets" },
-      "basecamp_task_sync":     { "trigger": "webhook",   "description": "Sync Basecamp todos to Notion Tasks" },
-      "episode_checklist_create": { "trigger": "notion",  "description": "Auto-create task checklist on new Episode" },
-      "weekly_report":          { "cron": "0 18 * * 0",  "description": "Sunday 6PM weekly pipeline report" }
-    }
   },
 
   "episode_checklist_template": [

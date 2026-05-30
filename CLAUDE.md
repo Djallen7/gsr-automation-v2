@@ -89,7 +89,7 @@ This rule exists because archaeology of 879 conversations showed repeated cycles
 - `/api/extract-lower-thirds` — Claude extraction route, builds prompt from Supabase episode/guest context
 - `/api/scripts` — UPSERT script text per episode+segment
 
-**44 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
+**45 migrations applied** to Supabase. Always run `list_migrations` before writing new SQL to check current state.
 
 ## UI Architecture (Episode-Centric)
 

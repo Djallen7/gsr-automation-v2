@@ -1,0 +1,113 @@
+episode_uid,guest_key,guest_full_name,segment,topic,role,source,confidence,needs_human
+S02E004,jerry-bergman,Dr. Jerry Bergman,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E004,carl-werner,Dr Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E006,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E006,john-mackay,John Mackay,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S02E007,michael-oard,Michael Oard,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E007,andrew-snelling,Dr. Andrew Snelling,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E008,randy-guliuzza,Dr. Randy Guliuzza,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E008,tim-clarey,Dr. Tim Clarey,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E008,randy-guliuzza,Dr. Randy Guliuzza,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E008,tim-clarey,Dr. Tim Clarey,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E009,andy-mcintosh,Professor Andy McIntosh,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E009,david-coppedge,David Coppedge,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E010,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E010,joseph-hubbard,Joseph Hubbard,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S02E011,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E011,jerry-bergman,Dr. Jerry Bergman,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E012,brian-thomas,Dr. Brian Thomas,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E012,john-hartnett,Dr. John Hartnett,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E013,joseph-hubbard,Joseph Hubbard,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S02E014,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E014,joe-deweese,Dr. Joe Deweese,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E015,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E015,mike-houts,Dr. Mike Houts,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S02E016,tim-shields,Pastor Tim Shields,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E017,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E018,david-coppedge,David Coppedge,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E018,stuart-burgess,Dr. Stuart Burgess,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E020,chris-rupe,Dr. Chris Rupe,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E021,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E021,steven-taylor,Dr. Steven Taylor,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E022,jay-wile,Dr. Jay Wile,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E023,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E023,jeffrey-tomkins,Jeffrey Tomkins,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S02E024,john-hartnett,Dr. John Hartnett,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E024,michael-maughon,Michael Maughon,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E025,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E025,joe-deweese,Dr. Joe Deweese,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E026,michael-maughon,Michael Maughon,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E027,joseph-hubbard,Joseph Hubbard,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S02E027,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E028,jeff-williams,Col. Jeff Williams,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E029,glenn-wilson,Dr. Glenn Wilson,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E029,david-coppedge,David Coppedge,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E030,michael-maughon,Michael Maughon,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E030,david-coppedge,David Coppedge,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E031,doug-velting,Doug Velting,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E031,michael-maughon,Michael Maughon,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E032,michael-maughon,Michael Maughon,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E032,stuart-burgess,Dr. Stuart Burgess,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E033,bodie-hodge,Bodie Hodge,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E033,jake-hebert,Dr. Jake Hebert,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E034,david-coppedge,David Coppedge,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E035,david-coppedge,David Coppedge,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E035,paul-nelson,Dr. Paul Nelson,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E036,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E036,jeff-tomkins,Dr. Jeff Tomkins,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S02E038,mike-houts,Dr. Mike Houts,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S02E038,tim-clarey,Dr. Tim Clarey,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E039,tommy-lohman,Tommy Lohman,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E039,michael-egnor,Dr. Michael Egnor,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E040,seth-dillon,Seth Dillon,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E041,jerry-bergman,Dr. Jerry Bergman,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E041,michael-lienau,Michael Lienau,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E042,don-deyoung,Dr. Don DeYoung,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E042,jay-seegert,Jay Seegert,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E043,kirby-runyon,Dr. Kirby Runyon,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E043,paul-garner,Paul Garner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E045,joe-hubbard,Joe Hubbard,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S02E045,ed-holroyd,Dr. Ed Holroyd,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E046,bodie-hodge,Bodie Hodge,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E046,jason-lisle,Dr. Jason Lisle,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E046,don-deyoung,Dr. Don DeYoung,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E048,brian-young,Brian Young,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E048,steve-furber,Dr. Steve Furber,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E049,andrew-fabich,Dr. Andrew Fabich,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E049,tim-clarey,Dr. Tim Clarey,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E050,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E050,michael-maughon,Michael Maughon,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E052,james-tour,Dr. James Tour,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E052,andy-mcintosh,Professor Andy McIntosh,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E053,james-tour,Dr. James Tour,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E053,andy-mcintosh,Professor Andy McIntosh,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E054,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E054,michael-maughon,Michael Maughon,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E055,andy-mcintosh,Professor Andy McIntosh,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E056,james-tour,Dr. James Tour,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E057,michael-maughon,Michael Maughon,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E058,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S02E058,james-tour,Dr. James Tour,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E001,tim-clarey,Dr. Tim Clarey,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E001,don-deyoung,Dr. Don DeYoung,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E002,jerry-bergman,Dr. Jerry Bergman,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E002,jeff-tomkins,Dr. Jeff Tomkins,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S03E006,joe-deweese,Dr. Joe Deweese,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E006,jason-lisle,Dr. Jason Lisle,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E007,jake-hebert,Jake Hebert,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E008,ian-macreadie,Dr. Ian Macreadie,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E008,david-dewitt,Dr. David DeWitt,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E009,mike-houtz,Dr. Mike Houtz,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+S03E009,tommy-lohman,Tommy Lohman,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E010,brian-young,Brian Young,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E010,jeff-williams,Colonel Jeff Williams,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E011,charles-jackson,Dr. Charles Jackson,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E011,paul-nelson,Dr. Paul Nelson,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E012,doug-velting,Doug Velting,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E014,brian-thomas,Dr. Brian Thomas,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+S03E015,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+,michael-houts,Dr. Michael Houts,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+,jim-johnson,Dr. Jim Johnson,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+,jake-hebert,Dr. Jake Hebert,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+,carl-werner,Dr. Carl Werner,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+,rob-stadler,Dr. Rob Stadler,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true

@@ -1,0 +1,68 @@
+source,source_episode_uid,guest_key,guest_full_name,reason
+schedule,S03E001,don-deyoung,Don Deyoung,schedule numbering != production; episode_uid unresolved
+schedule,S03E001,tim-clarey,Tim Clarey,schedule numbering != production; episode_uid unresolved
+schedule,S03E002,jeffrey-tomkins,Jeff Tomkins,schedule numbering != production; episode_uid unresolved
+schedule,S03E002,jerry-bergman,Jerry Bergman,schedule numbering != production; episode_uid unresolved
+schedule,S03E003,(blank),Rob Stadler Pt 1,schedule numbering != production; episode_uid unresolved + flagged_in_source
+schedule,S03E003,david-coppedge,David Coppedge,schedule numbering != production; episode_uid unresolved
+schedule,S03E004,(blank),Carl Werner Roll in,schedule numbering != production; episode_uid unresolved + flagged_in_source
+schedule,S03E004,(blank),Rob Stadler Pt 2,schedule numbering != production; episode_uid unresolved + flagged_in_source
+schedule,S03E005,eric-hedin,Eric Hedin,schedule numbering != production; episode_uid unresolved
+schedule,S03E005,john-mackay,John Mackay,schedule numbering != production; episode_uid unresolved
+schedule,S03E006,jason-lisle,Jason Lisle,schedule numbering != production; episode_uid unresolved
+schedule,S03E006,joe-deweese,Joe Deweese,schedule numbering != production; episode_uid unresolved
+schedule,S03E007,jake-hebert,Jake Hebert,schedule numbering != production; episode_uid unresolved
+schedule,S03E007,steve-furber,Steve Furber,schedule numbering != production; episode_uid unresolved
+schedule,S03E008,dr-david-dewitt,Dr. David Dewitt,schedule numbering != production; episode_uid unresolved
+schedule,S03E008,ian-macreadie,Ian Macreadie,schedule numbering != production; episode_uid unresolved
+schedule,S03E009,michael-houts,Michael Houts,schedule numbering != production; episode_uid unresolved
+schedule,S03E009,tommy-lohman,Tommy Lohman,schedule numbering != production; episode_uid unresolved
+schedule,S03E010,brian-young,Brian Young,schedule numbering != production; episode_uid unresolved
+schedule,S03E010,jeff-williams,Jeff Williams,schedule numbering != production; episode_uid unresolved
+schedule,S03E011,charles-jackson,Charles Jackson,schedule numbering != production; episode_uid unresolved
+schedule,S03E011,paul-nelson,Paul Nelson,schedule numbering != production; episode_uid unresolved
+schedule,S03E012,doug-velting,Doug Velting,schedule numbering != production; episode_uid unresolved
+schedule,S03E012,gordon-wilson,Gordon Wilson,schedule numbering != production; episode_uid unresolved
+schedule,S03E013,charles-jackson,Charles Jackson,schedule numbering != production; episode_uid unresolved
+schedule,S03E013,glenn-wilson,Glenn Wilson,schedule numbering != production; episode_uid unresolved
+schedule,S03E014,brian-thomas,Brian Thomas,schedule numbering != production; episode_uid unresolved
+schedule,S03E014,stuart-burgess,Stuart Burgess,schedule numbering != production; episode_uid unresolved
+schedule,S03E015,carl-werner,Carl Werner,schedule numbering != production; episode_uid unresolved
+schedule,S03E015,dan-janzen,Dan Janzen,schedule numbering != production; episode_uid unresolved
+schedule,S03E016,frank-sherwin,"Frank Sherwin (Dallas, TX)",schedule numbering != production; episode_uid unresolved
+schedule,S03E016,stephen-meyer,Stephen Meyer,schedule numbering != production; episode_uid unresolved
+schedule,S03E017,brian-thomas,"Brian Thomas (Dallas, TX)",schedule numbering != production; episode_uid unresolved
+schedule,S03E017,scott-stripling,"Scott Stripling (Katy, TX)",schedule numbering != production; episode_uid unresolved
+schedule,S03E018,john-barentine,"John Barentine (Tucson, AZ)",schedule numbering != production; episode_uid unresolved
+schedule,S03E018,stephen-meyer,Stephen Meyer,schedule numbering != production; episode_uid unresolved
+schedule,S03E019,joseph-hubbard,"Joeseph Hubbard (Oswestry, UK)",schedule numbering != production; episode_uid unresolved
+schedule,S03E019,tom-rogers,Tom Rogers (B.C. Canada),schedule numbering != production; episode_uid unresolved
+schedule,S03E020,andrew-fabich,Andrew Fabich (Gainsville GA),schedule numbering != production; episode_uid unresolved
+schedule,S03E020,mike-houts,Mike Houts (Madison AL),schedule numbering != production; episode_uid unresolved
+schedule,S03E021,billy-hallowell,Billy Hallowell,schedule numbering != production; episode_uid unresolved
+schedule,S03E022,(blank),Bergman,schedule numbering != production; episode_uid unresolved + flagged_in_source
+schedule,S03E023,(blank),Andrew Fabich (TBD),schedule numbering != production; episode_uid unresolved + flagged_in_source
+schedule,S03E025,(blank),Coppedge,schedule numbering != production; episode_uid unresolved + flagged_in_source
+schedule,S03E025,jeffrey-tomkins,Jeff Tomkins,schedule numbering != production; episode_uid unresolved
+schedule,S03E026,gordon-wilson,Gordon Wilson,schedule numbering != production; episode_uid unresolved
+scripts,S03E017,,GSR_S03_Ep017_Run_Of_Show,"run-of-show doc, not a single-guest appearance"
+scripts,S03E018,,GSR_S03_Ep018_Run_Of_Show,"run-of-show doc, not a single-guest appearance"
+youtube,,jake-hebert,Dr. Jake Hebert,no unique production guest match; date-blocked (D3/D5)
+youtube,,jim-johnson,Dr. Jim Johnson,no unique production guest match; date-blocked (D3/D5)
+youtube,,michael-houts,Dr. Michael Houts,no unique production guest match; date-blocked (D3/D5)
+youtube,,rob-stadler,Dr. Rob Stadler,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E001,don-deyoung,Dr. Don DeYoung,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E002,jeffrey-tomkins,Dr. Jeff Tomkins,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E006,jason-lisle,Dr. Jason Lisle,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E006,joe-deweese,Dr. Joe Deweese,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E007,jake-hebert,Jake Hebert,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E008,david-dewitt,Dr. David DeWitt,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E008,ian-macreadie,Dr. Ian Macreadie,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E009,mike-houtz,Dr. Mike Houtz,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E009,tommy-lohman,Tommy Lohman,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E010,brian-young,Brian Young,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E010,jeff-williams,Colonel Jeff Williams,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E011,charles-jackson,Dr. Charles Jackson,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E011,paul-nelson,Dr. Paul Nelson,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E012,doug-velting,Doug Velting,no unique production guest match; date-blocked (D3/D5)
+youtube,S03E014,brian-thomas,Dr. Brian Thomas,no unique production guest match; date-blocked (D3/D5)

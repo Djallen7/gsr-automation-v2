@@ -1,0 +1,51 @@
+guest_key,title,first_name,last_name,full_name,credentials,organization,expertise,bio,email,phone,website,social_handles,source,confidence,needs_human
+andrew-fabich,Dr,Andrew,Fabich,Dr. Andrew Fabich,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+andrew-snelling,Dr,Andrew,Snelling,Dr. Andrew Snelling,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+andy-mcintosh,Professor,Andy,McIntosh,Professor Andy McIntosh,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+bodie-hodge,,Bodie,Hodge,Bodie Hodge,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+brian-thomas,Dr,Brian,Thomas,Dr. Brian Thomas,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+brian-young,,Brian,Young,Brian Young,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+carl-werner,Dr,Carl,Werner,Dr Carl Werner,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+charles-jackson,Dr,Charles,Jackson,Dr. Charles Jackson,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+chris-rupe,Dr,Chris,Rupe,Dr. Chris Rupe,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+david-coppedge,,David,Coppedge,David Coppedge,Astrophysicist,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+david-dewitt,Dr,David,DeWitt,Dr. David DeWitt,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+don-deyoung,Dr,Don,DeYoung,Dr. Don DeYoung,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+doug-velting,,Doug,Velting,Doug Velting,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+ed-holroyd,Dr,Ed,Holroyd,Dr. Ed Holroyd,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+glenn-wilson,Dr,Glenn,Wilson,Dr. Glenn Wilson,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+ian-macreadie,Dr,Ian,Macreadie,Dr. Ian Macreadie,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+jake-hebert,Dr,Jake,Hebert,Dr. Jake Hebert,Creation researcher,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+james-tour,Dr,James,Tour,Dr. James Tour,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+jason-lisle,Dr,Jason,Lisle,Dr. Jason Lisle,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+jay-seegert,,Jay,Seegert,Jay Seegert,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+jay-wile,Dr,Jay,Wile,Dr. Jay Wile,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+jeff-tomkins,Dr,Jeff,Tomkins,Dr. Jeff Tomkins,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+jeff-williams,Col,Jeff,Williams,Col. Jeff Williams,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+jeffrey-tomkins,,Jeffrey,Tomkins,Jeffrey Tomkins,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+jerry-bergman,Dr,Jerry,Bergman,Dr. Jerry Bergman,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+jim-johnson,Dr,Jim,Johnson,Dr. Jim Johnson,forensic scientist,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+joe-deweese,Dr,Joe,Deweese,Dr. Joe Deweese,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+joe-hubbard,,Joe,Hubbard,Joe Hubbard,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+john-hartnett,Dr,John,Hartnett,Dr. John Hartnett,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+john-mackay,,John,Mackay,John Mackay,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+joseph-hubbard,,Joseph,Hubbard,Joseph Hubbard,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+kirby-runyon,Dr,Kirby,Runyon,Dr. Kirby Runyon,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+michael-egnor,Dr,Michael,Egnor,Dr. Michael Egnor,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+michael-houts,Dr,Michael,Houts,Dr. Michael Houts,Nuclear engineer,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+michael-lienau,,Michael,Lienau,Michael Lienau,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+michael-maughon,,Michael,Maughon,Michael Maughon,wildlife educator,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+michael-oard,,Michael,Oard,Michael Oard,meteorologist and creation science expert,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+mike-houts,Dr,Mike,Houts,Dr. Mike Houts,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+mike-houtz,Dr,Mike,Houtz,Dr. Mike Houtz,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+paul-garner,,Paul,Garner,Paul Garner,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+paul-nelson,Dr,Paul,Nelson,Dr. Paul Nelson,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+randy-guliuzza,Dr,Randy,Guliuzza,Dr. Randy Guliuzza,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+rob-stadler,Dr,Rob,Stadler,Dr. Rob Stadler,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+seth-dillon,,Seth,Dillon,Seth Dillon,of The Babylon Bee,The Babylon Bee,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+steve-furber,Dr,Steve,Furber,Dr. Steve Furber,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+steven-taylor,Dr,Steven,Taylor,Dr. Steven Taylor,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),low,true
+stuart-burgess,Dr,Stuart,Burgess,Dr. Stuart Burgess,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+tim-clarey,Dr,Tim,Clarey,Dr. Tim Clarey,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+tim-shields,Pastor,Tim,Shields,Pastor Tim Shields,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false
+tommy-lohman,,Tommy,Lohman,Tommy Lohman,,,,,,,,,episodes_youtube.csv descriptions (YouTube; T-PLATFORMS pull),medium,false

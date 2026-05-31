@@ -1,0 +1,19 @@
+{
+  "source": "rundown-creator MCP rc_list_columns (DRM account, slug 'davidrives')",
+  "captured_at": "2026-05-30",
+  "note": "ColumnID is the stable write key. The renamed-columns trap: rc_update_row / setRowProperties accepts custom columns keyed by ColumnID ONLY (e.g. {\"1\":\"...\"}), never by display name ({\"graphics\":\"...\"} is silently dropped). rc_get_rows READS these columns back under lowercase aliases (graphics, format, lastline, notes) but the WRITE endpoint does not accept those names. Critical write columns: 1=Graphics, 2=Format, 4=Last Line, 9=Notes. Columns 5,6,7,8,10 exist in the data model but are unused/undisplayed in the current layout (LayoutID 1) and should not be written to.",
+  "discrepancy_flag": "The rundown-creator skill documents the API-DEFAULT column names (1=Writer, 2=Editor, 4=Talent, 9=VTR). The LIVE rc_list_columns 'Name' field already returns the DRM display names below (Graphics/Format/Last Line/Notes). The ColumnIDs are the invariant either way; the skill's default-name table is the pre-rename API baseline, not what this account returns today.",
+  "columns": [
+    { "column_id": 1, "name": "Graphics", "name_remapped": "graphics", "read_alias": "graphics", "write_key": "1", "role": "Cue description / simplified <gfx> tag text", "used": true },
+    { "column_id": 2, "name": "Format", "name_remapped": "format", "read_alias": "format", "write_key": "2", "role": "Graphic type from Tracker, verbatim (asset type)", "used": true },
+    { "column_id": 3, "name": "Segment", "name_remapped": "segment", "read_alias": "segment", "write_key": "3", "role": "Repeats parent segment name", "used": true },
+    { "column_id": 4, "name": "Last Line", "name_remapped": "lastline", "read_alias": "lastline", "write_key": "4", "role": "Spoken phrase that cues the NEXT row's graphic", "used": true },
+    { "column_id": 5, "name": "Camera", "name_remapped": "camera", "read_alias": "camera", "write_key": "5", "role": "Unused in current layout", "used": false },
+    { "column_id": 6, "name": "Effect", "name_remapped": "effect", "read_alias": "effect", "write_key": "6", "role": "Unused in current layout", "used": false },
+    { "column_id": 7, "name": "Graphic", "name_remapped": "graphic", "read_alias": "graphic", "write_key": "7", "role": "Legacy/unused, distinct from ColumnID 1", "used": false },
+    { "column_id": 8, "name": "Source", "name_remapped": "source", "read_alias": "source", "write_key": "8", "role": "Unused in current layout", "used": false },
+    { "column_id": 9, "name": "Notes", "name_remapped": "notes", "read_alias": "notes", "write_key": "9", "role": "Sentence count (~N sentences) + production notes", "used": true },
+    { "column_id": 10, "name": "File", "name_remapped": "file", "read_alias": "file", "write_key": "10", "role": "Unused in current layout", "used": false }
+  ],
+  "builtin_fields_keyed_by_name": ["StorySlug", "PageNumber", "EstimatedDuration", "Break", "Approved", "Floated", "Locked"]
+}

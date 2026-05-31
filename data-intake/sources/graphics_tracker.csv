@@ -1,0 +1,403 @@
+show_tab,row_number,episode_uid,segment_norm,Segment,Graphic #,Graphic Type,Description,Status,Assigned To,Notes,source,confidence,needs_human
+(single tab),1,S03E011,opening_monologue,Opening Monologue,1,B-roll,Intro Graphic: Soft Cells: Gods Moving Structure,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),2,S03E011,opening_monologue,Opening Monologue,2,Picture,Pull photo with attribution and upscale: https://www.3dnatives.com/es/wp-content/uploads/sites/4/3D_Structure-1.jpg,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),3,S03E011,opening_monologue,Opening Monologue,3,Clip w/audio,Pull video with attribuion: https://youtube.com/shorts/EyMbqPUKl80?si=v-hE8sKhGHtmUH0a,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),4,S03E011,opening_monologue,Opening Monologue,4,Pre-made: B-roll,PM Broll loop: Scientists,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),5,S03E011,opening_monologue,Opening Monologue,5,B-roll,Ken Burns montage with photos & Attribution: Around 10 photos--https://www.zaha-hadid.com/architecture/heydar-aliyev-centre/,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),6,S03E011,opening_monologue,Opening Monologue,6,Propres Graphic,"Propres Quote: “Through faith, we understand that the worlds were framed by the word of God.” Hebrews 11:3:",Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),7,S03E011,opening_monologue,Opening Monologue,7,B-roll,"Human anatomy Broll loop: Mixture of Muscle cells, Tissue/cartilage cells, Nerves/Neurons, blood cells",Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),1,S03E011,the_heavens_declare,The Heavens Declare,1,Roll-in,THD 348 - Leatherback Turtle,Loaded In,,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),1,S03E011,kids_corner,Kids Corner,1,Roll-in,,Loaded In,,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),1,S03E011,q_a,Q&A,1,Roll-in,,Loaded In,,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),1,S03E011,ministry_report,Ministry Report,1,Graphic,Pull graphic from website: https://www.icr.org/event/2591/,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),2,S03E011,ministry_report,Ministry Report,2,Graphic,Pull Graphic and Format for 16:9 https://play-lh.googleusercontent.com/Nf9PFYiA0UNYw4Fwg2989cdnaUx1W_Zkuojm4K-t6JTwn2pG3kDjiAage_fQLQEpdA,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),3,S03E011,ministry_report,Ministry Report,3,Graphic,"GSR Sponsorship Graphic - Text: Partner With The Genesis Science Report
+Put your brand in front of a targeted Christian audience",Loaded In,Jakob,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),1,S03E011,viewer_voices,Viewer Voices,1,Roll-in,,Loaded In,,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),1,S03E011,featured_resource,Featured Resource,1,Roll-in,,Loaded In,,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),1,S03E011,gsm,GSM,1,Roll-in,GS_Minute_074_Erasmus,Loaded In,,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),1,S03E011,interview_1,Interview 1:,1,Article Screenshot,https://academic.oup.com/edited-volume/59762/chapter-abstract/547175268?redirectedFrom=fulltext,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),2,S03E011,interview_1,Interview 1:,2,Intro Graphic,"Intro Graphic: Machines, Morality, and Modern Crisis",Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),1,S03E011,interview_2,Interview 2:,1,Intro Graphic,Intro Graphic: Is Evolution Losing Its Shape?,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),2,S03E011,interview_2,Interview 2:,2,Article Screenshot,https://news.ncsu.edu/2025/08/family-webs-may-capture-evolutionary-change-better-than-family-trees/,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),3,S03E011,interview_2,Interview 2:,3,Graphic,"Evolutionary ""Tree of Life"" Graphic",Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),4,S03E011,interview_2,Interview 2:,4,Pre-made: B-roll,PM DNA Broll,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),5,S03E011,interview_2,Interview 2:,5,Pre-made: B-roll,PM Crispr Genetics loop,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),6,S03E011,interview_2,Interview 2:,6,Pre-made: B-roll,PM Scientists in labs Broll,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),7,S03E011,interview_2,Interview 2:,7,B-roll,Tree Broll loop (Symbolic for metaphor so focus on branches and roots),Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),9,S03E011,interview_2,Interview 2:,9,Picture,8 graphics from paul nelson,Loaded In,Isaac,,03_GSR Graphics Tracking_ March,medium,true
+(single tab),1,S03E016,opening_monologue,Opening Monologue,1,Title Graphic,Intro Graphic: Artemis II,Loaded In,Isaac,,04_GSR Graphics Tracking: April,medium,true
+(single tab),2,S03E016,opening_monologue,Opening Monologue,2,B-roll,pull Artemis 2 launch footage w/attribution,Loaded In,Isaac,,04_GSR Graphics Tracking: April,medium,true
+(single tab),3,S03E016,opening_monologue,Opening Monologue,3,Clip w/audio,NASA's Artemis II Crew Rollout Media Event - YouTube 18:34-19:42,Loaded In,Isaac,,04_GSR Graphics Tracking: April,medium,true
+(single tab),4,S03E016,opening_monologue,Opening Monologue,4,B-roll,broll: rocket engineering loop,Loaded In,Isaac,,04_GSR Graphics Tracking: April,medium,true
+(single tab),5,S03E016,opening_monologue,Opening Monologue,5,Pre-made: B-roll,broll: Lunar Surface broll,Loaded In,Isaac,,04_GSR Graphics Tracking: April,medium,true
+(single tab),7,S03E016,opening_monologue,Opening Monologue,7,B-roll,broll: Pull 15-20 photos for 2 minute Ken Burns Montage https://www.nasa.gov/gallery/lunar-flyby/,Loaded In,Isaac,,04_GSR Graphics Tracking: April,medium,true
+(single tab),1,S03E016,the_heavens_declare,The Heavens Declare,1,Roll-in,THD 388 - The Remarkable Woodpecker,Loaded In,Jakob,,04_GSR Graphics Tracking: April,medium,true
+(single tab),1,S03E016,kids_corner,Kids Corner,1,Roll-in,KC_S02_Ep016_Slinky_YOUTUBE_000256_4K_2997_45Mbps,Loaded In,,,04_GSR Graphics Tracking: April,medium,true
+(single tab),1,S03E016,q_a,Q&A,1,Roll-in,,,,,04_GSR Graphics Tracking: April,medium,true
+(single tab),1,S03E016,viewer_voices,Viewer Voices,1,Roll-in,,,,,04_GSR Graphics Tracking: April,medium,true
+(single tab),1,S03E016,featured_resource,Featured Resource,1,Roll-in,,,,,04_GSR Graphics Tracking: April,medium,true
+(single tab),1,S03E016,gsm,GSM,1,Roll-in,GS_Minute_074_Erasmus,Loaded In,Gabe,,04_GSR Graphics Tracking: April,medium,true
+(single tab),1,S03E016,interview_1,Interview 1:,1,Article Screenshot,Article Screenshot: https://www.science.org/content/article/earth-size-planet-spotted-yearlong-orbit,Loaded In,Daniel,,04_GSR Graphics Tracking: April,medium,true
+(single tab),2,S03E016,interview_1,Interview 1:,2,Intro Graphic,Intro Graphic: The Search for Earth's Twin,Loaded In,Isaac,,04_GSR Graphics Tracking: April,medium,true
+(single tab),5,S03E016,interview_1,Interview 1:,5,Picture,Pull photo: https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FHD_137010_b&ved=0CBYQjRxqFwoTCLj80--VgpQDFQAAAAAdAAAAABAG&opi=89978449,Loaded In,Isaac,,04_GSR Graphics Tracking: April,medium,true
+(single tab),6,S03E016,interview_1,Interview 1:,6,Pre-made: B-roll,PM Exoplanet Broll,Loaded In,Isaac,,04_GSR Graphics Tracking: April,medium,true
+(single tab),7,S03E016,interview_1,Interview 1:,7,Graphic,Book Graphic: Universe: Surveying God's Created Cosmos,Loaded In,Isaac,,04_GSR Graphics Tracking: April,medium,true
+(single tab),1,S03E016,,,1,Clip w/audio,Insert first 18 seconds: https://www.youtube.com/watch?v=sLChKGmOF-U,Loaded In,Isaac,,05_GSR Graphics Tracking: May,medium,true
+(single tab),2,S03E016,,,2,Title Graphic,Intro Graphic: Eyes Fixed on Things Above,Loaded In,Isaac,,05_GSR Graphics Tracking: May,medium,true
+(single tab),3,S03E016,,,3,Article Screenshot,Website screenshot: http://war.gov/ufo,Loaded In,Isaac,,05_GSR Graphics Tracking: May,medium,true
+(single tab),4,S03E016,,,4,B-roll,Confidential information broll loop,Loaded In,Jeremiah,,05_GSR Graphics Tracking: May,medium,true
+(single tab),5,S03E016,,,5,B-roll,"FLIR1 'Tic Tac' infrared video, 2004 USS Nimitz encounter: https://en.wikipedia.org/wiki/Pentagon_UFO_videos",Loaded In,Isaac,,05_GSR Graphics Tracking: May,medium,true
+(single tab),6,S03E016,,,6,Picture,Orbs Launching Orbs' Western US event slides from PURSUE archive: https://www.war.gov/medialink/ufo/release_1/western_us_event_slides_5.08.2026.pdf,Not Started,Isaac,not sure what to do about this one...,05_GSR Graphics Tracking: May,medium,true
+(single tab),7,S03E016,,,7,B-roll,"U.S. Indo-Pacific Command infrared footage, football-shaped object near Japan 2024 PURSUE archive: https://www.war.gov/ufo/",Loaded In,Isaac,,05_GSR Graphics Tracking: May,medium,true
+(single tab),8,S03E016,,,8,B-roll,Ken Burns artistic rendering of Elijah's chariot of fire,Loaded In,Isaac,,05_GSR Graphics Tracking: May,medium,true
+(single tab),9,S03E016,,,9,Pre-made: B-roll,PM Astronomy broll loops,Loaded In,Isaac,,05_GSR Graphics Tracking: May,medium,true
+(single tab),10,S03E016,,,10,Propres Quote,Colossians 3:1-2 KJV propres graphic,Loaded In,Isaac,,05_GSR Graphics Tracking: May,medium,true
+(single tab),,S03E016,the_heavens_declare,The Heavens Declare,,Roll-in,THD 390 - DAY YOM,Loaded In,Jakob,,05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,kids_corner,Kids Corner,1,Roll-in,KC S02 Ep21 - Bobcats,Loaded In,Jakob,,05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,q_a,Q&A,1,Roll-in,Q&A Ep21 - How do we smell?,Loaded In,Jakob,,05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,ministry_report,Ministry Report,1,Graphic,Wonders of Creation Conference,,Isaac,placeholder so Isaac can add in post,05_GSR Graphics Tracking: May,medium,true
+(single tab),2,S03E016,ministry_report,Ministry Report,2,Graphic,America's Gospel Music | Sundays,Loaded In,,,05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,viewer_voices,Viewer Voices,1,Roll-in,VV 01 - Liz,Loaded In,,,05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,featured_resource,Featured Resource,1,Roll-in,FR 01 - Carved In Stone,Loaded In,,,05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,gsm,GSM,1,Roll-in,GS Minute 085 - The Kings Astronomer,Loaded In,,,05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,interview_1,Interview 1:,1,Intro Graphic,Title Graphic: 'The 10th Planetary Boundary',Loaded In,Isaac,,05_GSR Graphics Tracking: May,medium,true
+(single tab),2,S03E016,interview_1,Interview 1:,2,Article Screenshot,"Article screenshot: Rose et al. 2024, Nature Ecology & Evolution",Loaded In,Isaac,Source: https://www.nature.com/articles/s41559-024-02448-y,05_GSR Graphics Tracking: May,medium,true
+(single tab),3,S03E016,interview_1,Interview 1:,3,B-roll,Ocean surface / open water broll loop (reusable),Loaded In,Isaac,"ocean aerial, open ocean, ocean waves drone. CC0, no attribution required.",05_GSR Graphics Tracking: May,medium,true
+(single tab),4,S03E016,interview_1,Interview 1:,4,B-roll,Farm field / crops broll loop (reusable),Loaded In,Isaac,"Reusable generic. Mixkit/Pexels search: farmland aerial, crop field drone, farm overhead. CC0/Mixkit license, no attribution required.",05_GSR Graphics Tracking: May,medium,true
+(single tab),5,S03E016,interview_1,Interview 1:,5,Pre-made: B-roll,PM earth from space broll,Loaded In,Isaac,,05_GSR Graphics Tracking: May,medium,true
+(single tab),6,S03E016,interview_1,Interview 1:,6,B-roll,Montage: Dead zones around the world,Loaded In,Isaac,Three-image montage. NASA global map: https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/44000/44677/dead_zones_lrg.jpg | NOAA Gulf 2024: https://www.noaa.gov/news-release/gulf-of-mexico-dead-zone-larger-than-average-scientists-find | Chesapeake: https:/o/www.chesapeakebay.net/discover/ecosystem/dissolved-oxygen,05_GSR Graphics Tracking: May,medium,true
+(single tab),7,S03E016,interview_1,Interview 1:,7,Picture,"Planetary Boundaries wheel infographic (Stockholm Resilience Centre, 2023)",Loaded In,Isaac,"CC BY-NC-ND 3.0. ON-SCREEN CREDIT REQUIRED: Azote for Stockholm Resilience Centre, Richardson et al. 2023. Do not modify image. Source: https://www.stockholmresilience.org/images/200.3d04209a18a2642b2fc15eb6/1694596418196/Planetary%20Boundaries%202023.png",05_GSR Graphics Tracking: May,medium,true
+(single tab),8,S03E016,interview_1,Interview 1:,8,Picture,Montage: Historical environmental alarms,Not Started,Isaac,"Three-image stack: Population Bomb cover, peak oil headline, acid rain headline. Fair use, editorial. Population Bomb: https://archive.org/details/populationbom00ehrl | Acid rain doc: https://archive.org/details/AcidRainNewBadNews | Peak oil context: https://archive.org/details/Peak_Oil_-_Politics_Geopolitics_and_Choke_Points",05_GSR Graphics Tracking: May,medium,true
+(single tab),9,S03E016,interview_1,Interview 1:,9,Propres Graphic,Book cover: 'Climate and Energy: The Case for Realism',Loaded In,Isaac,Book cover is in the loadins folder,05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,,,1,Clip w/audio,Insert first 18 seconds: https://www.youtube.com/watch?v=sLChKGmOF-U,Loaded In,Isaac,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),2,S03E016,,,2,Title Graphic,Intro Graphic: Eyes Fixed on Things Above,Loaded In,Isaac,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),3,S03E016,,,3,Article Screenshot,Website screenshot: http://war.gov/ufo,Loaded In,Isaac,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),4,S03E016,,,4,B-roll,Confidential information broll loop,Loaded In,Jeremiah,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),5,S03E016,,,5,B-roll,"FLIR1 'Tic Tac' infrared video, 2004 USS Nimitz encounter: https://en.wikipedia.org/wiki/Pentagon_UFO_videos",Loaded In,Isaac,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),6,S03E016,,,6,Picture,Orbs Launching Orbs' Western US event slides from PURSUE archive: https://www.war.gov/medialink/ufo/release_1/western_us_event_slides_5.08.2026.pdf,Not Started,Isaac,not sure what to do about this one...,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),7,S03E016,,,7,B-roll,"U.S. Indo-Pacific Command infrared footage, football-shaped object near Japan 2024 PURSUE archive: https://www.war.gov/ufo/",Loaded In,Isaac,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),8,S03E016,,,8,B-roll,Ken Burns artistic rendering of Elijah's chariot of fire,Loaded In,Isaac,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),9,S03E016,,,9,Pre-made: B-roll,PM Astronomy broll loops,Loaded In,Isaac,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),10,S03E016,,,10,Propres Quote,Colossians 3:1-2 KJV propres graphic,Loaded In,Isaac,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),,S03E016,the_heavens_declare,The Heavens Declare,,Roll-in,THD 390 - DAY YOM,Loaded In,Jakob,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,kids_corner,Kids Corner,1,Roll-in,KC S02 Ep21 - Bobcats,Loaded In,Jakob,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,q_a,Q&A,1,Roll-in,Q&A Ep21 - How do we smell?,Loaded In,Jakob,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,viewer_voices,Viewer Voices,1,Roll-in,VV 01 - Liz,Loaded In,,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,featured_resource,Featured Resource,1,Roll-in,FR 01 - Carved In Stone,Loaded In,,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,gsm,GSM,1,Roll-in,GS Minute 085 - The Kings Astronomer,Loaded In,,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),1,S03E016,interview_1,Interview 1:,1,Intro Graphic,Title Graphic: 'The 10th Planetary Boundary',Created,Isaac,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),2,S03E016,interview_1,Interview 1:,2,Article Screenshot,"Article screenshot: Rose et al. 2024, Nature Ecology & Evolution",Not Started,Isaac,Source: https://www.nature.com/articles/s41559-024-02448-y,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),3,S03E016,interview_1,Interview 1:,3,B-roll,Ocean surface / open water broll loop (reusable),Not Started,Jeremiah,"ocean aerial, open ocean, ocean waves drone. CC0, no attribution required.",Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),4,S03E016,interview_1,Interview 1:,4,B-roll,Farm field / crops broll loop (reusable),Not Started,Jeremiah,"Reusable generic. Mixkit/Pexels search: farmland aerial, crop field drone, farm overhead. CC0/Mixkit license, no attribution required.",Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),5,S03E016,interview_1,Interview 1:,5,Pre-made: B-roll,PM earth from space broll,Created,Isaac,,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),6,S03E016,interview_1,Interview 1:,6,B-roll,Montage: Dead zones around the world,Created,Isaac,Three-image montage. NASA global map: https://assets.science.nasa.gov/dynamicimage/assets/science/esd/eo/images/imagerecords/44000/44677/dead_zones_lrg.jpg | NOAA Gulf 2024: https://www.noaa.gov/news-release/gulf-of-mexico-dead-zone-larger-than-average-scientists-find | Chesapeake: https:/o/www.chesapeakebay.net/discover/ecosystem/dissolved-oxygen,Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),7,S03E016,interview_1,Interview 1:,7,Picture,"Planetary Boundaries wheel infographic (Stockholm Resilience Centre, 2023)",Created,Isaac,"CC BY-NC-ND 3.0. ON-SCREEN CREDIT REQUIRED: Azote for Stockholm Resilience Centre, Richardson et al. 2023. Do not modify image. Source: https://www.stockholmresilience.org/images/200.3d04209a18a2642b2fc15eb6/1694596418196/Planetary%20Boundaries%202023.png",Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),8,S03E016,interview_1,Interview 1:,8,Picture,Montage: Historical environmental alarms,Not Started,Isaac,"Three-image stack: Population Bomb cover, peak oil headline, acid rain headline. Fair use, editorial. Population Bomb: https://archive.org/details/populationbom00ehrl | Acid rain doc: https://archive.org/details/AcidRainNewBadNews | Peak oil context: https://archive.org/details/Peak_Oil_-_Politics_Geopolitics_and_Choke_Points",Copy of 05_GSR Graphics Tracking: May,medium,true
+(single tab),9,S03E016,interview_1,Interview 1:,9,Propres Graphic,Book cover: 'Climate and Energy: The Case for Realism',Not Started,Isaac,"Fair use, editorial identification. Source: https://www.regnery.com/9781684512676/climate-and-energy/",Copy of 05_GSR Graphics Tracking: May,medium,true
+Show 1,1.0,S03E001,opening_monologue,Opening Monologue,1.0,Title Graphic,Intro Graphic: Ancient Outpost Validates Exodus Account,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,2.0,S03E001,opening_monologue,Opening Monologue,2.0,B-roll,Photo Montage of: Dura Europos Frescos,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,3.0,S03E001,opening_monologue,Opening Monologue,3.0,Clip w/audio,Pull clip: The Ten Commandments Insert 3:06:53-3:07:11,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,4.0,S03E001,opening_monologue,Opening Monologue,4.0,Clip w/audio,Pull Clip: The Prince of Egypt Insert 1:24:24-1:24:53,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,5.0,S03E001,opening_monologue,Opening Monologue,5.0,Pre-made: B-roll,Ancient scroll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,6.0,S03E001,opening_monologue,Opening Monologue,6.0,Graphic,Headshot + quote Graphic: John Currid,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,7.0,S03E001,opening_monologue,Opening Monologue,7.0,Graphic,Headshot + quote Graphic: Gleason Archer,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,8.0,S03E001,opening_monologue,Opening Monologue,8.0,Propres Quote,3 Slide Pro-Pres Quote Graphic,Loaded In,Daniel,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,9.0,S03E001,opening_monologue,Opening Monologue,9.0,Article Screenshot,https://www.smithsonianmag.com/smart-news/archaeologists-discover-3500-year-old-egyptian-military-fortress-in-the-sinai-desert-180987542/,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,10.0,S03E001,opening_monologue,Opening Monologue,10.0,Propres Quote,Exodus 13:17-18:,Loaded In,Daniel,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,11.0,S03E001,opening_monologue,Opening Monologue,11.0,Picture,Photos of Tell el-Kharouba fortress,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,12.0,S03E001,opening_monologue,Opening Monologue,12.0,Graphic,Map of the area (Way of Horus/Road from Caanan to Egypt),Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,13.0,S03E001,opening_monologue,Opening Monologue,13.0,B-roll,Sinai Desert B-roll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,1.0,S03E001,the_heavens_declare,The Heavens Declare,1.0,Roll-in,Human Diversity: 4:00,Loaded In,Jakob,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,1.0,S03E001,kids_corner,Kids Corner,1.0,Roll-in,Plasma Globe 2:28,Loaded In,Jakob,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,1.0,S03E001,q_a,Q&A,1.0,Roll-in,04:10:00,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,1.0,S03E001,ministry_report,Ministry Report,1.0,Graphic,Content film in motion event graphic,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,2.0,S03E001,ministry_report,Ministry Report,2.0,Graphic,screenshot of event graphic,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,1.0,S03E001,viewer_voices,Viewer Voices,1.0,Roll-in,00:34:00,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,1.0,S03E001,featured_resource,Featured Resource,1.0,Roll-in,00:51:00,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,1.0,S03E001,gsm,GSM,1.0,Roll-in,Why Popcorn Pops,Loaded In,Gabe,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,1.0,S03E001,interview_1,Interview 1:,1.0,Article Screenshot,Article Screenshot: https://www.sciencealert.com/south-africa-is-rising-up-out-of-the-ocean-scientists-reveal,Loaded In,Anderson,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,2.0,S03E001,interview_1,Interview 1:,2.0,Intro Graphic,Intro Graphic: Earth’s Dynamic Crust,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,3.0,S03E001,interview_1,Interview 1:,3.0,B-roll,Coastline Broll loop,Loaded In,Ethan,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,4.0,S03E001,interview_1,Interview 1:,4.0,Pre-made: B-roll,PM: Post Flood b-roll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,5.0,S03E001,interview_1,Interview 1:,5.0,Pre-made: B-roll,PM Geology Broll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,6.0,S03E001,interview_1,Interview 1:,6.0,Propres Graphic,Earth Systems book Graphic,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,1.0,S03E001,interview_2,Interview 2:,1.0,Intro Graphic,Intro Graphic: Counting Solar Systems? Not So Simple,Loaded In,Ethan,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,2.0,S03E001,interview_2,Interview 2:,2.0,Pre-made: B-roll,PM: Alien Planet Broll,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,3.0,S03E001,interview_2,Interview 2:,3.0,Pre-made: B-roll,PM Galaxy Broll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,4.0,S03E001,interview_2,Interview 2:,4.0,Article Screenshot,https://www.sciencing.com/1818528/why-dont-know-how-many-solar-systems-in-milky-way/,Loaded In,Ethan,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,5.0,S03E001,interview_2,Interview 2:,5.0,Pre-made: B-roll,PM Astronomy Broll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,6.0,S03E001,interview_2,Interview 2:,6.0,Propres Graphic,Propres Book Graphic,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,7.0,S03E001,interview_2,Interview 2:,7.0,B-roll,Exoplanet Broll loop,Created,Anderson,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,1.0,S03E002,opening_monologue,Opening Monologue,1.0,Title Graphic,Intro Graphic: 2D Materials: Far Beyond Kindergarten,Loaded In,Bella,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,2.0,S03E002,opening_monologue,Opening Monologue,2.0,Article Screenshot,https://www.sciencedaily.com/releases/2025/10/251021083640.htm,Loaded In,Bella,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,3.0,S03E002,opening_monologue,Opening Monologue,3.0,Picture,Crop and Attribute photo of Terahertz Spectroscope Techonlogy,Loaded In,Bella,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,4.0,S03E002,opening_monologue,Opening Monologue,4.0,B-roll,1 B-roll clip: Graphene Hexagon lattice,Loaded In,Bella,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,5.0,S03E002,opening_monologue,Opening Monologue,5.0,B-roll,Photos of Graphine scientists (See Daniel),Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,6.0,S03E002,opening_monologue,Opening Monologue,6.0,Clip w/audio,Pull clip: https://www.youtube.com/watch?v=fs1-9xRsGCQ,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,7.0,S03E002,opening_monologue,Opening Monologue,7.0,Propres Quote,"Hebrews 11:3, ""Through faith we understand that the worlds were framed by the word of God, so that things which are seen were not made of things which do appear.""",Loaded In,Daniel,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,1.0,S03E002,the_heavens_declare,The Heavens Declare,1.0,Roll-in,A Call To Remember: 6:00,Loaded In,Daniel,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,1.0,S03E002,kids_corner,Kids Corner,1.0,Roll-in,Mass Mortality Plates: 3:10,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,1.0,S03E002,q_a,Q&A,1.0,Roll-in,04:10:00,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,1.0,S03E002,ministry_report,Ministry Report,1.0,Graphic,"night of dinner, music, and discovery event graphic",Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,1.0,S03E002,viewer_voices,Viewer Voices,1.0,Roll-in,00:36:00,Loaded In,Daniel,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,1.0,S03E002,featured_resource,Featured Resource,1.0,Roll-in,00:49:00,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,1.0,S03E002,gsm,GSM,1.0,Roll-in,Venus Fly Trap,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,1.0,S03E002,interview_1,Interview 1:,1.0,Intro Graphic,Intro Graphic: The Fall of a Fossil Icon,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,2.0,S03E002,interview_1,Interview 1:,2.0,Article Screenshot,https://www.nhm.ac.uk/discover/news/2025/november/early-hominin-australopithecus-afarensis-may-not-be-our-human-ancestor.html,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,3.0,S03E002,interview_1,Interview 1:,3.0,Picture,Find photos of Australopithecus deyiremeda and give attribution,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,4.0,S03E002,interview_1,Interview 1:,4.0,B-roll,PM: Fossil Broll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,5.0,S03E002,interview_1,Interview 1:,5.0,Propres Graphic,"Propres Book Graphic. ""Apes as ancestors""",Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,1.0,S03E002,interview_2,Interview 2:,1.0,Intro Graphic,Intro Graphic: GENETIC CLUES TO NEANDERTHAL HUMANITY,Created,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,2.0,S03E002,interview_2,Interview 2:,2.0,Article Screenshot,https://scienceandculture.com/2025/11/perhaps-neanderthals-never-truly-went-extinct/,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,3.0,S03E002,interview_2,Interview 2:,3.0,B-roll,PM Neanderthal Broll,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,4.0,S03E002,interview_2,Interview 2:,4.0,Pre-made: B-roll,PM Fossil broll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,5.0,S03E002,interview_2,Interview 2:,5.0,B-roll,Panning through Evolution chart of neanderthal evolution,Not Started,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 2,6.0,S03E002,interview_2,Interview 2:,6.0,Propres Graphic,Book Graphic: The Fossils Still Say No,Not Started,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,1.0,S03E003,opening_monologue,Opening Monologue,1.0,Title Graphic,Intro Graphic: The Sobering Reality of God’s Mighty Systems,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,2.0,S03E003,opening_monologue,Opening Monologue,2.0,Propres Graphic,Propres Graphic: “Blessed be the name of God for ever and ever: for wisdom and might are his; and he changeth the times and the seasons.”,Loaded In,Daniel,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,3.0,S03E003,opening_monologue,Opening Monologue,3.0,Graphic,Hurricane Melissa Graphic,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,4.0,S03E003,opening_monologue,Opening Monologue,4.0,Clip w/audio,ABC News [0.00-1.00]  https://abcnews.go.com/US/hurricane-melissa-ranks-strongest-atlantic-storms-make-landfall/story?id=126943257,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,5.0,S03E003,opening_monologue,Opening Monologue,5.0,B-roll,Moving Photos of Tornado Outbreak & new mexico Wildfires in July 2024,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,6.0,S03E003,opening_monologue,Opening Monologue,6.0,B-roll,"Kilauea Volcano Eruption | A Perfect Planet | BBC Earth (0.27-1:04)
+OR
+Hawaii's Kilauea volcano erupts, spewing lava and billowing smoke (0.20-0.47)",Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,7.0,S03E003,opening_monologue,Opening Monologue,7.0,B-roll,Broll loop: various weather conditions,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,8.0,S03E003,opening_monologue,Opening Monologue,8.0,B-roll,Broll loop: Clouds,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,1.0,S03E003,the_heavens_declare,The Heavens Declare,1.0,Roll-in,Unsocial Nature of Social Media 6:00,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,1.0,S03E003,kids_corner,Kids Corner,1.0,Roll-in,Echinoderms 3:39,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,1.0,S03E003,q_a,Q&A,1.0,Roll-in,03:39:00,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,1.0,S03E003,ministry_report,Ministry Report,1.0,Graphic,Astronomy day event graphic,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,2.0,S03E003,ministry_report,Ministry Report,2.0,B-roll,Pull video: https://www.youtube.com/watch?v=dGpzzQZbsnY&t=14s,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,1.0,S03E003,viewer_voices,Viewer Voices,1.0,Roll-in,00:42:00,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,1.0,S03E003,featured_resource,Featured Resource,1.0,Roll-in,00:54:00,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,1.0,S03E003,gsm,GSM,1.0,Roll-in,Bumble Bee Proclamation,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,1.0,S03E003,interview_1,Interview 1:,1.0,Clip w/audio,https://youtube.com/clip/UgkxDfnmez63NDacsa2jp0S4o_QDdobuo8t1?si=ovsu_OPt1a3nd0lX,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,2.0,S03E003,interview_1,Interview 1:,2.0,Clip w/audio,https://youtube.com/clip/UgkxhE4pJPHFRDfkkGSlG_qTuYKulzGRxr59?si=7V-Xx4eu8XWTVBYc,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,3.0,S03E003,interview_1,Interview 1:,3.0,Graphic,Dual Book Propres Graphic (See Daniel): The Stairway to Life and The Scientific Approach to Evolution,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,1.0,S03E003,interview_2,Interview 2:,1.0,Intro Graphic,"Intro Graphic: Looking For Heaven: Physics, Faith, and Mystery",Not Started,Anderson,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,2.0,S03E003,interview_2,Interview 2:,2.0,Pre-made: B-roll,PM Astronomy Broll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,3.0,S03E003,interview_2,Interview 2:,3.0,Pre-made: B-roll,PM Planet Earth Broll,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,4.0,S03E003,interview_2,Interview 2:,4.0,Pre-made: B-roll,PM Earth's atmosphere Broll,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,5.0,S03E003,interview_2,Interview 2:,5.0,Pre-made: B-roll,PM Black hole broll,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 3,6.0,S03E003,interview_2,Interview 2:,6.0,Picture,Website Screenshot: creationevolutionheadlines.com,Not Started,Anderson,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,1.0,S03E004,opening_monologue,Opening Monologue,1.0,Graphic,Sir William Herschel Headshot quote graphic,Loaded In,Bella,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,2.0,S03E004,opening_monologue,Opening Monologue,2.0,Title Graphic,Intro Graphic: A New Star in Centaurus,Loaded In,Bella,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,3.0,S03E004,opening_monologue,Opening Monologue,3.0,Picture,"Pull photo with Attribution (Credit: Ernesto Guido, Marco Rocchetto and Luca Izzo): https://astronomynow.com/wp-content/uploads/2025/09/Nova-Centauri-2025.png",Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,4.0,S03E004,opening_monologue,Opening Monologue,4.0,Picture,Pull 2 Photos with Attribution (Credit: Guido/ M. Rocchetto/Spaceflux) https://earthsky.org/upl/2025/09/Nova-in-centaurus-animation-September-24-2025.webp,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,5.0,S03E004,opening_monologue,Opening Monologue,5.0,Pre-made: B-roll,PM: Astonomy Broll,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,6.0,S03E004,opening_monologue,Opening Monologue,6.0,Picture,Pull photo with attribution (Credit: Bob King): https://dq0hsqwjhea1.cloudfront.net/Nova-Sgr-V7794-Sgr-Sept-24-2025-S.webp,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,7.0,S03E004,opening_monologue,Opening Monologue,7.0,Picture,Pull photo with Attribution (Credit: universetoday.com) https://www.universetoday.com/article_images/Nova_Centauri_2013_LRGB_1400x1046-lowqual.jpg,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,8.0,S03E004,opening_monologue,Opening Monologue,8.0,Picture,Pull photo with attribution (Stellarium with additions by Bob King) : https://dq0hsqwjhea1.cloudfront.net/Nova-Cen-map-Sept-2025-ST3.webp,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,9.0,S03E004,opening_monologue,Opening Monologue,9.0,Pre-made: B-roll,PM Broll: Galaxy loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,10.0,S03E004,opening_monologue,Opening Monologue,10.0,Propres Quote,Propres Quote: (Genesis 1:14 KJV),Loaded In,Daniel,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,11.0,S03E004,opening_monologue,Opening Monologue,11.0,Propres Quote,Propres Quote: (Numbers 24:17 KJV),Loaded In,Daniel,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,12.0,S03E004,opening_monologue,Opening Monologue,12.0,B-roll,Broll loop: The sun/other stars,Loaded In,Bella,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,13.0,S03E004,opening_monologue,Opening Monologue,13.0,Graphic,"Headshot quote Graphic: Johannes Kepler ""O God, I am thinking Thy thoughts after Thee.”",Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,1.0,S03E004,the_heavens_declare,The Heavens Declare,1.0,Roll-in,Why we Create: 5:00,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,1.0,S03E004,kids_corner,Kids Corner,1.0,Roll-in,Ancient Stone Tools: 2:49,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,1.0,S03E004,q_a,Q&A,1.0,Roll-in,04:02:00,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,1.0,S03E004,ministry_report,Ministry Report,1.0,Graphic,Africa safari website graphic,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,2.0,S03E004,ministry_report,Ministry Report,2.0,Graphic,Photos of african safari,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,3.0,S03E004,ministry_report,Ministry Report,3.0,Graphic,Kansas dig site graphic,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,4.0,S03E004,ministry_report,Ministry Report,4.0,Graphic,Photos from kansas dig,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,1.0,S03E004,viewer_voices,Viewer Voices,1.0,Roll-in,00:38:00,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,1.0,S03E004,featured_resource,Featured Resource,1.0,Roll-in,00:47:00,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,1.0,S03E004,gsm,GSM,1.0,Roll-in,Smelly powers,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,1.0,S03E004,interview_2,Interview 2:,1.0,Article Screenshot,Article Headlines (Slides 2-6) (See Daniel),Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,2.0,S03E004,interview_2,Interview 2:,2.0,Clip w/audio,VIDEO CLIP: 4:28–5:00 https://youtu.be/dKoWpWGS-zY?si=sj-9zLLr2Cw7I1cy,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,3.0,S03E004,interview_2,Interview 2:,3.0,Graphic,SLIDE 7,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,4.0,S03E004,interview_2,Interview 2:,4.0,Propres Quote,SLIDE 8,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 4,5.0,S03E004,interview_2,Interview 2:,5.0,Graphic,Dual Book Propres Graphic (See Daniel): The Stairway to Life and The Scientific Approach to Evolution,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,1.0,S03E005,opening_monologue,Opening Monologue,1.0,Title Graphic,Intro Graphic: Protein… building block and testament to God,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,2.0,S03E005,opening_monologue,Opening Monologue,2.0,Propres Quote,Propres Quote: Psalm 139:14,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,3.0,S03E005,opening_monologue,Opening Monologue,3.0,Article Screenshot,Article Screenshot: https://www.sciencedaily.com/releases/2025/09/250928095627.htm,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,4.0,S03E005,opening_monologue,Opening Monologue,4.0,Pre-made: B-roll,PM Broll: Scientists in lab,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,5.0,S03E005,opening_monologue,Opening Monologue,5.0,B-roll,Protein Broll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,6.0,S03E005,opening_monologue,Opening Monologue,6.0,Graphic,"Neil Hunter headshot Graphic: “If that goes wrong, then you end up with the wrong number of chromosomes in the eggs or sperm.”",Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,7.0,S03E005,opening_monologue,Opening Monologue,7.0,Propres Graphic,Propres Graphic: Romans 1:20,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,1.0,S03E005,the_heavens_declare,The Heavens Declare,1.0,Roll-in,Power of a smile: 3:30,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,1.0,S03E005,kids_corner,Kids Corner,1.0,Roll-in,Massachusetts Psalter 2:50,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,1.0,S03E005,q_a,Q&A,1.0,Roll-in,04:20:00,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,1.0,S03E005,ministry_report,Ministry Report,1.0,Picture,Pictures of Wonders of the Sea sign,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,2.0,S03E005,ministry_report,Ministry Report,2.0,Graphic,QR Code with link to Funding Campaign,Loaded In,Gabe,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,1.0,S03E005,viewer_voices,Viewer Voices,1.0,Roll-in,44.0,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,1.0,S03E005,featured_resource,Featured Resource,1.0,Roll-in,00:49:00,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,1.0,S03E005,gsm,GSM,1.0,Roll-in,Seven Vertabra,Loaded In,,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,1.0,S03E005,interview_1,Interview 1:,1.0,Article Screenshot,Article Screenshot: https://amp.theguardian.com/environment/2025/nov/05/great-barrier-reef-coral-bleaching-decline-global-heating-recovery,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,2.0,S03E005,interview_1,Interview 1:,2.0,Intro Graphic,"Intro Graphic: Great Barrier Reef: Bleached, But Not Broken",Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,3.0,S03E005,interview_1,Interview 1:,3.0,Picture,Chart from article,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,4.0,S03E005,interview_1,Interview 1:,4.0,Picture,Photos of 'crown-of-thorns starfish',Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,5.0,S03E005,interview_1,Interview 1:,5.0,B-roll,Coral Reef Broll loop,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,6.0,S03E005,interview_1,Interview 1:,6.0,Pre-made: B-roll,Flood Broll loops,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,7.0,S03E005,interview_1,Interview 1:,7.0,Propres Graphic,Propres Graphic: Climate Change & Creation: An Inconvenient Truth,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,1.0,S03E005,interview_2,Interview 2:,1.0,Intro Graphic,Intro Graphic: Cosmic Origins and the Limits of Science,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,2.0,S03E005,interview_2,Interview 2:,2.0,Pre-made: B-roll,PM Galaxy Broll loop 1,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,3.0,S03E005,interview_2,Interview 2:,3.0,Pre-made: B-roll,PM Astronomy B-roll,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,4.0,S03E005,interview_2,Interview 2:,4.0,Pre-made: B-roll,PM: Galaxy Broll loop 2,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,5.0,S03E005,interview_2,Interview 2:,5.0,Graphic,The God Hypothesis by Stephen Meyer Book Graphic,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 5,6.0,S03E005,interview_2,Interview 2:,6.0,Propres Graphic,Canceled science: what some atheists don't want you to see,Loaded In,Isaac,,01_GSR Graphics Tracking_ January.xlsx,medium,true
+Show 1,1.0,S03E006,opening_monologue,Opening Monologue,1.0,B-roll,Arial Footage of Tel Shiloh with attribution: https://youtu.be/7Zh5B6lqD9g,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,2.0,S03E006,opening_monologue,Opening Monologue,2.0,Title Graphic,Intro Graphic: The Altar at Shiloh,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,3.0,S03E006,opening_monologue,Opening Monologue,3.0,Picture,Insert picture of reconstruction of altar https://upload.wikimedia.org/wikipedia/commons/7/71/Tel_Be%27er_Sheva_Altar_2007041.JPG,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,4.0,S03E006,opening_monologue,Opening Monologue,4.0,Clip w/audio,Insert Interview segment with: Touring Tel Shiloh With Dr. Scott Stripling 17:48-18:45: https://www.youtube.com/watch?v=eXF9hgnVoC0,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,5.0,S03E006,opening_monologue,Opening Monologue,5.0,Picture,Insert picture of actual horn with attribution: https://armstronginstitute.org/200-altar-horns-uncovered-at-shiloh,Loaded In,Anderson,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,6.0,S03E006,opening_monologue,Opening Monologue,6.0,B-roll,Re-use Arial Footage of Tel Shiloh with attribution-- https://youtu.be/7Zh5B6lqD9g,Loaded In,Anderson,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,7.0,S03E006,opening_monologue,Opening Monologue,7.0,B-roll,Broll Loop: Lots of bones but not full skeletons (see Daniel),Loaded In,Anderson,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,8.0,S03E006,opening_monologue,Opening Monologue,8.0,B-roll,"Propres Quote: ""And the right shoulder shall ye give unto the priest for an heave offering."" Leviticus 7",Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,9.0,S03E006,opening_monologue,Opening Monologue,9.0,B-roll,Ken Burns montage: Images/drawings of tabernacle structure,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,1.0,S03E006,the_heavens_declare,The Heavens Declare,1.0,Roll-in,Static Electricty: 3:56,Loaded In,Gabe,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,1.0,S03E006,kids_corner,Kids Corner,1.0,Roll-in,Giraffe Weevil: 2:40,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,1.0,S03E006,q_a,Q&A,1.0,Roll-in,S03 Ep006 2:35,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,1.0,S03E006,ministry_report,Ministry Report,1.0,Graphic,Placeholder Graphic For Photos and Broll of event,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,2.0,S03E006,ministry_report,Ministry Report,2.0,Graphic,Steam Event Page Screenshot: https://tickets.wonderscenter.org/event/stem-homeschool-day-ft-liberty-chamber-singers-1tssfk,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,1.0,S03E006,viewer_voices,Viewer Voices,1.0,Roll-in,00:42:00,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,1.0,S03E006,featured_resource,Featured Resource,1.0,Roll-in,00:49:00,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 1,1.0,S03E006,gsm,GSM,1.0,Roll-in,Nasa Doubts,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,1.0,S03E007,opening_monologue,Opening Monologue,1.0,Article Screenshot,Article screenshot: https://www.nature.com/articles/d41586-024-03190-y,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,2.0,S03E007,opening_monologue,Opening Monologue,2.0,Title Graphic,Intro Graphic: The Brain Smaller Than a Period,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,3.0,S03E007,opening_monologue,Opening Monologue,3.0,Picture,Insert picture of the brain with attribution: https://www.science.org/content/article/complete-map-fruit-fly-brain-circuitry-unveiled,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,4.0,S03E007,opening_monologue,Opening Monologue,4.0,Graphic,"Headshot Graphic: ""The first time I saw the complexity of the connectome it literally blew my mind because we have been thinking of these circuits in a simplistic manner, but we can now appreciate that they are far more complex than we imagined."" Dr. Gabriella Sterne",Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,5.0,S03E007,opening_monologue,Opening Monologue,5.0,B-roll,Broll loop: Neurons in the brain,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,6.0,S03E007,opening_monologue,Opening Monologue,6.0,B-roll,Pull clip 1 with attribution: https://www.youtube.com/watch?v=MX4VogVaczk&t=3s,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,7.0,S03E007,opening_monologue,Opening Monologue,7.0,B-roll,Pull clip 2 with Attribution: 0:27-1:27 https://youtu.be/J2xTkMsZchs,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,1.0,S03E007,the_heavens_declare,The Heavens Declare,1.0,Roll-in,THD 357 - Stasis Of The Gecko 2:43,Loaded In,Jakob,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,1.0,S03E007,kids_corner,Kids Corner,1.0,Roll-in,Dog Kind 3:18,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,1.0,S03E007,q_a,Q&A,1.0,Roll-in,S03 Ep007 2:22,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,1.0,S03E007,ministry_report,Ministry Report,1.0,Graphic,Placeholder graphic for photos and Broll of film summit event,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,2.0,S03E007,ministry_report,Ministry Report,2.0,Picture,"Screenshot of event page:
+https://web.cvent.com/event/ee2a95b6-5cf6-41fb-9b19-357e1f52f308/summary",Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,1.0,S03E007,viewer_voices,Viewer Voices,1.0,Roll-in,00:38:00,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,1.0,S03E007,featured_resource,Featured Resource,1.0,Roll-in,00:52:00,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,1.0,S03E007,gsm,GSM,1.0,Roll-in,Human Population,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,1.0,S03E007,interview_1,Interview 1:,1.0,Intro Graphic,Intro Graphic: Slowing Down the Dinosaur Timeline,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,2.0,S03E007,interview_1,Interview 1:,2.0,Article Screenshot,Article Screenshot: https://phys.org/news/2026-01-rex-grew-slowly-reveals-king.html,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,3.0,S03E007,interview_1,Interview 1:,3.0,Picture,"Photo with Credit to Phys.org: 
+https://scx1.b-cdn.net/csz/news/800a/2026/tyrannosaurus-rex-grew.jpg",Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,4.0,S03E007,interview_1,Interview 1:,4.0,B-roll,Broll loop: Multiple ten second clips of TRex from Jurrassic Park/World movies ---include credit,Loaded In,Anderson,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,5.0,S03E007,interview_1,Interview 1:,5.0,B-roll,Pull Alamosaurus clips from video with attribution: https://www.youtube.com/watch?v=_V-s9QajWXw,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,6.0,S03E007,interview_1,Interview 1:,6.0,B-roll,Pull Apatosaurus clips from Video With Attribution: https://www.youtube.com/watch?v=qKu2fKVmz9U,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,7.0,S03E007,interview_1,Interview 1:,7.0,Propres Graphic,Propres Book Graphic: Dinosaurs: Exploring Real-Life Dragons of History,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,1.0,S03E007,interview_2,Interview 2:,1.0,Intro Graphic,Intro Graphic: Testing the Limits of Artificial Intelligence,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,2.0,S03E007,interview_2,Interview 2:,2.0,Article Screenshot,https://www.theregister.com/2026/01/09/artificial_brains_supercomputer/,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,3.0,S03E007,interview_2,Interview 2:,3.0,Graphic,Spinnaker Logo Graphic,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,4.0,S03E007,interview_2,Interview 2:,4.0,Pre-made: B-roll,PM AI Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,5.0,S03E007,interview_2,Interview 2:,5.0,Pre-made: B-roll,PM Neurons Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 2,6.0,S03E007,interview_2,Interview 2:,6.0,B-roll,Brain Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,1.0,S03E008,opening_monologue,Opening Monologue,1.0,Title Graphic,Intro Graphic: God is BACK,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,2.0,S03E008,opening_monologue,Opening Monologue,2.0,Clip w/audio,"Insert Clip: Elon Musk on DOGE, AI, & Are we in a Simulation? | KMP Ep.18 12:37-12:52 https://www.youtube.com/watch?v=bz5Hjk40FD4
+“This universe came from something.”",Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,3.0,S03E008,opening_monologue,Opening Monologue,3.0,Graphic,2025 Conference on Science and Faith Graphic,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,4.0,S03E008,opening_monologue,Opening Monologue,4.0,Pre-made: B-roll,PM Broll: Fine-tuning,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,5.0,S03E008,opening_monologue,Opening Monologue,5.0,Article Screenshot,https://ncse.ngo/north-dakota-bill-would-require-inclusion-intelligent-design-state-science-standards,Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,6.0,S03E008,opening_monologue,Opening Monologue,6.0,Graphic,"Picture with Text ""Kitzmiller v. Dover"":
+https://i0.wp.com/www.millerandlevine.com/km/evol/dover/ID-Harrisburg-PA09-27-05.jpg",Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,7.0,S03E008,opening_monologue,Opening Monologue,7.0,Pre-made: B-roll,PM B-roll: Classroom loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,8.0,S03E008,opening_monologue,Opening Monologue,8.0,Pre-made: B-roll,DNA Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,9.0,S03E008,opening_monologue,Opening Monologue,9.0,Graphic,"Casey Luskin Headshot/Quote Graphic: ""The ID community has now published over 300 peer-reviewed scientific papers, showing that ID is a viable scientific paradigm to guide research.""",Loaded In,Isaac,"Highlight the phrases: ""over 300 peer-reviewed scientific papers"". ""ID is a viable scientific paradigm""",02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,1.0,S03E008,the_heavens_declare,The Heavens Declare,1.0,Roll-in,THD 362 - Unicorns UPDATED 2024 3:00,Loaded In,Jakob,Use WWN Rollin version,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,1.0,S03E008,kids_corner,Kids Corner,1.0,Roll-in,Java Man 2:56,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,1.0,S03E008,q_a,Q&A,1.0,Roll-in,S03 Ep008 2:28,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,1.0,S03E008,ministry_report,Ministry Report,1.0,Graphic,Placeholder Graphic for Photos/broll from Astronomy Day Event,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,2.0,S03E008,ministry_report,Ministry Report,2.0,B-roll,Photos/broll of School groups at the WC,Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,1.0,S03E008,viewer_voices,Viewer Voices,1.0,Roll-in,00:38:00,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,1.0,S03E008,featured_resource,Featured Resource,1.0,Roll-in,00:54:00,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,1.0,S03E008,gsm,GSM,1.0,Roll-in,Hydrologic Cycle,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,1.0,S03E008,interview_1,Interview 1:,1.0,Article Screenshot,https://www.livescience.com/health/viruses-infections-disease/viruses-that-evolved-on-the-space-station-and-were-sent-back-to-earth-were-more-effective-at-killing-bacteria,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,2.0,S03E008,interview_1,Interview 1:,2.0,Intro Graphic,"Intro Graphic: Viruses ""Evolving"" in Space?",Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,3.0,S03E008,interview_1,Interview 1:,3.0,Pre-made: B-roll,PM ISS Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,4.0,S03E008,interview_1,Interview 1:,4.0,Pre-made: B-roll,PM Microscope Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,5.0,S03E008,interview_1,Interview 1:,5.0,Pre-made: B-roll,PM Earth's Atmosphere Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,6.0,S03E008,interview_1,Interview 1:,6.0,B-roll,Viruses Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,7.0,S03E008,interview_1,Interview 1:,7.0,Pre-made: B-roll,PM Scientists in Labs Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,8.0,S03E008,interview_1,Interview 1:,8.0,Pre-made: B-roll,Bacteria Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,1.0,S03E008,interview_2,Interview 2:,1.0,Article Screenshot,"https://news.yale.edu/2025/02/06/study-sheds-light-genetic-changes-shaped-human-brain-evolution#:~:text=While%20past%20research%20theorized%20that,but%20by%20modifying%20their%20output",Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,2.0,S03E008,interview_2,Interview 2:,2.0,Intro Graphic,Intro Graphic: Gene Tweaks and Human Origins,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,3.0,S03E008,interview_2,Interview 2:,3.0,B-roll,Pull clip with attribution: https://www.youtube.com/watch?v=shjqtR8VJ2I,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,4.0,S03E008,interview_2,Interview 2:,4.0,B-roll,Pull CLip with Attribution: https://www.youtube.com/watch?v=Cqb3kAJaXAg,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,5.0,S03E008,interview_2,Interview 2:,5.0,Pre-made: B-roll,PM Neuron Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 3,6.0,S03E008,interview_2,Interview 2:,6.0,Pre-made: B-roll,PM Brain Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,1.0,S03E009,opening_monologue,Opening Monologue,1.0,Title Graphic,Intro Graphic: Ancient Architecture Continues to Be Discovered!,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,2.0,S03E009,opening_monologue,Opening Monologue,2.0,B-roll,"Pull clip: Bretagne, France in 4K | Drone video 1:03 - 1:18
+https://www.youtube.com/watch?v=IG4H6gS3SNk",Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,3.0,S03E009,opening_monologue,Opening Monologue,3.0,Article Screenshot,Article Screenshot: https://www.bbc.com/news/articles/crk7lg1j146o,Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,4.0,S03E009,opening_monologue,Opening Monologue,4.0,Graphic,"Photo with text ""TAF 1 Structue""  (Remove A,B,C,D)
+https://dailygalaxy.com/wp-content/uploads/2025/12/Photos-of-the-TAF1-structure-taken-in-winter-2023-showing-the-lack-of-algae-compared-to-summer.-The-green-rope-helps-visualize-the-monoliths-arrangement-scaled.jpg.webp
+Credit: International Journal of Nautical Archaeology",Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,5.0,S03E009,opening_monologue,Opening Monologue,5.0,Graphic,"Gen Fill to remove other text in photo
+https://arkeonews.net/wp-content/uploads/2025/12/3D-view-of-TAF1-structures-1024x536.webp
+Credit: Yves Fouquet et al.",Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,6.0,S03E009,opening_monologue,Opening Monologue,6.0,Picture,"Photo A: 
+https://dailygalaxy.com/wp-content/uploads/2025/12/The-TAF1-structure-features-a-clear-arrangement-of-monoliths-and-large-slabs-scaled.jpg.webp
+Credit: International Journal of Nautical Archaeology",Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,8.0,S03E009,opening_monologue,Opening Monologue,8.0,Propres Quote,"Propres Quote:  ""And God blessed them, and God said unto them, Be fruitful, and multiply, and REPLENISH the earth, and SUBDUE it: and have dominion over the fish of the sea, and over the fowl of the air, and over every living thing that moveth upon the earth.""
+Genesis 1:28",Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,9.0,S03E009,opening_monologue,Opening Monologue,9.0,Picture,"Insert 3 photos with attribution:
+
+https://cdn.fabulahub.com/images/stories/main/xlarge/a-cinematic-oil-painting-style-wide-shot-of-the-mythical-city-of-ys-at-dawn-on-brittanys-coastline_a013f15b98a2.avif
+
+https://cdn.fabulahub.com/images/stories/inbody/xxlarge/a-cinematic-oil-painting-style-wide-scene-of-medieval-brittany-showing-artisans-and-builders-erecting-immense-golden-seawalls-around-the-emerging-city_e9392c433f7d.avif
+
+https://cdn.fabulahub.com/images/stories/inbody/xxlarge/a-cinematic-oil-painting-style-wide-scene-showing-the-city-of-ys-under-a-midnight-storm_adff6b43b277.avif
+
+Credit: fabulahub.com",Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,1.0,S03E009,the_heavens_declare,The Heavens Declare,1.0,Roll-in,THD 359 Leviathan Updated 2024 3:00,Loaded In,Jakob,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,1.0,S03E009,kids_corner,Kids Corner,1.0,Roll-in,What is a Dinosaur? 2:46,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,1.0,S03E009,q_a,Q&A,1.0,Roll-in,S03 Ep009 3:14,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,1.0,S03E009,ministry_report,Ministry Report,1.0,B-roll,Rob Stadler CTN Soundbite Roll-in 9:23-10:25,Loaded In,Daniel,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,2.0,S03E009,ministry_report,Ministry Report,2.0,Pre-made: Graphic,PM: CTN Graphic,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,1.0,S03E009,viewer_voices,Viewer Voices,1.0,Roll-in,00:30:00,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,1.0,S03E009,featured_resource,Featured Resource,1.0,Roll-in,:50,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,1.0,S03E009,gsm,GSM,1.0,Roll-in,Foggy Mountain,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,1.0,S03E009,interview_1,Interview 1:,1.0,Article Screenshot,https://www.nasa.gov/news-release/nasa-department-of-energy-to-develop-lunar-surface-reactor-by-2030/,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,2.0,S03E009,interview_1,Interview 1:,2.0,Propres Quote,"“Under President Trump’s national space policy, America is committed to returning to the Moon, building the infrastructure to stay, and making the investments required for the next giant leap to Mars and beyond. Achieving this future requires harnessing nuclear power.” - Jared Isaacman",Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,3.0,S03E009,interview_1,Interview 1:,3.0,Graphic,Intro Graphic: NASA’s Lunar Surface Nuclear Reactor,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,4.0,S03E009,interview_1,Interview 1:,4.0,Pre-made: B-roll,PM Nasa Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,5.0,S03E009,interview_1,Interview 1:,5.0,Pre-made: B-roll,PM moon Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,6.0,S03E009,interview_1,Interview 1:,6.0,Pre-made: B-roll,PM Nuclear power Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,7.0,S03E009,interview_1,Interview 1:,7.0,B-roll,Rocket Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,8.0,S03E009,interview_1,Interview 1:,8.0,Pre-made: B-roll,Earth's atmosphere Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,9.0,S03E009,interview_1,Interview 1:,9.0,B-roll,Lunar Surface Broll loop,Loaded In,Caiden,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,1.0,S03E009,interview_2,Interview 2:,1.0,Intro Graphic,Intro Graphic: Could Sauropods Stand On 2 Legs?,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,2.0,S03E009,interview_2,Interview 2:,2.0,Article Screenshot,https://scitechdaily.com/these-giant-long-necked-dinosaurs-could-stand-upright-and-scientists-finally-figured-out-why/?utm_source=chatgpt.com,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,3.0,S03E009,interview_2,Interview 2:,3.0,Pre-made: B-roll,PM Dino Excavation Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,4.0,S03E009,interview_2,Interview 2:,4.0,Pre-made: B-roll,PM Alamosaurus Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,5.0,S03E009,interview_2,Interview 2:,5.0,Pre-made: B-roll,PM Apatosaurus Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,6.0,S03E009,interview_2,Interview 2:,6.0,Pre-made: B-roll,PM Dino Fossill Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 4,7.0,S03E009,interview_2,Interview 2:,7.0,Propres Graphic,Unwrapped DVD Propres Graphic: Beholding Behemoth,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,1.0,S03E010,opening_monologue,Opening Monologue,1.0,Title Graphic,Intro Graphic: The Bacteria That Plays Dead!,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,2.0,S03E010,opening_monologue,Opening Monologue,2.0,Article Screenshot,,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,3.0,S03E010,opening_monologue,Opening Monologue,3.0,Picture,Article Screenshot: https://www.uh.edu/nsm/news-events/stories/2025/1008-bacterium-survival.php,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,4.0,S03E010,opening_monologue,Opening Monologue,4.0,Clip w/audio,Photo from article https://pubmed.ncbi.nlm.nih.gov/40788184/#&gid=article-figures&pid=fig-4-uid-3,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,5.0,S03E010,opening_monologue,Opening Monologue,5.0,B-roll,"Pull Clip 2 clips: (load in Separately)
+https://youtu.be/btzlL25Ut0o  03-0:18
+https://youtu.be/921VbEMAwwY 3:40-3:55",Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,6.0,S03E010,opening_monologue,Opening Monologue,6.0,Propres Quote,"Propres Graphic: Job 12:7-10. 
+""But ask now the beasts, and they shall teach you; and the fowls of the air, and they shall tell you: Or speak to the earth, and it shall teach you: and the fishes of the sea shall declare unto you. Who knoweth not in all these that the hand of the Lord hath wrought this? In whose hand is the soul of every living thing, and the breath of all mankind.""",Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,1.0,S03E010,the_heavens_declare,The Heavens Declare,1.0,Roll-in,THD 353 DNA Language System: 3:05,Loaded In,Jakob,Use MASTER V2,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,1.0,S03E010,kids_corner,Kids Corner,1.0,Roll-in,We Dont Know What We Don't Know 2:27,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,1.0,S03E010,q_a,Q&A,1.0,Roll-in,S03 Ep010 3:05,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,1.0,S03E010,ministry_report,Ministry Report,1.0,Graphic,ICR Event Graphic: https://storage.3.basecamp.com/5805529/blobs/8854b4bc-02b2-11f1-aea4-0242ac120002/download/Wonders%20of%20Creation%20Conference%20.jpg,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,1.0,S03E010,viewer_voices,Viewer Voices,1.0,Roll-in,00:34:00,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,1.0,S03E010,featured_resource,Featured Resource,1.0,Roll-in,00:42:00,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,1.0,S03E010,gsm,GSM,1.0,Roll-in,Running Water,Loaded In,,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,1.0,S03E010,interview_1,Interview 1:,1.0,Intro Graphic,Intro Graphic: The Future of the International Space Station,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,2.0,S03E010,interview_1,Interview 1:,2.0,Picture,Article Screenshot:https://arstechnica.com/space/2026/02/congress-advances-bill-requiring-nasa-to-reconsider-deorbiting-space-station/?utm_source=chatgpt.comm,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,3.0,S03E010,interview_1,Interview 1:,3.0,Pre-made: B-roll,PM ISS broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,4.0,S03E010,interview_1,Interview 1:,4.0,Picture,(Credit all photos) Search the Web for photos of Col. Jeff WIlliams on ISS or training at Nasa:,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,5.0,S03E010,interview_1,Interview 1:,5.0,Pre-made: B-roll,PM Nasa Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,6.0,S03E010,interview_1,Interview 1:,6.0,Propres Graphic,Jeff Williams-Work Of His Hands Book Graphic,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,1.0,S03E010,interview_2,Interview 2:,1.0,Intro Graphic,Intro Graphic: Why Gen Z Is Rethinking Faith,Loaded In,Ethan,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,2.0,S03E010,interview_2,Interview 2:,2.0,Article Screenshot,https://www.city-journal.org/article/gen-z-religion-christianity-church,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,3.0,S03E010,interview_2,Interview 2:,3.0,B-roll,Broll loop: Young adults worshipping,Loaded In,Anderson,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,4.0,S03E010,interview_2,Interview 2:,4.0,Pre-made: B-roll,PM Protest Broll loop,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,5.0,S03E010,interview_2,Interview 2:,5.0,Pre-made: B-roll,PM Church Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,6.0,S03E010,interview_2,Interview 2:,6.0,Pre-made: B-roll,PM Bible Broll,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+Show 5,7.0,S03E010,interview_2,Interview 2:,7.0,Graphic,Boneyard Creation Museum Graphic,Loaded In,Isaac,,02_GSR Graphics Tracking_ February.xlsx,medium,true
+"(empty stub — 32KB clone template, not walked)",,,,,,,,,,empty/unpopulated month clone; id=13_PQdT3RKCodjA_FzRxwpQR6yA1Kn8E5sKxN9VWPAJs,06_GSR Graphics Tracking: June,low,true
+"(empty stub — 32KB clone template, not walked)",,,,,,,,,,empty/unpopulated month clone; id=1E-W7knpyggFFG7AvEyuPc9PZ_814954730iE6wj6Ms4,07_GSR Graphics Tracking: July,low,true
+"(empty stub — 32KB clone template, not walked)",,,,,,,,,,empty/unpopulated month clone; id=1zNLPLodCKk2G-TxfTblRdi8qnmI1Gc3cJK5cplpv0Ek,08_GSR Graphics Tracking: August,low,true
+"(empty stub — 32KB clone template, not walked)",,,,,,,,,,empty/unpopulated month clone; id=1QtN-C12UlSVeS_fmQOmCGEHsIlB_JprVXEYklsImzhQ,09_GSR Graphics Tracking: September,low,true
+"(empty stub — 32KB clone template, not walked)",,,,,,,,,,empty/unpopulated month clone; id=1dS3ZryULaYBfLY7sHcZmZeQkp_BlSYsM4_xw9rRjjMg,10_GSR Graphics Tracking: October,low,true
+"(empty stub — 32KB clone template, not walked)",,,,,,,,,,empty/unpopulated month clone; id=1LxN2HpT4JJs7ppt-hOyQFjS4HZulGpo9rQzPSje7UWU,11_GSR Graphics Tracking: November,low,true
+"(empty stub — 32KB clone template, not walked)",,,,,,,,,,empty/unpopulated month clone; id=1OoBMJf7FyQk60ZUE1ws9AUMAE-ns0TCYn2EouSForsc,12_GSR Graphics Tracking: December,low,true

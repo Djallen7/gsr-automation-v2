@@ -1,0 +1,53 @@
+episode_uid,season,episode_number,title,title_slug,description,air_date,air_date_raw,status,source,confidence,needs_human
+,3,,,,,2026-01-06,1/6/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jan Week1,low,true
+,3,,,,,2026-01-13,1/13/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jan Week2,low,true
+,3,,,,,2026-01-20,1/20/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jan Week3,low,true
+,3,,,,,2026-01-27,1/27/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jan Week4,low,true
+S03E001,3,1,,,,2026-02-03,2/3/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Feb Week1 | raw_ep:S03 EP001,medium,false
+S03E002,3,2,,,,2026-02-10,2/10/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Feb Week2 | raw_ep:S03 EP002,medium,false
+S03E003,3,3,,,,2026-02-17,2/17/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Feb Week3 | raw_ep:S03 EP003,medium,false
+S03E004,3,4,,,,2026-02-24,2/24/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Feb Week4 | raw_ep:S03 EP004,medium,false
+,3,,,,,2026-03-03,3/3/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Mar Week1 | raw_ep:S03 EP005 (DUPLICATE: EP005 appears in Mar Week1 AND Week2),low,true
+,3,,,,,2026-03-10,3/10/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Mar Week2 | raw_ep:S03 EP005 (DUPLICATE: EP005 appears in Mar Week1 AND Week2),low,true
+S03E006,3,6,,,,2026-03-17,3/17/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Mar Week3 | raw_ep:S03 EP006,medium,false
+S03E007,3,7,,,,2026-03-24,3/24/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Mar Week4 | raw_ep:S03 EP007,medium,false
+S03E008,3,8,,,,2026-03-31,3/31/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Mar Week5 | raw_ep:S03 EP008,medium,false
+,3,,,,,2026-04-07,4/7/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Apr Week1 | raw_ep:S03 EP09 (MALFORMED: 2-digit not 3-digit),low,true
+S03E010,3,10,,,,2026-04-14,4/14/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Apr Week2 | raw_ep:S03 EP010,medium,false
+S03E011,3,11,,,,2026-04-21,4/21/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Apr Week3 | raw_ep:S03 EP011,medium,false
+S03E012,3,12,,,,2026-04-28,4/28/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Apr Week4 | raw_ep:S03 EP012,medium,false
+S03E013,3,13,,,,2026-05-05,5/5/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | May Week1 | raw_ep:S03 EP013 (CONFLICT: Scripts folder 05_May labeled Ep 21-25),low,true
+S03E014,3,14,,,,2026-05-12,5/12/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | May Week2 | raw_ep:S03 EP014 (CONFLICT: Scripts folder 05_May labeled Ep 21-25),low,true
+S03E015,3,15,,,,2026-05-19,5/19/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | May Week3 | raw_ep:S03 EP015 (CONFLICT: Scripts folder 05_May labeled Ep 21-25),low,true
+S03E016,3,16,,,,2026-05-26,5/26/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | May Week4 | raw_ep:S03 EP016 (CONFLICT: Scripts folder 05_May labeled Ep 21-25),low,true
+S03E017,3,17,,,,2026-06-02,6/2/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jun Week1 | raw_ep:S03 EP017,medium,false
+S03E018,3,18,,,,2026-06-09,6/9/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jun Week2 | raw_ep:S03 EP018,medium,false
+S03E019,3,19,,,,2026-06-16,6/16/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jun Week3 | raw_ep:S03 EP019,medium,false
+S03E020,3,20,,,,2026-06-23,6/23/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jun Week4 | raw_ep:S03 EP020,medium,false
+S03E021,3,21,,,,2026-06-30,6/30/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jun Week5 | raw_ep:S03 EP021,medium,false
+S03E022,3,22,,,,2026-07-07,7/7/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jul Week1 | raw_ep:S03 EP022,medium,false
+S03E023,3,23,,,,2026-07-14,7/14/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jul Week2 | raw_ep:S03 EP023,medium,false
+S03E024,3,24,,,,2026-07-21,7/21/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jul Week3 | raw_ep:S03 EP024,medium,false
+S03E025,3,25,,,,2026-07-28,7/28/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Jul Week4 | raw_ep:S03 EP025,medium,false
+S03E026,3,26,,,,2026-08-04,8/4/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Aug Week1 | raw_ep:S03 EP026,medium,false
+S03E027,3,27,,,,2026-08-11,8/11/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Aug Week2 | raw_ep:S03 EP027,medium,false
+S03E028,3,28,,,,2026-08-18,8/18/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Aug Week3 | raw_ep:S03 EP028,medium,false
+S03E029,3,29,,,,2026-08-25,8/25/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Aug Week4 | raw_ep:S03 EP029,medium,false
+S03E030,3,30,,,,2026-09-01,9/1/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Sep Week1 | raw_ep:S03 EP030 (CONFLICT: EP030 also listed Jun Week4 range; Sep starts EP030 while Aug ends EP029),low,true
+S03E031,3,31,,,,2026-09-08,9/8/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Sep Week2 | raw_ep:S03 EP031,medium,false
+S03E032,3,32,,,,2026-09-15,9/15/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Sep Week3 | raw_ep:S03 EP032,medium,false
+S03E033,3,33,,,,2026-09-22,9/22/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Sep Week4 | raw_ep:S03 EP033,medium,false
+S03E034,3,34,,,,2026-09-29,9/29/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Sep Week5 | raw_ep:S03 EP034,medium,false
+S03E035,3,35,,,,2026-10-06,10/6/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Oct Week1 | raw_ep:S03 EP035,medium,false
+S03E036,3,36,,,,2026-10-13,10/13/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Oct Week2 | raw_ep:S03 EP036,medium,false
+S03E037,3,37,,,,2026-10-20,10/20/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Oct Week3 | raw_ep:S03 EP037,medium,false
+S03E038,3,38,,,,2026-10-27,10/27/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Oct Week4 | raw_ep:S03 EP038,medium,false
+S03E039,3,39,,,,2026-11-03,11/3/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Nov Week1 | raw_ep:S03 EP039,medium,false
+S03E040,3,40,,,,2026-11-10,11/10/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Nov Week2 | raw_ep:S03 EP040,medium,false
+S03E041,3,41,,,,2026-11-17,11/17/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Nov Week3 | raw_ep:S03 EP041,medium,false
+S03E042,3,42,,,,2026-11-24,11/24/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Nov Week4 | raw_ep:S03 EP042,medium,false
+S03E043,3,43,,,,2026-12-01,12/1/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Dec Week1 | raw_ep:S03 EP043,medium,false
+S03E044,3,44,,,,2026-12-08,12/8/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Dec Week2 | raw_ep:S03 EP044,medium,false
+S03E045,3,45,,,,2026-12-15,12/15/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Dec Week3 | raw_ep:S03 EP045,medium,false
+S03E046,3,46,,,,2026-12-22,12/22/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Dec Week4 | raw_ep:S03 EP046,medium,false
+S03E047,3,47,,,,2026-12-29,12/29/2026,,2026 GSR Airing Schedule.xlsx | tab:Assignment Schedule | Dec Week5 | raw_ep:S03 EP047,medium,false

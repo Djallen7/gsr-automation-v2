@@ -180,9 +180,23 @@ sources in parallel and cross-check each other** per the protocol above. Launch 
 Build GSR's episode + distribution catalog by TRIANGULATING across every platform, per
 data-intake/README.md. Cover Season 2 and Season 3.
 
+HOW GSR ACTUALLY DISTRIBUTES (Daniel's notes — use this to set platform + delivery_mechanism):
+  - YouTube — direct upload.
+  - Rumble — direct upload (confirm it's still active before scraping).
+  - Fireside — the podcast hub; it syndicates out to Spotify / Apple Podcasts / all the
+    music+podcast services. Record one fireside row and list the downstream services.
+  - RLN = Real Life Network — we deliver to them through the SIGNIANT portal (not a public
+    upload; it's a delivery record, not a scrape).
+  - GSN = Genesis Science Network, and it has TWO separate destinations, keep them distinct:
+      * gsn_broadcast — the LIVE broadcast channel; we upload episodes WEEKLY to MASTERPLAY
+        (the playout service GSN runs on). Delivery record, not a scrape.
+      * gsn_ondemand — the GSN on-demand iOS / Apple TV app, served via STREAMHOSTER. This
+        one may have a public catalog to scrape.
+  - CBN — pulls episodes from a shared DROPBOX folder (delivery record, not a scrape).
+
 Use the Agent tool to launch these source-scrapers IN PARALLEL (one subagent each), so they
-work simultaneously and we can compare their results. See the README "Distribution map" for
-the platform/delivery_mechanism pairing — set both columns:
+work simultaneously and we can compare their results. Set BOTH platform and delivery_mechanism
+columns per the notes above:
   PUBLIC CATALOGS (scrape for url + metadata):
   - YouTube (API key if present, else yt-dlp) -> sources/episodes_youtube.csv +
     sources/distributions_youtube.csv  (platform=youtube, delivery_mechanism=direct_upload)

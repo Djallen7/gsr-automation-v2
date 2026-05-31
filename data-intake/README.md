@@ -57,6 +57,8 @@ data-intake/
   premade_library.csv
   rc_columns_map.json  rc_rundown_map.json  rc_sample_structure.md
   voice/  (INDEX.md, kill_list.md, <samples>)
+  propres_inventory.csv  propres_aired_lower_thirds.csv  propres_templates.csv
+  propres_media.csv  propres_fonts.csv  propres_conventions.md
   drive_inventory.csv
 ```
 
@@ -75,7 +77,26 @@ data-intake/
   in a `*_raw` column. Never silently reformat; if a date is ambiguous (e.g. `3/4/26`), keep
   raw and flag.
 - **Enums** —
-  - `platform` ∈ `youtube | rumble | rumble_locals | fireside | rln | gsn | streamhoster | other`
+  - `platform` (audience-facing destination) ∈ `youtube | rumble | fireside | rln | gsn_broadcast | gsn_ondemand | cbn | other`
+  - `delivery_mechanism` (how content gets there) ∈ `direct_upload | fireside_hub | signiant | masterplay | streamhoster | dropbox | other`
+
+  **Distribution map (confirmed by Daniel 2026-05):** the two axes pair like this —
+  | platform | what it is | delivery_mechanism |
+  |---|---|---|
+  | `youtube` | YouTube channel | `direct_upload` |
+  | `rumble` | Rumble (confirm if still active) | `direct_upload` |
+  | `fireside` | podcast hub → fans out to Spotify / Apple Podcasts / etc. | `fireside_hub` |
+  | `rln` | Real Life Network | `signiant` (Signiant portal) |
+  | `gsn_broadcast` | GSN weekly **live broadcast** channel | `masterplay` (the playout service GSN runs on) |
+  | `gsn_ondemand` | GSN **on-demand** iOS / Apple TV app | `streamhoster` |
+  | `cbn` | CBN pulls episodes | `dropbox` (CBN reads from a shared Dropbox folder) |
+
+  `gsn_broadcast` and `gsn_ondemand` are deliberately split — same network, two separate
+  upload workflows (MasterPlay vs StreamHoster). For `fireside`, record the hub row and
+  capture the downstream audio services in `downstream_platforms` (JSON) when discoverable.
+  `masterplay`, `signiant`, and `dropbox` are **delivery portals, not public catalogs** —
+  for those, distribution is tracked as a "was this episode delivered?" record (from Drive /
+  email / the portal), not a public scrape.
   - `segment` ∈ `monologue | interview_1 | interview_2 | ministry | other`
   - `asset_type` ∈ `b_roll_loop | title_graphic | graphic | clip_with_audio | other`
 
@@ -126,7 +147,7 @@ Columns below are the *intake* shape. At import time, confirm against the live s
 `episode_uid, season, episode_number, title, title_slug, description, tags, chapter_markers(JSON), air_date, air_date_raw, youtube_published_at, runtime_sec, status, + provenance`
 
 ### `distributions.csv` → table `distributions` (one row per episode × platform)
-`episode_uid, platform, url, platform_title, platform_description, published_at, published_at_raw, view_count, is_published, + provenance`
+`episode_uid, platform, delivery_mechanism, url, platform_title, platform_description, published_at, published_at_raw, view_count, is_published, downstream_platforms(JSON), + provenance`
 
 ### `guests.csv` → table `guests`
 `guest_key, title, first_name, last_name, full_name, credentials, organization, expertise, bio, email, phone, website, social_handles(JSON), + provenance` *(PII columns — `guests.needs_human.csv` only, never paste contact info into prompts)*
@@ -160,13 +181,21 @@ Build GSR's episode + distribution catalog by TRIANGULATING across every platfor
 data-intake/README.md. Cover Season 2 and Season 3.
 
 Use the Agent tool to launch these source-scrapers IN PARALLEL (one subagent each), so they
-work simultaneously and we can compare their results:
+work simultaneously and we can compare their results. See the README "Distribution map" for
+the platform/delivery_mechanism pairing — set both columns:
+  PUBLIC CATALOGS (scrape for url + metadata):
   - YouTube (API key if present, else yt-dlp) -> sources/episodes_youtube.csv +
-    sources/distributions_youtube.csv
-  - Fireside -> sources/episodes_fireside.csv + sources/distributions_fireside.csv
-  - Rumble (+ Rumble Locals) -> sources/distributions_rumble.csv
-  - RLN / Rives ministry site -> sources/distributions_rln.csv
+    sources/distributions_youtube.csv  (platform=youtube, delivery_mechanism=direct_upload)
+  - Fireside podcast pages -> sources/episodes_fireside.csv +
+    sources/distributions_fireside.csv (platform=fireside, mechanism=fireside_hub; capture
+    downstream Spotify/Apple Podcasts links in downstream_platforms)
+  - Rumble (confirm still active) -> sources/distributions_rumble.csv (direct_upload)
+  - GSN on-demand app catalog (StreamHoster-served) -> sources/distributions_gsn_ondemand.csv
+    (platform=gsn_ondemand, mechanism=streamhoster)
   - The GSN airing-schedule sheet from Drive -> sources/episodes_gsn_schedule.csv
+  DELIVERY RECORDS (not public — record "delivered? when?" from Drive/email/portal, no scrape):
+  - gsn_broadcast (mechanism=masterplay, weekly), rln (mechanism=signiant), cbn
+    (mechanism=dropbox) -> sources/distributions_delivery_records.csv
 Each scraper writes ONLY the canonical key (episode_uid via README rules) + its observed
 fields, verbatim. Read-only everywhere.
 
@@ -262,4 +291,56 @@ smells AI-authored (generic abstract closes, "Overall", stacked-noun endings). O
 THD + ~8 monologue samples verbatim as individual files + voice/INDEX.md (scores) +
 voice/kill_list.md (regex-ready banned patterns). Note which voice types are thin and need
 Daniel's co-creation. Do NOT stage raw samples anywhere they'd be fed wholesale into a prompt.
+```
+
+### Prompt G — ProPresenter backup library scan  *(SSD backup drive plugged in; independent)*
+```
+Scan the ProPresenter BACKUP library on the plugged-in SSD and turn it into structured
+intake, per data-intake/README.md. This is the richest single source we have for how GSR's
+lower thirds ACTUALLY aired — treat it as ground-truth and key everything to episode_uid.
+
+HARD GUARDRAILS:
+- Operate ONLY on the SSD backup library. NEVER touch the networked GSN-PropRes machine
+  (Tailscale 100.98.215.7). Do NOT open the ProPresenter app. Read-only; never copy/move/
+  modify a file. Inventory metadata only.
+- .pro files are ProPresenter 7 protobuf bundles. Parse with a real parser if one is
+  available (e.g. a python-protobuf / pro-parser lib); otherwise fall back to extracting
+  text via `strings`/regex and mark those rows confidence=low. Never fabricate slide text.
+
+Use the Agent tool to fan out IN PARALLEL — one subagent per top-level library/playlist
+folder — and produce these deliverables (the ones most useful for building, in priority
+order):
+
+1. data-intake/propres_inventory.csv — every .pro file:
+   type (presentation|template|playlist), name, library, rel_path, slide_count,
+   arrangement_names, last_modified, episode_uid (parse from name if per-episode; else blank
+   + needs_human). + provenance.
+
+2. data-intake/propres_aired_lower_thirds.csv — THE KEY DELIVERABLE. One row per slide of
+   each per-episode presentation: episode_uid, slide_order, slide_label, l3_line1, l3_line2
+   (VERBATIM aired text), template_used, segment (infer monologue/interview_1/etc.),
+   media_refs. This is what validates the graphics generator, seeds Voice DNA for real L3
+   phrasing, and cross-references YouTube/RC/script data. + provenance + confidence.
+
+3. data-intake/propres_templates.csv — lower-third + title templates: template_name,
+   text_element_count, font, font_size, color, position (x/y/anchor), safe_area, line_count,
+   which L3 type/segment it serves, source_library. This is what the build-presentation
+   automation will CLONE — capture it precisely.
+
+4. data-intake/propres_media.csv — every referenced media file, shaped to the
+   premade_library schema (README): name, asset_type, is_loop, duration_sec, resolution,
+   server_file_path, file_hash (for dedup), reuse_count (how many presentations reference
+   it), source (infer). Dedup by hash. Metadata only — do NOT copy media.
+
+5. data-intake/propres_fonts.csv — fonts used across templates + where, so the dashboard
+   font-editor can match.
+
+6. data-intake/propres_conventions.md — observed naming conventions (presentation + playlist
+   names per episode/show-day), playlist structure for a show day, and YOUR RECOMMENDATION of
+   the canonical template set a new-episode build should clone. Flag old/archived vs current-
+   season presentations.
+
+End with a convergence/gaps report: presentations you couldn't map to an episode_uid,
+.pro files that needed strings-fallback (low confidence), and any templates that look
+duplicated or stale.
 ```

@@ -386,6 +386,25 @@ Each teammate executes its task EXACTLY as written in data-intake/README.md (Pro
 ONE override: SKIP the "reconciler pass" step inside that prompt — produce only the raw/source
 + standalone files. Read-only at every external source; values copied verbatim.
 
+SKIM GUARD — every teammate must clear these three gates (this is non-negotiable; a teammate
+that hasn't cleared a gate is not allowed to proceed to the next one):
+  GATE 1 — Read-back BEFORE collecting. The teammate re-reads its exact README section and
+    messages the lead a restatement: (a) the precise list of files it will write, (b) the exact
+    column header for each CSV (copied from the README schema), and (c) the three hard rules in
+    its own words — read-only at source, values verbatim, and "flag needs_human, never guess a
+    key field". The LEAD compares this against the README; if anything is missing, vague, or
+    wrong, the lead sends it back to re-read. Collection does not start until the read-back matches.
+  GATE 2 — Header-first. The teammate writes ONLY the header row of each output file first and
+    shows it to the lead. Wrong/missing columns are caught here, before any data is gathered.
+  GATE 3 — Self-audit BEFORE reporting done. The teammate re-opens its README spec and returns a
+    checklist: every required deliverable exists, every required column is present, a sample of
+    values is confirmed copied verbatim (not paraphrased), and every unresolved item was written
+    to needs_human rather than guessed. No "done" without this checklist.
+Then the LEAD spot-checks: pull 3-5 random rows from each teammate's output and verify against
+the real source that titles/quotes are verbatim and keys (episode_uid/guest_key) are correct,
+not invented. If a paraphrase or a guessed key is found, REJECT that teammate's output and have
+it re-run the task. Do not reconcile from unverified collection.
+
 CREATE this shared task list with dependencies, and keep <=5 teammates active at once (token
 cost scales per teammate; free a slot as each reports done):
 

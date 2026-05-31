@@ -358,3 +358,77 @@ End with a convergence/gaps report: presentations you couldn't map to an episode
 .pro files that needed strings-fallback (low confidence), and any templates that look
 duplicated or stale.
 ```
+
+---
+
+## Agent Teams LEAD prompt — runs A–G as one orchestrated sweep
+
+Paste this into a single Claude Code session with **Agent Teams enabled** (experimental;
+v2.1.32+, off by default — enable it first). The lead spawns teammates that COLLECT in
+parallel, then the lead RECONCILES centrally and commits. Splitting collect from reconcile is
+deliberate: it keeps two agents from ever writing the same merged file.
+
+```
+You are the LEAD of a Claude Code Agent Team running a parallel data-collection sweep for GSR.
+Goal: populate data-intake/ with reconciled, import-ready CSV/JSON.
+
+FIRST, read data-intake/README.md IN FULL — it defines the canonical keys, schemas, provenance
+columns, and the reconciliation+override protocol. Every teammate and you obey it.
+
+DIVISION OF LABOR (critical for Agent Teams — prevents file-write conflicts):
+- TEAMMATES only COLLECT. Each writes ONLY its own raw files under data-intake/sources/ plus the
+  standalone deliverables listed below. A teammate NEVER edits another teammate's file and NEVER
+  writes a merged/reconciled file.
+- YOU (lead) own ALL reconciliation: every <entity>.csv, <entity>.conflicts.csv,
+  <entity>.needs_human.csv, plus the final commit.
+
+Each teammate executes its task EXACTLY as written in data-intake/README.md (Prompts A–G), with
+ONE override: SKIP the "reconciler pass" step inside that prompt — produce only the raw/source
++ standalone files. Read-only at every external source; values copied verbatim.
+
+CREATE this shared task list with dependencies, and keep <=5 teammates active at once (token
+cost scales per teammate; free a slot as each reports done):
+
+  WAVE 1 (launch in parallel):
+    T-DRIVE    = Prompt C. Owns: drive_inventory.csv, sources/episodes_gsn_schedule.csv,
+                 sources/appearances_schedule.csv, sources/graphics_tracker.csv,
+                 sources/guests_contact_sheet.csv, sources/appearances_scripts.csv,
+                 shoot_sessions.csv
+    T-PLATFORMS = Prompt A (collection only). Owns: sources/episodes_youtube.csv,
+                 sources/episodes_fireside.csv, sources/distributions_*.csv
+    T-RC       = Prompt E. Owns: rc_columns_map.json, rc_rundown_map.json, rc_sample_structure.md
+    T-PROPRES  = Prompt G. Owns: propres_inventory.csv, propres_aired_lower_thirds.csv,
+                 propres_templates.csv, propres_media.csv, propres_fonts.csv,
+                 propres_conventions.md
+  WAVE 1b (start when a slot frees; independent):
+    T-STOCK    = Prompt D. Owns: sources/premade_stock.csv
+    T-VOICE    = Prompt F. Owns: voice/*
+  WAVE 2 (BLOCKED until T-DRIVE and T-PLATFORMS both report complete):
+    T-GUESTS   = Prompt B (collection only). Owns: sources/guests_youtube.csv,
+                 sources/appearances_youtube.csv. Reads sources/episodes_youtube.csv + the Drive
+                 sheets; does NOT edit them.
+
+WHEN ALL COLLECTION TASKS ARE DONE, you (lead) reconcile per the README protocol, applying
+data-intake/overrides/ as the HIGHEST-priority source:
+  1. episodes.csv (+ .conflicts + .needs_human) — join sources/episodes_*.csv on episode_uid.
+  2. distributions.csv (+ .conflicts) — join sources/distributions_*.csv on (episode_uid, platform).
+  3. guests.csv + episode_guests.csv (+ .conflicts + .needs_human) — fuzzy-match guest_key across
+     sources AND vs the live `guests` table (Supabase MCP, READ-ONLY). NEVER auto-merge a fuzzy
+     match or auto-create a guest — those go to needs_human.
+  4. premade_library.csv — concat + dedup sources/premade_stock.csv + propres_media.csv by file_hash.
+Cross-check rule throughout: when sources disagree on a field, log BOTH values in conflicts —
+never pick silently.
+
+THEN write data-intake/SWEEP_REPORT.md: per-entity row counts, how many rows matched across >=2
+sources, total conflicts, total needs_human, and the DELTA vs the previous SWEEP_REPORT if one
+exists (so we see convergence sweep-over-sweep).
+
+FINALLY: commit everything under data-intake/ to the CURRENT branch with message
+"data-intake sweep N: <one-line summary>" and push (-u origin <current-branch>, retry on network
+error). Do NOT push to main. Do NOT touch the networked GSN-PropRes machine (100.98.215.7).
+Never print API secrets.
+
+End your run by telling me ONE thing: the total rows across all *.needs_human.csv files, and how
+much smaller that is than last sweep — that is the only pile I have to review.
+```
+

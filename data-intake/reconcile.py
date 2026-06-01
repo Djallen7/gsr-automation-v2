@@ -76,6 +76,37 @@ def load_merges():
 MERGE, CANON_NAME = load_merges()
 def canon(k): return MERGE.get(k, k)
 
+# ---- VERIFY-sweep confirmations (LEAD-applied, evidence in verify/sources/) ----
+def load_eg_confirm():
+    """Confirmed (episode, guest) pairs -> fold/promote into the clean episode_guests table.
+    Keyed match + (blank-key) last-name match. See overrides/episode_guests_confirm.csv."""
+    pairs, byname = {}, {}
+    for r in load(os.path.join(OVR, "episode_guests_confirm.csv")):
+        uid = (r.get("episode_uid") or "").strip()
+        gk = canon((r.get("guest_key") or "").strip())
+        if not (uid and gk):
+            continue
+        rec = {"gk": gk, "interview_no": (r.get("interview_no") or "").strip(),
+               "sources": (r.get("sources") or "").strip(),
+               "guest_full_name": (r.get("guest_full_name") or "").strip()}
+        pairs[(uid, gk)] = rec
+        if rec["guest_full_name"]:
+            byname[(uid, slugify(rec["guest_full_name"].split()[-1]))] = rec
+    return pairs, byname
+EG_CONFIRM, EG_CONFIRM_BYNAME = load_eg_confirm()
+
+def load_guest_confirm():
+    """youtube-origin guests whose IDENTITY was 2-source confirmed (non-PII) -> needs_human=false.
+    See overrides/guest_confirm.csv."""
+    g = {}
+    for r in load(os.path.join(OVR, "guest_confirm.csv")):
+        k = canon((r.get("guest_key") or "").strip())
+        if k:
+            g[k] = {"sources": (r.get("sources") or "").strip(),
+                    "confirmed_as": (r.get("confirmed_as") or "").strip()}
+    return g
+GUEST_CONFIRM = load_guest_confirm()
+
 # ---- schedule (month, show-slot=week) -> air_date  [D3/D5 + cooldown unblock] ----
 MONTHS = ["January", "February", "March", "April", "May", "June",
           "July", "August", "September", "October", "November", "December"]
@@ -332,11 +363,22 @@ def build_guests():
     # D4 — youtube-only guests: dedupe FIRST, then create-or-candidate
     contact_keys = set(guests.keys())
     seen_yt = set()
-    new_creates = candidates = 0
+    new_creates = candidates = confirmed_yt = 0
     for r in ytg:
         gk = canon(r.get("guest_key", "").strip())
         if not gk or gk in contact_keys or gk in seen_yt: continue   # folded/dup
         seen_yt.add(gk)
+        if gk in GUEST_CONFIRM:                            # VERIFY: identity 2-source confirmed (non-PII) -> clear flag
+            gc = GUEST_CONFIRM[gk]
+            guests[gk] = {"guest_key": gk, "full_name": r.get("full_name", r.get("guest_full_name", "")),
+                          "title": "", "first_name": "", "last_name": "", "credentials": "",
+                          "organization": "", "expertise": "", "bio": "", "email": "", "phone": "",
+                          "website": "", "social_handles": "", "do_not_contact": "false", "status": "",
+                          "origin": "youtube", "sources": gc["sources"] or "youtube", "source_count": 2,
+                          "confidence": "medium", "conflict_fields": "",
+                          "quality_flags": "verified_" + (gc["confirmed_as"] or "2src"), "needs_human": "false"}
+            confirmed_yt += 1
+            continue
         best = max(contact_keys, key=lambda c: difflib.SequenceMatcher(None, gk, c).ratio(), default="")
         ratio = difflib.SequenceMatcher(None, gk, best).ratio() if best else 0
         if ratio >= FUZZ:                                  # near-match -> needs_human candidate (NOT created)
@@ -369,7 +411,7 @@ def build_guests():
     write_csv("guests.conflicts.csv", conflicts, ["guest_key", "field", "values"])
     NH_TOTALS["guests"] = nh_n
     REPORT["guests"] = {"rows": n, "needs_human": nh_n, "new_youtube_creates": new_creates,
-                        "merge_candidates": candidates, "do_not_contact_set": 0}
+                        "merge_candidates": candidates, "confirmed_youtube": confirmed_yt, "do_not_contact_set": 0}
     return guests
 
 # ======================================================= EPISODE_GUESTS ======
@@ -396,27 +438,54 @@ def build_episode_guests(spine):
                                 "guest_full_name": r.get("file_name", ""),
                                 "reason": "run-of-show doc, not a single-guest appearance"}); continue
         m = re.search(r"Interview\s*\d\s*:?\s*(.+)$", r.get("file_name", ""))
-        name = (m.group(1).strip() if m else ""); gk = slugify(name)
-        script_guest[(uid, gk)] = len(eg); script_by_guest[gk].append(len(eg))
-        eg.append({"episode_uid": uid, "guest_key": gk, "guest_full_name": name, "segment": SEG[seg],
+        name = (m.group(1).strip() if m else ""); gk = slugify(name); ck = canon(gk)
+        i = len(eg)
+        script_guest[(uid, ck)] = i; script_by_guest[ck].append(i)
+        if ck != gk:                                   # alias raw slug so name lookups still hit
+            script_guest.setdefault((uid, gk), i); script_by_guest[gk].append(i)
+        eg.append({"episode_uid": uid, "guest_key": ck, "guest_full_name": name, "segment": SEG[seg],
                    "topic": "", "role": "guest", "sources": "scripts", "source_count": 1,
                    "confidence": "high", "conflict_fields": "", "needs_human": "false"})
 
-    # D2 — exact corroboration join: schedule row matching (canonical clean uid + scripts guest)
-    corroborated = 0
+    # D2 — exact corroboration join + VERIFY confirmations (fold or promote)
+    corroborated = 0; promoted = 0
     for r in sched:
-        suid = r.get("episode_uid", ""); gk = canon(r.get("guest_key", "").strip())
+        suid = r.get("episode_uid", ""); rawk = (r.get("guest_key", "") or "").strip(); gk = canon(rawk)
         key = (suid, gk)
-        if suid in CLEAN and key in script_guest:          # exact 2-source agreement
+        if suid in CLEAN and key in script_guest:          # D2 exact 2-source agreement
             idx = script_guest[key]
             eg[idx]["sources"] = "scripts|schedule"; eg[idx]["source_count"] = 2
             corroborated += 1
-        else:                                               # rest stay needs_human
-            nhsrc = str(r.get("needs_human", "")).lower() == "true"
-            needs_human.append({"source": "schedule", "source_episode_uid": suid,
-                                "guest_key": gk or "(blank)", "guest_full_name": r.get("guest_full_name", ""),
-                                "reason": "schedule numbering != production; episode_uid unresolved"
-                                + (" + flagged_in_source" if nhsrc else "")})
+            continue
+        # VERIFY: confirmed (episode, guest) pair — keyed, or last-name-matched for blank keys
+        rec = EG_CONFIRM.get(key)
+        if rec is None and not rawk:
+            fn = (r.get("guest_full_name", "") or "").strip()
+            if fn:
+                rec = EG_CONFIRM_BYNAME.get((suid, slugify(fn.split()[-1])))
+        if rec is not None:
+            ck = rec["gk"]
+            if (suid, ck) in script_guest:                 # fold this schedule row into the clean row
+                idx = script_guest[(suid, ck)]
+                s = set(eg[idx]["sources"].split("|")); s.add("schedule")
+                eg[idx]["sources"] = "|".join(sorted(s)); eg[idx]["source_count"] = max(eg[idx]["source_count"], len(s))
+                corroborated += 1
+            else:                                          # promote a new clean table row (consumes this schedule row)
+                idx = len(eg)
+                eg.append({"episode_uid": suid, "guest_key": ck,
+                           "guest_full_name": r.get("guest_full_name", "") or rec["guest_full_name"],
+                           "segment": SEG.get("interview_" + rec["interview_no"], ""),
+                           "topic": "", "role": "guest", "sources": rec["sources"] or "schedule|confirmed",
+                           "source_count": 2, "confidence": "high", "conflict_fields": "", "needs_human": "false"})
+                script_guest[(suid, ck)] = idx; script_by_guest[ck].append(idx)
+                promoted += 1
+            continue
+        # rest stay needs_human
+        nhsrc = str(r.get("needs_human", "")).lower() == "true"
+        needs_human.append({"source": "schedule", "source_episode_uid": suid,
+                            "guest_key": gk or "(blank)", "guest_full_name": r.get("guest_full_name", ""),
+                            "reason": "schedule numbering != production; episode_uid unresolved"
+                            + (" + flagged_in_source" if nhsrc else "")})
 
     # youtube appearances: S02 parked (D1); S03 -> guest-name bridge to scripts (D3/D5),
     # else needs_human. Fold a youtube appearance into a scripts row when its guest uniquely
@@ -429,6 +498,11 @@ def build_episode_guests(spine):
                "guest_full_name": r.get("guest_full_name", r.get("full_name", ""))}
         if seas == 2:
             rec["parked_reason"] = "D1 — S02 deferred"; parked.append(rec); continue
+        if (puid, gk) in script_guest:           # episode-specific match (scripts or promoted) -> fold
+            i = script_guest[(puid, gk)]; s = set(eg[i]["sources"].split("|")); s.add("youtube")
+            eg[i]["sources"] = "|".join(sorted(s)); eg[i]["source_count"] = max(eg[i]["source_count"], len(s))
+            corroborated_yt += 1
+            continue
         idxs = script_by_guest.get(gk, [])
         if len(idxs) == 1:                       # unique guest-name match -> fold/corroborate
             i = idxs[0]; s = set(eg[i]["sources"].split("|")); s.add("youtube")
@@ -450,6 +524,7 @@ def build_episode_guests(spine):
     acc = n + nh_n + pk_n + folded
     REPORT["episode_guests"] = {"rows": n, "needs_human": nh_n, "parked_s02": pk_n,
                                 "folded_schedule": corroborated, "folded_youtube": corroborated_yt,
+                                "promoted": promoted,
                                 "collected": collected, "accounted": acc, "conservation_ok": acc == collected}
 
 # ======================================================= PREMADE LIBRARY =====

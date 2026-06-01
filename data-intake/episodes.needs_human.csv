@@ -1,4 +1,9 @@
 episode_uid,reason,sources
-S03E005,overflow:January has no Week5 slot,tracker
-S03E010,overflow:February has no Week5 slot,tracker
+S03E016,no air_date,tracker
+S03E017,no air_date,scripts
+S03E018,no air_date,scripts
+S03E021,no air_date,rc|scripts|tracker
+S03E022,no air_date,rc|scripts
+S03E023,no air_date,rc|scripts
+S03E024,no air_date,rc|scripts
 S03E025,overflow:May has no Week5 slot,rc|scripts

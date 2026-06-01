@@ -2,7 +2,6 @@ guest_key,full_name,email,phone,reason,origin
 alan-love,Alan Love,aclove@umn.edu,,has_pii_review,contact_sheet
 albert-mills,Albert Mills,albert.mills@smu.ca,,has_pii_review,contact_sheet
 andre-eggen,Andre Eggen,aeggen@illumina.com,,has_pii_review,contact_sheet
-andrew-fabich,Dr. Andrew Fabich,,,D4 merge candidate — fuzzy near-match to 'andrew-j-fabich' (0.93); human decides merge/new,youtube
 andrew-j-fabich,Andrew J. Fabich,afabich@truett.edu,,has_pii_review,contact_sheet
 andrew-snelling,Andrew Snelling,david.dewitt@ciu.edu,,has_pii_review,contact_sheet
 andy-mcintosh,Professor Andy McIntosh,,,D4 new youtube-only guest — needs verification (no PII),youtube
@@ -10,12 +9,9 @@ bachmann-michele,Bachmann Michele,mbachmann@regent.edu,,has_pii_review,contact_s
 bell-verle,Bell Verle,verle.belle@gmail.co,,has_pii_review,contact_sheet
 bernard-haisch,Bernard Haisch,haisch@calphysics.org,,has_pii_review,contact_sheet
 brian-thomas,Brian Thomas,bthomas@icr.org,,has_pii_review,contact_sheet
-brian-young,Brian Young,,,D4 new youtube-only guest — needs verification (no PII),youtube
 calvin-beisner,Calvin Beisner,calvin@cornwallalliance.org,,has_pii_review,contact_sheet
-carl-werner,Dr Carl Werner,,,D4 new youtube-only guest — needs verification (no PII),youtube
 carson-ben,Carson Ben,garrison.grisedale@americancornerstone.org,,has_pii_review,contact_sheet
 carter-rob,Carter Rob,rcarter@creation.com,,has_pii_review,contact_sheet
-charles-jackson,Dr. Charles Jackson,,,D4 new youtube-only guest — needs verification (no PII),youtube
 charles-wood,Charles Wood,toddcharleswood@gmail.com,,has_pii_review,contact_sheet
 chris-rupe,Chris Rupe,chrisr@back2genesis.org,,has_pii_review,contact_sheet
 christian-kammerer,Christian Kammerer,christian.kammerer@naturalsciences.org,919-707-9939,has_pii_review,contact_sheet
@@ -23,13 +19,10 @@ danny-faulkner,Danny Faulkner,,,malformed_email,contact
 danny-faulkner,Danny Faulkner,dfaulkner@answersingenesis@.org,,has_pii_review,contact_sheet
 david-a-dewitt,David A. DeWitt,david.dewitt@ciu.edu,,has_pii_review,contact_sheet
 david-coppedge,David Coppedge,,661-755-4193,has_pii_review,contact_sheet
-david-dewitt,Dr. David DeWitt,,,D4 merge candidate — fuzzy near-match to 'david-a-dewitt' (0.92); human decides merge/new,youtube
 deborah-haarsma,Deborah Haarsma,dhaarsma1@gmail.com,,has_pii_review,contact_sheet
 dennis-siler,Dennis Siler,dennis@lwbc.org,,has_pii_review,contact_sheet
 don-deyoung,Don Deyoung,deyoundb@grace.edu,,has_pii_review,contact_sheet
-doug-velting,Doug Velting,,,D4 new youtube-only guest — needs verification (no PII),youtube
 dr-jason-lisle-lisle,Dr. Jason Lisle Lisle,JPLISLE@GMAIL.COM,,has_pii_review,contact_sheet
-ed-holroyd,Dr. Ed Holroyd,,,D4 merge candidate — fuzzy near-match to 'ed-holroyd-iii' (0.83); human decides merge/new,youtube
 ed-holroyd-iii,Ed Holroyd III,eholroyd3@juno.com,,has_pii_review,contact_sheet
 erick-stakelbeck,Erick Stakelbeck,erick@erickstakelbeck.com,,has_pii_review,contact_sheet
 francis-collins,Francis Collins,franciscollins@mail.nih.gov,,has_pii_review,contact_sheet
@@ -42,17 +35,14 @@ guy-consolmagno,Guy Consolmagno,gjc@as.arizona.edu,,has_pii_review,contact_sheet
 ian-juby,Ian Juby,ianjuby@ianjuby.org,(613) 281-5585,has_pii_review,contact_sheet
 ian-macreadie,Ian Macreadie,ian.macreadie@rmit.edu.au,,has_pii_review,contact_sheet
 jack-cuozzo,Jack Cuozzo,drjackcuozzo@mac.com,,has_pii_review,contact_sheet
-jake-hebert,Dr. Jake Hebert,,,D4 new youtube-only guest — needs verification (no PII),youtube
 james-gardner,James Gardner,jim@canopyministries.org,,has_pii_review,contact_sheet
 james-tour,James Tour,tour@rice.edu,,has_pii_review,contact_sheet
-jason-lisle,Dr. Jason Lisle,,,D4 new youtube-only guest — needs verification (no PII),youtube
 jay-seegert,Jay Seegert,jay@thestartingpointproject.com,,has_pii_review,contact_sheet
 jay-wile,Dr. Jay Wile,,,D4 new youtube-only guest — needs verification (no PII),youtube
 jeanson-nathaniel,Jeanson Nathaniel,njeanson@answersingenesis.org,,has_pii_review,contact_sheet
 jeffrey-tomkins,Jeffrey Tomkins,jtomkins@icr.org,,has_pii_review,contact_sheet
 jim-johnson,Jim Johnson,profjjsj@aol.com,,has_pii_review,contact_sheet
 john-byl,John Byl,johnmbyl@gmail.com,,has_pii_review,contact_sheet
-john-mackay,John Mackay,,,D4 merge candidate — fuzzy near-match to 'john-may' (0.84); human decides merge/new,youtube
 john-rankin,John Rankin,j.rankin@latrobe.edu.au,,has_pii_review,contact_sheet
 john-sanford,John Sanford,jsanford@FMSFound.org,,has_pii_review,contact_sheet
 john-whitmore,John Whitmore,johnwhitmore@cedarville.edu,,has_pii_review,contact_sheet
@@ -62,12 +52,9 @@ kirby-runyon,Kirby Runyon,krunyon@psi.edu,,has_pii_review,contact_sheet
 kurt-wise,Kurt Wise,kwise@truett.edu,,has_pii_review,contact_sheet
 mary-schweitzer,Mary Schweitzer,schweitzer@ncsu.edu,,has_pii_review,contact_sheet
 michael-egnor,Michael Egnor,Michael.egnor@stonybrookmedicine.edu,,has_pii_review,contact_sheet
-michael-houts,Dr. Michael Houts,,,D4 new youtube-only guest — needs verification (no PII),youtube
 michael-lienau,Michael Lienau,,,D4 new youtube-only guest — needs verification (no PII),youtube
 michael-maughon,Michael Maughon,michaelmaughon@gmail.com,,has_pii_review,contact_sheet
 michael-oard,Michael Oard,,,D4 merge candidate — fuzzy near-match to 'michael-egnor' (0.80); human decides merge/new,youtube
-mike-houts,Dr. Mike Houts,,,D4 new youtube-only guest — needs verification (no PII),youtube
-mike-houtz,Dr. Mike Houtz,,,D4 new youtube-only guest — needs verification (no PII),youtube
 nate-loper,Nate Loper,nate@canyonministries.org,,has_pii_review,contact_sheet
 paul-garner,Paul Garner,paul@biblicalcreationtrust.org,,has_pii_review,contact_sheet
 paul-nelson,Paul Nelson,paul.alfredp@gmail.com,,has_pii_review,contact_sheet
@@ -84,9 +71,7 @@ russell-humphreys,Russell Humphreys,drhumph@swcp.com,,has_pii_review,contact_she
 sarah-rugheimer,Sarah Rugheimer,sarah.rugheimer@yorku.ca,,has_pii_review,contact_sheet
 seth-dillon,Seth Dillon,,,D4 new youtube-only guest — needs verification (no PII),youtube
 steve-austin,Steve Austin,saustin@icr.edu,800-337-0375,has_pii_review,contact_sheet
-steve-furber,Dr. Steve Furber,,,D4 new youtube-only guest — needs verification (no PII),youtube
 steve-taylor,Steve Taylor,s.taylor100@me.com,,has_pii_review,contact_sheet
-steven-taylor,Dr. Steven Taylor,,,D4 merge candidate — fuzzy near-match to 'steve-taylor' (0.96); human decides merge/new,youtube
 stuart-burgess,Stuart Burgess,stuartburgess@live.co.uk,,has_pii_review,contact_sheet
 terry-mortenson,Terry Mortenson,tmortenson@answersingenesis.org,,has_pii_review,contact_sheet
 tim-chaffey,Tim Chaffey,tchaffey@answersingenesis.org,,has_pii_review,contact_sheet

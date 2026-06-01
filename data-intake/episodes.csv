@@ -1,20 +1,20 @@
 episode_uid,season,episode_number,key_status,title,title_slug,description,air_date,air_date_source,status,sources,source_count,confidence,conflict_fields,needs_human
-S03E001,3,1,canonical,,,,2026-01-06,gsn_schedule:January Week1 (month+show-slot join),,tracker,1,high,,false
-S03E002,3,2,canonical,,,,2026-01-13,gsn_schedule:January Week2 (month+show-slot join),,tracker,1,high,,false
-S03E003,3,3,canonical,,,,2026-01-20,gsn_schedule:January Week3 (month+show-slot join),,tracker,1,high,,false
-S03E004,3,4,canonical,,,,2026-01-27,gsn_schedule:January Week4 (month+show-slot join),,tracker,1,high,,false
-S03E005,3,5,canonical,,,,,,,tracker,1,low,overflow:January has no Week5 slot,true
-S03E006,3,6,canonical,,,,2026-02-03,gsn_schedule:February Week1 (month+show-slot join),,tracker,1,high,,false
-S03E007,3,7,canonical,,,,2026-02-10,gsn_schedule:February Week2 (month+show-slot join),,tracker,1,high,,false
-S03E008,3,8,canonical,,,,2026-02-17,gsn_schedule:February Week3 (month+show-slot join),,tracker,1,high,,false
-S03E009,3,9,canonical,,,,2026-02-24,gsn_schedule:February Week4 (month+show-slot join),,tracker,1,high,,false
-S03E010,3,10,canonical,,,,,,,tracker,1,low,overflow:February has no Week5 slot,true
-S03E011,3,11,canonical,,,,2026-03-03,gsn_schedule:March Week1 (month+show-slot join),,tracker,1,high,,false
-S03E016,3,16,canonical,,,,2026-04-07,gsn_schedule:April Week1 (month+show-slot join),,tracker,1,high,,false
-S03E017,3,17,canonical,,,,2026-04-14,gsn_schedule:April Week2 (month+show-slot join),,scripts,1,high,,false
-S03E018,3,18,canonical,,,,2026-04-21,gsn_schedule:April Week3 (month+show-slot join),,scripts,1,high,,false
-S03E021,3,21,canonical,May Show 1 | S03_Ep021,may-show-1-s03-ep021,,2026-05-05,gsn_schedule:May Week1 (month+show-slot join),,rc|scripts|tracker,3,high,,false
-S03E022,3,22,canonical,May Show 2 | S03_Ep022,may-show-2-s03-ep022,,2026-05-12,gsn_schedule:May Week2 (month+show-slot join),,rc|scripts,2,high,,false
-S03E023,3,23,canonical,May Show 3 | S03_Ep023,may-show-3-s03-ep023,,2026-05-19,gsn_schedule:May Week3 (month+show-slot join),,rc|scripts,2,high,,false
-S03E024,3,24,canonical,May Show 4 | S03_Ep024,may-show-4-s03-ep024,,2026-05-26,gsn_schedule:May Week4 (month+show-slot join),,rc|scripts,2,high,,false
-S03E025,3,25,canonical,May Show 5 | S03_Ep025,may-show-5-s03-ep025,,,,,rc|scripts,2,medium,overflow:May has no Week5 slot,true
+S03E001,3,1,canonical,,,,2026-02-03,2026 GSR Airing Schedule (production-numbered) + YouTube/Fireside publish at consistent +6d lag — confirmed_2src,,tracker,1,high,,false
+S03E002,3,2,canonical,,,,2026-02-10,2026 GSR Airing Schedule + platform +6d lag — confirmed_2src,,tracker,1,high,,false
+S03E003,3,3,canonical,,,,2026-02-17,2026 GSR Airing Schedule + platform +6d lag — confirmed_2src,,tracker,1,high,,false
+S03E004,3,4,canonical,,,,2026-02-24,2026 GSR Airing Schedule + Fireside +6d (no YouTube) — confirmed_2src,,tracker,1,high,,false
+S03E005,3,5,canonical,,,,2026-03-10,2026 GSR Airing Schedule (recency tiebreaker: dupe rows 3/3 & 3/10; later row 3/10 corroborated by Fireside 3/16 at +6d) — confirmed_2src,,tracker,1,high,overflow:January has no Week5 slot,false
+S03E006,3,6,canonical,,,,2026-03-17,2026 GSR Airing Schedule + platform +6d lag — confirmed_2src,,tracker,1,high,,false
+S03E007,3,7,canonical,,,,2026-03-24,2026 GSR Airing Schedule + platform +6d lag — confirmed_2src,,tracker,1,high,,false
+S03E008,3,8,canonical,,,,2026-03-31,2026 GSR Airing Schedule + platform +6d lag — confirmed_2src,,tracker,1,high,,false
+S03E009,3,9,canonical,,,,2026-04-07,2026 GSR Airing Schedule (raw token EP09 -> S03E009 mechanical repair) + platform +6d lag — confirmed_2src,,tracker,1,high,,false
+S03E010,3,10,canonical,,,,2026-04-14,2026 GSR Airing Schedule (Apr Week2) + platform 4/20 at +6d — confirmed_2src,,tracker,1,high,overflow:February has no Week5 slot,false
+S03E011,3,11,canonical,,,,2026-04-21,2026 GSR Airing Schedule + platform +6d lag — confirmed_2src,,tracker,1,high,,false
+S03E016,3,16,canonical,,,,2026-05-26,2026 GSR Airing Schedule single-family proposal (May Week4); prior formula date incorrect; pending platform corroboration,,tracker,1,low,,true
+S03E017,3,17,canonical,,,,2026-06-02,2026 GSR Airing Schedule single-family proposal (Jun Week1); prior formula date incorrect; pending broadcast/platform,,scripts,1,low,,true
+S03E018,3,18,canonical,,,,2026-06-09,2026 GSR Airing Schedule single-family proposal (Jun Week2); prior formula date incorrect; pending broadcast/platform,,scripts,1,low,,true
+S03E021,3,21,canonical,May Show 1 | S03_Ep021,may-show-1-s03-ep021,,2026-06-30,2026 GSR Airing Schedule single-family proposal (Jun Week5); prior formula date incorrect; pending broadcast/platform,,rc|scripts|tracker,3,medium,,true
+S03E022,3,22,canonical,May Show 2 | S03_Ep022,may-show-2-s03-ep022,,2026-07-07,2026 GSR Airing Schedule single-family proposal (Jul Week1); prior formula date incorrect; pending broadcast/platform,,rc|scripts,2,medium,,true
+S03E023,3,23,canonical,May Show 3 | S03_Ep023,may-show-3-s03-ep023,,2026-07-14,2026 GSR Airing Schedule single-family proposal (Jul Week2); prior formula date incorrect; pending broadcast/platform,,rc|scripts,2,medium,,true
+S03E024,3,24,canonical,May Show 4 | S03_Ep024,may-show-4-s03-ep024,,2026-07-21,2026 GSR Airing Schedule single-family proposal (Jul Week3); prior formula date incorrect; pending broadcast/platform,,rc|scripts,2,medium,,true
+S03E025,3,25,canonical,May Show 5 | S03_Ep025,may-show-5-s03-ep025,,2026-07-28,"2026 GSR Airing Schedule single-family proposal (Jul Week4); CORRECTS D9 which proposed 2026-06-02 (that is E017's date, not E025); pending broadcast/platform",,rc|scripts,2,medium,overflow:May has no Week5 slot,true

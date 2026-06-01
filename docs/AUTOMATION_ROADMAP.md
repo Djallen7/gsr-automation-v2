@@ -105,3 +105,16 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 | 3 | Content clips + social posts UI | Schema done; completes the social media workflow |
 | 4 | Timecode + title pipeline | Highest-volume repeated manual task (YouTube category) |
 | 5 | Monthly package compiler | Useful but Drive reliability is a dependency |
+
+---
+
+## data-intake verification follow-ups (surfaced 2026-06-01, PR #40)
+
+Named tasks from the corroboration sweep (see `data-intake/VERIFICATION_REPORT.md`):
+
+| # | Task | Why now |
+|---|---|---|
+| V1 | **Fix `build_episodes()` air-date source** — replace the `month + show-slot` formula (assumes 5 eps/month) with the **2026 GSR Airing Schedule** (production-numbered, 1 ep/week). The formula produced wrong dates for all 16 dated episodes. | Wrong air dates fall on David; on-air risk. Corrected dates staged in `overrides/episodes.csv` as an interim. |
+| V2 | **Enumerate missing episodes** E012–E015, E019, E020 into the spine from the Airing Schedule | They exist (platforms + Drive confirm) but are absent from `episodes.csv`. |
+| V3 | **Link Basecamp `THD Scripts` vault as a standing GSR voice-corpus source** (02_Production, 82 docs, authored by David). Finish reading the 76 unread docs; resolve the 4 authenticity-flagged ones. | Closes the THD voice gap (kill_list K4); source is live and read-only reachable. |
+| V4 | **Human sign-off** on the DNC proposal (`verify/sources/dnc_candidates.csv`) and the E016–E025 air-date proposals | Status + future dates are never auto-confirmed by design. |

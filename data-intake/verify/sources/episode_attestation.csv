@@ -1,0 +1,80 @@
+level,episode_uid,interview_no,guest_key,guest_raw,source_families_agreeing,num_independent,tier,conflict_or_rule_note
+episode,S03E001,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E002,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E003,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E004,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E005,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,"EP005 appears twice in Airing Schedule (3/3 and 3/10); both rows normalize to S03E005; PLATFORM (Fireside 2026-03-16) independently confirms episode exists; duplicate airing-schedule entries do not create a conflict on episode identity. rule_applied=MECHANICAL FORMAT REPAIR: two rows both encode S03E005."
+episode,S03E006,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E007,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E008,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E009,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,"Airing Schedule raw token is EP09 (two-digit). rule_applied=MECHANICAL FORMAT REPAIR: EP09 -> S03E009; PLATFORM independently confirms S03E009."
+episode,S03E010,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E011,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E012,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E013,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E014,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E015,,,,"SCHEDULE|PLATFORM",2,confirmed_2src,
+episode,S03E016,,,,SCHEDULE|INTERVIEW-DOCS,2,confirmed_2src,
+episode,S03E017,,,,SCHEDULE|SCRIPTS|INTERVIEW-DOCS,3,confirmed_2src,
+episode,S03E018,,,,SCHEDULE|SCRIPTS|INTERVIEW-DOCS,3,confirmed_2src,
+episode,S03E019,,,,SCHEDULE,1,still_human,Only SCHEDULE attests Ep019; no interview docs and no platform publication yet.
+episode,S03E020,,,,SCHEDULE|INTERVIEW-DOCS,2,confirmed_2src,
+episode,S03E021,,,,SCHEDULE|RC|SCRIPTS|INTERVIEW-DOCS|GRAPHICS-TRACKER,5,confirmed_2src,
+episode,S03E022,,,,SCHEDULE|RC|SCRIPTS|INTERVIEW-DOCS|GRAPHICS-TRACKER,5,confirmed_2src,
+episode,S03E023,,,,SCHEDULE|RC|SCRIPTS|INTERVIEW-DOCS|GRAPHICS-TRACKER,5,confirmed_2src,
+episode,S03E024,,,,SCHEDULE|RC|SCRIPTS|INTERVIEW-DOCS|GRAPHICS-TRACKER,5,confirmed_2src,
+episode,S03E025,,,,SCHEDULE|RC|SCRIPTS|INTERVIEW-DOCS|GRAPHICS-TRACKER,5,confirmed_2src,"overflow:May has no Week5 slot (noted in episodes.csv); all five source families attest production episode exists."
+episode_guest,S03E001,1,don-deyoung,Don Deyoung,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E001,2,tim-clarey,Tim Clarey,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E002,1,jeffrey-tomkins,Jeff Tomkins,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E002,2,jerry-bergman,Jerry Bergman,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E003,,"(blank)","Rob Stadler Pt 1",SCHEDULE,1,still_human,"flagged_in_source; no guest_key resolvable; SCHEDULE only; no PLATFORM episode_guest for Ep003."
+episode_guest,S03E003,,david-coppedge,David Coppedge,SCHEDULE,1,still_human,SCHEDULE only; no PLATFORM episode_guest row for Ep003. Interview doc title 'S03 Ep03 Interview 2_ David Coppedge.docx' exists in drive_facts but encodes 'Ep03' (ambiguous short form); does not independently confirm production episode_uid.
+episode_guest,S03E004,,"(blank)","Carl Werner Roll in",SCHEDULE,1,still_human,flagged_in_source; no guest_key; SCHEDULE only.
+episode_guest,S03E004,,"(blank)","Rob Stadler Pt 2",SCHEDULE,1,still_human,flagged_in_source; no guest_key; SCHEDULE only.
+episode_guest,S03E005,1,john-mackay,John Mackay,SCHEDULE,1,still_human,No PLATFORM episode_guest for Ep005.
+episode_guest,S03E005,2,eric-hedin,Eric Hedin,SCHEDULE,1,still_human,No PLATFORM episode_guest for Ep005.
+episode_guest,S03E006,1,jason-lisle,Jason Lisle,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E006,2,joe-deweese,Joe Deweese,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E007,1,jake-hebert,Jake Hebert,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E007,2,steve-furber,Steve Furber,SCHEDULE,1,still_human,PLATFORM has only jake-hebert for Ep007; no steve-furber PLATFORM entry.
+episode_guest,S03E008,1,dr-david-dewitt,"Dr. David Dewitt",SCHEDULE|PLATFORM,2,confirmed_2src,"SCHEDULE key=dr-david-dewitt; PLATFORM key=david-dewitt; same person (same last name + credentials match). Key variant noted for LEAD."
+episode_guest,S03E008,2,ian-macreadie,Ian Macreadie,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E009,1,michael-houts,Michael Houts,SCHEDULE,1,still_human,"SCHEDULE key=michael-houts; PLATFORM has mike-houtz (low confidence, marked needs_human in source). Key mismatch is unresolved; cannot count as independent corroboration without LEAD decision. SCHEDULE only."
+episode_guest,S03E009,2,tommy-lohman,Tommy Lohman,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E010,1,brian-young,Brian Young,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E010,2,jeff-williams,Jeff Williams,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E011,1,charles-jackson,Charles Jackson,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E011,2,paul-nelson,Paul Nelson,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E012,1,doug-velting,Doug Velting,SCHEDULE|PLATFORM,2,confirmed_2src,"KNOWN CONFLICT: interview-doc title is 'S03 EpTBD Interview - Doug Velting'; SCHEDULE says Ep012; PLATFORM (YouTube 2026-05-04) confirms Ep012 Doug Velting. PLATFORM is independent of SCHEDULE -> confirmed_2src for Ep012 + doug-velting. Doc TBD title does not assign a competing number."
+episode_guest,S03E012,2,gordon-wilson,Gordon Wilson,SCHEDULE,1,still_human,"KNOWN CONFLICT note: gordon-wilson (Ep012) and glenn-wilson (Ep013) are distinct people confirmed distinct. SCHEDULE places gordon-wilson at Ep012. No PLATFORM episode_guest row for gordon-wilson at Ep012. SCHEDULE only."
+episode_guest,S03E013,1,charles-jackson,Charles Jackson,SCHEDULE,1,still_human,PLATFORM has episode S03E013 (date only); no episode_guest rows for Ep013 in appearances_youtube.csv or platform_facts.
+episode_guest,S03E013,2,glenn-wilson,Glenn Wilson,SCHEDULE,1,still_human,"KNOWN PAIR NOTE: gordon-wilson (Ep012) and glenn-wilson (Ep013) are distinct people at distinct episodes — confirmed separate, not merged. SCHEDULE only for glen-wilson at Ep013."
+episode_guest,S03E014,1,brian-thomas,"Brian Thomas",SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E014,2,stuart-burgess,Stuart Burgess,SCHEDULE,1,still_human,No PLATFORM episode_guest for stuart-burgess at Ep014.
+episode_guest,S03E015,1,carl-werner,Carl Werner,SCHEDULE|PLATFORM,2,confirmed_2src,
+episode_guest,S03E015,2,dan-janzen,Dan Janzen,SCHEDULE,1,still_human,No PLATFORM episode_guest for dan-janzen at Ep015.
+episode_guest,S03E016,1,frank-sherwin,"Frank Sherwin (Dallas, TX)",SCHEDULE|INTERVIEW-DOCS,2,confirmed_2src,"Interview doc title: 'S03 Ep016 Interview 1: Frank Sherwin' independently confirms."
+episode_guest,S03E016,2,stephen-meyer,Stephen Meyer,SCHEDULE|INTERVIEW-DOCS,2,confirmed_2src,"Interview doc title: 'S03 Ep016 Interview 2: Stephen Meyer' independently confirms."
+episode_guest,S03E017,1,brian-thomas,"Brian Thomas (Dallas, TX)",SCHEDULE|SCRIPTS,2,confirmed_2src,"SCRIPTS family has GSR_S03_Ep017_Run_Of_Show (run-of-show doc attests production episode). No dedicated Int1 interview doc; SCHEDULE + SCRIPTS = 2 families."
+episode_guest,S03E017,2,scott-stripling,"Scott Stripling (Katy, TX)",SCHEDULE|INTERVIEW-DOCS,2,confirmed_2src,"Interview doc title: 'S03 Ep017 Interview 2: Scott Stripling' independently confirms."
+episode_guest,S03E018,1,john-barentine,"John Barentine (Tucson, AZ)",SCHEDULE|SCRIPTS,2,confirmed_2src,"SCRIPTS family has GSR_S03_Ep018_Run_Of_Show. No dedicated Int1 interview doc for Barentine; SCHEDULE + SCRIPTS = 2 families."
+episode_guest,S03E018,2,stephen-meyer,Stephen Meyer,SCHEDULE|INTERVIEW-DOCS,2,confirmed_2src,"Interview doc title: 'S03 Ep018 Interview 2: Stephen Meyer' independently confirms."
+episode_guest,S03E019,1,joeseph-hubbard,"Joeseph Hubbard (Oswestry, UK)",SCHEDULE,1,still_human,SCHEDULE only; no interview docs or platform for Ep019.
+episode_guest,S03E019,2,tom-rogers,Tom Rogers (B.C. Canada),SCHEDULE,1,still_human,SCHEDULE only; no interview docs or platform for Ep019.
+episode_guest,S03E020,2,andrew-fabich,"Andrew Fabich (Gainsville GA)",SCHEDULE|INTERVIEW-DOCS,2,confirmed_2src,"Interview doc title: 'S03 Ep020 Interview 2: Andrew Fabich' independently confirms Int2 placement."
+episode_guest,S03E020,1,mike-houts,"Mike Houts (Madison AL)",SCHEDULE,1,still_human,"No interview doc for mike-houts at Ep020. SCHEDULE only. Note: SCHEDULE uses mike-houts key here (vs michael-houts at Ep009); these may be the same person but key inconsistency prevents cross-episode inference."
+episode_guest,S03E021,1,david-legates,David Legates,SCHEDULE|INTERVIEW-DOCS|GRAPHICS-TRACKER,3,confirmed_2src,"Interview doc: 'S03 Ep021 Interview 1 David Legates'; GRAPHICS-TRACKER Ep021 tab Interview 1 header confirms topic '10th Planetary Boundary' (attributed to david-legates in drive_facts normalized_value)."
+episode_guest,S03E021,,billy-hallowell,Billy Hallowell,SCHEDULE,1,still_human,"KNOWN CONFLICT: SCHEDULE says Ep021 (pre-recorded, interview# blank). GRAPHICS-TRACKER places Billy Hallowell at Ep025 Ministry Report slot. Conflict between SCHEDULE (Ep021) and GRAPHICS-TRACKER (Ep025) — two different episode numbers, same person. No third family breaks this tie. tier=still_human."
+episode_guest,S03E022,1,tim-clarey,Tim Clarey,SCHEDULE|INTERVIEW-DOCS|GRAPHICS-TRACKER,3,confirmed_2src,"KNOWN CONFLICT flagged: interview doc TITLE 'S03 Ep022 Interview 1 Tim Clarey' says Ep022 but doc BODY (SCHEDULE NOTES section) says 'Episode: S03 Ep018'. Title and body are within the same INTERVIEW-DOCS family. Independent families: SCHEDULE (row 22a = S03 Ep022 Tim Clarey) and GRAPHICS-TRACKER (Ep022 tab Interview 1 = Green River Mystery = tim-clarey) both independently confirm Ep022. Per instructions: 3rd family (GRAPHICS-TRACKER) breaks the tie. Attesting confirmed_2src for Ep022 tim-clarey. LEAD should note doc body discrepancy as a data quality issue."
+episode_guest,S03E022,2,jerry-bergman,Bergman,INTERVIEW-DOCS|GRAPHICS-TRACKER,2,confirmed_2src,"SCHEDULE source key is blank (last-name only token 'Bergman'). INTERVIEW-DOCS title 'S03 Ep022 Interview 2: Jerry Bergman' and GRAPHICS-TRACKER Ep022 tab Interview 2 header referencing Jerry Bergman book cover independently confirm jerry-bergman at Ep022 Int2. Two independent families confirm; SCHEDULE row is same-origin as SCHEDULE family but key was blank."
+episode_guest,S03E023,1,andrew-fabich,"Andrew Fabich (TBD)",INTERVIEW-DOCS|GRAPHICS-TRACKER,2,confirmed_2src,"SCHEDULE key is blank (TBD qualifier); not counted as resolving. INTERVIEW-DOCS title 'S03 Ep023 Interview 1: Andrew Fabich' and GRAPHICS-TRACKER Ep023 tab Interview 1 'The Smell of Rain' attributed to andrew-fabich independently confirm. Two independent families."
+episode_guest,S03E023,2,dan-janzen,Dan Janzen,SCHEDULE|INTERVIEW-DOCS,2,confirmed_2src,"Interview doc title: 'S03 Ep023 Interview 2 Dan Janzen' independently confirms."
+episode_guest,S03E024,1,carl-werner,Carl Werner,SCHEDULE|INTERVIEW-DOCS|GRAPHICS-TRACKER,3,confirmed_2src,"Interview doc: 'S03 Ep024 Interview 1 Carl Werner'; GRAPHICS-TRACKER Ep024 tab Interview 1 = 'Evolution: The Grand Experiment' attributed to carl-werner."
+episode_guest,S03E024,2,dr-ming-wang,Dr. Ming Wang,SCHEDULE|INTERVIEW-DOCS|GRAPHICS-TRACKER,3,confirmed_2src,"Interview doc: 'S03 Ep024 Interview 2: Dr. Ming Wang'; GRAPHICS-TRACKER Ep024 tab Interview 2 = 'The Eye That Convinced a Harvard Scientist' attributed to dr-ming-wang."
+episode_guest,S03E025,2,david-coppedge,Coppedge,INTERVIEW-DOCS|GRAPHICS-TRACKER,2,confirmed_2src,"SCHEDULE source key is blank (surname only 'Coppedge'). INTERVIEW-DOCS title 'S03 Ep025 Interview 2: David Coppedge' and GRAPHICS-TRACKER Ep025 tab Interview 2 'The Creation Deficit' attributed to david-coppedge independently confirm. Two independent families."
+episode_guest,S03E025,1,jeffrey-tomkins,Jeff Tomkins,SCHEDULE,1,still_human,"SCHEDULE places jeff-tomkins at Ep025 Int1. No interview doc for Ep025 Int1 in drive_facts. No PLATFORM episode_guest for Ep025. SCHEDULE only."
+episode_guest,,,,jake-hebert (no uid),PLATFORM,1,still_human,YouTube row has no episode_uid assigned (date-blocked D3/D5). Cannot confirm episode placement. PLATFORM only.
+episode_guest,,,,jim-johnson (no uid),PLATFORM,1,still_human,YouTube row has no episode_uid assigned (date-blocked D3/D5). Cannot confirm episode placement. PLATFORM only.
+episode_guest,,,,michael-houts (no uid),PLATFORM,1,still_human,YouTube row has no episode_uid assigned (date-blocked D3/D5). Cannot confirm episode placement. PLATFORM only.
+episode_guest,,,,rob-stadler (no uid),PLATFORM,1,still_human,YouTube row has no episode_uid assigned (date-blocked D3/D5). Cannot confirm episode placement. PLATFORM only.

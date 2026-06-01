@@ -1,0 +1,121 @@
+fact_type,platform,source_file,source_row,raw_title,episode_uid,episode_number_raw,guest_raw,guest_key,publish_date_raw,topic_raw,credentials_raw,organization_raw,notes
+episode_guest,youtube,appearances_youtube.csv,91,,S03E001,001,Dr. Tim Clarey,tim-clarey,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,92,,S03E001,001,Dr. Don DeYoung,don-deyoung,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,93,,S03E002,002,Dr. Jerry Bergman,jerry-bergman,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,94,,S03E002,002,Dr. Jeff Tomkins,jeff-tomkins,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,95,,S03E006,006,Dr. Joe Deweese,joe-deweese,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,96,,S03E006,006,Dr. Jason Lisle,jason-lisle,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,97,,S03E007,007,Jake Hebert,jake-hebert,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,98,,S03E008,008,Dr. Ian Macreadie,ian-macreadie,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,99,,S03E008,008,Dr. David DeWitt,david-dewitt,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,100,,S03E009,009,Dr. Mike Houtz,mike-houtz,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,101,,S03E009,009,Tommy Lohman,tommy-lohman,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,102,,S03E010,010,Brian Young,brian-young,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,103,,S03E010,010,Colonel Jeff Williams,jeff-williams,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,104,,S03E011,011,Dr. Charles Jackson,charles-jackson,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,105,,S03E011,011,Dr. Paul Nelson,paul-nelson,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,106,,S03E012,012,Doug Velting,doug-velting,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,107,,S03E014,014,Dr. Brian Thomas,brian-thomas,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+episode_guest,youtube,appearances_youtube.csv,108,,S03E015,015,Dr. Carl Werner,carl-werner,,,,,episode_uid and guest_key verbatim from appearances_youtube.csv
+guest,youtube,guests_youtube.csv,2,,,,Dr. Andrew Fabich,andrew-fabich,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,3,,,,Dr. Andrew Snelling,andrew-snelling,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,4,,,,Professor Andy McIntosh,andy-mcintosh,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,5,,,,Bodie Hodge,bodie-hodge,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,6,,,,Dr. Brian Thomas,brian-thomas,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,7,,,,Brian Young,brian-young,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,8,,,,Dr Carl Werner,carl-werner,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,9,,,,Dr. Charles Jackson,charles-jackson,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,10,,,,Dr. Chris Rupe,chris-rupe,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,11,,,,David Coppedge,david-coppedge,,,Astrophysicist,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,12,,,,Dr. David DeWitt,david-dewitt,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,13,,,,Dr. Don DeYoung,don-deyoung,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,14,,,,Doug Velting,doug-velting,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,15,,,,Dr. Ed Holroyd,ed-holroyd,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,16,,,,Dr. Glenn Wilson,glenn-wilson,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,17,,,,Dr. Ian Macreadie,ian-macreadie,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,18,,,,Dr. Jake Hebert,jake-hebert,,Creation researcher,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,19,,,,Dr. James Tour,james-tour,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,20,,,,Dr. Jason Lisle,jason-lisle,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,21,,,,Jay Seegert,jay-seegert,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,22,,,,Dr. Jay Wile,jay-wile,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,23,,,,Dr. Jeff Tomkins,jeff-tomkins,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,24,,,,Col. Jeff Williams,jeff-williams,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,25,,,,Jeffrey Tomkins,jeffrey-tomkins,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,26,,,,Dr. Jerry Bergman,jerry-bergman,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,27,,,,Dr. Jim Johnson,jim-johnson,,forensic scientist,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,28,,,,Dr. Joe Deweese,joe-deweese,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,29,,,,Joe Hubbard,joe-hubbard,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,30,,,,Dr. John Hartnett,john-hartnett,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,31,,,,John Mackay,john-mackay,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,32,,,,Joseph Hubbard,joseph-hubbard,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,33,,,,Dr. Kirby Runyon,kirby-runyon,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,34,,,,Dr. Michael Egnor,michael-egnor,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,35,,,,Dr. Michael Houts,michael-houts,,,Nuclear engineer,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,36,,,,Michael Lienau,michael-lienau,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,37,,,,Michael Maughon,michael-maughon,,wildlife educator,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,38,,,,Michael Oard,michael-oard,,meteorologist and creation science expert,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,39,,,,Dr. Mike Houts,mike-houts,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,40,,,,Dr. Mike Houtz,mike-houtz,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,41,,,,Paul Garner,paul-garner,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,42,,,,Dr. Paul Nelson,paul-nelson,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,43,,,,Dr. Randy Guliuzza,randy-guliuzza,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,44,,,,Dr. Rob Stadler,rob-stadler,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,45,,,,Seth Dillon,seth-dillon,,,of The Babylon Bee,The Babylon Bee,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,46,,,,Dr. Steve Furber,steve-furber,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,47,,,,Dr. Steven Taylor,steven-taylor,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,48,,,,Dr. Stuart Burgess,stuart-burgess,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,49,,,,Dr. Tim Clarey,tim-clarey,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,50,,,,Pastor Tim Shields,tim-shields,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+guest,youtube,guests_youtube.csv,51,,,,Tommy Lohman,tommy-lohman,,,,,verbatim from guests_youtube.csv; credentials/org/expertise as extracted
+date,youtube,distributions_youtube.csv,56,"Rising Continents, Ancient Clues, and the Limits of Science | Genesis Science Report - S03, Ep1",S03E001,001,,,20260209,,,,YouTube published_at=2026-02-09; raw=20260209
+date,youtube,distributions_youtube.csv,57,From Fossils to Genetics: Rethinking Where We Come From | Genesis Science Report - S03 Ep2,S03E002,002,,,20260216,,,,YouTube published_at=2026-02-16; raw=20260216
+date,youtube,distributions_youtube.csv,58,"Energy, Eternity and the Engineering of Life | Genesis Science Report - S03, Ep3",S03E003,003,,,20260223,,,,YouTube published_at=2026-02-23; raw=20260223
+date,youtube,distributions_youtube.csv,59,"Shiloh Alter Discovery & DNA Science Breakthrough | Genesis Science Report - 203, Ep6",S03E006,006,,,20260323,,,,YouTube published_at=2026-03-23; raw=20260323
+date,youtube,distributions_youtube.csv,60,"Fruit Fly Brain Map, Dinosaur Growth, and AL Limits | Genesis Science Report - S03, Ep7",S03E007,007,,,20260330,,,,YouTube published_at=2026-03-30; raw=20260330
+date,youtube,distributions_youtube.csv,61,"Fine-Tuned Universe, Space Microbes, and Genetic Switches | Genesis Science Report - S03, Ep8",S03E008,008,,,20260406,,,,YouTube published_at=2026-04-06; raw=20260406
+date,youtube,distributions_youtube.csv,62,"NASA's Moon Reactor & Ancient Engineering Beneath the Ocean | Genesis Science Report - S03, Ep9",S03E009,009,,,20260413,,,,YouTube published_at=2026-04-13; raw=20260413
+date,youtube,distributions_youtube.csv,63,"Bacteria ""Playing Dead"", ISS Retirement, and Gen Z Faith | Genesis Science Report - S03, Ep10",S03E010,010,,,20260420,,,,YouTube published_at=2026-04-20; raw=20260420
+date,youtube,distributions_youtube.csv,64,"AI is Taking Authority, & Nobody's Asking the Right Questions | Genesis Science Report - S03, Ep11",S03E011,011,,,20260427,,,,YouTube published_at=2026-04-27; raw=20260427
+date,youtube,distributions_youtube.csv,65,"Pumas Are Killing Penguins - What It Tells Us About Creation | Genesis Science Report - S03, Ep12",S03E012,012,,,20260504,,,,YouTube published_at=2026-05-04; raw=20260504
+date,youtube,distributions_youtube.csv,66,"Is Evolution Still Science? Soil Science Rewrites the Timeline | Genesis Science Report - S03, Ep13",S03E013,013,,,20260511,,,,YouTube published_at=2026-05-11; raw=20260511
+date,youtube,distributions_youtube.csv,67,"Scientists Can't Copy the Human Body: But Evolution Did It By Accident? | GSR - S03, Ep14",S03E014,014,,,20260518,,,,YouTube published_at=2026-05-18; raw=20260518
+date,youtube,distributions_youtube.csv,68,"The Smithsonian's Missing Evidence & UFOs Explained | Genesis Science Report - S03, Ep15",S03E015,015,,,20260525,,,,YouTube published_at=2026-05-25; raw=20260525
+date,fireside,distributions_fireside.csv,36,"S03 Ep001 | Rising Continents, Ancient Clues, and the Limits of Science",S03E001,001,,,"Mon, 09 Feb 2026 18:00:00 -0500",,,,Fireside published_at=2026-02-09; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,37,S03 Ep002 | From Fossils to Genetics: Rethinking Where We Came From,S03E002,002,,,"Mon, 16 Feb 2026 18:00:00 -0500",,,,Fireside published_at=2026-02-16; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,38,"S03 Ep003 | Energy, Eternity, and the Engineering of Life",S03E003,003,,,"Mon, 23 Feb 2026 18:00:00 -0500",,,,Fireside published_at=2026-02-23; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,39,"S03 Ep004 | Ancient Tools, Shared Origins, and a Biblical Blueprint",S03E004,004,,,"Mon, 02 Mar 2026 18:00:00 -0500",,,,Fireside published_at=2026-03-02; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,40,S03 Ep005 | From Coral Reefs to Cosmic Clues: Design at Every Scale,S03E005,005,,,"Mon, 16 Mar 2026 18:00:00 -0400",,,,Fireside published_at=2026-03-16; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,41,S03 Ep006 | Shiloh Altar Discovery & DNA Science Breakthroughs,S03E006,006,,,"Mon, 23 Mar 2026 16:00:00 -0400",,,,Fireside published_at=2026-03-23; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,42,"S03 Ep007 | Fruit Fly Brain Map, Dinosaur Growth, and AI Limits",S03E007,007,,,"Mon, 30 Mar 2026 16:00:00 -0400",,,,Fireside published_at=2026-03-30; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,43,"S03 Ep008 | Fine-Tuned Universe, Space Microbes, and Human DNA",S03E008,008,,,"Mon, 06 Apr 2026 18:00:00 -0400",,,,Fireside published_at=2026-04-06; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,44,S03 Ep009 | NASA's Moon Reactor & Ancient Engineering Beneath the Ocean,S03E009,009,,,"Mon, 13 Apr 2026 18:00:00 -0400",,,,Fireside published_at=2026-04-13; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,45,"S03 Ep010 | Bacteria ""Playing Dead"", ISS Retirement, and Gen Z Faith",S03E010,010,,,"Mon, 20 Apr 2026 18:00:00 -0400",,,,Fireside published_at=2026-04-20; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,46,S03 Ep011 | AI Is Taking Over. Are Christians Ready?,S03E011,011,,,"Mon, 27 Apr 2026 18:00:00 -0400",,,,Fireside published_at=2026-04-27; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,47,"S03 Ep012 | Pumas, Penguins, and Creation Care",S03E012,012,,,"Mon, 04 May 2026 18:00:00 -0400",,,,Fireside published_at=2026-05-04; raw RFC-2822 timestamp
+date,fireside,distributions_fireside.csv,48,S03 Ep013 | When Evolution Stops Being Science,S03E013,013,,,"Fri, 01 May 2026 11:00:00 -0400",,,,Fireside published_at=2026-05-01; raw RFC-2822 timestamp
+episode,youtube,episodes_youtube.csv,1298,"Rising Continents, Ancient Clues, Limits of Science | Genesis Science Report - S03, Ep1",S03E001,1,,,20260209,,,,air_date_raw blank in source; youtube_published_at=2026-02-09
+episode,youtube,episodes_youtube.csv,1318,From Fossils to Genetics: Rethinking Where We Come From | Genesis Report - S03 Ep2,S03E002,2,,,20260216,,,,air_date_raw blank in source; youtube_published_at=2026-02-16
+episode,youtube,episodes_youtube.csv,1342,"Energy, Eternity Engineering of Life S03, Ep3",S03E003,3,,,20260223,,,,air_date_raw blank in source; youtube_published_at=2026-02-23
+episode,youtube,episodes_youtube.csv,1366,"Shiloh Alter Discovery & DNA Science Breakthrough | Genesis Science Report - 203, Ep6",S03E006,6,,,20260323,,,,air_date_raw blank in source; youtube_published_at=2026-03-23
+episode,youtube,episodes_youtube.csv,1393,"Fruit Fly Brain Map, Dinosaur Growth, AL Limits Genesis S03, Ep7",S03E007,7,,,20260330,,,,air_date_raw blank in source; youtube_published_at=2026-03-30
+episode,youtube,episodes_youtube.csv,1420,"Fine-Tuned Universe, Space Microbes, Genetic Switches Genesis Science Report - S03, Ep8",S03E008,8,,,20260406,,,,air_date_raw blank in source; youtube_published_at=2026-04-06
+episode,youtube,episodes_youtube.csv,1440,NASA's Moon Reactor & Ancient Engineering Beneath the Ocean | Genesis,S03E009,9,,,20260413,,,,air_date_raw blank in source; youtube_published_at=2026-04-13
+episode,youtube,episodes_youtube.csv,1463,"Bacteria ""Playing Dead"", ISS Retirement, and Gen Z Faith | Ge...",S03E010,10,,,20260420,,,,air_date_raw blank in source; youtube_published_at=2026-04-20
+episode,youtube,episodes_youtube.csv,1483,"AI is Taking Authority, & Nobody's Asking the Right Questions |...",S03E011,11,,,20260427,,,,air_date_raw blank in source; youtube_published_at=2026-04-27
+episode,youtube,episodes_youtube.csv,1503,Pumas Are Killing Penguins - What It Tells Us About Creation | ...,S03E012,12,,,20260504,,,,air_date_raw blank in source; youtube_published_at=2026-05-04
+episode,youtube,episodes_youtube.csv,1524,Is Evolution Still Science? Soil Science Rewrites the Timeline ...,S03E013,13,,,20260511,,,,air_date_raw blank in source; youtube_published_at=2026-05-11
+episode,youtube,episodes_youtube.csv,1545,Scientists Can't Copy the Human Body: But Evolution Did It By A...,S03E014,14,,,20260518,,,,air_date_raw blank in source; youtube_published_at=2026-05-18
+episode,youtube,episodes_youtube.csv,1577,The Smithsonian's Missing Evidence & UFOs Explained | Genesis S...,S03E015,15,,,20260525,,,,air_date_raw blank in source; youtube_published_at=2026-05-25
+episode,fireside,episodes_fireside.csv,393,"S03 Ep001 | Rising Continents, Ancient Clues, and the Limits of Science",S03E001,1,,,"Mon, 09 Feb 2026 18:00:00 -0500",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,406,S03 Ep002 | From Fossils to Genetics: Rethinking Where We Came From,S03E002,2,,,"Mon, 16 Feb 2026 18:00:00 -0500",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,419,"S03 Ep003 | Energy, Eternity, and the Engineering of Life",S03E003,3,,,"Mon, 23 Feb 2026 18:00:00 -0500",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,430,"S03 Ep004 | Ancient Tools, Shared Origins, and a Biblical Blueprint",S03E004,4,,,"Mon, 02 Mar 2026 18:00:00 -0500",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,441,S03 Ep005 | From Coral Reefs to Cosmic Clues: Design at Every Scale,S03E005,5,,,"Mon, 16 Mar 2026 18:00:00 -0400",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,452,S03 Ep006 | Shiloh Altar Discovery & DNA Science Breakthroughs,S03E006,6,,,"Mon, 23 Mar 2026 16:00:00 -0400",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,459,"S03 Ep007 | Fruit Fly Brain Map, Dinosaur Growth, and AI Limits",S03E007,7,,,"Mon, 30 Mar 2026 16:00:00 -0400",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,466,"S03 Ep008 | Fine-Tuned Universe, Space Microbes, and Human DNA",S03E008,8,,,"Mon, 06 Apr 2026 18:00:00 -0400",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,473,S03 Ep009 | NASA's Moon Reactor & Ancient Engineering Beneath the Ocean,S03E009,9,,,"Mon, 13 Apr 2026 18:00:00 -0400",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,480,"S03 Ep010 | Bacteria ""Playing Dead"", ISS Retirement, and Gen Z Faith",S03E010,10,,,"Mon, 20 Apr 2026 18:00:00 -0400",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,487,S03 Ep011 | AI Is Taking Over. Are Christians Ready?,S03E011,11,,,"Mon, 27 Apr 2026 18:00:00 -0400",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,514,"S03 Ep012 | Pumas, Penguins, and Creation Care",S03E012,12,,,"Mon, 04 May 2026 18:00:00 -0400",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822
+episode,fireside,episodes_fireside.csv,541,S03 Ep013 | When Evolution Stops Being Science,S03E013,13,,,"Fri, 01 May 2026 11:00:00 -0400",,,,air_date and air_date_raw blank in source; published_at_raw is RFC-2822

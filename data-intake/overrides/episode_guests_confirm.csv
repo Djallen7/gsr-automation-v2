@@ -1,0 +1,33 @@
+episode_uid,guest_key,interview_no,guest_full_name,sources,tier,note
+S03E001,don-deyoung,1,Don DeYoung,SCHEDULE|PLATFORM,confirmed_2src,
+S03E001,tim-clarey,2,Tim Clarey,SCHEDULE|PLATFORM,confirmed_2src,
+S03E002,jeffrey-tomkins,1,Jeff Tomkins,SCHEDULE|PLATFORM,confirmed_2src,
+S03E002,jerry-bergman,2,Jerry Bergman,SCHEDULE|PLATFORM,confirmed_2src,
+S03E006,jason-lisle,1,Jason Lisle,SCHEDULE|PLATFORM,confirmed_2src,
+S03E006,joe-deweese,2,Joe Deweese,SCHEDULE|PLATFORM,confirmed_2src,
+S03E007,jake-hebert,1,Jake Hebert,SCHEDULE|PLATFORM,confirmed_2src,
+S03E008,david-a-dewitt,1,Dr. David DeWitt,SCHEDULE|PLATFORM,confirmed_2src,"schedule key dr-david-dewitt + youtube david-dewitt both canon to david-a-dewitt via guest_merges"
+S03E008,ian-macreadie,2,Ian Macreadie,SCHEDULE|PLATFORM,confirmed_2src,
+S03E009,tommy-lohman,2,Tommy Lohman,SCHEDULE|PLATFORM,confirmed_2src,
+S03E010,brian-young,1,Brian Young,SCHEDULE|PLATFORM,confirmed_2src,
+S03E010,jeff-williams,2,Jeff Williams,SCHEDULE|PLATFORM,confirmed_2src,
+S03E011,charles-jackson,1,Charles Jackson,SCHEDULE|PLATFORM,confirmed_2src,
+S03E011,paul-nelson,2,Paul Nelson,SCHEDULE|PLATFORM,confirmed_2src,
+S03E012,doug-velting,1,Doug Velting,SCHEDULE|PLATFORM,confirmed_2src,"interview-doc title is EpTBD; SCHEDULE+PLATFORM(YouTube 5/4) independently confirm Ep012"
+S03E014,brian-thomas,1,Brian Thomas,SCHEDULE|PLATFORM,confirmed_2src,
+S03E015,carl-werner,1,Carl Werner,SCHEDULE|PLATFORM,confirmed_2src,
+S03E016,frank-sherwin,1,Frank Sherwin,SCHEDULE|INTERVIEW-DOCS,confirmed_2src,"interview-doc 'S03 Ep016 Interview 1: Frank Sherwin'"
+S03E016,stephen-meyer,2,Stephen Meyer,SCHEDULE|INTERVIEW-DOCS,confirmed_2src,"interview-doc 'S03 Ep016 Interview 2: Stephen Meyer'"
+S03E017,brian-thomas,1,Brian Thomas,SCHEDULE|SCRIPTS,confirmed_2src,"run-of-show E017 + schedule"
+S03E017,scott-stripling,2,Scott Stripling,SCHEDULE|INTERVIEW-DOCS,confirmed_2src,"interview-doc 'S03 Ep017 Interview 2: Scott Stripling'"
+S03E018,john-barentine,1,John Barentine,SCHEDULE|SCRIPTS,confirmed_2src,"run-of-show E018 + schedule"
+S03E018,stephen-meyer,2,Stephen Meyer,SCHEDULE|INTERVIEW-DOCS,confirmed_2src,"interview-doc 'S03 Ep018 Interview 2: Stephen Meyer'"
+S03E020,andrew-j-fabich,2,Andrew Fabich,SCHEDULE|INTERVIEW-DOCS,confirmed_2src,"schedule key andrew-fabich canon to andrew-j-fabich; interview-doc 'S03 Ep020 Interview 2: Andrew Fabich'"
+S03E021,david-legates,1,David Legates,SCHEDULE|INTERVIEW-DOCS|GRAPHICS-TRACKER,confirmed_2src,"already-clean E021; harmless no-op"
+S03E022,tim-clarey,1,Tim Clarey,SCHEDULE|GRAPHICS-TRACKER,confirmed_2src,"DOC-BODY DISCREPANCY FLAGGED: interview-doc title says Ep022 but body says Ep018; SCHEDULE+GRAPHICS-TRACKER break tie to Ep022"
+S03E022,jerry-bergman,2,Jerry Bergman,INTERVIEW-DOCS|GRAPHICS-TRACKER,confirmed_2src,"schedule key blank (token 'Bergman'); name-matched"
+S03E023,andrew-j-fabich,1,Andrew Fabich,INTERVIEW-DOCS|GRAPHICS-TRACKER,confirmed_2src,"schedule key blank (Andrew Fabich TBD); name-matched; canon andrew-j-fabich"
+S03E023,dan-janzen,2,Dan Janzen,SCHEDULE|INTERVIEW-DOCS,confirmed_2src,
+S03E024,carl-werner,1,Carl Werner,SCHEDULE|INTERVIEW-DOCS|GRAPHICS-TRACKER,confirmed_2src,"already-clean E024; harmless no-op"
+S03E024,dr-ming-wang,2,Dr. Ming Wang,SCHEDULE|INTERVIEW-DOCS|GRAPHICS-TRACKER,confirmed_2src,"already-clean E024; harmless no-op"
+S03E025,david-coppedge,2,David Coppedge,INTERVIEW-DOCS|GRAPHICS-TRACKER,confirmed_2src,"schedule key blank (Coppedge); name-matched; promoted (no scripts row for E025)"

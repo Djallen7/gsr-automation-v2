@@ -1,0 +1,10 @@
+guest_key,confirmed_as,sources,note
+brian-young,identity_confirmed,SCHEDULE|PLATFORM,"VERIFY D confirmed_2src; youtube-only guest, no PII; full name Brian Young"
+carl-werner,identity_confirmed,SCHEDULE|INTERVIEW-DOCS|PLATFORM|GRAPHICS-TRACKER,"VERIFY D confirmed; Dr. Carl Werner, Evolution: The Grand Experiment"
+charles-jackson,identity_confirmed,SCHEDULE|PLATFORM,"VERIFY D confirmed_2src; Dr. Charles Jackson"
+doug-velting,identity_confirmed,SCHEDULE|INTERVIEW-DOCS|PLATFORM|CONTACT,"VERIFY D confirmed; Doug Velting, Creation Engineering Concepts (org from contact velting-doug reversed key)"
+jake-hebert,identity_confirmed,SCHEDULE|PLATFORM,"VERIFY D confirmed_2src; Dr. Jake Hebert, Creation researcher"
+jason-lisle,identity_confirmed,SCHEDULE|PLATFORM|CONTACT,"VERIFY D confirmed; Dr. Jason Lisle, Biblical Science Institute, astrophysics"
+steve-furber,identity_confirmed,SCHEDULE|PLATFORM,"VERIFY D confirmed_2src; Dr. Steve Furber"
+michael-houts,identity_confirmed,SCHEDULE|PLATFORM,"VERIFY D confirmed_2src; Dr. Michael Houts, NASA nuclear/space propulsion; canonical for mike-houts/mike-houtz merges"
+john-mackay,identity_confirmed_distinct,SCHEDULE|PLATFORM,"VERIFY D TRAP resolved; John Mackay creation evangelist, DISTINCT from john-may (reptile expert); fuzzy false-positive; real distinct guest at S03E005"

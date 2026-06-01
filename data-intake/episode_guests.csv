@@ -1,9 +1,33 @@
 episode_uid,guest_key,guest_full_name,segment,topic,role,sources,source_count,confidence,conflict_fields,needs_human
+S03E001,don-deyoung,Don Deyoung,interview_1,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E001,tim-clarey,Tim Clarey,interview_2,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E002,jeffrey-tomkins,Jeff Tomkins,interview_1,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E002,jerry-bergman,Jerry Bergman,interview_2,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E006,jason-lisle,Jason Lisle,interview_1,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E006,joe-deweese,Joe Deweese,interview_2,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E007,jake-hebert,Jake Hebert,interview_1,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E008,david-a-dewitt,Dr. David Dewitt,interview_1,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E008,ian-macreadie,Ian Macreadie,interview_2,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E009,tommy-lohman,Tommy Lohman,interview_2,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E010,brian-young,Brian Young,interview_1,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E010,jeff-williams,Jeff Williams,interview_2,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E011,charles-jackson,Charles Jackson,interview_1,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E011,paul-nelson,Paul Nelson,interview_2,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E012,doug-velting,Doug Velting,interview_1,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E014,brian-thomas,Brian Thomas,interview_1,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E015,carl-werner,Carl Werner,interview_1,,guest,PLATFORM|SCHEDULE|youtube,3,high,,false
+S03E016,frank-sherwin,"Frank Sherwin (Dallas, TX)",interview_1,,guest,SCHEDULE|INTERVIEW-DOCS,2,high,,false
+S03E016,stephen-meyer,Stephen Meyer,interview_2,,guest,SCHEDULE|INTERVIEW-DOCS,2,high,,false
+S03E017,brian-thomas,"Brian Thomas (Dallas, TX)",interview_1,,guest,SCHEDULE|SCRIPTS,2,high,,false
+S03E017,scott-stripling,"Scott Stripling (Katy, TX)",interview_2,,guest,SCHEDULE|INTERVIEW-DOCS,2,high,,false
+S03E018,john-barentine,"John Barentine (Tucson, AZ)",interview_1,,guest,SCHEDULE|SCRIPTS,2,high,,false
+S03E018,stephen-meyer,Stephen Meyer,interview_2,,guest,SCHEDULE|INTERVIEW-DOCS,2,high,,false
+S03E020,andrew-j-fabich,Andrew Fabich (Gainsville GA),interview_2,,guest,SCHEDULE|INTERVIEW-DOCS,2,high,,false
 S03E021,david-legates,David Legates,interview_1,,guest,scripts|schedule,2,high,,false
-S03E022,jerry-bergman,Jerry Bergman,interview_2,,guest,scripts|youtube,2,high,,false
-S03E022,tim-clarey,Tim Clarey,interview_1,,guest,schedule|scripts|youtube,3,high,,false
-S03E023,andrew-fabich,Andrew Fabich,interview_1,,guest,scripts,1,high,,false
+S03E022,jerry-bergman,Jerry Bergman,interview_2,,guest,schedule|scripts,2,high,,false
+S03E022,tim-clarey,Tim Clarey,interview_1,,guest,scripts|schedule,2,high,,false
+S03E023,andrew-j-fabich,Andrew Fabich,interview_1,,guest,scripts,1,high,,false
 S03E023,dan-janzen,Dan Janzen,interview_2,,guest,scripts|schedule,2,high,,false
-S03E024,carl-werner,Carl Werner,interview_1,,guest,schedule|scripts|youtube,3,high,,false
+S03E024,carl-werner,Carl Werner,interview_1,,guest,scripts|schedule,2,high,,false
 S03E024,dr-ming-wang,Dr. Ming Wang,interview_2,,guest,scripts|schedule,2,high,,false
-S03E025,david-coppedge,David Coppedge,interview_2,,guest,scripts,1,high,,false
+S03E025,david-coppedge,David Coppedge,interview_2,,guest,schedule|scripts,2,high,,false

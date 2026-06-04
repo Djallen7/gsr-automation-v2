@@ -3,6 +3,12 @@
 **Goal:** Run one full episode through the complete workflow:
 extract → import → review → approve → ProPresenter copy.
 
+> **Stage 7 is operational, not a code fix.** There is no schema blocker. The
+> lower-thirds table is `graphics` (there is no `lower_thirds` table, and the
+> old "JSON vs lower_thirds column mismatch" was a phantom). The only reason
+> `graphics` has 0 rows is that no real episode has been imported yet. This
+> runbook is that first real import.
+
 ---
 
 ## Step 0 — Verify the import flow works (do this first, takes 2 minutes)
@@ -161,7 +167,7 @@ If all of that works, the system is ready for a real episode.
 
 1. Open **Claude.ai** (claude.ai, not Claude Code)
 2. Enable the **Google Drive connector** (click the Drive icon in the chat bar)
-3. Paste the extraction prompt from `FEATURE_1_LOWER_THIRDS_TEXT_IMPORT.md`
+3. Paste the extraction prompt. The live source for it is the `/extract` page (which calls the `/api/extract-lower-thirds` route) or `docs/PROMPT_LIBRARY.md`
 4. In the same message, say: "Process this episode folder: [paste the Drive folder name or link]"
 5. Claude will read the script doc and return a JSON object
 6. Copy the entire JSON output
@@ -227,4 +233,4 @@ Work through all cards before moving to the approved queue.
 - [ ] Step 1–4: At least one real episode extracted, imported, reviewed, and copied to ProPresenter
 - [ ] No PNG upload or image storage was involved end-to-end
 
-Once one real episode completes Step 4, mark Stage 7 done in BUILD_STATUS.html.
+Once one real episode completes Step 4, mark Stage 7 done by updating the Project State section in `CLAUDE.md` (the graphics row count moves off 0) and `docs/_handoff/HANDOFF.md`.

@@ -26,7 +26,7 @@ export const PROMPTS: Prompt[] = [
     warning:
       'Claude will suggest recently-aired guests unless the roster is injected explicitly. The live roster below is auto-filled from Supabase.',
     liveData: true,
-    text: `You are helping me research guests for Genesis Science Report (GSR), a weekly Christian creation-science TV show hosted by David Rives. Season 3, ~58 min, weekly. Air day: Tuesday 8 PM CST.
+    text: `You are helping me research guests for Genesis Science Report (GSR), a weekly Christian creation-science TV show hosted by David Rives. Season 3, ~58 min, weekly. TV air: Tuesday 8 PM CST. The YouTube upload publishes the day before, Monday 4 PM ET.
 
 EXISTING GUEST ROSTER (as of {DATE}):
 Do not suggest anyone who last aired less than 6 months ago unless I explicitly ask.
@@ -661,10 +661,10 @@ CONFIRM STATUS FOR EACH PLATFORM:
 ☐ 2. DROPBOX (Phase 1 — automated)
    - File in: /David Rives Ministries/Genesis Science Report/{FILENAME}
 
-☐ 3. RUMBLE (manual — Phase 2 Playwright planned)
+☐ 3. RUMBLE (auto-mirrored via YouTube channel sync)
    - File uploaded, titled correctly
 
-☐ 4. FIRESIDE.FM (manual — Phase 3 Playwright planned)
+☐ 4. FIRESIDE.FM (manual handoff card, read-only API)
    - Episode uploaded with title, description, artwork
    - Auto-distributes to Apple Podcasts + Spotify
 

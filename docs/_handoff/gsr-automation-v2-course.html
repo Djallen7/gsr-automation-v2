@@ -845,7 +845,7 @@ function planMarkdown(){
   L.push('4. Steps marked Manual are done by a human; their prompt builds only the automatable part, if any.');
   L.push('5. After each step: confirm tsc and eslint pass, squash-merge, then move on.');
   L.push('');
-  L.push('**Setup once:** install the GSR Architect subagent at .claude/agents/gsr-architect.md (from the gsr-blueprint repo) so every build session boots knowing the system. Keep the companion reference files (listed at the end) open.');
+  L.push('**Setup:** the GSR Architect subagent already ships in this repo at .claude/agents/gsr-architect.md; Claude Code loads it automatically, so a build session boots knowing the system. Keep the companion reference files (listed at the end) open.');
   L.push('');
   L.push('## The architecture law (non-negotiable)');
   L.push('The David Rule: automation reads cloud APIs and writes to the database only. It never writes to the live broadcast chain, the ProPresenter machine (GSN-PropRes, Tailscale 100.98.215.7), the QNAP NAS (read-only SMB), ATEM, or Bitfocus Companion. Production pulls from the database on its own schedule. Build with feat/fix branches and squash merges; pull credentials from 1Password at runtime; never commit secrets.');
@@ -964,7 +964,7 @@ const COMPANION=[
  'docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md - the full live-verified system reference (three eras, every route + contract, the 20-table schema, prompts).',
  'docs/_handoff/VERIFIED-FACTS.md - June 4 verification verdicts (versions, prices, quotas, the corrections).',
  'docs/_handoff/2026-06-04-tools-curriculum-timeline.md - the 8-stage tool, setup, and fragile-parts timeline.',
- 'gsr-blueprint repo: agent/2026-06-03-gsr-architect.md - the GSR Architect subagent. Install at .claude/agents/gsr-architect.md so build sessions boot knowing the system.',
+ '.claude/agents/gsr-architect.md - the GSR Architect subagent, now shipping in THIS repo. Claude Code loads it automatically; invoke the gsr-architect agent type and a session boots knowing the whole system.',
  'gsr-blueprint repo: mock/2026-06-03-gsr-dashboard-mock.html - the annotated dashboard mock (UI reference).'
 ];
 
@@ -975,7 +975,7 @@ function planHTML(){
   H.push('<h1>GSR Automation v2 - Build Plan</h1>');
   H.push('<p class="meta">Single source of truth. Generated '+now+'. Target repo: <b>gsr-automation-v2</b>. Decisions locked: '+done+' / '+total+'.</p>');
   H.push('<div class="law"><b>The architecture law (David Rule).</b> Automation reads cloud APIs and writes the database only. It never touches the live broadcast chain, ProPresenter (GSN-PropRes, Tailscale 100.98.215.7), the QNAP NAS, ATEM, or Bitfocus Companion. Build with feat/fix branches and squash merges; secrets from 1Password; never commit secrets.</div>');
-  H.push('<h2>How to run this plan</h2><ol><li>Open Claude Code in gsr-automation-v2.</li><li>Work phase by phase, step by step. Do not skip ahead.</li><li>For each automatable step, paste its Claude Code prompt and review the draft PR.</li><li>Manual steps are done by a human.</li><li>After each step: tsc and eslint pass, squash-merge, continue.</li></ol><p class="crumb"><b>Setup once:</b> install the GSR Architect subagent at .claude/agents/gsr-architect.md (from the gsr-blueprint repo) so every build session boots knowing the system. Companion reference files are listed at the end.</p>');
+  H.push('<h2>How to run this plan</h2><ol><li>Open Claude Code in gsr-automation-v2.</li><li>Work phase by phase, step by step. Do not skip ahead.</li><li>For each automatable step, paste its Claude Code prompt and review the draft PR.</li><li>Manual steps are done by a human.</li><li>After each step: tsc and eslint pass, squash-merge, continue.</li></ol><p class="crumb"><b>Setup:</b> the GSR Architect subagent ships in this repo at .claude/agents/gsr-architect.md and loads automatically in Claude Code, so a build session boots knowing the system. Companion reference files are listed at the end.</p>');
   H.push('<h2>Phases at a glance</h2><ul>');
   phaseOrder().forEach((ph,pi)=>{const steps=M.filter(m=>m.phase===ph);H.push('<li><b>Phase '+(pi+1)+' - '+esc(ph)+':</b> '+esc(steps.map(m=>'M'+m.num+' '+m.title).join('; '))+'</li>');});
   H.push('</ul>');

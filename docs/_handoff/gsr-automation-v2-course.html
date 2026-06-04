@@ -801,18 +801,18 @@ function plain(s){return String(s==null?'':s).replace(/`/g,'').replace(/\*\*/g,'
 
 /* How much of each step Claude Code can do unattended, and the manual gate if any. */
 const AUTO={
- m0:{kind:'auto',label:'Automated setup',manual:''},
- m1:{kind:'assisted',label:'Automated build + manual setup',manual:'Create the Dropbox app (full scope) and store its credentials in 1Password before running.'},
- m2:{kind:'auto',label:'Automated build',manual:''},
- m3:{kind:'assisted',label:'Automated build, manual send',manual:'A human sends every guest email. Re-run the davidrives-mail Dovecot auth smoke test against the live server before trusting send.'},
- m4:{kind:'assisted',label:'Automated build + one input',manual:'Supply the gsr-interview-segment skill output and one real sample script so the parser contract can be locked.'},
- m5:{kind:'auto',label:'Automated build',manual:''},
- m6:{kind:'auto',label:'Automated build (core exists)',manual:''},
- m7:{kind:'auto',label:'Automated build',manual:''},
- m8:{kind:'manual',label:'Manual today; automation deferred',manual:'ProPresenter is off-limits to live automation (David Rule). Today, copy approved text by hand. Only automate later as pre-built Props triggered by ID, test-only, after David explicitly approves.'},
- m9:{kind:'assisted',label:'Automated build + local setup',manual:'Install ffmpeg and Whisper (or WhisperKit) on the Edit Bay Mac Mini. This runs locally, never on the NAS.'},
- m10:{kind:'auto',label:'Automated build (core exists)',manual:''},
- m11:{kind:'assisted',label:'Partly automated; manual gates',manual:'Clear the Google API audit (only Daniel can; uploads stay private until approved). Fireside and GSN are manual handoff cards by design.'}
+ m0:{kind:'auto',label:'Automated setup',status:'Built (conventions in place)',manual:'',done:['feat/fix branch + draft PR + squash-merge flow works','npx tsc --noEmit and npx eslint pass clean','GSR Architect agent present at .claude/agents/gsr-architect.md']},
+ m1:{kind:'assisted',label:'Automated build + manual setup',status:'Not started',manual:'Create the Dropbox app (full scope) and store its credentials in 1Password before running.',done:['A test file landing in the Dropbox folder fires the Supabase Edge Function','Cursor-poll fallback verified','Filename maps to show_season_episode; GSM flagged for manual cross-reference']},
+ m2:{kind:'auto',label:'Automated build',status:'Partial (table + 175 rows exist; no-repeat logic to add)',manual:'',done:['Migration applied and visible in list_migrations','A query excludes guests aired in the current cycle','RLS enabled on the table']},
+ m3:{kind:'assisted',label:'Automated build, manual send',status:'Partial (mail clients exist; v2 = contact-tracking only)',manual:'A human sends every guest email. Re-run the davidrives-mail Dovecot auth smoke test against the live server before trusting send.',done:['A draft email is generated and saved, never auto-sent','DNC stays a manual marked field','Dovecot auth smoke test passes against the live server']},
+ m4:{kind:'assisted',label:'Automated build + one input',status:'Partial (extract + regenerate routes exist; parser + voice Skill to add)',manual:'Supply the gsr-interview-segment skill output and one real sample script so the parser contract can be locked.',done:['Fenced ===LOWER-THIRDS=== block parses deterministically to 15 lower thirds','Chyron built as NAME | ORG | FIELD, truncated to 62 + ellipsis over 65','Voice Skill (guide + 3-6 exemplars + do-not rules) passes a Vale lint']},
+ m5:{kind:'auto',label:'Automated build',status:'Built (/api/import Zod + dry-run)',manual:'',done:['Malformed AI output is rejected via safeParse and flagged for a human','Import stays dry-run then type YES before any write','TS types derived with z.infer from the same schema']},
+ m6:{kind:'auto',label:'Automated build (core exists)',status:'Built (graphics table + review UI; 0 rows, needs first import)',manual:'',done:['A real episode imports (dry-run then live) into the graphics table','Items appear at /lower-thirds and approve flows to /approved','graphics row count is greater than 0 (first real import done)']},
+ m7:{kind:'auto',label:'Automated build',status:'Built (rc-explore/rc-import + script trigger)',manual:'',done:['rc-import maps 10 RC names to the 12-value enum and fixes mojibake','Every RC call reads the JSON body (HTTP 200 can be an error)','Saving a script fires on_script_save; confirm step holds by default']},
+ m8:{kind:'manual',label:'Manual today; automation deferred',status:'Manual / deferred (off-limits to live automation)',manual:'ProPresenter is off-limits to live automation (David Rule). Today, copy approved text by hand. Only automate later as pre-built Props triggered by ID, test-only, after David explicitly approves.',done:['Approved text copies cleanly into ProPresenter by hand from the ready screen','No automation touches GSN-PropRes, ATEM, or Companion']},
+ m9:{kind:'assisted',label:'Automated build + local setup',status:'Not started (distribution half, future)',manual:'Install ffmpeg and Whisper (or WhisperKit) on the Edit Bay Mac Mini. This runs locally, never on the NAS.',done:['ffmpeg extracts mono 16kHz audio; Whisper emits SRT/VTT from a test file','fswatch hot folder triggers the chain on file arrival','Output written to Supabase; nothing written to the NAS']},
+ m10:{kind:'auto',label:'Automated build (core exists)',status:'Built (the live dashboard)',manual:'',done:['App Router + @supabase/ssr only; no pages/ dir, no auth-helpers','RLS on every table; advisors clean','Magic-link login works end to end']},
+ m11:{kind:'assisted',label:'Partly automated; manual gates',status:'Not started (largely future)',manual:'Clear the Google API audit (only Daniel can; uploads stay private until approved). Fireside and GSN are manual handoff cards by design.',done:['YouTube videos.insert publishes (private until the audit clears)','Rumble mirrors via YouTube channel sync','Fireside + GSN appear as handoff cards with a mark-done button']}
 };
 function autoFor(m){return AUTO[m.id]||{kind:'auto',label:'Automated build',manual:''};}
 function phaseOrder(){const seen=[];M.forEach(m=>{if(seen.indexOf(m.phase)<0)seen.push(m.phase);});return seen;}
@@ -821,11 +821,13 @@ function phaseOrder(){const seen=[];M.forEach(m=>{if(seen.indexOf(m.phase)<0)see
 function stepPrompt(m){
   const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);const L=[];
   L.push('Context: GSR Automation v2, repo gsr-automation-v2. Phase '+m.phase+', Step M'+m.num+': '+m.title+'.');
+  L.push('Current status in the repo: '+a.status+(/^Built|^Partial/.test(a.status)?'. EXTEND what already exists; do not rebuild from scratch.':'.'));
   L.push('Ground rules: work on a feat/ or fix/ branch, open a draft PR, run npx tsc --noEmit and npx eslint, then squash-merge to main. Honor the David Rule: automation reads cloud APIs and writes the database only, and never touches ProPresenter, ATEM, Bitfocus Companion, the QNAP NAS, or Tailscale. Pull secrets from 1Password at runtime; never commit secrets.');
   L.push('Locked decision: '+(o?o.label+' ('+o.tag+'). '+o.why:'NOT YET DECIDED - lock this in the course before building.'));
   L.push('Spec:');
   m.decision.specs.forEach(s=>L.push('  - '+s[0]+': '+s[1]));
   if(a.manual)L.push('Manual gate: '+a.manual);
+  if(a.done&&a.done.length){L.push('Definition of done (verify before moving on):');a.done.forEach(x=>L.push('  - '+x));}
   L.push('Task: '+m.tell);
   return L.join('\n');
 }
@@ -842,6 +844,8 @@ function planMarkdown(){
   L.push('3. For each automatable step, paste its **Claude Code prompt** (the fenced block) and let Claude build it, then review the draft PR.');
   L.push('4. Steps marked Manual are done by a human; their prompt builds only the automatable part, if any.');
   L.push('5. After each step: confirm tsc and eslint pass, squash-merge, then move on.');
+  L.push('');
+  L.push('**Setup once:** install the GSR Architect subagent at .claude/agents/gsr-architect.md (from the gsr-blueprint repo) so every build session boots knowing the system. Keep the companion reference files (listed at the end) open.');
   L.push('');
   L.push('## The architecture law (non-negotiable)');
   L.push('The David Rule: automation reads cloud APIs and writes to the database only. It never writes to the live broadcast chain, the ProPresenter machine (GSN-PropRes, Tailscale 100.98.215.7), the QNAP NAS (read-only SMB), ATEM, or Bitfocus Companion. Production pulls from the database on its own schedule. Build with feat/fix branches and squash merges; pull credentials from 1Password at runtime; never commit secrets.');
@@ -860,6 +864,7 @@ function planMarkdown(){
       L.push('### Step M'+m.num+' - '+m.title);
       L.push('');
       L.push('- **Automation:** '+a.label);
+      L.push('- **Status in repo:** '+a.status);
       if(a.manual)L.push('- **Manual gate:** '+a.manual);
       L.push('');
       L.push('**Producer intent (your blueprint)**');
@@ -874,6 +879,7 @@ function planMarkdown(){
       L.push('**Spec**');
       m.decision.specs.forEach(s=>L.push('- '+s[0]+': '+s[1]));
       L.push('');
+      if(a.done&&a.done.length){L.push('**Definition of done**');a.done.forEach(x=>L.push('- '+x));L.push('');}
       L.push('**Repo cross-check (gsr-automation-v2):** '+plain(m.repo));
       L.push('');
       L.push(a.kind==='manual'?'**Claude Code prompt (builds the automatable part / guidance):**':'**Claude Code prompt (paste into Claude Code):**');
@@ -894,6 +900,12 @@ function planMarkdown(){
   L.push('## Cross-cutting next moves');
   XMOVES.forEach(x=>L.push('- '+x));
   L.push('');
+  L.push('## System contract (invariants every step must honor)');
+  CONTRACT.forEach(sec=>{L.push('');L.push('### '+sec[0]);sec[1].forEach(x=>L.push('- '+x));});
+  L.push('');
+  L.push('## Companion reference files');
+  COMPANION.forEach(x=>L.push('- '+x));
+  L.push('');
   L.push('_End of build plan. Honor the David Rule. Pull before you start, push when you stop._');
   return L.join('\n');
 }
@@ -909,6 +921,53 @@ const XMOVES=[
  'Provide the gsr-interview-segment skill output + one real sample script to lock the parser contract (Stage 1 blocker).'
 ];
 
+/* The invariants every step must honor, baked into the plan so the building agent never guesses. */
+const CONTRACT=[
+ ['Repo + workflow',[
+  'Build in gsr-automation-v2 (not gsr-blueprint). feat/ or fix/ branches, draft PR, squash-merge to main.',
+  'Run npx tsc --noEmit and npx eslint before every commit; both must be clean.',
+  'Secrets via 1Password at runtime (op item get); never commit secrets.',
+  'Claude model: ANTHROPIC_REGENERATE_MODEL, default claude-opus-4-7, server-side only, max_tokens 4096.'
+ ]],
+ ['The David Rule (off-limits)',[
+  'Automation reads cloud APIs and writes the database only.',
+  'Never touch: the live broadcast chain, ProPresenter (GSN-PropRes, Tailscale 100.98.215.7), ATEM, Bitfocus Companion, the QNAP NAS (read-only SMB), or Notion as a backend (wiki only).'
+ ]],
+ ['Segments (12-value enum)',[
+  'show_intro, opening_monologue, interview_1, interview_2, kids_corner, genesis_science_qa, ministry_report, viewer_voices, featured_resource, heavens_declare, genesis_science_minute, other.'
+ ]],
+ ['Lower-thirds l3_type (15-value check)',[
+  'episode_intro_l3, monologue_beat, segment_graphics_title, topic_l3, guest_chyron, discussion_l3, generic_safety_net, qa_topic_l3, mr_topic_l3, mr_cta_l3, correspondent_chyron, viewer_l3, resource_l3, cta_l3, other.'
+ ]],
+ ['Lower-thirds formatting',[
+  'ALL CAPS. Working band 55-65 characters, hard ceiling 65.',
+  'No em dashes, commas, connecting hyphens, slashes, end periods, brackets, or wrapping quotes. Abbreviation periods (DR. PHD. VS.) are fine.',
+  'Pipe only for NAME | ORG | FIELD chyrons; colon for topic beats. Chyron truncates to 62 + ellipsis over 65.',
+  'Ministry Report CTA, verbatim and never rewritten: SUPPORT THE MISSION | DAVIDRIVES.COM | 931-212-7990.'
+ ]],
+ ['Live routes + contracts',[
+  'Pages: /import, /lower-thirds, /lower-thirds/ready, /approved, /upload, /extract, /episodes, /guests, /workflow, /toolkit, /login, /update-password.',
+  'API: /api/import (Zod, dry-run then type YES), /api/extract-lower-thirds (Claude, returns a payload, no DB write), /api/regenerate (3 variations), /api/scripts (upsert per episode+segment, fires on_script_save), /api/rc-explore and /api/rc-import (Rundown Creator passthrough), /api/scripts/confirm-extraction (apply or discard the held auto-extraction).'
+ ]],
+ ['Database (Supabase lafkbxypmciopebentxp, verified live)',[
+  '20 tables, 45 migrations, 2 enums, 2 views (v_episode_master, v_episode_workflow), 3 functions, 3 triggers, 1 storage bucket (lower-thirds).',
+  'Lower thirds live in the graphics table. There is NO lower_thirds table: the first migration filename misleads, but every query uses graphics (a documented phantom). The storage bucket is the only thing named lower-thirds.',
+  'Row counts: episodes 48, guests 175, graphics 0 (no live import yet, the real Stage 7 milestone).',
+  'RLS on every table; service role only server-side; atomic mutations via RPC; idempotent migrations; run list_migrations before new SQL.'
+ ]],
+ ['Rundown Creator',[
+  'Errors come back as HTTP 200 with a JSON error body. Always read the body; never trust the status code.',
+  'rc-import maps 10 RC segment names to the 12-value enum and fixes Latin-1 to UTF-8 mojibake. Season-3 rundown IDs: 79, 81, 83, 82, 84.'
+ ]]
+];
+const COMPANION=[
+ 'docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md - the full live-verified system reference (three eras, every route + contract, the 20-table schema, prompts).',
+ 'docs/_handoff/VERIFIED-FACTS.md - June 4 verification verdicts (versions, prices, quotas, the corrections).',
+ 'docs/_handoff/2026-06-04-tools-curriculum-timeline.md - the 8-stage tool, setup, and fragile-parts timeline.',
+ 'gsr-blueprint repo: agent/2026-06-03-gsr-architect.md - the GSR Architect subagent. Install at .claude/agents/gsr-architect.md so build sessions boot knowing the system.',
+ 'gsr-blueprint repo: mock/2026-06-03-gsr-dashboard-mock.html - the annotated dashboard mock (UI reference).'
+];
+
 function planHTML(){
   const now=new Date().toISOString().slice(0,10);const total=M.length,done=decided();const H=[];
   H.push('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GSR Automation v2 - Build Plan</title>');
@@ -916,7 +975,7 @@ function planHTML(){
   H.push('<h1>GSR Automation v2 - Build Plan</h1>');
   H.push('<p class="meta">Single source of truth. Generated '+now+'. Target repo: <b>gsr-automation-v2</b>. Decisions locked: '+done+' / '+total+'.</p>');
   H.push('<div class="law"><b>The architecture law (David Rule).</b> Automation reads cloud APIs and writes the database only. It never touches the live broadcast chain, ProPresenter (GSN-PropRes, Tailscale 100.98.215.7), the QNAP NAS, ATEM, or Bitfocus Companion. Build with feat/fix branches and squash merges; secrets from 1Password; never commit secrets.</div>');
-  H.push('<h2>How to run this plan</h2><ol><li>Open Claude Code in gsr-automation-v2.</li><li>Work phase by phase, step by step. Do not skip ahead.</li><li>For each automatable step, paste its Claude Code prompt and review the draft PR.</li><li>Manual steps are done by a human.</li><li>After each step: tsc and eslint pass, squash-merge, continue.</li></ol>');
+  H.push('<h2>How to run this plan</h2><ol><li>Open Claude Code in gsr-automation-v2.</li><li>Work phase by phase, step by step. Do not skip ahead.</li><li>For each automatable step, paste its Claude Code prompt and review the draft PR.</li><li>Manual steps are done by a human.</li><li>After each step: tsc and eslint pass, squash-merge, continue.</li></ol><p class="crumb"><b>Setup once:</b> install the GSR Architect subagent at .claude/agents/gsr-architect.md (from the gsr-blueprint repo) so every build session boots knowing the system. Companion reference files are listed at the end.</p>');
   H.push('<h2>Phases at a glance</h2><ul>');
   phaseOrder().forEach((ph,pi)=>{const steps=M.filter(m=>m.phase===ph);H.push('<li><b>Phase '+(pi+1)+' - '+esc(ph)+':</b> '+esc(steps.map(m=>'M'+m.num+' '+m.title).join('; '))+'</li>');});
   H.push('</ul>');
@@ -928,6 +987,7 @@ function planHTML(){
     M.filter(m=>m.phase===ph).forEach(m=>{
       const cur=S.intake[m.id]||{};const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);
       H.push('<div class="step"><h3>Step M'+m.num+' - '+esc(m.title)+' <span class="tag '+(a.kind==='manual'?'manual':'auto')+'">'+esc(a.label)+'</span></h3>');
+      H.push('<p class="crumb"><b>Status in repo:</b> '+esc(a.status)+'</p>');
       if(a.manual)H.push('<div class="gate"><b>Manual gate:</b> '+esc(a.manual)+'</div>');
       H.push('<p class="crumb"><b>Producer intent</b></p><ul>');
       m.blueprint.forEach((q,i)=>{H.push('<li>'+esc(q.q)+' &rArr; '+esc(cur[i]?cur[i]:'(left blank)')+'</li>');});
@@ -938,6 +998,7 @@ function planHTML(){
       H.push('<p><b>Spec</b></p><table class="spec"><tbody>');
       m.decision.specs.forEach(s=>H.push('<tr><td>'+esc(s[0])+'</td><td>'+esc(s[1])+'</td></tr>'));
       H.push('</tbody></table>');
+      if(a.done&&a.done.length){H.push('<p><b>Definition of done</b></p><ul>');a.done.forEach(x=>H.push('<li>'+esc(x)+'</li>'));H.push('</ul>');}
       H.push('<p class="crumb"><b>Repo cross-check:</b> '+esc(plain(m.repo))+'</p>');
       H.push('<p><b>Claude Code prompt</b>'+(a.kind==='manual'?' (guidance / automatable part)':'')+'</p><pre>'+esc(stepPrompt(m))+'</pre>');
       H.push('</div>');
@@ -953,6 +1014,11 @@ function planHTML(){
   H.push('</ul>');
   H.push('<h2>Cross-cutting next moves</h2><ul>');
   XMOVES.forEach(x=>H.push('<li>'+esc(x)+'</li>'));
+  H.push('</ul>');
+  H.push('<h2>System contract (invariants)</h2>');
+  CONTRACT.forEach(sec=>{H.push('<h3>'+esc(sec[0])+'</h3><ul>');sec[1].forEach(x=>H.push('<li>'+esc(x)+'</li>'));H.push('</ul>');});
+  H.push('<h2>Companion reference files</h2><ul>');
+  COMPANION.forEach(x=>H.push('<li>'+esc(x)+'</li>'));
   H.push('</ul>');
   H.push('<p class="meta">End of build plan. Honor the David Rule. Pull before you start, push when you stop.</p>');
   H.push('</body></html>');

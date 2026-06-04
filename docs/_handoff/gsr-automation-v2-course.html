@@ -250,12 +250,12 @@ const M=[
   {q:`What fields define a guest, and what statuses move them through the pipeline? List them.`,type:'text'}
  ],
  lesson:`<p>You need people, which means a real database. <b>A table</b> is a grid: each row a guest, each column a field. <b>A primary key</b> uniquely identifies a row; a <b>foreign key</b> links a guest to an episode without copying details. You change data with SQL: <code>SELECT</code> to find, <code>INSERT</code> to add, <code>UPDATE</code> to change, and <code>ON CONFLICT</code> to upsert.</p>
- <p>The stack uses <b>PostgreSQL</b>, the most capable open-source relational database: it enforces structure, handles JSON when you want a flexible field, supports Row-Level Security, and is what AI tools know best, so generated SQL is usually correct. You will not run a server. <b>Supabase</b> hosts Postgres for you. The project already exists with 45 migrations and 20 tables; guests already holds 175 rows.</p>
+ <p>The stack uses <b>PostgreSQL</b>, the most capable open-source relational database: it enforces structure, handles JSON when you want a flexible field, supports Row-Level Security, and is what AI tools know best, so generated SQL is usually correct. You will not run a server. <b>Supabase</b> hosts Postgres for you. The project already exists with 46 migrations and 20 tables; guests already holds 175 rows.</p>
  <p>Migrations (versioned schema changes) must be <b>idempotent</b>: written with <code>IF NOT EXISTS</code> and <code>CREATE OR REPLACE</code> so re-running one is a harmless no-op. That is what makes AI-generated, repeatedly-edited migrations safe.</p>`,
  analogy:`A relational database is a production binder with tabbed sections. The Guests tab has one page per guest with the same fields every time. The Episodes tab references guest pages by page number (the key) instead of recopying everyone. Change a guest's number once and every episode pointing to that page is instantly correct.`,
  facts:[
   {k:`Postgres`,v:`Relational, constraints, JSON, RLS, AI-friendly`},
-  {k:`Project`,v:`lafkbxypmciopebentxp, 20 tables, 45 migrations`},
+  {k:`Project`,v:`lafkbxypmciopebentxp, 20 tables, 46 migrations`},
   {k:`Guests`,v:`175 rows already in the table`},
   {k:`Migrations`,v:`Idempotent: IF NOT EXISTS / CREATE OR REPLACE`}
  ],
@@ -950,7 +950,7 @@ const CONTRACT=[
   'API: /api/import (Zod, dry-run then type YES), /api/extract-lower-thirds (Claude, returns a payload, no DB write), /api/regenerate (3 variations), /api/scripts (upsert per episode+segment, fires on_script_save), /api/rc-explore and /api/rc-import (Rundown Creator passthrough), /api/scripts/confirm-extraction (apply or discard the held auto-extraction).'
  ]],
  ['Database (Supabase lafkbxypmciopebentxp, verified live)',[
-  '20 tables, 45 migrations, 2 enums, 2 views (v_episode_master, v_episode_workflow), 3 functions, 3 triggers, 1 storage bucket (lower-thirds).',
+  '20 tables, 46 migrations, 2 enums, 2 views (v_episode_master, v_episode_workflow), 3 functions, 3 triggers, 1 storage bucket (lower-thirds).',
   'Lower thirds live in the graphics table. There is NO lower_thirds table: the first migration filename misleads, but every query uses graphics (a documented phantom). The storage bucket is the only thing named lower-thirds.',
   'Row counts: episodes 48, guests 175, graphics 0 (no live import yet, the real Stage 7 milestone).',
   'RLS on every table; service role only server-side; atomic mutations via RPC; idempotent migrations; run list_migrations before new SQL.'

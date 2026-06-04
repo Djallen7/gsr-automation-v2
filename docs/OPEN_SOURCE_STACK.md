@@ -1,5 +1,7 @@
 # Open-Source Building Blocks for Christian Ministry Post-Production Automation
 
+> **SUPERSEDED (Era 1) — historical reference only.** This document recommends an n8n + Chokidar + SQLite + Playwright + self-hosted stack that was retired by ADR-0012 (Supabase + Next.js) and the 2026-05-20 security incident. Do not build from it: no file-watchers, no SQLite, no self-hosted n8n, and never browser-automate Fireside (read-only API, handoff card). Current architecture: `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md`.
+
 A production-ready evaluation of 40+ GitHub projects for Genesis Science Report's automated video distribution system running on n8n, prioritizing non-developer accessibility and battle-tested reliability.
 
 ## Executive Overview

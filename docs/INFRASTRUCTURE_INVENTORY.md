@@ -1,5 +1,7 @@
 # Infrastructure Inventory
 
+> **SUPERSEDED (Era 1/2) — historical reference only.** This inventory presents Tailscale, QNAP admin, and self-hosted n8n as live infrastructure. They are OFF-LIMITS now: the 2026-05-20 security incident permanently barred Tailscale/SSH/local servers, and the QNAP is read-only SMB with no admin. The live system is Supabase + Next.js on Vercel. See `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md`.
+
 **Last updated:** 2026-05-20
 **Owner:** Daniel
 

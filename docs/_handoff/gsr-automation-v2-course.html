@@ -428,18 +428,20 @@ const M=[
  ],
  lesson:`<p>Scripts often originate in <b>Rundown Creator</b>, a hosted rundown API, and this is where <b>MCP</b> earns its place. MCP (Model Context Protocol) is a standard way for an AI client like Claude to reach external tools: filesystems, Supabase, Rundown Creator. Think of it as a universal plug, so each tool implements one connector and each AI speaks one protocol.</p>
  <p>The v2 routes are <code>GET /api/rc-explore</code> (a passthrough that lists rundowns and rows and gets a script) and <code>/api/rc-import</code> (which maps Rundown Creator's 10 segment names into the 12-value internal segment enum and fixes Latin-1 to UTF-8 mojibake). There is a sharp, documented quirk: <b>Rundown Creator returns errors as HTTP 200 with a JSON error body</b>, not as an error status. So you must inspect the body, never trust the status code alone.</p>
- <p>Saving a script (<code>POST /api/scripts</code>, upserted per episode and segment) fires a chain: the <code>on_script_save</code> trigger calls <code>notify_script_extract()</code>, which invokes an <code>extract-on-script-save</code> Edge Function. That is the auto-extraction loop that turns a saved script into lower thirds.</p>`,
+ <p>Saving a script (<code>POST /api/scripts</code>, upserted per episode and segment) fires a chain: the <code>on_script_save</code> trigger calls <code>notify_script_extract()</code>, which invokes an <code>extract-on-script-save</code> Edge Function. That is the auto-extraction loop that turns a saved script into lower thirds. A flag, <code>app_config.auto_extract_apply</code>, gates it: <b>off by default</b>, so the Edge Function holds the result on the script row and writes nothing to <code>graphics</code> until you confirm it on the extract page; set it to true to auto-apply. That keeps the same human gate as the dry-run import.</p>`,
  analogy:`MCP is the XLR connector of AI tools: before a standard plug, every microphone had its own proprietary connector and a drawer of adapters; XLR means any compliant mic fits any compliant board. The 200-with-error-body quirk is a smoke detector that chirps "all clear" in the same tone whether or not there is smoke, so you learn to read the little display instead of trusting the chirp.`,
  facts:[
   {k:`MCP`,v:`Standard AI-to-tool protocol; in the Linux Foundation AAIF since Dec 2025`,vr:true},
   {k:`Quirk`,v:`Errors come back as HTTP 200 with a JSON error body`},
   {k:`Routes`,v:`/api/rc-explore (read), /api/rc-import (map + fix mojibake)`},
-  {k:`Segments`,v:`Maps 10 RC names to the 12-value internal enum`}
+  {k:`Segments`,v:`Maps 10 RC names to the 12-value internal enum`},
+  {k:`Confirm step`,v:`auto_extract_apply off by default holds extraction until you confirm`}
  ],
  quiz:[
   {q:`What problem does MCP solve?`,o:[`It speeds up Claude`,`It standardizes how AI clients connect to tools, replacing many custom integrations`,`It stores data`],a:1,e:`One connector per tool, one protocol per AI: the universal-plug idea.`},
   {q:`Rundown Creator signals an error how?`,o:[`A 500 status`,`HTTP 200 with a JSON error body, so you must read the body`,`It throws an exception`],a:1,e:`The status lies; the error lives in the JSON body. Always inspect it.`},
-  {q:`What does saving a script set off?`,o:[`Nothing automatic`,`on_script_save trigger to notify_script_extract() to an extract-on-script-save Edge Function`,`A YouTube upload`],a:1,e:`That trigger chain is the auto-extraction loop from script to lower thirds.`}
+  {q:`What does saving a script set off?`,o:[`Nothing automatic`,`on_script_save trigger to notify_script_extract() to an extract-on-script-save Edge Function`,`A YouTube upload`],a:1,e:`That trigger chain is the auto-extraction loop from script to lower thirds.`},
+  {q:`By default, what happens to the auto-extracted lower thirds before they reach the review grid?`,o:[`They are written straight to graphics`,`They are held on the script row until you confirm on the extract page`,`They are emailed to you`],a:1,e:`auto_extract_apply is off by default, so the Edge Function holds the result for a human confirm before anything lands in graphics; set the flag true to auto-apply.`}
  ],
  decision:{question:`How do you handle rundown intake safely?`,
   opts:[
@@ -450,10 +452,10 @@ const M=[
     why:`No new failure modes.`,pros:`Zero risk`,cons:`A time tax every show`}
   ],
   rec:`API intake through rc-explore and rc-import, with a strict rule to inspect the JSON body on every call because errors arrive as HTTP 200. The time saved per show is large.`,
-  specs:[[`Read`,`GET /api/rc-explore`],[`Map`,`/api/rc-import: 10 RC names to 12-value enum + mojibake fix`],[`Quirk`,`Treat HTTP 200 as maybe-error; read the body`],[`Season-3 IDs`,`79, 81, 83, 82, 84`]]
+  specs:[[`Read`,`GET /api/rc-explore`],[`Map`,`/api/rc-import: 10 RC names to 12-value enum + mojibake fix`],[`Quirk`,`Treat HTTP 200 as maybe-error; read the body`],[`Confirm`,`auto_extract_apply=false holds; confirm via /api/scripts/confirm-extraction`],[`Season-3 IDs`,`79, 81, 83, 82, 84`]]
  },
  repo:`Rundown Creator is reached via its MCP and the rc-explore / rc-import routes in v2. The Season-3 May rundown IDs were Show1=79, Show2=81, Show3=83, Show4=82, Show5=84. POST /api/scripts upserts per (episode_id, segment) and fires on_script_save to notify_script_extract() to the extract-on-script-save Edge Function.`,
- tell:`When integrating Rundown Creator in gsr-automation-v2, use the rc-explore (read) and rc-import (map + mojibake fix) routes, and ALWAYS inspect the JSON response body because Rundown Creator returns errors as HTTP 200, not an error status. Map the 10 RC segment names to the 12-value internal enum. Saving a script via /api/scripts should fire the on_script_save to extract-on-script-save chain.`
+ tell:`When integrating Rundown Creator in gsr-automation-v2, use the rc-explore (read) and rc-import (map + mojibake fix) routes, and ALWAYS inspect the JSON response body because Rundown Creator returns errors as HTTP 200, not an error status. Map the 10 RC segment names to the 12-value internal enum. Saving a script via /api/scripts should fire the on_script_save to extract-on-script-save chain. Gate that chain with app_config.auto_extract_apply (default false): when off, the Edge Function holds the extraction on the script row (pending_extraction, extraction_status=pending_confirmation) and writes nothing to graphics until a human confirms via /api/scripts/confirm-extraction (apply or discard) on the extract page; set true to auto-apply.`
 },
 {
  id:'m8',phase:'Live',num:8,title:'ProPresenter: API & the Read-Only Line',station:'PROPRES',hook:'',
@@ -848,6 +850,7 @@ function buildPlan(){
   L.push('- Reconcile ADR-0012 text (says Next.js 15) with the live stack (16.2).');
   L.push('- Run the first real-episode import: the graphics table is still 0 rows (operational milestone, not a defect).');
   L.push('- Resolve the lower_thirds phantom: the table is graphics; either do the rename for real or delete the pending-rename language.');
+  L.push('- Deploy the optional confirm step for auto-extraction: apply migration 20260604180000 and redeploy the extract-on-script-save Edge Function. Default auto_extract_apply=false holds extractions until a human confirms via /api/scripts/confirm-extraction.');
   L.push('- Provide the gsr-interview-segment skill output + one real sample script to lock the parser contract (Stage 1 blocker).');
   L.push('');
   L.push('_End of build plan. Honor the David Rule. Pull before you start, push when you stop._');
@@ -875,6 +878,7 @@ function renderFinale(){
    'Reconcile ADR-0012 text (Next.js 15) with the live stack (16.2).',
    'Run the first real-episode import: the graphics table is still 0 rows.',
    'Resolve the lower_thirds phantom: the table is graphics; rename for real or delete the pending-rename note.',
+   'Deploy the optional confirm step: apply migration 20260604180000 + redeploy extract-on-script-save. Default auto_extract_apply=false holds extractions for confirmation.',
    'Supply the gsr-interview-segment skill output + one real sample script (Stage 1 blocker).'
   ].forEach(x=>{h+='<div class="checkrow"><span class="bx"></span><span>'+esc(x)+'</span></div>';});
   h+='</div>';

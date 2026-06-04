@@ -1,111 +1,96 @@
-# GSR Automation - Codebase Handoff (verified against code)
+# GSR Automation v2 - Crash Course + Build Plan: HANDOFF
 
-*Date: 2026-06-04 - Author: codebase-handoff-review session - Status: current and code-verified.*
-
-> Read this first. It describes the project as the **code actually is on this branch**, not as older docs imagine it. Where this file and any other doc disagree, this file and `VERIFIED-FACTS.md` win, because they were checked against the running code and live database on 2026-06-04. The older docs (`README.md`, `docs/PROJECT_PLAN.md`, `docs/MASTER_CONTEXT.md`, `docs/CONTEXT_BOOTSTRAP.md`, `ROADMAP_VISUAL.md`, `docs/SESSION_HANDOFF.md`, `BUILD_STATUS.html`) are stale in specific ways listed in `VERIFIED-FACTS.md`.
+**Purpose of this file:** let a different Claude session (or a new contractor) pick up exactly where this left off, with zero prior context. Read this top to bottom; it is self-contained.
 
 ---
 
-## 1. What this is
+## 1. What was built
 
-The Genesis Science Report (GSR) is a weekly creation-science TV show (~58 min, Season 3) for David Rives Ministries / Genesis Science Network. Daniel Allen is the solo producer and a non-developer who builds everything through Claude Code. This repo is the automation that removes repetitive manual work across two pipelines: pre-production (guest research, scripts, lower thirds, outreach) and post-production / distribution (transcription, metadata, posting).
+A single self-contained interactive HTML artifact: **`gsr-automation-v2-course.html`**. It is two things at once:
 
-The live deliverable today is **Feature 1: Episode Graphics and Asset Tracker** - a dashboard for ingesting scripts, extracting and reviewing lower-thirds graphics, and tracking episodes, guests, and distribution.
+1. **An ADHD-friendly crash course** that teaches Daniel Allen (TV producer, non-developer who directs AI coding tools) the actual tech stack behind GSR Automation v2, scoped tight, with analogies and quizzes.
+2. **A single-source-of-truth build planner.** As Daniel works each module he (a) records how he thinks the step should work, (b) learns the concept, and (c) locks a decision. He then exports a **Build Plan (Markdown)** that an AI agent runs against the existing `gsr-automation-v2` repo so the build does not start from scratch.
 
-## 2. Stack (verified 2026-06-04)
+The artifact runs entirely in the browser (no server, no API calls). Progress saves to localStorage with an in-memory fallback. Buttons: Export Build Plan, Export JSON, Import, Reset, plus a per-module "Ask the Consultant" that copies a context-loaded prompt to the clipboard for Daniel to paste into a Claude chat.
 
-- **App:** `apps/dashboard` - Next.js **16.2.6**, React **19.2.4**, shadcn/ui (`shadcn ^4.8.0`), Tailwind v4, deployed on Vercel.
-- **Backend:** Supabase (project `lafkbxypmciopebentxp`), SSR via `@supabase/ssr ^0.10.3`.
-- **AI:** `@anthropic-ai/sdk ^0.98.0`. Model is **`claude-opus-4-7`** in all three call sites (`/api/regenerate`, `/api/extract-lower-thirds`, and the `extract-on-script-save` Edge Function), overridable via env `ANTHROPIC_REGENERATE_MODEL`.
-- **No root `package.json`** (this is why `npx skills` throws ENOENT from repo root; run it from `~` or use `--global`).
-- **Next.js 16 caveat:** this is not the Next.js in your training data. Read `apps/dashboard/AGENTS.md` and `apps/dashboard/node_modules/next/dist/docs/` before writing route handlers, server actions, or App Router code.
+---
 
-## 3. Routes that exist (20, verified by reading the files)
+## 2. Structure (locked, do not redesign without asking Daniel)
 
-**Pages (`apps/dashboard/src/app/**/page.tsx`):**
+- **Pipeline order, 12 modules + a Finale.** Order: 0 Ground rules -> 1 Triggers/webhooks -> 2 Guest DB -> 3 Outreach -> 4 Script & voice -> 5 Validation (Zod) -> 6 Graphics/lower-thirds -> 7 Rundown intake -> 8 ProPresenter -> 9 Transcription -> 10 Dashboard & approval -> 11 Distribution -> Finale.
+- **Each module has three sub-tabs:** (1) Blueprint intake (interactive, FIRST, captures Daniel's intent before teaching), (2) Learn + quiz, (3) Decide (the decision becomes a build record/ADR in the export).
+- **"Ask the Consultant"** is a clipboard prompt bundler only (no live API). It assembles the module + intake answers + locked decision + the David Rule into a prompt Daniel pastes into his own Claude chat.
 
-| Route | Purpose | In top nav? |
-|---|---|---|
-| `/` | Redirects to `/lower-thirds` | n/a |
-| `/login` | Magic-link **and** password auth (mode toggle) | n/a |
-| `/update-password` | Password recovery form | n/a |
-| `/upload` | Legacy PNG upload (being phased out) | yes |
-| `/import` | Text-only bulk JSON ingest UI | yes |
-| `/extract` | Pick episode + segment, paste script, run AI extraction | no (reachable) |
-| `/lower-thirds` | Review grid (approve / reject / regenerate) | yes (Review) |
-| `/lower-thirds/ready` | Approved-graphics output, grouped by episode/segment | no (reachable) |
-| `/approved` | Approved queue, ProPresenter copy button, font editor | yes |
-| `/episodes` | Episode CRUD with production-status badges | yes |
-| `/guests` | Guest CRUD (full guest schema) | yes |
-| `/workflow` | Per-episode guest email-cadence tracker (`v_episode_workflow`) | yes |
-| `/toolkit` | Prompt library; builds a guest-roster string from Supabase | yes |
+---
 
-**API + auth routes (`route.ts`):**
+## 3. Who Daniel is (learner profile)
 
-| Route | Purpose | Calls |
-|---|---|---|
-| `/api/regenerate` | Regenerate 3 L3 variations for one graphic; rate-limited 20/hr/user | Anthropic (`claude-opus-4-7`) |
-| `/api/import` | Bulk ingest episodes + graphics; Zod-validated; **dry-run + live**; refuses on conflict | Supabase |
-| `/api/extract-lower-thirds` | Script -> L3 JSON shaped for `/api/import`; does **not** write the DB itself | Anthropic |
-| `/api/scripts` | Upsert one script per `(episode_id, segment)` | Supabase |
-| `/api/rc-explore` | Proxy to Rundown Creator API (list rundowns/rows, fetch a script) | Rundown Creator |
-| `/api/rc-import` | Pull RC rundown segments -> upsert `scripts`; dry-run default | RC + Supabase |
-| `/auth/callback` | OAuth / magic-link code exchange; routes recovery to `/update-password` | Supabase |
+TV producer at David Rives Ministries, runs the Genesis Science Report. Non-developer, GUI-first, ADHD (burns out on irrelevant or unengaging content). He directs Claude Code / Claude.ai rather than hand-coding; the goal is enough understanding to direct, debug, and supervise AI. **Hard style preferences honored throughout: NO em dashes anywhere in copy; concise; analogies are not restricted to production concepts.**
 
-## 4. The script -> lower-thirds extraction pipeline (the big new subsystem)
+---
 
-This is the most important thing the older docs do **not** mention. It exists in two parallel forms that share one prompt design:
+## 4. The system being built (GSR Automation v2)
 
-1. **Manual / synchronous (safe path):** `/extract` page -> `/api/extract-lower-thirds`. Input is `{episode_id, segment, script_text}`. It pulls the episode + guests, builds the guest chyron, prompts Claude, and returns **JSON pre-shaped for `/api/import`**. It does **not** touch the database. The operator still runs that JSON through `/api/import` (which has the dry-run -> "Type YES" -> live discipline). This path honors the lower-thirds import confirmation rule.
+**Architecture of record (Era 3, accepted 2026-05-23):** a real app = Next.js 16 (App Router) + React + TypeScript + shadcn/ui + Tailwind v4, Supabase (hosted Postgres + Auth + Storage + RLS + Edge Functions), deployed on Vercel; Claude API via `@anthropic-ai/sdk` (model `claude-opus-4-7`); Python for email tooling; 1Password CLI for secrets; Git/GitHub.
 
-2. **Automatic / trigger-driven:** saving a script (via `/api/scripts` or `/api/rc-import`) writes the `scripts` table -> trigger `on_script_save` -> `notify_script_extract()` -> `pg_net` HTTP POST to the Edge Function `extract-on-script-save` (auth via `x-webhook-secret` from the `app_config` table). The Edge Function runs the same prompt, then **deletes existing `pending_review` graphics for that episode+segment and inserts the new ones** with the service role.
+**Live Supabase project `lafkbxypmciopebentxp`:** 20 tables, 45 migrations, 2 enums, 2 views, 3 functions, 3 triggers, 1 storage bucket (`lower-thirds`). episodes = 48 rows, guests = 175 rows, **graphics = 0 rows** (no live import has run yet; an operational milestone, not a defect).
 
-**Governance note (resolved 2026-06-04):** the automatic path used to write graphics with no confirmation, bypassing the `/api/import` dry-run + "Type YES" step that the mandatory "Lower-thirds import confirmation" rule in `CLAUDE.md` was written around. An **optional confirm step** was added:
-- New flag `app_config.auto_extract_apply`, **default `false`** (migration `20260604180000_add_extraction_confirm_step.sql`).
-- When `false` (default), the Edge Function **holds** the extraction on the `scripts` row (`pending_extraction`, `extraction_status = 'pending_confirmation'`) and writes nothing to `graphics`.
-- A human confirms or discards on the `/extract` page; confirm applies the held rows as `pending_review` via `/api/scripts/confirm-extraction`.
-- Set the flag to `'true'` to opt back into auto-apply (the previous behavior).
+**Real routes/contracts:** `/import`, `/lower-thirds`, `/approved`, `/upload`; API `/api/import` (Zod, dry-run "type YES"), `/api/extract-lower-thirds` (Claude, returns a payload, no DB write, model from `ANTHROPIC_REGENERATE_MODEL` default `claude-opus-4-7`, max_tokens 4096), `/api/regenerate` (3 variations), `/api/scripts` (upsert per episode+segment, fires `on_script_save` -> `notify_script_extract()` -> `extract-on-script-save` Edge Function), `/api/rc-explore` and `/api/rc-import` (Rundown Creator passthrough; maps 10 RC segment names -> 12-value internal enum; fixes Latin-1 -> UTF-8 mojibake).
 
-This makes the safe path the default and keeps auto-apply available for power use. **Going live requires two production steps** (not yet done): apply the migration to project `lafkbxypmciopebentxp`, then redeploy the `extract-on-script-save` Edge Function. Until then the code sits on the branch.
+**Production pipeline today:** script (Claude Desktop / Rundown Creator) -> extract lower thirds -> import (Zod, dry-run) -> review at /lower-thirds (approve/reject/regenerate) -> /approved + /lower-thirds/ready -> **copy text into ProPresenter BY HAND**. Distribution half (Dropbox master -> transcript -> metadata -> platforms) is largely future.
 
-## 5. Database (verified via `list_migrations`, 2026-06-04)
+---
 
-- **45 migrations applied** to project `lafkbxypmciopebentxp`, matching 45 files in `supabase/migrations/`. (Older docs say 28 or 43; both wrong. Remote version timestamps differ cosmetically from filenames because of how they were pushed, but count and content match.)
-- **Core tables:** `episodes`, `graphics` (the lower-thirds table - there is **no** table literally named `lower_thirds`), `graphics_variations`, `regenerate_attempts`.
-- **Workflow/data tables:** `guests`, `episode_guests`, `interview_prep`, `transcripts`, `distributions`, `content_clips`, `social_posts`, `premade_library`, `shoot_sessions`, `articles`, `production_graphics`, `outreach_drafts`, `booking_pipeline`, `email_threads`, `scripts`, `app_config` (RLS on, no policies = service-role-only secret store).
-- **Views:** `v_episode_master` (flat joined "spreadsheet", `security_invoker=on`), `v_episode_workflow` (computed email due-dates; powers `/workflow`).
-- **RPCs / functions:** `toggle_propresenter_added(uuid)` (atomic, hardened), `set_updated_at()`, `notify_script_extract()`.
-- **Triggers:** `set_scripts_updated_at`, `on_script_save`.
-- **Extensions:** `pg_cron` + `pg_net` (so the trigger can POST to the Edge Function).
-- **Conventions:** snake_case; RLS enabled on every table; service role only server-side; atomic mutations via RPC; regenerate TS types + run advisors after schema changes. GSR tables use `uuid` PKs (not the repo-default `bigint`).
+## 5. Decisions baked into the course (the "consultant verdicts")
 
-## 6. The blocker in CLAUDE.md is already resolved
+These are the recommended options the artifact presents. They are defaults, not dogma; Daniel can pick otherwise per module.
 
-`CLAUDE.md` says Stage 7 is "blocked by JSON schema mismatch vs actual `lower_thirds` table columns." That is **stale**:
-- There is no `lower_thirds` table; the table is `graphics`.
-- The columns the importer needs (`l3_type`, `var_1`, `var_2`) were added in migration `20260527050100_add_l3_type_and_variants.sql`.
-- `/api/import` is fully built: Zod validation, dry-run + live modes, conflict detection, text-only sentinel handling.
+- **M0 Ground rules:** branches + draft PRs + squash merge; build **directly in `gsr-automation-v2`** (see section 7).
+- **M1 Triggers:** Dropbox folder-watch -> Supabase Edge Function webhook (+ audio companion ~30MB), cursor-poll fallback. Make.com/n8n only for the later RSS research sweep.
+- **M2 Guest DB:** no-repeat via a status field + filtering query; normalize the guest sheet into the table.
+- **M3 Outreach:** AI drafts, human sends; DNC stays a manual marked field; re-run the Dovecot smoke test live.
+- **M4 Script & voice:** parse the fenced `===LOWER-THIRDS===` block deterministically (15 per ep); voice = a Skill with a short guide + 3-6 exemplars + do-not rules + Vale (NOT an "antislop" framing; see section 6). Chyron `NAME | ORG | FIELD`, truncate 62 + ellipsis over 65.
+- **M5 Validation:** Zod safeParse, flag failures for human; keep the dry-run "type YES"; use the SDK `zodOutputFormat` helper.
+- **M6 Graphics:** the table is `graphics` (the bucket is `lower-thirds`); keep 3 regenerate variations + the chyron rule, reviewed before approve. **There is no `lower_thirds` table - it is a documented phantom (see section 6).**
+- **M7 Rundown:** intake via rc-explore/rc-import; **always read the JSON body because Rundown Creator returns errors as HTTP 200**; Season-3 IDs 79/81/83/82/84.
+- **M8 ProPresenter:** manual copy today; if automated, Bitfocus Companion + pre-built Props triggered by ID, read-only/test-only until David approves. The machine (GSN-PropRes, Tailscale 100.98.215.7), ATEM, Companion are off-limits to automation.
+- **M9 Transcription:** local Whisper via fswatch + ffmpeg at `~/Productions`, OpenAI Whisper API fallback (~$0.36/hr); add WhisperKit + SpeakerKit for speaker labels.
+- **M10 Dashboard:** App Router + `@supabase/ssr` + RLS on every table + magic-link auth. Correct AI off Pages Router and the deprecated `@supabase/auth-helpers-nextjs` every session.
+- **M11 Distribution:** YouTube auto (videos.insert), Rumble via YouTube channel sync, Fireside + GSN as manual handoff cards. Do NOT browser-automate Fireside. Pin youtubeuploader v1.25.5.
 
-So the import path the blocker referred to has been migrated and built. Confirm a clean end-to-end run on a real episode, then mark Stage 7 done.
+---
 
-## 7. Where things actually are vs. blocked
+## 6. Fact-accuracy notes (verified June 4, 2026; see VERIFIED-FACTS.md)
 
-- **Live and working:** the whole dashboard in section 3, the extraction pipeline in section 4, 45 applied migrations.
-- **Off-limits infrastructure (non-negotiable):** ProPresenter production machine `GSN-PropRes` (Tailscale `100.98.215.7`), ATEM / Bitfocus Companion, QNAP write access (read-only SMB only), Notion workspace (wiki-only after ADR-0012). No Tailscale / SSH / file-watchers - permanently barred after the 2026-05-20 server incident. All automation goes through cloud APIs or read-only SMB.
-- **Credentials:** never in chat. 1Password CLI only (`op item get "<item>" --fields password --reveal`). Vault `GSR Automation`.
+- **YouTube** upload quota dropped from ~1,600 to ~100 units on Dec 4, 2025 (~100 uploads/day). Confirmed.
+- **WhisperKit** v1.0.0 (May 2026); repo renamed to `argmax-oss-swift`; bundles SpeakerKit. Its 2.2% WER is a **vendor benchmark** (independent leaderboards show higher) - frame it that way.
+- **"Skills 2.0"** is journalistic shorthand; cite "the skill-creator update of March 2026," not an official version string.
+- **"Antislop" is NOT an Anthropic concept.** Ground voice curation in general few-shot guidance + the Vale linter, never in a fabricated Anthropic finding.
+- **Fireside.fm** has a read-only metrics API only (no publish API). Transistor.fm / Buzzsprout have publish APIs if podcast automation is ever wanted.
+- **The `lower_thirds` table is a phantom.** The first migration's filename says "lower thirds" but its body creates `graphics`; every query uses `graphics`. Fix is documentation, not code.
 
-## 8. Config gaps worth fixing (found during this review)
+---
 
-- `config/production.json` says `episode_count: 25` and `season_3_start_date: 2024-09-02`. CLAUDE.md says 48 episodes with 2026 air dates. The production.json values are stale and should be reconciled.
-- `.env.example` is missing vars that newer code requires: Rundown Creator API key (used by `/api/rc-*`), and the Edge Function's `EXTRACT_WEBHOOK_SECRET` / service-role key. Document these.
-- `.mcp.json` configures `supabase`, `playwright`, `vercel` only. CLAUDE.md calls Rundown Creator MCP and Google Sheets MCP "active," but RC is now an in-app integration (`/api/rc-*`), not an MCP here, and no Sheets MCP is configured.
-- Subagents: only `agents/gsr-editorial.md` exists in-repo. CLAUDE.md references `gsr-pipeline` and `gsr-supabase`; those live in `~/.claude/agents/` (user scope), not in this repo.
+## 7. Important active decision: repo target
 
-## 9. What to do next (recommended order)
+The older planning docs said "stage all new files in `gsr-blueprint` until a deliberate migration." **Daniel has now directed that the course and build plan target `gsr-automation-v2` directly.** Treat that as the active decision. The whole artifact and the exported build plan point at `gsr-automation-v2`. Do not route new work into `gsr-blueprint`.
 
-1. **Decide the auto-extraction governance question** (section 4) - this is the one item that needs Daniel.
-2. **Run one real episode end-to-end** through script -> extract -> import -> review -> approved, to formally close Stage 7.
-3. **Refresh the stale docs** so a future session is not misled: update `CLAUDE.md` "What is built" + blocker line, fix the migration/route counts in `BUILD_STATUS.html` and `SESSION_HANDOFF.md`, and reconcile `config/production.json`. (See `VERIFIED-FACTS.md` for the exact corrections.)
-4. **Continue the roadmap** (`docs/AUTOMATION_ROADMAP.md`): YouTube RSS poller Edge Function, then content clips + social, then the timecode/title pipeline.
+---
 
-See `VERIFIED-FACTS.md` for the conflict-by-conflict resolution, `2026-06-04-SYSTEM-EVOLUTION.md` for how the architecture got here, and `2026-06-04-tools-curriculum-timeline.md` for the tool inventory and build order.
+## 8. Off-limits (the David Rule)
+
+Automation talks to cloud APIs only. Never write to: the live broadcast chain, the ProPresenter machine (GSN-PropRes, Tailscale 100.98.215.7), the QNAP NAS (read-only SMB; admin revoked per ADR-0011), ATEM, or Bitfocus Companion. Production pulls from the database on its own schedule.
+
+---
+
+## 9. How to continue this work
+
+- **To edit the artifact:** it is one HTML file. Module content lives in the `const M=[...]` array (each module: `blueprint`, `lesson`, `analogy`, `facts`, `quiz`, `decision`, `repo`, `tell`). The engine is below it. Keep NO em dashes in copy. Validate with `node --check` on the extracted `<script>` before shipping.
+- **To extend the build:** open the artifact, lock decisions, Export Build Plan, then run it in Claude Code against `gsr-automation-v2`.
+- **Cross-cutting next moves:** clear the Google API audit for YouTube early (only Daniel can; uploads stay private until approved); normalize the guest sheet; re-run the Dovecot smoke test live; reconcile ADR-0012 text (says Next.js 15) with the live 16.2; run the first real-episode import (graphics = 0); resolve the lower_thirds phantom; supply the `gsr-interview-segment` skill output + one sample script (Stage 1 blocker).
+
+---
+
+## 10. Files in this bundle
+
+See CONTEXT-README.md.

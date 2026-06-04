@@ -139,7 +139,7 @@ details[open] summary{color:var(--ink)}
       <div class="xpnum"><span id="xpDone">0</span>/<span id="xpTotal">12</span> decisions locked</div>
       <div class="xpbar"><div class="xpfill" id="xpFill"></div></div>
       <div class="toolbar">
-        <button class="btn primary" id="btnPlan">Export Build Plan</button>
+        <button class="btn primary" id="btnPlan">Export Plan (MD + HTML)</button>
         <button class="btn" id="btnJson">Export JSON</button>
         <button class="btn" id="btnImport">Import</button>
         <input type="file" id="fileImport" hidden accept="application/json">
@@ -796,66 +796,174 @@ function consult(m){
   toast('Consultant prompt copied. Paste it into your chat with Claude and add your question.');
 }
 
-/* ===== build plan export (the deliverable) ===== */
-function buildPlan(){
-  const now=new Date().toISOString().slice(0,10);const L=[];
-  L.push('# GSR Automation v2 - Build Plan (single source of truth)');
+/* ===== build plan export (the deliverable): phased, step-by-step, with Claude Code prompts, as MD + HTML ===== */
+function plain(s){return String(s==null?'':s).replace(/`/g,'').replace(/\*\*/g,'').replace(/\s+/g,' ').trim();}
+
+/* How much of each step Claude Code can do unattended, and the manual gate if any. */
+const AUTO={
+ m0:{kind:'auto',label:'Automated setup',manual:''},
+ m1:{kind:'assisted',label:'Automated build + manual setup',manual:'Create the Dropbox app (full scope) and store its credentials in 1Password before running.'},
+ m2:{kind:'auto',label:'Automated build',manual:''},
+ m3:{kind:'assisted',label:'Automated build, manual send',manual:'A human sends every guest email. Re-run the davidrives-mail Dovecot auth smoke test against the live server before trusting send.'},
+ m4:{kind:'assisted',label:'Automated build + one input',manual:'Supply the gsr-interview-segment skill output and one real sample script so the parser contract can be locked.'},
+ m5:{kind:'auto',label:'Automated build',manual:''},
+ m6:{kind:'auto',label:'Automated build (core exists)',manual:''},
+ m7:{kind:'auto',label:'Automated build',manual:''},
+ m8:{kind:'manual',label:'Manual today; automation deferred',manual:'ProPresenter is off-limits to live automation (David Rule). Today, copy approved text by hand. Only automate later as pre-built Props triggered by ID, test-only, after David explicitly approves.'},
+ m9:{kind:'assisted',label:'Automated build + local setup',manual:'Install ffmpeg and Whisper (or WhisperKit) on the Edit Bay Mac Mini. This runs locally, never on the NAS.'},
+ m10:{kind:'auto',label:'Automated build (core exists)',manual:''},
+ m11:{kind:'assisted',label:'Partly automated; manual gates',manual:'Clear the Google API audit (only Daniel can; uploads stay private until approved). Fireside and GSN are manual handoff cards by design.'}
+};
+function autoFor(m){return AUTO[m.id]||{kind:'auto',label:'Automated build',manual:''};}
+function phaseOrder(){const seen=[];M.forEach(m=>{if(seen.indexOf(m.phase)<0)seen.push(m.phase);});return seen;}
+
+/* A fully self-contained Claude Code prompt for one step. */
+function stepPrompt(m){
+  const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);const L=[];
+  L.push('Context: GSR Automation v2, repo gsr-automation-v2. Phase '+m.phase+', Step M'+m.num+': '+m.title+'.');
+  L.push('Ground rules: work on a feat/ or fix/ branch, open a draft PR, run npx tsc --noEmit and npx eslint, then squash-merge to main. Honor the David Rule: automation reads cloud APIs and writes the database only, and never touches ProPresenter, ATEM, Bitfocus Companion, the QNAP NAS, or Tailscale. Pull secrets from 1Password at runtime; never commit secrets.');
+  L.push('Locked decision: '+(o?o.label+' ('+o.tag+'). '+o.why:'NOT YET DECIDED - lock this in the course before building.'));
+  L.push('Spec:');
+  m.decision.specs.forEach(s=>L.push('  - '+s[0]+': '+s[1]));
+  if(a.manual)L.push('Manual gate: '+a.manual);
+  L.push('Task: '+m.tell);
+  return L.join('\n');
+}
+
+function planMarkdown(){
+  const now=new Date().toISOString().slice(0,10);const total=M.length,done=decided();const L=[];
+  L.push('# GSR Automation v2 - Build Plan');
   L.push('');
-  L.push('Generated '+now+' from the GSR crash course. Target repo: **gsr-automation-v2**.');
-  L.push('Decisions locked: '+decided()+' / '+M.length+'.');
+  L.push('_Single source of truth. Generated '+now+' from the GSR crash course. Target repo: **gsr-automation-v2**. Decisions locked: '+done+' / '+total+'._');
   L.push('');
-  L.push('This plan is for an AI agent (Claude Code) to execute against the EXISTING gsr-automation-v2 repository. Do not start from scratch; extend the current Supabase + Next.js app. Each module gives the producer intent, the locked decision, the concrete spec, a repo cross-check, and a ready-to-run instruction.');
+  L.push('## How to run this plan');
+  L.push('1. Open Claude Code in the gsr-automation-v2 repo.');
+  L.push('2. Work phase by phase, step by step, in the order below. Do not skip ahead.');
+  L.push('3. For each automatable step, paste its **Claude Code prompt** (the fenced block) and let Claude build it, then review the draft PR.');
+  L.push('4. Steps marked Manual are done by a human; their prompt builds only the automatable part, if any.');
+  L.push('5. After each step: confirm tsc and eslint pass, squash-merge, then move on.');
   L.push('');
   L.push('## The architecture law (non-negotiable)');
-  L.push('The David Rule: automation reads cloud APIs and writes to the database only. It never writes to the live broadcast chain, the ProPresenter machine (GSN-PropRes, Tailscale 100.98.215.7), the QNAP NAS (read-only SMB), ATEM, or Bitfocus Companion. Production pulls from the database on its own schedule. Build in gsr-automation-v2 with feat/fix branches and squash merges; pull credentials from 1Password at runtime; never commit secrets.');
+  L.push('The David Rule: automation reads cloud APIs and writes to the database only. It never writes to the live broadcast chain, the ProPresenter machine (GSN-PropRes, Tailscale 100.98.215.7), the QNAP NAS (read-only SMB), ATEM, or Bitfocus Companion. Production pulls from the database on its own schedule. Build with feat/fix branches and squash merges; pull credentials from 1Password at runtime; never commit secrets.');
+  L.push('');
+  L.push('## Phases at a glance');
+  phaseOrder().forEach((ph,pi)=>{const steps=M.filter(m=>m.phase===ph);L.push('- **Phase '+(pi+1)+' - '+ph+':** '+steps.map(m=>'M'+m.num+' '+m.title).join('; '));});
   L.push('');
   L.push('## Build-order checklist');
-  M.forEach(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);L.push('- ['+(S.decisions[m.id]?'x':' ')+'] M'+m.num+' '+m.title+(o?' -> '+o.label:' -> (not yet decided)'));});
+  M.forEach(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);L.push('- ['+(S.decisions[m.id]?'x':' ')+'] M'+m.num+' '+m.title+'  ('+a.label+')'+(o?' -> '+o.label:' -> (not yet decided)'));});
   L.push('');
-  L.push('## Modules');
-  L.push('');
-  M.forEach(m=>{
-    const cur=S.intake[m.id]||{};const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);
-    L.push('### M'+m.num+' - '+m.title+'  ('+m.phase+')');
+  phaseOrder().forEach((ph,pi)=>{
+    L.push('## Phase '+(pi+1)+' - '+ph);
     L.push('');
-    L.push('**Producer intent (blueprint)**');
-    m.blueprint.forEach((q,i)=>{L.push('- '+q.q+' => '+(cur[i]?cur[i]:'(left blank)'));});
-    L.push('');
-    L.push('**Locked decision:** '+(o?o.label+'  ('+o.tag+')':'NOT YET DECIDED'));
-    if(o)L.push('');
-    if(o)L.push('Rationale: '+o.why);
-    L.push('');
-    L.push('Consultant verdict: '+m.decision.rec);
-    L.push('');
-    L.push('**Spec**');
-    m.decision.specs.forEach(s=>L.push('- '+s[0]+': '+s[1]));
-    L.push('');
-    L.push('**Repo cross-check (gsr-automation-v2):** '+plain(m.repo));
-    L.push('');
-    L.push('**Tell Claude:**');
-    L.push('```');
-    L.push(m.tell);
-    L.push('```');
-    L.push('');
+    M.filter(m=>m.phase===ph).forEach(m=>{
+      const cur=S.intake[m.id]||{};const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);
+      L.push('### Step M'+m.num+' - '+m.title);
+      L.push('');
+      L.push('- **Automation:** '+a.label);
+      if(a.manual)L.push('- **Manual gate:** '+a.manual);
+      L.push('');
+      L.push('**Producer intent (your blueprint)**');
+      m.blueprint.forEach((q,i)=>{L.push('- '+q.q+' => '+(cur[i]?cur[i]:'(left blank)'));});
+      L.push('');
+      L.push('**Locked decision:** '+(o?o.label+'  ('+o.tag+')':'NOT YET DECIDED'));
+      if(o)L.push('');
+      if(o)L.push('Rationale: '+o.why);
+      L.push('');
+      L.push('Consultant verdict: '+m.decision.rec);
+      L.push('');
+      L.push('**Spec**');
+      m.decision.specs.forEach(s=>L.push('- '+s[0]+': '+s[1]));
+      L.push('');
+      L.push('**Repo cross-check (gsr-automation-v2):** '+plain(m.repo));
+      L.push('');
+      L.push(a.kind==='manual'?'**Claude Code prompt (builds the automatable part / guidance):**':'**Claude Code prompt (paste into Claude Code):**');
+      L.push('```text');
+      L.push(stepPrompt(m));
+      L.push('```');
+      L.push('');
+    });
   });
   const undec=M.filter(m=>!S.decisions[m.id]);
-  L.push('## Open questions (decide before building these)');
-  if(undec.length===0)L.push('- None. All 12 decisions are locked.');
+  L.push('## Open questions (lock these in the course before building)');
+  if(undec.length===0)L.push('- None. All '+total+' decisions are locked.');
   else undec.forEach(m=>L.push('- M'+m.num+' '+m.title));
   L.push('');
-  L.push('## Cross-cutting next moves (from the source docs)');
-  L.push('- Clear the Google API audit for YouTube early; uploads stay private until approved (only Daniel can do this).');
-  L.push('- Normalize the guest contact sheet into the Supabase guests table to unlock auto-matching.');
-  L.push('- Re-run the davidrives-mail Dovecot auth smoke test against the live server before trusting send.');
-  L.push('- Reconcile ADR-0012 text (says Next.js 15) with the live stack (16.2).');
-  L.push('- Run the first real-episode import: the graphics table is still 0 rows (operational milestone, not a defect).');
-  L.push('- Resolve the lower_thirds phantom: the table is graphics; either do the rename for real or delete the pending-rename language.');
-  L.push('- Deploy the optional confirm step for auto-extraction: apply migration 20260604180000 and redeploy the extract-on-script-save Edge Function. Default auto_extract_apply=false holds extractions until a human confirms via /api/scripts/confirm-extraction.');
-  L.push('- Provide the gsr-interview-segment skill output + one real sample script to lock the parser contract (Stage 1 blocker).');
+  L.push('## Manual actions (no automated prompt)');
+  M.forEach(m=>{const a=autoFor(m);if(a.manual)L.push('- M'+m.num+' '+m.title+': '+a.manual);});
+  L.push('');
+  L.push('## Cross-cutting next moves');
+  XMOVES.forEach(x=>L.push('- '+x));
   L.push('');
   L.push('_End of build plan. Honor the David Rule. Pull before you start, push when you stop._');
-  download('GSR-Automation-v2-Build-Plan-'+now+'.md',L.join('\n'),'text/markdown;charset=utf-8');
-  toast('Build plan exported as Markdown.');
+  return L.join('\n');
+}
+
+const XMOVES=[
+ 'Clear the Google API audit for YouTube early; uploads stay private until approved (only Daniel can do this).',
+ 'Normalize the guest contact sheet into the Supabase guests table to unlock auto-matching.',
+ 'Re-run the davidrives-mail Dovecot auth smoke test against the live server before trusting send.',
+ 'Reconcile ADR-0012 text (says Next.js 15) with the live stack (16.2).',
+ 'Run the first real-episode import: the graphics table is still 0 rows (operational milestone, not a defect).',
+ 'Resolve the lower_thirds phantom: the table is graphics; rename for real or delete the pending-rename language.',
+ 'Deploy the optional confirm step for auto-extraction: apply migration 20260604180000 and redeploy the extract-on-script-save Edge Function (default auto_extract_apply=false holds extractions until a human confirms via /api/scripts/confirm-extraction).',
+ 'Provide the gsr-interview-segment skill output + one real sample script to lock the parser contract (Stage 1 blocker).'
+];
+
+function planHTML(){
+  const now=new Date().toISOString().slice(0,10);const total=M.length,done=decided();const H=[];
+  H.push('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GSR Automation v2 - Build Plan</title>');
+  H.push('<style>body{max-width:920px;margin:0 auto;padding:32px 20px;background:#f7f9fc;color:#16202e;font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif}h1{font-size:26px;margin:0 0 4px}h2{margin:28px 0 8px;padding-top:14px;border-top:2px solid #e1e8f0;font-size:20px}h3{margin:18px 0 6px;font-size:16px;color:#0b3a57}.meta{color:#5b6b7e}.tag{display:inline-block;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid #cdd8e4;background:#eef3f9;color:#33506e;margin-left:6px}.tag.manual{background:#fff1e6;border-color:#f0c89b;color:#9a5a12}.tag.auto{background:#e8f7ee;border-color:#a9dcc0;color:#1d7a45}.law{background:#fff6e9;border:1px solid #f0d8a8;border-radius:8px;padding:12px 14px}.gate{background:#fff1e6;border:1px solid #f0c89b;border-radius:8px;padding:8px 12px;margin:8px 0;font-size:14px}pre{background:#0d1320;color:#dce7f5;border-radius:8px;padding:14px;overflow:auto;font:13px/1.5 ui-monospace,Menlo,monospace;white-space:pre-wrap}.step{border:1px solid #e1e8f0;border-radius:10px;padding:14px 16px;margin:14px 0;background:#fff}.spec{border-collapse:collapse;margin:4px 0}.spec td{border:1px solid #e1e8f0;padding:4px 8px;font-size:14px;vertical-align:top}.spec td:first-child{font-weight:600;color:#0b3a57;white-space:nowrap}.crumb{color:#5b6b7e;font-size:13px}ul{margin:6px 0}li{margin:3px 0}@media print{body{background:#fff}.step{break-inside:avoid}pre{background:#f0f3f8;color:#16202e;border:1px solid #d6deea}}</style></head><body>');
+  H.push('<h1>GSR Automation v2 - Build Plan</h1>');
+  H.push('<p class="meta">Single source of truth. Generated '+now+'. Target repo: <b>gsr-automation-v2</b>. Decisions locked: '+done+' / '+total+'.</p>');
+  H.push('<div class="law"><b>The architecture law (David Rule).</b> Automation reads cloud APIs and writes the database only. It never touches the live broadcast chain, ProPresenter (GSN-PropRes, Tailscale 100.98.215.7), the QNAP NAS, ATEM, or Bitfocus Companion. Build with feat/fix branches and squash merges; secrets from 1Password; never commit secrets.</div>');
+  H.push('<h2>How to run this plan</h2><ol><li>Open Claude Code in gsr-automation-v2.</li><li>Work phase by phase, step by step. Do not skip ahead.</li><li>For each automatable step, paste its Claude Code prompt and review the draft PR.</li><li>Manual steps are done by a human.</li><li>After each step: tsc and eslint pass, squash-merge, continue.</li></ol>');
+  H.push('<h2>Phases at a glance</h2><ul>');
+  phaseOrder().forEach((ph,pi)=>{const steps=M.filter(m=>m.phase===ph);H.push('<li><b>Phase '+(pi+1)+' - '+esc(ph)+':</b> '+esc(steps.map(m=>'M'+m.num+' '+m.title).join('; '))+'</li>');});
+  H.push('</ul>');
+  H.push('<h2>Build-order checklist</h2><ul>');
+  M.forEach(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);H.push('<li>['+(S.decisions[m.id]?'x':'&nbsp;')+'] <b>M'+m.num+'</b> '+esc(m.title)+' <span class="tag '+(a.kind==='manual'?'manual':'auto')+'">'+esc(a.label)+'</span>'+(o?' &rarr; '+esc(o.label):' &rarr; (not yet decided)')+'</li>');});
+  H.push('</ul>');
+  phaseOrder().forEach((ph,pi)=>{
+    H.push('<h2>Phase '+(pi+1)+' - '+esc(ph)+'</h2>');
+    M.filter(m=>m.phase===ph).forEach(m=>{
+      const cur=S.intake[m.id]||{};const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);
+      H.push('<div class="step"><h3>Step M'+m.num+' - '+esc(m.title)+' <span class="tag '+(a.kind==='manual'?'manual':'auto')+'">'+esc(a.label)+'</span></h3>');
+      if(a.manual)H.push('<div class="gate"><b>Manual gate:</b> '+esc(a.manual)+'</div>');
+      H.push('<p class="crumb"><b>Producer intent</b></p><ul>');
+      m.blueprint.forEach((q,i)=>{H.push('<li>'+esc(q.q)+' &rArr; '+esc(cur[i]?cur[i]:'(left blank)')+'</li>');});
+      H.push('</ul>');
+      H.push('<p><b>Locked decision:</b> '+(o?esc(o.label)+' ('+esc(o.tag)+')':'<span style="color:#9a5a12">NOT YET DECIDED</span>')+'</p>');
+      if(o)H.push('<p class="crumb">Rationale: '+esc(o.why)+'</p>');
+      H.push('<p class="crumb">Consultant verdict: '+esc(m.decision.rec)+'</p>');
+      H.push('<p><b>Spec</b></p><table class="spec"><tbody>');
+      m.decision.specs.forEach(s=>H.push('<tr><td>'+esc(s[0])+'</td><td>'+esc(s[1])+'</td></tr>'));
+      H.push('</tbody></table>');
+      H.push('<p class="crumb"><b>Repo cross-check:</b> '+esc(plain(m.repo))+'</p>');
+      H.push('<p><b>Claude Code prompt</b>'+(a.kind==='manual'?' (guidance / automatable part)':'')+'</p><pre>'+esc(stepPrompt(m))+'</pre>');
+      H.push('</div>');
+    });
+  });
+  const undec=M.filter(m=>!S.decisions[m.id]);
+  H.push('<h2>Open questions</h2><ul>');
+  if(undec.length===0)H.push('<li>None. All '+total+' decisions are locked.</li>');
+  else undec.forEach(m=>H.push('<li>M'+m.num+' '+esc(m.title)+'</li>'));
+  H.push('</ul>');
+  H.push('<h2>Manual actions (no automated prompt)</h2><ul>');
+  M.forEach(m=>{const a=autoFor(m);if(a.manual)H.push('<li><b>M'+m.num+'</b> '+esc(m.title)+': '+esc(a.manual)+'</li>');});
+  H.push('</ul>');
+  H.push('<h2>Cross-cutting next moves</h2><ul>');
+  XMOVES.forEach(x=>H.push('<li>'+esc(x)+'</li>'));
+  H.push('</ul>');
+  H.push('<p class="meta">End of build plan. Honor the David Rule. Pull before you start, push when you stop.</p>');
+  H.push('</body></html>');
+  return H.join('\n');
+}
+
+function buildPlan(){
+  const now=new Date().toISOString().slice(0,10);
+  download('GSR-Automation-v2-Build-Plan-'+now+'.md',planMarkdown(),'text/markdown;charset=utf-8');
+  setTimeout(()=>download('GSR-Automation-v2-Build-Plan-'+now+'.html',planHTML(),'text/html;charset=utf-8'),350);
+  toast('Build plan exported: Markdown + HTML.');
 }
 
 /* ===== finale ===== */
@@ -867,9 +975,9 @@ function renderFinale(){
   h+='<div class="finbox"><div style="font-size:13px;margin-bottom:6px"><span class="adrcount">'+done+'</span> / '+M.length+' decisions locked</div>';
   M.forEach(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);h+='<div class="checkrow"><span class="bx'+(S.decisions[m.id]?' on':'')+'"></span><span><b>M'+m.num+'</b> '+esc(m.title)+(o?' &mdash; <span style="color:var(--good)">'+esc(o.label)+'</span>':' &mdash; <span style="color:var(--warn)">not yet decided</span>')+'</span></div>';});
   h+='</div>';
-  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px"><button class="btn primary" id="finPlan">Export Build Plan (Markdown)</button><button class="btn" id="finJson">Export JSON state</button></div>';
+  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px"><button class="btn primary" id="finPlan">Export Build Plan (MD + HTML)</button><button class="btn" id="finJson">Export JSON state</button></div>';
   h+='<h3>What to do with the export</h3>';
-  h+='<div class="finbox smol">1. Export the build plan. 2. Open Claude Code in gsr-automation-v2. 3. Paste the plan and say: build module by module in pipeline order, confirming each step. The plan already cross-references the live routes, the Supabase schema, and the David Rule, so Claude extends the repo instead of starting over.</div>';
+  h+='<div class="finbox smol">1. Export the build plan. You get a Markdown file (for Claude Code) and a readable HTML version (for you, prints clean). 2. Open Claude Code in gsr-automation-v2. 3. Work phase by phase: each step carries its own ready-to-run Claude Code prompt, a spec, and a repo cross-check, so Claude extends the existing repo instead of starting over. Steps tagged Manual are yours to do by hand.</div>';
   h+='<h3>Cross-cutting next moves</h3>';
   h+='<div class="finbox smol">';
   ['Clear the Google API audit for YouTube early (uploads stay private until approved; only Daniel can).',

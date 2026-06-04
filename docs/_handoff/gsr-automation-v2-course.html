@@ -1042,6 +1042,8 @@ function renderFinale(){
   M.forEach(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);h+='<div class="checkrow"><span class="bx'+(S.decisions[m.id]?' on':'')+'"></span><span><b>M'+m.num+'</b> '+esc(m.title)+(o?' &mdash; <span style="color:var(--good)">'+esc(o.label)+'</span>':' &mdash; <span style="color:var(--warn)">not yet decided</span>')+'</span></div>';});
   h+='</div>';
   h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px"><button class="btn primary" id="finPlan">Export Build Plan (MD + HTML)</button><button class="btn" id="finJson">Export JSON state</button></div>';
+  h+='<h3>Saving your progress (one file, always in sync)</h3>';
+  h+='<div class="finbox smol">Your answers and decisions auto-save in this browser. To make that durable and resumable on any device: click <b>Export JSON</b>, save it as <b>docs/_handoff/course-state.json</b>, and commit it. To resume, click <b>Import</b> and pick that file. It is one cumulative state across all 12 modules, so there are no separate per-module files to link. Module 2 already builds on Module 1.</div>';
   h+='<h3>What to do with the export</h3>';
   h+='<div class="finbox smol">1. Export the build plan. You get a Markdown file (for Claude Code) and a readable HTML version (for you, prints clean). 2. Open Claude Code in gsr-automation-v2. 3. Work phase by phase: each step carries its own ready-to-run Claude Code prompt, a spec, and a repo cross-check, so Claude extends the existing repo instead of starting over. Steps tagged Manual are yours to do by hand.</div>';
   h+='<h3>Cross-cutting next moves</h3>';
@@ -1065,7 +1067,7 @@ function renderFinale(){
 }
 
 /* ===== JSON export / import / reset ===== */
-function exportJSON(){download('GSR-Automation-v2-course-state-'+new Date().toISOString().slice(0,10)+'.json',JSON.stringify(S,null,2),'application/json');toast('JSON state exported.');}
+function exportJSON(){download('course-state.json',JSON.stringify(S,null,2),'application/json');toast('Saved as course-state.json. Commit it to docs/_handoff/ and Import to resume.');}
 function importJSON(file){const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(o&&typeof o==='object'){S=Object.assign(fresh(),o);if(typeof S.module!=='number'||S.module<0)S.module=0;save();render();toast('State imported.');}else toast('That file did not look like saved state.');}catch(e){toast('Could not read that file.');}};r.readAsText(file);}
 
 /* ===== wire top bar + boot ===== */

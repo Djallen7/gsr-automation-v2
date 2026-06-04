@@ -60,7 +60,13 @@ This is the most important thing the older docs do **not** mention. It exists in
 
 2. **Automatic / trigger-driven:** saving a script (via `/api/scripts` or `/api/rc-import`) writes the `scripts` table -> trigger `on_script_save` -> `notify_script_extract()` -> `pg_net` HTTP POST to the Edge Function `extract-on-script-save` (auth via `x-webhook-secret` from the `app_config` table). The Edge Function runs the same prompt, then **deletes existing `pending_review` graphics for that episode+segment and inserts the new ones** with the service role.
 
-**Governance note (read this):** the automatic path bypasses the `/api/import` dry-run + "Type YES" step that the mandatory "Lower-thirds import confirmation" rule in `CLAUDE.md` was written around. It is **not** an on-air risk on its own, because new rows land as `status = 'pending_review'` (verified at `supabase/functions/extract-on-script-save/index.ts:259`) and approved rows are preserved (only pending rows are replaced) - so nothing reaches ProPresenter or air without the human approve step in `/lower-thirds`. But it does mean graphics get created and silently replaced without an explicit import. **Decision needed from Daniel:** keep the auto-path as-is (pending-only, human approves later), or add a confirmation/notification step. Until decided, treat the trigger as live behavior, not a draft.
+**Governance note (resolved 2026-06-04):** the automatic path used to write graphics with no confirmation, bypassing the `/api/import` dry-run + "Type YES" step that the mandatory "Lower-thirds import confirmation" rule in `CLAUDE.md` was written around. An **optional confirm step** was added:
+- New flag `app_config.auto_extract_apply`, **default `false`** (migration `20260604180000_add_extraction_confirm_step.sql`).
+- When `false` (default), the Edge Function **holds** the extraction on the `scripts` row (`pending_extraction`, `extraction_status = 'pending_confirmation'`) and writes nothing to `graphics`.
+- A human confirms or discards on the `/extract` page; confirm applies the held rows as `pending_review` via `/api/scripts/confirm-extraction`.
+- Set the flag to `'true'` to opt back into auto-apply (the previous behavior).
+
+This makes the safe path the default and keeps auto-apply available for power use. **Going live requires two production steps** (not yet done): apply the migration to project `lafkbxypmciopebentxp`, then redeploy the `extract-on-script-save` Edge Function. Until then the code sits on the branch.
 
 ## 5. Database (verified via `list_migrations`, 2026-06-04)
 

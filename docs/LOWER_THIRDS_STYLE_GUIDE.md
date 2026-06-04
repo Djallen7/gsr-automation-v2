@@ -31,7 +31,7 @@ Tone: punchy cable-news, biblical worldview. Every line must work standalone as 
 
 ## 2. Length
 
-**Target: 65 characters. That is the ideal.**
+**Aim for the 55-65 character band. 65 is the hard ceiling, not the bullseye: never go over 65, and under 55 reads as too short.**
 
 - Aim for 65. Getting close (60–65) is good. Under 55 is too short. Over 65 is too long.
 - The AI regeneration prompt enforces **8 words or fewer** as a hard cap for AI-generated alternatives — but that is a constraint on the AI tool, not the human writing standard. Human-written beats average ~10 words.
@@ -370,21 +370,27 @@ Daniel's verbatim critique of flat chyrons:
 
 ## 6. L3 Type Reference
 
-The `l3_type` field classifies each lower-third's role in the segment. Current valid values:
+The `l3_type` field classifies each lower-third's role. These are the **15 values** enforced by the database CHECK constraint (`graphics_l3_type_check`); a row tagged with anything else fails import:
 
 | l3_type | Description | Segment |
 |---------|-------------|---------|
-| `episode_intro_l3` | Show-open newsy hook | show_intro |
-| `monologue_title_card` | "DAVID'S TAKE: [TOPIC]" — always beat 1 | opening_monologue |
-| `monologue_beat` | Substantive argument beat | opening_monologue |
-| `guest_chyron` | NAME \| DISCIPLINE \| AFFILIATION | interview_1, interview_2 |
-| `topic_l3` | Subject/topic identifier for the interview | interview_1, interview_2 |
+| `episode_intro_l3` | Show-open newsy hook / episode title card | show_intro |
+| `monologue_beat` | Substantive argument beat in the monologue | opening_monologue |
+| `segment_graphics_title` | Segment name card (e.g. KIDS CORNER); also the monologue title card | any |
+| `topic_l3` | Broad subject/topic identifier | interviews, roll-ins |
+| `guest_chyron` | NAME \| ORG \| FIELD speaker ID | interview_1, interview_2 |
 | `discussion_l3` | Specific claim or argument from the discussion | interview_1, interview_2 |
-| `segment_graphics_title` | Segment name card (e.g., KIDS CORNER) | any |
-| `qa_topic_l3` | Question topic in Q&A segment | genesis_science_qa |
-| `mr_news_l3` | Ministry news item | ministry_report |
-| `mr_cta_l3` | Standing contact/CTA card | ministry_report |
+| `generic_safety_net` | Fallback when nothing else fits | any |
+| `qa_topic_l3` | Question topic in Q&A | genesis_science_qa |
+| `mr_topic_l3` | Ministry Report point | ministry_report |
+| `mr_cta_l3` | Ministry Report call-to-action / standing CTA card | ministry_report |
+| `correspondent_chyron` | On-screen correspondent ID | viewer_voices, field |
+| `viewer_l3` | Viewer question or quote read on air | viewer_voices |
 | `resource_l3` | Featured resource title or book card | featured_resource |
+| `cta_l3` | Donation or website call-to-action | featured_resource, ministry_report |
+| `other` | Anything outside the above | any |
+
+Note: the monologue title card uses `segment_graphics_title` (there is no `monologue_title_card` value), and Ministry Report points use `mr_topic_l3` (there is no `mr_news_l3`).
 
 ---
 
@@ -487,7 +493,7 @@ Before any lower-thirds package goes on air:
 - [ ] Book/resource plugs verified on creationsuperstore.com — if not there, use website URL only
 - [ ] Beat 1 of opening_monologue is `DAVID'S TAKE: [TOPIC]`
 - [ ] Ministry report beat 3 is verbatim `SUPPORT THE MISSION | DAVIDRIVES.COM | 931-212-7990`
-- [ ] Character counts — spot-check at least 5 random beats against 41–65 range
+- [ ] Character counts: spot-check at least 5 random beats against the 55-65 range
 - [ ] Each discussion beat maps to a specific claim, not a generic topic label
 
 ---

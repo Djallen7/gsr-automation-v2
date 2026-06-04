@@ -1,7 +1,7 @@
 # ADR-0011: No QNAP Admin Access — Cloud-First Architecture with Notion Database
 
 **Date:** 2026-05-20
-**Status:** Accepted
+**Status:** **Superseded by ADR-0012 (2026-05-23) for the database choice (Notion -> Supabase).** The cloud-first, no-local-server, QNAP-read-only, and security-framework principles carry forward; Notion-as-database does not.
 **Supersedes:** ADR-0009 (two-NAS topology), ADR-0010 (file-watcher source of truth)
 
 ---

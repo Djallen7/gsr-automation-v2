@@ -144,12 +144,13 @@ Deno.serve(async (req: Request) => {
     }
 
     const payload = await req.json() as {
+      id?: number
       episode_id?: string
       segment?: string
       script_text?: string
     }
 
-    const { episode_id, segment, script_text } = payload
+    const { id: script_id, episode_id, segment, script_text } = payload
 
     if (!episode_id || !segment || !script_text?.trim()) {
       return new Response(JSON.stringify({ skipped: true, reason: 'empty or incomplete payload' }), {
@@ -242,15 +243,8 @@ Deno.serve(async (req: Request) => {
       })
     }
 
-    // Clear existing pending_review graphics for this episode+segment (approved are preserved)
-    await supabase
-      .from('graphics')
-      .delete()
-      .eq('episode_id', episode_id)
-      .eq('segment', segment)
-      .eq('status', 'pending_review')
-
-    // Insert new graphics
+    // Build the graphics rows (shared by both the apply-now and hold-for-confirm paths)
+    const rejected = Array.isArray(extracted.rejected) ? extracted.rejected : []
     const newGraphics = (extracted.graphics as Array<Record<string, unknown>>).map((g) => ({
       episode_id,
       segment,
@@ -264,6 +258,52 @@ Deno.serve(async (req: Request) => {
       source_doc: `${episodeLabel} ${segment} — auto-extract`,
     }))
 
+    // Optional confirm step: only auto-write graphics when the flag is explicitly 'true'.
+    const { data: cfg } = await supabase
+      .from('app_config')
+      .select('value')
+      .eq('key', 'auto_extract_apply')
+      .maybeSingle()
+    const autoApply = cfg?.value === 'true'
+
+    if (!autoApply) {
+      // HOLD: stash the result on the script row for human confirmation; write nothing to graphics.
+      // (Updating only these columns does not change script_text, so the on_script_save
+      //  trigger's "script unchanged" guard prevents a re-fire loop.)
+      if (script_id != null) {
+        const { error: holdErr } = await supabase
+          .from('scripts')
+          .update({
+            pending_extraction: { graphics: newGraphics, rejected, count: newGraphics.length },
+            extraction_status: 'pending_confirmation',
+            extracted_at: new Date().toISOString(),
+          })
+          .eq('id', script_id)
+
+        if (holdErr) {
+          console.error('Hold update error:', holdErr)
+          return new Response(JSON.stringify({ error: holdErr.message }), {
+            status: 500,
+            headers: { 'Content-Type': 'application/json' },
+          })
+        }
+      }
+
+      console.log(`Held ${newGraphics.length} lower-thirds for ${episodeLabel} ${segment} (awaiting confirmation)`)
+      return new Response(JSON.stringify({ ok: true, held: true, count: newGraphics.length }), {
+        status: 200,
+        headers: { 'Content-Type': 'application/json' },
+      })
+    }
+
+    // APPLY: clear existing pending_review graphics for this episode+segment (approved are preserved)
+    await supabase
+      .from('graphics')
+      .delete()
+      .eq('episode_id', episode_id)
+      .eq('segment', segment)
+      .eq('status', 'pending_review')
+
     const { error: insertErr } = await supabase.from('graphics').insert(newGraphics)
 
     if (insertErr) {
@@ -274,8 +314,15 @@ Deno.serve(async (req: Request) => {
       })
     }
 
+    if (script_id != null) {
+      await supabase
+        .from('scripts')
+        .update({ extraction_status: 'applied', extracted_at: new Date().toISOString(), pending_extraction: null })
+        .eq('id', script_id)
+    }
+
     console.log(`Extracted ${newGraphics.length} lower-thirds for ${episodeLabel} ${segment}`)
-    return new Response(JSON.stringify({ ok: true, count: newGraphics.length }), {
+    return new Response(JSON.stringify({ ok: true, applied: true, count: newGraphics.length }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     })

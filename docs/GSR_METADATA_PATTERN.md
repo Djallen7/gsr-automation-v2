@@ -32,7 +32,7 @@ These are identical across all 25 analyzed episodes — automation can hardcode 
 
 | Field | Value |
 |-------|-------|
-| Category | 24 (Entertainment) |
+| Category | 28 (Science & Technology) |
 | Privacy | Public |
 | Made for Kids | No |
 | License | Standard YouTube |
@@ -168,7 +168,7 @@ The AI should produce a structured JSON object:
   "title": "[Generated topical hook] | Genesis Science Report - S03, Ep##",
   "description": "[Full description following anatomy above]",
   "tags": ["anchor tag 1", "...", "topical tag 1", "..."],
-  "category_id": 24,
+  "category_id": 28,
   "privacy_status": "private",
   "made_for_kids": false,
   "language": "en",
@@ -209,7 +209,7 @@ Automated upload workflow should validate these before pushing to YouTube:
 - [ ] Hashtag block present at end of description
 - [ ] Scheduled publish time is a Monday at 20:00 UTC (or 21:00 UTC during DST)
 - [ ] All three playlists configured
-- [ ] Category ID is 24
+- [ ] Category ID is 28 (Science & Technology; never 24 or 27)
 - [ ] Privacy is `private` initially (changed to `public` only after human approval)
 
 ---

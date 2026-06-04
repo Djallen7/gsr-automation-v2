@@ -52,12 +52,10 @@ if ! (cd "$DASHBOARD" && npx tsc --noEmit 2>/dev/null); then
 fi
 echo "TypeScript:  $TS_RESULT"
 
-# Route consistency
-ROUTE_RESULT="consistent"
-if ! bash "$REPO_ROOT/scripts/check-routes.sh" > /dev/null 2>&1; then
-  ROUTE_RESULT="INCONSISTENT — run: bash scripts/check-routes.sh"
-fi
-echo "Routes:      $ROUTE_RESULT"
+# Route snapshot (the BUILD_STATUS.html-policing scripts were retired in the V3 reset;
+# count live route files directly instead).
+ROUTE_COUNT=$(find "$DASHBOARD/src/app" \( -name 'page.tsx' -o -name 'route.ts' \) 2>/dev/null | wc -l | tr -d ' ')
+echo "Routes:      $ROUTE_COUNT page/route files in src/app"
 
 # Open health-check issues (check if gh is available)
 if command -v gh &>/dev/null; then

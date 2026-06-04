@@ -34,7 +34,7 @@ In roughly three weeks (May 15 → June 4, 2026) the system was redesigned twice
 
 **The single throughline:** every era was about the same job — take an episode from script to graphics to multi-platform distribution with less manual work — but the *how* got progressively simpler and more cloud-native, moving away from hardware that a non-developer would have to maintain.
 
-**Where it actually stands today (verified against the live database):** the Supabase backend has **20 tables, 45 migrations, 2 enums, 2 views, 3 functions, 3 named triggers, 1 storage bucket**. `episodes` = 48 rows, `guests` = 175 rows, and **`graphics` = 0 rows**. That last number is the real story of "Stage 7": the lower-thirds pipeline is fully built but **no graphics row has ever landed in production yet** — the first real-episode import has not been completed. It is an operational milestone, not a code defect (see the phantom-blocker note in Part 2).
+**Where it actually stands today (verified against the live database):** the Supabase backend has **20 tables, 46 migrations, 2 enums, 2 views, 3 functions, 3 named triggers, 1 storage bucket**. `episodes` = 48 rows, `guests` = 175 rows, and **`graphics` = 0 rows**. That last number is the real story of "Stage 7": the lower-thirds pipeline is fully built but **no graphics row has ever landed in production yet** — the first real-episode import has not been completed. It is an operational milestone, not a code defect (see the phantom-blocker note in Part 2).
 
 ---
 
@@ -234,7 +234,7 @@ Trigger: a broadcast master MP4 lands in a flat per-show Dropbox folder. A **~30
 
 ## Part 4 — The Database Layer (verified live)
 
-**Project:** `lafkbxypmciopebentxp`. **45 migrations**, built in three waves between May 26–28.
+**Project:** `lafkbxypmciopebentxp`. **46 migrations**, built in three waves between May 26–28.
 
 - **Wave 1 (May 26) — Feature 1 MVP:** `episodes`, `graphics`, `graphics_variations`; the two enums; RLS; the `lower-thirds` storage bucket; `propresenter_added`; `regenerate_attempts`; the `toggle_propresenter_added` RPC. (The first `graphic_segment` enum had 11 values here.)
 - **Wave 2 (May 27) — hardening + v2 extraction:** font fields; the `(season, episode_number)` unique constraint; audit fixes (indexes, a plpgsql RPC, status NOT NULL); the `show_intro` segment added (taking the enum to 12); `l3_type` (15-value CHECK) plus `var_1`/`var_2`.
@@ -527,7 +527,7 @@ Note on the "skills" reference: there is **no project-owned `skills` repository*
 | Tailwind CSS | ^4 | Utility-first styling. | 3 |
 | Supabase JS (`@supabase/supabase-js`) | ^2.106.2 | Client for Postgres, Auth, Storage. | 3 |
 | Supabase SSR (`@supabase/ssr`) | ^0.10.3 | Cookie-based server-side auth for Next.js. | 3 |
-| Supabase (platform) | hosted | Postgres + Auth + Storage + RLS + Edge Functions + pg_cron/pg_net. 45 migrations, 20 tables. | 3 |
+| Supabase (platform) | hosted | Postgres + Auth + Storage + RLS + Edge Functions + pg_cron/pg_net. 46 migrations, 20 tables. | 3 |
 | PostgreSQL | via Supabase | Enums, RLS, RPC functions, triggers. | 3 |
 | Anthropic Claude API (`@anthropic-ai/sdk`) | ^0.98.0 | Server-side lower-thirds generation + extraction. Model `claude-opus-4-7`. Never called from the browser. | 3 |
 | Zod | ^4.4.3 | Runtime validation of every import before DB writes. | 3 |
@@ -636,4 +636,4 @@ For building a system-setup course, the stack maps to these teaching layers (lea
 
 ---
 
-*Compiled 2026-06-04 from a full repository sweep, corroborated by a 10-agent verification pass against the live Supabase schema (45 migrations, 20 tables), the dashboard source code, the decision records, and the GitHub PR/commit history (41 PRs, 85 commits). Every count in this document was verified live. This file is self-contained: nothing outside it is required to understand the system.*
+*Compiled 2026-06-04 from a full repository sweep, corroborated by a 10-agent verification pass against the live Supabase schema (46 migrations, 20 tables), the dashboard source code, the decision records, and the GitHub PR/commit history (41 PRs, 85 commits). Every count in this document was verified live. This file is self-contained: nothing outside it is required to understand the system.*

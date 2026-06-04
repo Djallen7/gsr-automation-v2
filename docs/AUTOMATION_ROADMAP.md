@@ -105,12 +105,12 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 **Effort:** Low. Schema ready; the `episodes` table already has the target columns.  
 **Priority: High.** Build immediately after Stage 7 resolves.
 
-### 9. Lower thirds JSON → Supabase schema fix
-**What:** The `/api/import` route exists and works. The JSON extraction prompt exists. They don't speak the same column schema. Fix: audit the actual `lower_thirds` table column names against the extraction prompt output and align them.  
-**Why:** This is the only blocker for Stage 7. Once fixed, one episode runs through the full pipeline and Feature 1 is done.  
-**Build path:** Run `list_tables` on the `lower_thirds` table, compare with extraction prompt output, update the prompt or add a transform in `/api/import`.  
-**Effort:** Low — hours, not days.  
-**Priority: Critical — this IS Stage 7.**
+### 9. Run the first real-episode import (Stage 7)
+**What:** The `/api/import` route, the extraction prompt, and the schema all align on the `graphics` table. There is **no `lower_thirds` table** — the old "JSON vs lower_thirds column mismatch" was a phantom (the first migration's filename misleads; every query uses `graphics`). Stage 7 is now purely operational: no live episode import has run yet, so `graphics` has 0 rows.  
+**Why:** Running one episode end to end (extract -> import dry-run -> type YES -> review -> approved) closes Feature 1.  
+**Build path:** Use the live `/api/import` (dry-run, then confirm). No schema fix is needed.  
+**Effort:** Low.  
+**Priority: High — this IS Stage 7 (an operational milestone, not a code blocker).**
 
 ### 10. Graphics Tracker → Rundown Creator sync
 **What:** After the May Graphics Tracker (Google Sheets) is finalized per show, compare graphic rows against Rundown Creator and float/delete mismatched RC rows automatically.  
@@ -136,7 +136,7 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 
 | Blocker | Impact | Resolution path |
 |---|---|---|
-| Lower thirds JSON ↔ `lower_thirds` column mismatch | Blocks Stage 7 | Audit `list_tables` output vs extraction prompt; align |
+| First real-episode import not yet run (graphics = 0 rows) | Stage 7 operational milestone | Run /api/import dry-run then confirm; no schema fix needed (the lower_thirds mismatch was a phantom) |
 | Composio unreliable | Blocks Google Sheets write automation | Switch to native Google Sheets MCP |
 | RC MCP frequent timeouts | Daily friction | Investigate MCP server restart cadence; add retry logic |
 | No `youtube_published_at` auto-flip | Episodes show stale data | Build YouTube RSS poller Edge Function |

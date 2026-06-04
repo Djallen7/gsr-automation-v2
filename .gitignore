@@ -21,10 +21,6 @@ logs/
 *.sqlite3
 *.db
 
-# n8n workflow exports — review carefully before committing; may contain
-# embedded credentials or webhook URLs you don't want public
-workflows/n8n/*.json
-
 # Editor and IDE files
 .vscode/
 .idea/

@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useState, useTransition } from 'react'
+import { useEffect, useState, useTransition } from 'react'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
 
@@ -86,6 +86,15 @@ type Stage =
   | { name: 'done'; count: number }
   | { name: 'error'; message: string }
 
+// A held auto-extraction (from the on-script-save edge function) awaiting human confirmation.
+interface PendingExtraction {
+  pending: true
+  extracted_at: string | null
+  count: number
+  graphics: ExtractedGraphic[]
+  rejected: RejectedItem[]
+}
+
 function episodeLabel(ep: Episode): string {
   const num = `S${String(ep.season).padStart(2, '0')} Ep${String(ep.episode_number).padStart(3, '0')}`
   return ep.title ? `${num} — ${ep.title}` : num
@@ -106,9 +115,56 @@ export function ExtractForm({ episodes }: { episodes: Episode[] }) {
   const [segment, setSegment] = useState<SegmentValue>('interview_1')
   const [scriptText, setScriptText] = useState('')
   const [stage, setStage] = useState<Stage>({ name: 'idle' })
+  const [pending, setPending] = useState<PendingExtraction | null>(null)
+  const [pendingBusy, setPendingBusy] = useState(false)
 
   const selectedEpisode = episodes.find((e) => e.id === episodeId) ?? null
   const guestPreview = selectedEpisode ? guestForSegment(selectedEpisode, segment) : null
+
+  // Surface any held auto-extraction for the selected episode + segment.
+  useEffect(() => {
+    let ignore = false
+    void (async () => {
+      if (!episodeId || !segment) {
+        if (!ignore) setPending(null)
+        return
+      }
+      try {
+        const res = await fetch(`/api/scripts/confirm-extraction?episode_id=${episodeId}&segment=${segment}`)
+        const body = await res.json() as PendingExtraction | { pending: false }
+        if (!ignore) setPending(res.ok && body.pending ? (body as PendingExtraction) : null)
+      } catch {
+        if (!ignore) setPending(null)
+      }
+    })()
+    return () => { ignore = true }
+  }, [episodeId, segment])
+
+  function resolvePending(action: 'apply' | 'discard') {
+    if (!pending) return
+    setPendingBusy(true)
+    startTransition(async () => {
+      try {
+        const res = await fetch('/api/scripts/confirm-extraction', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ episode_id: episodeId, segment, action }),
+        })
+        const body = await res.json() as { ok?: boolean; error?: string; count?: number }
+        if (!res.ok) {
+          setStage({ name: 'error', message: body.error ?? 'Could not update the held extraction.' })
+        } else if (action === 'apply') {
+          setStage({ name: 'done', count: body.count ?? 0 })
+          setTimeout(() => router.push('/lower-thirds'), 1500)
+        }
+        setPending(null)
+      } catch (err) {
+        setStage({ name: 'error', message: err instanceof Error ? err.message : 'Network error.' })
+      } finally {
+        setPendingBusy(false)
+      }
+    })
+  }
 
   function handleExtract() {
     if (!episodeId || !scriptText.trim()) return
@@ -240,6 +296,60 @@ export function ExtractForm({ episodes }: { episodes: Episode[] }) {
             {guestPreview.organization ? ` | ${guestPreview.organization}` : ''}
             {guestPreview.expertise ? ` | ${guestPreview.expertise}` : ''}
           </p>
+        )}
+
+        {/* Held auto-extraction awaiting confirmation */}
+        {pending && (
+          <section className="rounded-md border border-amber-500/40 bg-amber-500/10 p-4">
+            <div className="mb-3 flex items-center justify-between gap-3">
+              <p className="text-sm font-medium">
+                Auto-extracted {pending.count} lower-third{pending.count !== 1 ? 's' : ''} from the saved script
+                {pending.rejected.length > 0 ? `, ${pending.rejected.length} rejected` : ''}.
+                <span className="block text-xs font-normal text-muted-foreground">
+                  Nothing is in the review queue yet. Confirm to apply, or discard.
+                </span>
+              </p>
+              <div className="flex gap-2">
+                <Button variant="outline" size="sm" disabled={pendingBusy} onClick={() => resolvePending('discard')}>
+                  Discard
+                </Button>
+                <Button size="sm" disabled={pendingBusy} onClick={() => resolvePending('apply')}>
+                  {pendingBusy ? 'Working…' : `Confirm ${pending.count}`}
+                </Button>
+              </div>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead>
+                  <tr className="border-b text-left text-muted-foreground">
+                    <th className="pb-1 pr-3 font-medium">Beat</th>
+                    <th className="pb-1 pr-3 font-medium">Type</th>
+                    <th className="pb-1 pr-3 font-medium">Text</th>
+                    <th className="pb-1 font-medium">Chars</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y">
+                  {pending.graphics.map((g) => (
+                    <tr key={g.beat_number}>
+                      <td className="py-1.5 pr-3 tabular-nums text-muted-foreground">{g.beat_number}</td>
+                      <td className="py-1.5 pr-3 text-muted-foreground">{g.l3_type}</td>
+                      <td className="py-1.5 pr-3 font-mono">{g.primary}</td>
+                      <td className={`py-1.5 tabular-nums font-medium ${
+                        g.primary.length > 65
+                          ? 'text-destructive'
+                          : g.primary.length < 55
+                            ? 'text-amber-500'
+                            : 'text-green-600'
+                      }`}>
+                        {g.primary.length}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
         )}
 
         {/* Script textarea */}

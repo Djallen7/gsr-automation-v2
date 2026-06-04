@@ -1,5 +1,7 @@
 # THE COMPLETE DEFENSIVE GUIDE: Building a Custom Post-Production Automation System Without Getting Burned
 
+> **Partly historical (Era 1).** The engineering principles still apply, but the specifics assume an n8n / self-hosted-NAS / SQLite / Tailscale stack that ADR-0012 retired. Read "n8n executions" as Vercel/Supabase logs, "the NAS" as read-only SMB, etc. Current architecture: `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md`.
+
 ## Executive Summary
 
 This guide provides concrete countermeasures for the 12 documented failure modes facing non-developer automation projects, plus defensive architecture patterns, platform-specific strategies, and implementation checklists. **You've decided to build—now let's help you succeed.**

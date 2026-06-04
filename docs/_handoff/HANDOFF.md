@@ -33,7 +33,7 @@ TV producer at David Rives Ministries, runs the Genesis Science Report. Non-deve
 
 **Architecture of record (Era 3, accepted 2026-05-23):** a real app = Next.js 16 (App Router) + React + TypeScript + shadcn/ui + Tailwind v4, Supabase (hosted Postgres + Auth + Storage + RLS + Edge Functions), deployed on Vercel; Claude API via `@anthropic-ai/sdk` (model `claude-opus-4-7`); Python for email tooling; 1Password CLI for secrets; Git/GitHub.
 
-**Live Supabase project `lafkbxypmciopebentxp`:** 20 tables, 45 migrations, 2 enums, 2 views, 3 functions, 3 triggers, 1 storage bucket (`lower-thirds`). episodes = 48 rows, guests = 175 rows, **graphics = 0 rows** (no live import has run yet; an operational milestone, not a defect).
+**Live Supabase project `lafkbxypmciopebentxp`:** 20 tables, 46 migrations, 2 enums, 2 views, 3 functions, 3 triggers, 1 storage bucket (`lower-thirds`). episodes = 48 rows, guests = 175 rows, **graphics = 0 rows** (no live import has run yet; an operational milestone, not a defect).
 
 **Real routes/contracts:** `/import`, `/lower-thirds`, `/approved`, `/upload`; API `/api/import` (Zod, dry-run "type YES"), `/api/extract-lower-thirds` (Claude, returns a payload, no DB write, model from `ANTHROPIC_REGENERATE_MODEL` default `claude-opus-4-7`, max_tokens 4096), `/api/regenerate` (3 variations), `/api/scripts` (upsert per episode+segment, fires `on_script_save` -> `notify_script_extract()` -> `extract-on-script-save` Edge Function), `/api/rc-explore` and `/api/rc-import` (Rundown Creator passthrough; maps 10 RC segment names -> 12-value internal enum; fixes Latin-1 -> UTF-8 mojibake).
 

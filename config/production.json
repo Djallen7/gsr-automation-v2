@@ -4,12 +4,12 @@
     "abbreviation": "GSR",
     "season": "S3",
     "season_number": 3,
-    "episode_count": 25,
+    "episode_count": 48,
     "air_day": "Tuesday",
     "air_time_cst": "20:00",
     "youtube_publish_day": "Monday",
     "youtube_publish_time_et": "16:00",
-    "season_3_start_date": "2024-09-02",
+    "_dates_note": "Authoritative episode air dates live in the Supabase episodes table, not here. Ep1-15 have real 2026 dates; Ep16-48 are extrapolated Tuesdays through 2027-01-05. The old static season_3_start_date (2024-09-02) was wrong and has been removed.",
     "description": "A CNN/Fox News-style science news show exploring creation science and the evidence for design in the universe."
   },
 
@@ -28,13 +28,14 @@
 
   "graphics_shows": [1, 2, 3, 4, 5],
 
+  "_platforms_note": "Real distribution targets, matching the distributions.platform enum. The earlier Odysee/Facebook/Instagram/Website set was not the current plan.",
   "platforms": [
-    { "id": "youtube",          "name": "YouTube",           "has_api": true,  "upload_auto": true  },
-    { "id": "rumble",           "name": "Rumble",            "has_api": false, "upload_auto": false },
-    { "id": "odysee",           "name": "Odysee",            "has_api": true,  "upload_auto": false },
-    { "id": "facebook",         "name": "Facebook",          "has_api": true,  "upload_auto": false },
-    { "id": "instagram_reels",  "name": "Instagram Reels",   "has_api": false, "upload_auto": false },
-    { "id": "website",          "name": "Website",           "has_api": false, "upload_auto": false }
+    { "id": "youtube",                 "name": "YouTube",                 "has_api": true,  "upload_auto": true  },
+    { "id": "rumble",                  "name": "Rumble",                  "has_api": false, "upload_auto": true,  "note": "mirrored via YouTube channel sync" },
+    { "id": "fireside_podcast",        "name": "Fireside (podcast)",      "has_api": false, "upload_auto": false, "note": "read-only API; manual handoff card" },
+    { "id": "genesis_science_network", "name": "Genesis Science Network", "has_api": false, "upload_auto": false, "note": "no public API; manual handoff card" },
+    { "id": "real_life_network",       "name": "Real Life Network",       "has_api": false, "upload_auto": false, "note": "Signiant Media Shuttle" },
+    { "id": "streamhoster",            "name": "StreamHoster",            "has_api": false, "upload_auto": false, "note": "FTPS" }
   ],
 
   "sponsor": {

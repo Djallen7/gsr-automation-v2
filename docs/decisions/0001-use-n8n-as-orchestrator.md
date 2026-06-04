@@ -1,7 +1,7 @@
 # ADR-0001: Use n8n as orchestrator, Next.js dashboard, Docker services on NAS
 
 Date: 2026-05-15
-Status: Accepted (supplemented by ADR-0009)
+Status: **Historical — superseded by ADR-0011 (cloud pivot) and ADR-0012 (Supabase + Next.js).** Only the Next.js dashboard choice survives. n8n, SQLite, Docker-on-NAS, and Tailscale are dead/off-limits (the 2026-05-20 security incident permanently barred Tailscale and local servers).
 
 ## Context
 

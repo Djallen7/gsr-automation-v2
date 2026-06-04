@@ -1,7 +1,7 @@
 # ADR-0009: Two-NAS topology — QNAP3 as primary automation host
 
 Date: 2026-05-15
-Status: Accepted
+Status: **Superseded by ADR-0011 (2026-05-20).** The QNAP is no longer an automation host (read-only SMB only); Tailscale is off-limits. Historical record only.
 Supplements: ADR-0001
 
 ## Context

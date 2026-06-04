@@ -23,7 +23,7 @@ Notion's strengths (team-editable docs, no-code views, wiki) do not map to these
 
 **Backend:** Supabase (Postgres + Realtime + Storage + Auth + Edge Functions). Single integrated platform covers DB, auth, file storage, and serverless functions for the workflow.
 
-**Frontend:** Next.js 15 + shadcn/ui. Server components for data fetching, shadcn for the component library, deployed on Vercel.
+**Frontend:** Next.js (App Router) + shadcn/ui. Server components for data fetching, shadcn for the component library, deployed on Vercel. _(Update 2026-06-04: the original text said "Next.js 15"; the live stack is on Next.js 16.2.6. The framework choice stands; only the version number moved. See `docs/_handoff/VERIFIED-FACTS.md`.)_
 
 **Orchestration:** n8n is deferred. Feature 1 does not need workflow orchestration — direct Supabase Edge Functions and Claude API calls handle automation. Revisit n8n when Feature 3+ requires multi-step orchestration.
 

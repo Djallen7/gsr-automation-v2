@@ -85,4 +85,4 @@ This is **not** the Next.js your training data knows. Read `apps/dashboard/AGENT
 - Daniel Allen is the project owner and a non-developer; he builds everything through Claude Code. Plain English, no jargon, no em-dashes, recommend don't poll, never make him re-enter data that exists somewhere.
 - Show: Genesis Science Report (GSR), Christian creation-science TV, ~58 min, weekly, Season 3, for David Rives Ministries.
 - David Rives is the on-screen talent and ministry director — protect anything that affects him on air.
-- Subagents: `gsr-architect` (`.claude/agents/`, the system-aware planner) and `gsr-editorial` (`agents/gsr-editorial.md`, copy/voice review).
+- Subagents: `gsr-architect` (`.claude/agents/`, the system-aware planner), `gsr-editorial` (`agents/gsr-editorial.md`, copy/voice review), and `gsr-health` (`.claude/agents/`, repo-health auditor).

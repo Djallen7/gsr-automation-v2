@@ -1,5 +1,5 @@
 # GSR Automation — Tools, Curriculum & Implementation Timeline
-_Created 2026-06-04 · staging workspace `gsr-blueprint/docs/` · source: handoff §0–§19, system blueprint, build-here checklist_
+_Created 2026-06-04 · now maintained in `gsr-automation-v2/docs/_handoff/` · source: handoff §0–§19, system blueprint, build-here checklist_
 
 > **What this is.** A single planning document that does two jobs:
 > 1. **Tool shopping list mapped to the timeline** — every tool, service, MCP, and learning resource you need, dropped in at the exact build step where it first matters.
@@ -34,7 +34,7 @@ Both are tagged in the master table below.
 |---|---|---|---|
 | **Claude Code** (local, on Mac) | The thing you build with. Reads the repo, writes code, runs commands. | Stage 0 (setup) | The real build runs LOCALLY on your Mac, not the web app (build-here checklist). |
 | **`ed3d-plan-and-execute` skill chain** | Turns the handoff design into a task-by-task implementation plan + a branch. | Stage 0 | Local plugin only. Command: `/ed3d-plan-and-execute:start-implementation-plan @docs/2026-06-03-gsr-handoff.md .` (trailing dot matters). |
-| **GSR Architect agent** (`agent/2026-06-03-gsr-architect.md`) | A subagent that boots already knowing the whole system, scores features, owns the Source-of-Truth map, launches builder sub-agents. | Stage 0 | Install: `cp agent/2026-06-03-gsr-architect.md .claude/agents/gsr-architect.md` |
+| **GSR Architect agent** (`.claude/agents/gsr-architect.md`) | A subagent that boots already knowing the whole system, scores features, owns the Source-of-Truth map, launches builder sub-agents. | Stage 0 | Ships in this repo; Claude Code loads it automatically (no install step). |
 | **GitHub** | Sync between the web app and your Mac; version history; PRs. | Stage 0 | Rule: **pull before you start, push when you stop.** Web work lives on GitHub until you pull it down. |
 | **1Password CLI** (`op`) | Pulls every credential (Dropbox, YouTube, Supabase, Claude) at runtime. | Stage 0 | **Hard rule: credentials via `op item get …` only, never pasted.** |
 | **Supabase MCP** | Lets Claude read/write your database, list migrations, deploy edge functions during the build. | Stage 2+ | Always `list_migrations` before writing SQL. |
@@ -79,7 +79,7 @@ These are non-negotiable. They are not in the build at any stage.
 - **ATEM / Bitfocus Companion** hardware
 - **QNAP write access** — read-only SMB only
 - **Notion workspace** — wiki-only
-- **`gsr-automation-v2` repo** — read-only; stage all new files in `gsr-blueprint` until a deliberate migration
+- (Retired) Earlier drafts treated `gsr-automation-v2` as read-only and staged new files in `gsr-blueprint`. That is reversed: **build directly in `gsr-automation-v2`**. This repo is the active target, not off-limits.
 
 ---
 
@@ -92,8 +92,8 @@ These are non-negotiable. They are not in the build at any stage.
 **What you're building:** the workbench, not the product. A working local build environment where Claude can plan and execute against the real repo.
 
 **Setup:**
-1. On your Mac: `cd ~/Documents/GitHub/gsr-blueprint && git pull && claude`
-2. Install the agent: `mkdir -p .claude/agents && cp agent/2026-06-03-gsr-architect.md .claude/agents/gsr-architect.md`
+1. On your Mac: `cd ~/Documents/GitHub/gsr-automation-v2 && git pull && claude`
+2. The GSR Architect agent already ships in this repo at `.claude/agents/gsr-architect.md` and loads automatically (no install step).
 3. Confirm 1Password CLI works: `op item get "Dropbox"` (etc.) — every later credential flows through this.
 4. Generate the implementation plan: `/ed3d-plan-and-execute:start-implementation-plan @docs/2026-06-03-gsr-handoff.md .`
 5. Listen to 1–2 episodes of Latent Space while this is happening — it makes the next 8 stages legible.
@@ -302,4 +302,4 @@ Stage 8  Source-of-Truth map + auto-fill                             [DNC deferr
 Later    Monologue · Content/Social · Outreach · Research sync
 ```
 
-Pull before you start. Push when you stop. Stage everything in `gsr-blueprint` until a deliberate migration. Honor the prime directives.
+Pull before you start. Push when you stop. Build directly in `gsr-automation-v2`. Honor the prime directives.

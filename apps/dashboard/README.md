@@ -1,12 +1,12 @@
 # GSR Dashboard
 
-Next.js 15 + shadcn/ui + Supabase. Feature 1 lives here.
+Next.js 16 (App Router) + shadcn/ui + Supabase. Feature 1 (Episode Graphics & Asset Tracker) lives here.
 
 ## Local dev
 
 ```bash
 cd apps/dashboard
-cp .env.example .env.local      # then fill in the real publishable key
+cp ../../.env.example .env.local   # then fill in the real keys
 npm install
 npm run dev
 ```
@@ -15,21 +15,22 @@ Then open http://localhost:3000. Unauthenticated requests redirect to `/login`.
 
 ## Auth
 
-Magic-link auth via Supabase. The login page sends an OTP email; clicking the link returns to `/auth/callback`, which exchanges the code for a session cookie and redirects to `/lower-thirds`.
+Supabase Auth via `@supabase/ssr` (magic link + password). The login page sends an OTP email; clicking the link returns to `/auth/callback`, which exchanges the code for a session cookie. Recovery routes to `/update-password`.
 
-## Routes (Feature 1)
+## Routes (live)
 
-- `/login` - magic-link email submit
-- `/auth/callback` - server-side code exchange
-- `/lower-thirds` - placeholder review grid (Stage 4 fills it in)
-- `/upload` - planned (Stage 3)
-- `/import` - planned (Stage 6.5, bootstrap import)
-- `/approved` - planned (Stage 6)
+- `/login`, `/update-password`, `/auth/callback` — auth
+- `/lower-thirds`, `/lower-thirds/ready`, `/approved` — review and output
+- `/extract` — paste a script, run AI extraction (returns a payload for `/api/import`)
+- `/import` — Zod-validated bulk ingest (dry-run then type YES)
+- `/episodes`, `/guests`, `/workflow`, `/toolkit` — tracking + prompt library
+- `/upload` — legacy PNG upload
+- API: `/api/import`, `/api/extract-lower-thirds`, `/api/regenerate`, `/api/scripts`, `/api/scripts/confirm-extraction`, `/api/rc-explore`, `/api/rc-import`
 
 ## Deploy
 
-Vercel, pointed at this subdirectory. Set the same two env vars in the Vercel project settings.
+Vercel, pointed at this subdirectory. Set the env vars from `.env.example` in the Vercel project settings.
 
-## Heads-up on Next.js 15
+## Heads-up on Next.js 16
 
-`AGENTS.md` warns that Next.js 15 has breaking changes from earlier versions: `cookies()`, `params`, and `searchParams` are async; route patterns and conventions may differ from training data. Confirm against `node_modules/next/dist/docs/` when in doubt.
+This is **not** the Next.js in your training data. `cookies()`, `params`, and `searchParams` are async; App Router only (no `pages/`), `@supabase/ssr` (not the deprecated `@supabase/auth-helpers-nextjs`). Read `AGENTS.md` and `node_modules/next/dist/docs/` before writing route handlers or server actions.

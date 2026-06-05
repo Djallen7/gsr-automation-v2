@@ -144,6 +144,16 @@ These cover the fluid insert/update/delete reconciliation Daniel described. Toda
 
 **>> REMINDER (Daniel TODO, deferred): set up Rundown Creator API access (APIKey + APIToken in 1Password) before the live rundown push can run.** The archived `GSR-Archive_mcp-rundown-creator` skill (not in these repos) may have extra wiring but is not required now since the action spec is captured above.
 
+## 9d. Post-shoot: transcription + metadata (locked 2026-06-04)
+
+**Transcription audio source (no Dropbox clutter):** Daniel will NOT have the team drop an audio-only file in Dropbox just for transcription (clutter + an unnecessary step for everyone). Get the audio locally instead: a macOS automation (Automator Folder Action / Hazel / fswatch) watches the editor's finished-master export folder and auto-extracts a small audio file (ffmpeg, ~16kHz mono) into a local working folder (e.g. `~/Productions/Audio`). The team does nothing new; nothing extra lands in Dropbox. A LOCAL watcher on the Mac is fine; NAS/QNAP file-watchers stay barred.
+
+**Speaker differentiation = REQUIRED** (it drives metadata, data, and social content), but via ONE tool, not a separate service per speaker. Choice: **WhisperKit + SpeakerKit** (Mac-native, local, single pipeline = transcript + speaker labels). Output a speaker-tagged transcript + SRT/VTT into Supabase. (Hedge from VERIFIED-FACTS: WhisperKit's 2.2% WER is a vendor number; sanity-check the diarization on a real two-person interview.)
+
+**Metadata = manually triggered, template-based, NOT a Claude prompt-handoff.** Descriptions and tags are **templated and consistent across episodes** (a stored template filled with episode-specific fields), so there is no per-episode AI writing for those. The only variable bits are the **title hook** (Daniel keeps that call) and **chapters** (derivable from segment/rundown timecodes). Daniel clicks a button to generate. Bake in: YouTube category 28, TV airs Tuesday 8 PM CST, YouTube publishes Monday 4 PM ET.
+
+**Distribution (decision still open: build now vs later phase):** design captured = YouTube auto via `videos.insert` (the Google API audit is Daniel's TODO; uploads stay private until cleared), Rumble via YouTube channel sync, Fireside + GSN as manual handoff cards (no publish APIs), social/clips later, and a per-platform upload tracker.
+
 **Queued fixes (align code/docs to this canon, on a build pass, not the live DB now):**
 - Add **Dreamstime** to the b-roll source enum (Daniel sources from Storyblocks, Dreamstime, Envato; only Storyblocks + Envato are in the enum today).
 - Add **Book Cover** to the `production_graphics.graphic_type` CHECK (used in the sheet, missing from the DB).

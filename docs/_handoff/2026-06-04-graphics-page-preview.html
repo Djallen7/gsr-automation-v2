@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSR Graphics Page (design preview)</title>
+<style>
+:root{
+  --bg:#f4f6fa; --panel:#ffffff; --ink:#16202e; --dim:#5b6b7e; --line:#e2e8f0;
+  --accent:#2563eb; --accentsoft:#eaf1ff;
+  --ns:#8a98a8; --ns-bg:#eef1f5;       /* Not Started */
+  --ip:#b7791f; --ip-bg:#fdf3e2;       /* In Progress */
+  --cr:#1d6fd6; --cr-bg:#e6f0fe;       /* Created */
+  --li:#1d8a52; --li-bg:#e6f6ec;       /* Loaded In */
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,Segoe UI,Roboto,Inter,sans-serif}
+header.top{background:#0e1726;color:#eaf1ff;padding:12px 18px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10}
+header .ttl{font-weight:600;font-size:15px}
+header .ttl b{color:#7fb0ff}
+header .sub{color:#9fb2cc;font-size:12px;margin-left:6px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{background:#1b2942;color:#cfe0f7;border:1px solid #2b3f63;border-radius:7px;padding:5px 11px;font-size:12.5px;cursor:pointer}
+.tab.on{background:#2563eb;border-color:#2563eb;color:#fff}
+.note-sep{background:#fff6e9;border-bottom:1px solid #f0d8a8;color:#7a5a12;padding:7px 18px;font-size:12.5px}
+.note-sep b{color:#9a5a12}
+.segbar{display:flex;gap:6px;flex-wrap:wrap;padding:10px 18px;background:var(--panel);border-bottom:1px solid var(--line)}
+.seg{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 12px;font-size:12.5px;color:var(--dim);cursor:pointer}
+.seg.on{background:var(--accentsoft);border-color:#b9d2ff;color:var(--accent);font-weight:600}
+.wrap{display:grid;grid-template-columns:minmax(320px,1fr) minmax(420px,1.25fr);gap:14px;padding:14px 18px;align-items:start}
+@media (max-width:920px){.wrap{grid-template-columns:1fr}}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;box-shadow:0 1px 3px rgba(16,32,55,.06)}
+.card h2{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:0;padding:12px 14px;border-bottom:1px solid var(--line)}
+/* script pane */
+.script{padding:14px 16px;max-height:78vh;overflow:auto;font-size:14.5px;line-height:1.85}
+.script p{margin:0 0 12px}
+mark.cue{background:#eef1f5;border-bottom:2px solid var(--ns);border-radius:3px;padding:0 2px;cursor:pointer;position:relative}
+mark.cue .b{display:inline-block;min-width:16px;height:16px;line-height:16px;text-align:center;font:700 10px ui-monospace,monospace;color:#fff;background:var(--ns);border-radius:4px;margin:0 3px;vertical-align:middle}
+mark.cue[data-st=ip]{border-color:var(--ip);background:var(--ip-bg)} mark.cue[data-st=ip] .b{background:var(--ip)}
+mark.cue[data-st=cr]{border-color:var(--cr);background:var(--cr-bg)} mark.cue[data-st=cr] .b{background:var(--cr)}
+mark.cue[data-st=li]{border-color:var(--li);background:var(--li-bg)} mark.cue[data-st=li] .b{background:var(--li)}
+mark.cue.active{outline:2px solid var(--accent);outline-offset:1px}
+/* tracker pane */
+.tracker{padding:10px;max-height:78vh;overflow:auto;display:flex;flex-direction:column;gap:9px}
+.grow{display:flex;gap:10px;border:1px solid var(--line);border-radius:10px;padding:10px 11px;background:#fff}
+.grow.active{border-color:var(--accent);box-shadow:0 0 0 2px var(--accentsoft)}
+.gnum{font:700 12px ui-monospace,monospace;color:#fff;background:var(--ns);min-width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex:0 0 auto;margin-top:1px}
+.grow[data-st=ip] .gnum{background:var(--ip)} .grow[data-st=cr] .gnum{background:var(--cr)} .grow[data-st=li] .gnum{background:var(--li)}
+.gbody{flex:1;min-width:0}
+.gtop{display:flex;justify-content:space-between;gap:8px;align-items:baseline;flex-wrap:wrap}
+.gtype{font-weight:600;font-size:13px}
+.gdesc{color:var(--ink);font-size:13px;margin:2px 0 7px}
+.row2{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.pill{font-size:11px;font-weight:600;padding:2px 9px;border-radius:999px;border:1px solid}
+.pill.ns{color:var(--ns);background:var(--ns-bg);border-color:#d7dde6}
+.pill.ip{color:var(--ip);background:var(--ip-bg);border-color:#f0d8a8}
+.pill.cr{color:var(--cr);background:var(--cr-bg);border-color:#bcd6fb}
+.pill.li{color:var(--li);background:var(--li-bg);border-color:#bfe6cd}
+select.st{font:inherit;font-size:12px;border:1px solid var(--line);border-radius:6px;padding:3px 6px;background:#fff}
+.who{font-size:12px;color:var(--dim)}
+.who b{color:var(--ink)}
+.fname{flex:1;min-width:140px;font:12px ui-monospace,Menlo,monospace;border:1px dashed #c4ccd8;border-radius:6px;padding:4px 7px;background:#fcfdff}
+.src{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
+.src a{font-size:11px;text-decoration:none;color:var(--accent);border:1px solid #cfe0ff;background:#f3f8ff;border-radius:6px;padding:2px 7px}
+.gnotes{font-size:11.5px;color:var(--dim);margin-top:6px;font-style:italic}
+.approve{font-size:11px;border:1px solid var(--line);background:#fff;border-radius:6px;padding:3px 8px;cursor:pointer;color:var(--dim)}
+.approve.on{background:#e6f6ec;border-color:#bfe6cd;color:var(--li)}
+.push{margin-top:8px;font-size:12px;font-weight:600;border:1px solid #cdd8e4;background:#f1f3f7;color:#9aa6b4;border-radius:7px;padding:6px 10px;cursor:not-allowed;width:100%}
+.push.ready{background:var(--li);border-color:var(--li);color:#fff;cursor:pointer;box-shadow:0 0 0 3px var(--li-bg)}
+.lt-callout{display:flex;gap:8px;border:1px dashed #c9b3e6;background:#f6f0ff;border-radius:10px;padding:9px 11px;color:#5a3a8a;font-size:12.5px}
+/* right rail target panel */
+.target{margin:0 18px 18px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;font-size:12.5px;color:var(--dim)}
+.target b{color:var(--ink)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px}
+.legend span{display:inline-flex;gap:5px;align-items:center}
+.dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+footer{padding:14px 18px;color:var(--dim);font-size:12px}
+.mockbadge{background:#fde68a;color:#7a5a12;border-radius:6px;padding:2px 8px;font-size:11px;font-weight:700}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="ttl">GSR <b>Graphics</b><span class="sub">May · S03 Ep022 · "Lights on the Moon? / Green River"</span> <span class="mockbadge">DESIGN PREVIEW</span></div>
+  <div class="tabs">
+    <span class="tab">Show 1</span><span class="tab on">Show 2</span><span class="tab">Show 3</span><span class="tab">Show 4</span><span class="tab">Show 5</span>
+  </div>
+</header>
+
+<div class="note-sep"><b>Graphics only.</b> Lower thirds are a separate page with their own workflow and their own ProPresenter presentations. Nothing here is a chyron.</div>
+
+<div class="segbar">
+  <span class="seg">Opening Monologue</span>
+  <span class="seg on">Interview 1 — Tim Clarey</span>
+  <span class="seg">The Heavens Declare</span>
+  <span class="seg">Kids Corner</span>
+  <span class="seg">Q&amp;A</span>
+  <span class="seg">Ministry Report</span>
+  <span class="seg">Viewer Voices</span>
+  <span class="seg">Featured Resource</span>
+  <span class="seg">GSM</span>
+  <span class="seg">Interview 2</span>
+</div>
+
+<div class="wrap">
+
+  <!-- LEFT: script with graphic cue points highlighted -->
+  <div class="card">
+    <h2>Script &middot; tap a highlight to find its graphic</h2>
+    <div class="script" id="script">
+      <p><mark class="cue" data-g="1" data-st="li"><span class="b">1</span>Welcome back to The Genesis Science Report.</mark></p>
+      <p>Water takes the path of least resistance. That's the rule. Rain runs down the easiest slope. <mark class="cue" data-g="2" data-st="ip"><span class="b">2</span>Rivers bend around hills.</mark> Streams cut through the soft rock and find their way around the hard stuff. Every river on every continent behaves that way, except for one stretch of one river in the American West.</p>
+      <p>The Green River <mark class="cue" data-g="3" data-st="cr"><span class="b">3</span>carves a canyon 700 meters deep across the Uinta Mountains.</mark> Not around. Through. The hardest possible path, across rock that was already there long before the water arrived. Geologists have called it a mystery since John Wesley Powell first wrote about it in 1869.</p>
+      <p>Last month, <mark class="cue" data-g="4" data-st="ns"><span class="b">4</span>a team out of the University of Glasgow says they've finally solved it.</mark> They're calling the mechanism lithospheric dripping. The mountains sagged, the river cut its path, then the mountains rose back up.</p>
+      <p>There's a simpler explanation. And tonight's guest has spent twenty years building <mark class="cue" data-g="5" data-st="ns"><span class="b">5</span>the framework for it</mark>. Dr. Tim Clarey is a research scientist at the Institute for Creation Research, <mark class="cue" data-g="6" data-st="cr"><span class="b">6</span>author of Carved in Stone</mark>, and one of the architects of the megasequence model of Flood geology. He joins us from Dallas. Tim, welcome back to the show.</p>
+    </div>
+  </div>
+
+  <!-- RIGHT: the tracker (matches the Google Sheet columns) -->
+  <div class="card">
+    <h2>Graphics Tracker &middot; Segment | # | Type | Description | Status | Assigned | Notes</h2>
+    <div class="tracker" id="tracker">
+
+      <div class="grow" data-g="1" data-st="li">
+        <div class="gnum">1</div>
+        <div class="gbody">
+          <div class="gtop"><span class="gtype">Title Graphic</span><button class="approve on">Approved</button></div>
+          <div class="gdesc">Intro Graphic: "THE GREEN RIVER MYSTERY"</div>
+          <div class="row2">
+            <select class="st"><option>Not Started</option><option>In Progress</option><option>Created</option><option selected>Loaded In</option></select>
+            <span class="who">Assigned: <b>Isaac</b></span>
+            <input class="fname" value="S03EP022_INT1_title_v01.png">
+          </div>
+          <button class="push">In ProPresenter</button>
+        </div>
+      </div>
+
+      <div class="grow" data-g="2" data-st="ip">
+        <div class="gnum">2</div>
+        <div class="gbody">
+          <div class="gtop"><span class="gtype">B-roll</span><button class="approve on">Approved</button></div>
+          <div class="gdesc">River bending around hills loop (reusable)</div>
+          <div class="row2">
+            <select class="st"><option>Not Started</option><option selected>In Progress</option><option>Created</option><option>Loaded In</option></select>
+            <span class="who">Assigned: <b>Jeremiah</b></span>
+            <input class="fname" placeholder="filename when created...">
+          </div>
+          <div class="src">Find clip: <a>Storyblocks</a><a>Dreamstime</a><a>Envato</a></div>
+          <div class="gnotes">Generic river loop, CC0 preferred. Isaac can swap in post.</div>
+          <button class="push">Enter filename + mark Created to push</button>
+        </div>
+      </div>
+
+      <div class="grow" data-g="3" data-st="cr">
+        <div class="gnum">3</div>
+        <div class="gbody">
+          <div class="gtop"><span class="gtype">B-roll</span><button class="approve on">Approved</button></div>
+          <div class="gdesc">Green River canyon aerial, 700m deep through the Uintas</div>
+          <div class="row2">
+            <select class="st"><option>Not Started</option><option>In Progress</option><option selected>Created</option><option>Loaded In</option></select>
+            <span class="who">Assigned: <b>Jeremiah</b></span>
+            <input class="fname" value="greenriver_canyon_aerial_4k.mp4">
+          </div>
+          <div class="src">Find clip: <a>Storyblocks</a><a>Dreamstime</a><a>Envato</a></div>
+          <button class="push ready">Push to ProPresenter (May &middot; Show 2)</button>
+        </div>
+      </div>
+
+      <div class="grow" data-g="4" data-st="ns">
+        <div class="gnum">4</div>
+        <div class="gbody">
+          <div class="gtop"><span class="gtype">Article Screenshot</span><button class="approve on">Approved</button></div>
+          <div class="gdesc">University of Glasgow "lithospheric dripping" paper</div>
+          <div class="row2">
+            <select class="st"><option selected>Not Started</option><option>In Progress</option><option>Created</option><option>Loaded In</option></select>
+            <span class="who">Assigned: <b>Daniel</b></span>
+            <input class="fname" placeholder="filename when created...">
+          </div>
+          <div class="gnotes">Source URL in Notes. On-screen credit required.</div>
+          <button class="push">Enter filename + mark Created to push</button>
+        </div>
+      </div>
+
+      <div class="grow" data-g="5" data-st="ns">
+        <div class="gnum">5</div>
+        <div class="gbody">
+          <div class="gtop"><span class="gtype">Picture</span><button class="approve">Approve idea</button></div>
+          <div class="gdesc">Megasequence / Colorado Plateau diagram</div>
+          <div class="row2">
+            <select class="st"><option selected>Not Started</option><option>In Progress</option><option>Created</option><option>Loaded In</option></select>
+            <span class="who">Assigned: <b>Isaac</b></span>
+            <input class="fname" placeholder="filename when created...">
+          </div>
+          <div class="gnotes">Idea not yet approved. Approve to send to the design queue.</div>
+          <button class="push">Enter filename + mark Created to push</button>
+        </div>
+      </div>
+
+      <div class="grow" data-g="6" data-st="cr">
+        <div class="gnum">6</div>
+        <div class="gbody">
+          <div class="gtop"><span class="gtype">Book Cover</span><button class="approve on">Approved</button></div>
+          <div class="gdesc">"Carved in Stone" by Dr. Tim Clarey</div>
+          <div class="row2">
+            <select class="st"><option>Not Started</option><option>In Progress</option><option selected>Created</option><option>Loaded In</option></select>
+            <span class="who">Assigned: <b>Isaac</b></span>
+            <input class="fname" value="carved_in_stone_cover.png">
+          </div>
+          <button class="push ready">Push to ProPresenter (May &middot; Show 2)</button>
+        </div>
+      </div>
+
+      <div class="lt-callout">This guest's chyron (DR. TIM CLAREY | RESEARCH SCIENTIST | INSTITUTE FOR CREATION RESEARCH) is a <b>lower third</b>, handled on the Lower Thirds page, not here.</div>
+
+    </div>
+  </div>
+</div>
+
+<div class="target">
+  <b>ProPresenter target:</b> May playlist set &middot; Show 2 &middot; Interview 1 presentation. Graphics pull from the Videoedit server by filename once marked Created, and load to the mapped slide in this month's 5x show playlist templates. A human still triggers the load (David Rule).
+  <div class="legend">
+    <span><span class="dot" style="background:var(--ns)"></span>Not Started</span>
+    <span><span class="dot" style="background:var(--ip)"></span>In Progress</span>
+    <span><span class="dot" style="background:var(--cr)"></span>Created (filename in, ready to push)</span>
+    <span><span class="dot" style="background:var(--li)"></span>Loaded In</span>
+  </div>
+</div>
+
+<footer>Static design preview, placeholder data from a real episode for judging layout. Columns, statuses, types, and assignees match your live monthly tracker. The "Push to ProPresenter" button only activates when Status = Created and a filename is entered.</footer>
+
+<script>
+/* cross-highlight script cue <-> tracker row */
+function clearActive(){document.querySelectorAll('.cue.active,.grow.active').forEach(e=>e.classList.remove('active'));}
+function focusG(g){clearActive();const m=document.querySelector('.cue[data-g="'+g+'"]');const r=document.querySelector('.grow[data-g="'+g+'"]');if(m)m.classList.add('active');if(r){r.classList.add('active');r.scrollIntoView({block:'center',behavior:'smooth'});}}
+document.querySelectorAll('.cue').forEach(m=>m.onclick=()=>focusG(m.dataset.g));
+document.querySelectorAll('.grow').forEach(r=>r.onclick=e=>{if(e.target.closest('button,select,input,a'))return;focusG(r.dataset.g);});
+
+/* live status -> recolor + push-gate (so you can feel the Created gate) */
+const code={'Not Started':'ns','In Progress':'ip','Created':'cr','Loaded In':'li'};
+document.querySelectorAll('.grow').forEach(r=>{
+  const sel=r.querySelector('.st'), fn=r.querySelector('.fname'), push=r.querySelector('.push'), g=r.dataset.g;
+  const mark=document.querySelector('.cue[data-g="'+g+'"]');
+  function sync(){
+    const st=code[sel.value]; r.dataset.st=st; if(mark)mark.dataset.st=st;
+    const hasFile=(fn.value||'').trim().length>0;
+    if(sel.value==='Loaded In'){push.className='push';push.textContent='In ProPresenter';}
+    else if(st==='cr'&&hasFile){push.className='push ready';push.textContent='Push to ProPresenter (May · Show 2)';}
+    else{push.className='push';push.textContent=hasFile?'Mark Created to push':'Enter filename + mark Created to push';}
+  }
+  sel.onchange=sync; fn.oninput=sync;
+});
+document.querySelectorAll('.approve').forEach(b=>b.onclick=e=>{e.stopPropagation();b.classList.toggle('on');b.textContent=b.classList.contains('on')?'Approved':'Approve idea';});
+</script>
+</body>
+</html>

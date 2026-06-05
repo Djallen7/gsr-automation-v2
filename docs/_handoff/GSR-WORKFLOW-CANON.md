@@ -2,6 +2,8 @@
 
 **Date:** 2026-06-04 · **Status:** Authoritative record of how Daniel actually runs GSR. If a future session is about to ask Daniel something here, the answer is in this file. Sourced from Daniel directly + the live Google Drive (the Drive MCP works, owner `danielallen.tn@gmail.com`) + the repo schema. Cite Drive IDs below before re-reading.
 
+> **Standing rule (see CLAUDE.md > Authority):** Daniel's stated input is gospel and supersedes any repo doc, code, or prior assumption when resolving a question or conflict. **Append every new thing Daniel says to this file, dated, so it is never re-asked.** This file grows over time; it is the running memory of his decisions.
+
 ---
 
 ## 0. The hard rule: Lower Thirds and Graphics are two separate systems
@@ -76,3 +78,24 @@ Store each task's stage in `app_config`; defaults start at Manual/Handoff. Tasks
 - Interview script + LT example (Tim Clarey): `17N9JfyN3P3CKGqB7llgNGWa8UNiv6xwpJ2MPrTBgmcE`
 
 _The Drive MCP can read Google Sheets/Docs/PDF directly. Use it to match real structures instead of asking Daniel again._
+
+---
+
+## 8. Repo cross-check (verified 2026-06-04) + the only real open gaps
+
+**Confirmed already in the repo (do not re-ask):**
+- **VideoEdit server** is where pre-made assets live: `premade_library.server_file_path`, example `/GSR/Broll/Space/galaxy_flythrough_01.mp4` (`SUPABASE_SCHEMA_DESIGN.md:246,259`). Drive holds copies.
+- **B-roll source enum** today: `envato, storyblocks, nasa_svs, creation_com, own_production, other` (`migrations/20260528005100_add_premade_library.sql`). One-off finds also use Unsplash/Pixabay/Pexels/NASA public domain.
+- **Run-of-show** (15 segments) with prerecorded ones tagged: The Heavens Declare, Kids Corner, Q&A, Genesis Science Minute are **pre-produced roll-ins** (`SYSTEM-EVOLUTION.md:311-327`). Roll-in files named like `THD_390_DayYom`, `KC_S02_Ep021_Bobcats`; matched to the episode by filename pattern (`AUTOMATION_ROADMAP.md:128`).
+- **Team / roles:** Isaac (monologue + both interviews + owns the graphics tracker + edit/export), Jakob (roll-in segments), Jeremiah (b-roll + raw footage to Dropbox), Gabe (GSM roll-ins / edit list), Miryam (metadata, thumbnails, uploads, mark aired; Daniel's successor), David (on-air talent, writes graphics instructions into monologue scripts), Daniel (owner, scripts). **Jakob (editor) is NOT Jacob (footage transfer/THD)** - two people.
+
+**The only genuine gaps still needing Daniel (everything else is captured):**
+1. **VideoEdit server address / SMB share path.** The logical name and an example path exist, but no hostname/IP/mount path. Not needed until we link off local testing.
+2. **Dropbox structure conflict.** `config/production.json` specifies a per-episode tree (`Season 3/{episode_label}/Raw|Edit|Graphics|...`); the older blueprint says keep folders **flat, one per show**. These disagree; pick one before the master-intake step.
+3. **Interns.** Daniel's design team includes interns who use the tracker, but no one is rostered as an intern in any doc. Names above are the known crew.
+
+**Queued fixes (align code/docs to this canon, on a build pass, not the live DB now):**
+- Add **Dreamstime** to the b-roll source enum (Daniel sources from Storyblocks, Dreamstime, Envato; only Storyblocks + Envato are in the enum today).
+- Add **Book Cover** to the `production_graphics.graphic_type` CHECK (used in the sheet, missing from the DB).
+- Reorder the `production_graphics.status` CHECK to the canon set `Not Started -> In Progress -> Created -> Loaded In`, and restore "In Progress" in PROMPT_LIBRARY (it was dropped).
+- Rename the `graphics` table to `lower_thirds` (it holds lower thirds, not graphics) and keep `production_graphics` as the Graphics Tracker.

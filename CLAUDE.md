@@ -2,7 +2,11 @@
 
 These rules are mandatory in every session. They exist because this system touches production hardware used by a ministry team.
 
-**Read first:** `docs/_handoff/HANDOFF.md`, then `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md` (the full live-verified system reference) and `docs/_handoff/VERIFIED-FACTS.md`. That folder is the single source of truth. The `gsr-architect` subagent (`.claude/agents/gsr-architect.md`) boots already knowing the system — invoke it for GSR work.
+**Read first:** `docs/_handoff/HANDOFF.md`, then `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md` (the full live-verified system reference), `docs/_handoff/VERIFIED-FACTS.md`, and `docs/_handoff/GSR-WORKFLOW-CANON.md` (how Daniel actually runs the show). That folder is the single source of truth. The `gsr-architect` subagent (`.claude/agents/gsr-architect.md`) boots already knowing the system — invoke it for GSR work.
+
+## Authority (settle every question and conflict by this)
+
+**Daniel Allen's input is the highest source of truth.** When anything Daniel says conflicts with a repo doc, code comment, schema, prior note, or your own assumption, **his word wins.** Update the docs and code to match him; never correct Daniel with a stale doc or re-ask something he has already answered. Capture everything he states durably in `docs/_handoff/GSR-WORKFLOW-CANON.md` (append, with the date) so it is never re-asked. The only thing this does not waive is the confirm-before-touching discipline for irreversible live/production actions (the security and David rules below), which protect David on air and exist at Daniel's own direction.
 
 ## Security Rules
 

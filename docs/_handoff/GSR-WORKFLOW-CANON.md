@@ -1,0 +1,78 @@
+# GSR Workflow Canon (Daniel's answers, do not re-ask)
+
+**Date:** 2026-06-04 · **Status:** Authoritative record of how Daniel actually runs GSR. If a future session is about to ask Daniel something here, the answer is in this file. Sourced from Daniel directly + the live Google Drive (the Drive MCP works, owner `danielallen.tn@gmail.com`) + the repo schema. Cite Drive IDs below before re-reading.
+
+---
+
+## 0. The hard rule: Lower Thirds and Graphics are two separate systems
+
+They are never mixed, never share a workflow, always referred to by those exact names.
+
+| | **Lower Thirds** | **Graphics** |
+|---|---|---|
+| What | Text chyrons (TOPIC L3, GUEST CHYRON, DISCUSSION L3s) | Designed visual assets (title cards, b-roll, screenshots, montages, propres quotes) |
+| Source | The **LOWER THIRDS section inside Daniel's script docs** | Generated ideas, approved, then designed by the team |
+| Lives in | The script document | The **Graphics Tracker** (monthly Google Sheet) |
+| Pushed to Rundown Creator? | **No** | **Yes** |
+| ProPresenter | Their **own** presentations | **Separate** presentations |
+| DB table | currently `graphics` (should be renamed `lower_thirds`) | `production_graphics` |
+
+---
+
+## 1. Intake model (Phase 0, works off the bat)
+
+- Daniel keeps his **own** process for research, guest pairing, email drafting, and writing scripts + lower thirds. He does **not** trust AI to write scripts to standard yet. Script generation is a **later phase**; build the hooks now, do not turn it on.
+- The workflow **starts by uploading**: a **script per segment** (monologue, interviews, ministry report, etc.) as teleprompter text. Some segments are **prerecorded** and come in as **transcripts** standing in for the script.
+- **Lower thirds are a separate, optional file**, never required at script upload, importable **any time** for **any** already-uploaded segment. Parsing the LT document into rows is deterministic (not AI): upload, preview counts, type YES, it lands.
+- Real script + LT format (from Drive, e.g. "S03 Ep022 Interview 1 Tim Clarey", doc ID `17N9JfyN3P3CKGqB7llgNGWa8UNiv6xwpJ2MPrTBgmcE`): the doc has INTERVIEW SET UP, INTERVIEW QUESTIONS, RESOURCE TAG, then a `LOWER THIRDS` block with `TOPIC L3`, `GUEST CHYRON`, `DISCUSSION L3s` (each with a char count). That block is the LT source.
+
+## 2. The maturity dial (how automation phases in)
+
+Every generative task has three stages; flip the dial per task as trust grows. **Automation is the end goal, stated from day one**, but enabled gradually.
+1. **Manual** — Daniel does it, system stores it.
+2. **Prompt handoff** — system hands a context-loaded prompt with a strict output spec, Daniel pastes it into Claude Desktop, pastes the result back, and it flows through the **same dry-run + type-YES gate** before any DB write. A bad paste cannot corrupt anything.
+3. **Auto** — system makes the Claude call itself. Identical output spec and gate.
+
+Store each task's stage in `app_config`; defaults start at Manual/Handoff. Tasks that fit the handoff mold: lower-thirds extraction, **graphics idea generation**, metadata, title-shortening, guest enrichment/verification, outreach drafts, social/clips, rundown tease copy, source-of-truth fills. Deterministic tasks (LT parsing, imports, status toggles, RC mapping, transcription, uploads) just automate, no prompt.
+
+## 3. Pre-production sequence + the gates
+
+1. Upload script (+ optional LT file)
+2. **Generate graphic ideas → Daniel approves** (graphics, not lower thirds)
+3. Approved graphics drop into the **Graphics Tracker** for the design team
+4. Approve lower thirds (text)
+5. **Build the rundown** in Rundown Creator (only after graphics approved); **graphics push to RC, lower thirds do not**
+6. **ProPresenter gate:** a graphic is pulled from its folder and pushed to ProPresenter **only once its Graphics Tracker status flips to "Created" and the filename is entered.** The system surfaces a "ready to load" signal; a human does the push (ProPresenter stays off-limits to automation per the David Rule until David approves a tested path).
+
+## 4. The Graphics Tracker (matches Daniel's live Google Sheet exactly)
+
+**Do not invent a new layout. Interns must not have to learn a new workflow.** Match this:
+
+- **One Google Sheet per month**, named like `05_GSR Graphics Tracking: May` (also `04_...April`, `12_...December`). Tabs = **Show 1 ... Show 5** (the five episodes shot that cycle). May sheet ID `1GmdVDOP4h0k6FmOdZLMJNroz7_x4xDcErBYmdGU0890`. Folder path: `GSR Shared Folder` (`1GrznCTkm28mWSN_JMRMi0OlopqpR2HpM`) -> `03_Graphics` (`1GPapO_ezhAZBSjgoejj2usMQRWfUVGs4`) -> `Season 3` (`18RZ8UNF2nN67G6as-Uj5o5O3BbNFChoR`). There is also an `01_Templates` folder (`1vzDS5noM1e9vgRPBVQB63cJfi87MdFJw`).
+- **Columns (exact):** `Segment | Graphic # | Graphic Type | Description | Status | Assigned To | Notes`
+- **Segment order in a show tab:** Opening Monologue (up to ~20 rows), The Heavens Declare, Kids Corner, Q&A, Ministry Report (1-4), Viewer Voices, Featured Resource, GSM, Interview 1 (up to 15), Interview 2 (up to 15), occasionally Interview 3.
+- **Status values (canonical, Daniel's order):** `Not Started -> In Progress -> Created -> Loaded In`. ("Created" = file made + filename entered, triggers the ProPresenter pull; "Loaded In" = it is in ProPresenter.) NOTE: the DB CHECK currently lists these in a different order and PROMPT_LIBRARY drops "In Progress" — fix both to this set.
+- **Graphic Type values:** Title Graphic, B-roll, Pre-made: B-roll, Pre-made: Graphic, Clip w/audio, Article Screenshot, Picture, Propres Quote, Propres Graphic, Roll-in, Graphic, **Book Cover** (Book Cover is used in the sheet but missing from the DB CHECK; add it).
+- **Assigned To (real people in the sheet):** Isaac (monologue + both interviews), Jakob (roll-in segments: THD, KC, Q&A, FR, GSM), Jeremiah (b-roll), Gabe (GSM roll-ins), Daniel (article screenshots he sources). Roll-in rows name the prerecorded file, e.g. `THD 390 - DAY YOM`, `KC S02 Ep21 - Bobcats`, `GS Minute 085 - The Kings Astronomer`.
+- **Graphics generation philosophy** (Drive doc `GSR_Graphic_Philosophy_AI_Rules.md`, ID `1fC9YoLGcUi8lZKf_2QqRGvGMkYfO-27xTNd2a9x3GwU`, derived from ~1,737 logged graphics): quantity over quality, generic over specific, reusable over one-off; monologue 8-15 graphics (one every 2-5 sentences), graphic #1 almost always a Title Graphic; interview 5-9, #1 Title then #2 Article Screenshot ~90%; ministry report 2-4, no title card. Never leave an empty cue slot.
+
+## 5. Graphics page UX Daniel requires
+
+- **Side-by-side view: the script on one side, and the spot in the script where each graphic should display is highlighted**, so Daniel sees both when approving and interns get context for a graphic (e.g. a b-roll loop) before sourcing clips.
+- **B-roll library services the team sources from:** Storyblocks, Dreamstime, Envato.
+
+## 6. Files and ProPresenter
+
+- **Graphics files live in a folder on the "Videoedit" server.** Build and **test the system locally first**, then link to the server. The **filename is the key** that links a tracker row to its file.
+- **ProPresenter uses preset 5x show playlist templates that are reset every month.** Lower thirds and graphics live in **separate presentations**. Pushing a graphic requires mapping it to the **right slide / presentation / playlist / location** (real work, gated and human-pushed for now).
+
+## 7. Source documents in Drive (for future re-reading, not re-asking)
+
+- Graphics Tracker (May): `1GmdVDOP4h0k6FmOdZLMJNroz7_x4xDcErBYmdGU0890`
+- 2026 GSR Airing Schedule (the authoritative air-date sheet, weekly Tuesdays): `1aYol4UttD8tS2qln0BjC3S0Hw-rRGSRQ`
+- 2026 GSR Episode Titles/Timecodes: `125k40g56CEhYnggEnRWIy9zh5mbs7GCdXwctQ1qJnHA`
+- 2026 Monthly Interview Schedule (guest pairings per show/episode): `18PkpvkjYcLY3ZYTkXA3s0-t31ORhv8e0Di8SiTi6PY8`
+- Graphic Philosophy / AI rules: `1fC9YoLGcUi8lZKf_2QqRGvGMkYfO-27xTNd2a9x3GwU`
+- Interview script + LT example (Tim Clarey): `17N9JfyN3P3CKGqB7llgNGWa8UNiv6xwpJ2MPrTBgmcE`
+
+_The Drive MCP can read Google Sheets/Docs/PDF directly. Use it to match real structures instead of asking Daniel again._

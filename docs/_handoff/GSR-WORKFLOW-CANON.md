@@ -113,6 +113,27 @@ Deliberately simple, a polished spreadsheet (not the intricate graphics page):
 - One **Send button** sends the chosen lower thirds to ProPresenter: format ALL CAPS, validate the char band, dry-run + "type YES", then push to the **Lower Thirds presentation** (separate from graphics, never to Rundown Creator), mapping each row to its slide and on-screen position by beat (guest chyron to the chyron slot).
 - Preview file: `docs/_handoff/2026-06-04-lower-thirds-page-preview.html` (static, no JavaScript, renders anywhere including a phone).
 
+## 9c. Rundown build (locked 2026-06-04)
+
+Source of truth = the **approved graphics** from the Graphics Tracker. Lower thirds never go to Rundown Creator. **Each graphic gets its own row/cue** in RC.
+
+**Columns written** (RC column IDs are fixed):
+- **Graphics** = COL `1`: the graphic itself.
+- **Last Line** = COL `4`: the final script line before the **next** graphic. Read it as "the last line this graphic can stay up before we switch to the next one." (Refines the older spec, which only marked segment transitions; Daniel's rule is per-graphic.)
+- **Notes** = **graphic duration in sentences**: the number of sentences from when this graphic is triggered to when the next graphic is due.
+- Both Last Line and Duration are **auto-derivable** from each graphic's script anchor (the highlight on the Graphics page) plus the next graphic's anchor. So once graphics are placed in the script, the build computes them.
+
+**Mapping:**
+- Segment -> fixed RC row codes (Show Intro B2, Opening Monologue B3, Interview 1 B11 tease then C2, THD C8, Kids Corner D2, Q&A D2, Ministry Report E2, Viewer Voices E4, Featured Resource E6, GSM E8, Interview 2 E10 tease then F2, Closing F8).
+- Per-show RundownID via `rc-explore` (they change each cycle). **Daniel has already created the rundowns for the rest of the year, organized in monthly folders**, so map all of them up front from those folders.
+- Graphics fill rows in tracker/beat order within each segment.
+
+**Fluid reconciliation (must be automatic, no hand-holding):** the year's rundowns were pre-built with a **default ~10 graphic rows per monologue and per interview**, but real counts vary. After populating from the Graphics Tracker, the build **deletes unused default rows and adds rows when there are more graphics, inserting/deleting in the correct place.** If Daniel later adds or removes a graphic, the build adjusts the rows automatically. **Update in place** (keyed by segment + beat), never duplicate.
+
+**Confirm gate (David Rule, the TD runs from this):** manual confirm before any update. The dashboard shows a **preview that mirrors the Rundown Creator column layout** (row, segment, Graphics, Last Line, Notes) populated from our data, so Daniel can eyeball each column before clicking Update. Script text need not be attached. Embedding RC directly is a maybe (RC may block being iframed); the reliable path is our own column-accurate preview grid plus a deep-link into RC. Dry-run, then Update.
+
+**Dependency to obtain:** the full RC **write** API (create/update/delete rows) lives in the archived `GSR-Archive_mcp-rundown-creator` skill, which is not in these repos. Need it to implement add/delete-row. Today's `/api/rc-import` only reads; `/api/rc-explore` lists. The build adds a write/push path.
+
 **Queued fixes (align code/docs to this canon, on a build pass, not the live DB now):**
 - Add **Dreamstime** to the b-roll source enum (Daniel sources from Storyblocks, Dreamstime, Envato; only Storyblocks + Envato are in the enum today).
 - Add **Book Cover** to the `production_graphics.graphic_type` CHECK (used in the sheet, missing from the DB).

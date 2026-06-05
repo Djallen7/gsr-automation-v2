@@ -94,6 +94,17 @@ _The Drive MCP can read Google Sheets/Docs/PDF directly. Use it to match real st
 2. **Dropbox structure conflict.** `config/production.json` specifies a per-episode tree (`Season 3/{episode_label}/Raw|Edit|Graphics|...`); the older blueprint says keep folders **flat, one per show**. These disagree; pick one before the master-intake step.
 3. **Interns.** Daniel's design team includes interns who use the tracker, but no one is rostered as an intern in any doc. Names above are the known crew.
 
+## 9. Graphics page design (locked 2026-06-04, from the preview review)
+
+- **Master view + 5 show tabs.** A "Master" tab shows all 5 shows of the month at once with a status progress bar and per-segment "ready" counts, so Daniel sees where graphics stand at a glance. Each show also has its own tab.
+- **Drill in:** pick a show, then a segment, to see that segment's graphics with the script **side by side**. Both panes are always visible at once; the page never scrolls (desktop = segment rail | script | graphics; phone = swipeable segment strip on top, then script above graphics, each scrolling on its own).
+- **Script highlights span 2-3 sentences** = the context that tells an intern what a b-roll clip is for before they source it. Highlight color tracks the graphic's status.
+- **Click a graphic -> the script auto-scrolls to its highlight** (works both directions).
+- **Tracker matches the live monthly Google Sheet:** columns `Segment | Graphic # | Graphic Type | Description | Status | Assigned To | Notes`; statuses `Not Started -> In Progress -> Created -> Loaded In`; the real graphic types (incl. Book Cover); assignees (Isaac/Jakob/Jeremiah/Gabe/Daniel). B-roll/Picture/Article rows get **source shortcuts (Storyblocks / Dreamstime / Envato)**. Each graphic has an **Approve idea** toggle (approval happens before design).
+- **The ProPresenter gate:** when a row hits **Created** and a **filename** is entered, a **Push to ProPresenter** action lights up (a human triggers it, David Rule), targeting that month's **5x show playlist template** at the segment's presentation/slide. "Loaded In" = it is in ProPresenter.
+- **Graphics only.** Interview segments show a reminder that the guest chyron is a lower third handled elsewhere.
+- Preview file: `docs/_handoff/2026-06-04-graphics-page-preview.html` (static mock; open in a real browser).
+
 **Queued fixes (align code/docs to this canon, on a build pass, not the live DB now):**
 - Add **Dreamstime** to the b-roll source enum (Daniel sources from Storyblocks, Dreamstime, Envato; only Storyblocks + Envato are in the enum today).
 - Add **Book Cover** to the `production_graphics.graphic_type` CHECK (used in the sheet, missing from the DB).

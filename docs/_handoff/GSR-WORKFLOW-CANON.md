@@ -67,6 +67,7 @@ Store each task's stage in `app_config`; defaults start at Manual/Handoff. Tasks
 
 - **Graphics files live in a folder on the "Videoedit" server.** Build and **test the system locally first**, then link to the server. The **filename is the key** that links a tracker row to its file.
 - **ProPresenter uses preset 5x show playlist templates that are reset every month.** Lower thirds and graphics live in **separate presentations**. Pushing a graphic requires mapping it to the **right slide / presentation / playlist / location** (real work, gated and human-pushed for now).
+- **>> REMINDER (Daniel TODO, deferred): the ProPresenter slide/presentation/playlist mapping must be defined with Daniel at his computer.** Defer the ProPresenter push design until then.
 
 ## 7. Source documents in Drive (for future re-reading, not re-asking)
 

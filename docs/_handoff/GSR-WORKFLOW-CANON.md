@@ -160,6 +160,12 @@ These cover the fluid insert/update/delete reconciliation Daniel described. Toda
 - Chain: master -> transcription -> templated metadata -> one-click publish to YouTube (Rumble mirrors) + handoff cards for Fireside/GSN.
 - **>> REMINDER (Daniel TODO): clear the YouTube/Google API audit** to unlock public auto-publishing.
 
+## 10. Course build rules (Daniel, locked 2026-06-04)
+
+- **Intake questions are multiple-choice (select), not open text.** Daniel is ADHD and time-pressed; give him options to tap, not blanks to fill. Use open text only when an answer genuinely cannot be enumerated.
+- **Lay the automation groundwork for every feature, even the ones shipping manual first.** Bake in the maturity dial (Manual -> Prompt-handoff -> Auto) per task, stored in `app_config`, and wire the auto path + schema + UI hooks now so enabling automation is a one-switch flip, not a rebuild. The Distribution module (M11) is the worked example of this.
+- Automation is the stated end goal from day one; the dial just controls how fast each feature gets there.
+
 **Queued fixes (align code/docs to this canon, on a build pass, not the live DB now):**
 - Add **Dreamstime** to the b-roll source enum (Daniel sources from Storyblocks, Dreamstime, Envato; only Storyblocks + Envato are in the enum today).
 - Add **Book Cover** to the `production_graphics.graphic_type` CHECK (used in the sheet, missing from the DB).

@@ -569,40 +569,42 @@ const M=[
 {
  id:'m11',phase:'Distribution',num:11,title:'Distribution & Deploy: YouTube, Rumble, Fireside + GSN',station:'DISTRIBUTE',hook:'',
  blueprint:[
-  {q:`How should the podcast (Fireside) and GSN be handled?`,type:'select',opts:[`Manual handoff cards (pre-staged files)`,`Migrate the podcast to a publish API`,`Browser-automate Fireside (fragile)`]},
-  {q:`List the distribution targets in order, the publish schedule, and the social-copy tone.`,type:'text'}
+  {q:`What should the Publish button do first?`,type:'select',opts:[`One-click publish: I trigger, the system uploads`,`Fully auto-publish on a schedule`,`Just stage files for me to upload by hand`]},
+  {q:`Which targets do you want live first?`,type:'select',opts:[`YouTube + Rumble (Rumble mirrors YouTube)`,`YouTube only`,`All four (YouTube, Rumble, Fireside, GSN)`]},
+  {q:`How soon do you want to flip from manual to auto?`,type:'select',opts:[`As fast as trust allows (build the switch now)`,`Only after several clean manual runs`,`Stay manual for now`]}
  ],
- lesson:`<p>The final stage publishes and tracks. The app deploys on <b>Vercel</b> (made by the Next.js team), which gives serverless functions and a preview URL on every push, so you review a change live before merging. From a transcript, Claude writes two separate metadata sets: a <b>video</b> profile (YouTube/Rumble/GSN) with a title that follows the 30%-shorter rule, description, tags, and chapters from timecodes, and a distinct <b>podcast</b> profile for Fireside.</p>
- <p>The targets, in the order they were designed: <b>YouTube</b> auto-publishes via <code>videos.insert</code> (and <code>search.list</code> reads recent uploads to infer cadence). <b>Rumble</b> needs almost no code; you turn on its YouTube channel sync and it mirrors uploads. <b>Fireside and GSN</b> are deliberately the manual half: each becomes a handoff card with the file and final metadata pre-staged and a mark-done button. The manual half is a designed feature, not a gap.</p>
- <p><b>Two things to watch.</b> YouTube locks new API projects to private-only until you clear a Google audit, so start that early, only you can do it. And the upload tool (youtubeuploader) has not shipped a release since Aug 2025, so pin v1.25.5. The quota itself is no longer a worry: in Dec 2025 the upload cost dropped from ~1,600 to ~100 units, roughly 100 uploads a day on free quota.</p>`,
- analogy:`Vercel is the distribution network: hand over the finished episode and it pushes copies to edge locations and gives you a screener link for every cut. The handoff cards are the loading dock with everything palletized and labeled, waiting for someone to drive it the last mile by hand, which is fine because that last mile is rare and deliberate.`,
+ lesson:`<p>This is your <b>biggest time-saver</b>, so it gets built now and pushed toward automation fastest using the maturity dial: <b>manual trigger first</b> (you click Publish), then <b>Auto</b> once trusted. The code path is the same either way; only who presses the button changes, so going hands-off is a switch, not a rebuild.</p>
+ <p>The chain: a finished master triggers <b>transcription</b> locally (WhisperKit with speaker labels), then <b>metadata</b> is built from a <b>template</b> (descriptions and tags are consistent across episodes, so no per-episode AI writing; only the title hook and chapters vary, and chapters come from the rundown timecodes), then <b>publish</b>.</p>
+ <p>Targets: <b>YouTube</b> via <code>videos.insert</code> is the prize. The one unlock is clearing the <b>Google API audit</b> (only you can do it; uploads stay private until then). <b>Rumble</b> mirrors automatically via YouTube channel sync, near-zero build. <b>Fireside and GSN</b> have no publish API, so they are deliberate <b>handoff cards</b>: file and metadata pre-staged, you upload and mark done. An <b>upload tracker</b> shows per-platform status.</p>
+ <p><b>Automation groundwork (build it even though it starts manual):</b> wire the full path now, the <code>videos.insert</code> call, the Rumble sync, the handoff cards, the tracker, and a <b>per-platform dial</b> (manual / auto) stored in <code>app_config</code>, so flipping a platform to hands-off is one setting. Pin youtubeuploader v1.25.5; quota is a non-issue since the Dec 2025 cut (~100 uploads/day).</p>`,
+ analogy:`Think of a printing press with a big green button. Today you press it for each run and watch the first copies; the press is fully capable of running itself the moment you trust it. You are not rebuilding the press to automate, you are flipping it from hand-fed to continuous feed.`,
  facts:[
-  {k:`YouTube quota`,v:`1,600 to ~100 units Dec 2025; about 100 uploads/day`,vr:true},
-  {k:`Audit gate`,v:`New API projects are private-only until Google approves`},
+  {k:`Priority`,v:`Biggest time-saver; build now, manual trigger then auto fastest`},
+  {k:`The unlock`,v:`Clear the Google API audit; uploads stay private until then`},
   {k:`Rumble`,v:`YouTube channel sync, near-zero build`},
-  {k:`Fireside + GSN`,v:`Manual handoff cards with pre-staged files (by design)`}
+  {k:`Fireside + GSN`,v:`Handoff cards, no publish API`},
+  {k:`Quota`,v:`~100 uploads/day since Dec 2025; pin youtubeuploader v1.25.5`,vr:true}
  ],
  quiz:[
-  {q:`Why is Vercel the default host for this app?`,o:[`It is the only option`,`It is made by the Next.js team and gives preview URLs per push with serverless functions`,`It is free for any use`],a:1,e:`Same-company tooling plus per-push preview deploys; note Hobby is non-commercial.`},
-  {q:`What changed for YouTube uploads in Dec 2025?`,o:[`Uploads were disabled`,`Upload quota cost fell from ~1,600 to ~100 units, enabling ~100/day`,`OAuth became mandatory`],a:1,e:`The quota cut removed the historical bottleneck for solo-volume publishing.`},
-  {q:`How are Fireside and GSN handled in the design?`,o:[`Fully automated uploads`,`Manual handoff cards with the file and metadata pre-staged`,`Ignored`],a:1,e:`The manual half is a designed feature: pre-staged cards plus a mark-done button.`}
+  {q:`What is the fastest safe first stage for distribution?`,o:[`Full auto-publish immediately`,`One-click publish you trigger, with the auto switch built in for later`,`Keep uploading by hand forever`],a:1,e:`Manual trigger first on the same code path; flip to auto per platform when trusted.`},
+  {q:`What unlocks public YouTube auto-publishing?`,o:[`Paying for more quota`,`Clearing the Google API audit (only Daniel can)`,`Turning off Rumble`],a:1,e:`New API projects are private-only until Google approves; quota is fine since Dec 2025.`},
+  {q:`How are Fireside and GSN handled?`,o:[`Fully automated uploads`,`Manual handoff cards (no publish API)`,`Skipped`],a:1,e:`Neither has a publish API, so pre-staged cards plus mark-done, by design.`}
  ],
- decision:{question:`How do you handle podcast (Fireside) and GSN distribution?`,
+ decision:{question:`How do you roll out distribution?`,
   opts:[
-   {id:'cards',label:`Manual handoff cards for Fireside + GSN (pre-staged)`,tag:'recommended',rec:true,
-    why:`Each finished episode shows a card with the audio companion or master and the right metadata profile pre-staged; you upload via the web UI and click done. This is the designed v2 approach and avoids fragile browser automation.`,
-    pros:`Zero brittle automation; matches the design; no API risk`,cons:`A manual upload step for podcast and GSN`},
-   {id:'migrate',label:`Migrate the podcast to Transistor or Buzzsprout`,tag:'optional later',
-    why:`Both have real publish APIs, so the episode goes out via a stable HTTP call.`,
-    pros:`Fully automates podcast publishing`,cons:`A migration and RSS-URL change; only worth it if you want it hands-off`},
-   {id:'browser',label:`Browser-automate Fireside publishing`,tag:'avoid',
-    why:`Script the Fireside web app.`,pros:`No migration`,cons:`Fireside has only a read-only API; browser automation against its React app is the most brittle thing you could build`}
+   {id:'staged',label:`One-click publish now, auto switch built in, flip later`,tag:'recommended',rec:true,
+    why:`Build the full path (videos.insert, Rumble sync, handoff cards, tracker) but default to a manual Publish button; a per-platform dial flips to auto when trusted. Fastest safe path to the time-saver.`,
+    pros:`Time-saver now; zero rebuild to go auto`,cons:`You click Publish until you flip the dial`},
+   {id:'autonow',label:`Fully auto-publish on a schedule immediately`,tag:'aggressive',
+    why:`Skip the manual stage.`,pros:`Hands-off now`,cons:`Trusts AI metadata and uploads before you have seen them`},
+   {id:'manualonly',label:`Just stage files, upload everything by hand`,tag:'slow',
+    why:`No publish API calls.`,pros:`No API risk`,cons:`Loses the biggest time-saver`}
   ],
-  rec:`Manual handoff cards for Fireside and GSN, matching the v2 design and keeping the fragile last mile human. Only consider migrating the podcast to Transistor or Buzzsprout if you later decide podcast publishing must be fully automated; never browser-automate Fireside.`,
-  specs:[[`YouTube`,`videos.insert auto-publish; clear the Google audit early`],[`Rumble`,`YouTube channel sync`],[`Fireside + GSN`,`Manual handoff cards, pre-staged`],[`Upload tool`,`Pin youtubeuploader v1.25.5 (stale since Aug 2025)`]]
+  rec:`One-click publish now with the auto switch built in. Clear the Google audit to unlock public. Rumble mirrors via sync; Fireside and GSN stay handoff cards. Flip each platform to auto as it earns trust.`,
+  specs:[[`Rollout`,`Manual-trigger publish first; per-platform dial to auto`],[`YouTube`,`videos.insert; clear the Google audit (Daniel TODO)`],[`Rumble`,`YouTube channel sync`],[`Fireside + GSN`,`Handoff cards, mark-done`],[`Metadata`,`Templated desc/tags; title hook + chapters vary`],[`Tracker`,`Per-platform upload status`]]
  },
- repo:`This is the distribution half of gsr-automation-v2 (Stages 5 to 7), largely future. Dropbox is the master store (no egress fees). YouTube auto-publish needs its Google audit cleared (only Daniel can, start early). Rumble is channel sync. Fireside (read-only API) and GSN (no API) are handoff cards by design. Backblaze B2 (~$6/TB/mo) is an option for cold archive.`,
- tell:`Build distribution in gsr-automation-v2: approved episode to YouTube via videos.insert (read recent uploads with search.list), Rumble via YouTube channel sync, and Fireside + GSN as manual handoff cards with the file and metadata pre-staged plus a mark-done button. Do NOT browser-automate Fireside (read-only API only). Pin youtubeuploader to v1.25.5. Remind Daniel to clear the Google API audit early; uploads stay private until then. Generate separate video and podcast metadata profiles.`
+ repo:`Distribution is the priority build for gsr-automation-v2 (Daniel's biggest time-saver), sequenced early despite being post-pipeline. Build the full path now but default to a manual Publish trigger with a per-platform manual/auto dial in app_config. YouTube videos.insert (clear the Google audit, Daniel TODO; private until then), Rumble via channel sync, Fireside (read-only API) + GSN (no API) as handoff cards, plus an upload tracker. Dropbox is the master store. Backblaze B2 (~$6/TB/mo) is an option for cold archive.`,
+ tell:`Build distribution in gsr-automation-v2 as the priority feature, but ship it at the manual-trigger maturity stage: a one-click Publish button (Daniel triggers) that uploads to YouTube via videos.insert with templated metadata + chapters, Rumble via YouTube channel sync, and Fireside + GSN as manual handoff cards (file + metadata pre-staged, mark-done). Lay the automation groundwork now: wire the full path and add a per-platform manual/auto dial in app_config so flipping to auto is a setting, not a rebuild. Pin youtubeuploader v1.25.5. Do NOT browser-automate Fireside. Remind Daniel to clear the Google API audit (the unlock for public auto-publish). Metadata descriptions/tags are templated and consistent; only the title hook and chapters vary.`
 }
 ];
 

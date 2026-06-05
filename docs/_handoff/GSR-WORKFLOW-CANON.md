@@ -105,6 +105,14 @@ _The Drive MCP can read Google Sheets/Docs/PDF directly. Use it to match real st
 - **Graphics only.** Interview segments show a reminder that the guest chyron is a lower third handled elsewhere.
 - Preview file: `docs/_handoff/2026-06-04-graphics-page-preview.html` (static mock; open in a real browser).
 
+## 9b. Lower Thirds page design (locked 2026-06-04)
+
+Deliberately simple, a polished spreadsheet (not the intricate graphics page):
+- Segment tabs; one row per lower third (beat), grouped by segment. Often 15 per segment, but "however many."
+- Each row shows beat #, `l3_type`, and the **three variations (Primary / Var 1 / Var 2)** as selectable options. Daniel picks one (the highlighted one is chosen); a real build adds a one-tap "cycle variation" button. Each variation shows a **char count colored 55-65 good / under 55 short / over 65 blocked.**
+- One **Send button** sends the chosen lower thirds to ProPresenter: format ALL CAPS, validate the char band, dry-run + "type YES", then push to the **Lower Thirds presentation** (separate from graphics, never to Rundown Creator), mapping each row to its slide and on-screen position by beat (guest chyron to the chyron slot).
+- Preview file: `docs/_handoff/2026-06-04-lower-thirds-page-preview.html` (static, no JavaScript, renders anywhere including a phone).
+
 **Queued fixes (align code/docs to this canon, on a build pass, not the live DB now):**
 - Add **Dreamstime** to the b-roll source enum (Daniel sources from Storyblocks, Dreamstime, Envato; only Storyblocks + Envato are in the enum today).
 - Add **Book Cover** to the `production_graphics.graphic_type` CHECK (used in the sheet, missing from the DB).

@@ -12,7 +12,7 @@
 *{box-sizing:border-box}
 html,body{height:100%;margin:0;overflow:hidden}
 body{background:var(--bg);color:var(--ink);font:13.5px/1.5 -apple-system,Segoe UI,Roboto,Inter,sans-serif}
-.app{height:100vh;display:flex;flex-direction:column}
+.app{height:100dvh;display:flex;flex-direction:column}
 header.top{background:#0e1726;color:#eaf1ff;padding:9px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;flex:0 0 auto}
 header .ttl{font-weight:600;font-size:14px}.ttl b{color:#7fb0ff}
 .tabs{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
@@ -73,6 +73,18 @@ select.st{font:inherit;font-size:11.5px;border:1px solid var(--line);border-radi
 .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--dim);padding:7px 12px;background:var(--panel);border-top:1px solid var(--line);flex:0 0 auto}
 .legend span{display:inline-flex;gap:5px;align-items:center}.dot{width:10px;height:10px;border-radius:3px}
 .back{cursor:pointer;color:#7fb0ff;font-size:12.5px}
+/* ===== mobile: stack so script + graphics are both visible, no page scroll ===== */
+@media (max-width:760px){
+  .show{grid-template-columns:1fr;grid-template-rows:auto minmax(0,38%) minmax(0,1fr)}
+  .col{border-right:0;border-bottom:1px solid var(--line)}
+  .railcol{display:flex;flex-direction:row;overflow-x:auto;overflow-y:hidden}
+  .railcol .colhead{display:none}
+  .railcol .seg{flex:0 0 auto;min-width:140px;border-bottom:0;border-right:1px solid var(--line)}
+  .railcol .seg.on{border-left:0;border-bottom:3px solid var(--accent);padding-left:12px}
+  .master{grid-template-columns:1fr}
+  .tabs{margin-left:0;width:100%}
+  .legend{font-size:10px;gap:8px}
+}
 </style>
 </head>
 <body>
@@ -195,7 +207,7 @@ function renderShow(){
   const grid=document.createElement('div');grid.className='show';
 
   // col 1: segment rail
-  const c1=document.createElement('div');c1.className='col';c1.innerHTML='<div class="colhead">Segments</div>';
+  const c1=document.createElement('div');c1.className='col railcol';c1.innerHTML='<div class="colhead">Segments</div>';
   s.segments.forEach((sg,i)=>{const sc=counts(sg.graphics);const st=sg.graphics.every(x=>x.st==='li')?'li':(sc.ns===sg.graphics.length?'ns':'ip');
     const d=document.createElement('div');d.className='seg'+(i===cur.seg?' on':'');
     d.innerHTML='<div class="n">'+sg.name+'</div><div class="m"><span><span class="sdot" style="background:var(--'+st+')"></span>'+(sc.cr+sc.li)+'/'+sg.graphics.length+' ready</span></div>';
@@ -203,7 +215,7 @@ function renderShow(){
   grid.appendChild(c1);
 
   // col 2: script
-  const c2=document.createElement('div');c2.className='col';c2.id='scriptcol';
+  const c2=document.createElement('div');c2.className='col scriptcol';c2.id='scriptcol';
   c2.innerHTML='<div class="colhead">Script · '+seg.name+' (highlight = where the graphic sits, 2-3 sentences of context)</div>';
   if(seg.script&&seg.script.length){const sd=document.createElement('div');sd.className='script';sd.innerHTML=seg.script.map(p=>'<p>'+p+'</p>').join('');c2.appendChild(sd);
     // color cues by their graphic status
@@ -212,7 +224,7 @@ function renderShow(){
   grid.appendChild(c2);
 
   // col 3: graphics
-  const c3=document.createElement('div');c3.className='col';c3.innerHTML='<div class="colhead">Graphics · '+seg.name+'</div>';
+  const c3=document.createElement('div');c3.className='col gfxcol';c3.innerHTML='<div class="colhead">Graphics · '+seg.name+'</div>';
   const gl=document.createElement('div');gl.className='glist';
   seg.graphics.forEach(gr=>{
     const row=document.createElement('div');row.className='grow';row.dataset.st=gr.st;row.dataset.g=gr.cue||'';

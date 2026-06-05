@@ -6,1078 +6,602 @@
 <title>GSR Automation v2 // Crash Course + Build Plan</title>
 <style>
 :root{
-  --bg:#06090f;--panel:#0d131d;--panel2:#111a26;--ink:#d8e3f0;--dim:#8a99ad;
-  --line:#1c2a3d;--active:#00d9ff;--glow:#00d9ff;--amber:#ffb84d;--warn:#ff6b6b;
-  --good:#5cf2a0;--chip:#0f1722;--chipedge:#26405e;--shadow:0 8px 30px rgba(0,0,0,.55);
+ --bg:#eef2f8;--panel:#ffffff;--ink:#16202e;--dim:#5c6b7e;--line:#e1e8f1;
+ --accent:#2563eb;--accentsoft:#e9f1ff;--accent2:#7c3aed;
+ --good:#1d8a52;--good-bg:#e6f6ec;--warn:#b7791f;--warn-bg:#fdf3e2;--bad:#c0392b;--bad-bg:#fdecea;
+ --gold:#b8860b;--shadow:0 1px 3px rgba(16,32,55,.07),0 6px 20px -10px rgba(16,32,55,.18);
 }
 *{box-sizing:border-box}
-html,body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.55 ui-sans-serif,-apple-system,Segoe UI,Inter,Roboto,sans-serif}
-a{color:var(--active)}
-button{font:inherit;cursor:pointer}
-.app{display:grid;grid-template-columns:minmax(320px,380px) 1fr;min-height:100vh}
-@media (max-width:980px){.app{grid-template-columns:1fr}.rail{max-height:none!important}}
-header.top{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:10px 16px;background:linear-gradient(180deg,#0a1320,#070b12);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
-header h1{font-size:15px;margin:0;letter-spacing:.2px}
-header h1 b{color:var(--active)}
-.badge{display:inline-block;padding:2px 8px;border-radius:999px;background:#10202e;color:var(--active);border:1px solid #18394f;font-size:11px;margin-left:8px}
-.xpwrap{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
-.xpbar{width:160px;height:8px;border-radius:999px;background:#10202e;overflow:hidden;border:1px solid #18394f}
-.xpfill{height:100%;background:linear-gradient(90deg,var(--active),var(--good));width:0%;transition:width .6s ease}
-.xpnum{font-variant-numeric:tabular-nums;color:var(--dim);font-size:12px}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:14.5px/1.6 -apple-system,Segoe UI,Roboto,Inter,sans-serif}
+.app{display:grid;grid-template-columns:300px 1fr;min-height:100vh}
+@media(max-width:900px){.app{grid-template-columns:1fr}.rail{position:static!important;height:auto!important}}
+header.top{grid-column:1/-1;background:linear-gradient(100deg,#0b1422,#15233c);color:#eaf1ff;padding:12px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:20;box-shadow:var(--shadow)}
+header h1{font-size:15px;margin:0;font-weight:600}header h1 b{color:#7fb0ff}
+.badge{font-size:11px;background:#13243f;color:#9fc1ff;border:1px solid #284a78;border-radius:999px;padding:2px 9px;margin-left:4px}
+.xpwrap{margin-left:auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.xpbar{width:150px;height:9px;border-radius:999px;background:#1b2940;overflow:hidden;border:1px solid #284a78}
+.xpfill{height:100%;background:linear-gradient(90deg,#2563eb,#5cf2a0);width:0;transition:width .5s}
+.xpnum{font-size:12px;color:#9fb2cc;font-variant-numeric:tabular-nums}
 .toolbar{display:flex;gap:6px;flex-wrap:wrap}
-.btn{background:#10202e;color:var(--ink);border:1px solid #1d3550;border-radius:8px;padding:6px 10px;font-size:12px}
-.btn:hover{background:#15324a}
-.btn.primary{background:linear-gradient(180deg,#0e3e5c,#0b2c44);border-color:#1e5a82;color:#dff7ff}
-.btn.ghost{background:transparent}
-.btn.consult{background:linear-gradient(180deg,#3a2a08,#241a05);border-color:#5a4318;color:#ffe9c2}
-.btn.consult:hover{background:#473410}
-.rail{padding:14px;border-right:1px solid var(--line);background:#080c14;max-height:calc(100vh - 52px);overflow:auto}
-.rail h2{font-size:12px;text-transform:uppercase;letter-spacing:.16em;color:var(--dim);margin:14px 0 8px}
-.mods{display:flex;flex-direction:column;gap:5px}
-.mod{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);width:100%;text-align:left}
-.mod:hover{border-color:#2a4565}
-.mod.cur{border-color:var(--active);box-shadow:0 0 0 1px var(--active) inset,0 0 18px -6px var(--glow)}
+.tbtn{background:#16294a;color:#dce9fb;border:1px solid #2a4a78;border-radius:8px;padding:6px 11px;font-size:12px;cursor:pointer}
+.tbtn:hover{background:#1e3a63}
+.tbtn.primary{background:#2563eb;border-color:#2563eb;color:#fff}
+.rail{background:#0c1626;color:#cdddf2;padding:14px;position:sticky;top:54px;height:calc(100vh - 54px);overflow:auto}
+.rail h2{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#7f93ad;margin:6px 0 8px}
+.mod{display:flex;gap:10px;align-items:center;width:100%;text-align:left;background:#111d31;border:1px solid #1d3050;border-radius:9px;padding:8px 10px;margin-bottom:5px;cursor:pointer;color:inherit}
+.mod:hover{border-color:#2f4d78}
+.mod.cur{border-color:#2563eb;box-shadow:0 0 0 1px #2563eb inset}
 .mod.done .dot{background:var(--good)}
-.dot{width:10px;height:10px;border-radius:50%;background:#243244;flex:0 0 auto;box-shadow:0 0 0 2px #0a121c}
-.mod.cur .dot{background:var(--active);box-shadow:0 0 12px var(--glow)}
-.mod .meta{flex:1;min-width:0}
-.mod .t{font-size:13px;color:var(--ink)}
-.mod .s{font-size:11px;color:var(--dim)}
-.mod .n{font:700 11px ui-monospace,monospace;color:var(--dim);width:18px;text-align:right}
-main{padding:16px 20px;max-height:calc(100vh - 52px);overflow:auto}
-.flow{display:flex;flex-wrap:wrap;gap:4px;align-items:center;background:radial-gradient(ellipse at top,#0a1828,#05080d 70%);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:14px}
-.station{display:flex;align-items:center;gap:4px}
-.sbox{font:700 10px ui-monospace,monospace;border:1px solid var(--chipedge);background:var(--chip);color:var(--dim);border-radius:6px;padding:5px 7px;white-space:nowrap}
-.sbox.on{border-color:var(--good);color:#dffbe9;box-shadow:0 0 14px -5px var(--good)}
-.sbox.cur{border-color:var(--active);color:#e6fbff;box-shadow:0 0 16px -4px var(--glow)}
-.sarrow{color:#2a4565;font-size:11px}
-.card{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:14px;padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
-.card h2{margin:0 0 4px;font-size:21px;letter-spacing:.2px}
-.lede{color:var(--dim);margin:0 0 10px}
-.kicker{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.18em;color:var(--active);background:#0c1e2c;border:1px solid #18394f;padding:2px 8px;border-radius:999px;margin-bottom:8px}
-.tabs{display:flex;gap:6px;margin:12px 0 4px;flex-wrap:wrap}
-.tab{border:1px solid var(--line);background:#0a1320;color:var(--dim);border-radius:999px;padding:6px 14px;font-size:12.5px}
-.tab.on{border-color:var(--active);color:#e6fbff;background:#0c2230}
-.tab .mk{color:var(--good);margin-left:6px}
-.analogy{border-left:3px solid var(--amber);background:#1a140a;padding:10px 12px;border-radius:8px;margin:10px 0;color:#f5e7c9}
-.analogy b{color:var(--amber)}
-.note{background:#0a1a24;border:1px solid #14304a;border-radius:8px;padding:10px 12px;margin:10px 0}
-.note.warn{background:#241313;border-color:#3d1d1d}
-.note.warn b{color:var(--warn)}
-.note.repo{background:#0a1f16;border-color:#16402c}
-.note.repo b{color:var(--good)}
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:10px 0}
-.fact{background:#0a1320;border:1px solid var(--line);border-radius:8px;padding:8px 10px}
-.fact b{display:block;color:var(--active);font-size:10.5px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:2px}
-.fact .vf{color:var(--good);font-size:9px;letter-spacing:.08em;margin-left:4px}
-.q{margin:14px 0;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#0a1320}
-.q .qt{font-weight:600;margin-bottom:8px}
-.qopts{display:grid;gap:6px}
-.qopt{border:1px solid var(--line);border-radius:8px;padding:9px 11px;background:#08101a;text-align:left;color:var(--ink)}
-.qopt:hover{border-color:#2a4565}
-.qopt.correct{border-color:var(--good);background:#0c2118}
-.qopt.wrong{border-color:var(--warn);background:#1f1212}
-.qexpl{margin-top:8px;font-size:12.5px;color:var(--dim);display:none}
-.qexpl.show{display:block}
-textarea,input.txt{width:100%;background:#08101a;color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:9px 11px;font:inherit;resize:vertical}
-textarea:focus,input.txt:focus{outline:none;border-color:var(--active)}
-.bq{margin:12px 0}
-.bq label{display:block;font-weight:600;margin-bottom:6px}
-.bq .hint{color:var(--dim);font-size:12px;font-weight:400}
-.selrow{display:flex;gap:6px;flex-wrap:wrap}
-.selbtn{border:1px solid var(--line);background:#08101a;color:var(--ink);border-radius:8px;padding:7px 11px;font-size:12.5px}
-.selbtn.on{border-color:var(--good);background:#0c2118;color:#dffbe9}
-.opts{display:grid;gap:10px;margin-top:6px}
-.opt{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#0a1320;width:100%;text-align:left;color:var(--ink)}
-.opt:hover{border-color:#2a4565}
-.opt.chosen{border-color:var(--good);box-shadow:0 0 0 1px var(--good) inset,0 0 22px -8px var(--good)}
-.opt .head{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
-.opt h3{margin:0;font-size:14px}
-.opt .tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.dot{width:9px;height:9px;border-radius:50%;background:#33476a;flex:0 0 auto}
+.mod.cur .dot{background:#2563eb}
+.mod .t{font-size:12.5px;flex:1;min-width:0}
+.mod .ph{font-size:10px;color:#7f93ad}
+.mod .n{font:700 11px ui-monospace,monospace;color:#7f93ad}
+.phasehdr{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#62789a;margin:12px 0 5px;padding-left:2px}
+.buildsofar{margin-top:14px;background:#101d31;border:1px solid #1d3050;border-radius:9px;padding:10px}
+.buildsofar h3{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#7f93ad;margin:0 0 6px}
+.bsf{font-size:11.5px;color:#bcd0ea;margin:3px 0}
+.bsf b{color:#7fe0a8}
+main{padding:18px 22px;max-width:900px}
+.flow{display:flex;flex-wrap:wrap;gap:3px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;margin-bottom:14px;box-shadow:var(--shadow)}
+.sbox{font:700 9.5px ui-monospace,monospace;border:1px solid var(--line);background:#f6f9fd;color:var(--dim);border-radius:6px;padding:4px 6px;white-space:nowrap}
+.sbox.on{border-color:var(--good);background:var(--good-bg);color:var(--good)}
+.sbox.cur{border-color:var(--accent);background:var(--accentsoft);color:var(--accent)}
+.sar{color:#b6c2d4;font-size:10px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px;box-shadow:var(--shadow);margin-bottom:14px}
+.kick{display:inline-block;font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:var(--accent);background:var(--accentsoft);border:1px solid #cfe0ff;border-radius:999px;padding:2px 10px}
+.card h2{margin:8px 0 2px;font-size:22px}
+.maturity{display:inline-block;font-size:11px;border-radius:999px;padding:2px 9px;margin-left:6px;border:1px solid}
+.mat-manual{background:#eef1f5;border-color:#d7dde6;color:#5c6b7e}
+.mat-handoff{background:#f6f0ff;border-color:#d9c4f5;color:#6b3fb0}
+.mat-auto{background:#e6f6ec;border-color:#bfe6cd;color:#1d8a52}
+.mat-priority{background:#fff4e0;border-color:#f0d29a;color:#9a6a12}
+.tabs{display:flex;gap:6px;margin:14px 0 6px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:#f6f9fd;color:var(--dim);border-radius:999px;padding:7px 15px;font-size:13px;cursor:pointer}
+.tab.on{border-color:var(--accent);background:var(--accentsoft);color:var(--accent);font-weight:600}
+.tab .mk{color:var(--good);margin-left:5px}
+.carry{background:#f0f7ff;border:1px solid #c9e0ff;border-left:3px solid var(--accent);border-radius:8px;padding:9px 12px;margin:10px 0;font-size:13px}
+.carry b{color:var(--accent)}
+.lesson p{margin:9px 0}
+.lesson code{background:#f1f4f9;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font:12.5px ui-monospace,Menlo,monospace}
+.analogy{border-left:3px solid var(--gold);background:#fbf6ea;border-radius:8px;padding:10px 13px;margin:11px 0;color:#6b5414}
+.analogy b{color:var(--gold)}
+.note{background:#f0f7ff;border:1px solid #cfe0ff;border-radius:8px;padding:10px 13px;margin:10px 0}
+.note.warn{background:var(--bad-bg);border-color:#f3c9c4}.note.warn b{color:var(--bad)}
+.bq{margin:13px 0}.bq .q{font-weight:600;margin-bottom:7px}
+.opts{display:flex;flex-direction:column;gap:6px}
+.opt{border:1px solid var(--line);background:#fff;border-radius:9px;padding:10px 12px;text-align:left;cursor:pointer;font-size:13.5px}
+.opt:hover{border-color:#b9d2ff}
+.opt.sel{border-color:var(--accent);background:var(--accentsoft);box-shadow:0 0 0 1px var(--accent) inset}
+.opt .why{font-size:12px;color:var(--dim);margin-top:4px}
+.opt .tag{float:right;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 .opt .tag.rec{color:var(--good)}
-.opt .why{font-size:12.5px;color:var(--dim);margin:6px 0 0}
-.opt .pp{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;font-size:12px}
-.opt .pp div{background:#08101a;border:1px solid var(--line);border-radius:6px;padding:6px 8px}
-.opt .pp .pros b{color:var(--good)}
-.opt .pp .cons b{color:var(--warn)}
-.rec{margin-top:10px;padding:10px 12px;border:1px dashed #2a5577;background:#08161f;border-radius:8px;font-size:13px}
-.rec b{color:var(--active)}
-.tell{margin-top:10px;padding:10px 12px;border:1px solid #3d2a10;background:#1a140a;border-radius:8px;font-size:12.5px}
-.tell b{color:var(--amber)}
-.tell code{display:block;margin-top:6px;background:#0a1320;border:1px solid var(--line);border-radius:6px;padding:8px 10px;color:#cfe0f3;font:12px ui-monospace,Menlo,monospace;white-space:pre-wrap}
-details{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:#0a1320;margin:8px 0}
-summary{cursor:pointer;color:var(--dim);font-size:12.5px}
-details[open] summary{color:var(--ink)}
-.tinytable{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}
-.tinytable td{border:1px solid var(--line);padding:5px 7px;vertical-align:top}
-.tinytable td:first-child{color:var(--active);font-weight:600;white-space:nowrap}
-.nav{display:flex;justify-content:space-between;margin-top:14px;gap:8px}
-.list{margin:6px 0 0 16px;padding:0}
-.list li{margin:3px 0}
-.smol{font-size:11.5px;color:var(--dim)}
-.spark{position:fixed;width:6px;height:6px;border-radius:50%;pointer-events:none;z-index:99}
-.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#0c2230;border:1px solid var(--active);color:#e6fbff;padding:10px 16px;border-radius:10px;box-shadow:var(--shadow);z-index:50;font-size:13px;opacity:0;transition:opacity .25s,bottom .25s;pointer-events:none}
-.toast.show{opacity:1;bottom:28px}
-@media (prefers-reduced-motion:reduce){.toast{transition:none}.xpfill{transition:none}}
-.lessonbody p{margin:8px 0}
-.lessonbody code{background:#0a1320;border:1px solid var(--line);border-radius:4px;padding:1px 5px;font:12px ui-monospace,Menlo,monospace;color:#cfe0f3}
-.pill{display:inline-block;padding:2px 7px;border-radius:999px;font-size:10px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);color:var(--dim);margin-left:6px}
-.hooklink{display:inline-flex;gap:6px;align-items:center;margin:4px 0 8px;font-size:12.5px;color:var(--amber);text-decoration:none;border:1px solid #3d2a10;background:#1a140a;border-radius:8px;padding:6px 10px}
-.fin h3{margin:14px 0 4px;font-size:15px;color:var(--active)}
-.finbox{background:#0a1320;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:8px 0}
-.checkrow{display:flex;gap:8px;align-items:flex-start;margin:5px 0;font-size:13px}
-.checkrow .bx{width:15px;height:15px;border-radius:4px;border:1px solid var(--chipedge);flex:0 0 auto;margin-top:2px}
-.checkrow .bx.on{background:var(--good);border-color:var(--good)}
-.adrcount{font-variant-numeric:tabular-nums;color:var(--good);font-weight:700}
+.h3{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--dim);margin:16px 0 4px}
+/* quiz */
+.q{margin:12px 0;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fbfdff}
+.qt{font-weight:600;margin-bottom:7px}
+.qo{display:flex;flex-direction:column;gap:5px}
+.qopt{border:1px solid var(--line);border-radius:8px;padding:8px 11px;background:#fff;text-align:left;cursor:pointer;font-size:13px}
+.qopt:hover{border-color:#b9d2ff}.qopt.correct{border-color:var(--good);background:var(--good-bg)}.qopt.wrong{border-color:var(--bad);background:var(--bad-bg)}
+.qexpl{font-size:12.5px;color:var(--dim);margin-top:7px;display:none}.qexpl.show{display:block}
+/* game */
+.game{border:1px dashed #bcd6fb;background:#f7fbff;border-radius:11px;padding:14px;margin:10px 0}
+.game .gh{font-weight:700;color:var(--accent);font-size:13px;margin-bottom:3px}
+.game .gd{font-size:12.5px;color:var(--dim);margin-bottom:10px}
+.bins{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.bins{grid-template-columns:1fr}}
+.bin{border:1px solid var(--line);border-radius:9px;background:#fff;padding:8px;min-height:60px}
+.bin h4{margin:0 0 6px;font-size:12px}
+.chip{display:inline-block;border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 9px;margin:3px;font-size:12.5px;cursor:pointer}
+.chip:hover{border-color:#b9d2ff}
+.chip.good{border-color:var(--good);background:var(--good-bg)}.chip.bad{border-color:var(--bad);background:var(--bad-bg)}
+.pool{display:flex;flex-wrap:wrap;gap:2px;margin-bottom:8px}
+.gfeed{font-size:12.5px;margin-top:9px;font-weight:600}
+.gfeed.ok{color:var(--good)}.gfeed.no{color:var(--bad)}
+.orderlist{display:flex;flex-direction:column;gap:5px}
+.ordit{display:flex;gap:9px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:7px 10px;background:#fff;cursor:pointer;font-size:13px}
+.ordit .seq{font:700 11px ui-monospace,monospace;min-width:18px;height:18px;border-radius:5px;background:#e6ecf5;color:#5c6b7e;display:flex;align-items:center;justify-content:center}
+.ordit.picked .seq{background:var(--accent);color:#fff}
+.trimrow{display:flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:#fff;margin:5px 0;cursor:pointer;font:13px ui-monospace,Menlo,monospace}
+.trimrow:hover{border-color:#b9d2ff}.trimrow.pick{border-color:var(--accent);background:var(--accentsoft)}
+.cc{margin-left:auto;font:700 11px ui-monospace,monospace}.cc.good{color:var(--good)}.cc.warn{color:var(--warn)}.cc.bad{color:var(--bad)}
+.btn{background:var(--accent);color:#fff;border:0;border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.btn.ghost{background:#f1f4f9;color:var(--ink);border:1px solid var(--line)}
+.nav{display:flex;justify-content:space-between;gap:8px;margin-top:16px}
+.tinytable{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:6px}.tinytable td{border:1px solid var(--line);padding:5px 8px}.tinytable td:first-child{font-weight:600;color:var(--accent);white-space:nowrap}
+.tell{margin-top:11px;border:1px solid #3d2a10;background:#fbf6ea;border-radius:9px;padding:11px}.tell b{color:var(--gold)}
+.tell code{display:block;margin-top:6px;background:#fff;border:1px solid var(--line);border-radius:6px;padding:9px;font:12px ui-monospace,Menlo,monospace;white-space:pre-wrap;color:#2a3a50}
+details{border:1px solid var(--line);border-radius:8px;padding:8px 12px;background:#fbfdff;margin:8px 0}summary{cursor:pointer;color:var(--dim);font-size:12.5px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#13243f;color:#eaf1ff;border:1px solid #2a4a78;border-radius:10px;padding:10px 16px;font-size:13px;opacity:0;transition:opacity .25s,bottom .25s;pointer-events:none;z-index:50}.toast.show{opacity:1;bottom:30px}
+.spark{position:fixed;width:7px;height:7px;border-radius:50%;pointer-events:none;z-index:60}
+.fin h3{color:var(--accent);margin:14px 0 4px}
+.chk{display:flex;gap:8px;align-items:flex-start;margin:5px 0;font-size:13px}
+.chk .bx{width:15px;height:15px;border-radius:4px;border:1px solid #cdd8e4;flex:0 0 auto;margin-top:2px}.chk .bx.on{background:var(--good);border-color:var(--good)}
 </style>
 </head>
 <body>
 <div class="app">
   <header class="top">
-    <h1>GSR Automation <b>v2 // Crash Course + Build Plan</b><span class="badge" id="phaseTag">Start</span></h1>
+    <h1>GSR Automation <b>v2</b> // Crash Course + Build Plan <span class="badge" id="phaseTag">Start</span></h1>
     <div class="xpwrap">
-      <div class="xpnum"><span id="xpDone">0</span>/<span id="xpTotal">12</span> decisions locked</div>
+      <span class="xpnum"><span id="xpDone">0</span>/<span id="xpTotal">10</span> locked</span>
       <div class="xpbar"><div class="xpfill" id="xpFill"></div></div>
       <div class="toolbar">
-        <button class="btn primary" id="btnPlan">Export Plan (MD + HTML)</button>
-        <button class="btn" id="btnJson">Export JSON</button>
-        <button class="btn" id="btnImport">Import</button>
+        <button class="tbtn primary" id="btnPlan">Export Plan</button>
+        <button class="tbtn" id="btnJson">Save</button>
+        <button class="tbtn" id="btnImport">Load</button>
         <input type="file" id="fileImport" hidden accept="application/json">
-        <button class="btn ghost" id="btnReset">Reset</button>
+        <button class="tbtn" id="btnReset">Reset</button>
       </div>
     </div>
   </header>
-
   <aside class="rail">
-    <h2>Pipeline modules</h2>
-    <div class="mods" id="modList"></div>
-    <h2 style="margin-top:16px">The architecture law</h2>
-    <div class="note warn smol"><b>The David Rule.</b> Automation talks to cloud APIs only. It never writes to the live broadcast chain, the ProPresenter machine, the QNAP NAS, or the Tailscale VPN directly. The host is on air; the system protects the host. Publish to the database; production pulls on its own schedule.</div>
-    <div class="smol" style="margin-top:8px">Target repo: <b style="color:var(--good)">gsr-automation-v2</b>. Build locally with Claude Code; pull before you start, push when you stop.</div>
-    <h2 style="margin-top:16px">Decisions locked</h2>
-    <div id="decLog" class="smol">None yet. Each module ends in a decision that becomes a build record in your exported plan.</div>
-    <div class="smol" id="storeMode" style="margin-top:14px;opacity:.6"></div>
+    <h2>Pipeline</h2>
+    <div id="modList"></div>
+    <div class="buildsofar"><h3>Your build so far</h3><div id="bsf"></div></div>
+    <div class="bsf" id="storeMode" style="margin-top:10px;opacity:.6"></div>
   </aside>
-
   <main id="main"></main>
 </div>
-
 <div class="toast" id="toast"></div>
 <script>
-/* ===== safe storage: works in the artifact sandbox and when downloaded ===== */
-const store=(()=>{let m={};try{const k='__p__';localStorage.setItem(k,'1');localStorage.removeItem(k);
-  return{get:k=>localStorage.getItem(k),set:(k,v)=>localStorage.setItem(k,v),mode:'localStorage'};}
-  catch(e){return{get:k=>k in m?m[k]:null,set:(k,v)=>{m[k]=v},mode:'memory (this session only)'};}})();
+/* ===================== storage ===================== */
+const store=(()=>{let m={};try{localStorage.setItem('__t','1');localStorage.removeItem('__t');
+ return{get:k=>localStorage.getItem(k),set:(k,v)=>localStorage.setItem(k,v),mode:'localStorage'};}
+ catch(e){return{get:k=>k in m?m[k]:null,set:(k,v)=>{m[k]=v;},mode:'memory (this tab only)'};}})();
 const KEY='gsr_v2_course';
 
-/* ===== modules: pipeline order, GSR Automation v2 ===== */
+/* ===================== modules (workflow order) ===================== */
+/* maturity: how this feature ships first. priority flags distribution. */
 const M=[
-{
- id:'m0',phase:'Ground',num:0,title:'Ground Rules & the Architecture Law',station:'RULES',hook:'',
+{id:'m0',num:0,phase:'Ground',station:'RULES',title:'Ground Rules & the Architecture Law',mat:'',
  blueprint:[
-  {q:`How comfortable are you with Git today?`,type:'select',opts:[`Never used it`,`I commit but fear branches`,`Comfortable`]},
-  {q:`In one line and in your own words: what part of the live show must NEVER be touched by automation?`,type:'text'}
+  {q:`How do you want to grow into this?`,opts:[`Manual first, automate as I trust it`,`Automate everything fast`,`Stay manual a long time`]},
+  {q:`What part of the show can automation never touch?`,opts:[`The live broadcast gear (ProPresenter, ATEM)`,`The database`,`The dashboard`]}
  ],
- lesson:`<p>Before any tool, four ideas the whole system rests on. <b>Client vs server</b>: the browser (client) is the storefront anyone can walk into; the server is the locked back office where secrets and real work live. <b>Database</b>: a spreadsheet with rules that many programs read and write at once. <b>API</b>: a defined way for one program to ask another for something, like a kitchen ticket. <b>JSON</b>: the labeled note format those tickets are written in.</p>
- <p><b>How you build it.</b> The real build runs locally on your Mac through <b>Claude Code</b>, not the web app. A subagent (the GSR Architect) boots already knowing the system. Everything syncs through <b>GitHub</b>: pull before you start, push when you stop. Secrets come from <b>1Password</b> at run time, never pasted. Git itself is your undo: a <code>commit</code> is a save state, a <code>branch</code> is a scratch copy you can break, a squash merge collapses a feature to one clean revertible commit on main.</p>
- <p><b>The law that shapes everything:</b> the show is live and David is on air, so automation is fenced off from the broadcast gear. It reads cloud APIs and writes to your database. Production pulls from the database on its own schedule. Nothing you build can reach through and break the show.</p>`,
- analogy:`Think of a restaurant. The dining room (client) is public; the kitchen (server) is staff-only because that is where the knives and the safe are. Git is the chef writing the recipe after every good change so a bad night rolls back to last week. The pass window is the database: cooks put plates up, servers take them down, and the cooks never run plates into the dining room themselves.`,
- facts:[
-  {k:`Build tool`,v:`Claude Code, local on the Mac`},
-  {k:`Sync rule`,v:`Pull before start, push when you stop`},
-  {k:`Secrets`,v:`1Password op item get only, never pasted`},
-  {k:`Off-limits`,v:`ProPresenter, ATEM/Companion, QNAP write, Tailscale`}
- ],
+ lesson:`<p>Four ideas first. <b>Client vs server:</b> the browser is the public storefront, the server is the locked back office where secrets live. <b>Database:</b> a spreadsheet with rules many programs share. <b>API:</b> a defined way for one program to ask another for something. <b>JSON:</b> the labeled note format those requests use.</p>
+ <p><b>Git is your undo button:</b> a <code>commit</code> is a save state, a branch is a scratch copy, a squash merge collapses a feature into one clean revertible commit. You build in <code>gsr-automation-v2</code> on branches with draft PRs.</p>
+ <p><b>The maturity dial</b> governs every feature: <b>Manual</b> (you do it, the app stores it) then <b>Prompt handoff</b> (the app hands you a ready prompt, you paste it into Claude and paste the result back through the same safety gate) then <b>Auto</b> (the app makes the call itself). Same data, same gate, only who presses the button changes. Automation is the goal; the dial sets the pace.</p>`,
+ analogy:`Think of a stove with a safety pilot. The David Rule is the pilot light: it goes on before the gas, every time. The live broadcast chain (ProPresenter on air, the switcher) is the open flame nobody reaches across. Automation works the prep counter, never the burner during service.`,
+ game:{type:'sort',h:'The David Rule sorter',d:'Tap each thing into the right bin. Automation may read cloud APIs and write the database only.',
+   binA:'Automation MAY touch',binB:'OFF-LIMITS',
+   items:[['Supabase database','A'],['YouTube Data API','A'],['Read-only SMB file','A'],['ProPresenter (on air)','B'],['ATEM switcher','B'],['QNAP admin / Tailscale','B']]},
  quiz:[
-  {q:`Why is the Claude API key kept on the server and never in the browser?`,o:[`Servers are faster`,`Anything in the browser bundle is readable in DevTools, so a key there leaks and runs up your bill`,`Browsers cannot make API calls`],a:1,e:`Browser code is fully visible. A leaked key gets scraped and abused within minutes. The server adds the key and the key never leaves it.`},
-  {q:`What does a squash merge give you?`,o:[`Faster code`,`One clean, revertible commit on main per feature`,`Automatic tests`],a:1,e:`main reads like a changelog, and a whole exploratory branch collapses to a single commit you can revert.`},
-  {q:`Under the David Rule, how should automation influence the live rundown or ProPresenter?`,o:[`Write to them directly for speed`,`Publish to the database and let production pull it`,`Reach the NAS over the VPN`],a:1,e:`Automation owns its own data plane; production pulls from it. That air gap is the whole point.`}
+  {q:`Why does the Claude API key stay on the server?`,o:[`Servers are faster`,`Anything in the browser is readable, so a key there leaks and gets abused`,`Browsers cannot call APIs`],a:1,e:`Browser code is fully visible; a leaked key is scraped in minutes.`},
+  {q:`What does a squash merge give you?`,o:[`Faster code`,`One clean revertible commit on main per feature`,`Automatic tests`],a:1,e:`main reads like a changelog and a messy branch collapses to one revertible commit.`}
  ],
- decision:{question:`Lock your version-control workflow and confirm the build target.`,
-  opts:[
-   {id:'squash',label:`Branches + draft PRs + squash merge, built in gsr-automation-v2`,tag:'recommended',rec:true,
-    why:`feat/chore/fix branches, a draft PR while Claude Code works, squash to main. Build directly in gsr-automation-v2 (consolidating away from the old "stage in gsr-blueprint" convention).`,
-    pros:`Clean history, one-click revert, AI exploration stays off main`,cons:`One extra step per feature`},
-   {id:'direct',label:`Commit straight to main`,tag:'fast',
-    why:`No branches, just commit.`,pros:`Zero overhead`,cons:`No safety net; a bad AI session pollutes main and is hard to unwind`}
-  ],
-  rec:`Squash-merge workflow, building in gsr-automation-v2. It is the seatbelt for AI-directed work: messy exploration lives on a branch, only the locked result lands on main.`,
-  specs:[[`Target repo`,`gsr-automation-v2 (build here directly)`],[`Branches`,`feat/ chore/ fix/, squash to main`],[`Pre-commit`,`npx tsc --noEmit and npx eslint must pass`]]
- },
- repo:`gsr-automation-v2 is the current architecture of record (Era 3: Supabase + Next.js, accepted 2026-05-23, superseding the NAS and Notion eras). It already uses branches and squash merges. The earlier docs said "stage in gsr-blueprint until a deliberate migration"; you have now chosen to build in gsr-automation-v2 directly, so treat that as the active decision.`,
- tell:`Work in the gsr-automation-v2 repo. Always create a feat/ or fix/ branch, open a draft PR, and squash-merge to main. Run npx tsc --noEmit and npx eslint before committing. Pull before starting and push when you stop. Never commit secrets; pull credentials from 1Password at runtime. Do not stage new work in gsr-blueprint; build in gsr-automation-v2.`
-},
-{
- id:'m1',phase:'Pre-Production',num:1,title:'Triggers: Scheduled Jobs, Webhooks & Edge Functions',station:'TRIGGER',
- hook:'https://www.youtube.com/watch?v=-MTSQjw5DrM',
+ decision:{question:`Lock your workflow and pace.`,opts:[
+   {id:'staged',label:`Branches + draft PRs + squash, build in gsr-automation-v2, manual-first dial`,tag:'recommended',rec:1,why:`The seatbelt for AI-directed work: messy exploration on a branch, only the locked result on main, and every feature starts manual then earns automation.`},
+   {id:'fast',label:`Commit to main, automate aggressively`,tag:'risky',why:`Fewer steps, but a bad session pollutes main and untrusted automation can reach air.`}],
+  specs:[[`Repo`,`gsr-automation-v2`],[`Flow`,`feat/fix branch, draft PR, squash`],[`Dial`,`Manual -> Prompt handoff -> Auto, per feature`]]},
+ repo:`gsr-automation-v2 is the architecture of record (Supabase + Next.js 16, ADR-0012). Branches + squash already in use. Build here, never in gsr-blueprint.`,
+ tell:`Work in gsr-automation-v2. Always a feat/ or fix/ branch, draft PR, squash merge; run npx tsc --noEmit and npx eslint before commit. Honor the David Rule: automation reads cloud APIs and writes the database only, never ProPresenter/ATEM/Companion/QNAP/Tailscale. Store a per-feature maturity setting (manual/handoff/auto) in app_config so automation is a switch, not a rebuild.`},
+
+{id:'m1',num:1,phase:'Pre-Production',station:'INTAKE',title:'Intake: Scripts + the Lower-Thirds File',mat:'manual',
  blueprint:[
-  {q:`What should kick off the pipeline?`,type:'select',opts:[`A file landing in Dropbox (webhook)`,`A daily clock (scheduled)`,`Both, for different stages`]},
-  {q:`Describe the trigger you want and any filename or relevance rule (e.g. show_season_episode).`,type:'text'}
+  {q:`How do scripts get into the system first?`,opts:[`I upload them per segment (manual)`,`AI writes them`,`Pulled from Rundown Creator`]},
+  {q:`Are lower thirds required when a script is uploaded?`,opts:[`No, the LT file is separate and optional`,`Yes, always together`,`Only for interviews`]}
  ],
- lesson:`<p>Automation needs a starting gun. Two kinds. A <b>scheduled trigger</b> (cron) runs code on a clock: "every day at 7am." A <b>webhook</b> is the opposite: an outside service pushes a message to your URL the instant something happens, so you react immediately instead of polling and waiting.</p>
- <p>In v2 the real entry point is a webhook. A broadcast master lands in a per-show <b>Dropbox</b> folder, Dropbox calls a <b>Supabase Edge Function</b> (a small public HTTPS endpoint that runs your code), and that kicks off the pipeline. If the webhook ever misses, a cursor poll of the Dropbox folder is the fallback. Filenames map to episodes as <code>show_season_episode</code>; GSM is the one exception that needs a manual transcript cross-reference.</p>
- <p>The 30 GB problem: streaming a full video master is the failure-prone step. The fix is to also drop a small <b>audio-only companion</b> beside it, so transcription streams ~30 MB instead of ~30 GB. Scheduled jobs still have a place later (an RSS research sweep), where Make.com or self-hosted n8n can run them, but the core trigger is the Dropbox webhook.</p>`,
- analogy:`Polling is phoning the post office every ten minutes to ask if your package arrived. A webhook is the courier ringing your doorbell the moment it lands. The audio companion is shipping a one-page summary alongside the crate, so you can read what arrived without unpacking the whole thing.`,
- facts:[
-  {k:`v2 trigger`,v:`Dropbox folder-watch to a Supabase Edge Function webhook`},
-  {k:`Fallback`,v:`Cursor poll of /files/list_folder`},
-  {k:`Companion`,v:`Audio-only file: stream ~30MB not ~30GB`},
-  {k:`Make vs n8n`,v:`Make ~$10.59/mo GUI; n8n Starter $24/mo HALTS on cap`,vr:true}
- ],
+ lesson:`<p>You keep your own process for research, guests, outreach, and writing. The system <b>starts by ingesting what you produce.</b> You upload a <b>script per segment</b> as plain teleprompter text; prerecorded segments come in as their <b>transcript</b> instead.</p>
+ <p><b>Lower thirds are a separate, optional file</b>, never required at upload, importable at any time for any segment. Parsing that file into rows is deterministic, not AI, so it is safe: upload, preview counts, type YES, it lands. Script writing automation is a later phase; we leave the hook and do not turn it on.</p>`,
+ analogy:`Think of a loading dock, not a kitchen. You are not asking the system to cook the meal (write scripts), only to receive the crates (scripts) and the separate parts box (lower thirds) and shelve them correctly.`,
+ game:{type:'sort',h:'Route the upload',d:'Where does each item go on intake?',
+   binA:'Scripts table',binB:'Lower Thirds (separate file)',
+   items:[['Opening monologue teleprompter','A'],['Interview question script','A'],['Prerecorded THD transcript','A'],['The L3 variations document','B'],['Guest chyron lines','B']]},
  quiz:[
-  {q:`Webhook vs polling, what is the difference?`,o:[`Webhooks are slower`,`A webhook is pushed to you on the event; polling means you repeatedly ask and wait`,`They are the same`],a:1,e:`Webhooks react instantly and waste no calls; polling is the fallback when no webhook exists.`},
-  {q:`Why drop an audio-only companion next to the video master?`,o:[`To save Dropbox space`,`So transcription streams ~30MB instead of ~30GB, the failure-prone step`,`YouTube requires it`],a:1,e:`Large-file streaming is the brittle part; the small companion sidesteps it.`}
+  {q:`Why keep lower-thirds import separate from script upload?`,o:[`They are the same thing`,`Lower thirds and graphics are separate systems; the LT file is optional and added any time`,`To save space`],a:1,e:`You insisted: lower thirds and graphics never mix, and the LT file is optional.`},
+  {q:`How does a prerecorded segment enter?`,o:[`Someone retypes it`,`As its transcript standing in for the script`,`It is skipped`],a:1,e:`Prerecorded roll-ins come in as transcripts.`}
  ],
- decision:{question:`What fires the core pipeline?`,
-  opts:[
-   {id:'edge',label:`Dropbox webhook to a Supabase Edge Function (+ audio companion)`,tag:'recommended',rec:true,
-    why:`Master lands in Dropbox, Dropbox calls a Supabase Edge Function that starts the pipeline; a small audio companion makes transcription cheap. Cursor polling is the fallback.`,
-    pros:`Instant, in-stack, cloud (obeys the law), free tier`,cons:`The public endpoint must stay reachable; filename mapping needs care for GSM`},
-   {id:'cron',label:`A scheduled poll instead`,tag:'simpler',
-    why:`Check the folder on a timer.`,pros:`No webhook plumbing`,cons:`Latency, wasted calls; only sensible as the fallback`}
-  ],
-  rec:`Dropbox webhook to a Supabase Edge Function, with the audio companion. Keep cursor polling as the fallback only. Reserve Make.com or n8n for the later RSS research sweep, and never poll faster than every 30 minutes there to dodge execution caps.`,
-  specs:[[`Trigger`,`Dropbox folder-watch to Supabase Edge Function`],[`Mapping`,`show_season_episode; GSM is manual`],[`Companion`,`Audio-only file beside the master`],[`Fallback`,`Cursor poll of the Dropbox folder`]]
- },
- repo:`This is the Stage 2 trigger for gsr-automation-v2: a Dropbox app (full scope, creds in 1Password) plus a Supabase Edge Function as the public webhook. The Supabase project (lafkbxypmciopebentxp) already hosts Edge Functions; this adds the Dropbox endpoint, not a new app.`,
- tell:`Build the pipeline trigger as a Dropbox folder-watch webhook into a Supabase Edge Function (public HTTPS endpoint) in gsr-automation-v2. Map filenames as show_season_episode and flag GSM for manual cross-reference. Require an audio-only companion file so transcription streams ~30MB. Implement cursor polling of /files/list_folder as the fallback. Credentials via 1Password.`
-},
-{
- id:'m2',phase:'Pre-Production',num:2,title:'Guest Data Layer: SQL, Postgres & Supabase',station:'GUEST DB',
- hook:'https://www.youtube.com/watch?v=zsjvFFKOm3c',
+ decision:{question:`Lock the intake model.`,opts:[
+   {id:'manual',label:`Manual upload: scripts per segment, LT file optional and any-time`,tag:'recommended',rec:1,why:`Works off the bat, keeps your editorial control, and leaves the script-generation hook for later.`},
+   {id:'autowrite',label:`AI writes scripts now`,tag:'later',why:`You do not trust auto-scripting yet; deferred to a later phase.`}],
+  specs:[[`Scripts`,`one row per (episode, segment), teleprompter text`],[`Lower thirds`,`separate optional file, import any time, deterministic parse`],[`Prerecorded`,`transcript as the script`]]},
+ repo:`Uses the scripts table (upsert per episode+segment). The graphics table holds lower thirds (to be renamed lower_thirds). Auto-extraction from scripts stays OFF; LTs come from your file.`,
+ tell:`Build manual intake first: upload a script per (episode, segment) into the scripts table; a separate, optional lower-thirds file imports any time into the lower-thirds table via dry-run + type YES. Prerecorded segments ingest as transcripts. Keep script-generation as a deferred hook, do not enable it.`},
+
+{id:'m2',num:2,phase:'Pre-Production',station:'LOWER THIRDS',title:'Lower Thirds: the Variation Picker',mat:'manual',
  blueprint:[
-  {q:`How should the no-repeat rule work?`,type:'select',opts:[`No guest twice in a filming cycle`,`No guest twice per season`,`Soft flag only, I decide`]},
-  {q:`What fields define a guest, and what statuses move them through the pipeline? List them.`,type:'text'}
+  {q:`How do you choose the final lower third?`,opts:[`Pick 1 of 3 variations per line`,`Always use the first`,`Type a new one`]},
+  {q:`Where do approved lower thirds go?`,opts:[`Their own ProPresenter presentation`,`Rundown Creator`,`The graphics tracker`]}
  ],
- lesson:`<p>You need people, which means a real database. <b>A table</b> is a grid: each row a guest, each column a field. <b>A primary key</b> uniquely identifies a row; a <b>foreign key</b> links a guest to an episode without copying details. You change data with SQL: <code>SELECT</code> to find, <code>INSERT</code> to add, <code>UPDATE</code> to change, and <code>ON CONFLICT</code> to upsert.</p>
- <p>The stack uses <b>PostgreSQL</b>, the most capable open-source relational database: it enforces structure, handles JSON when you want a flexible field, supports Row-Level Security, and is what AI tools know best, so generated SQL is usually correct. You will not run a server. <b>Supabase</b> hosts Postgres for you. The project already exists with 46 migrations and 20 tables; guests already holds 175 rows.</p>
- <p>Migrations (versioned schema changes) must be <b>idempotent</b>: written with <code>IF NOT EXISTS</code> and <code>CREATE OR REPLACE</code> so re-running one is a harmless no-op. That is what makes AI-generated, repeatedly-edited migrations safe.</p>`,
- analogy:`A relational database is a production binder with tabbed sections. The Guests tab has one page per guest with the same fields every time. The Episodes tab references guest pages by page number (the key) instead of recopying everyone. Change a guest's number once and every episode pointing to that page is instantly correct.`,
- facts:[
-  {k:`Postgres`,v:`Relational, constraints, JSON, RLS, AI-friendly`},
-  {k:`Project`,v:`lafkbxypmciopebentxp, 20 tables, 46 migrations`},
-  {k:`Guests`,v:`175 rows already in the table`},
-  {k:`Migrations`,v:`Idempotent: IF NOT EXISTS / CREATE OR REPLACE`}
- ],
+ lesson:`<p>A clean spreadsheet, one row per lower third. Each row offers <b>three variations</b> (Primary, Var 1, Var 2); you pick one, with a live <b>character count</b> colored against the 55 to 65 band. Then one <b>Send</b> button formats them ALL CAPS, validates the band, asks you to type YES, and pushes to the <b>Lower Thirds presentation</b> in ProPresenter.</p>
+ <p>Rules: ALL CAPS; 55 to 65 characters, never over 65; the pipe character only for a <code>NAME | ORG | FIELD</code> chyron; colon for topic lines. Lower thirds <b>never</b> go to Rundown Creator and live in a different ProPresenter presentation than graphics.</p>`,
+ analogy:`Like picking the best take of a line read. Three takes are recorded; you listen and circle one, then the whole reel goes to air. You are not rewriting, you are selecting.`,
+ game:{type:'trim',h:'Make it fit',d:'Pick the variation that lands in the 55 to 65 band, ALL CAPS, no banned punctuation.',
+   options:[['THE GREEN RIVER CUTS STRAIGHT THROUGH A SOLID MOUNTAIN RANGE',60,1],['the green river cuts through a mountain',39,0],['A RIVER THAT, against all odds, CARVES THROUGH HARD ROCK -- WOW',62,0]]},
  quiz:[
-  {q:`What is a foreign key for?`,o:[`Encrypting a column`,`Linking a row in one table to a row in another`,`Sorting results`],a:1,e:`It connects related rows (guest to episode) without duplicating data.`},
-  {q:`Why idempotent migrations?`,o:[`They run faster`,`They can be re-run safely as a no-op, so half-finished migrations are recoverable`,`They hide errors`],a:1,e:`Re-running a clean migration changes nothing, which makes AI-edited migrations safe.`},
-  {q:`Why Postgres over a single-file database like SQLite here?`,o:[`SQLite is always slower`,`A multi-user web app needs RLS and a hosted API, which Supabase/Postgres provides`,`SQLite cannot store text`],a:1,e:`Era 1 tried SQLite on the NAS; the multi-user app with row-level security is squarely Postgres territory.`}
+  {q:`A chyron assembles to 71 characters. What happens?`,o:[`It ships`,`It is over 65, so it is flagged and trimmed (chyron truncates to 62 + ellipsis)`,`It wraps`],a:1,e:`65 is the hard ceiling.`},
+  {q:`Do lower thirds go to Rundown Creator?`,o:[`Yes`,`No, only graphics do; lower thirds have their own ProPresenter presentation`,`Sometimes`],a:1,e:`Lower thirds and graphics are fully separate.`}
  ],
- decision:{question:`How do you enforce the no-repeat-within-cycle rule?`,
-  opts:[
-   {id:'dbcheck',label:`A status field + a query that excludes recently-aired guests`,tag:'recommended',rec:true,
-    why:`Store a status and last-aired date; the matcher filters out anyone aired this cycle automatically.`,
-    pros:`Auditable, automatic, lives in the data`,cons:`Needs the contact list normalized into the table`},
-   {id:'softflag',label:`Soft flag only, you decide each time`,tag:'manual',
-    why:`Warn but never block.`,pros:`Maximum control`,cons:`Relies on memory; defeats automation`}
-  ],
-  rec:`Status field plus a filtering query. The unglamorous unblock is normalizing the existing guest data into the table once; that one afternoon buys months of automatic matching.`,
-  specs:[[`Statuses`,`not_contacted / pitched / confirmed / booked / aired`],[`Rule`,`Matcher excludes guests aired in the current cycle`],[`Source`,`Normalize the guest contact sheet + data-intake into the table`]]
- },
- repo:`The guests table already exists in the Supabase project with 175 rows and RLS. Adding the no-repeat logic is a migration (a status enum + a last-aired field) plus a query, not a new system. Keep migrations idempotent and run list_migrations before writing SQL.`,
- tell:`In the existing Supabase project (lafkbxypmciopebentxp), write an idempotent migration adding a guest status enum (not_contacted, pitched, confirmed, booked, aired) and a last-aired field, with RLS policies. The matcher must exclude guests aired in the current cycle using SQL, not a read-modify-write in a route. Run list_migrations first. We are on Postgres.`
-},
-{
- id:'m3',phase:'Pre-Production',num:3,title:'Outreach: Python, Email & Secrets',station:'OUTREACH',
- hook:'https://www.youtube.com/watch?v=x7X9w_GIm1s',
+ decision:{question:`Lock the lower-thirds flow.`,opts:[
+   {id:'pick3',label:`3-variation picker + char band + one Send to the LT presentation`,tag:'recommended',rec:1,why:`Simple, fast, keeps your eye on the band, and pushes formatted to the right ProPresenter presentation.`},
+   {id:'auto',label:`Auto-pick a variation, no review`,tag:'risky',why:`A wrong chyron could reach air; keep the human pick.`}],
+  specs:[[`Row`,`beat, l3_type, 3 variations, char count`],[`Rules`,`ALL CAPS, 55-65, pipe only for chyron`],[`Send`,`format + type YES + push to LT presentation (not RC)`]]},
+ repo:`Lower thirds = the graphics table today (rename to lower_thirds). 15 l3_type values; regenerate gives 3 variations. Separate from production_graphics.`,
+ tell:`Build the Lower Thirds page as a spreadsheet: one row per beat with l3_type and 3 selectable variations, live char count colored against 55-65 (hard ceiling 65, ALL CAPS, pipe only for NAME | ORG | FIELD chyrons). A single Send formats, validates, requires type YES, then pushes the chosen lines to the Lower Thirds ProPresenter presentation. Never push lower thirds to Rundown Creator.`},
+
+{id:'m3',num:3,phase:'Pre-Production',station:'GRAPHICS',title:'Graphics: Ideas, Approval & the Tracker',mat:'manual',
  blueprint:[
-  {q:`Who approves outreach before it sends?`,type:'select',opts:[`AI drafts, I always send manually`,`AI sends first-touch, I review the rest`,`Fully automatic once confirmed`]},
-  {q:`Which templates and CC conventions apply, and how should "do not contact" be handled?`,type:'text'}
+  {q:`When are graphics approved?`,opts:[`I approve ideas, then the team designs`,`After they are designed`,`Never, auto-add`]},
+  {q:`What unlocks a push to ProPresenter?`,opts:[`Status Created + filename entered`,`Just approval`,`Nothing, it is automatic`]}
  ],
- lesson:`<p>Reaching out runs in Python, matching the existing davidrives-mail tooling, because email handling is in Python's standard library. Three modules cooperate: <b>imaplib</b> reads the inbox (IMAP), <b>smtplib</b> sends mail (SMTP), and <b>email</b> builds the message (subject, body, attachments).</p>
- <p>The mailbox is on cPanel, so the details are specific: IMAP on <b>port 993 (SSL)</b> with <code>IMAP4_SSL</code>, and SMTP on <b>port 465 (implicit TLS)</b> with <code>SMTP_SSL</code>. Using 465 is why you use <code>SMTP_SSL</code> directly rather than the port-587 <code>starttls()</code> dance.</p>
- <p><b>Secrets never get hardcoded.</b> Credentials come from 1Password at run time via the CLI; a reference resolves to the real value only while the script runs and never lands on disk or in Git. In v2 the current outreach scope is light: track which guests were contacted, and keep the do-not-contact list a manual field with an "unverified" marker, because parsing DNC out of the email archive is the fragile part and is deferred.</p>`,
- analogy:`imaplib is the clerk who opens the mailbox and hands you each letter; smtplib is the clerk who drops finished letters in the outgoing tray; the email module is the assistant who folds the letter and clips on attachments. 1Password is the office safe: the combination is spoken for the three seconds it takes to open it, then forgotten, never written on a sticky note.`,
- facts:[
-  {k:`IMAP`,v:`port 993 SSL, IMAP4_SSL`},
-  {k:`SMTP`,v:`port 465 implicit TLS, SMTP_SSL`},
-  {k:`Secrets`,v:`1Password op refs; never hardcode`},
-  {k:`v2 scope`,v:`Track contacted; DNC stays manual for now`}
- ],
+ lesson:`<p>Graphics are <b>separate</b> from lower thirds: designed visual assets (title cards, b-roll, screenshots). Flow: generate <b>ideas</b>, you <b>approve</b>, the design team picks them up on the <b>Graphics Tracker</b> (your monthly Google Sheet structure: Segment, Graphic #, Type, Description, Status, Assigned To, Notes; Show 1 to 5 tabs).</p>
+ <p>Statuses run <b>Not Started, In Progress, Created, Loaded In</b>. When a row hits <b>Created and a filename is entered</b>, the file is pulled from the Videoedit server and a <b>Push to ProPresenter</b> action lights up. The page shows the script <b>side by side</b> with the spot each graphic appears highlighted (2 to 3 sentences of context), so interns know what a b-roll clip is for before sourcing from Storyblocks, Dreamstime, or Envato.</p>`,
+ analogy:`The tracker is a kitchen ticket rail. A ticket (graphic idea) is approved and clipped up; a cook (Isaac, Jakob, Jeremiah) takes it, plates it (Created + filename), and only a plated dish reaches the pass (ProPresenter). No ticket, no plate; no plate, no pass.`,
+ game:{type:'order',h:'Status flow',d:'Tap the four statuses in the order a graphic moves through them.',
+   items:['Created','Not Started','Loaded In','In Progress'],correct:['Not Started','In Progress','Created','Loaded In']},
  quiz:[
-  {q:`cPanel SMTP is on port 465. Which do you use?`,o:[`SMTP() then starttls()`,`SMTP_SSL() directly`,`IMAP4_SSL()`],a:1,e:`Port 465 is implicit TLS, so SMTP_SSL connects encrypted from the start. starttls() is the port-587 pattern.`},
-  {q:`Why fetch secrets from 1Password at run time instead of a committed .env?`,o:[`It is faster`,`Plaintext secrets on disk or in Git leak; op refs resolve only at run time and stay off disk`,`Python requires it`],a:1,e:`A file containing only op references is even safe to commit, because the real values live in the vault.`}
+  {q:`What is the gate to push a graphic to ProPresenter?`,o:[`Approval alone`,`Status Created with a filename entered`,`Nothing`],a:1,e:`Created + filename triggers the pull-from-folder and the push.`},
+  {q:`Why the side-by-side script with the highlight?`,o:[`Decoration`,`So interns see what a b-roll clip is for before sourcing it`,`To edit the script`],a:1,e:`Context drives the right clip choice.`}
  ],
- decision:{question:`Set the send/approval boundary for outreach.`,
-  opts:[
-   {id:'draftonly',label:`AI drafts every email; you send manually`,tag:'recommended',rec:true,
-    why:`Drafts land in your client for review. AI never sends guest email directly. DNC stays a manual, marked field until email parsing is built.`,
-    pros:`Zero risk of a bad auto-send to a real guest`,cons:`A manual click per batch`},
-   {id:'auto',label:`Auto-send first-touch, review the rest`,tag:'aggressive',
-    why:`Templated cold outreach goes automatically.`,pros:`Less clicking`,cons:`A templating bug emails real people the wrong thing, unrecoverable`}
-  ],
-  rec:`Draft-only, human-send. The cost is one click; the downside it prevents is a malformed email to a credentialed scientist. Note that the davidrives-mail Dovecot auth smoke test shipped blocked, so re-test against the live server before relying on send.`,
-  specs:[[`IMAP`,`port 993 SSL`],[`SMTP`,`port 465 SSL`],[`Guardrail`,`AI drafts; human sends`],[`DNC`,`Manual field + unverified marker (email parse deferred)`]]
- },
- repo:`davidrives-mail has dmail/imap_client.py and dmail/smtp_client.py for the cPanel mailbox, with a known-blocked Dovecot auth smoke test to re-run live. In v2, outreach v1 is just contact-tracking in the guests table; the full email automation and DNC-from-email parse are later phases. Credentials via 1Password.`,
- tell:`Use Python imaplib.IMAP4_SSL on 993 and smtplib.SMTP_SSL on 465 for the cPanel mailbox. Pull credentials from 1Password, never hardcoded. Generate drafts only; do not auto-send to guests. Keep do-not-contact a manual marked field for now. Re-run the Dovecot auth smoke test against the live server first.`
-},
-{
- id:'m4',phase:'Pre-Production',num:4,title:'Script & Voice: Claude API + the Fenced Block',station:'SCRIPT/VOICE',hook:'',
+ decision:{question:`Lock the graphics flow.`,opts:[
+   {id:'tracker',label:`Idea -> approve -> tracker (your sheet layout) -> Created+filename -> push`,tag:'recommended',rec:1,why:`Matches your live Google Sheet so interns do not relearn, with the Created gate protecting the push.`},
+   {id:'auto',label:`Auto-generate and auto-push graphics`,tag:'risky',why:`Graphics are visual and human-made; keep approval and the Created gate.`}],
+  specs:[[`Tracker`,`Segment|#|Type|Description|Status|Assigned|Notes; Show 1-5`],[`Statuses`,`Not Started, In Progress, Created, Loaded In`],[`Gate`,`Created + filename -> pull from Videoedit -> push`],[`Sources`,`Storyblocks, Dreamstime, Envato`]]},
+ repo:`production_graphics is the tracker (distinct from lower thirds). Files on the Videoedit server, filename is the key. Side-by-side script highlight + source links are new UI.`,
+ tell:`Build the Graphics page to mirror the monthly Google Sheet tracker (columns Segment, Graphic #, Type, Description, Status, Assigned To, Notes; Show 1-5 tabs; statuses Not Started, In Progress, Created, Loaded In; add the Book Cover type). Show the script side by side with each graphic's spot highlighted (2-3 sentences). On Created + filename, enable a human-triggered Push to ProPresenter that pulls the file from the Videoedit server by filename. Add Storyblocks/Dreamstime/Envato source links. Graphics are separate from lower thirds.`},
+
+{id:'m4',num:4,phase:'Pre-Production',station:'RUNDOWN',title:'Rundown Build (Graphics to Rundown Creator)',mat:'manual',
  blueprint:[
-  {q:`Which segments should AI draft or assist?`,type:'select',opts:[`Only segways/teases`,`Interview questions + segways`,`Lower-thirds extraction only, scripts are mine`]},
-  {q:`Describe the target voice in a sentence, and list any locked verbatim phrases that must never change.`,type:'text'}
+  {q:`How does the rundown get updated?`,opts:[`Manual confirm with a preview first`,`Auto on every change`,`I do it by hand in RC`]},
+  {q:`If there are more graphics than rundown rows?`,opts:[`Add rows automatically in the right place`,`Skip the extras`,`I add them by hand`]}
  ],
- lesson:`<p>Here AI writes and reads. The Claude API takes a <b>messages</b> array plus a <b>system prompt</b> and returns text; in Node you call it through the <b>Anthropic SDK</b> (<code>@anthropic-ai/sdk</code>) for typed responses and retries. The model is the <code>ANTHROPIC_REGENERATE_MODEL</code> env var, default <code>claude-opus-4-7</code>, at <code>max_tokens 4096</code>. Every call is <b>server-side only</b>; the key never reaches the browser.</p>
- <p>Two paths produce lower thirds. Scripts are drafted in Claude Desktop and carry a fenced block (a <code>===LOWER-THIRDS===</code> section) that is parsed <b>deterministically</b> into 15 lower thirds per episode, no generation involved. Separately, <code>/api/extract-lower-thirds</code> can use Claude to extract them from raw script text. For an interview with a booked guest it pre-builds the chyron as <code>NAME | ORG | FIELD</code>, truncated to 62 characters plus an ellipsis if it exceeds 65.</p>
- <p><b>Voice is taught with restraint.</b> Claude Skills (folders with a SKILL.md) package the GSR voice. The trap is feeding fifty raw transcripts: that yields surface mimicry that reads like parody. The reliable pattern from general few-shot practice is a short voice guide plus three to six varied exemplars and explicit do-not rules, then a Vale prose-linter pass to catch banned filler.</p>`,
- analogy:`The fenced block is a printed packing slip inside the box: you read the fields off it exactly, you do not guess what is inside. And teaching the voice is coaching an impressionist: fifty hours of tape and they nail the cough but miss the person; a one-page sketch, three sharp clips, and a list of tics to avoid, and they actually become the voice. Vale is the director who buzzes when a banned word slips out.`,
- facts:[
-  {k:`Model`,v:`ANTHROPIC_REGENERATE_MODEL, default claude-opus-4-7`},
-  {k:`Lower thirds`,v:`15 per episode; fenced block parsed deterministically`},
-  {k:`Chyron`,v:`NAME | ORG | FIELD, truncate 62 + ellipsis over 65`},
-  {k:`Claude Skills`,v:`Launched Oct 16 2025; skill-creator evals added Mar 2026`,vr:true}
- ],
+ lesson:`<p>Approved <b>graphics</b> (not lower thirds) are written into Rundown Creator. Each graphic gets <b>its own row</b>: the <b>Graphics</b> column gets the graphic, the <b>Last Line</b> column gets the final line before the next graphic, and <b>Notes</b> holds the duration in <b>sentences</b> until the next graphic. Both are computed from where each graphic sits in the script.</p>
+ <p>Your rundowns for the year already exist with a default count of rows. The build is <b>fluid</b>: it deletes unused rows and inserts new ones in the right place to match the real graphic count, updating in place. You confirm with a <b>preview that mirrors the RC columns</b> before anything writes.</p>`,
+ analogy:`Like setting a dinner table to the actual headcount. The table is pre-laid for ten; eight show up, you quietly clear two settings; twelve show up, you add two. You glance at the whole table (the preview) before guests sit.`,
+ game:{type:'sort',h:'Which column?',d:'Where does each piece go in Rundown Creator?',
+   binA:'Graphics column (1)',binB:'Last Line column (4)',
+   items:[['The approved graphic','A'],['The last spoken line before the next graphic','B'],['B-roll: river canyon','A'],['The cut cue to switch graphics','B']]},
  quiz:[
-  {q:`Where does the Claude API key live?`,o:[`In the React component for speed`,`Only on the server, e.g. the extract or regenerate route`,`In browser localStorage`],a:1,e:`The SDK even needs a dangerouslyAllowBrowser flag to run client-side, which you never use.`},
-  {q:`Best way to capture David's voice in a Skill?`,o:[`Feed 50 raw transcripts`,`A short voice guide + 3-6 varied exemplars + do-not rules, then a Vale pass`,`Ask Claude to imitate from memory`],a:1,e:`Few-shot with curated exemplars beats a flood of samples, which overfits to surface tics.`},
-  {q:`How are the 15 lower thirds most reliably produced from a Claude Desktop script?`,o:[`Re-generated by AI each time`,`Parsed deterministically from a fenced ===LOWER-THIRDS=== block`,`Typed by hand`],a:1,e:`A fixed fenced block is parsed, not generated, so the result is identical every run.`}
+  {q:`What goes in the Notes column for a graphic?`,o:[`The title`,`The duration in sentences until the next graphic`,`The assignee`],a:1,e:`Notes = sentence-duration, auto-computed from script position.`},
+  {q:`Too many graphics for the default rows. The build...`,o:[`drops extras`,`inserts rows in the right place automatically`,`asks you each time`],a:1,e:`Fluid insert/delete keyed by segment + beat, update in place.`}
  ],
- decision:{question:`How do you package and gate the GSR voice?`,
-  opts:[
-   {id:'curated',label:`Voice Skill with curated exemplars + Vale gate`,tag:'recommended',rec:true,
-    why:`A compiled voice guide, 3-6 exemplars, banned-phrase rules, and a Vale lint pass after generation.`,
-    pros:`Mature pattern, runs in Claude, avoids parody`,cons:`Requires curation discipline`},
-   {id:'raw',label:`Feed all raw transcripts`,tag:'tempting trap',
-    why:`More data feels safer.`,pros:`Simple to assemble`,cons:`Documented mimicry problem; output reads as parody`}
-  ],
-  rec:`Curated exemplars plus a Vale gate. For accuracy: there is no official Anthropic "antislop" research, so this rests on standard few-shot guidance plus a banned-phrase linter, which is enough.`,
-  specs:[[`Skill`,`Voice guide + 3-6 exemplars + do-not rules`],[`Gate`,`Vale custom rule pack`],[`Locked phrases`,`Preserve verbatim show phrases exactly`]]
- },
- repo:`The dashboard already calls Claude server-side at /api/extract-lower-thirds (returns a payload, no DB write) and /api/regenerate, using @anthropic-ai/sdk with the default model claude-opus-4-7. Voice Skills extend this; the server-side pattern is already correct. Reuse the repo PROMPT_LIBRARY.md and GSR_METADATA_PATTERN.md shapes.`,
- tell:`Call Claude only from a server route using @anthropic-ai/sdk; read the model from ANTHROPIC_REGENERATE_MODEL (default claude-opus-4-7), max_tokens 4096. Parse the fenced ===LOWER-THIRDS=== block deterministically into 15 lower thirds; build chyrons as NAME | ORG | FIELD truncated to 62 + ellipsis over 65 chars. Package the voice as a Skill with a short guide plus 3-6 exemplars and do-not rules, not raw transcripts, then run Vale. Preserve locked verbatim phrases.`
-},
-{
- id:'m5',phase:'Pre-Production',num:5,title:'Validating AI Output: Zod + Dry-Run Import',station:'VALIDATE',hook:'',
+ decision:{question:`Lock the rundown push.`,opts:[
+   {id:'preview',label:`Manual confirm via an RC-mirror preview; fluid insert/delete; update in place`,tag:'recommended',rec:1,why:`The TD runs from this, so you eyeball a column-accurate preview before any write, and rows reconcile to the real count automatically.`},
+   {id:'auto',label:`Auto-write to RC on every change`,tag:'risky',why:`RC is flaky and feeds the TD; keep the preview + confirm.`}],
+  specs:[[`Per graphic`,`own row: Graphics col 1, Last Line col 4, Notes = sentences`],[`Reconcile`,`insert/delete rows to match count, update in place`],[`Confirm`,`RC-mirror preview, then write`],[`API`,`insertRow/setRowProperties/deleteRow (RC write API)`]]},
+ repo:`/api/rc-explore reads; the build adds a write path (insertRow, setRowProperties, deleteRow, reorderRows). RC returns errors as HTTP 200, so always read the body. Row codes B2..F8. NEEDS: Daniel to set up RC API access (key + token in 1Password).`,
+ tell:`Build the rundown push as a manual-confirm action with a preview that mirrors the Rundown Creator columns. Write approved GRAPHICS only (never lower thirds): each graphic its own row, Graphics col 1 = the graphic, Last Line col 4 = the final line before the next graphic, Notes = sentence-duration, both computed from the script position. Reconcile rows fluidly (insertRow / deleteRow) to the real count, update in place keyed by segment+beat. Always read the JSON body (RC returns errors as HTTP 200). Needs RC API key + token from 1Password.`},
+
+{id:'m5',num:5,phase:'Live',station:'PROPRES',title:'ProPresenter Load (the Read-Only Line)',mat:'manual',
  blueprint:[
-  {q:`What should happen when AI returns malformed data?`,type:'select',opts:[`Reject and retry`,`Reject and flag for human`,`Best-effort accept`]},
-  {q:`List the shapes AI output must conform to (e.g. lower third = {segment, type, text}).`,type:'text'}
+  {q:`How does automation touch ProPresenter?`,opts:[`It signals ready; a human loads it`,`It pushes live automatically`,`Never`]},
+  {q:`Lower thirds and graphics in ProPresenter?`,opts:[`Separate presentations`,`Same presentation`,`Not sure`]}
  ],
- lesson:`<p>Claude returns text that is supposed to be structured JSON. Supposed to is the problem. <b>TypeScript types vanish at run time</b>; they cannot check a value that arrives while the program runs. Anything crossing a boundary (an AI reply, a form, an API response) is <code>unknown</code> until something inspects it.</p>
- <p><b>Zod</b> is that inspector. You write a schema once; <code>.parse()</code> throws on bad data, <code>.safeParse()</code> returns a success/failure object you can branch on, and <code>z.infer</code> derives the TypeScript type from the same schema so there is one source of truth.</p>
- <p>v2 already lives this: <code>/api/import</code> is the single source of truth for the ingest contract, enforced with Zod, and it is <b>dry-run first</b>, you literally type YES to confirm before anything is written. The extraction route returns a <code>{ payload }</code> already shaped for import, and import answers with clear error codes (400 validation, 404 not found, 502 unparseable model output, 503 overloaded, 500).</p>`,
- analogy:`Zod is the QC engineer at ingest. The shooter swears the file is 1080p with clean audio; TypeScript is the email confirming that promise; Zod is the engineer who actually opens the file and checks before it reaches the edit bay. The dry-run "type YES" is the engineer showing you the manifest and waiting for your nod before anything is committed.`,
- facts:[
-  {k:`Why`,v:`TS types erase at run time; outside input needs a real check`},
-  {k:`parse vs safeParse`,v:`throw vs success/error object`},
-  {k:`v2 contract`,v:`/api/import is Zod-enforced, dry-run first (type YES)`},
-  {k:`SDK bridge`,v:`zodOutputFormat returns validated AI output`,vr:true}
- ],
+ lesson:`<p>ProPresenter is the one piece of live gear, so it is the sharpest test of the David Rule. Lower thirds and graphics live in <b>separate presentations</b>, inside the month's <b>5x show playlist templates</b>. A graphic only becomes loadable once its tracker status is <b>Created</b> with a filename.</p>
+ <p>The system <b>surfaces a ready signal and a human does the load</b>. No automation commands the production machine until you approve a tested path. Mapping each item to the right slide and position is real work you will define at your computer.</p>`,
+ analogy:`The dashboard is the on-deck circle, not the batter's box. It tells the loader exactly what is ready and where it goes; a person steps up and swings. The machine on air is never swung for it.`,
+ game:{type:'sort',h:'Clear to load?',d:'Which of these is cleared to push to ProPresenter?',
+   binA:'Cleared to load',binB:'Not yet',
+   items:[['Created + filename entered','A'],['Approved but not designed','B'],['In Progress, no file','B'],['Created, filename present','A']]},
  quiz:[
-  {q:`TypeScript already types things. Why add Zod?`,o:[`Zod is faster`,`Types disappear at run time, so outside data must be validated by inspecting the actual value`,`Zod replaces TypeScript`],a:1,e:`At run time only Zod (or hand-written checks) can confirm an AI reply matches the expected shape.`},
-  {q:`Which Zod method lets you branch instead of throwing?`,o:[`.parse()`,`.safeParse()`,`.infer()`],a:1,e:`safeParse returns success plus data or error, so you can route bad output to a human gate.`},
-  {q:`What does the dry-run "type YES" step protect against?`,o:[`Slow imports`,`Writing a bad batch to the database before a human confirms it`,`Schema drift`],a:1,e:`Nothing is committed until you confirm, so a malformed import is caught before it lands.`}
+  {q:`Who triggers the ProPresenter load?`,o:[`Automation, live`,`A human, from the ready signal`,`The TD only`],a:1,e:`Human-triggered; the machine stays off-limits to automation.`}
  ],
- decision:{question:`How strict is validation at the AI boundary?`,
-  opts:[
-   {id:'rejectflag',label:`safeParse, reject bad output and flag for human`,tag:'recommended',rec:true,
-    why:`Validate every AI reply and import with Zod; on failure do not write, surface it for review. Keep the dry-run confirm on import.`,
-    pros:`No malformed data reaches the database; failures are visible`,cons:`A human occasionally intervenes`},
-   {id:'retry',label:`Reject and silently retry`,tag:'risky',
-    why:`Auto-retry on bad output.`,pros:`Hands-off`,cons:`Hides a drifting prompt; can loop and burn tokens`}
-  ],
-  rec:`safeParse plus a human flag, using zodOutputFormat so the SDK validates for you, and keep the dry-run confirm. Bad AI output should be loud and quarantined, not silently retried.`,
-  specs:[[`Boundary`,`Every AI reply + every import`],[`Method`,`safeParse; flag failures; dry-run confirm`],[`Bridge`,`zodOutputFormat from @anthropic-ai/sdk helpers`]]
- },
- repo:`Zod already guards the ingest at /api/import (the contract of record, dry-run first). Extend the same discipline to validate the extract and regenerate output before it is shown or stored. Zod 4 is current.`,
- tell:`Validate all AI output and all imports with Zod before touching the database. Use safeParse and route failures to review rather than retrying silently. Keep /api/import dry-run first (type YES to confirm). For Claude calls use the SDK zodOutputFormat helper. Derive TS types with z.infer.`
-},
-{
- id:'m6',phase:'Pre-Production',num:6,title:'Graphics & Lower Thirds: the graphics table',station:'GRAPHICS',
- hook:'https://www.youtube.com/watch?v=zQnBQ4tB3ZA',
+ decision:{question:`Lock the ProPresenter posture.`,opts:[
+   {id:'signal',label:`System signals ready (on Created+filename); human loads; mapping defined later`,tag:'recommended',rec:1,why:`Captures the value while keeping the on-air machine human-operated.`},
+   {id:'autopush',label:`Auto-push to the live machine`,tag:'off-limits',why:`Against the David Rule until David approves a tested path.`}],
+  specs:[[`Gate`,`Created + filename`],[`Presentations`,`lower thirds and graphics separate`],[`Templates`,`monthly 5x show playlists`],[`Push`,`human-triggered; mapping is a Daniel TODO at his computer`]]},
+ repo:`ProPresenter (GSN-PropRes) is off-limits to automation. Mapping to slide/presentation/playlist is deferred (needs Daniel at his computer).`,
+ tell:`Do not command the production ProPresenter from automation. Surface a "ready to load" signal once a graphic is Created with a filename; a human loads it. Lower thirds and graphics map to separate presentations within the monthly 5x show playlist templates. Hold the slide/position mapping until Daniel defines it at his computer.`},
+
+{id:'m6',num:6,phase:'Production',station:'SHOOT',title:'The Shoot (the Hinge)',mat:'',
  blueprint:[
-  {q:`How many lower-thirds variations per beat do you want on regenerate?`,type:'select',opts:[`1`,`3 (the current default)`,`Depends on segment`]},
-  {q:`Define the guest chyron format and any review conventions you rely on.`,type:'text'}
+  {q:`During the live shoot, automation should...`,opts:[`Stay completely out of the live chain`,`Help drive the switcher`,`Push graphics live`]}
  ],
- lesson:`<p>Finalized scripts feed the graphics layer. To read the code here you need <b>TypeScript-lite</b>: a value can be a <code>string</code>, <code>number</code>, or <code>boolean</code>, and an <code>interface</code> describes an object's shape (a lower third has a segment, type, text, status). That is enough to verify generated code; you do not need generics yet.</p>
- <p>The data lives in Supabase in a table named <b>graphics</b>. One important correction to old notes: there is <b>no lower_thirds table</b> and never has been; the first migration's filename says "lower thirds" but its body creates <code>graphics</code>, and every query uses graphics. The storage bucket (for image assets) is the one thing actually named <code>lower-thirds</code>. The pipeline is: extract to a payload, import with Zod (dry-run), then review at <code>/lower-thirds</code> where you approve, reject, or regenerate (Claude returns 3 variations to adopt). Approved items appear at <code>/approved</code> and <code>/lower-thirds/ready</code>.</p>
- <p><b>The chyron rule</b> is fixed: <code>NAME | ORG | FIELD</code>, and if the assembled line exceeds 65 characters it is truncated to 62 plus an ellipsis. The same discipline as import applies to any external tracker you write: write a guarded, previewed range, never blind-write a sheet that has a header row.</p>`,
- analogy:`The graphics table is the locked props cabinet backstage: every lower third is a labeled item on a numbered shelf, and the review screen is the stage manager checking each one before it can be used. The chyron truncation is the gaffer tape rule that a name strap can only be so wide before it runs off the lower third.`,
- facts:[
-  {k:`Table`,v:`graphics (NOT lower_thirds, which never existed)`},
-  {k:`Bucket`,v:`Storage bucket named lower-thirds (image assets)`},
-  {k:`Review`,v:`/lower-thirds: approve / reject / regenerate (3 variations)`},
-  {k:`Chyron`,v:`NAME | ORG | FIELD, truncate 62 + ellipsis over 65`}
- ],
+ lesson:`<p>This is the hinge between everything you prepared and everything you will distribute. Nothing in this system touches the live broadcast chain during the shoot. The team records; the database waits. Pre-production fed ProPresenter; post-production picks up the finished master.</p>`,
+ analogy:`Mission control does not fly the rocket by hand mid-launch. It watches telemetry and is ready on the ground. During the shoot, your software is mission control, not the pilot.`,
+ game:{type:'sort',h:'Live show: allowed?',d:'During a live shoot, what may the system do?',
+   binA:'Allowed',binB:'Never',
+   items:[['Wait and watch','A'],['Hold prepared data in the DB','A'],['Send commands to ATEM','B'],['Author ProPresenter slides live','B']]},
  quiz:[
-  {q:`What does an interface describe in TypeScript?`,o:[`A network call`,`The shape of an object: which fields it has and their types`,`A CSS style`],a:1,e:`interface LowerThird { segment: string; type: string; text: string } lets the editor and AI verify the shape.`},
-  {q:`Which is true about the database table for lower thirds?`,o:[`It is called lower_thirds`,`It is called graphics; lower_thirds never existed (a documented phantom)`,`There are two tables`],a:1,e:`The migration filename misleads; the table is graphics. The name lower-thirds is only the storage bucket.`},
-  {q:`A guest chyron assembles to 71 characters. What happens?`,o:[`It is rejected`,`It is truncated to 62 characters plus an ellipsis`,`It wraps to two lines`],a:1,e:`The rule caps the line at 65 and truncates to 62 + ellipsis.`}
+  {q:`What does the system do during the live shoot?`,o:[`Drives playout`,`Nothing in the live chain; it waits`,`Edits the master`],a:1,e:`The shoot is fully hands-off for automation.`}
  ],
- decision:{question:`Lock the lower-thirds review contract.`,
-  opts:[
-   {id:'three',label:`Keep 3 regenerate variations + the chyron rule, reviewed before approve`,tag:'recommended',rec:true,
-    why:`Regenerate offers 3 Claude variations to adopt; the NAME | ORG | FIELD chyron rule and the 65-char truncation are enforced; nothing is approved unreviewed.`,
-    pros:`Human gate on every graphic; matches the built flow`,cons:`You encode the conventions precisely once`},
-   {id:'one',label:`Single auto-adopted variation, no review`,tag:'risky',
-    why:`Less clicking.`,pros:`Faster`,cons:`A wrong chyron reaches air with no gate`}
-  ],
-  rec:`Keep the 3-variation regenerate and the enforced chyron rule, reviewed at /lower-thirds before approval. This is the highest-value PRE automation and the human gate is cheap insurance.`,
-  specs:[[`Table`,`graphics in Supabase`],[`Variations`,`3 on regenerate, adopt one`],[`Chyron`,`NAME | ORG | FIELD, truncate 62 + ellipsis over 65`],[`Flow`,`extract to import (dry-run) to /lower-thirds review`]]
- },
- repo:`This is the built core of v2. Routes /lower-thirds (review), /approved and /lower-thirds/ready (ready to use). Data in the graphics table; image assets in the lower-thirds storage bucket. graphics currently has 0 rows only because no live episode import has been run yet; it is an operational milestone, not a defect. Do not reintroduce a lower_thirds table.`,
- tell:`Lower thirds live in the Supabase graphics table (there is no lower_thirds table; do not create one). The storage bucket is named lower-thirds for image assets. Keep the /lower-thirds review flow: approve, reject, or regenerate with 3 Claude variations to adopt. Enforce the chyron format NAME | ORG | FIELD, truncating to 62 + ellipsis over 65 chars.`
-},
-{
- id:'m7',phase:'Live',num:7,title:'Rundown Intake: REST Quirks & MCP',station:'RUNDOWN',
- hook:'https://www.youtube.com/watch?v=HyzlYwjoXOQ',
+ decision:{question:`Confirm the production posture.`,opts:[
+   {id:'handsoff',label:`Fully hands-off during the live shoot`,tag:'recommended',rec:1,why:`The David Rule made literal on the one night it matters most.`}],
+  specs:[[`Live chain`,`zero automation`],[`System role`,`hold prepared data; resume at post`]]},
+ repo:`No automation in the live broadcast chain. This module is the conceptual hinge between pre and post.`,
+ tell:`Encode that no automation touches the live broadcast chain during the shoot. The system holds prepared data and resumes at the post-production master handoff.`},
+
+{id:'m7',num:7,phase:'Post-Production',station:'TRANSCRIBE',title:'Transcription (Local, with Speakers)',mat:'manual',
  blueprint:[
-  {q:`Should the rundown auto-populate scripts, or stay manual with AI assist?`,type:'select',opts:[`Auto-pull scripts via the API`,`AI suggests, I paste`,`Stay fully manual`]},
-  {q:`What does the TD need from the rundown (fields, a printable binder)?`,type:'text'}
+  {q:`How should the audio for transcription be created?`,opts:[`Auto-extracted locally from the master (no Dropbox clutter)`,`Team uploads an audio file`,`Skip it`]},
+  {q:`Do you need to know who said what?`,opts:[`Yes, speaker labels matter`,`No, plain text is fine`]}
  ],
- lesson:`<p>Scripts often originate in <b>Rundown Creator</b>, a hosted rundown API, and this is where <b>MCP</b> earns its place. MCP (Model Context Protocol) is a standard way for an AI client like Claude to reach external tools: filesystems, Supabase, Rundown Creator. Think of it as a universal plug, so each tool implements one connector and each AI speaks one protocol.</p>
- <p>The v2 routes are <code>GET /api/rc-explore</code> (a passthrough that lists rundowns and rows and gets a script) and <code>/api/rc-import</code> (which maps Rundown Creator's 10 segment names into the 12-value internal segment enum and fixes Latin-1 to UTF-8 mojibake). There is a sharp, documented quirk: <b>Rundown Creator returns errors as HTTP 200 with a JSON error body</b>, not as an error status. So you must inspect the body, never trust the status code alone.</p>
- <p>Saving a script (<code>POST /api/scripts</code>, upserted per episode and segment) fires a chain: the <code>on_script_save</code> trigger calls <code>notify_script_extract()</code>, which invokes an <code>extract-on-script-save</code> Edge Function. That is the auto-extraction loop that turns a saved script into lower thirds. A flag, <code>app_config.auto_extract_apply</code>, gates it: <b>off by default</b>, so the Edge Function holds the result on the script row and writes nothing to <code>graphics</code> until you confirm it on the extract page; set it to true to auto-apply. That keeps the same human gate as the dry-run import.</p>`,
- analogy:`MCP is the XLR connector of AI tools: before a standard plug, every microphone had its own proprietary connector and a drawer of adapters; XLR means any compliant mic fits any compliant board. The 200-with-error-body quirk is a smoke detector that chirps "all clear" in the same tone whether or not there is smoke, so you learn to read the little display instead of trusting the chirp.`,
- facts:[
-  {k:`MCP`,v:`Standard AI-to-tool protocol; in the Linux Foundation AAIF since Dec 2025`,vr:true},
-  {k:`Quirk`,v:`Errors come back as HTTP 200 with a JSON error body`},
-  {k:`Routes`,v:`/api/rc-explore (read), /api/rc-import (map + fix mojibake)`},
-  {k:`Segments`,v:`Maps 10 RC names to the 12-value internal enum`},
-  {k:`Confirm step`,v:`auto_extract_apply off by default holds extraction until you confirm`}
- ],
+ lesson:`<p>No one makes an extra audio file that clutters Dropbox. A <b>local Mac automation</b> (Automator, Hazel, or fswatch) watches the editor's finished-master export, auto-extracts a small audio file with ffmpeg into a local folder, and transcribes. The team does nothing new.</p>
+ <p><b>Speaker differentiation matters</b> (it drives metadata, data, and social), but through <b>one tool</b>, not a service per speaker: <b>WhisperKit + SpeakerKit</b> (Mac-native) produces a speaker-labeled transcript plus captions, written to Supabase.</p>`,
+ analogy:`Like a court stenographer who also notes who is speaking. One person, one pass, a labeled transcript, not a separate microphone tech for each voice.`,
+ game:{type:'order',h:'Build the transcription pipeline',d:'Tap the steps in order.',
+   items:['WhisperKit + SpeakerKit transcribes','Master export lands locally','Transcript saved to Supabase','ffmpeg extracts small audio'],
+   correct:['Master export lands locally','ffmpeg extracts small audio','WhisperKit + SpeakerKit transcribes','Transcript saved to Supabase']},
  quiz:[
-  {q:`What problem does MCP solve?`,o:[`It speeds up Claude`,`It standardizes how AI clients connect to tools, replacing many custom integrations`,`It stores data`],a:1,e:`One connector per tool, one protocol per AI: the universal-plug idea.`},
-  {q:`Rundown Creator signals an error how?`,o:[`A 500 status`,`HTTP 200 with a JSON error body, so you must read the body`,`It throws an exception`],a:1,e:`The status lies; the error lives in the JSON body. Always inspect it.`},
-  {q:`What does saving a script set off?`,o:[`Nothing automatic`,`on_script_save trigger to notify_script_extract() to an extract-on-script-save Edge Function`,`A YouTube upload`],a:1,e:`That trigger chain is the auto-extraction loop from script to lower thirds.`},
-  {q:`By default, what happens to the auto-extracted lower thirds before they reach the review grid?`,o:[`They are written straight to graphics`,`They are held on the script row until you confirm on the extract page`,`They are emailed to you`],a:1,e:`auto_extract_apply is off by default, so the Edge Function holds the result for a human confirm before anything lands in graphics; set the flag true to auto-apply.`}
+  {q:`Why not have the team drop an audio file in Dropbox?`,o:[`It is fine`,`It clutters Dropbox and adds a step; extract locally instead`,`Dropbox cannot hold audio`],a:1,e:`Local auto-extraction keeps it clean and effortless.`},
+  {q:`How do you get speaker labels without a separate service?`,o:[`Two tools`,`One tool: WhisperKit + SpeakerKit`,`You cannot`],a:1,e:`A single Mac-native pipeline does transcript + diarization.`}
  ],
- decision:{question:`How do you handle rundown intake safely?`,
-  opts:[
-   {id:'guarded',label:`API intake via rc-explore/rc-import, checking the JSON body, not the status`,tag:'recommended',rec:true,
-    why:`Pull scripts through the passthrough, map the 10 segment names to the 12-value enum, fix mojibake, and treat HTTP 200 as possibly-an-error by reading the body.`,
-    pros:`Auto-pulls scripts; correct segment mapping; survives the 200-error quirk`,cons:`No public API docs; the body-check must be everywhere`},
-   {id:'manual',label:`Keep the rundown fully manual`,tag:'safe',
-    why:`No new failure modes.`,pros:`Zero risk`,cons:`A time tax every show`}
-  ],
-  rec:`API intake through rc-explore and rc-import, with a strict rule to inspect the JSON body on every call because errors arrive as HTTP 200. The time saved per show is large.`,
-  specs:[[`Read`,`GET /api/rc-explore`],[`Map`,`/api/rc-import: 10 RC names to 12-value enum + mojibake fix`],[`Quirk`,`Treat HTTP 200 as maybe-error; read the body`],[`Confirm`,`auto_extract_apply=false holds; confirm via /api/scripts/confirm-extraction`],[`Season-3 IDs`,`79, 81, 83, 82, 84`]]
- },
- repo:`Rundown Creator is reached via its MCP and the rc-explore / rc-import routes in v2. The Season-3 May rundown IDs were Show1=79, Show2=81, Show3=83, Show4=82, Show5=84. POST /api/scripts upserts per (episode_id, segment) and fires on_script_save to notify_script_extract() to the extract-on-script-save Edge Function.`,
- tell:`When integrating Rundown Creator in gsr-automation-v2, use the rc-explore (read) and rc-import (map + mojibake fix) routes, and ALWAYS inspect the JSON response body because Rundown Creator returns errors as HTTP 200, not an error status. Map the 10 RC segment names to the 12-value internal enum. Saving a script via /api/scripts should fire the on_script_save to extract-on-script-save chain. Gate that chain with app_config.auto_extract_apply (default false): when off, the Edge Function holds the extraction on the script row (pending_extraction, extraction_status=pending_confirmation) and writes nothing to graphics until a human confirms via /api/scripts/confirm-extraction (apply or discard) on the extract page; set true to auto-apply.`
-},
-{
- id:'m8',phase:'Live',num:8,title:'ProPresenter: API & the Read-Only Line',station:'PROPRES',hook:'',
+ decision:{question:`Lock transcription.`,opts:[
+   {id:'localdiar',label:`Local auto-extract + WhisperKit/SpeakerKit (speaker-labeled)`,tag:'recommended',rec:1,why:`Zero new work for the team, one tool, speaker labels included.`},
+   {id:'plain',label:`Cloud Whisper, no speaker labels`,tag:'limited',why:`Loses the diarization you need for social and data.`}],
+  specs:[[`Audio`,`local Automator/Hazel/fswatch extract (no Dropbox)`],[`Engine`,`WhisperKit + SpeakerKit, speaker-labeled`],[`Output`,`transcript + SRT/VTT to Supabase`]]},
+ repo:`Future post phase. Local Mac job (not the NAS). Hedge: WhisperKit 2.2% WER is a vendor number; sanity-check diarization on a real two-person interview.`,
+ tell:`Build transcription with a LOCAL Mac automation (Automator Folder Action / Hazel / fswatch) on the editor's master export folder: ffmpeg extracts a small ~16kHz audio file locally (no Dropbox), then WhisperKit + SpeakerKit transcribes WITH speaker labels, writing transcript + SRT/VTT to Supabase. One tool, not a service per speaker. Local only, never the NAS.`},
+
+{id:'m8',num:8,phase:'Post-Production',station:'METADATA',title:'Metadata (Templated, Manually Triggered)',mat:'manual',
  blueprint:[
-  {q:`Do you ever want automation controlling ProPresenter live?`,type:'select',opts:[`Never; pre-built only, triggered by a human`,`Trigger pre-built Props by ID`,`Eventually, full live control`]},
-  {q:`Which lower thirds / Props should exist before a show, and who triggers them?`,type:'text'}
+  {q:`How is metadata produced?`,opts:[`Templated, I click a button`,`AI writes it per episode`,`I type it all`]},
+  {q:`Which parts actually vary per episode?`,opts:[`Title hook + chapters`,`Everything`,`Nothing`]}
  ],
- lesson:`<p>ProPresenter is the one piece of live gear with an API, so it is the sharpest test of the David Rule. Version 7.9+ exposes a <b>REST API</b> (documented at openapi.propresenter.com, now on v21.x) that can <b>trigger and clear "Props"</b>, the overlay objects used for lower thirds, logos, and bugs. What it <b>cannot</b> do is author full presentations or edit slide text programmatically.</p>
- <p>That limitation points to the safe design. You <b>build the lower thirds as Props in the ProPresenter GUI ahead of time</b>, then let automation only <b>trigger them by ID</b>. <b>Bitfocus Companion</b> already speaks the ProPresenter API and is battle-tested, so it becomes the trigger layer, never an author. Right now in v2, the flow is even simpler and fully manual: approved lower-thirds text is copied into ProPresenter by hand from the ready screen.</p>
- <p><b>The line:</b> the ProPresenter production machine (GSN-PropRes, on Tailscale at 100.98.215.7), ATEM, and Companion are off-limits to automation. During a live show this stays read-only and test-only until David explicitly approves a tested pathway. Automation that authors live content is off the table; the cost of a wrong overlay on air falls on the host.</p>`,
- analogy:`Pre-building Props and only triggering them is like cueing pre-loaded cartridges in a playout system instead of editing tape on air: the risky creative work happens safely in advance, and during the live show the operator only presses play on something already vetted. Nobody re-edits a segment while it is broadcasting.`,
- facts:[
-  {k:`API`,v:`REST in 7.9+ (now v21.x), openapi.propresenter.com`,vr:true},
-  {k:`Can / cannot`,v:`Trigger/clear Props yes; author presentations no`,vr:true},
-  {k:`Off-limits`,v:`GSN-PropRes (Tailscale 100.98.215.7), ATEM, Companion`},
-  {k:`v2 today`,v:`Approved text copied into ProPresenter BY HAND`}
- ],
+ lesson:`<p>Descriptions and tags are <b>templated and consistent</b> across episodes, so there is no per-episode AI writing. You <b>click a button</b> and the template fills with episode fields. The only variable parts are the <b>title hook</b> (your call) and <b>chapters</b> (from the rundown timecodes).</p>
+ <p>Baked in: YouTube category 28, TV airs Tuesday 8 PM CST, YouTube publishes Monday 4 PM ET. This feeds Distribution next.</p>`,
+ analogy:`A mail merge, not an essay. The letter body is fixed; only the name and address change. You are not writing fresh prose each week, you are stamping the variable fields.`,
+ game:{type:'sort',h:'Template or variable?',d:'Which metadata fields are templated vs vary per episode?',
+   binA:'Templated (same every time)',binB:'Varies per episode',
+   items:[['Description boilerplate','A'],['Anchor tags','A'],['Category 28','A'],['Title hook','B'],['Chapters from timecodes','B']]},
  quiz:[
-  {q:`What can the ProPresenter API do for lower thirds?`,o:[`Create and edit slide content live`,`Trigger and clear pre-built Props by ID`,`Nothing`],a:1,e:`It triggers/clears Props but cannot author presentations, which is why you pre-build.`},
-  {q:`Under the David Rule, the safe ProPresenter pattern during a live show is:`,o:[`Author overlays live from the dashboard`,`Pre-build Props, trigger by ID, read-only/test-only until explicitly approved`,`Control it over the VPN`],a:1,e:`Pre-built and triggered isolates risk; live authoring is off the table because the host is exposed.`}
+  {q:`Why is metadata not a Claude prompt-handoff?`,o:[`Claude cannot do it`,`Descriptions/tags are templated and consistent, so no per-episode generation`,`It is too slow`],a:1,e:`Only the title hook and chapters vary; the rest is a template.`}
  ],
- decision:{question:`How does automation touch ProPresenter, if at all?`,
-  opts:[
-   {id:'companion',label:`Pre-built Props triggered by ID via Companion (future); manual copy today`,tag:'recommended',rec:true,
-    why:`Keep today's manual copy-by-hand. When automated, author Props in the GUI in advance and only trigger by ID through Companion, read-only/test-only until David approves.`,
-    pros:`Zero live-authoring risk; battle-tested trigger layer`,cons:`No programmatic creation of presentations`},
-   {id:'custom',label:`A custom client that authors and pushes live`,tag:'risky',
-    why:`Direct control.`,pros:`Tailored`,cons:`Live side effects on the host machine; against the David Rule`},
-   {id:'defer',label:`Defer ProPresenter automation entirely`,tag:'safe',
-    why:`Keep copying by hand.`,pros:`No risk`,cons:`Loses the biggest live time-saver`}
-  ],
-  rec:`Keep manual copy now; when ready, Companion plus pre-built Props triggered by ID. It captures the value while keeping authoring off the live machine. This is the David Rule made concrete on the one networked piece of on-air gear.`,
-  specs:[[`Build`,`Props authored in the GUI ahead of time`],[`Trigger`,`By ID via Companion`],[`Today`,`Approved text copied into ProPresenter by hand`],[`Live policy`,`Read-only/test-only until David approves`]]
- },
- repo:`ProPresenter, ATEM, and Bitfocus Companion are explicitly off-limits to automation in v2 (the ProPresenter machine is GSN-PropRes on Tailscale 100.98.215.7). The current production step is manual: copy approved lower-thirds text from /lower-thirds/ready into ProPresenter. This module formalizes the safe future pattern, not live control.`,
- tell:`For ProPresenter, never author or edit content via API during a live show, and never reach the GSN-PropRes machine (Tailscale 100.98.215.7), ATEM, or Companion from automation. Today, the step is manual copy-by-hand from the ready screen. If automated later, pre-build lower thirds as Props and only trigger by ID via Bitfocus Companion, read-only and test-only until David explicitly approves.`
-},
-{
- id:'m9',phase:'Post',num:9,title:'Transcription: ffmpeg + Whisper + Watchers',station:'TRANSCRIBE',
- hook:'https://www.youtube.com/watch?v=26Mayv5JPz0',
+ decision:{question:`Lock metadata.`,opts:[
+   {id:'template',label:`Templated, manually triggered; title hook + chapters vary`,tag:'recommended',rec:1,why:`Consistent and fast, you keep the title call, no per-episode AI.`},
+   {id:'prompt',label:`Prompt-handoff generation per episode`,tag:'not now',why:`Unneeded; descriptions/tags are consistent.`}],
+  specs:[[`Engine`,`template + episode fields, button-triggered`],[`Variable`,`title hook (yours), chapters (timecodes)`],[`Constants`,`category 28; Tue 8 CST air / Mon 4 ET publish`]]},
+ repo:`Two profiles still exist conceptually (video + podcast) but both are templated. Chapters derive from segment/rundown timecodes.`,
+ tell:`Build metadata as a manually-triggered, template-based step: a stored template (description + anchor tags + category 28) filled with episode fields; only the title hook (Daniel writes it) and chapters (from rundown timecodes) vary. Not a per-episode AI prompt. Produce video and podcast profiles from the same template set.`},
+
+{id:'m9',num:9,phase:'Distribution',station:'DISTRIBUTE',title:'Distribution & Publish (the Priority)',mat:'priority',
  blueprint:[
-  {q:`Do you need speaker labels (diarization) on interviews?`,type:'select',opts:[`Yes, who-said-what matters`,`No, plain transcript is fine`,`Only for multi-guest panels`]},
-  {q:`Where do locked files land, which caption formats do you need, and cloud or local run?`,type:'text'}
+  {q:`What should Publish do first?`,opts:[`One-click: I trigger, it uploads`,`Auto on a schedule`,`Just stage files`]},
+  {q:`Which targets first?`,opts:[`YouTube + Rumble (mirrors)`,`YouTube only`,`All four`]},
+  {q:`How fast to auto?`,opts:[`As fast as trust allows`,`After several clean runs`,`Stay manual`]}
  ],
- lesson:`<p>A locked episode becomes a transcript in three steps. First, <b>ffmpeg</b> (the universal media tool) extracts the audio so you never transcribe full video: one command pulls a clean mono 16kHz WAV. You will not memorize its flags; Claude writes them and you verify they make sense.</p>
- <p>Second, <b>Whisper</b> turns audio into text. The repo's planned path is local Whisper on the Mac at <code>~/Productions</code> driven by <code>fswatch + ffmpeg + whisper</code> (free), with the <b>OpenAI Whisper API</b> as a cloud fallback at roughly $0.36 per hour. A modern Mac-native upgrade is <b>WhisperKit</b> (v1.0.0, May 2026, in the argmax-oss-swift package), which runs on Apple Silicon and bundles <b>SpeakerKit</b> for speaker labels. Output is JSON plus subtitle files (SRT, VTT).</p>
- <p>Third, the trigger. This stage hangs off the Dropbox webhook from Module 1: the audio companion arrives, the Edge Function fires, and the local watcher does the work. On the Mac, <b>fswatch</b> watches the drop folder and runs the chain when a file lands, the classic hot-folder pattern.</p>`,
- analogy:`This is an automated dailies pipeline. fswatch is the hot folder on the ingest station: the moment footage drops in, it fires. ffmpeg is the transcoder stripping a clean audio stem. Whisper is the transcriptionist typing it up, and SpeakerKit is the assistant writing the speaker names in the margin. You walk in to finished, labeled transcripts.`,
- facts:[
-  {k:`Repo plan`,v:`Local Whisper at ~/Productions via fswatch + ffmpeg`},
-  {k:`Cloud fallback`,v:`OpenAI Whisper API, about $0.36/hr`},
-  {k:`Mac upgrade`,v:`WhisperKit v1.0.0 (argmax-oss-swift) + SpeakerKit for labels`,vr:true},
-  {k:`Accuracy note`,v:`The 2.2% WER figure is Argmax's own benchmark`,vr:true}
- ],
+ lesson:`<p>This is your <b>biggest time-saver</b>, built now and pushed toward automation fastest with the dial: <b>one-click publish</b> first (you trigger), then <b>Auto</b>. Same code path, you just flip a per-platform switch.</p>
+ <p>Chain: master to transcription to <b>templated metadata</b> to publish. <b>YouTube</b> via <code>videos.insert</code> is the prize; the one unlock is clearing the <b>Google API audit</b> (only you, uploads stay private until then). <b>Rumble</b> mirrors via YouTube channel sync. <b>Fireside and GSN</b> have no publish API, so they are <b>handoff cards</b>. An <b>upload tracker</b> shows per-platform status. Build the auto switch now even though it ships manual.</p>`,
+ analogy:`A printing press with a big green button. Today you press it per run and watch the first copies; the press can already run continuously the moment you trust it. Automating is flipping it from hand-fed to continuous, not building a new press.`,
+ game:{type:'dial',h:'Set the rollout',d:'Pick the right first move for each platform.',
+   rows:[['YouTube','One-click publish now (auto switch wired)','One-click publish now (auto switch wired)'],
+         ['Rumble','Turn on YouTube channel sync','Turn on YouTube channel sync'],
+         ['Fireside / GSN','Handoff card (no publish API)','Handoff card (no publish API)']]},
  quiz:[
-  {q:`What is ffmpeg's job here?`,o:[`Transcribe speech`,`Extract/convert the audio so Whisper can read it`,`Watch the folder`],a:1,e:`ffmpeg is the universal media converter; here it pulls a clean audio track for Whisper.`},
-  {q:`On a Mac, which option gives you speaker labels?`,o:[`ffmpeg`,`WhisperKit with SpeakerKit`,`fswatch`],a:1,e:`SpeakerKit ships in the argmax-oss-swift package for on-device diarization.`},
-  {q:`How does this stage start without you clicking?`,o:[`A minute-by-minute cron`,`The Dropbox webhook plus an fswatch hot folder fire it on file arrival`,`Whisper polls YouTube`],a:1,e:`The companion lands, the Edge Function fires, and fswatch triggers the local chain.`}
+  {q:`What unlocks public YouTube auto-publishing?`,o:[`Paying for quota`,`Clearing the Google API audit (only Daniel)`,`Turning off Rumble`],a:1,e:`New API projects stay private until Google approves; quota is fine since Dec 2025.`},
+  {q:`Fastest safe first stage?`,o:[`Full auto now`,`One-click publish you trigger, auto switch built in`,`Hand-upload forever`],a:1,e:`Manual trigger first on the same path; flip to auto per platform.`}
  ],
- decision:{question:`Pick the transcription engine and trigger.`,
-  opts:[
-   {id:'localwhisper',label:`Local Whisper via fswatch + ffmpeg, OpenAI Whisper API fallback`,tag:'recommended',rec:true,
-    why:`Matches the repo plan: free local transcription at ~/Productions triggered by fswatch, with the cloud API as a paid fallback for reliability.`,
-    pros:`$0 local, simple, already the documented path`,cons:`No speaker labels unless you add WhisperKit/SpeakerKit`},
-   {id:'whisperkit',label:`WhisperKit + SpeakerKit on Apple Silicon`,tag:'upgrade',
-    why:`On-device, no Python ML stack, speaker labels included.`,
-    pros:`Mac-native, private, diarization`,cons:`Newer; treat vendor accuracy numbers as benchmarks`}
-  ],
-  rec:`Start with local Whisper via fswatch + ffmpeg and the OpenAI Whisper API fallback, since it is the documented plan and costs nothing locally. Add WhisperKit + SpeakerKit when you need speaker labels. Frame the 2.2% WER as a vendor benchmark, not a guarantee.`,
-  specs:[[`Extract`,`ffmpeg to mono 16kHz WAV`],[`Transcribe`,`Local Whisper; OpenAI Whisper API fallback (~$0.36/hr)`],[`Labels`,`Add WhisperKit + SpeakerKit if needed`],[`Trigger`,`Dropbox webhook + fswatch hot folder at ~/Productions`]]
- },
- repo:`This is a future phase of gsr-automation-v2 (the distribution half: Dropbox to transcript to metadata to platforms). It runs on the Edit Bay Mac Mini via Desktop Commander for local file ops, writes results into Supabase, and never writes to the NAS.`,
- tell:`Build transcription as a future gsr-automation-v2 phase: fswatch watches ~/Productions, ffmpeg extracts mono 16kHz WAV, local Whisper transcribes (OpenAI Whisper API as fallback, ~$0.36/hr), emitting JSON, SRT, VTT into Supabase. Add WhisperKit (argmax-oss-swift) with SpeakerKit for speaker labels if needed; treat its accuracy claims as vendor benchmarks. Run on the Mac Mini, not the NAS.`
-},
-{
- id:'m10',phase:'Post',num:10,title:'Dashboard & Approval: React + Next.js + Supabase + RLS',station:'DASHBOARD',
- hook:'https://www.youtube.com/watch?v=Sklc_fQBmcs',
- blueprint:[
-  {q:`Who approves before anything publishes?`,type:'select',opts:[`Only me`,`Me or a co-producer`,`Anyone on the team`]},
-  {q:`What must the approval screen show for each item before you hit approve?`,type:'text'}
- ],
- lesson:`<p>This is where it converges: the screen where you review, approve, and track. <b>React</b> builds the UI from components (reusable pieces) with props (inputs) and state (data that changes). <b>Next.js (App Router)</b> is the framework around it. The key split: <b>Server Components</b> render on the server and can query Supabase directly while shipping no secrets to the browser; <b>Client Components</b> (marked <code>"use client"</code>) handle interaction. Mutations run through Server Actions or route handlers.</p>
- <p><b>Supabase Auth</b> uses magic links (no passwords), with sessions read from cookies in Server Components via the <code>@supabase/ssr</code> package. <b>Row-Level Security</b> is the safety layer: policies on every table mean even the browser, holding only the anon key, reads only what it is allowed to. The Source-of-Truth view (a later stage) prefills episode fields from authoritative sources, air date from a Google Sheet that wins, cadence inferred from the last few YouTube uploads, with do-not-contact left manual.</p>
- <p><b>The trap to correct every session:</b> AI tools default to the old Pages Router and the deprecated <code>@supabase/auth-helpers-nextjs</code>. Your stack is App Router + <code>@supabase/ssr</code> on Next.js 16.2 (the ADR text still says 15, a known drift). Say so in every prompt.</p>`,
- analogy:`Server Components are pre-printed programs handed out at the door: finished, nothing backstage exposed. Client Components are the live scoreboard that updates as people tap it. RLS is the keycard system on the archive: even with a stolen badge you only reach the rooms your badge allows. The security is in the building, not the politeness of the front desk.`,
- facts:[
-  {k:`Next.js`,v:`16.2 (ADR-0012 text still says 15: a drift to reconcile)`,vr:true},
-  {k:`Auth`,v:`@supabase/ssr (auth-helpers deprecated at 0.15.0)`,vr:true},
-  {k:`RLS`,v:`Policies on every table; anon key + RLS guards the browser`},
-  {k:`Styling`,v:`Tailwind v4 (CSS-first); shadcn CLI v4 (npx shadcn@latest)`,vr:true}
- ],
- quiz:[
-  {q:`What is the point of a Server Component here?`,o:[`It looks nicer`,`It renders on the server and can query Supabase without shipping secrets to the browser`,`It is required for CSS`],a:1,e:`Server Components co-locate data fetching with UI and keep keys server-side.`},
-  {q:`Why keep RLS on when the browser only has the anon key?`,o:[`It is optional polish`,`The anon key reaches the DB directly, so RLS is the only thing stopping it reading every row`,`It speeds up queries`],a:1,e:`Without RLS the public key can read everything, and such leaks look like ordinary traffic.`},
-  {q:`Two AI defaults you must correct for this stack?`,o:[`Vue and MySQL`,`Pages Router and @supabase/auth-helpers-nextjs`,`Python and Django`],a:1,e:`Your stack is App Router + @supabase/ssr; AI training data skews to the older patterns.`}
- ],
- decision:{question:`Lock the dashboard auth + data pattern.`,
-  opts:[
-   {id:'modern',label:`App Router + @supabase/ssr + RLS everywhere + magic-link auth`,tag:'recommended',rec:true,
-    why:`Server Components query Supabase with cookie sessions via @supabase/ssr; RLS enforces access; magic links mean no passwords. Matches the current repo.`,
-    pros:`Current, secure, AI-correctable with a tell-block`,cons:`Must actively steer AI off the deprecated patterns`},
-   {id:'legacy',label:`Whatever the AI generates by default`,tag:'risky',
-    why:`Less steering.`,pros:`Fewer instructions`,cons:`Lands on Pages Router + deprecated auth-helpers; rework`}
-  ],
-  rec:`App Router + @supabase/ssr + RLS + magic links. This is already your repo's pattern; the work is keeping AI on it. Use the tell-block below every session, and reconcile the ADR-0012 "Next.js 15" text to 16.`,
-  specs:[[`Router`,`App Router only; no pages/ dir`],[`Auth`,`@supabase/ssr, cookie sessions, magic link`],[`Security`,`RLS policies on every table`],[`UI`,`Tailwind v4 + shadcn (npx shadcn@latest)`]]
- },
- repo:`This is the live core of gsr-automation-v2: routes /import, /lower-thirds, /approved, /upload, plus API /api/import, /api/extract-lower-thirds, /api/regenerate, /api/scripts, /api/rc-explore, /api/rc-import; Supabase Auth + Storage (bucket lower-thirds) + RLS on every table; Next.js 16.2 + React + TypeScript + shadcn + Tailwind v4, deployed on Vercel. The approval gate exists; you are refining it.`,
- tell:`This is Next.js 16 App Router only, no pages/ directory, no getServerSideProps. Use Server Components for data fetching and Server Actions or route handlers for mutations. Auth is @supabase/ssr (createServerClient/createBrowserClient with cookies); do NOT use @supabase/auth-helpers-nextjs. Keep RLS on every table. Style with Tailwind v4 and shadcn via npx shadcn@latest. The repo is on 16.2 even though ADR-0012 text says 15.`
-},
-{
- id:'m11',phase:'Distribution',num:11,title:'Distribution & Deploy: YouTube, Rumble, Fireside + GSN',station:'DISTRIBUTE',hook:'',
- blueprint:[
-  {q:`What should the Publish button do first?`,type:'select',opts:[`One-click publish: I trigger, the system uploads`,`Fully auto-publish on a schedule`,`Just stage files for me to upload by hand`]},
-  {q:`Which targets do you want live first?`,type:'select',opts:[`YouTube + Rumble (Rumble mirrors YouTube)`,`YouTube only`,`All four (YouTube, Rumble, Fireside, GSN)`]},
-  {q:`How soon do you want to flip from manual to auto?`,type:'select',opts:[`As fast as trust allows (build the switch now)`,`Only after several clean manual runs`,`Stay manual for now`]}
- ],
- lesson:`<p>This is your <b>biggest time-saver</b>, so it gets built now and pushed toward automation fastest using the maturity dial: <b>manual trigger first</b> (you click Publish), then <b>Auto</b> once trusted. The code path is the same either way; only who presses the button changes, so going hands-off is a switch, not a rebuild.</p>
- <p>The chain: a finished master triggers <b>transcription</b> locally (WhisperKit with speaker labels), then <b>metadata</b> is built from a <b>template</b> (descriptions and tags are consistent across episodes, so no per-episode AI writing; only the title hook and chapters vary, and chapters come from the rundown timecodes), then <b>publish</b>.</p>
- <p>Targets: <b>YouTube</b> via <code>videos.insert</code> is the prize. The one unlock is clearing the <b>Google API audit</b> (only you can do it; uploads stay private until then). <b>Rumble</b> mirrors automatically via YouTube channel sync, near-zero build. <b>Fireside and GSN</b> have no publish API, so they are deliberate <b>handoff cards</b>: file and metadata pre-staged, you upload and mark done. An <b>upload tracker</b> shows per-platform status.</p>
- <p><b>Automation groundwork (build it even though it starts manual):</b> wire the full path now, the <code>videos.insert</code> call, the Rumble sync, the handoff cards, the tracker, and a <b>per-platform dial</b> (manual / auto) stored in <code>app_config</code>, so flipping a platform to hands-off is one setting. Pin youtubeuploader v1.25.5; quota is a non-issue since the Dec 2025 cut (~100 uploads/day).</p>`,
- analogy:`Think of a printing press with a big green button. Today you press it for each run and watch the first copies; the press is fully capable of running itself the moment you trust it. You are not rebuilding the press to automate, you are flipping it from hand-fed to continuous feed.`,
- facts:[
-  {k:`Priority`,v:`Biggest time-saver; build now, manual trigger then auto fastest`},
-  {k:`The unlock`,v:`Clear the Google API audit; uploads stay private until then`},
-  {k:`Rumble`,v:`YouTube channel sync, near-zero build`},
-  {k:`Fireside + GSN`,v:`Handoff cards, no publish API`},
-  {k:`Quota`,v:`~100 uploads/day since Dec 2025; pin youtubeuploader v1.25.5`,vr:true}
- ],
- quiz:[
-  {q:`What is the fastest safe first stage for distribution?`,o:[`Full auto-publish immediately`,`One-click publish you trigger, with the auto switch built in for later`,`Keep uploading by hand forever`],a:1,e:`Manual trigger first on the same code path; flip to auto per platform when trusted.`},
-  {q:`What unlocks public YouTube auto-publishing?`,o:[`Paying for more quota`,`Clearing the Google API audit (only Daniel can)`,`Turning off Rumble`],a:1,e:`New API projects are private-only until Google approves; quota is fine since Dec 2025.`},
-  {q:`How are Fireside and GSN handled?`,o:[`Fully automated uploads`,`Manual handoff cards (no publish API)`,`Skipped`],a:1,e:`Neither has a publish API, so pre-staged cards plus mark-done, by design.`}
- ],
- decision:{question:`How do you roll out distribution?`,
-  opts:[
-   {id:'staged',label:`One-click publish now, auto switch built in, flip later`,tag:'recommended',rec:true,
-    why:`Build the full path (videos.insert, Rumble sync, handoff cards, tracker) but default to a manual Publish button; a per-platform dial flips to auto when trusted. Fastest safe path to the time-saver.`,
-    pros:`Time-saver now; zero rebuild to go auto`,cons:`You click Publish until you flip the dial`},
-   {id:'autonow',label:`Fully auto-publish on a schedule immediately`,tag:'aggressive',
-    why:`Skip the manual stage.`,pros:`Hands-off now`,cons:`Trusts AI metadata and uploads before you have seen them`},
-   {id:'manualonly',label:`Just stage files, upload everything by hand`,tag:'slow',
-    why:`No publish API calls.`,pros:`No API risk`,cons:`Loses the biggest time-saver`}
-  ],
-  rec:`One-click publish now with the auto switch built in. Clear the Google audit to unlock public. Rumble mirrors via sync; Fireside and GSN stay handoff cards. Flip each platform to auto as it earns trust.`,
-  specs:[[`Rollout`,`Manual-trigger publish first; per-platform dial to auto`],[`YouTube`,`videos.insert; clear the Google audit (Daniel TODO)`],[`Rumble`,`YouTube channel sync`],[`Fireside + GSN`,`Handoff cards, mark-done`],[`Metadata`,`Templated desc/tags; title hook + chapters vary`],[`Tracker`,`Per-platform upload status`]]
- },
- repo:`Distribution is the priority build for gsr-automation-v2 (Daniel's biggest time-saver), sequenced early despite being post-pipeline. Build the full path now but default to a manual Publish trigger with a per-platform manual/auto dial in app_config. YouTube videos.insert (clear the Google audit, Daniel TODO; private until then), Rumble via channel sync, Fireside (read-only API) + GSN (no API) as handoff cards, plus an upload tracker. Dropbox is the master store. Backblaze B2 (~$6/TB/mo) is an option for cold archive.`,
- tell:`Build distribution in gsr-automation-v2 as the priority feature, but ship it at the manual-trigger maturity stage: a one-click Publish button (Daniel triggers) that uploads to YouTube via videos.insert with templated metadata + chapters, Rumble via YouTube channel sync, and Fireside + GSN as manual handoff cards (file + metadata pre-staged, mark-done). Lay the automation groundwork now: wire the full path and add a per-platform manual/auto dial in app_config so flipping to auto is a setting, not a rebuild. Pin youtubeuploader v1.25.5. Do NOT browser-automate Fireside. Remind Daniel to clear the Google API audit (the unlock for public auto-publish). Metadata descriptions/tags are templated and consistent; only the title hook and chapters vary.`
-}
+ decision:{question:`Lock the distribution rollout.`,opts:[
+   {id:'staged',label:`One-click publish now, auto switch wired, flip per platform later`,tag:'recommended',rec:1,why:`Time-saver immediately, zero rebuild to go auto; clear the Google audit to unlock public.`},
+   {id:'autonow',label:`Full auto-publish on a schedule now`,tag:'aggressive',why:`Trusts AI metadata and uploads before you have seen them.`}],
+  specs:[[`Rollout`,`manual-trigger publish; per-platform manual/auto dial in app_config`],[`YouTube`,`videos.insert; clear Google audit (Daniel TODO)`],[`Rumble`,`YouTube channel sync`],[`Fireside + GSN`,`handoff cards`],[`Tracker`,`per-platform status`]]},
+ repo:`Priority build, sequenced early despite being post-pipeline. Wire the full path; default to manual trigger with a per-platform dial. Pin youtubeuploader v1.25.5. NEEDS: Daniel to clear the Google API audit.`,
+ tell:`Build distribution as the priority feature at the manual-trigger maturity stage: a one-click Publish that uploads to YouTube via videos.insert with templated metadata + chapters, Rumble via YouTube channel sync, Fireside + GSN as handoff cards, plus a per-platform upload tracker. Lay the groundwork: wire the full path and a per-platform manual/auto dial in app_config so going auto is a switch. Pin youtubeuploader v1.25.5. Never browser-automate Fireside. Remind Daniel to clear the Google API audit (the unlock for public auto-publish).`}
 ];
 
-/* ===== state ===== */
-function fresh(){return{module:0,tab:'blueprint',intake:{},quiz:{},decisions:{},seen:{}};}
+/* cross-module carryover: later modules reflect earlier choices */
+function pick(mid,qi){const a=(S.intake[mid]||{})[qi];return a||null;}
+function carryover(m){
+ const out=[];
+ if(m.id==='m8'){const t=pick('m1',0);if(t)out.push('From Intake, scripts arrive by: <b>'+t+'</b>. Metadata pulls episode fields from those.');}
+ if(m.id==='m9'){const t=pick('m9',1);const sp=pick('m9',2);
+   if(t)out.push('Targets first: <b>'+t+'</b>.');if(sp)out.push('Pace to auto: <b>'+sp+'</b>.');
+   const d0=(S.decisions['m0']);if(d0==='fast')out.push('You picked an aggressive pace in Ground Rules, but distribution still ships manual-trigger first for safety.');}
+ if(m.id==='m4'){const g=S.decisions['m3'];if(g)out.push('Graphics flow is locked, so the rundown pulls those approved graphics.');}
+ if(m.id==='m5'){const g=S.decisions['m3'];if(g)out.push('Only graphics marked Created with a filename (from Module 3) become loadable here.');}
+ if(m.id==='m2'){const i=S.decisions['m1'];if(i)out.push('Intake is locked, so the lower-thirds file you upload feeds this page.');}
+ if(!out.length)return '';
+ return '<div class="carry"><b>Carryover from your earlier choices.</b> '+out.join(' ')+'</div>';
+}
+
+/* ===================== state ===================== */
+function fresh(){return{module:0,tab:'blueprint',intake:{},quiz:{},games:{},decisions:{},seen:{}};}
 function load(){try{const r=store.get(KEY);if(r)return JSON.parse(r);}catch(e){}return null;}
 let S=load()||fresh();
 function save(){try{store.set(KEY,JSON.stringify(S));}catch(e){}}
 const FIN=M.length;
-
-/* ===== helpers ===== */
 const $=id=>document.getElementById(id);
 function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 function decided(){return M.filter(m=>S.decisions[m.id]).length;}
-function getIntake(id){return S.intake[id]||(S.intake[id]={});}
-function getQuiz(id){return S.quiz[id]||(S.quiz[id]={});}
-function toast(msg){const t=$('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2600);}
-function copyText(t){const fb=()=>{const ta=document.createElement('textarea');ta.value=t;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);};
-  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>{},fb);}else fb();}
-function download(name,text,type){const b=new Blob([text],{type:type||'text/plain;charset=utf-8'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{document.body.removeChild(a);URL.revokeObjectURL(u);},120);}
-function confetti(x,y){const c=['#00d9ff','#5cf2a0','#ffb84d','#ff6b6b','#d8e3f0'];for(let i=0;i<26;i++){const s=document.createElement('div');s.className='spark';s.style.left=x+'px';s.style.top=y+'px';s.style.background=c[i%c.length];document.body.appendChild(s);const ang=Math.random()*Math.PI*2,dist=40+Math.random()*90,dx=Math.cos(ang)*dist,dy=Math.sin(ang)*dist-30;const dur=600+Math.random()*500;s.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:'translate('+dx+'px,'+dy+'px) scale(0)',opacity:0}],{duration:dur,easing:'cubic-bezier(.2,.7,.3,1)'});setTimeout(()=>s.remove(),dur+50);}}
+function gi(id){return S.intake[id]||(S.intake[id]={});}
+function gq(id){return S.quiz[id]||(S.quiz[id]={});}
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2400);}
+function confetti(x,y){const c=['#2563eb','#5cf2a0','#b8860b','#7c3aed','#1d8a52'];for(let i=0;i<22;i++){const s=document.createElement('div');s.className='spark';s.style.left=x+'px';s.style.top=y+'px';s.style.background=c[i%c.length];document.body.appendChild(s);const a=Math.random()*6.28,d=35+Math.random()*80;s.animate([{transform:'translate(0,0) scale(1)',opacity:1},{transform:'translate('+Math.cos(a)*d+'px,'+(Math.sin(a)*d-25)+'px) scale(0)',opacity:0}],{duration:600+Math.random()*400,easing:'cubic-bezier(.2,.7,.3,1)'});setTimeout(()=>s.remove(),1100);}}
+function copyText(t){try{navigator.clipboard.writeText(t);}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');}catch(e2){}a.remove();}}
+function download(n,t,ty){const b=new Blob([t],{type:ty||'text/plain;charset=utf-8'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=n;document.body.appendChild(a);a.click();setTimeout(()=>{a.remove();URL.revokeObjectURL(u);},120);}
 
-/* ===== rail ===== */
+/* ===================== rail ===================== */
 function renderRail(){
-  const host=$('modList');host.innerHTML='';
-  M.forEach((m,i)=>{
-    const b=document.createElement('button');
-    b.className='mod'+(i===S.module?' cur':'')+(S.decisions[m.id]?' done':'');
-    b.innerHTML='<span class="dot"></span><span class="meta"><span class="t">'+esc(m.title)+'</span><span class="s">'+esc(m.phase)+'</span></span><span class="n">'+m.num+'</span>';
-    b.onclick=()=>{S.module=i;S.tab='blueprint';save();render();window.scrollTo&&window.scrollTo(0,0);};
-    host.appendChild(b);
-  });
-  const fb=document.createElement('button');
-  fb.className='mod'+(S.module===FIN?' cur':'')+(decided()===M.length?' done':'');
-  fb.innerHTML='<span class="dot"></span><span class="meta"><span class="t">Finale &amp; Build Plan</span><span class="s">Power-on inspection</span></span><span class="n">&#9873;</span>';
-  fb.onclick=()=>{S.module=FIN;save();render();};
-  host.appendChild(fb);
-  const log=$('decLog');const d=decided();
-  if(d===0){log.innerHTML='None yet. Each module ends in a decision that becomes a build record in your exported plan.';}
-  else{log.innerHTML=M.filter(m=>S.decisions[m.id]).map(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);return '<div style="margin:4px 0"><b style="color:var(--good)">M'+m.num+'</b> '+esc(o?o.label:'')+'</div>';}).join('');}
-  $('storeMode').textContent='Progress saved in: '+store.mode;
+ const host=$('modList');host.innerHTML='';let lastPhase='';
+ M.forEach((m,i)=>{
+  if(m.phase!==lastPhase){const h=document.createElement('div');h.className='phasehdr';h.textContent=m.phase;host.appendChild(h);lastPhase=m.phase;}
+  const b=document.createElement('div');b.className='mod'+(i===S.module?' cur':'')+(S.decisions[m.id]?' done':'');
+  b.innerHTML='<span class="dot"></span><span class="t">'+esc(m.title)+'<div class="ph">'+esc(m.station)+'</div></span><span class="n">'+m.num+'</span>';
+  b.onclick=()=>{S.module=i;S.tab='blueprint';save();render();window.scrollTo(0,0);};host.appendChild(b);
+ });
+ const fb=document.createElement('div');fb.className='mod'+(S.module===FIN?' cur':'')+(decided()===M.length?' done':'');
+ fb.innerHTML='<span class="dot"></span><span class="t">Finale &amp; Build Plan</span><span class="n">&#9873;</span>';
+ fb.onclick=()=>{S.module=FIN;save();render();};host.appendChild(fb);
+ const bsf=$('bsf');const d=M.filter(m=>S.decisions[m.id]);
+ bsf.innerHTML=d.length?d.map(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);return '<div class="bsf"><b>M'+m.num+'</b> '+esc(o?o.label:'')+'</div>';}).join(''):'<div class="bsf" style="opacity:.6">Lock a decision in each module and it appears here.</div>';
+ $('storeMode').textContent='Saved in: '+store.mode+' . Use Save to export course-state.json';
 }
 
-/* ===== flow strip ===== */
-function renderFlow(){
-  const wrap=document.createElement('div');wrap.className='flow';
-  M.forEach((m,i)=>{
-    const st=document.createElement('span');st.className='station';
-    const box=document.createElement('span');
-    box.className='sbox'+(S.decisions[m.id]?' on':'')+(i===S.module?' cur':'');
-    box.textContent=m.num+'\u00b7'+m.station;
-    st.appendChild(box);
-    if(i<M.length-1){const a=document.createElement('span');a.className='sarrow';a.textContent='\u2192';st.appendChild(a);}
-    wrap.appendChild(st);
-  });
-  const a=document.createElement('span');a.className='sarrow';a.textContent='\u2192';wrap.appendChild(a);
-  const fin=document.createElement('span');fin.className='sbox'+(decided()===M.length?' on':'')+(S.module===FIN?' cur':'');fin.textContent='\u2691 PLAN';wrap.appendChild(fin);
-  return wrap;
-}
+/* ===================== flow strip ===================== */
+function flow(){const w=document.createElement('div');w.className='flow';
+ M.forEach((m,i)=>{const b=document.createElement('span');b.className='sbox'+(S.decisions[m.id]?' on':'')+(i===S.module?' cur':'');b.textContent=m.num+' '+m.station;w.appendChild(b);
+  if(i<M.length-1){const a=document.createElement('span');a.className='sar';a.textContent='→';w.appendChild(a);}});
+ const a=document.createElement('span');a.className='sar';a.textContent='→';w.appendChild(a);
+ const f=document.createElement('span');f.className='sbox'+(decided()===M.length?' on':'')+(S.module===FIN?' cur':'');f.textContent='⚑ PLAN';w.appendChild(f);return w;}
 
-/* ===== main render ===== */
+/* ===================== render ===================== */
 function render(){
-  const done=decided();
-  $('xpDone').textContent=done;$('xpTotal').textContent=M.length;
-  $('xpFill').style.width=Math.round(done/M.length*100)+'%';
-  const main=$('main');main.innerHTML='';
-  main.appendChild(renderFlow());
-  if(S.module===FIN){$('phaseTag').textContent='Finale';main.appendChild(renderFinale());renderRail();return;}
-  const m=M[S.module];$('phaseTag').textContent=m.phase;
-  main.appendChild(renderModule(m));
-  renderRail();
+ const done=decided();$('xpDone').textContent=done;$('xpTotal').textContent=M.length;$('xpFill').style.width=Math.round(done/M.length*100)+'%';
+ const main=$('main');main.innerHTML='';main.appendChild(flow());
+ if(S.module===FIN){$('phaseTag').textContent='Finale';main.appendChild(finale());renderRail();return;}
+ const m=M[S.module];$('phaseTag').textContent=m.phase;main.appendChild(moduleCard(m));renderRail();
+}
+const MAT={manual:['mat-manual','Manual first'],handoff:['mat-handoff','Prompt handoff first'],auto:['mat-auto','Auto'],priority:['mat-priority','Priority build']};
+function moduleCard(m){
+ const c=document.createElement('div');c.className='card';
+ const quizDone=Object.keys(gq(m.id)).length>=m.quiz.length;const dec=!!S.decisions[m.id];
+ let h='<span class="kick">Module '+m.num+' · '+esc(m.phase)+'</span>';
+ h+='<h2>'+esc(m.title)+(m.mat&&MAT[m.mat]?'<span class="maturity '+MAT[m.mat][0]+'">'+MAT[m.mat][1]+'</span>':'')+'</h2>';
+ h+='<div class="tabs">'+tab('1 · Blueprint','blueprint')+tab('2 · Learn + Play','learn',quizDone?'✓':'')+tab('3 · Decide','decide',dec?'✓':'')+'</div><div id="body"></div>';
+ h+='<div class="nav"><button class="btn ghost" id="prev">← Previous</button><button class="btn ghost" id="ask">Ask the Consultant</button><button class="btn" id="next">Next →</button></div>';
+ c.innerHTML=h;
+ c.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{S.tab=b.dataset.t;save();render();});
+ c.querySelector('#prev').onclick=()=>{if(S.module>0){S.module--;S.tab='blueprint';save();render();}};
+ c.querySelector('#next').onclick=()=>{S.module=Math.min(FIN,S.module+1);S.tab='blueprint';save();render();};
+ c.querySelector('#ask').onclick=e=>{consult(m);confetti(e.clientX,e.clientY);};
+ const body=c.querySelector('#body');
+ body.appendChild(S.tab==='blueprint'?blueprint(m):S.tab==='learn'?learn(m):decide(m));
+ return c;
+}
+function tab(l,k,mk){return '<button class="tab'+(S.tab===k?' on':'')+'" data-t="'+k+'">'+l+(mk?'<span class="mk">'+mk+'</span>':'')+'</button>';}
+
+/* tab 1: blueprint (multiple choice) */
+function blueprint(m){const d=document.createElement('div');
+ let h='<div class="note">First, your blueprint. Tap your answer; it shapes the build plan and what later modules say.</div>';
+ const cur=gi(m.id);
+ m.blueprint.forEach((q,i)=>{h+='<div class="bq"><div class="q">'+esc(q.q)+'</div><div class="opts" data-q="'+i+'">';
+  q.opts.forEach(o=>{h+='<button class="opt'+(cur[i]===o?' sel':'')+'" data-v="'+esc(o)+'">'+esc(o)+'</button>';});h+='</div></div>';});
+ d.innerHTML=h;
+ d.querySelectorAll('.opts').forEach(row=>{const qi=+row.dataset.q;row.querySelectorAll('.opt').forEach(b=>b.onclick=()=>{gi(m.id)[qi]=b.dataset.v;save();row.querySelectorAll('.opt').forEach(x=>x.classList.toggle('sel',x.dataset.v===gi(m.id)[qi]));});});
+ return d;
 }
 
-function tabBtn(label,key,mark){return '<button class="tab'+(S.tab===key?' on':'')+'" data-tab="'+key+'">'+label+(mark?'<span class="mk">'+mark+'</span>':'')+'</button>';}
-
-function renderModule(m){
-  const card=document.createElement('div');card.className='card';
-  const quizDone=Object.keys(getQuiz(m.id)).length>=m.quiz.length;
-  const decDone=!!S.decisions[m.id];
-  let html='<span class="kicker">Module '+m.num+' \u00b7 '+esc(m.phase)+'</span>';
-  html+='<h2>'+esc(m.title)+'</h2>';
-  if(m.hook)html+='<a class="hooklink" href="'+m.hook+'" target="_blank" rel="noopener">\u25B6 Watch the ~100-second primer (optional)</a>';
-  html+='<div class="tabs">'+tabBtn('1 \u00b7 Blueprint','blueprint','')+tabBtn('2 \u00b7 Learn','learn',quizDone?'\u2713':'')+tabBtn('3 \u00b7 Decide','decide',decDone?'\u2713':'')+'</div>';
-  html+='<div id="tabBody"></div>';
-  html+='<div class="nav"><button class="btn" id="navPrev">\u2190 Previous</button>';
-  html+='<button class="btn consult" id="navConsult">Ask the Consultant</button>';
-  html+='<button class="btn primary" id="navNext">Next \u2192</button></div>';
-  card.innerHTML=html;
-  card.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{S.tab=b.getAttribute('data-tab');save();render();});
-  card.querySelector('#navPrev').onclick=()=>{if(S.module>0){S.module--;S.tab='blueprint';save();render();}};
-  card.querySelector('#navNext').onclick=()=>{S.module=Math.min(FIN,S.module+1);S.tab='blueprint';save();render();};
-  card.querySelector('#navConsult').onclick=(e)=>{consult(m);confetti(e.clientX,e.clientY);};
-  const body=card.querySelector('#tabBody');
-  if(S.tab==='blueprint')body.appendChild(renderBlueprint(m));
-  else if(S.tab==='learn')body.appendChild(renderLearn(m));
-  else body.appendChild(renderDecide(m));
-  return card;
+/* tab 2: learn + game + quiz */
+function learn(m){const d=document.createElement('div');
+ let h=carryover(m);
+ h+='<div class="lesson">'+m.lesson+'</div><div class="analogy"><b>Analogy.</b> '+esc(m.analogy)+'</div>';
+ d.innerHTML=h;
+ d.appendChild(game(m));
+ const qh=document.createElement('div');let q='<div class="h3">Quick check</div>';const qz=gq(m.id);
+ m.quiz.forEach((it,qi)=>{q+='<div class="q"><div class="qt">'+(qi+1)+'. '+esc(it.q)+'</div><div class="qo" data-q="'+qi+'">';
+  it.o.forEach((o,oi)=>{let cls='qopt';if(qi in qz){if(oi===it.a)cls+=' correct';else if(oi===qz[qi])cls+=' wrong';}q+='<button class="'+cls+'" data-o="'+oi+'">'+esc(o)+'</button>';});
+  q+='</div><div class="qexpl'+((qi in qz)?' show':'')+'">'+(qi in qz?(qz[qi]===it.a?'✓ ':'✕ ')+esc(it.e):'')+'</div></div>';});
+ qh.innerHTML=q;
+ qh.querySelectorAll('.qo').forEach(row=>{const qi=+row.dataset.q;row.querySelectorAll('.qopt').forEach(b=>b.onclick=e=>{if(qi in gq(m.id))return;gq(m.id)[qi]=+b.dataset.o;save();if(+b.dataset.o===m.quiz[qi].a)confetti(e.clientX,e.clientY);render();});});
+ d.appendChild(qh);
+ return d;
 }
 
-/* ===== tab 1: blueprint ===== */
-function renderBlueprint(m){
-  const d=document.createElement('div');
-  let h='<div class="note"><b style="color:var(--active)">First, your blueprint.</b> Answer before the lesson. This captures how you think this step should work, in your words, so the build plan reflects your intent, not just the defaults.</div>';
-  const cur=getIntake(m.id);
-  m.blueprint.forEach((q,i)=>{
-    h+='<div class="bq"><label>'+esc(q.q)+'</label>';
-    if(q.type==='select'){
-      h+='<div class="selrow" data-q="'+i+'">';
-      q.opts.forEach(o=>{h+='<button class="selbtn'+(cur[i]===o?' on':'')+'" data-v="'+esc(o)+'">'+esc(o)+'</button>';});
-      h+='</div>';
-    }else{
-      h+='<textarea rows="3" data-q="'+i+'" placeholder="Type your thinking...">'+esc(cur[i]||'')+'</textarea>';
-    }
-    h+='</div>';
-  });
-  d.innerHTML=h;
-  d.querySelectorAll('.selbtn').forEach(b=>b.onclick=()=>{const qi=+b.parentNode.getAttribute('data-q');getIntake(m.id)[qi]=b.getAttribute('data-v');save();d.querySelectorAll('.selrow').forEach(row=>{const r=+row.getAttribute('data-q');row.querySelectorAll('.selbtn').forEach(x=>x.classList.toggle('on',getIntake(m.id)[r]===x.getAttribute('data-v')));});});
-  d.querySelectorAll('textarea').forEach(t=>t.oninput=()=>{const qi=+t.getAttribute('data-q');getIntake(m.id)[qi]=t.value;save();});
-  return d;
+/* ===================== games ===================== */
+function game(m){const g=m.game;const d=document.createElement('div');d.className='game';
+ d.innerHTML='<div class="gh">▶ '+esc(g.h)+'</div><div class="gd">'+esc(g.d)+'</div>';
+ const st=S.games[m.id]||(S.games[m.id]={});
+ if(g.type==='sort'){
+  const pool=document.createElement('div');pool.className='pool';
+  const binwrap=document.createElement('div');binwrap.className='bins';
+  const ba=document.createElement('div');ba.className='bin';ba.innerHTML='<h4>'+esc(g.binA)+'</h4><div class="bd"></div>';
+  const bb=document.createElement('div');bb.className='bin';bb.innerHTML='<h4>'+esc(g.binB)+'</h4><div class="bd"></div>';
+  binwrap.appendChild(ba);binwrap.appendChild(bb);
+  function draw(){pool.innerHTML='';ba.querySelector('.bd').innerHTML='';bb.querySelector('.bd').innerHTML='';
+   g.items.forEach((it,idx)=>{const placed=st[idx];const chip=document.createElement('span');chip.className='chip'+(placed?(placed===it[1]?' good':' bad'):'');chip.textContent=it[0];
+    chip.onclick=()=>{st[idx]=st[idx]==='A'?'B':(st[idx]==='B'?null:'A');save();draw();chk();};
+    (placed==='A'?ba:placed==='B'?bb:pool).querySelector?null:0;
+    if(placed==='A')ba.querySelector('.bd').appendChild(chip);else if(placed==='B')bb.querySelector('.bd').appendChild(chip);else pool.appendChild(chip);});}
+  const feed=document.createElement('div');feed.className='gfeed';
+  function chk(){const all=g.items.every((it,idx)=>st[idx]===it[1]);const any=g.items.some((it,idx)=>st[idx]);feed.className='gfeed '+(all?'ok':'no');feed.textContent=all?'✓ All sorted correctly.':any?'Keep going (tap a chip to move it).':'';if(all)confetti(innerWidth/2,260);}
+  d.appendChild(pool);d.appendChild(binwrap);d.appendChild(feed);draw();chk();
+  const hint=document.createElement('div');hint.className='gd';hint.style.marginTop='6px';hint.textContent='Tap a chip to send it to bin 1, again for bin 2, again to reset.';d.appendChild(hint);
+ }
+ else if(g.type==='order'){
+  const list=document.createElement('div');list.className='orderlist';const feed=document.createElement('div');feed.className='gfeed';
+  st.seq=st.seq||[];
+  function draw(){list.innerHTML='';g.items.forEach(it=>{const pos=st.seq.indexOf(it);const row=document.createElement('div');row.className='ordit'+(pos>=0?' picked':'');row.innerHTML='<span class="seq">'+(pos>=0?pos+1:'')+'</span>'+esc(it);
+    row.onclick=()=>{const p=st.seq.indexOf(it);if(p>=0)st.seq.splice(p,1);else st.seq.push(it);save();draw();chk();};list.appendChild(row);});}
+  function chk(){if(st.seq.length<g.items.length){feed.className='gfeed';feed.textContent='Tap in order ('+st.seq.length+'/'+g.items.length+').';return;}const ok=st.seq.every((x,i)=>x===g.correct[i]);feed.className='gfeed '+(ok?'ok':'no');feed.textContent=ok?'✓ Correct order.':'Not quite, tap to clear and retry.';if(ok)confetti(innerWidth/2,260);else{st.seq=[];save();}}
+  d.appendChild(list);d.appendChild(feed);draw();chk();
+ }
+ else if(g.type==='trim'){
+  const feed=document.createElement('div');feed.className='gfeed';
+  g.options.forEach((o,idx)=>{const row=document.createElement('div');row.className='trimrow'+(st.pick===idx?' pick':'');const cc=o[1]>65?'bad':o[1]<55?'warn':'good';
+   row.innerHTML=esc(o[0])+'<span class="cc '+cc+'">'+o[1]+'</span>';
+   row.onclick=()=>{st.pick=idx;save();d.querySelectorAll('.trimrow').forEach((r,i)=>r.classList.toggle('pick',i===idx));feed.className='gfeed '+(o[2]?'ok':'no');feed.textContent=o[2]?'✓ In band, ALL CAPS, clean punctuation.':(o[1]>65?'Over 65, too long.':o[1]<55?'Under 55 and not ALL CAPS.':'Has banned punctuation (comma / dashes).');if(o[2])confetti(innerWidth/2,260);};
+   d.appendChild(row);});
+  d.appendChild(feed);
+ }
+ else if(g.type==='dial'){
+  st.r=st.r||{};const feed=document.createElement('div');feed.className='gfeed';
+  g.rows.forEach((r,idx)=>{const row=document.createElement('div');row.className='bq';row.innerHTML='<div class="q">'+esc(r[0])+'</div>';
+   const opts=document.createElement('div');opts.className='opts';
+   [r[1],'Fully auto immediately','Skip it'].forEach(opt=>{const b=document.createElement('button');b.className='opt'+(st.r[idx]===opt?' sel':'');b.textContent=opt;b.onclick=()=>{st.r[idx]=opt;save();opts.querySelectorAll('.opt').forEach(x=>x.classList.toggle('sel',x.textContent===opt));chk();};opts.appendChild(b);});
+   row.appendChild(opts);d.appendChild(row);});
+  function chk(){const all=g.rows.every((r,idx)=>st.r[idx]===r[2]);feed.className='gfeed '+(all?'ok':'no');feed.textContent=all?'✓ Right first move for every platform.':'Pick the safe first move for each (hint: nothing goes full-auto on day one).';if(all)confetti(innerWidth/2,260);}
+  d.appendChild(feed);chk();
+ }
+ return d;
 }
 
-/* ===== tab 2: learn + quiz ===== */
-function renderLearn(m){
-  const d=document.createElement('div');
-  let h='<div class="lessonbody">'+m.lesson+'</div>';
-  h+='<div class="analogy"><b>Analogy.</b> '+esc(m.analogy)+'</div>';
-  h+='<div class="facts">';
-  m.facts.forEach(f=>{h+='<div class="fact"><b>'+esc(f.k)+(f.vr?'<span class="vf">\u25CF live-verified</span>':'')+'</b>'+esc(f.v)+'</div>';});
-  h+='</div>';
-  h+='<h3 style="font-size:13px;color:var(--dim);text-transform:uppercase;letter-spacing:.14em;margin:14px 0 2px">Quick check</h3>';
-  const qz=getQuiz(m.id);
-  m.quiz.forEach((q,qi)=>{
-    h+='<div class="q"><div class="qt">'+(qi+1)+'. '+esc(q.q)+'</div><div class="qopts" data-q="'+qi+'">';
-    q.o.forEach((opt,oi)=>{
-      let cls='qopt';
-      if(qi in qz){if(oi===q.a)cls+=' correct';else if(oi===qz[qi])cls+=' wrong';}
-      h+='<button class="'+cls+'" data-o="'+oi+'">'+esc(opt)+'</button>';
-    });
-    h+='</div><div class="qexpl'+((qi in qz)?' show':'')+'">'+(qi in qz?(qz[qi]===q.a?'\u2713 Correct. ':'\u2715 Not quite. ')+esc(q.e):'')+'</div></div>';
-  });
-  const ans=Object.keys(qz).length, right=m.quiz.filter((q,qi)=>qz[qi]===q.a).length;
-  h+='<div class="smol score">Score: '+right+' / '+m.quiz.length+(ans<m.quiz.length?' ('+(m.quiz.length-ans)+' left)':' \u00b7 done')+'</div>';
-  d.innerHTML=h;
-  d.querySelectorAll('.qopts').forEach(row=>{const qi=+row.getAttribute('data-q');row.querySelectorAll('.qopt').forEach(b=>b.onclick=(e)=>{if(qi in getQuiz(m.id))return;getQuiz(m.id)[qi]=+b.getAttribute('data-o');save();if(+b.getAttribute('data-o')===m.quiz[qi].a)confetti(e.clientX,e.clientY);render();});});
-  return d;
+/* tab 3: decide */
+function decide(m){const d=document.createElement('div');const dec=m.decision;const ch=S.decisions[m.id];
+ let h='<div class="note">Lock the decision. It becomes a build record in your exported plan, with a ready-to-paste instruction for Claude.</div>';
+ h+='<div class="bq"><div class="q">'+esc(dec.question)+'</div><div class="opts">';
+ dec.opts.forEach(o=>{h+='<button class="opt'+(ch===o.id?' sel':'')+'" data-id="'+o.id+'"><span class="tag'+(o.rec?' rec':'')+'">'+esc(o.tag)+'</span>'+esc(o.label)+'<div class="why">'+esc(o.why)+'</div></button>';});
+ h+='</div></div>';
+ h+='<div class="h3">Locked spec</div><table class="tinytable"><tbody>'+dec.specs.map(s=>'<tr><td>'+esc(s[0])+'</td><td>'+esc(s[1])+'</td></tr>').join('')+'</tbody></table>';
+ h+='<details><summary>Repo cross-check</summary><div class="note" style="margin-top:8px">'+esc(m.repo)+'</div></details>';
+ h+='<div class="tell"><b>Tell Claude</b> (copy into your build session).<code>'+esc(m.tell)+'</code><button class="btn ghost" id="cp" style="margin-top:8px">Copy instruction</button></div>';
+ d.innerHTML=h;
+ d.querySelectorAll('.opt').forEach(b=>b.onclick=e=>{S.decisions[m.id]=b.dataset.id;S.seen[m.id]=1;save();confetti(e.clientX,e.clientY);toast('Locked Module '+m.num+'.');render();});
+ d.querySelector('#cp').onclick=()=>{copyText(m.tell);toast('Instruction copied.');};
+ return d;
 }
 
-/* ===== tab 3: decide ===== */
-function renderDecide(m){
-  const d=document.createElement('div');
-  const dec=m.decision;const chosen=S.decisions[m.id];
-  let h='<div class="note"><b style="color:var(--active)">Lock the decision.</b> This becomes a build record in your exported plan, with the spec and a ready-to-paste instruction for Claude.</div>';
-  h+='<p style="font-weight:600;margin:8px 0">'+esc(dec.question)+'</p><div class="opts">';
-  dec.opts.forEach(o=>{
-    h+='<button class="opt'+(chosen===o.id?' chosen':'')+'" data-id="'+o.id+'"><div class="head"><h3>'+esc(o.label)+'</h3><span class="tag'+(o.rec?' rec':'')+'">'+esc(o.tag)+'</span></div>';
-    h+='<div class="why">'+esc(o.why)+'</div>';
-    h+='<div class="pp"><div class="pros"><b>Strength</b><br>'+esc(o.pros)+'</div><div class="cons"><b>Cost</b><br>'+esc(o.cons)+'</div></div></button>';
-  });
-  h+='</div>';
-  h+='<div class="rec"><b>Consultant verdict.</b> '+esc(dec.rec)+'</div>';
-  h+='<div style="margin-top:10px"><div class="smol" style="text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px">Locked spec</div><table class="tinytable"><tbody>';
-  dec.specs.forEach(s=>{h+='<tr><td>'+esc(s[0])+'</td><td>'+esc(s[1])+'</td></tr>';});
-  h+='</tbody></table></div>';
-  h+='<details><summary>Repo cross-check against gsr-automation-v2</summary><div class="note repo" style="margin-top:8px"><b>v2 state.</b> '+m.repo+'</div></details>';
-  h+='<div class="tell"><b>Tell Claude (copy into your build session).</b><code>'+esc(m.tell)+'</code><button class="btn" id="copyTell" style="margin-top:8px">Copy this instruction</button></div>';
-  d.innerHTML=h;
-  d.querySelectorAll('.opt').forEach(b=>b.onclick=(e)=>{S.decisions[m.id]=b.getAttribute('data-id');S.seen[m.id]=true;save();confetti(e.clientX,e.clientY);toast('Decision locked for Module '+m.num+'.');render();});
-  d.querySelector('#copyTell').onclick=()=>{copyText(m.tell);toast('Instruction copied. Paste it into your Claude build session.');};
-  return d;
+/* consultant */
+function consult(m){const cur=gi(m.id);const L=[];
+ L.push('I am working on GSR Automation v2, Module '+m.num+': '+m.title+' (phase: '+m.phase+').');
+ L.push('Target repo: gsr-automation-v2, built locally via Claude Code. Honor the David Rule (cloud APIs + DB only).');
+ L.push('');L.push('My blueprint answers:');
+ m.blueprint.forEach((q,i)=>L.push('- '+q.q+' => '+(cur[i]||'(blank)')));
+ const o=S.decisions[m.id]?m.decision.opts.find(x=>x.id===S.decisions[m.id]):null;
+ L.push('');L.push('Decision so far: '+(o?o.label:'not yet decided'));
+ L.push('');L.push('My question for you as my standing technical consultant: ');
+ copyText(L.join('\n'));toast('Consultant prompt copied. Paste it into Claude and add your question.');
 }
 
-/* ===== consultant prompt bundler ===== */
-function consult(m){
-  const cur=getIntake(m.id);const lines=[];
-  lines.push('I am working on GSR Automation v2, Module '+m.num+': '+m.title+' (pipeline phase: '+m.phase+').');
-  lines.push('Target repo: gsr-automation-v2. Build runs locally via Claude Code.');
-  lines.push('');
-  lines.push('My current thinking (blueprint):');
-  m.blueprint.forEach((q,i)=>{lines.push('- '+q.q+' => '+(cur[i]?cur[i]:'(left blank)'));});
-  lines.push('');
-  const chosen=S.decisions[m.id];const o=chosen?m.decision.opts.find(x=>x.id===chosen):null;
-  lines.push('Decision so far: '+(o?o.label+' ('+o.tag+')':'not yet decided'));
-  if(o)lines.push('Rationale: '+o.why);
-  lines.push('Locked spec:');
-  m.decision.specs.forEach(s=>lines.push('- '+s[0]+': '+s[1]));
-  lines.push('');
-  lines.push('System law: automation talks to cloud APIs only and never touches the live broadcast chain, ProPresenter, the QNAP NAS, or Tailscale directly (the David Rule).');
-  lines.push('');
-  lines.push('My question for you as my standing technical consultant: ');
-  copyText(lines.join('\n'));
-  toast('Consultant prompt copied. Paste it into your chat with Claude and add your question.');
+/* build plan export (MD + HTML) */
+const XMOVES=['Clear the YouTube/Google API audit (only Daniel; unlocks public auto-publish).','Set up Rundown Creator API access (APIKey + APIToken in 1Password).','Define the ProPresenter slide/presentation/playlist mapping at the computer.','Run the first real-episode lower-thirds import (graphics table is still 0 rows).'];
+function planMD(){const now=new Date().toISOString().slice(0,10);const L=[];
+ L.push('# GSR Automation v2 - Build Plan');L.push('');L.push('_Generated '+now+'. Target repo: **gsr-automation-v2**. Decisions locked: '+decided()+' / '+M.length+'._');L.push('');
+ L.push('## How to run');L.push('Open Claude Code in gsr-automation-v2. Work module by module in order. Paste each module Tell-Claude prompt, review the draft PR, confirm tsc + eslint, squash-merge.');L.push('');
+ L.push('## The David Rule');L.push('Automation reads cloud APIs and writes the database only. Never the live broadcast chain, ProPresenter, ATEM, Companion, QNAP, or Tailscale.');L.push('');
+ M.forEach(m=>{const cur=S.intake[m.id]||{};const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);
+  L.push('## M'+m.num+' - '+m.title+'  ('+m.phase+(m.mat?', '+(MAT[m.mat]?MAT[m.mat][1]:m.mat):'')+')');L.push('');
+  L.push('**Your intent**');m.blueprint.forEach((q,i)=>L.push('- '+q.q+' => '+(cur[i]||'(blank)')));L.push('');
+  L.push('**Locked decision:** '+(o?o.label:'NOT YET DECIDED'));if(o){L.push('');L.push('Why: '+o.why);}L.push('');
+  L.push('**Spec**');m.decision.specs.forEach(s=>L.push('- '+s[0]+': '+s[1]));L.push('');
+  L.push('**Repo:** '+m.repo);L.push('');L.push('**Tell Claude:**');L.push('```');L.push(m.tell);L.push('```');L.push('');});
+ const und=M.filter(m=>!S.decisions[m.id]);L.push('## Open decisions');if(und.length)und.forEach(m=>L.push('- M'+m.num+' '+m.title));else L.push('- None, all locked.');L.push('');
+ L.push('## Cross-cutting TODOs (Daniel)');XMOVES.forEach(x=>L.push('- '+x));L.push('');
+ L.push('_End. Build in gsr-automation-v2. Pull before you start, push when you stop._');return L.join('\n');}
+function planHTML(){const now=new Date().toISOString().slice(0,10);const H=[];
+ H.push('<!doctype html><meta charset="utf-8"><title>GSR Build Plan</title><style>body{max-width:880px;margin:0 auto;padding:30px 20px;font:15px/1.6 -apple-system,Segoe UI,sans-serif;color:#16202e}h1{font-size:24px}h2{margin-top:26px;border-top:1px solid #e1e8f1;padding-top:12px}pre{background:#0d1320;color:#dce7f5;padding:13px;border-radius:8px;white-space:pre-wrap;font:13px ui-monospace,Menlo,monospace}table{border-collapse:collapse}td{border:1px solid #e1e8f1;padding:4px 8px;font-size:14px}td:first-child{font-weight:600;color:#2563eb}.law{background:#fff6e9;border:1px solid #f0d8a8;padding:12px;border-radius:8px}</style>');
+ H.push('<h1>GSR Automation v2 - Build Plan</h1><p>Generated '+now+'. Target repo: <b>gsr-automation-v2</b>. Decisions locked: '+decided()+' / '+M.length+'.</p>');
+ H.push('<div class="law"><b>The David Rule.</b> Automation reads cloud APIs and writes the database only; never the live broadcast chain, ProPresenter, ATEM, Companion, QNAP, or Tailscale.</div>');
+ M.forEach(m=>{const cur=S.intake[m.id]||{};const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);
+  H.push('<h2>M'+m.num+' - '+esc(m.title)+'</h2><p><i>'+esc(m.phase)+(m.mat&&MAT[m.mat]?' . '+MAT[m.mat][1]:'')+'</i></p>');
+  H.push('<p><b>Your intent</b></p><ul>'+m.blueprint.map((q,i)=>'<li>'+esc(q.q)+' &rArr; '+esc(cur[i]||'(blank)')+'</li>').join('')+'</ul>');
+  H.push('<p><b>Locked decision:</b> '+(o?esc(o.label):'NOT YET DECIDED')+'</p>'+(o?'<p style="color:#5c6b7e">'+esc(o.why)+'</p>':''));
+  H.push('<p><b>Spec</b></p><table><tbody>'+m.decision.specs.map(s=>'<tr><td>'+esc(s[0])+'</td><td>'+esc(s[1])+'</td></tr>').join('')+'</tbody></table>');
+  H.push('<p style="color:#5c6b7e"><b>Repo:</b> '+esc(m.repo)+'</p><p><b>Tell Claude</b></p><pre>'+esc(m.tell)+'</pre>');});
+ H.push('<h2>Cross-cutting TODOs</h2><ul>'+XMOVES.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>');
+ return H.join('\n');}
+function buildPlan(){const now=new Date().toISOString().slice(0,10);download('GSR-Build-Plan-'+now+'.md',planMD(),'text/markdown');setTimeout(()=>download('GSR-Build-Plan-'+now+'.html',planHTML(),'text/html'),300);toast('Build plan exported: MD + HTML.');}
+
+/* finale */
+function finale(){const d=document.createElement('div');d.className='card fin';const done=decided();
+ let h='<span class="kick">Finale</span><h2>Power-on inspection</h2><p style="color:var(--dim)">Every locked decision is a build record. Export the plan and hand it to Claude Code.</p>';
+ h+='<div class="note"><b>'+done+' / '+M.length+'</b> decisions locked.</div>';
+ M.forEach(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);h+='<div class="chk"><span class="bx'+(S.decisions[m.id]?' on':'')+'"></span><span><b>M'+m.num+'</b> '+esc(m.title)+(o?' &mdash; '+esc(o.label):' &mdash; not yet decided')+'</span></div>';});
+ h+='<h3>Save + export</h3><div class="note">Click <b>Save</b> (top) to download <b>course-state.json</b>; commit it to docs/_handoff/ and Load it to resume on any device. One cumulative state, no separate files.</div>';
+ h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0"><button class="btn" id="fp">Export Build Plan (MD + HTML)</button></div>';
+ h+='<h3>Cross-cutting TODOs</h3><div class="note">'+XMOVES.map(x=>'• '+esc(x)).join('<br>')+'</div>';
+ h+='<div class="nav"><button class="btn ghost" id="bk">← Back to modules</button><span></span></div>';
+ d.innerHTML=h;d.querySelector('#fp').onclick=()=>buildPlan();d.querySelector('#bk').onclick=()=>{S.module=Math.max(0,M.length-1);save();render();};
+ return d;
 }
 
-/* ===== build plan export (the deliverable): phased, step-by-step, with Claude Code prompts, as MD + HTML ===== */
-function plain(s){return String(s==null?'':s).replace(/`/g,'').replace(/\*\*/g,'').replace(/\s+/g,' ').trim();}
-
-/* How much of each step Claude Code can do unattended, and the manual gate if any. */
-const AUTO={
- m0:{kind:'auto',label:'Automated setup',status:'Built (conventions in place)',manual:'',done:['feat/fix branch + draft PR + squash-merge flow works','npx tsc --noEmit and npx eslint pass clean','GSR Architect agent present at .claude/agents/gsr-architect.md']},
- m1:{kind:'assisted',label:'Automated build + manual setup',status:'Not started',manual:'Create the Dropbox app (full scope) and store its credentials in 1Password before running.',done:['A test file landing in the Dropbox folder fires the Supabase Edge Function','Cursor-poll fallback verified','Filename maps to show_season_episode; GSM flagged for manual cross-reference']},
- m2:{kind:'auto',label:'Automated build',status:'Partial (table + 175 rows exist; no-repeat logic to add)',manual:'',done:['Migration applied and visible in list_migrations','A query excludes guests aired in the current cycle','RLS enabled on the table']},
- m3:{kind:'assisted',label:'Automated build, manual send',status:'Partial (mail clients exist; v2 = contact-tracking only)',manual:'A human sends every guest email. Re-run the davidrives-mail Dovecot auth smoke test against the live server before trusting send.',done:['A draft email is generated and saved, never auto-sent','DNC stays a manual marked field','Dovecot auth smoke test passes against the live server']},
- m4:{kind:'assisted',label:'Automated build + one input',status:'Partial (extract + regenerate routes exist; parser + voice Skill to add)',manual:'Supply the gsr-interview-segment skill output and one real sample script so the parser contract can be locked.',done:['Fenced ===LOWER-THIRDS=== block parses deterministically to 15 lower thirds','Chyron built as NAME | ORG | FIELD, truncated to 62 + ellipsis over 65','Voice Skill (guide + 3-6 exemplars + do-not rules) passes a Vale lint']},
- m5:{kind:'auto',label:'Automated build',status:'Built (/api/import Zod + dry-run)',manual:'',done:['Malformed AI output is rejected via safeParse and flagged for a human','Import stays dry-run then type YES before any write','TS types derived with z.infer from the same schema']},
- m6:{kind:'auto',label:'Automated build (core exists)',status:'Built (graphics table + review UI; 0 rows, needs first import)',manual:'',done:['A real episode imports (dry-run then live) into the graphics table','Items appear at /lower-thirds and approve flows to /approved','graphics row count is greater than 0 (first real import done)']},
- m7:{kind:'auto',label:'Automated build',status:'Built (rc-explore/rc-import + script trigger)',manual:'',done:['rc-import maps 10 RC names to the 12-value enum and fixes mojibake','Every RC call reads the JSON body (HTTP 200 can be an error)','Saving a script fires on_script_save; confirm step holds by default']},
- m8:{kind:'manual',label:'Manual today; automation deferred',status:'Manual / deferred (off-limits to live automation)',manual:'ProPresenter is off-limits to live automation (David Rule). Today, copy approved text by hand. Only automate later as pre-built Props triggered by ID, test-only, after David explicitly approves.',done:['Approved text copies cleanly into ProPresenter by hand from the ready screen','No automation touches GSN-PropRes, ATEM, or Companion']},
- m9:{kind:'assisted',label:'Automated build + local setup',status:'Not started (distribution half, future)',manual:'Install ffmpeg and Whisper (or WhisperKit) on the Edit Bay Mac Mini. This runs locally, never on the NAS.',done:['ffmpeg extracts mono 16kHz audio; Whisper emits SRT/VTT from a test file','fswatch hot folder triggers the chain on file arrival','Output written to Supabase; nothing written to the NAS']},
- m10:{kind:'auto',label:'Automated build (core exists)',status:'Built (the live dashboard)',manual:'',done:['App Router + @supabase/ssr only; no pages/ dir, no auth-helpers','RLS on every table; advisors clean','Magic-link login works end to end']},
- m11:{kind:'assisted',label:'Partly automated; manual gates',status:'Not started (largely future)',manual:'Clear the Google API audit (only Daniel can; uploads stay private until approved). Fireside and GSN are manual handoff cards by design.',done:['YouTube videos.insert publishes (private until the audit clears)','Rumble mirrors via YouTube channel sync','Fireside + GSN appear as handoff cards with a mark-done button']}
-};
-function autoFor(m){return AUTO[m.id]||{kind:'auto',label:'Automated build',manual:''};}
-function phaseOrder(){const seen=[];M.forEach(m=>{if(seen.indexOf(m.phase)<0)seen.push(m.phase);});return seen;}
-
-/* A fully self-contained Claude Code prompt for one step. */
-function stepPrompt(m){
-  const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);const L=[];
-  L.push('Context: GSR Automation v2, repo gsr-automation-v2. Phase '+m.phase+', Step M'+m.num+': '+m.title+'.');
-  L.push('Current status in the repo: '+a.status+(/^Built|^Partial/.test(a.status)?'. EXTEND what already exists; do not rebuild from scratch.':'.'));
-  L.push('Ground rules: work on a feat/ or fix/ branch, open a draft PR, run npx tsc --noEmit and npx eslint, then squash-merge to main. Honor the David Rule: automation reads cloud APIs and writes the database only, and never touches ProPresenter, ATEM, Bitfocus Companion, the QNAP NAS, or Tailscale. Pull secrets from 1Password at runtime; never commit secrets.');
-  L.push('Locked decision: '+(o?o.label+' ('+o.tag+'). '+o.why:'NOT YET DECIDED - lock this in the course before building.'));
-  L.push('Spec:');
-  m.decision.specs.forEach(s=>L.push('  - '+s[0]+': '+s[1]));
-  if(a.manual)L.push('Manual gate: '+a.manual);
-  if(a.done&&a.done.length){L.push('Definition of done (verify before moving on):');a.done.forEach(x=>L.push('  - '+x));}
-  L.push('Task: '+m.tell);
-  return L.join('\n');
-}
-
-function planMarkdown(){
-  const now=new Date().toISOString().slice(0,10);const total=M.length,done=decided();const L=[];
-  L.push('# GSR Automation v2 - Build Plan');
-  L.push('');
-  L.push('_Single source of truth. Generated '+now+' from the GSR crash course. Target repo: **gsr-automation-v2**. Decisions locked: '+done+' / '+total+'._');
-  L.push('');
-  L.push('## How to run this plan');
-  L.push('1. Open Claude Code in the gsr-automation-v2 repo.');
-  L.push('2. Work phase by phase, step by step, in the order below. Do not skip ahead.');
-  L.push('3. For each automatable step, paste its **Claude Code prompt** (the fenced block) and let Claude build it, then review the draft PR.');
-  L.push('4. Steps marked Manual are done by a human; their prompt builds only the automatable part, if any.');
-  L.push('5. After each step: confirm tsc and eslint pass, squash-merge, then move on.');
-  L.push('');
-  L.push('**Setup:** the GSR Architect subagent already ships in this repo at .claude/agents/gsr-architect.md; Claude Code loads it automatically, so a build session boots knowing the system. Keep the companion reference files (listed at the end) open.');
-  L.push('');
-  L.push('## The architecture law (non-negotiable)');
-  L.push('The David Rule: automation reads cloud APIs and writes to the database only. It never writes to the live broadcast chain, the ProPresenter machine (GSN-PropRes, Tailscale 100.98.215.7), the QNAP NAS (read-only SMB), ATEM, or Bitfocus Companion. Production pulls from the database on its own schedule. Build with feat/fix branches and squash merges; pull credentials from 1Password at runtime; never commit secrets.');
-  L.push('');
-  L.push('## Phases at a glance');
-  phaseOrder().forEach((ph,pi)=>{const steps=M.filter(m=>m.phase===ph);L.push('- **Phase '+(pi+1)+' - '+ph+':** '+steps.map(m=>'M'+m.num+' '+m.title).join('; '));});
-  L.push('');
-  L.push('## Build-order checklist');
-  M.forEach(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);L.push('- ['+(S.decisions[m.id]?'x':' ')+'] M'+m.num+' '+m.title+'  ('+a.label+')'+(o?' -> '+o.label:' -> (not yet decided)'));});
-  L.push('');
-  phaseOrder().forEach((ph,pi)=>{
-    L.push('## Phase '+(pi+1)+' - '+ph);
-    L.push('');
-    M.filter(m=>m.phase===ph).forEach(m=>{
-      const cur=S.intake[m.id]||{};const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);
-      L.push('### Step M'+m.num+' - '+m.title);
-      L.push('');
-      L.push('- **Automation:** '+a.label);
-      L.push('- **Status in repo:** '+a.status);
-      if(a.manual)L.push('- **Manual gate:** '+a.manual);
-      L.push('');
-      L.push('**Producer intent (your blueprint)**');
-      m.blueprint.forEach((q,i)=>{L.push('- '+q.q+' => '+(cur[i]?cur[i]:'(left blank)'));});
-      L.push('');
-      L.push('**Locked decision:** '+(o?o.label+'  ('+o.tag+')':'NOT YET DECIDED'));
-      if(o)L.push('');
-      if(o)L.push('Rationale: '+o.why);
-      L.push('');
-      L.push('Consultant verdict: '+m.decision.rec);
-      L.push('');
-      L.push('**Spec**');
-      m.decision.specs.forEach(s=>L.push('- '+s[0]+': '+s[1]));
-      L.push('');
-      if(a.done&&a.done.length){L.push('**Definition of done**');a.done.forEach(x=>L.push('- '+x));L.push('');}
-      L.push('**Repo cross-check (gsr-automation-v2):** '+plain(m.repo));
-      L.push('');
-      L.push(a.kind==='manual'?'**Claude Code prompt (builds the automatable part / guidance):**':'**Claude Code prompt (paste into Claude Code):**');
-      L.push('```text');
-      L.push(stepPrompt(m));
-      L.push('```');
-      L.push('');
-    });
-  });
-  const undec=M.filter(m=>!S.decisions[m.id]);
-  L.push('## Open questions (lock these in the course before building)');
-  if(undec.length===0)L.push('- None. All '+total+' decisions are locked.');
-  else undec.forEach(m=>L.push('- M'+m.num+' '+m.title));
-  L.push('');
-  L.push('## Manual actions (no automated prompt)');
-  M.forEach(m=>{const a=autoFor(m);if(a.manual)L.push('- M'+m.num+' '+m.title+': '+a.manual);});
-  L.push('');
-  L.push('## Cross-cutting next moves');
-  XMOVES.forEach(x=>L.push('- '+x));
-  L.push('');
-  L.push('## System contract (invariants every step must honor)');
-  CONTRACT.forEach(sec=>{L.push('');L.push('### '+sec[0]);sec[1].forEach(x=>L.push('- '+x));});
-  L.push('');
-  L.push('## Companion reference files');
-  COMPANION.forEach(x=>L.push('- '+x));
-  L.push('');
-  L.push('_End of build plan. Honor the David Rule. Pull before you start, push when you stop._');
-  return L.join('\n');
-}
-
-const XMOVES=[
- 'Clear the Google API audit for YouTube early; uploads stay private until approved (only Daniel can do this).',
- 'Normalize the guest contact sheet into the Supabase guests table to unlock auto-matching.',
- 'Re-run the davidrives-mail Dovecot auth smoke test against the live server before trusting send.',
- 'Reconcile ADR-0012 text (says Next.js 15) with the live stack (16.2).',
- 'Run the first real-episode import: the graphics table is still 0 rows (operational milestone, not a defect).',
- 'Resolve the lower_thirds phantom: the table is graphics; rename for real or delete the pending-rename language.',
- 'Deploy the optional confirm step for auto-extraction: apply migration 20260604180000 and redeploy the extract-on-script-save Edge Function (default auto_extract_apply=false holds extractions until a human confirms via /api/scripts/confirm-extraction).',
- 'Provide the gsr-interview-segment skill output + one real sample script to lock the parser contract (Stage 1 blocker).'
-];
-
-/* The invariants every step must honor, baked into the plan so the building agent never guesses. */
-const CONTRACT=[
- ['Repo + workflow',[
-  'Build in gsr-automation-v2 (not gsr-blueprint). feat/ or fix/ branches, draft PR, squash-merge to main.',
-  'Run npx tsc --noEmit and npx eslint before every commit; both must be clean.',
-  'Secrets via 1Password at runtime (op item get); never commit secrets.',
-  'Claude model: ANTHROPIC_REGENERATE_MODEL, default claude-opus-4-7, server-side only, max_tokens 4096.'
- ]],
- ['The David Rule (off-limits)',[
-  'Automation reads cloud APIs and writes the database only.',
-  'Never touch: the live broadcast chain, ProPresenter (GSN-PropRes, Tailscale 100.98.215.7), ATEM, Bitfocus Companion, the QNAP NAS (read-only SMB), or Notion as a backend (wiki only).'
- ]],
- ['Segments (12-value enum)',[
-  'show_intro, opening_monologue, interview_1, interview_2, kids_corner, genesis_science_qa, ministry_report, viewer_voices, featured_resource, heavens_declare, genesis_science_minute, other.'
- ]],
- ['Lower-thirds l3_type (15-value check)',[
-  'episode_intro_l3, monologue_beat, segment_graphics_title, topic_l3, guest_chyron, discussion_l3, generic_safety_net, qa_topic_l3, mr_topic_l3, mr_cta_l3, correspondent_chyron, viewer_l3, resource_l3, cta_l3, other.'
- ]],
- ['Lower-thirds formatting',[
-  'ALL CAPS. Working band 55-65 characters, hard ceiling 65.',
-  'No em dashes, commas, connecting hyphens, slashes, end periods, brackets, or wrapping quotes. Abbreviation periods (DR. PHD. VS.) are fine.',
-  'Pipe only for NAME | ORG | FIELD chyrons; colon for topic beats. Chyron truncates to 62 + ellipsis over 65.',
-  'Ministry Report CTA, verbatim and never rewritten: SUPPORT THE MISSION | DAVIDRIVES.COM | 931-212-7990.'
- ]],
- ['Live routes + contracts',[
-  'Pages: /import, /lower-thirds, /lower-thirds/ready, /approved, /upload, /extract, /episodes, /guests, /workflow, /toolkit, /login, /update-password.',
-  'API: /api/import (Zod, dry-run then type YES), /api/extract-lower-thirds (Claude, returns a payload, no DB write), /api/regenerate (3 variations), /api/scripts (upsert per episode+segment, fires on_script_save), /api/rc-explore and /api/rc-import (Rundown Creator passthrough), /api/scripts/confirm-extraction (apply or discard the held auto-extraction).'
- ]],
- ['Database (Supabase lafkbxypmciopebentxp, verified live)',[
-  '20 tables, 46 migrations, 2 enums, 2 views (v_episode_master, v_episode_workflow), 3 functions, 3 triggers, 1 storage bucket (lower-thirds).',
-  'Lower thirds live in the graphics table. There is NO lower_thirds table: the first migration filename misleads, but every query uses graphics (a documented phantom). The storage bucket is the only thing named lower-thirds.',
-  'Row counts: episodes 48, guests 175, graphics 0 (no live import yet, the real Stage 7 milestone).',
-  'RLS on every table; service role only server-side; atomic mutations via RPC; idempotent migrations; run list_migrations before new SQL.'
- ]],
- ['Rundown Creator',[
-  'Errors come back as HTTP 200 with a JSON error body. Always read the body; never trust the status code.',
-  'rc-import maps 10 RC segment names to the 12-value enum and fixes Latin-1 to UTF-8 mojibake. Season-3 rundown IDs: 79, 81, 83, 82, 84.'
- ]]
-];
-const COMPANION=[
- 'docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md - the full live-verified system reference (three eras, every route + contract, the 20-table schema, prompts).',
- 'docs/_handoff/VERIFIED-FACTS.md - June 4 verification verdicts (versions, prices, quotas, the corrections).',
- 'docs/_handoff/2026-06-04-tools-curriculum-timeline.md - the 8-stage tool, setup, and fragile-parts timeline.',
- '.claude/agents/gsr-architect.md - the GSR Architect subagent, now shipping in THIS repo. Claude Code loads it automatically; invoke the gsr-architect agent type and a session boots knowing the whole system.',
- 'gsr-blueprint repo: mock/2026-06-03-gsr-dashboard-mock.html - the annotated dashboard mock (UI reference).'
-];
-
-function planHTML(){
-  const now=new Date().toISOString().slice(0,10);const total=M.length,done=decided();const H=[];
-  H.push('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GSR Automation v2 - Build Plan</title>');
-  H.push('<style>body{max-width:920px;margin:0 auto;padding:32px 20px;background:#f7f9fc;color:#16202e;font:15px/1.6 -apple-system,Segoe UI,Roboto,sans-serif}h1{font-size:26px;margin:0 0 4px}h2{margin:28px 0 8px;padding-top:14px;border-top:2px solid #e1e8f0;font-size:20px}h3{margin:18px 0 6px;font-size:16px;color:#0b3a57}.meta{color:#5b6b7e}.tag{display:inline-block;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px;border:1px solid #cdd8e4;background:#eef3f9;color:#33506e;margin-left:6px}.tag.manual{background:#fff1e6;border-color:#f0c89b;color:#9a5a12}.tag.auto{background:#e8f7ee;border-color:#a9dcc0;color:#1d7a45}.law{background:#fff6e9;border:1px solid #f0d8a8;border-radius:8px;padding:12px 14px}.gate{background:#fff1e6;border:1px solid #f0c89b;border-radius:8px;padding:8px 12px;margin:8px 0;font-size:14px}pre{background:#0d1320;color:#dce7f5;border-radius:8px;padding:14px;overflow:auto;font:13px/1.5 ui-monospace,Menlo,monospace;white-space:pre-wrap}.step{border:1px solid #e1e8f0;border-radius:10px;padding:14px 16px;margin:14px 0;background:#fff}.spec{border-collapse:collapse;margin:4px 0}.spec td{border:1px solid #e1e8f0;padding:4px 8px;font-size:14px;vertical-align:top}.spec td:first-child{font-weight:600;color:#0b3a57;white-space:nowrap}.crumb{color:#5b6b7e;font-size:13px}ul{margin:6px 0}li{margin:3px 0}@media print{body{background:#fff}.step{break-inside:avoid}pre{background:#f0f3f8;color:#16202e;border:1px solid #d6deea}}</style></head><body>');
-  H.push('<h1>GSR Automation v2 - Build Plan</h1>');
-  H.push('<p class="meta">Single source of truth. Generated '+now+'. Target repo: <b>gsr-automation-v2</b>. Decisions locked: '+done+' / '+total+'.</p>');
-  H.push('<div class="law"><b>The architecture law (David Rule).</b> Automation reads cloud APIs and writes the database only. It never touches the live broadcast chain, ProPresenter (GSN-PropRes, Tailscale 100.98.215.7), the QNAP NAS, ATEM, or Bitfocus Companion. Build with feat/fix branches and squash merges; secrets from 1Password; never commit secrets.</div>');
-  H.push('<h2>How to run this plan</h2><ol><li>Open Claude Code in gsr-automation-v2.</li><li>Work phase by phase, step by step. Do not skip ahead.</li><li>For each automatable step, paste its Claude Code prompt and review the draft PR.</li><li>Manual steps are done by a human.</li><li>After each step: tsc and eslint pass, squash-merge, continue.</li></ol><p class="crumb"><b>Setup:</b> the GSR Architect subagent ships in this repo at .claude/agents/gsr-architect.md and loads automatically in Claude Code, so a build session boots knowing the system. Companion reference files are listed at the end.</p>');
-  H.push('<h2>Phases at a glance</h2><ul>');
-  phaseOrder().forEach((ph,pi)=>{const steps=M.filter(m=>m.phase===ph);H.push('<li><b>Phase '+(pi+1)+' - '+esc(ph)+':</b> '+esc(steps.map(m=>'M'+m.num+' '+m.title).join('; '))+'</li>');});
-  H.push('</ul>');
-  H.push('<h2>Build-order checklist</h2><ul>');
-  M.forEach(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);H.push('<li>['+(S.decisions[m.id]?'x':'&nbsp;')+'] <b>M'+m.num+'</b> '+esc(m.title)+' <span class="tag '+(a.kind==='manual'?'manual':'auto')+'">'+esc(a.label)+'</span>'+(o?' &rarr; '+esc(o.label):' &rarr; (not yet decided)')+'</li>');});
-  H.push('</ul>');
-  phaseOrder().forEach((ph,pi)=>{
-    H.push('<h2>Phase '+(pi+1)+' - '+esc(ph)+'</h2>');
-    M.filter(m=>m.phase===ph).forEach(m=>{
-      const cur=S.intake[m.id]||{};const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);const a=autoFor(m);
-      H.push('<div class="step"><h3>Step M'+m.num+' - '+esc(m.title)+' <span class="tag '+(a.kind==='manual'?'manual':'auto')+'">'+esc(a.label)+'</span></h3>');
-      H.push('<p class="crumb"><b>Status in repo:</b> '+esc(a.status)+'</p>');
-      if(a.manual)H.push('<div class="gate"><b>Manual gate:</b> '+esc(a.manual)+'</div>');
-      H.push('<p class="crumb"><b>Producer intent</b></p><ul>');
-      m.blueprint.forEach((q,i)=>{H.push('<li>'+esc(q.q)+' &rArr; '+esc(cur[i]?cur[i]:'(left blank)')+'</li>');});
-      H.push('</ul>');
-      H.push('<p><b>Locked decision:</b> '+(o?esc(o.label)+' ('+esc(o.tag)+')':'<span style="color:#9a5a12">NOT YET DECIDED</span>')+'</p>');
-      if(o)H.push('<p class="crumb">Rationale: '+esc(o.why)+'</p>');
-      H.push('<p class="crumb">Consultant verdict: '+esc(m.decision.rec)+'</p>');
-      H.push('<p><b>Spec</b></p><table class="spec"><tbody>');
-      m.decision.specs.forEach(s=>H.push('<tr><td>'+esc(s[0])+'</td><td>'+esc(s[1])+'</td></tr>'));
-      H.push('</tbody></table>');
-      if(a.done&&a.done.length){H.push('<p><b>Definition of done</b></p><ul>');a.done.forEach(x=>H.push('<li>'+esc(x)+'</li>'));H.push('</ul>');}
-      H.push('<p class="crumb"><b>Repo cross-check:</b> '+esc(plain(m.repo))+'</p>');
-      H.push('<p><b>Claude Code prompt</b>'+(a.kind==='manual'?' (guidance / automatable part)':'')+'</p><pre>'+esc(stepPrompt(m))+'</pre>');
-      H.push('</div>');
-    });
-  });
-  const undec=M.filter(m=>!S.decisions[m.id]);
-  H.push('<h2>Open questions</h2><ul>');
-  if(undec.length===0)H.push('<li>None. All '+total+' decisions are locked.</li>');
-  else undec.forEach(m=>H.push('<li>M'+m.num+' '+esc(m.title)+'</li>'));
-  H.push('</ul>');
-  H.push('<h2>Manual actions (no automated prompt)</h2><ul>');
-  M.forEach(m=>{const a=autoFor(m);if(a.manual)H.push('<li><b>M'+m.num+'</b> '+esc(m.title)+': '+esc(a.manual)+'</li>');});
-  H.push('</ul>');
-  H.push('<h2>Cross-cutting next moves</h2><ul>');
-  XMOVES.forEach(x=>H.push('<li>'+esc(x)+'</li>'));
-  H.push('</ul>');
-  H.push('<h2>System contract (invariants)</h2>');
-  CONTRACT.forEach(sec=>{H.push('<h3>'+esc(sec[0])+'</h3><ul>');sec[1].forEach(x=>H.push('<li>'+esc(x)+'</li>'));H.push('</ul>');});
-  H.push('<h2>Companion reference files</h2><ul>');
-  COMPANION.forEach(x=>H.push('<li>'+esc(x)+'</li>'));
-  H.push('</ul>');
-  H.push('<p class="meta">End of build plan. Honor the David Rule. Pull before you start, push when you stop.</p>');
-  H.push('</body></html>');
-  return H.join('\n');
-}
-
-function buildPlan(){
-  const now=new Date().toISOString().slice(0,10);
-  download('GSR-Automation-v2-Build-Plan-'+now+'.md',planMarkdown(),'text/markdown;charset=utf-8');
-  setTimeout(()=>download('GSR-Automation-v2-Build-Plan-'+now+'.html',planHTML(),'text/html;charset=utf-8'),350);
-  toast('Build plan exported: Markdown + HTML.');
-}
-
-/* ===== finale ===== */
-function renderFinale(){
-  const d=document.createElement('div');d.className='card fin';
-  const done=decided();
-  let h='<span class="kicker">Finale</span><h2>Power-on inspection</h2>';
-  h+='<p class="lede">Every decision you lock becomes a build record. Export the plan and hand it to Claude Code against gsr-automation-v2.</p>';
-  h+='<div class="finbox"><div style="font-size:13px;margin-bottom:6px"><span class="adrcount">'+done+'</span> / '+M.length+' decisions locked</div>';
-  M.forEach(m=>{const o=m.decision.opts.find(o=>o.id===S.decisions[m.id]);h+='<div class="checkrow"><span class="bx'+(S.decisions[m.id]?' on':'')+'"></span><span><b>M'+m.num+'</b> '+esc(m.title)+(o?' &mdash; <span style="color:var(--good)">'+esc(o.label)+'</span>':' &mdash; <span style="color:var(--warn)">not yet decided</span>')+'</span></div>';});
-  h+='</div>';
-  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px"><button class="btn primary" id="finPlan">Export Build Plan (MD + HTML)</button><button class="btn" id="finJson">Export JSON state</button></div>';
-  h+='<h3>Saving your progress (one file, always in sync)</h3>';
-  h+='<div class="finbox smol">Your answers and decisions auto-save in this browser. To make that durable and resumable on any device: click <b>Export JSON</b>, save it as <b>docs/_handoff/course-state.json</b>, and commit it. To resume, click <b>Import</b> and pick that file. It is one cumulative state across all 12 modules, so there are no separate per-module files to link. Module 2 already builds on Module 1.</div>';
-  h+='<h3>What to do with the export</h3>';
-  h+='<div class="finbox smol">1. Export the build plan. You get a Markdown file (for Claude Code) and a readable HTML version (for you, prints clean). 2. Open Claude Code in gsr-automation-v2. 3. Work phase by phase: each step carries its own ready-to-run Claude Code prompt, a spec, and a repo cross-check, so Claude extends the existing repo instead of starting over. Steps tagged Manual are yours to do by hand.</div>';
-  h+='<h3>Cross-cutting next moves</h3>';
-  h+='<div class="finbox smol">';
-  ['Clear the Google API audit for YouTube early (uploads stay private until approved; only Daniel can).',
-   'Normalize the guest contact sheet into the Supabase guests table to unlock auto-matching.',
-   'Re-run the davidrives-mail Dovecot auth smoke test against the live server before trusting send.',
-   'Reconcile ADR-0012 text (Next.js 15) with the live stack (16.2).',
-   'Run the first real-episode import: the graphics table is still 0 rows.',
-   'Resolve the lower_thirds phantom: the table is graphics; rename for real or delete the pending-rename note.',
-   'Deploy the optional confirm step: apply migration 20260604180000 + redeploy extract-on-script-save. Default auto_extract_apply=false holds extractions for confirmation.',
-   'Supply the gsr-interview-segment skill output + one real sample script (Stage 1 blocker).'
-  ].forEach(x=>{h+='<div class="checkrow"><span class="bx"></span><span>'+esc(x)+'</span></div>';});
-  h+='</div>';
-  h+='<div class="nav"><button class="btn" id="finBack">\u2190 Back to modules</button><span></span></div>';
-  d.innerHTML=h;
-  d.querySelector('#finPlan').onclick=()=>buildPlan();
-  d.querySelector('#finJson').onclick=()=>exportJSON();
-  d.querySelector('#finBack').onclick=()=>{S.module=Math.max(0,M.length-1);save();render();};
-  return d;
-}
-
-/* ===== JSON export / import / reset ===== */
-function exportJSON(){download('course-state.json',JSON.stringify(S,null,2),'application/json');toast('Saved as course-state.json. Commit it to docs/_handoff/ and Import to resume.');}
-function importJSON(file){const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(o&&typeof o==='object'){S=Object.assign(fresh(),o);if(typeof S.module!=='number'||S.module<0)S.module=0;save();render();toast('State imported.');}else toast('That file did not look like saved state.');}catch(e){toast('Could not read that file.');}};r.readAsText(file);}
-
-/* ===== wire top bar + boot ===== */
-$('btnPlan').onclick=()=>buildPlan();
-$('btnJson').onclick=()=>exportJSON();
-$('btnImport').onclick=()=>$('fileImport').click();
-$('fileImport').onchange=e=>{if(e.target.files&&e.target.files[0])importJSON(e.target.files[0]);e.target.value='';};
-$('btnReset').onclick=()=>{if(confirm('Reset all progress, blueprint answers, and decisions? This cannot be undone.')){S=fresh();save();render();toast('Reset complete.');}};
+/* JSON + boot */
+function exportJSON(){download('course-state.json',JSON.stringify(S,null,2),'application/json');toast('Saved as course-state.json. Commit to docs/_handoff/ and Load to resume.');}
+function importJSON(f){const r=new FileReader();r.onload=()=>{try{const o=JSON.parse(r.result);if(o&&typeof o==='object'){S=Object.assign(fresh(),o);if(typeof S.module!=='number')S.module=0;save();render();toast('State loaded.');}}catch(e){toast('Could not read that file.');}};r.readAsText(f);}
+$('btnPlan').onclick=()=>buildPlan();$('btnJson').onclick=()=>exportJSON();$('btnImport').onclick=()=>$('fileImport').click();
+$('fileImport').onchange=e=>{if(e.target.files[0])importJSON(e.target.files[0]);e.target.value='';};
+$('btnReset').onclick=()=>{if(confirm('Reset all progress and decisions?')){S=fresh();save();render();}};
 render();
 </script>
 </body>

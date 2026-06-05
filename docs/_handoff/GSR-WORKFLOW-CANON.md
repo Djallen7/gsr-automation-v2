@@ -132,7 +132,16 @@ Source of truth = the **approved graphics** from the Graphics Tracker. Lower thi
 
 **Confirm gate (David Rule, the TD runs from this):** manual confirm before any update. The dashboard shows a **preview that mirrors the Rundown Creator column layout** (row, segment, Graphics, Last Line, Notes) populated from our data, so Daniel can eyeball each column before clicking Update. Script text need not be attached. Embedding RC directly is a maybe (RC may block being iframed); the reliable path is our own column-accurate preview grid plus a deep-link into RC. Dry-run, then Update.
 
-**Dependency to obtain:** the full RC **write** API (create/update/delete rows) lives in the archived `GSR-Archive_mcp-rundown-creator` skill, which is not in these repos. Need it to implement add/delete-row. Today's `/api/rc-import` only reads; `/api/rc-explore` lists. The build adds a write/push path.
+**RC write API (pulled from the public docs 2026-06-04; base `https://www.rundowncreator.com/[channel]/API.php`, auth `APIKey` + `APIToken`, JSON responses, errors arrive as HTTP 200 so always read the body):**
+- `getRows` / `getColumns` / `getScript` - read.
+- `insertRow` - insert a new row before/after a given row (use to ADD graphics beyond the default rows).
+- `setRowProperties` - set a row's column values (Graphics col `1`, Last Line col `4`, Notes = sentence-duration, StorySlug, etc.).
+- `duplicateRow` - copy a row.
+- `deleteRow` - move a row to trash (use to DELETE unused default rows); `permanentlyDelete` to purge from trash.
+- `reorderRows` - reorder. `saveScript` - update script versions.
+These cover the fluid insert/update/delete reconciliation Daniel described. Today's `/api/rc-import` only reads and `/api/rc-explore` lists; the build adds the write/push path on top of these actions.
+
+**>> REMINDER (Daniel TODO, deferred): set up Rundown Creator API access (APIKey + APIToken in 1Password) before the live rundown push can run.** The archived `GSR-Archive_mcp-rundown-creator` skill (not in these repos) may have extra wiring but is not required now since the action spec is captured above.
 
 **Queued fixes (align code/docs to this canon, on a build pass, not the live DB now):**
 - Add **Dreamstime** to the b-roll source enum (Daniel sources from Storyblocks, Dreamstime, Envato; only Storyblocks + Envato are in the enum today).

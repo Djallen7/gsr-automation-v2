@@ -152,7 +152,13 @@ These cover the fluid insert/update/delete reconciliation Daniel described. Toda
 
 **Metadata = manually triggered, template-based, NOT a Claude prompt-handoff.** Descriptions and tags are **templated and consistent across episodes** (a stored template filled with episode-specific fields), so there is no per-episode AI writing for those. The only variable bits are the **title hook** (Daniel keeps that call) and **chapters** (derivable from segment/rundown timecodes). Daniel clicks a button to generate. Bake in: YouTube category 28, TV airs Tuesday 8 PM CST, YouTube publishes Monday 4 PM ET.
 
-**Distribution (decision still open: build now vs later phase):** design captured = YouTube auto via `videos.insert` (the Google API audit is Daniel's TODO; uploads stay private until cleared), Rumble via YouTube channel sync, Fireside + GSN as manual handoff cards (no publish APIs), social/clips later, and a per-platform upload tracker.
+**Distribution = THE priority build (Daniel's single biggest time-saver). Build it now**, start at the manual-trigger stage, and move to Auto as fast as trust allows. Even though it sits "post" in the pipeline, sequence it early in the build for ROI. Design:
+- **YouTube** auto via `videos.insert`. **The unlock is Daniel clearing the Google API audit** (his TODO; uploads stay private until then). Fastest path: one-click publish first (Daniel triggers, system uploads with the templated metadata + chapters), then scheduled/auto.
+- **Rumble** mirrors automatically via YouTube channel sync (near-zero build).
+- **Fireside + GSN** = manual handoff cards (no publish APIs); pre-stage the file + metadata, mark done.
+- **Social clips/posts** later. A per-platform **upload tracker** shows status.
+- Chain: master -> transcription -> templated metadata -> one-click publish to YouTube (Rumble mirrors) + handoff cards for Fireside/GSN.
+- **>> REMINDER (Daniel TODO): clear the YouTube/Google API audit** to unlock public auto-publishing.
 
 **Queued fixes (align code/docs to this canon, on a build pass, not the live DB now):**
 - Add **Dreamstime** to the b-roll source enum (Daniel sources from Storyblocks, Dreamstime, Envato; only Storyblocks + Envato are in the enum today).

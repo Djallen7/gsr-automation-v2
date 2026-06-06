@@ -176,3 +176,33 @@ These cover the fluid insert/update/delete reconciliation Daniel described. Toda
 - Add **Book Cover** to the `production_graphics.graphic_type` CHECK (used in the sheet, missing from the DB).
 - Reorder the `production_graphics.status` CHECK to the canon set `Not Started -> In Progress -> Created -> Loaded In`, and restore "In Progress" in PROMPT_LIBRARY (it was dropped).
 - Rename the `graphics` table to `lower_thirds` (it holds lower thirds, not graphics) and keep `production_graphics` as the Graphics Tracker.
+
+## 11. Established Distribution Stack & Vendor Registry (locked 2026-06-06)
+
+This registry is the durable, never-re-ask record of WHERE GSR episodes go and HOW. It was reconciled against the live `distributions.platform` enum, `config/production.json`, and the migrations after a full repo + history sweep on 2026-06-06 (the sweep that caught Signiant and StreamHoster missing from a web-only research brief). **Any platform/vendor answer must be reconciled against this registry + the live enum + `config/production.json` first; web research only supplements, never replaces, what is here.**
+
+**Authoritative live `distributions.platform` enum** = the 9 values in migration `20260528003000_correct_distributions_platforms.sql` (the LAST migration that alters `distributions_platform_check`; it supersedes the 20-value `..002000`):
+
+| Target | enum id | What it carries | Delivery mechanism | Special requirement |
+|---|---|---|---|---|
+| YouTube | `youtube` | Full episode; the anchor + canonical URL | YouTube Data API v3 (googleapis, resumable, on Mac/worker) | Category 28; Mon 4 ET scheduled; private until Google audit cleared (irreversible per-video) |
+| Rumble | `rumble` | Secondary full episode | **Manual web upload (Phase 1)** | YouTube->Rumble sync is BROKEN; official Upload API is partner-gated (bd@rumble.com bounced); verify 58-min HD (720p risk) |
+| Dropbox | `dropbox` | Broadcast master to unnamed partner stations; also the input trigger | Dropbox API (REST + OAuth) | No metadata required; do not name specific stations; 150MB single-request cap -> chunk |
+| Fireside (podcast) | `fireside_podcast` | Audio-only MP3 podcast | Web-UI upload (API is read-only) | **Feeds Spotify + Apple Podcasts automatically via RSS.** Migrate to Transistor.fm (real publish API); 301 the feed (verify Fireside allows it) |
+| Real Life Network | `real_life_network` | Broadcast master to RLN | **Signiant Media Shuttle** (`api_client_media_shuttle_node` SDK) | **RLN = RightNow Media (one and the same target).** Metadata via Google Form; thumbnail 1200x1800 portrait; **-20 LKFS audio normalization** (this requirement currently lives ONLY in superseded migration `..002000:32-33` -- recapture it when RLN delivery is built) |
+| StreamHoster | `streamhoster` | Web-stream / OTT master; one upload that fans out | **FTPS** | **One StreamHoster upload feeds Roku, Apple TV, the iOS app, and LG TV** -- it replaces YouTube TV/app embeds because YouTube v3/tvOS caps embeds at 480p |
+| Genesis Science Network | `genesis_science_network` | genesissciencenetwork.com 24/7 web stream / on-demand | Manual handoff card; proposed Roku Direct Publisher JSON feed | No public API; verify the GSN Roku channel is Direct Publisher (feed-driven) not a custom SDK channel |
+| Social clip | `social_clip` | Episode-level short-form status flag | Tracked here; real per-clip tracking in `content_clips` / `social_posts` | Placeholder only |
+| Other | `other` | Catch-all | -- | -- |
+
+**Fed automatically by a listed platform (NOT separate upload targets):** Spotify and Apple Podcasts (via Fireside RSS); Roku, Apple TV, iOS app, LG TV (via the one StreamHoster FTPS upload); RightNow Media (= Real Life Network via Signiant).
+
+**Short-form / social** lives in the `social_posts` enum (migration `..003200`), separate from `distributions`: `youtube_shorts, instagram, tiktok, facebook, x_twitter`. Clip tooling: **Vizard** (recommended, public API + scheduler) vs **Opus Clip** (API enterprise-gated, manual). Multi-post by URL: Upload-Post / Blotato (cover YT/TikTok/IG/FB/X, NOT Rumble).
+
+**Deferred / pruned-but-REAL targets (do NOT treat as dropped; they are paths the team uses or used, collapsed out of the live enum for now):** GodTube; OTA broadcast (Nashville Ch 31.8, Greenville SC, etc.); TBN "Creation in the 21st Century" (`tbn_c21c`); Creation TV Network / CTN (and WWN) -- CTN/WWN are explicitly out-of-scope with a separate schema (see `AUTOMATION_ROADMAP`). If any of these are reactivated, add them back to the enum, do not reinvent them.
+
+**Stale claims to purge wherever they appear (all WRONG):** "Rumble mirrored via YouTube channel sync" (in `config/production.json`, `.env.example`, older SYSTEM-EVOLUTION/ADR text) -- the sync is broken; Rumble is manual. Fireside browser-automation via Playwright (Fireside is read-only -> handoff card / migrate). Odysee / the old Facebook/Instagram/Website "v1 platform" set (`production.json` admits it "was not the current plan").
+
+**Established facts to preserve (surfaced 2026-06-06; full detail cited in SYSTEM-EVOLUTION / config / style guide):** sponsor rule (S3 Ep1-24 carry a 60-sec sponsor, "Cedarville University"; Ep25 onward sponsor-free); the four locked verbatim lines + donation number **931-212-7990**; episode label format `S03EPxxx` and Dropbox file naming `{episode_label}_{descriptor}_{version}.{ext}`; the 14-task episode checklist with assignees (Daniel, Isaac, Jeremiah, Miryam); `creationsuperstore.com` as the spoken resource tie; the as-built `production_graphics.status` CHECK order is wrong in the DB (`Not Started, Created, In Progress, Loaded In`) vs the canon order `Not Started -> In Progress -> Created -> Loaded In`; producer email conflict (`dallen@davidrives.com` vs `daniel@davidrivesministries.org`); off-limits addresses GSN-PropRes 100.98.215.7, QNAP3 10.2.2.3, QNAP5 10.2.2.5; the 2026-05-20 security incident; b-roll source enum is missing Dreamstime.
+
+**Crew (never re-ask):** Daniel Allen (owner/producer, non-dev); David Rives (on-air talent, ministry director); Isaac (edit/export, owns the Graphics Tracker, monologue + both interviews); Jakob (roll-in segments THD/KC/Q&A/Featured Resource/GSM) -- NOT the same person as Jacob (footage/THD); Jeremiah (b-roll, raw footage to Dropbox); Gabe (GSM roll-ins); Miryam (metadata, thumbnails, uploads, mark-aired; Daniel's successor); interns (use the tracker, unrostered).

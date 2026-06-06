@@ -2,6 +2,10 @@
 
 **Compiled** 2026-06-05 from a 4-agent web-research pass (Rumble, YouTube, multi-platform/clips, podcast/GSN/setup), each adversarial about vendor claims. Every line carries a verdict and sources. Feeds the rebuild of the Distribution module (M9) and the AUTOMATION_ROADMAP.
 
+## RECONCILIATION (added 2026-06-06): this web brief is NOT the platform list
+
+This brief was a web-research pass and it OMITTED established GSR targets that live in the repo. The authoritative platform list is the live `distributions.platform` enum + `config/production.json` + **GSR-WORKFLOW-CANON.md section 11 (Established Distribution Stack & Vendor Registry)** — read that first. Targets this brief missed: **StreamHoster** (FTPS; one upload feeds Roku, Apple TV, iOS app, LG TV; exists because YouTube caps tvOS embeds at 480p); **Signiant Media Shuttle -> Real Life Network** (= RightNow Media; -20 LKFS audio normalization; 1200x1800 thumbnail); **Dropbox** network-partner station delivery; **Genesis Science Network** web/OTT (Roku Direct Publisher feed). Deferred-but-real: **GodTube, OTA broadcast, TBN "Creation in the 21st Century", CTN/WWN**. The notes below on YouTube/Rumble/Transistor/Vizard still stand, but they are a slice of the stack, not the whole.
+
 ## Headline corrections to earlier assumptions
 
 1. **"Rumble via YouTube channel sync, near-zero build" is WRONG.** Rumble's own blog says YouTube throttled/blocked the auto-sync in late 2023 and it was never reliably restored. Do not depend on it. (Validated Daniel's flag.)

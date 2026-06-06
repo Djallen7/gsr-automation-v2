@@ -346,29 +346,100 @@ const M=[
  repo:`Two profiles still exist conceptually (video + podcast) but both are templated. Chapters derive from segment/rundown timecodes.`,
  tell:`Build metadata as a manually-triggered, template-based step: a stored template (description + anchor tags + category 28) filled with episode fields; only the title hook (Daniel writes it) and chapters (from rundown timecodes) vary. Not a per-episode AI prompt. Produce video and podcast profiles from the same template set.`},
 
-{id:'m9',num:9,phase:'Distribution',station:'DISTRIBUTE',title:'Distribution & Publish (the Priority)',mat:'priority',
+{id:'m9',num:9,phase:'Distribution',station:'PUBLISH MAP',title:'Distribution: the Publish Map & Where It Runs',mat:'priority',
  blueprint:[
+  {q:`Where should the heavy upload actually run?`,opts:[`On my Mac or a small worker (dashboard just triggers)`,`Inside the dashboard on Vercel`,`Does not matter`]},
   {q:`What should Publish do first?`,opts:[`One-click: I trigger, it uploads`,`Auto on a schedule`,`Just stage files`]},
-  {q:`Which targets first?`,opts:[`YouTube + Rumble (mirrors)`,`YouTube only`,`All four`]},
   {q:`How fast to auto?`,opts:[`As fast as trust allows`,`After several clean runs`,`Stay manual`]}
  ],
- lesson:`<p>This is your <b>biggest time-saver</b>, built now and pushed toward automation fastest with the dial: <b>one-click publish</b> first (you trigger), then <b>Auto</b>. Same code path, you just flip a per-platform switch.</p>
- <p>Chain: master to transcription to <b>templated metadata</b> to publish. <b>YouTube</b> via <code>videos.insert</code> is the prize; the one unlock is clearing the <b>Google API audit</b> (only you, uploads stay private until then). <b>Rumble</b> mirrors via YouTube channel sync. <b>Fireside and GSN</b> have no publish API, so they are <b>handoff cards</b>. An <b>upload tracker</b> shows per-platform status. Build the auto switch now even though it ships manual.</p>`,
- analogy:`A printing press with a big green button. Today you press it per run and watch the first copies; the press can already run continuously the moment you trust it. Automating is flipping it from hand-fed to continuous, not building a new press.`,
- game:{type:'dial',h:'Set the rollout',d:'Pick the right first move for each platform.',
-   rows:[['YouTube','One-click publish now (auto switch wired)','One-click publish now (auto switch wired)'],
-         ['Rumble','Turn on YouTube channel sync','Turn on YouTube channel sync'],
-         ['Fireside / GSN','Handoff card (no publish API)','Handoff card (no publish API)']]},
+ lesson:`<p>This is your <b>biggest time-saver</b>, so it is built now and pushed toward automation fastest with the dial. But first, the hard fact that shapes everything: <b>the heavy upload cannot run on Vercel</b>. Vercel functions cap at 4.5 MB and 15 minutes, and your master is multi-gigabyte. So the <b>Mac (or a small worker) does the heavy lifting</b> (transcription + the actual uploads) and the <b>dashboard only triggers jobs and tracks status</b>.</p>
+ <p>The chain: master to transcription to <b>templated metadata</b> to publish. Each platform gets a <b>manual/auto dial</b> stored in <code>app_config</code>, so going auto later is one switch, not a rebuild. A per-platform <b>upload tracker</b> shows where every episode stands. The next three modules are the four Phase-1 targets: YouTube, Rumble, the podcast, and clips.</p>`,
+ analogy:`The dashboard is a dispatcher; the Mac is the truck. The dispatcher writes the orders and tracks the route, but you do not haul the cargo through the dispatcher's office. The heavy load rides the truck.`,
+ game:{type:'sort',h:'Runs where?',d:'Each job runs either on the Mac/worker (heavy) or in the dashboard (light). Sort them.',
+   binA:'Mac / worker (heavy media)',binB:'Dashboard / Vercel (light)',
+   items:[['The multi-GB master upload','A'],['Transcription','A'],['Resumable YouTube upload','A'],['The Publish trigger button','B'],['Per-platform status tracker','B'],['Filling the metadata template','B']]},
  quiz:[
-  {q:`What unlocks public YouTube auto-publishing?`,o:[`Paying for quota`,`Clearing the Google API audit (only Daniel)`,`Turning off Rumble`],a:1,e:`New API projects stay private until Google approves; quota is fine since Dec 2025.`},
-  {q:`Fastest safe first stage?`,o:[`Full auto now`,`One-click publish you trigger, auto switch built in`,`Hand-upload forever`],a:1,e:`Manual trigger first on the same path; flip to auto per platform.`}
+  {q:`Why can the upload not run on Vercel?`,o:[`Vercel is too expensive`,`Vercel caps functions at 4.5 MB / 15 min; the master is multi-GB`,`Vercel blocks video`],a:1,e:`Heavy media runs on the Mac/worker; the dashboard only triggers and tracks.`},
+  {q:`How does a platform go from manual to auto later?`,o:[`Rewrite the feature`,`Flip its dial in app_config (same code path)`,`It cannot`],a:1,e:`The auto path is wired now; the dial just controls how fast each platform gets there.`}
  ],
- decision:{question:`Lock the distribution rollout.`,opts:[
-   {id:'staged',label:`One-click publish now, auto switch wired, flip per platform later`,tag:'recommended',rec:1,why:`Time-saver immediately, zero rebuild to go auto; clear the Google audit to unlock public.`},
-   {id:'autonow',label:`Full auto-publish on a schedule now`,tag:'aggressive',why:`Trusts AI metadata and uploads before you have seen them.`}],
-  specs:[[`Rollout`,`manual-trigger publish; per-platform manual/auto dial in app_config`],[`YouTube`,`videos.insert; clear Google audit (Daniel TODO)`],[`Rumble`,`YouTube channel sync`],[`Fireside + GSN`,`handoff cards`],[`Tracker`,`per-platform status`]]},
- repo:`Priority build, sequenced early despite being post-pipeline. Wire the full path; default to manual trigger with a per-platform dial. Pin youtubeuploader v1.25.5. NEEDS: Daniel to clear the Google API audit.`,
- tell:`Build distribution as the priority feature at the manual-trigger maturity stage: a one-click Publish that uploads to YouTube via videos.insert with templated metadata + chapters, Rumble via YouTube channel sync, Fireside + GSN as handoff cards, plus a per-platform upload tracker. Lay the groundwork: wire the full path and a per-platform manual/auto dial in app_config so going auto is a switch. Pin youtubeuploader v1.25.5. Never browser-automate Fireside. Remind Daniel to clear the Google API audit (the unlock for public auto-publish).`}
+ decision:{question:`Lock the distribution architecture.`,opts:[
+   {id:'split',label:`Heavy work on Mac/worker, dashboard triggers + tracks, per-platform dial`,tag:'recommended',rec:1,why:`Respects Vercel limits, ships manual now, flips to auto per platform with one switch.`},
+   {id:'vercel',label:`Run everything inside the dashboard on Vercel`,tag:'wont work',why:`The 4.5 MB / 15 min limits make multi-GB uploads impossible there.`}],
+  specs:[[`Heavy jobs`,`Mac/worker: transcription + uploads`],[`Dashboard`,`trigger + track only`],[`Dial`,`per-platform manual/auto in app_config`],[`Tracker`,`per-platform upload status`]]},
+ repo:`Priority build, sequenced early despite being post-pipeline. Wire the full path; default to manual trigger with a per-platform dial. Vercel limits are the reason heavy media lives on the Mac/worker. Tracker maps to the distributions table (9-value platform enum).`,
+ tell:`Build the distribution orchestration layer: the dashboard (Vercel) only triggers publish jobs and tracks per-platform status; all heavy media (transcription + uploads) runs on a local Mac/worker because Vercel caps functions at 4.5 MB / 15 min. Store a per-platform manual/auto dial in app_config and wire the full auto path now so enabling automation is a one-switch flip. Add a per-platform upload tracker backed by the distributions table.`},
+
+{id:'m10',num:10,phase:'Distribution',station:'YOUTUBE',title:'YouTube: the Anchor (Private-First)',mat:'manual',
+ blueprint:[
+  {q:`What privacy state should API uploads start in?`,opts:[`Private, then I flip public or schedule`,`Public immediately`,`Unlisted`]},
+  {q:`Which upload library?`,opts:[`Official googleapis Node client`,`youtubeuploader CLI`,`Hand-rolled HTTP`]}
+ ],
+ lesson:`<p>YouTube is the <b>anchor</b> and the canonical URL the other platforms point at. Upload via the official <b>googleapis</b> Node client (<code>videos.insert</code>, resumable, it handles chunking and retries), run on the Mac.</p>
+ <p>The catch is the <b>audit gate</b>: until Google audits your API project, <b>every API-uploaded video is locked private, and that lock is irreversible per video</b> (you would have to re-upload). So Phase 1 is <b>upload private, you flip it public</b> (or schedule with <code>publishAt</code>, which itself requires privacy=private). <b>Start the audit form now</b>, there is no promised turnaround. Quota is a non-issue (~100 units/upload, 10,000/day). Note: <b>youtubeuploader is dormant</b> (last release Aug 2024), so use googleapis.</p>`,
+ analogy:`A new bank teller on probation. Until the bank certifies them, every deposit they take is held in escrow (private), and you cannot un-hold a past one. You start the certification paperwork now, because nobody tells you how long it takes.`,
+ game:{type:'order',h:'Build the YouTube publish path',d:'Tap the steps in the order they happen.',
+   items:['Master + templated metadata ready','googleapis resumable upload from the Mac','Video lands private (audit still pending)','Human reviews, then flips public or schedules'],
+   correct:['Master + templated metadata ready','googleapis resumable upload from the Mac','Video lands private (audit still pending)','Human reviews, then flips public or schedules']},
+ quiz:[
+  {q:`What does the audit gate do until cleared?`,o:[`Slows uploads`,`Locks every API upload private, irreversibly per video`,`Blocks the API entirely`],a:1,e:`Phase 1 uploads private and a human flips it public; start the audit now.`},
+  {q:`Which client should the uploader use?`,o:[`youtubeuploader (dormant since Aug 2024)`,`The official googleapis Node client`,`A raw fetch loop`],a:1,e:`googleapis owns resumable chunking and retries and is maintained.`}
+ ],
+ decision:{question:`Lock the YouTube path.`,opts:[
+   {id:'privatefirst',label:`Private-first via googleapis; human flips public; start the audit now`,tag:'recommended',rec:1,why:`Works today despite the audit, keeps a human eye on the first uploads, no rebuild when the audit clears.`},
+   {id:'autoyt',label:`Public auto-publish now via youtubeuploader`,tag:'wont work',why:`Pre-audit uploads are forced private anyway, and youtubeuploader is dormant.`}],
+  specs:[[`Client`,`official googleapis Node client, resumable`],[`Runs on`,`Mac/worker (not Vercel)`],[`Phase 1`,`upload private; human flips public or publishAt`],[`Unlock`,`clear the Google API audit (Daniel TODO)`],[`Quota`,`~100 units/upload, 10k/day (fine)`]]},
+ repo:`CORRECTION to earlier notes: do NOT pin youtubeuploader (it is dormant since Aug 2024); use the official googleapis client. The audit gate, not quota, is the unlock for public auto-publish. Runs on the Mac/worker per the architecture module.`,
+ tell:`Build the YouTube uploader on the Mac/worker using the official googleapis Node client (videos.insert, resumable upload). Fill title/description/tags/category 28/chapters from the templated metadata. Phase 1: upload as PRIVATE and let a human flip to public (or set publishAt, which requires privacy=private). Do NOT use youtubeuploader (dormant). Remind Daniel to start the Google API audit now, since pre-audit uploads are locked private irreversibly per video.`},
+
+{id:'m11',num:11,phase:'Distribution',station:'RUMBLE + POD + GSN',title:'Rumble, Podcast & GSN',mat:'manual',
+ blueprint:[
+  {q:`How does Rumble work in Phase 1?`,opts:[`Manual upload + a tracker card`,`Wait for the API token`,`YouTube channel sync`]},
+  {q:`Where does the podcast live?`,opts:[`Migrate to Transistor (real upload API)`,`Stay on Fireside`,`Skip the podcast`]},
+  {q:`How does GSN ingest episodes?`,opts:[`A Roku Direct Publisher JSON feed it polls`,`I upload each one by hand`,`Skip GSN`]}
+ ],
+ lesson:`<p><b>Rumble:</b> the YouTube to Rumble auto-sync is <b>structurally broken</b> (Google throttled it in late 2023, per Rumble's own blog), so do not depend on it, your flag was right. The official <b>Upload API is real</b> but the documented contact (bd@rumble.com) <b>bounced</b> and it is partner-gated, so Phase 1 is <b>manual upload</b> while we pursue a token through support@rumble.com / live chat / the Partner Program. Also verify Rumble keeps a 58-min cut in <b>HD</b> (it historically drops long videos to 720p, an on-air credibility risk).</p>
+ <p><b>Podcast:</b> Fireside's API is <b>read-only</b> (it cannot publish), so migrate to <b>Transistor.fm</b> (real upload API) and <b>301-redirect the Fireside feed</b> to keep Apple/Spotify subscribers, after verifying Fireside allows the 301.</p>
+ <p><b>GSN (Roku/OTT):</b> generate a <b>Roku Direct Publisher JSON feed</b> from the episodes table and Roku polls it, near hands-off, as long as each MP4 sits at a stable public URL. Verify GSN's channel is Direct Publisher, not a custom SDK channel.</p>`,
+ analogy:`Three post offices, three rules. Rumble lost its mail-forwarding, so you walk packages in by hand. Fireside only lets you read your mail, so you move to a box that lets you send (Transistor) and leave a forwarding card (the 301). GSN just wants a printed list it checks on its own (the Roku feed).`,
+ game:{type:'sort',h:'Automatable now, or not?',d:'Sort each path into what can run as automation in Phase 1 vs what is manual or blocked.',
+   binA:'Automatable in Phase 1',binB:'Manual or blocked',
+   items:[['Transistor episode upload','A'],['Roku Direct Publisher feed','A'],['Rumble video upload','B'],['YouTube to Rumble sync','B'],['Fireside publishing','B']]},
+ quiz:[
+  {q:`Why not rely on the YouTube to Rumble sync?`,o:[`It costs money`,`Google throttled/blocked it; it is structurally unreliable`,`Rumble shut down`],a:1,e:`Rumble's own blog confirms it. Build as if it does not exist.`},
+  {q:`Why move the podcast off Fireside?`,o:[`Fireside is closing`,`Fireside's API is read-only and cannot publish; Transistor can`,`It is cheaper`],a:1,e:`Migrate and 301-redirect the feed to keep subscribers.`},
+  {q:`How does GSN get episodes hands-off?`,o:[`A Roku Direct Publisher feed it polls`,`Email`,`It cannot`],a:0,e:`Generate the JSON feed from the episodes table; host each MP4 at a public URL.`}
+ ],
+ decision:{question:`Lock the secondary platforms.`,opts:[
+   {id:'manualpursue',label:`Rumble manual now (pursue token), migrate to Transistor, Roku feed for GSN`,tag:'recommended',rec:1,why:`Everything ships now; Rumble automates once a token lands; nothing depends on the dead sync.`},
+   {id:'waitfire',label:`Wait on the Rumble API and stay on Fireside`,tag:'blocked',why:`Blocks on a bounced contact, and Fireside cannot publish at all.`}],
+  specs:[[`Rumble`,`manual upload + tracker; pursue token via support@/Partner Program; verify 720p tier`],[`Podcast`,`migrate Fireside to Transistor; 301 (verify first)`],[`GSN`,`Roku Direct Publisher JSON feed; verify channel type`]]},
+ repo:`CORRECTIONS: Rumble YouTube-sync is dead (do not build on it); bd@rumble.com bounced (API real but partner-gated); Fireside is read-only (no publish). TODOs: pursue Rumble token, verify 720p tier, verify Fireside 301, confirm GSN is Direct Publisher.`,
+ tell:`Build the secondary distribution targets. Rumble: a manual-upload tracker card for Phase 1 (the YouTube-sync is dead and the Upload API is partner-gated after bd@rumble.com bounced); leave a server-side simple-upload.php path stubbed for when a token lands, and flag the 58-min 720p risk. Podcast: build a Transistor.fm uploader (Fireside is read-only) and plan a 301 redirect from the Fireside feed (verify Fireside allows it first). GSN: generate a Roku Direct Publisher JSON feed from the episodes table, each MP4 at a stable public HTTPS URL; verify GSN's channel is Direct Publisher.`},
+
+{id:'m12',num:12,phase:'Distribution',station:'CLIPS + SCHEDULE',title:'Clips, Scheduling & Secrets',mat:'priority',
+ blueprint:[
+  {q:`Which clips tool?`,opts:[`Vizard (public API + scheduler)`,`Opus Clip (manual only)`,`No clips yet`]},
+  {q:`Post clips before a human looks?`,opts:[`No, human review gate first`,`Yes, auto-post`,`N/A`]},
+  {q:`Where do scheduled publish jobs run?`,opts:[`Supabase Cron to Edge Function`,`Vercel Cron`,`Make.com`]}
+ ],
+ lesson:`<p><b>Clips:</b> use <b>Vizard</b>, it ingests 58-min videos, has a public API and a built-in scheduler. Keep a <b>human review gate</b> before anything posts at first. Opus Clip has better AI but its API is enterprise-gated, so it stays manual. Never route the multi-GB master through Make/n8n (they hit file caps), pass URLs and let each tool pull.</p>
+ <p><b>Scheduling:</b> prefer <b>Supabase Cron to an Edge Function</b> (on-stack, sub-minute, free) over Vercel Cron.</p>
+ <p><b>Secrets:</b> a <b>1Password service account</b> injects tokens into unattended jobs via <code>op run</code>. The trap: <b>1Password does NOT refresh OAuth tokens for you</b>, your code must do the refresh exchange and write the rotated token back, with an <b>alert on auth failure</b>, or unattended publishing dies silently.</p>`,
+ analogy:`A vending machine on a timer with a key card. The timer (Supabase Cron) trips the machine; the key card (1Password) opens it; but the card does not renew its own expiry, so you renew it (refresh the token) or the machine quietly stops dispensing.`,
+ game:{type:'dial',h:'Set the safe default for each',d:'Pick the right first setting for each piece.',
+   rows:[['Clips (Vizard)','Generate, human reviews before publish','Generate, human reviews before publish'],
+         ['Scheduled jobs','Supabase Cron to Edge Function','Supabase Cron to Edge Function'],
+         ['OAuth tokens','Code refreshes + alert on failure','Code refreshes + alert on failure']]},
+ quiz:[
+  {q:`Why a human review gate on clips at first?`,o:[`Vizard is slow`,`Auto-posting AI clips unreviewed risks an on-air-quality miss`,`It is required by law`],a:1,e:`Generate automatically, but a human approves before publish until trust is earned.`},
+  {q:`What does 1Password NOT do for you?`,o:[`Store tokens`,`Refresh OAuth tokens; your code must do that and alert on failure`,`Inject env vars`],a:1,e:`Without self-refresh + an alert, unattended publishing dies silently.`}
+ ],
+ decision:{question:`Lock clips, scheduling, and secrets.`,opts:[
+   {id:'vizardstack',label:`Vizard + review gate, Supabase Cron to Edge, 1Password service account with self-refresh + alert`,tag:'recommended',rec:1,why:`Automatable clips with a safety gate, on-stack scheduling, and secrets that will not fail silently.`},
+   {id:'autoclip',label:`Auto-post clips and run media through Make.com`,tag:'risky',why:`Unreviewed clips on air, and Make chokes on multi-GB media.`}],
+  specs:[[`Clips`,`Vizard API + scheduler; human review gate first`],[`No-go`,`master through Make/n8n; Opus API (enterprise-gated)`],[`Schedule`,`Supabase Cron to Edge Function`],[`Secrets`,`1Password service account; code refreshes OAuth + alerts`]]},
+ repo:`Vizard handles 58-min inputs (API on paid plans + scheduler). Opus Clip API is enterprise-gated. Never pass the multi-GB master through Make/n8n. Supabase Cron beats Vercel Cron (Hobby ~1/day). 1Password does not refresh OAuth.`,
+ tell:`Build the clips + scheduling + secrets layer. Clips: integrate Vizard's API and scheduler with a human review-before-publish gate (Opus Clip stays manual, its API is enterprise-gated); never route the master file through Make/n8n, pass URLs. Schedule publish jobs with Supabase Cron to an Edge Function (not Vercel Cron). Secrets: use a 1Password service account via op run, and write the OAuth refresh exchange yourself (1Password will not refresh tokens) with an alert on auth failure so unattended jobs cannot die silently.`}
 ];
 
 /* cross-module carryover: later modules reflect earlier choices */
@@ -377,8 +448,9 @@ function carryover(m){
  const out=[];
  if(m.id==='m8'){const t=pick('m1',0);if(t)out.push('From Intake, scripts arrive by: <b>'+t+'</b>. Metadata pulls episode fields from those.');}
  if(m.id==='m9'){const t=pick('m9',1);const sp=pick('m9',2);
-   if(t)out.push('Targets first: <b>'+t+'</b>.');if(sp)out.push('Pace to auto: <b>'+sp+'</b>.');
+   if(t)out.push('First publish move: <b>'+t+'</b>.');if(sp)out.push('Pace to auto: <b>'+sp+'</b>.');
    const d0=(S.decisions['m0']);if(d0==='fast')out.push('You picked an aggressive pace in Ground Rules, but distribution still ships manual-trigger first for safety.');}
+ if(m.id==='m10'||m.id==='m11'||m.id==='m12'){const a=S.decisions['m9'];if(a)out.push('The publish-map architecture is locked, so this target runs heavy work on the Mac/worker and is tracked from the dashboard.');}
  if(m.id==='m4'){const g=S.decisions['m3'];if(g)out.push('Graphics flow is locked, so the rundown pulls those approved graphics.');}
  if(m.id==='m5'){const g=S.decisions['m3'];if(g)out.push('Only graphics marked Created with a filename (from Module 3) become loadable here.');}
  if(m.id==='m2'){const i=S.decisions['m1'];if(i)out.push('Intake is locked, so the lower-thirds file you upload feeds this page.');}
@@ -555,7 +627,7 @@ function consult(m){const cur=gi(m.id);const L=[];
 }
 
 /* build plan export (MD + HTML) */
-const XMOVES=['Clear the YouTube/Google API audit (only Daniel; unlocks public auto-publish).','Set up Rundown Creator API access (APIKey + APIToken in 1Password).','Define the ProPresenter slide/presentation/playlist mapping at the computer.','Run the first real-episode lower-thirds import (graphics table is still 0 rows).'];
+const XMOVES=['Clear the YouTube/Google API audit (only Daniel; pre-audit uploads are locked private, irreversibly per video).','Pursue a Rumble Upload API token via support@rumble.com / live chat / the Partner Program (bd@rumble.com bounced); use manual upload meanwhile.','Verify Rumble keeps a 58-min cut in HD (720p risk).','Verify Fireside permits a 301 before migrating the podcast to Transistor.','Confirm GSN\'s Roku channel is Direct Publisher (feed-driven).','Set up Rundown Creator API access (APIKey + APIToken in 1Password).','Define the ProPresenter slide/presentation/playlist mapping at the computer.','Run the first real-episode lower-thirds import (graphics table is still 0 rows).'];
 function planMD(){const now=new Date().toISOString().slice(0,10);const L=[];
  L.push('# GSR Automation v2 - Build Plan');L.push('');L.push('_Generated '+now+'. Target repo: **gsr-automation-v2**. Decisions locked: '+decided()+' / '+M.length+'._');L.push('');
  L.push('## How to run');L.push('Open Claude Code in gsr-automation-v2. Work module by module in order. Paste each module Tell-Claude prompt, review the draft PR, confirm tsc + eslint, squash-merge.');L.push('');

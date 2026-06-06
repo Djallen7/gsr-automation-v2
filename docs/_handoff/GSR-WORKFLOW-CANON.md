@@ -216,3 +216,21 @@ This registry is the durable, never-re-ask record of WHERE GSR episodes go and H
 - **Dropbox folder structure: FLAT, one folder per show** (resolves the long-standing flat-vs-per-episode conflict; the per-episode tree in `production.json` is NOT how it works today). **A separate folder for web-stream episodes still needs to be created.** The transcription + distribution watchers target the flat per-show folder.
 - **Mac <-> dashboard job transport: the Mac/worker POLLS a Supabase `jobs` table.** The dashboard (Vercel) writes a job row to trigger heavy work; the Mac polls every few seconds, runs pending jobs, and writes status back. No inbound connection to the Mac (Tailscale stays off-limits), no extra queue service. This is the control plane for all heavy media (uploads, transcription).
 - **Course direction (locked):** FULL redesign of the crash-course, built around an always-visible pipeline diagram that traces ONE mock episode end-to-end, activity/predict-first per module, every game mapped 1:1 to a real pipeline decision. The course's EXPORT must be an agent-runnable build spec per module (status exists/new, depends-on, blocked-by, DB/route/API contracts, EARS acceptance criteria, verify commands, inlined locked UI design) plus a "Decisions & Setup" track that collects the remaining human-only inputs (credentials, Google audit, ProPresenter mapping, VideoEdit address, real YouTube playlist IDs) so a Claude agent team can build without stopping to ask.
+- **Course must surface TOOL SUGGESTIONS per stage (Daniel, 2026-06-06):** at each pipeline stage the course offers the best tool options per category (from the repo's tool list in `docs/OPEN_SOURCE_STACK.md`, RECONCILED to current truth below), which Daniel can opt INTO the exported build plan.
+- **Course must be genuinely ADAPTIVE (Daniel, 2026-06-06):** later modules must PROCESS earlier decisions and open/close lessons and sections accordingly (real gating, not cosmetic carryover). A decision/answer state object drives conditional rendering; choosing X in an early module unlocks/closes specific later content.
+
+**Reconciled tool registry (current truth; supersedes the Era-1 picks in `OPEN_SOURCE_STACK.md`):**
+- File-watch / intake trigger: **LOCAL Mac watcher (fswatch / Hazel / Automator)** on the editor's master-export folder. NOT Chokidar-on-NAS (NAS file-watchers are barred). Honorable: Chokidar (local only), native `fs.watch`.
+- YouTube upload: **official `googleapis` Node client** (resumable). NOT `youtubeuploader` (dormant since Aug 2024). Runs on the Mac/worker, not Vercel.
+- Rumble: **manual web upload (Phase 1)**; pursue the official Upload API token. NOT Selenium/Playwright browser automation; the YouTube sync is dead.
+- Dropbox: **official `dropbox-sdk-js`** (REST + OAuth, chunked >150MB). Current and correct.
+- Fireside -> podcast: **migrate to Transistor.fm publish API** (+301). NOT Playwright browser automation (Fireside API is read-only).
+- Signiant -> RLN: **`api_client_media_shuttle_node`** official SDK (-20 LKFS). Correct.
+- StreamHoster: **`basic-ftp`** (FTPS, active Apr 2026). Honorable: `ssh2-sftp-client` (if SFTP).
+- Transcription: **WhisperKit + SpeakerKit** (Mac-native, single tool, speaker labels), local on the Mac. Honorable: faster-whisper, whisper.cpp, WhisperX (diarization).
+- AI (lower-thirds extraction / regenerate only; metadata is TEMPLATED not AI): **`@anthropic-ai/sdk`** server-side (already in app). Honorable: Vercel AI SDK.
+- Dashboard UI: **already built** -- Next.js 16 + shadcn/ui + Tailwind v4 on Vercel.
+- Approval workflow: **in-app dry-run + Type-YES gate + `app_config` maturity dial**. NOT n8n (superseded by ADR-0012).
+- Orchestration / job queue: **Supabase Cron -> Edge Function** for scheduled jobs + **the Mac polls a Supabase `jobs` table** for heavy work. NOT BullMQ/Redis. Honorable (only if a real worker queue is later needed): BullMQ, hosted Inngest/QStash.
+- Notifications (auth-failure alerts for unattended jobs): **ntfy** (or email). Honorable: Apprise, Gotify.
+- Status database: **Supabase Postgres** (the project DB). NOT better-sqlite3 (Era-1).

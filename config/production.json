@@ -33,11 +33,11 @@
     { "id": "youtube",                 "name": "YouTube",                 "has_api": true,  "upload_auto": true  },
     { "id": "rumble",                  "name": "Rumble",                  "has_api": false, "upload_auto": false, "note": "manual web upload Phase 1; YouTube->Rumble sync is BROKEN; official Upload API is partner-gated (bd@rumble.com bounced); verify 58-min HD (720p risk)" },
     { "id": "fireside_podcast",        "name": "Fireside (podcast)",      "has_api": false, "upload_auto": false, "note": "read-only API; manual handoff card" },
-    { "id": "genesis_science_network", "name": "Genesis Science Network", "has_api": false, "upload_auto": false, "note": "no public API; manual handoff card" },
+    { "id": "genesis_science_network", "name": "Genesis Science Network", "has_api": false, "upload_auto": false, "note": "genesissciencenetwork.com web stream; no public API; proposed Roku Direct Publisher JSON feed" },
     { "id": "real_life_network",       "name": "Real Life Network",       "has_api": false, "upload_auto": false, "note": "= RightNow Media (same target); delivered via Signiant Media Shuttle; metadata via Google Form; thumbnail 1200x1800; -20 LKFS audio normalization" },
     { "id": "streamhoster",            "name": "StreamHoster",            "has_api": false, "upload_auto": false, "note": "FTPS; one upload feeds Roku, Apple TV, iOS app, LG TV (replaces YouTube embeds, which cap 480p on tvOS)" },
     { "id": "dropbox",                 "name": "Dropbox (network partner)","has_api": true,  "upload_auto": false, "note": "broadcast master to unnamed partner stations; also the source for OTA broadcast; no metadata required" },
-    { "id": "genesis_science_network","name": "Genesis Science Network", "has_api": false, "upload_auto": false, "note": "genesissciencenetwork.com web stream; proposed Roku Direct Publisher JSON feed" }
+    { "id": "social_clip",             "name": "Social clip",             "has_api": false, "upload_auto": false, "note": "episode-level short-form status flag; per-clip tracking in content_clips/social_posts" }
   ],
 
   "sponsor": {

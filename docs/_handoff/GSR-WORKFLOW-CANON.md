@@ -199,11 +199,11 @@ This registry is the durable, never-re-ask record of WHERE GSR episodes go and H
 
 **Short-form / social** lives in the `social_posts` enum (migration `..003200`), separate from `distributions`: `youtube_shorts, instagram, tiktok, facebook, x_twitter`. Clip tooling: **Vizard** (recommended, public API + scheduler) vs **Opus Clip** (API enterprise-gated, manual). Multi-post by URL: Upload-Post / Blotato (cover YT/TikTok/IG/FB/X, NOT Rumble).
 
-**Status of the pruned targets (Daniel, gospel 2026-06-06):** there is NO extra active distribution work beyond the live enum here.
+**Status of the pruned targets (Daniel, gospel 2026-06-06, CTN/WWN corrected same day):** 
 - **GodTube: RETIRED, not used anymore.** Drop it.
 - **OTA broadcast is fed FROM Dropbox** -- Dropbox is the source for OTA; OTA is not a separate upload target, it is downstream of the Dropbox network-partner drop.
 - **TBN "Creation in the 21st Century" (c21c) is a finished show ARCHIVE** -- no longer filmed, every episode is already uploaded to Dropbox, no other action needed. Not an active GSR distribution target.
-- **CTN/WWN remain out-of-scope** (separate schema, see `AUTOMATION_ROADMAP`).
+- **CTN (Creation TV Network) and WWN: INCLUDE in the build.** They are filmed/uploaded much less often than the weekly shows and segments, but they are still real distribution targets that must be implemented (do NOT treat as out-of-scope; that earlier call was wrong). Add `creation_tv_network` (CTN) and a `wwn` value to the live `distributions.platform` enum as a prereq, and build their delivery/handoff path at a lower cadence.
 
 **Stale claims to purge wherever they appear (all WRONG):** "Rumble mirrored via YouTube channel sync" (in `config/production.json`, `.env.example`, older SYSTEM-EVOLUTION/ADR text) -- the sync is broken; Rumble is manual. Fireside browser-automation via Playwright (Fireside is read-only -> handoff card / migrate). Odysee / the old Facebook/Instagram/Website "v1 platform" set (`production.json` admits it "was not the current plan").
 

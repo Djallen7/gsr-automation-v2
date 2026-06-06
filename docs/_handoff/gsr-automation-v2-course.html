@@ -732,7 +732,7 @@ var M=[
         {t:"Posts the episode to YouTube",ok:0,why:"No. StreamHoster is the OTT/TV-app feed, separate from YouTube."},
         {t:"Stores a backup only",ok:0,why:"It is the live feed for the TV apps, not just a backup."}]},
  lesson:"<p><b>Rumble:</b> the YouTube-to-Rumble auto-sync is <b>structurally broken</b> (Google throttled it in late 2023, per Rumble's own blog), so do not depend on it. The official Upload API is real but partner-gated and the documented contact (bd@rumble.com) bounced, so Phase 1 is <b>manual upload</b> while you pursue a token through support@rumble.com / live chat / the Partner Program. Also verify Rumble keeps a 58-min cut in HD (it historically drops long videos to 720p, an on-air credibility risk).</p><p><b>Podcast:</b> Fireside's API is <b>read-only</b> (it cannot publish), so migrate to <b>Transistor.fm</b> (real upload API) and <b>301-redirect the Fireside feed</b> after verifying Fireside allows it. Spotify and Apple Podcasts ride the RSS automatically; they are not separate uploads.</p><p><b>Broadcast & OTT (the part a web search misses):</b> <b>StreamHoster</b> is one <b>FTPS</b> upload that fans out to Roku, Apple TV, the iOS app, and LG TV. <b>Real Life Network</b> (= RightNow Media) gets the master via <b>Signiant Media Shuttle</b>, with <b>-20 LKFS</b> normalization and a 1200x1800 portrait thumbnail. <b>Dropbox</b> drops the broadcast master to unnamed network-partner stations (no metadata) and is also the <b>source for OTA broadcast</b>. <b>GSN</b> takes a <b>Roku Direct Publisher JSON feed</b> it polls.</p>",
- deeper:"Nothing else needs action: GodTube is retired, c21c is a finished archive already in Dropbox, and CTN/WWN are out of scope. The -20 LKFS requirement currently lives only in superseded migration ..002000, so recapture it when RLN delivery is built. Multi-post-by-URL tools (Upload-Post / Blotato) cover YouTube/TikTok/IG/FB/X but not Rumble.",
+ deeper:"<b>CTN (Creation TV Network) and WWN are also targets</b> -- filmed and uploaded much less often than the weekly shows, but still built (add them to the distributions enum and give them a delivery/handoff path at a lower cadence). GodTube is retired and c21c is a finished archive already in Dropbox, so those two need no build. The -20 LKFS requirement currently lives only in superseded migration ..002000, so recapture it when RLN delivery is built. Multi-post-by-URL tools (Upload-Post / Blotato) cover YouTube/TikTok/IG/FB/X but not Rumble.",
  analogy:"A shipping dock with several carriers. Rumble lost its forwarding, so you walk those packages in by hand. The podcast moves to a mailbox that can actually send (Transistor), with a forwarding card (the 301). The broadcast carriers each have one loading bay: StreamHoster's single FTPS pallet supplies every TV app at once, Signiant trucks the master to Real Life Network, and Dropbox is the partner stations' pickup shelf.",
  game:{type:"sort",h:"Automatable path, or not?",d:"Sort each target by whether it has an automatable delivery path or stays manual/blocked.",
    binA:"Has an automatable path",binB:"Manual or blocked",
@@ -763,7 +763,7 @@ var M=[
    "WHEN delivering to Real Life Network THE SYSTEM SHALL use Signiant with -20 LKFS normalization and a 1200x1800 portrait thumbnail.",
    "IF the target is Rumble THEN Phase 1 SHALL be a manual-upload tracker card, never the dead YouTube sync.",
    "WHEN delivering to network partners THE SYSTEM SHALL drop the master to Dropbox with no required metadata (also the OTA source)."],
-  verify:["npx tsc --noEmit","npx eslint src/","Manual: confirm Transistor publish + 301 plan; confirm one StreamHoster FTPS upload reaches the TV apps; confirm Signiant -20 LKFS; confirm GodTube/c21c/CTN/WWN are not built."],
+  verify:["npx tsc --noEmit","npx eslint src/","Manual: confirm Transistor publish + 301 plan; confirm one StreamHoster FTPS upload reaches the TV apps; confirm Signiant -20 LKFS; confirm CTN + WWN have a low-cadence delivery path; confirm GodTube and c21c are NOT built (retired / archived)."],
   nonauto:"Rumble upload is manual in Phase 1; the Rumble token, Fireside 301, and GSN channel type are Daniel TODOs."},
  toolsKey:"secondary"},
 
@@ -848,7 +848,8 @@ var PREREQS=[
  "Add the Book Cover type to the production_graphics.graphic_type CHECK.",
  "Reorder the production_graphics.status CHECK to: Not Started -> In Progress -> Created -> Loaded In (and restore 'In Progress' in PROMPT_LIBRARY).",
  "Add Dreamstime to the b-roll source enum (premade_library).",
- "Add a jobs table (the Mac polls it) for the distribution control plane."
+ "Add a jobs table (the Mac polls it) for the distribution control plane.",
+ "Add creation_tv_network (CTN) and wwn to the distributions.platform enum (low-cadence broadcast targets that still must be built)."
 ];
 
 /* ===================== state ===================== */

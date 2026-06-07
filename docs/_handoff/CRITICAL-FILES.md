@@ -34,9 +34,13 @@ map, and the operating rules. Lose these and the knowledge is gone for good.
 - `docs/_handoff/VERIFIED-FACTS.md` — facts confirmed against the live system, not memory.
 - `docs/_handoff/2026-06-04-CONFLICT-REGISTER.md` — known doc/code conflicts mapped to milestones; the cleanup punch list.
 - `docs/_handoff/CONTEXT-README.md` — the guide to the handoff folder itself.
+- `docs/_handoff/CRITICAL-FILES.md` — this carry-list; the index of what must survive a rebuild.
+- `docs/_handoff/2026-06-04-tools-curriculum-timeline.md` — the tools/curriculum timeline analysis behind the build sequence.
+- `docs/_handoff/2026-06-05-distribution-research.md` — the distribution-targets research backing the canon's vendor stack.
 - `docs/_handoff/transcript.txt` — raw archaeology of the 879 prior conversations; the primary source the verified facts were distilled from.
 - `config/production.json` — the established stack + operational config; source-of-truth #3 for platforms/vendors.
 - `CLAUDE.md` — the mandatory operating rules (security, David rule, anti-churn, authority).
+- `docs/PROJECT_INSTRUCTIONS_CLAUDE_DESKTOP.md` — the Claude Desktop project operating instructions (the rules that govern non-Code sessions).
 
 ### Voice, style, and editorial canon (hard-won, on-air stakes)
 - `docs/GSR_VOICE_PROFILE.md` — the show's voice; protects David on air.
@@ -93,8 +97,16 @@ police these; rebuild them on demand.
 
 - `apps/dashboard/src/lib/supabase/database.types.ts` — generated from the schema; regenerate with `generate_typescript_types`.
 - `apps/dashboard/node_modules/` — reinstall with `npm install`.
-- `docs/_handoff/gsr-automation-v2-course.html` and the `*-preview.html` files — derived presentations of facts already in the handoff docs.
+- `docs/_handoff/gsr-automation-v2-course.html` — derived presentation of facts already in the handoff docs.
+- `docs/GIT_CHEATSHEET.md` — convenience reference; reproducible from any git docs.
 - The bulk of `apps/dashboard/src/app/**/*.tsx` UI — rebuildable from the canon + specs above.
+
+The coverage audit skips these deliberately-disposable files:
+
+<!-- audit:ignore -->
+- `docs/_handoff/*-preview.html` — derived HTML previews of the handoff docs.
+- `*/.gitkeep` — empty directory placeholders.
+<!-- audit:end -->
 
 ---
 

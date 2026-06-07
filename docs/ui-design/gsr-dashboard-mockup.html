@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSR Dashboard - Design Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ============ GSR DESIGN TOKENS ============ */
+:root {
+  --radius: 12px;
+  --font-head: "Saira Semi Condensed", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+[data-theme="dark"] {
+  --bg: oklch(0.16 0.035 250);
+  --surface: oklch(0.21 0.04 248);
+  --surface-2: oklch(0.25 0.045 247);
+  --border: oklch(0.34 0.04 247);
+  --fg: oklch(0.95 0.01 250);
+  --muted: oklch(0.70 0.02 250);
+  --primary: oklch(0.62 0.14 248);
+  --accent: oklch(0.80 0.14 85);     /* GSR gold */
+  --accent-soft: oklch(0.80 0.14 85 / 0.14);
+  --success: oklch(0.74 0.15 150);
+  --warn: oklch(0.82 0.15 85);
+  --danger: oklch(0.66 0.20 25);
+  --info: oklch(0.70 0.12 235);
+  --neutral: oklch(0.55 0.02 250);
+  --shadow: 0 8px 30px -12px rgba(0,0,0,0.6);
+}
+[data-theme="light"] {
+  --bg: oklch(0.975 0.004 250);
+  --surface: oklch(1 0 0);
+  --surface-2: oklch(0.985 0.004 250);
+  --border: oklch(0.90 0.01 250);
+  --fg: oklch(0.22 0.05 248);
+  --muted: oklch(0.50 0.03 248);
+  --primary: oklch(0.34 0.09 245);
+  --accent: oklch(0.62 0.13 80);
+  --accent-soft: oklch(0.62 0.13 80 / 0.12);
+  --success: oklch(0.52 0.14 150);
+  --warn: oklch(0.65 0.14 75);
+  --danger: oklch(0.55 0.20 27);
+  --info: oklch(0.50 0.12 240);
+  --neutral: oklch(0.70 0.02 250);
+  --shadow: 0 8px 30px -16px rgba(20,30,60,0.25);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.5;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+/* ============ STARFIELD MOTIF (dark only) ============ */
+.starfield {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0;
+  transition: opacity .6s ease;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 60% 70%, white, transparent),
+    radial-gradient(1.5px 1.5px at 80% 20%, white, transparent),
+    radial-gradient(1px 1px at 40% 80%, white, transparent),
+    radial-gradient(1px 1px at 90% 60%, white, transparent),
+    radial-gradient(1.5px 1.5px at 33% 50%, white, transparent),
+    radial-gradient(1px 1px at 15% 75%, white, transparent),
+    radial-gradient(1px 1px at 70% 40%, white, transparent);
+  background-repeat: repeat;
+  background-size: 600px 600px;
+}
+[data-theme="dark"] .starfield { opacity: .07; }
+[data-theme="dark"] body {
+  background:
+    radial-gradient(1200px 700px at 80% -10%, oklch(0.30 0.08 255 / .5), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, oklch(0.28 0.07 280 / .4), transparent 55%),
+    var(--bg);
+}
+.app { position: relative; z-index: 1; }
+
+/* ============ TOP BAR ============ */
+.topbar {
+  position: sticky; top: 0; z-index: 40;
+  display: flex; align-items: center; gap: 16px;
+  height: 60px; padding: 0 20px;
+  background: color-mix(in oklch, var(--surface) 82%, transparent);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+}
+.wordmark { display: flex; align-items: center; gap: 11px; }
+.gsr-badge {
+  font-family: var(--font-head); font-weight: 700; letter-spacing: 2px;
+  font-size: 14px; color: var(--bg);
+  background: var(--accent);
+  padding: 5px 9px; border-radius: 6px;
+  position: relative;
+}
+.wordmark .sub { font-family: var(--font-head); font-weight: 600; letter-spacing: .5px; color: var(--muted); font-size: 15px; }
+.topbar .spacer { flex: 1; }
+.role-chip {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 10px 5px 5px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface-2);
+  font-size: 13px; font-weight: 500;
+}
+.avatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  display: grid; place-items: center; color: white; font-weight: 700; font-size: 12px;
+  font-family: var(--font-head);
+}
+.icon-btn {
+  width: 38px; height: 38px; border-radius: 9px; border: 1px solid var(--border);
+  background: var(--surface-2); color: var(--fg); cursor: pointer; font-size: 16px;
+  display: grid; place-items: center; transition: .15s;
+}
+.icon-btn:hover { border-color: var(--accent); }
+
+/* ============ LAYOUT ============ */
+.shell { display: flex; max-width: 1320px; margin: 0 auto; }
+.sidebar {
+  width: 230px; flex-shrink: 0; padding: 20px 12px;
+  border-right: 1px solid var(--border);
+  position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto;
+}
+.nav-group { margin-bottom: 18px; }
+.nav-group h4 {
+  font-family: var(--font-head); font-size: 11px; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--muted); padding: 0 12px 8px;
+}
+.nav-item {
+  display: flex; align-items: center; gap: 11px;
+  padding: 9px 12px; border-radius: 9px; color: var(--muted);
+  font-size: 14px; font-weight: 500; cursor: pointer; transition: .15s;
+  position: relative; min-height: 40px;
+}
+.nav-item:hover { background: var(--surface-2); color: var(--fg); }
+.nav-item.active { color: var(--fg); background: var(--accent-soft); }
+.nav-item.active::before {
+  content: ""; position: absolute; left: 0; top: 8px; bottom: 8px; width: 3px;
+  background: var(--accent); border-radius: 0 3px 3px 0;
+}
+.nav-item .ico { width: 18px; text-align: center; opacity: .9; }
+.nav-item .count {
+  margin-left: auto; font-family: var(--font-mono); font-size: 11px;
+  background: var(--surface-2); padding: 1px 7px; border-radius: 999px; color: var(--fg);
+}
+.nav-item.active .count { background: var(--accent); color: var(--bg); }
+
+.main { flex: 1; min-width: 0; padding: 26px 28px 90px; }
+
+/* ============ VIEW SWITCHER (mockup only) ============ */
+.viewtabs {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 22px;
+  padding: 5px; background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; width: fit-content;
+}
+.viewtab {
+  font-family: var(--font-head); font-weight: 600; letter-spacing: .4px;
+  padding: 8px 15px; border-radius: 8px; cursor: pointer; font-size: 13.5px;
+  color: var(--muted); border: none; background: transparent; transition: .15s;
+}
+.viewtab.active { background: var(--accent); color: var(--bg); }
+.view { display: none; animation: fade .35s ease; }
+.view.active { display: block; }
+@keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* ============ HEADINGS ============ */
+.page-head { margin-bottom: 20px; }
+.page-head h1 {
+  font-family: var(--font-head); font-weight: 700; font-size: 26px; letter-spacing: .3px;
+  display: flex; align-items: center; gap: 12px;
+}
+.page-head h1::before {
+  content: ""; width: 4px; height: 24px; background: var(--accent); border-radius: 3px;
+}
+.page-head p { color: var(--muted); font-size: 14px; margin-top: 4px; margin-left: 16px; }
+.section-title {
+  font-family: var(--font-head); font-weight: 600; letter-spacing: .5px;
+  font-size: 13px; text-transform: uppercase; color: var(--muted);
+  margin: 22px 0 12px; display: flex; align-items: center; gap: 8px;
+}
+.section-title::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+/* ============ CARDS ============ */
+.card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 18px; box-shadow: var(--shadow);
+}
+.grid { display: grid; gap: 16px; }
+.tiles { grid-template-columns: repeat(4, 1fr); }
+.cols2 { grid-template-columns: 1.4fr 1fr; }
+
+/* stat tile */
+.tile { display: flex; flex-direction: column; gap: 6px; }
+.tile .num { font-family: var(--font-head); font-weight: 700; font-size: 38px; line-height: 1; }
+.tile .lbl { color: var(--muted); font-size: 13px; font-weight: 500; }
+.tile .delta { font-family: var(--font-mono); font-size: 11px; color: var(--success); }
+.tile.accent .num { color: var(--accent); }
+
+/* ============ PIPELINE RAIL ============ */
+.rail { display: flex; align-items: center; margin: 4px 0; overflow-x: auto; padding-bottom: 4px; }
+.stage { display: flex; align-items: center; flex-shrink: 0; }
+.stage .dot {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 12px; border: 2px solid var(--neutral); color: var(--muted); background: var(--surface);
+}
+.stage.done .dot { background: var(--success); border-color: var(--success); color: var(--bg); }
+.stage.current .dot { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.stage.blocked .dot { border-color: var(--danger); color: var(--danger); }
+.stage .nm { font-size: 11.5px; margin-left: 7px; color: var(--muted); white-space: nowrap; font-weight: 500; }
+.stage.current .nm { color: var(--fg); font-weight: 600; }
+.connector { width: 34px; height: 2px; margin: 0 9px; background: var(--border); flex-shrink: 0; border-radius: 2px; }
+.connector.done { background: var(--success); }
+
+/* ============ APPROVAL QUEUE ============ */
+.queue-item {
+  display: flex; align-items: center; gap: 12px; padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.queue-item:last-child { border-bottom: none; }
+.q-ico { width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; flex-shrink: 0; background: var(--accent-soft); color: var(--accent); font-size: 15px; }
+.q-body { flex: 1; min-width: 0; }
+.q-body .t { font-weight: 600; font-size: 14px; }
+.q-body .s { color: var(--muted); font-size: 12.5px; }
+.btn {
+  font-family: var(--font-body); font-weight: 600; font-size: 13px;
+  padding: 8px 14px; border-radius: 8px; cursor: pointer; border: 1px solid transparent;
+  transition: .15s; white-space: nowrap; min-height: 38px;
+}
+.btn-primary { background: var(--accent); color: var(--bg); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-ghost { background: transparent; border-color: var(--border); color: var(--fg); }
+.btn-ghost:hover { border-color: var(--accent); }
+.btn-sm { padding: 5px 11px; font-size: 12px; min-height: 32px; }
+
+/* ============ CREW BOARD ============ */
+.crew-row { display: flex; align-items: center; gap: 12px; padding: 9px 0; }
+.crew-row .who { width: 90px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.loadbar { flex: 1; height: 8px; border-radius: 6px; background: var(--surface-2); overflow: hidden; display: flex; }
+.loadbar i { display: block; height: 100%; }
+.crew-row .cnt { font-family: var(--font-mono); font-size: 12px; color: var(--muted); width: 58px; text-align: right; }
+
+/* ============ STATUS SEG BAR (graphics master) ============ */
+.show-card { padding: 16px 18px; margin-bottom: 14px; }
+.show-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+.show-head .name { font-family: var(--font-head); font-weight: 700; font-size: 18px; }
+.show-head .date { color: var(--muted); font-size: 12.5px; }
+.show-head .frac { margin-left: auto; font-family: var(--font-mono); font-weight: 600; font-size: 14px; }
+.show-head .frac small { color: var(--muted); font-weight: 400; }
+.segbar { height: 12px; border-radius: 7px; overflow: hidden; display: flex; background: var(--surface-2); margin-bottom: 12px; }
+.segbar i { height: 100%; }
+.seg-ns { background: var(--neutral); }
+.seg-ip { background: var(--info); }
+.seg-cr { background: var(--warn); }
+.seg-li { background: var(--success); }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chip {
+  font-size: 11.5px; padding: 4px 9px; border-radius: 7px; font-weight: 500;
+  border: 1px solid var(--border); display: flex; align-items: center; gap: 6px;
+}
+.chip .cdot { width: 7px; height: 7px; border-radius: 50%; }
+.chip.complete { border-color: color-mix(in oklch, var(--success) 50%, var(--border)); }
+.chip.complete .cdot { background: var(--success); }
+.chip.partial { border-color: color-mix(in oklch, var(--warn) 50%, var(--border)); }
+.chip.partial .cdot { background: var(--warn); }
+.chip.zero { border-color: color-mix(in oklch, var(--danger) 55%, var(--border)); color: var(--danger); }
+.chip.zero .cdot { background: var(--danger); }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-top: 6px; }
+.legend span { display: flex; align-items: center; gap: 6px; }
+.legend i { width: 11px; height: 11px; border-radius: 3px; }
+
+/* ============ LOWER-THIRDS REVIEW CARD ============ */
+.l3-card { padding: 0; overflow: hidden; display: flex; }
+.l3-rail { width: 5px; background: var(--accent); flex-shrink: 0; }
+.l3-body { padding: 16px 18px; flex: 1; }
+.l3-top { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.beat-chip { font-family: var(--font-mono); font-size: 11px; font-weight: 600; background: var(--surface-2); color: var(--muted); padding: 3px 8px; border-radius: 6px; }
+.type-pill { font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 999px; letter-spacing: .3px; }
+.type-chyron { background: oklch(0.55 0.18 280 / .18); color: oklch(0.78 0.14 285); }
+.type-disc { background: oklch(0.55 0.04 250 / .25); color: var(--muted); }
+.variation {
+  display: flex; align-items: center; gap: 12px; padding: 11px 12px; border-radius: 9px;
+  border: 1px solid var(--border); margin-bottom: 8px; cursor: pointer; transition: .15s;
+}
+.variation.chosen { border-color: var(--accent); background: var(--accent-soft); }
+.variation:not(.chosen) { opacity: .64; }
+.variation .radio { width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--neutral); flex-shrink: 0; }
+.variation.chosen .radio { border-color: var(--accent); background: radial-gradient(circle, var(--accent) 42%, transparent 46%); }
+.v-text { flex: 1; font-family: var(--font-mono); font-weight: 600; letter-spacing: .6px; font-size: 13px; }
+.v-tag { font-size: 10px; color: var(--muted); font-family: var(--font-head); letter-spacing: 1px; width: 56px; flex-shrink: 0; }
+.meter { display: flex; flex-direction: column; gap: 4px; width: 92px; flex-shrink: 0; }
+.meter .track { height: 5px; border-radius: 4px; background: var(--surface-2); overflow: hidden; position: relative; }
+.meter .track::after { content:""; position:absolute; left:73.8%; right:0; top:0; bottom:0; background: repeating-linear-gradient(45deg, transparent, transparent 3px, color-mix(in oklch,var(--danger) 30%, transparent) 3px, color-mix(in oklch,var(--danger) 30%, transparent) 6px); }
+.meter .fill { height: 100%; border-radius: 4px; }
+.meter .lbl { font-family: var(--font-mono); font-size: 10.5px; display: flex; justify-content: space-between; }
+.fill.good { background: var(--success); } .fill.short { background: var(--warn); } .fill.over { background: var(--danger); }
+.cc.good { color: var(--success); } .cc.short { color: var(--warn); } .cc.over { color: var(--danger); }
+.l3-actions { display: flex; gap: 8px; margin-top: 12px; align-items: center; }
+.kbd { font-family: var(--font-mono); font-size: 10px; padding: 1px 5px; border: 1px solid var(--border); border-radius: 4px; color: var(--muted); }
+
+/* script split */
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.script-pane { font-size: 13.5px; line-height: 1.8; color: var(--muted); max-height: 320px; overflow-y: auto; }
+.script-pane mark { background: var(--accent-soft); color: var(--fg); padding: 2px 4px; border-radius: 4px; border-left: 3px solid var(--accent); }
+
+/* ============ GRAPHICS TABLE ============ */
+.gtable { width: 100%; border-collapse: collapse; font-size: 13px; }
+.gtable th { text-align: left; font-family: var(--font-head); font-size: 11px; letter-spacing: .8px; text-transform: uppercase; color: var(--muted); padding: 8px 10px; border-bottom: 1px solid var(--border); }
+.gtable td { padding: 9px 10px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.gtable tr:hover td { background: var(--surface-2); }
+.seg-sub td { font-family: var(--font-head); font-weight: 600; letter-spacing: .5px; color: var(--accent); font-size: 12px; text-transform: uppercase; background: var(--surface-2); }
+.statpill { font-size: 11.5px; font-weight: 600; padding: 3px 9px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; }
+.statpill .d { width: 7px; height: 7px; border-radius: 50%; }
+.st-ns { background: color-mix(in oklch,var(--neutral) 20%, transparent); color: var(--muted); } .st-ns .d{background:var(--neutral);}
+.st-ip { background: color-mix(in oklch,var(--info) 18%, transparent); color: var(--info); } .st-ip .d{background:var(--info);}
+.st-cr { background: color-mix(in oklch,var(--warn) 18%, transparent); color: var(--warn); } .st-cr .d{background:var(--warn);}
+.st-li { background: color-mix(in oklch,var(--success) 18%, transparent); color: var(--success); } .st-li .d{background:var(--success);}
+.assignee { display: inline-flex; align-items: center; gap: 7px; }
+.assignee .av { width: 22px; height: 22px; border-radius: 50%; font-size: 10px; display: grid; place-items: center; color: white; font-weight: 700; font-family: var(--font-head); }
+.toggle { width: 34px; height: 19px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); position: relative; cursor: pointer; flex-shrink: 0; }
+.toggle.on { background: var(--success); border-color: var(--success); }
+.toggle::after { content:""; position: absolute; width: 15px; height: 15px; border-radius: 50%; background: white; top: 1px; left: 1px; transition: .15s; }
+.toggle.on::after { left: 16px; }
+.src-links a { font-size: 11px; color: var(--info); text-decoration: none; margin-right: 7px; }
+.push-btn.lit { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.push-btn.dim { opacity: .4; cursor: not-allowed; }
+
+/* ============ DISTRIBUTION BOARD ============ */
+.dist-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.plat { padding: 15px; }
+.plat-top { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.plat-logo { width: 34px; height: 34px; border-radius: 8px; display: grid; place-items: center; font-size: 16px; flex-shrink: 0; }
+.plat-name { font-weight: 700; font-size: 14px; font-family: var(--font-head); }
+.plat-carries { font-size: 11px; color: var(--muted); }
+.badge { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 5px; letter-spacing: .3px; }
+.badge-auto { background: color-mix(in oklch,var(--info) 18%, transparent); color: var(--info); }
+.badge-manual { background: var(--accent-soft); color: var(--accent); }
+.plat-status { display: flex; align-items: center; gap: 7px; font-size: 12.5px; font-weight: 600; margin: 8px 0; }
+.req-chips { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
+.req { font-size: 10px; padding: 2px 7px; border-radius: 5px; background: var(--surface-2); color: var(--muted); border: 1px solid var(--border); }
+
+/* ============ PHONE MOCK ============ */
+.phone-wrap { display: flex; gap: 30px; flex-wrap: wrap; align-items: flex-start; }
+.phone {
+  width: 300px; flex-shrink: 0; border-radius: 36px; padding: 11px;
+  background: oklch(0.12 0.02 250); box-shadow: 0 20px 60px -20px rgba(0,0,0,.7), 0 0 0 2px var(--border);
+}
+.phone-screen { background: var(--bg); border-radius: 26px; overflow: hidden; height: 600px; position: relative; display: flex; flex-direction: column; }
+.ph-bar { padding: 14px 16px 10px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 10px; }
+.ph-content { flex: 1; overflow-y: auto; padding: 14px; }
+.ph-l3 {
+  border-radius: 14px; border: 1px solid var(--border); background: var(--surface);
+  padding: 18px 16px; text-align: center; position: relative; overflow: hidden;
+}
+.ph-l3::before { content:""; position:absolute; left:0; top:0; bottom:0; width:5px; background: var(--accent); }
+.ph-l3 .big { font-family: var(--font-mono); font-weight: 600; letter-spacing: .8px; font-size: 16px; line-height: 1.4; margin: 8px 0 14px; }
+.ph-swipe { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); margin-top: 10px; }
+.ph-actions { display: flex; gap: 10px; padding: 12px 14px; border-top: 1px solid var(--border); }
+.ph-actions .btn { flex: 1; text-align: center; }
+.ph-tabbar { display: flex; border-top: 1px solid var(--border); background: var(--surface); }
+.ph-tab { flex: 1; padding: 9px 0 12px; text-align: center; font-size: 10px; color: var(--muted); }
+.ph-tab.active { color: var(--accent); }
+.ph-tab .ti { font-size: 18px; display: block; margin-bottom: 2px; }
+.callout { font-size: 13px; color: var(--muted); max-width: 360px; }
+.callout h3 { font-family: var(--font-head); color: var(--fg); margin-bottom: 8px; font-size: 17px; }
+.callout li { margin: 6px 0 6px 18px; }
+
+/* ============ MOBILE BOTTOM NAV (this mockup, < 880px) ============ */
+.bottom-nav { display: none; }
+
+@media (max-width: 880px) {
+  .sidebar { display: none; }
+  .main { padding: 18px 14px 90px; }
+  .tiles { grid-template-columns: repeat(2, 1fr); }
+  .cols2, .split, .dist-grid { grid-template-columns: 1fr; }
+  .bottom-nav {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    position: fixed; inset: auto 0 0 0; z-index: 50;
+    background: color-mix(in oklch, var(--surface) 92%, transparent);
+    backdrop-filter: blur(14px); border-top: 1px solid var(--border);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .bn-item { padding: 8px 0 10px; text-align: center; color: var(--muted); font-size: 10px; min-height: 52px; cursor: pointer; }
+  .bn-item.active { color: var(--accent); }
+  .bn-item .bi { font-size: 19px; display: block; margin-bottom: 2px; }
+  .page-head h1 { font-size: 22px; }
+  .tile .num { font-size: 30px; }
+}
+</style>
+</head>
+<body>
+<div class="starfield"></div>
+<div class="app">
+
+  <!-- TOP BAR -->
+  <header class="topbar">
+    <div class="wordmark">
+      <span class="gsr-badge">GSR</span>
+      <span class="sub">Production Control</span>
+    </div>
+    <div class="spacer"></div>
+    <button class="icon-btn" id="themeBtn" title="Toggle theme">&#9789;</button>
+    <div class="role-chip"><span class="avatar">DA</span> Daniel &middot; Owner</div>
+  </header>
+
+  <div class="shell">
+    <!-- SIDEBAR (desktop) -->
+    <aside class="sidebar">
+      <div class="nav-group">
+        <h4>Pipeline</h4>
+        <div class="nav-item active" data-go="dash"><span class="ico">&#9632;</span> Dashboard</div>
+        <div class="nav-item" data-go="review"><span class="ico">&#9707;</span> Lower Thirds <span class="count">12</span></div>
+        <div class="nav-item" data-go="graphics"><span class="ico">&#9638;</span> Graphics <span class="count">5</span></div>
+        <div class="nav-item"><span class="ico">&#8682;</span> Import</div>
+        <div class="nav-item"><span class="ico">&#9745;</span> Approved</div>
+      </div>
+      <div class="nav-group">
+        <h4>Crew</h4>
+        <div class="nav-item"><span class="ico">&#9776;</span> Task Board</div>
+        <div class="nav-item"><span class="ico">&#9787;</span> Guests</div>
+      </div>
+      <div class="nav-group">
+        <h4>Output</h4>
+        <div class="nav-item" data-go="dist"><span class="ico">&#9741;</span> Distribution</div>
+        <div class="nav-item"><span class="ico">&#9202;</span> Episodes</div>
+      </div>
+      <div class="nav-group">
+        <h4>System</h4>
+        <div class="nav-item"><span class="ico">&#9889;</span> Health</div>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <!-- mockup view switcher -->
+      <div class="viewtabs">
+        <button class="viewtab active" data-view="dash">Owner Dashboard</button>
+        <button class="viewtab" data-view="graphics">Graphics Master</button>
+        <button class="viewtab" data-view="review">Lower-thirds Review</button>
+        <button class="viewtab" data-view="dist">Distribution</button>
+        <button class="viewtab" data-view="mobile">Mobile</button>
+      </div>
+
+      <!-- ============ OWNER DASHBOARD ============ -->
+      <section class="view active" id="view-dash">
+        <div class="page-head">
+          <h1>Good evening, Daniel</h1>
+          <p>S03 EP030 airs Tuesday. Three things need you.</p>
+        </div>
+
+        <div class="grid tiles">
+          <div class="card tile accent"><span class="num">3</span><span class="lbl">Need your decision</span></div>
+          <div class="card tile"><span class="num">6</span><span class="lbl">Episodes in flight</span></div>
+          <div class="card tile"><span class="num">31<small style="font-size:18px;color:var(--muted)">/44</small></span><span class="lbl">Graphics ready</span></div>
+          <div class="card tile"><span class="num">5<small style="font-size:18px;color:var(--muted)">/8</small></span><span class="lbl">Platforms out</span></div>
+        </div>
+
+        <div class="section-title">This week &middot; S03 EP030</div>
+        <div class="card">
+          <div class="rail">
+            <div class="stage done"><span class="dot">&#10003;</span><span class="nm">Script</span></div>
+            <div class="connector done"></div>
+            <div class="stage done"><span class="dot">&#10003;</span><span class="nm">Extract</span></div>
+            <div class="connector done"></div>
+            <div class="stage current"><span class="dot">&#9678;</span><span class="nm">Lower Thirds</span></div>
+            <div class="connector"></div>
+            <div class="stage"><span class="dot">&#9711;</span><span class="nm">Approve</span></div>
+            <div class="connector"></div>
+            <div class="stage"><span class="dot">&#9711;</span><span class="nm">Upload</span></div>
+            <div class="connector"></div>
+            <div class="stage"><span class="dot">&#9711;</span><span class="nm">Distribute</span></div>
+          </div>
+        </div>
+
+        <div class="grid cols2" style="margin-top:16px">
+          <div class="card">
+            <div class="section-title" style="margin-top:0">Needs my decision</div>
+            <div class="queue-item">
+              <span class="q-ico">&#9707;</span>
+              <div class="q-body"><div class="t">12 lower thirds awaiting approval</div><div class="s">Interview 1 &middot; Dr. Andrew Fabich</div></div>
+              <button class="btn btn-primary btn-sm">Review</button>
+            </div>
+            <div class="queue-item">
+              <span class="q-ico">&#9638;</span>
+              <div class="q-body"><div class="t">8 graphic ideas to approve</div><div class="s">Before the team starts designing</div></div>
+              <button class="btn btn-primary btn-sm">Open</button>
+            </div>
+            <div class="queue-item">
+              <span class="q-ico">&#9998;</span>
+              <div class="q-body"><div class="t">Final title call</div><div class="s">EP030 &middot; 3 options drafted</div></div>
+              <button class="btn btn-ghost btn-sm">Decide</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-title" style="margin-top:0">Crew task board</div>
+            <div class="crew-row"><span class="who"><span class="avatar" style="width:22px;height:22px;font-size:10px">I</span>Isaac</span>
+              <span class="loadbar"><i style="width:55%;background:var(--success)"></i><i style="width:25%;background:var(--warn)"></i><i style="width:20%;background:var(--neutral)"></i></span><span class="cnt">22 open</span></div>
+            <div class="crew-row"><span class="who"><span class="avatar" style="width:22px;height:22px;font-size:10px">Ja</span>Jakob</span>
+              <span class="loadbar"><i style="width:70%;background:var(--success)"></i><i style="width:30%;background:var(--neutral)"></i></span><span class="cnt">9 open</span></div>
+            <div class="crew-row"><span class="who"><span class="avatar" style="width:22px;height:22px;font-size:10px">Je</span>Jeremiah</span>
+              <span class="loadbar"><i style="width:20%;background:var(--success)"></i><i style="width:30%;background:var(--warn)"></i><i style="width:50%;background:var(--danger)"></i></span><span class="cnt" style="color:var(--danger)">18 open</span></div>
+            <div class="crew-row"><span class="who"><span class="avatar" style="width:22px;height:22px;font-size:10px">G</span>Gabe</span>
+              <span class="loadbar"><i style="width:90%;background:var(--success)"></i><i style="width:10%;background:var(--neutral)"></i></span><span class="cnt">3 open</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ GRAPHICS MASTER ============ -->
+      <section class="view" id="view-graphics">
+        <div class="page-head">
+          <h1>Graphics Tracker &middot; June</h1>
+          <p>All five shows of the month. Scan the left edge for the show that is behind.</p>
+        </div>
+
+        <!-- Show 1: healthy -->
+        <div class="card show-card">
+          <div class="show-head"><span class="name">Show 1</span><span class="date">Jun 3 &middot; EP028</span><span class="frac">42<small>/44 ready</small></span></div>
+          <div class="segbar"><i class="seg-li" style="width:80%"></i><i class="seg-cr" style="width:15%"></i><i class="seg-ns" style="width:5%"></i></div>
+          <div class="chips">
+            <span class="chip complete"><span class="cdot"></span>Monologue 12/12</span>
+            <span class="chip complete"><span class="cdot"></span>Interview 1 17/17</span>
+            <span class="chip complete"><span class="cdot"></span>Interview 2 15/15</span>
+            <span class="chip partial"><span class="cdot"></span>Kids Corner 2/3</span>
+          </div>
+        </div>
+
+        <!-- Show 2: behind -->
+        <div class="card show-card" style="border-color: color-mix(in oklch,var(--danger) 35%, var(--border))">
+          <div class="show-head"><span class="name">Show 2</span><span class="date">Jun 10 &middot; EP029</span><span class="frac" style="color:var(--danger)">9<small>/44 ready</small></span></div>
+          <div class="segbar"><i class="seg-li" style="width:14%"></i><i class="seg-cr" style="width:7%"></i><i class="seg-ip" style="width:18%"></i><i class="seg-ns" style="width:61%"></i></div>
+          <div class="chips">
+            <span class="chip zero"><span class="cdot"></span>Monologue 0/12</span>
+            <span class="chip partial"><span class="cdot"></span>Interview 1 5/17</span>
+            <span class="chip zero"><span class="cdot"></span>Interview 2 0/15</span>
+            <span class="chip complete"><span class="cdot"></span>Kids Corner 3/3</span>
+          </div>
+        </div>
+
+        <!-- Show 3 -->
+        <div class="card show-card">
+          <div class="show-head"><span class="name">Show 3</span><span class="date">Jun 17 &middot; EP030</span><span class="frac">31<small>/44 ready</small></span></div>
+          <div class="segbar"><i class="seg-li" style="width:50%"></i><i class="seg-cr" style="width:20%"></i><i class="seg-ip" style="width:18%"></i><i class="seg-ns" style="width:12%"></i></div>
+          <div class="chips">
+            <span class="chip complete"><span class="cdot"></span>Monologue 12/12</span>
+            <span class="chip partial"><span class="cdot"></span>Interview 1 11/17</span>
+            <span class="chip partial"><span class="cdot"></span>Interview 2 8/15</span>
+            <span class="chip complete"><span class="cdot"></span>Kids Corner 3/3</span>
+          </div>
+        </div>
+
+        <div class="legend">
+          <span><i class="seg-ns"></i> Not started</span>
+          <span><i class="seg-ip"></i> In progress</span>
+          <span><i class="seg-cr"></i> Created</span>
+          <span><i class="seg-li"></i> Loaded in</span>
+        </div>
+
+        <div class="section-title">Show 3 &middot; single-show tracker</div>
+        <div class="card" style="padding:8px">
+          <table class="gtable">
+            <thead><tr><th></th><th>Graphic</th><th>Type</th><th>Status</th><th>Assigned</th><th>ProPresenter</th></tr></thead>
+            <tbody>
+              <tr class="seg-sub"><td colspan="6">Interview 1 &middot; Dr. Andrew Fabich</td></tr>
+              <tr>
+                <td><div class="toggle on" title="Idea approved"></div></td>
+                <td>#3 Guest chyron</td>
+                <td><span class="type-pill type-chyron">chyron</span></td>
+                <td><span class="statpill st-li"><span class="d"></span>Loaded in</span></td>
+                <td><span class="assignee"><span class="av" style="background:var(--primary)">I</span>Isaac</span></td>
+                <td><button class="btn btn-sm push-btn dim">Push</button></td>
+              </tr>
+              <tr>
+                <td><div class="toggle on"></div></td>
+                <td>#7 Geosmin diagram</td>
+                <td><span class="type-pill type-disc">discussion</span></td>
+                <td><span class="statpill st-cr"><span class="d"></span>Created</span></td>
+                <td><span class="assignee"><span class="av" style="background:var(--info)">Je</span>Jeremiah</span></td>
+                <td><button class="btn btn-sm push-btn lit">Push &#9889;</button></td>
+              </tr>
+              <tr>
+                <td><div class="toggle on"></div></td>
+                <td>#9 B-roll: rain on soil</td>
+                <td><span class="type-pill type-disc">b-roll</span></td>
+                <td><span class="statpill st-ip"><span class="d"></span>In progress</span></td>
+                <td><span class="assignee"><span class="av" style="background:var(--info)">Je</span>Jeremiah</span></td>
+                <td><span class="src-links"><a href="#">Storyblocks</a><a href="#">Dreamstime</a></span></td>
+              </tr>
+              <tr style="opacity:.55">
+                <td><div class="toggle"></div></td>
+                <td>#11 Streptomyces stat</td>
+                <td><span class="type-pill type-disc">discussion</span></td>
+                <td><span class="statpill st-ns"><span class="d"></span>Not started</span></td>
+                <td><span style="color:var(--muted);font-size:12px">Unassigned</span></td>
+                <td><span style="color:var(--muted);font-size:11px">Approve idea first</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size:12px;color:var(--muted);margin-top:10px">The Push action stays dim until status is Created and a filename is entered, then it lights gold. A human triggers it behind a confirm dialog. ProPresenter is never automated.</p>
+      </section>
+
+      <!-- ============ LOWER-THIRDS REVIEW ============ -->
+      <section class="view" id="view-review">
+        <div class="page-head">
+          <h1>Lower Thirds &middot; Interview 1</h1>
+          <p>S03 EP030 &middot; beat 7 of 17 &middot; pick a variation, watch the character meter.</p>
+        </div>
+
+        <div class="split">
+          <div>
+            <div class="card l3-card">
+              <div class="l3-rail"></div>
+              <div class="l3-body">
+                <div class="l3-top">
+                  <span class="beat-chip">BEAT 07</span>
+                  <span class="type-pill type-disc">discussion_l3</span>
+                </div>
+
+                <div class="variation chosen">
+                  <span class="radio"></span>
+                  <span class="v-tag">PRIMARY</span>
+                  <span class="v-text">STREPTOMYCES: SOURCE OF RAIN'S SMELL AND LIFE-SAVING DRUGS</span>
+                  <span class="meter"><span class="track"><i class="fill good" style="width:90.7%"></i></span><span class="lbl"><span class="cc good">59</span><span style="color:var(--muted)">/65</span></span></span>
+                </div>
+                <div class="variation">
+                  <span class="radio"></span>
+                  <span class="v-tag">VAR 1</span>
+                  <span class="v-text">STREPTOMYCES MAKES RAIN'S SMELL</span>
+                  <span class="meter"><span class="track"><i class="fill short" style="width:46%"></i></span><span class="lbl"><span class="cc short">31</span><span style="color:var(--muted)">/65</span></span></span>
+                </div>
+                <div class="variation">
+                  <span class="radio"></span>
+                  <span class="v-tag">VAR 2</span>
+                  <span class="v-text">ONE MICROBE BEHIND BOTH THE SMELL OF RAIN AND MODERN ANTIBIOTICS</span>
+                  <span class="meter"><span class="track"><i class="fill over" style="width:100%"></i></span><span class="lbl"><span class="cc over">68</span><span style="color:var(--muted)">/65</span></span></span>
+                </div>
+
+                <div class="l3-actions">
+                  <button class="btn btn-primary">Approve <span class="kbd">A</span></button>
+                  <button class="btn btn-ghost">Reject <span class="kbd">R</span></button>
+                  <button class="btn btn-ghost">Regenerate <span class="kbd">G</span></button>
+                  <span style="margin-left:auto;font-size:11px;color:var(--muted)">19/20 regen left</span>
+                </div>
+              </div>
+            </div>
+            <div class="legend" style="margin-top:14px">
+              <span><i style="background:var(--warn)"></i> Under 55, short</span>
+              <span><i style="background:var(--success)"></i> 55 to 65, good</span>
+              <span><i style="background:var(--danger)"></i> Over 65, blocked from send</span>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="section-title" style="margin-top:0">Script context</div>
+            <div class="script-pane">
+              <p>...and what is fascinating is that the very same family of bacteria is responsible for two completely different things.</p>
+              <p><mark>Streptomyces is both the source of that earthy smell after rain, geosmin, and the source of most of our life-saving antibiotics.</mark></p>
+              <p>So when you walk outside after a storm and you breathe in, you are smelling the same organism that has saved millions of lives...</p>
+            </div>
+            <p style="font-size:12px;color:var(--muted);margin-top:12px">The highlighted line is where beat 7 displays. Selecting a card scrolls the script here; clicking a highlight selects its card.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ DISTRIBUTION ============ -->
+      <section class="view" id="view-dist">
+        <div class="page-head">
+          <h1>Distribution &middot; S03 EP028</h1>
+          <p>Aired Jun 3. Five of eight platforms out. The board surfaces Ready; a human ships.</p>
+        </div>
+        <div class="dist-grid">
+          <div class="card plat">
+            <div class="plat-top"><span class="plat-logo" style="background:#ff000022;color:#ff5252">&#9654;</span><div><div class="plat-name">YouTube</div><div class="plat-carries">Full episode</div></div></div>
+            <span class="badge badge-auto">AUTO</span>
+            <div class="plat-status"><span class="statpill st-li"><span class="d"></span>Published</span></div>
+            <div class="req-chips"><span class="req">Cat 28</span><span class="req">Private until audit</span></div>
+            <div style="font-size:11px;color:var(--muted)">By system &middot; Jun 2, 16:00</div>
+          </div>
+
+          <div class="card plat" style="border-color:color-mix(in oklch,var(--accent) 40%, var(--border))">
+            <div class="plat-top"><span class="plat-logo" style="background:#74b81622;color:#9bd34a">R</span><div><div class="plat-name">Rumble</div><div class="plat-carries">Full episode</div></div></div>
+            <span class="badge badge-manual">MANUAL</span>
+            <div class="plat-status" style="color:var(--accent)"><span class="statpill" style="background:var(--accent-soft);color:var(--accent)"><span class="d" style="background:var(--accent)"></span>Ready to ship</span></div>
+            <div class="req-chips"><span class="req">Verify 58-min HD</span><span class="req">720p risk</span></div>
+            <button class="btn btn-primary btn-sm" style="width:100%;margin-top:6px">Open handoff</button>
+          </div>
+
+          <div class="card plat">
+            <div class="plat-top"><span class="plat-logo" style="background:#7c4dff22;color:#b39dff">&#9835;</span><div><div class="plat-name">Transistor</div><div class="plat-carries">Audio podcast</div></div></div>
+            <span class="badge badge-auto">AUTO</span>
+            <div class="plat-status"><span class="statpill st-li"><span class="d"></span>Published</span></div>
+            <div style="font-size:11px;color:var(--muted)">By Myriam &middot; Jun 3</div>
+          </div>
+
+          <div class="card plat" style="border-color:color-mix(in oklch,var(--accent) 40%, var(--border))">
+            <div class="plat-top"><span class="plat-logo" style="background:var(--accent-soft);color:var(--accent)">&#9851;</span><div><div class="plat-name">Real Life Network</div><div class="plat-carries">RightNow Media</div></div></div>
+            <span class="badge badge-manual">MANUAL</span>
+            <div class="plat-status" style="color:var(--accent)"><span class="statpill" style="background:var(--accent-soft);color:var(--accent)"><span class="d" style="background:var(--accent)"></span>Needs handoff</span></div>
+            <div class="req-chips"><span class="req">1200x1800 thumb</span><span class="req">-20 LKFS</span><span class="req">Signiant</span></div>
+            <button class="btn btn-primary btn-sm" style="width:100%;margin-top:6px">Open checklist</button>
+          </div>
+
+          <div class="card plat">
+            <div class="plat-top"><span class="plat-logo" style="background:#00bcd422;color:#4dd0e1">&#9741;</span><div><div class="plat-name">StreamHoster</div><div class="plat-carries">Roku, Apple TV, iOS</div></div></div>
+            <span class="badge badge-manual">MANUAL</span>
+            <div class="plat-status"><span class="statpill st-li"><span class="d"></span>Delivered</span></div>
+            <div style="font-size:11px;color:var(--muted)">One FTPS upload fans out</div>
+          </div>
+
+          <div class="card plat">
+            <div class="plat-top"><span class="plat-logo" style="background:#0061ff22;color:#5b9bff">&#9729;</span><div><div class="plat-name">Dropbox</div><div class="plat-carries">Broadcast master</div></div></div>
+            <span class="badge badge-auto">AUTO</span>
+            <div class="plat-status"><span class="statpill st-li"><span class="d"></span>Delivered</span></div>
+            <div class="req-chips"><span class="req">No metadata</span></div>
+          </div>
+
+          <div class="card plat">
+            <div class="plat-top"><span class="plat-logo" style="background:var(--surface-2);color:var(--muted)">&#9706;</span><div><div class="plat-name">Genesis Science Net</div><div class="plat-carries">Web stream</div></div></div>
+            <span class="badge badge-manual">MANUAL</span>
+            <div class="plat-status" style="color:var(--muted)"><span class="statpill st-ns"><span class="d"></span>Pending</span></div>
+            <button class="btn btn-ghost btn-sm" style="width:100%;margin-top:6px">Open</button>
+          </div>
+
+          <div class="card plat">
+            <div class="plat-top"><span class="plat-logo" style="background:var(--surface-2);color:var(--muted)">&#9986;</span><div><div class="plat-name">Social clips</div><div class="plat-carries">Short form</div></div></div>
+            <span class="badge badge-manual">MANUAL</span>
+            <div class="plat-status" style="color:var(--muted)"><span class="statpill st-ip"><span class="d"></span>In review</span></div>
+            <div style="font-size:11px;color:var(--muted)">3 clips from Vizard</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MOBILE ============ -->
+      <section class="view" id="view-mobile">
+        <div class="page-head">
+          <h1>Mobile &middot; the crew lives here</h1>
+          <p>Interns and editors approve and update status from phones. One card, one thumb, big targets.</p>
+        </div>
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="ph-bar"><span class="gsr-badge" style="font-size:11px;padding:3px 6px">GSR</span><span style="font-size:13px;font-weight:600">Review</span><span style="margin-left:auto;font-size:11px;color:var(--muted)">7 of 17</span></div>
+              <div class="ph-content">
+                <div style="font-size:11px;color:var(--muted);margin-bottom:8px">INTERVIEW 1 &middot; BEAT 07</div>
+                <div class="ph-l3">
+                  <span class="type-pill type-disc" style="position:absolute;top:12px;right:12px">discussion</span>
+                  <div class="big">STREPTOMYCES: SOURCE OF RAIN'S SMELL AND LIFE-SAVING DRUGS</div>
+                  <span class="meter" style="width:100%"><span class="track"><i class="fill good" style="width:90.7%"></i></span><span class="lbl"><span class="cc good">59 good</span><span style="color:var(--muted)">/65</span></span></span>
+                </div>
+                <div class="ph-swipe"><span>&#8592; swipe to reject</span><span>swipe to approve &#8594;</span></div>
+              </div>
+              <div class="ph-actions"><button class="btn btn-ghost">Reject</button><button class="btn btn-primary">Approve</button></div>
+              <div class="ph-tabbar">
+                <div class="ph-tab active"><span class="ti">&#9707;</span>Review</div>
+                <div class="ph-tab"><span class="ti">&#9638;</span>Graphics</div>
+                <div class="ph-tab"><span class="ti">&#9745;</span>Approved</div>
+                <div class="ph-tab"><span class="ti">&#9202;</span>Shows</div>
+                <div class="ph-tab"><span class="ti">&#8943;</span>More</div>
+              </div>
+            </div>
+          </div>
+          <div class="callout">
+            <h3>What the phone proves</h3>
+            <ul>
+              <li>Bottom tab bar of the role's top destinations, every target at least 48px, in the thumb zone.</li>
+              <li>One lower-third per screen, shown large like an on-air bar, with the live character meter under it.</li>
+              <li>Swipe right to approve, left to reject, with visible buttons as the always-present fallback.</li>
+              <li>The dense desktop table reflows to a single-column card stack; the Master grid becomes stacked show cards.</li>
+              <li>Any live or irreversible action (import, publish) still routes through the Type-YES gate, even here.</li>
+            </ul>
+            <p style="margin-top:10px">Resize this window narrow to watch the whole mockup reflow and the bottom nav appear.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<!-- MOBILE BOTTOM NAV for the whole mockup -->
+<nav class="bottom-nav">
+  <div class="bn-item active" data-go="dash"><span class="bi">&#9632;</span>Home</div>
+  <div class="bn-item" data-go="review"><span class="bi">&#9707;</span>Review</div>
+  <div class="bn-item" data-go="graphics"><span class="bi">&#9638;</span>Graphics</div>
+  <div class="bn-item" data-go="dist"><span class="bi">&#9741;</span>Send</div>
+  <div class="bn-item" data-go="mobile"><span class="bi">&#9743;</span>Mobile</div>
+</nav>
+
+<script>
+// theme toggle
+const root = document.documentElement;
+document.getElementById('themeBtn').addEventListener('click', () => {
+  root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
+});
+// view switching
+function showView(v) {
+  document.querySelectorAll('.view').forEach(s => s.classList.toggle('active', s.id === 'view-' + v));
+  document.querySelectorAll('.viewtab').forEach(t => t.classList.toggle('active', t.dataset.view === v));
+  document.querySelectorAll('.nav-item[data-go]').forEach(n => n.classList.toggle('active', n.dataset.go === v));
+  document.querySelectorAll('.bn-item[data-go]').forEach(n => n.classList.toggle('active', n.dataset.go === v));
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+document.querySelectorAll('[data-view]').forEach(t => t.addEventListener('click', () => showView(t.dataset.view)));
+document.querySelectorAll('[data-go]').forEach(n => n.addEventListener('click', () => showView(n.dataset.go)));
+// variation picking demo
+document.querySelectorAll('.variation').forEach(v => v.addEventListener('click', () => {
+  if (v.querySelector('.fill.over')) return; // over-65 cannot be chosen
+  v.parentElement.querySelectorAll('.variation').forEach(x => x.classList.remove('chosen'));
+  v.classList.add('chosen');
+}));
+</script>
+</body>
+</html>
+</content>

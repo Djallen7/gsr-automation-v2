@@ -236,3 +236,11 @@ This registry is the durable, never-re-ask record of WHERE GSR episodes go and H
 - Orchestration / job queue: **Supabase Cron -> Edge Function** for scheduled jobs + **the Mac polls a Supabase `jobs` table** for heavy work. NOT BullMQ/Redis. Honorable (only if a real worker queue is later needed): BullMQ, hosted Inngest/QStash.
 - Notifications (auth-failure alerts for unattended jobs): **ntfy** (or email). Honorable: Apprise, Gotify.
 - Status database: **Supabase Postgres** (the project DB). NOT better-sqlite3 (Era-1).
+
+**Role / dashboard scopes (Daniel, 2026-06-07):** the dashboard is per-role. Each person logs in and sees only their view.
+- **Daniel** = owner/producer. Sees everything: full pipeline, the crew task board, distribution, approvals, system health. Owns scripts, guests, recording, approvals, final title call.
+- **Myriam** = metadata & post-production lead, and Daniel's successor. Owns metadata, thumbnails, YouTube + Rumble uploads, and marking episodes aired. Does NOT see graphics build, editing, or system internals.
+- **Isaac** = graphics & edit lead. Owns the Graphics Tracker, ProPresenter load, editing, the review pass, and final export to Dropbox.
+- **Interns** = same as Isaac MINUS post-production editing: Graphics Tracker + b-roll sourcing + ProPresenter / Rundown Creator only.
+- **Jakob (roll-ins), Jeremiah (b-roll / raw footage), Gabe (Genesis Science Minute)** do NOT get distinct dashboards. A generic landing page with role-specific info may be added later if needed (Daniel, 2026-06-07).
+- **DEFERRED task: per-role login credentials.** Build real auth so each user logs in and lands on only their view. This is sequenced for AFTER the system is designed, tested across multiple mock episodes, and the current real system is fully imported. Tracked in `docs/AUTOMATION_ROADMAP.md`.

@@ -141,7 +141,7 @@ FEATURED RESOURCE: {BOOK/PRODUCT TITLE} — creationsuperstore.com (ties to Q&A 
 Q&A QUESTION: "{VIEWER QUESTION}" submitted by {NAME} via {PLATFORM}
 VIEWER VOICES: {NAME 1} from {LOCATION/SOURCE}, {NAME 2} from {LOCATION/SOURCE}
 
-FIXED SEGMENT ORDER — do not reorder (source: MASTER_CONTEXT.md run-of-show, RC row codes):
+FIXED SEGMENT ORDER — do not reorder (source: docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md run-of-show, RC row codes):
 1.  Show Intro (~0:30) [RC: B2]
 2.  Opening Monologue (~7 min) — David previews both interviews, then "But first..." pivot [RC: B3]
 3.  [Break]
@@ -337,7 +337,7 @@ RULES:
 ✓ ALL CAPS
 ✓ 55–65 chars for Beats 1 and 2
 ✓ Beat 3 pipe | separator is intentional (chyron-style CTA, not a topic beat)
-✓ Phone number is 931-212-7**990** — verify every time
+✓ Phone number is 931-212-7990 — verify every time
 ✓ Show char count in parentheses
 ```
 
@@ -417,7 +417,7 @@ Structure (do not skip any section):
 
 **TAGS** (comma-separated for the YouTube Tags field):
 Always include these 9 anchor tags:
-Genesis Science Report, David Rives, creation science, intelligent design, young earth creationism, biblical creation, Genesis 1, creationism, science and faith
+Genesis Science Report, David Rives, Creation Science, Intelligent Design, Biblical Creation, Science and Faith, Genesis Science Network, Biblical Worldview, Christian Apologetics
 
 Add 10–18 topical tags based on episode content (guests, topics, key terms).
 
@@ -741,7 +741,7 @@ ATTRIBUTION NOTE: Fair use applies for screenshots of news articles in an educat
 
 **When to use:** Before and after delivering a finished episode to all platforms.
 
-> **Source:** `MASTER_CONTEXT.md` (Drive ID: `1h3v32v8oTjDqSnsMSBM7vmSVHzQdp5et-nz-2Y1PzKY`) — the definitive distribution reference.  
+> **Source:** `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md` — the definitive distribution reference.  
 > **Note:** Automation phases: YouTube and Dropbox = Phase 1 (automated). Rumble, Signiant, Fireside, StreamHoster = Phase 2–3 (manual or future).
 
 ```
@@ -767,11 +767,11 @@ CONFIRM STATUS FOR EACH PLATFORM:
 ☐ 2. DROPBOX (Phase 1 — automated)
    - File in: /David Rives Ministries/Genesis Science Report/{FILENAME}
 
-☐ 3. RUMBLE (manual — Phase 2 Playwright planned)
-   - File uploaded, titled correctly
+☐ 3. RUMBLE (auto-mirrors via YouTube channel sync)
+   - No manual upload and no browser automation; confirm the YouTube sync carried the episode over
 
-☐ 4. FIRESIDE.FM (manual — Phase 3 Playwright planned)
-   - Episode uploaded with title, description, artwork
+☐ 4. FIRESIDE.FM (manual handoff card; read-only API, do not browser-automate)
+   - Episode uploaded by hand with title, description, artwork
    - Auto-distributes to Apple Podcasts + Spotify
 
 ☐ 5. SIGNIANT MEDIA SHUTTLE (for Real Life Network / RLN)
@@ -830,7 +830,7 @@ IMPORTANT: The RC API returns errors as HTTP 200 with JSON body {"error": "..."}
 
 **When to use:** Generating the structured metadata JSON for the distribution automation pipeline.
 
-> **Source:** `MASTER_CONTEXT.md` distribution schema. Category 24, Monday 4PM ET publish schedule, 9 anchor tags + topical tags.
+> **Source:** `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md` distribution schema. Category 28 (Science & Technology), Monday 4PM ET publish schedule, 9 anchor tags + topical tags.
 
 ```
 You are generating the episode metadata JSON for the distribution automation pipeline.

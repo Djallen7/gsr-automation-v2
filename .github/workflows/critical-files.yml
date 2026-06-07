@@ -1,0 +1,22 @@
+name: critical-files
+
+# Keeps the start-from-scratch carry-list honest on every change to main.
+# Fails the PR if a critical file was deleted/renamed without updating the
+# manifest (presence), or if a new file in a critical zone was never
+# classified (audit). See docs/_handoff/CRITICAL-FILES.md.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  carry-list:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Presence — every listed critical file still exists
+        run: bash scripts/check-critical-files.sh
+      - name: Audit — every file in a critical zone is classified
+        run: bash scripts/check-critical-files.sh --audit

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSR Lower Thirds (design preview)</title>
+<style>
+:root{--bg:#f4f6fa;--panel:#fff;--ink:#16202e;--dim:#5b6b7e;--line:#e2e8f0;--accent:#2563eb;--accentsoft:#eaf1ff;
+ --good:#1d8a52;--good-bg:#e6f6ec;--warn:#b7791f;--warn-bg:#fdf3e2;--bad:#c0392b;--bad-bg:#fdecea;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 -apple-system,Segoe UI,Roboto,Inter,sans-serif}
+header.top{background:#0e1726;color:#eaf1ff;padding:11px 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;position:sticky;top:0;z-index:5}
+.ttl{font-weight:600;font-size:14px}.ttl b{color:#7fb0ff}.ttl .sub{color:#9fb2cc;font-size:12px;margin-left:6px}
+.send{margin-left:auto;background:var(--good);color:#fff;border:1px solid var(--good);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;cursor:pointer}
+.tabs{display:flex;gap:5px;flex-wrap:wrap;padding:9px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+.tab{border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 11px;font-size:12.5px;color:var(--dim)}
+.tab.on{background:var(--accentsoft);border-color:#b9d2ff;color:var(--accent);font-weight:600}
+.wrap{max-width:920px;margin:0 auto;padding:14px 16px}
+.hint{background:#fff6e9;border:1px solid #f0d8a8;border-radius:9px;color:#7a5a12;font-size:12.5px;padding:9px 11px;margin-bottom:12px}
+.hint b{color:#9a5a12}
+table.sheet{width:100%;border-collapse:collapse;background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:0 1px 3px rgba(16,32,55,.06)}
+.sheet th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);background:#fafbfd}
+.sheet td{padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+.sheet tr:last-child td{border-bottom:0}
+.bnum{font:700 12px ui-monospace,monospace;color:#fff;background:#64748b;width:24px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center}
+.ltype{font-size:11px;font-weight:600;color:#33506e;background:#eef3f9;border:1px solid #d7e2ef;border-radius:999px;padding:2px 8px;white-space:nowrap;display:inline-block}
+/* the three variations as selectable rows */
+.vars{display:flex;flex-direction:column;gap:4px}
+.var{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:7px;padding:6px 8px;cursor:pointer;opacity:.62}
+.var:has(input:checked){opacity:1;border-color:var(--accent);background:var(--accentsoft)}
+.var input{accent-color:var(--accent);flex:0 0 auto}
+.vtag{font-size:10px;font-weight:700;color:var(--dim);min-width:54px}
+.var:has(input:checked) .vtag{color:var(--accent)}
+.vtext{flex:1;font:13.5px ui-monospace,Menlo,monospace;letter-spacing:.01em}
+.vc{font:700 11px ui-monospace,monospace;min-width:30px;text-align:right}
+.vc.good{color:var(--good)} .vc.warn{color:var(--warn)} .vc.bad{color:var(--bad)}
+.sendbar{display:flex;align-items:center;gap:12px;margin-top:14px;background:var(--panel);border:1px dashed #bcd6fb;border-radius:10px;padding:12px 14px}
+.sendbar .big{background:var(--good);color:#fff;border:0;border-radius:8px;padding:10px 16px;font-weight:700;font-size:14px;cursor:pointer}
+.sendbar .meta{font-size:12px;color:var(--dim)}
+.map{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:12.5px;color:var(--dim)}
+.map b{color:var(--ink)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:11.5px}
+.legend span{display:inline-flex;gap:5px;align-items:center}
+.dot{width:11px;height:11px;border-radius:3px;display:inline-block}
+@media(max-width:680px){.sheet th:nth-child(2),.sheet td:nth-child(2){display:none}.vtext{font-size:12.5px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <span class="ttl">GSR <b>Lower Thirds</b><span class="sub">S03 Ep022 &middot; Interview 1 (Tim Clarey)</span></span>
+  <button class="send">Send 7 to ProPresenter</button>
+</header>
+
+<div class="tabs">
+  <span class="tab">Opening Monologue</span>
+  <span class="tab on">Interview 1</span>
+  <span class="tab">Interview 2</span>
+  <span class="tab">Ministry Report</span>
+  <span class="tab">Viewer Voices</span>
+  <span class="tab">Featured Resource</span>
+</div>
+
+<div class="wrap">
+  <div class="hint"><b>Lower thirds only.</b> Pick one variation per row, then Send. They go to the Lower Thirds presentation in ProPresenter (separate from graphics, never to Rundown Creator), formatted ALL CAPS and placed on the right slide. The chosen variation is the highlighted one.</div>
+
+  <table class="sheet">
+    <thead><tr><th>#</th><th>Type</th><th>Lower third &middot; tap a variation to choose</th><th>Chars</th></tr></thead>
+    <tbody>
+
+      <tr>
+        <td><div class="bnum">1</div></td>
+        <td><span class="ltype">guest_chyron</span></td>
+        <td><div class="vars">
+          <label class="var"><input type="radio" name="b1" checked><span class="vtag">Primary</span><span class="vtext">DR. TIM CLAREY | ICR | FLOOD GEOLOGY RESEARCHER</span><span class="vc good">47</span></label>
+          <label class="var"><input type="radio" name="b1"><span class="vtag">Var 1</span><span class="vtext">DR. TIM CLAREY | ICR | AUTHOR OF CARVED IN STONE</span><span class="vc good">48</span></label>
+          <label class="var"><input type="radio" name="b1"><span class="vtag">Var 2</span><span class="vtext">DR. TIM CLAREY | GEOLOGIST | INST FOR CREATION RESEARCH</span><span class="vc good">55</span></label>
+        </div></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td><div class="bnum">2</div></td>
+        <td><span class="ltype">topic_l3</span></td>
+        <td><div class="vars">
+          <label class="var"><input type="radio" name="b2" checked><span class="vtag">Primary</span><span class="vtext">THE GREEN RIVER CARVES STRAIGHT THROUGH A MOUNTAIN RANGE</span><span class="vc good">56</span></label>
+          <label class="var"><input type="radio" name="b2"><span class="vtag">Var 1</span><span class="vtext">A RIVER THAT CUTS THROUGH MOUNTAINS NOT AROUND THEM</span><span class="vc good">51</span></label>
+          <label class="var"><input type="radio" name="b2"><span class="vtag">Var 2</span><span class="vtext">THE CANYON THAT RUNS THROUGH SOLID ROCK FOR 700 METERS</span><span class="vc good">54</span></label>
+        </div></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td><div class="bnum">3</div></td>
+        <td><span class="ltype">discussion_l3</span></td>
+        <td><div class="vars">
+          <label class="var"><input type="radio" name="b3" checked><span class="vtag">Primary</span><span class="vtext">WATER ALWAYS TAKES THE EASIEST PATH DOWNHILL EXCEPT HERE</span><span class="vc good">56</span></label>
+          <label class="var"><input type="radio" name="b3"><span class="vtag">Var 1</span><span class="vtext">EVERY OTHER RIVER BENDS AROUND HARD ROCK NOT THIS ONE</span><span class="vc good">53</span></label>
+          <label class="var"><input type="radio" name="b3"><span class="vtag">Var 2</span><span class="vtext">THE GREEN RIVER IGNORES THE RULE EVERY RIVER FOLLOWS</span><span class="vc good">52</span></label>
+        </div></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td><div class="bnum">4</div></td>
+        <td><span class="ltype">discussion_l3</span></td>
+        <td><div class="vars">
+          <label class="var"><input type="radio" name="b4"><span class="vtag">Primary</span><span class="vtext">GLASGOW TEAM CALLS THE MECHANISM LITHOSPHERIC DRIPPING</span><span class="vc good">54</span></label>
+          <label class="var"><input type="radio" name="b4" checked><span class="vtag">Var 1</span><span class="vtext">THE SECULAR FIX IS MOUNTAINS THAT SANK THEN ROSE AGAIN</span><span class="vc good">54</span></label>
+          <label class="var"><input type="radio" name="b4"><span class="vtag">Var 2</span><span class="vtext">LITHOSPHERIC DRIPPING IS THE NEW SECULAR EXPLANATION</span><span class="vc good">52</span></label>
+        </div></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td><div class="bnum">5</div></td>
+        <td><span class="ltype">discussion_l3</span></td>
+        <td><div class="vars">
+          <label class="var"><input type="radio" name="b5" checked><span class="vtag">Primary</span><span class="vtext">THE FLOOD LEFT SIX SEDIMENT PULSES ON EVERY CONTINENT</span><span class="vc good">53</span></label>
+          <label class="var"><input type="radio" name="b5"><span class="vtag">Var 1</span><span class="vtext">MEGASEQUENCES BLANKET WHOLE CONTINENTS IN ONE EVENT</span><span class="vc good">51</span></label>
+          <label class="var"><input type="radio" name="b5"><span class="vtag">Var 2</span><span class="vtext">SIX GLOBAL SEDIMENT LAYERS POINT TO ONE GREAT FLOOD</span><span class="vc good">51</span></label>
+        </div></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td><div class="bnum">6</div></td>
+        <td><span class="ltype">discussion_l3</span></td>
+        <td><div class="vars">
+          <label class="var"><input type="radio" name="b6" checked><span class="vtag">Primary</span><span class="vtext">RAPID DRAINING CARVED THIS CANYON IN WEEKS NOT EONS</span><span class="vc good">51</span></label>
+          <label class="var"><input type="radio" name="b6"><span class="vtag">Var 1</span><span class="vtext">RECEDING FLOODWATER CUT STRAIGHT THROUGH THE UPLIFT</span><span class="vc good">51</span></label>
+          <label class="var"><input type="radio" name="b6"><span class="vtag">Var 2</span><span class="vtext">A FAST CARVE EXPLAINS THE STRAIGHT PATH FAR BETTER</span><span class="vc good">50</span></label>
+        </div></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td><div class="bnum">7</div></td>
+        <td><span class="ltype">discussion_l3</span></td>
+        <td><div class="vars">
+          <label class="var"><input type="radio" name="b7" checked><span class="vtag">Primary</span><span class="vtext">SLOW EROSION SHOULD HAVE BENT AROUND THESE MOUNTAINS</span><span class="vc good">52</span></label>
+          <label class="var"><input type="radio" name="b7"><span class="vtag">Var 1</span><span class="vtext">DEEP TIME CANNOT EASILY CUT WATER THROUGH HARD ROCK</span><span class="vc good">51</span></label>
+          <label class="var"><input type="radio" name="b7"><span class="vtag">Var 2</span><span class="vtext">GRADUAL PROCESSES STRUGGLE WITH A STRAIGHT DEEP CUT</span><span class="vc good">51</span></label>
+        </div></td>
+        <td></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+  <div class="sendbar">
+    <button class="big">Send 7 lower thirds to ProPresenter</button>
+    <div class="meta">Formats ALL CAPS, validates 55-65 chars, then asks you to type YES before the live send. Lower thirds go to their own presentation, not graphics, not Rundown Creator.</div>
+  </div>
+
+  <div class="map">
+    <b>Where they land:</b> May playlist set &middot; Show 2 &middot; <b>Interview 1 Lower Thirds</b> presentation. Each row maps to its slide and on-screen position by beat number. The guest chyron (#1) goes to the chyron slot; topic and discussion lines go to the lower-third slot in beat order.
+    <div class="legend">
+      <span><span class="dot" style="background:var(--good)"></span>55-65 chars (good)</span>
+      <span><span class="dot" style="background:var(--warn)"></span>under 55 (short)</span>
+      <span><span class="dot" style="background:var(--bad)"></span>over 65 (too long, blocked)</span>
+    </div>
+  </div>
+
+  <p style="color:var(--dim);font-size:11.5px;margin-top:12px">Static design preview, placeholder text from a real episode. Each segment has its own set (often 15). Tap a variation to pick it (the highlighted one is selected). A real build adds a one-tap "cycle variation" button and live char counts.</p>
+</div>
+</body>
+</html>

@@ -2,7 +2,13 @@
 
 These rules are mandatory in every session. They exist because this system touches production hardware used by a ministry team.
 
-**Read first:** `docs/_handoff/HANDOFF.md`, then `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md` (the full live-verified system reference) and `docs/_handoff/VERIFIED-FACTS.md`. That folder is the single source of truth. The `gsr-architect` subagent (`.claude/agents/gsr-architect.md`) boots already knowing the system — invoke it for GSR work.
+**Read first:** `docs/_handoff/HANDOFF.md`, then `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md` (the full live-verified system reference), `docs/_handoff/VERIFIED-FACTS.md`, and `docs/_handoff/GSR-WORKFLOW-CANON.md` (how Daniel actually runs the show). That folder is the single source of truth. The `gsr-architect` subagent (`.claude/agents/gsr-architect.md`) boots already knowing the system — invoke it for GSR work.
+
+## Authority (settle every question and conflict by this)
+
+**Daniel Allen's input is the highest source of truth.** When anything Daniel says conflicts with a repo doc, code comment, schema, prior note, or your own assumption, **his word wins.** Update the docs and code to match him; never correct Daniel with a stale doc or re-ask something he has already answered. Capture everything he states durably in `docs/_handoff/GSR-WORKFLOW-CANON.md` (append, with the date) so it is never re-asked. The only thing this does not waive is the confirm-before-touching discipline for irreversible live/production actions (the security and David rules below), which protect David on air and exist at Daniel's own direction.
+
+**Established-facts rule (read before answering anything about platforms, vendors, people, schedule, or workflow):** GSR's established stack lives in this repo, not your memory. Before answering or researching any question about distribution targets, delivery mechanisms, vendors, crew, or show facts, reconcile against, in priority order: (1) `docs/_handoff/GSR-WORKFLOW-CANON.md` section 11 (the Established Distribution Stack & Vendor Registry); (2) the live `distributions.platform` enum (latest migration that alters `distributions_platform_check`); (3) `config/production.json`. Web research and your own assumptions only SUPPLEMENT these; they never replace them. If your answer would omit something these sources contain (e.g. StreamHoster, Signiant/RLN, Dropbox-as-distribution, the deferred GodTube/OTA/TBN/CTN targets), the answer is wrong, fix it before sending.
 
 ## Security Rules
 

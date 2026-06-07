@@ -1,0 +1,21 @@
+name: course-freshness
+
+# Keeps the onboarding course honest on every change to main. Fails the PR
+# if a route the course claims already exists is gone or renamed without the
+# course being updated in the same change. Database-only facts (row counts,
+# table count, enum sizes) are reported for a human, never failed on, because
+# CI has no Supabase access. See scripts/check-course-freshness.sh.
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  course-freshness:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Freshness — every course "exists" claim still matches the repo
+        run: bash scripts/check-course-freshness.sh

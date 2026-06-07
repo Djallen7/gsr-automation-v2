@@ -156,3 +156,13 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 | 4 | Content clips + social posts UI | Schema done; completes the social media workflow |
 | 5 | Timecode + title pipeline | Highest-volume repeated manual task (YouTube category) |
 | 6 | Monthly package compiler | Useful but Drive reliability is a dependency |
+
+---
+
+## Deferred: per-role login + role-scoped dashboards (Daniel, 2026-06-07)
+
+**What it is:** Real login credentials for each team member, so each person signs in and lands on only their own dashboard view: Daniel (owner, everything), Myriam (metadata + post-production + uploads + mark-aired), Isaac (graphics tracker + ProPresenter + edit/export), interns (graphics + ProPresenter/Rundown, no post-production editing).
+
+**Why deferred (explicit precondition):** Do NOT build this until (1) the system is fully designed, (2) functionality has been tested across multiple mock episodes, and (3) the current real system has been completely imported. Building auth/role-gating earlier would lock in views before the workflow is proven.
+
+**Notes:** Role scopes are recorded in `docs/_handoff/GSR-WORKFLOW-CANON.md`. The Liquid Glass design mock in `gsr-blueprint/mock/` already structures the hub per role, so the views exist before the auth does. Jakob/Jeremiah/Gabe may share a generic landing page rather than distinct dashboards.

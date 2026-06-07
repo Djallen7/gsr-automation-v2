@@ -43,6 +43,8 @@ Run-of-show order. Segments not requiring scripted live copy (Heavens Declare, K
 **Locked opener (verbatim every episode):**
 > *"Good evening and welcome to The Genesis Science Report. I'm David Rives, and coming up tonight —"*
 
+> Note: the trailing dash here marks a spoken-cadence pause in a locked verbatim on-air line. It is not written copy, so the project "no em dashes" rule does not apply to it. Do not alter the locked quote.
+
 Everything after that is variable. Write two short interview previews using the news-anchor teaser register: hook first, guest name last, active verbs for the guest's role.
 
 **What varies well:**

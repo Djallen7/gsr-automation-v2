@@ -1,6 +1,6 @@
 # GSR Supabase Schema Design
 *Synthesized from 879 conversation sessions, all applied migrations, and full Drive archive review. Updated 2026-05-28.*
-*43 migrations applied. Supabase project: `lafkbxypmciopebentxp`.*
+*46 migrations applied. Supabase project: `lafkbxypmciopebentxp`.*
 
 ---
 
@@ -10,18 +10,18 @@ Everything lives under the **episode umbrella**. An episode is the unit of work 
 
 ```
 episodes
-  ├── lower_thirds (graphics)          text chyrons → ProPresenter
-  │     └── lower_thirds_variations (graphics_variations)   AI regeneration history
-  ├── production_graphics  [PENDING]   visual assets → Rundown Creator + Drive
-  │     └── premade_library [PENDING]  reusable pre-made asset catalog
+  ├── graphics                         text chyrons (lower thirds) → ProPresenter
+  │     └── graphics_variations         AI regeneration history
+  ├── production_graphics              visual assets → Rundown Creator + Drive
+  │     └── premade_library            reusable pre-made asset catalog
   ├── episode_guests                   placed interview slots — one row per slot per episode
   │     └── guests                     person roster, reused across episodes
-  ├── booking_pipeline [PENDING]       outreach tracking before episode placement (overflow guests too)
-  ├── shoot_sessions [PENDING]         monthly production cycle shoot days (1–3 per month)
+  ├── booking_pipeline                 outreach tracking before episode placement (overflow guests too)
+  ├── shoot_sessions                   monthly production cycle shoot days (1–3 per month)
   ├── interview_prep                   article sourcing + angle development per episode-guest
-  ├── articles [PENDING]               standalone article candidates (8-dim scored, 1 target guest each)
-  ├── outreach_drafts [PENDING]        email template library by tier
-  ├── email_threads [PENDING]          log of actual sent emails
+  ├── articles                         standalone article candidates (8-dim scored, 1 target guest each)
+  ├── outreach_drafts                  email template library by tier
+  ├── email_threads                    log of actual sent emails
   ├── distributions                    platform delivery tracking
   ├── transcripts                      Whisper/Deepgram or manual
   ├── content_clips                    30–60s soundbites for social
@@ -29,7 +29,7 @@ episodes
   └── social_posts                     episode-level posts (promos, quote graphics)
 ```
 
-**[PENDING]** = designed, not yet migrated. All other tables have applied migrations.
+All tables listed above have applied migrations as of the 46-migration live schema. The lower-thirds table is `graphics`; there is no `lower_thirds` table (only the storage bucket is named `lower-thirds`).
 
 Two views centralize operational data:
 - **`v_episode_master`** — flat JOIN of all tables, ordered by show sequence.
@@ -63,7 +63,7 @@ Rundown Creator title format: `May Show 1 | S03_Ep021` (underscores in the RC ti
 | air_date | date | Tuesday broadcast date |
 | shoot_date | date | Recording day (often weeks before air) |
 | production_status | text CHECK | planned → in_prep → shot → in_post → scheduled → aired |
-| guest_name | text | **DEPRECATED.** Legacy flat field kept for Feature 1 compatibility — use episode_guests + guests instead |
+| guest_name | text | Legacy flat field, still actively written by `/api/import`. Must not be blind-dropped until the import route stops writing it. Prefer episode_guests + guests for reads. |
 | rc_rundown_id | text | Rundown Creator numeric ID (e.g. "79" = May Show 1) |
 | drive_folder_url | text | Google Drive episode folder URL |
 | notes | text | |
@@ -84,9 +84,9 @@ Rundown Creator title format: `May Show 1 | S03_Ep021` (underscores in the RC ti
 
 ---
 
-### `graphics` → future rename: `lower_thirds`
+### `graphics`
 
-**Current table name is `graphics`.** A rename migration is pending — all dashboard code must be updated simultaneously. Until then, `graphics` and `lower_thirds` refer to the same table.
+**The table is and remains `graphics`.** There is no `lower_thirds` table; that name is a documented phantom. Every route handler and server action queries `graphics`. The only object named `lower-thirds` is the Storage bucket.
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -118,9 +118,9 @@ Rundown Creator title format: `May Show 1 | S03_Ep021` (underscores in the RC ti
 
 ---
 
-### `graphics_variations` → future rename: `lower_thirds_variations`
+### `graphics_variations`
 
-Tracks every AI-generated and human-written alternative text for a graphic. Variation 1 is auto-created on import.
+The table is and remains `graphics_variations`; there is no `lower_thirds_variations` table (a documented phantom). Tracks every AI-generated and human-written alternative text for a graphic. Variation 1 is auto-created on import.
 
 ---
 
@@ -210,9 +210,9 @@ Article sourcing and angle development per episode-guest.
 
 ---
 
-### `production_graphics` [PENDING — not yet migrated]
+### `production_graphics` (applied)
 
-**Separate workflow from lower_thirds.** These are visual assets (b-roll, title cards, images) that appear in Rundown Creator rows, assigned to Isaac's graphics queue. NOT text chyrons.
+**Separate workflow from the `graphics` (lower thirds) table.** These are visual assets (b-roll, title cards, images) that appear in Rundown Creator rows, assigned to Isaac's graphics queue. NOT text chyrons.
 
 | Column | Type | Notes |
 |--------|------|-------|
@@ -241,7 +241,7 @@ Article sourcing and angle development per episode-guest.
 
 ---
 
-### `premade_library` [PENDING — not yet migrated]
+### `premade_library` (applied)
 
 Catalog of reusable pre-made b-roll loops and graphics built up over several years. The assets live on the production server (VideoEdit); Drive may have copies. Production graphics rows reference this when they use a pre-made asset. Primary sources are **Envato Elements** and **Storyblocks**.
 
@@ -268,7 +268,7 @@ Catalog of reusable pre-made b-roll loops and graphics built up over several yea
 
 ---
 
-### `articles` [PENDING — not yet migrated]
+### `articles` (applied)
 
 Standalone article candidates for the research pipeline. Each article has **one target guest** — the person best suited to discuss it. When the article is used in an episode, an `interview_prep` row is created linking the article to the episode+guest.
 
@@ -304,7 +304,7 @@ Standalone article candidates for the research pipeline. Each article has **one 
 
 ---
 
-### `shoot_sessions` [PENDING — not yet migrated]
+### `shoot_sessions` (applied)
 
 Each month's production cycle has 1–3 separate shoot days (e.g. May has May 28, May 29, and June 15 overflow). This table tracks those days. `episode_guests.filming_datetime` points to the specific timeslot within a session.
 
@@ -325,7 +325,7 @@ UNIQUE on `(season, production_month, session_date)`.
 
 ---
 
-### `booking_pipeline` [PENDING — not yet migrated]
+### `booking_pipeline` (applied)
 
 Tracks the full outreach lifecycle before a guest is placed on a specific episode. This is the replacement for the ALT rows in the current monthly spreadsheet — confirmed guests waiting for episode placement, plus all outreach-in-progress.
 
@@ -361,7 +361,7 @@ When a guest is confirmed and placed on an episode, the `episode_guests` row is 
 
 ---
 
-### `outreach_drafts` [PENDING — not yet migrated]
+### `outreach_drafts` (applied)
 
 Email template library keyed to outreach tier. Tier is determined by guest's appearance count.
 
@@ -387,7 +387,7 @@ Email template library keyed to outreach tier. Tier is determined by guest's app
 
 ---
 
-### `email_threads` [PENDING — not yet migrated]
+### `email_threads` (applied)
 
 Log of actual sent emails. Provides a full communication history per guest+episode.
 
@@ -428,7 +428,7 @@ One row per episode per platform.
 
 UNIQUE on `(episode_id, platform, file_version)`.
 
-**Platform values (6 real + extras):**
+**Platform values (live 9-value enum: youtube, rumble, dropbox, fireside_podcast, real_life_network, streamhoster, genesis_science_network, social_clip, other):**
 | Value | What it is |
 |---|---|
 | `youtube` | Monday 4PM ET default; 3 playlists |
@@ -531,13 +531,12 @@ Computed due dates + boolean flags for both guests' email lifecycle. Returns one
 
 ---
 
-## Pending Renames (coordinate with dashboard code changes)
+## Column lifecycle notes
 
-| Current name | Future name | Blocker |
-|---|---|---|
-| `graphics` | `lower_thirds` | All route handlers and server actions reference `graphics` — rename migration + code update must ship together |
-| `graphics_variations` | `lower_thirds_variations` | Same — batch with above |
-| `episodes.guest_name` | (remove) | Keep until episode_guests is confirmed working in production; drop after Stage 8 |
+| Item | Status |
+|---|---|
+| `graphics` / `graphics_variations` | Final names. No rename is planned; the `lower_thirds` / `lower_thirds_variations` names are documented phantoms that do not exist in the schema. |
+| `episodes.guest_name` | Still actively written by `/api/import`. Must not be blind-dropped until the import route stops writing it. |
 
 ---
 
@@ -565,14 +564,14 @@ Computed due dates + boolean flags for both guests' email lifecycle. Returns one
 | **StreamHoster / Roku / etc.** | `distributions` platform=streamhoster — one upload feeds 4 surfaces |
 | **Signiant / Real Life Network** | `distributions` platform=real_life_network |
 | **Social platforms** | `social_posts` + `content_clips` |
-| **Guest outreach** | `guests` + `episode_guests` + `outreach_drafts` + `email_threads` + `filming_schedule` |
-| **Research pipeline** | `articles` + `article_guest_recommendations` + `interview_prep` |
+| **Guest outreach** | `guests` + `episode_guests` + `outreach_drafts` + `email_threads` |
+| **Research pipeline** | `articles` + `interview_prep` (article-to-guest link is the direct FK `articles.recommended_guest_id`; no junction table) |
 
 ---
 
 ## Migration Log
 
-### Applied (43)
+### Applied (46)
 
 ```
 20260526070128  feature_1_lower_thirds_schema
@@ -622,7 +621,7 @@ Computed due dates + boolean flags for both guests' email lifecycle. Returns one
 ### Future (coordinate with code changes)
 
 ```
-[future]  rename_graphics_to_lower_thirds  (requires dashboard code update)
-[future]  rename_graphics_variations_to_lower_thirds_variations
-[future]  drop_episodes_guest_name_column  (after Stage 8 confirms episode_guests works)
+[future]  drop_episodes_guest_name_column  (only after /api/import stops writing guest_name)
 ```
+
+No table rename is planned. The `lower_thirds` / `lower_thirds_variations` names are documented phantoms; the live tables are `graphics` and `graphics_variations`.

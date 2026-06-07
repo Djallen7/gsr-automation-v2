@@ -206,7 +206,7 @@ ERR 401 not authenticated · 409 live conflict · 500 db error · 207 variations
 - **`/episodes`:** episode CRUD — production status (planned → in_prep → shot → in_post → scheduled → aired), shoot/air dates, Rundown Creator ID, YouTube/Rumble URLs.
 - **`/guests`:** the 175-row guest directory — expertise, credentials, YEC flag, deceased flag, do-not-contact flag, sensitivity flags. Appearance count (computed from `episode_guests`) drives the outreach tier.
 - **`/workflow`:** per-guest email lifecycle on the `v_episode_workflow` view — six timestamped stages (confirmation, Zoom link, day-before, post-shoot, pre-air, post-air YouTube).
-- **`/toolkit`:** the prompt library surfaced in the UI with the live guest roster and today's date injected. (The library is documented as 20 prompts in Part 5; the toolkit page currently defines 21 prompt entries — reconcile before relying on the count.)
+- **`/toolkit`:** the prompt library surfaced in the UI with the live guest roster and today's date injected. (Verified live: `prompts.ts` defines 20 prompt entries, ids 1 through 20, matching the 20-prompt library in Part 5.)
 
 ### 3.7 Distribution pipeline (designed, partly future)
 

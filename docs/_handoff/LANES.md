@@ -28,38 +28,39 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-08 20:00:44 UTC (just now)._
+_Last updated 2026-06-08 20:00:44 UTC (22 minutes ago)._
 
 ---
 
 ## Lane 1 - UI design direction
 **Status:** OPEN.
 **Summary:** Pick a UI direction from the bake-off, then build it into the real dashboard screens. Needs Daniel's decision.
-**Done:** Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots.
+**Done:** Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots. UI Foundation course module (m13) now teaches dashboard design from the ground up; its Lock step settles the UI direction (operational: per-role Today queue + Pipeline Matrix + mobile-first), backed by 4 cited research briefs in docs/_handoff/ui-research/.
 **To finish:**
-- Daniel picks a direction (or two).
+- Lock the UI direction via the UI Foundation module's Lock step (recommended), or pick from the bake-off.
 - Build the chosen direction into the real dashboard screens.
 - Render screenshots for review.
-**Blocked on:** Daniel's pick.
-**Files:** `docs/ui-mocks/preview-1..7-*.html`, `docs/_handoff/2026-06-07-gsr-ui-strategy.md`, `docs/_handoff/2026-06-07-gsr-ui-bakeoff-research.html`
+**Blocked on:** Daniel's pick (now framed as the UI Foundation module's Lock step).
+**Files:** `docs/_handoff/gsr-automation-v2-course.html`, `docs/_handoff/ui-research/`, `docs/ui-mocks/preview-1..7-*.html`, `docs/_handoff/2026-06-07-gsr-ui-strategy.md`, `docs/_handoff/2026-06-07-gsr-ui-bakeoff-research.html`
 **Recent activity:**
+- 2026-06-08 - UI Foundation module (m13) built + 4 research briefs added; UI direction now lockable in-course
 - 2026-06-08 - course: expand m0 to Orientation + GitHub, add m13 Finish-the-Build handoff
-**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 1), the 7 previews in docs/ui-mocks/, and 2026-06-07-gsr-ui-bakeoff-research.html. Daniel's chosen direction is: [FILL IN]. Build that direction into the real dashboard screens (Today queue, Schedule matrix, episode drill, graphics page), render desktop + mobile screenshots, and report. Do not pick the direction yourself.`
+**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 1), the UI Foundation module (m13) in docs/_handoff/gsr-automation-v2-course.html, and the 4 briefs in docs/_handoff/ui-research/. Daniel's locked direction is: [FILL IN, default operational: per-role Today queue + Pipeline Matrix + mobile-first, one on-brand theme]. Build that into the real dashboard screens (Today queue, Pipeline Matrix, episode drill, graphics page) using the existing design tokens + shadcn components, render desktop + mobile screenshots, and report. Do not pick the direction yourself.`
 
 ## Lane 2 - Course modules
 **Status:** OPEN.
 **Summary:** Build out and polish the automation course; one module is blocked on the chosen UI screenshots.
-**Done:** m0 reworked to Orientation + GitHub. m13 "Finish the Build" added. Course overview at docs/_handoff/2026-06-08-gsr-course-overview.html.
+**Done:** m0 reworked to Orientation + GitHub. Finish-the-Build handoff added (now m14). UI Foundation module (m13) built: ground-up dashboard design, deeply researched + cited (NN/g heuristics + progressive disclosure, Stephen Few operational vs analytical, Refactoring UI, Material 3 tokens, WCAG 2.2 AA numbers, Apple HIG touch targets). 15 modules, JS re-validated. Course overview at docs/_handoff/2026-06-08-gsr-course-overview.html.
 **To finish:**
-- The UI Customization module.
-- Embed the chosen-UI screenshots into modules.
+- Embed the chosen-UI screenshots into the UI Foundation module once a direction is built (Lane 1).
 - Final polish + adaptive-gating review.
-**Blocked on:** Lane 1 (for the embedded UI screenshots).
-**Files:** `docs/_handoff/gsr-automation-v2-course.html`, `docs/_handoff/2026-06-08-gsr-course-overview.html`
+**Blocked on:** Lane 1 (only for embedding the eventual UI screenshots; the module itself is complete).
+**Files:** `docs/_handoff/gsr-automation-v2-course.html`, `docs/_handoff/ui-research/`, `docs/_handoff/2026-06-08-gsr-course-overview.html`
 **Recent activity:**
+- 2026-06-08 - Built the UI Foundation module (m13) + 4 cited research briefs; handoff renumbered to m14
 - 2026-06-08 - Fix course: premade_library is an existing table, not a missing enum
 - 2026-06-08 - Course fact-corrections + record role scopes and deferred per-role login
-**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 2), the course file docs/_handoff/gsr-automation-v2-course.html (the M array + engine), and the course overview. Build the UI Customization module matching the existing module schema, validate the JS with node --check, commit. Do not break the course.`
+**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 2) and the course file docs/_handoff/gsr-automation-v2-course.html (the M array + engine). The UI Foundation module (id mui, m13) is built. Remaining: once Lane 1 builds a real direction, embed its screenshots into that module, then a final adaptive-gating polish pass. Validate the embedded JS after any edit (extract the <script> and run with a document stub). Do not break the course.`
 
 ## Lane 3 - Episode & segment data
 **Status:** IN PROGRESS.

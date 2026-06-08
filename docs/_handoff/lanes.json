@@ -8,21 +8,28 @@
       "status": "open",
       "summary": "Pick a UI direction from the bake-off, then build it into the real dashboard screens. Needs Daniel's decision.",
       "done": [
-        "Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots."
+        "Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots.",
+        "UI Foundation course module (m13) now teaches dashboard design from the ground up; its Lock step settles the UI direction (operational: per-role Today queue + Pipeline Matrix + mobile-first), backed by 4 cited research briefs in docs/_handoff/ui-research/."
       ],
       "to_finish": [
-        "Daniel picks a direction (or two).",
+        "Lock the UI direction via the UI Foundation module's Lock step (recommended), or pick from the bake-off.",
         "Build the chosen direction into the real dashboard screens.",
         "Render screenshots for review."
       ],
-      "blocked_on": "Daniel's pick.",
+      "blocked_on": "Daniel's pick (now framed as the UI Foundation module's Lock step).",
       "files": [
+        "docs/_handoff/gsr-automation-v2-course.html",
+        "docs/_handoff/ui-research/",
         "docs/ui-mocks/preview-1..7-*.html",
         "docs/_handoff/2026-06-07-gsr-ui-strategy.md",
         "docs/_handoff/2026-06-07-gsr-ui-bakeoff-research.html"
       ],
-      "resume_prompt": "Read docs/_handoff/LANES.md (Lane 1), the 7 previews in docs/ui-mocks/, and 2026-06-07-gsr-ui-bakeoff-research.html. Daniel's chosen direction is: [FILL IN]. Build that direction into the real dashboard screens (Today queue, Schedule matrix, episode drill, graphics page), render desktop + mobile screenshots, and report. Do not pick the direction yourself.",
+      "resume_prompt": "Read docs/_handoff/LANES.md (Lane 1), the UI Foundation module (m13) in docs/_handoff/gsr-automation-v2-course.html, and the 4 briefs in docs/_handoff/ui-research/. Daniel's locked direction is: [FILL IN, default operational: per-role Today queue + Pipeline Matrix + mobile-first, one on-brand theme]. Build that into the real dashboard screens (Today queue, Pipeline Matrix, episode drill, graphics page) using the existing design tokens + shadcn components, render desktop + mobile screenshots, and report. Do not pick the direction yourself.",
       "recent_activity": [
+        {
+          "date": "2026-06-08",
+          "text": "UI Foundation module (m13) built + 4 research briefs added; UI direction now lockable in-course"
+        },
         {
           "date": "2026-06-08",
           "sha": "ea305b9",
@@ -37,21 +44,26 @@
       "summary": "Build out and polish the automation course; one module is blocked on the chosen UI screenshots.",
       "done": [
         "m0 reworked to Orientation + GitHub.",
-        "m13 \"Finish the Build\" added.",
+        "Finish-the-Build handoff added (now m14).",
+        "UI Foundation module (m13) built: ground-up dashboard design, deeply researched + cited (NN/g heuristics + progressive disclosure, Stephen Few operational vs analytical, Refactoring UI, Material 3 tokens, WCAG 2.2 AA numbers, Apple HIG touch targets). 15 modules, JS re-validated.",
         "Course overview at docs/_handoff/2026-06-08-gsr-course-overview.html."
       ],
       "to_finish": [
-        "The UI Customization module.",
-        "Embed the chosen-UI screenshots into modules.",
+        "Embed the chosen-UI screenshots into the UI Foundation module once a direction is built (Lane 1).",
         "Final polish + adaptive-gating review."
       ],
-      "blocked_on": "Lane 1 (for the embedded UI screenshots).",
+      "blocked_on": "Lane 1 (only for embedding the eventual UI screenshots; the module itself is complete).",
       "files": [
         "docs/_handoff/gsr-automation-v2-course.html",
+        "docs/_handoff/ui-research/",
         "docs/_handoff/2026-06-08-gsr-course-overview.html"
       ],
-      "resume_prompt": "Read docs/_handoff/LANES.md (Lane 2), the course file docs/_handoff/gsr-automation-v2-course.html (the M array + engine), and the course overview. Build the UI Customization module matching the existing module schema, validate the JS with node --check, commit. Do not break the course.",
+      "resume_prompt": "Read docs/_handoff/LANES.md (Lane 2) and the course file docs/_handoff/gsr-automation-v2-course.html (the M array + engine). The UI Foundation module (id mui, m13) is built. Remaining: once Lane 1 builds a real direction, embed its screenshots into that module, then a final adaptive-gating polish pass. Validate the embedded JS after any edit (extract the <script> and run with a document stub). Do not break the course.",
       "recent_activity": [
+        {
+          "date": "2026-06-08",
+          "text": "Built the UI Foundation module (m13) + 4 cited research briefs; handoff renumbered to m14"
+        },
         {
           "date": "2026-06-08",
           "sha": "a4df4e7",

@@ -1,0 +1,611 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>GSR Course and Pipeline Overview (Drift Check)</title>
+<style>
+:root{
+ --bg:#eef2f8;--panel:#fff;--ink:#16202e;--dim:#5c6b7e;--line:#e1e8f1;--line2:#eef2f7;
+ --accent:#2563eb;--accentsoft:#e9f1ff;--accent2:#7c3aed;
+ --good:#1d8a52;--good-bg:#e6f6ec;--warn:#b7791f;--warn-bg:#fdf3e2;--bad:#c0392b;--bad-bg:#fdecea;
+ --gold:#b8860b;--gold-bg:#fbf6ea;
+ --shadow:0 1px 3px rgba(16,32,55,.07),0 6px 20px -10px rgba(16,32,55,.18);
+ --rad:14px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:880px;margin:0 auto;padding:0 16px 80px}
+header.top{background:linear-gradient(100deg,#0b1422,#15233c);color:#eaf1ff;padding:22px 16px;position:sticky;top:0;z-index:40;box-shadow:var(--shadow)}
+header.top .inner{max-width:880px;margin:0 auto}
+header.top h1{margin:0;font-size:clamp(18px,4vw,24px);font-weight:700;letter-spacing:.01em}
+header.top h1 b{color:#7fb0ff}
+header.top p{margin:6px 0 0;font-size:13px;color:#aac4ea}
+nav.toc{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:14px 16px;margin:18px 0;box-shadow:var(--shadow)}
+nav.toc h2{margin:0 0 8px;font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:var(--dim)}
+nav.toc a{display:inline-block;color:var(--accent);text-decoration:none;font-size:13.5px;padding:5px 10px;margin:3px 4px 3px 0;border:1px solid var(--line);border-radius:999px;background:var(--bg)}
+nav.toc a:hover{border-color:var(--accent);background:var(--accentsoft)}
+section{scroll-margin-top:96px}
+h2.part{font-size:clamp(17px,3.5vw,22px);margin:30px 0 4px;padding-top:10px;border-top:3px solid var(--accent);color:var(--ink)}
+h2.part .lead{display:block;font-size:13px;font-weight:400;color:var(--dim);margin-top:3px}
+h3{font-size:15px;margin:22px 0 6px;color:var(--accent2)}
+p{margin:9px 0}
+b{color:var(--ink)}
+code{background:var(--line2);border:1px solid var(--line);border-radius:5px;padding:1px 5px;font:13px ui-monospace,Menlo,monospace}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;box-shadow:var(--shadow);margin:14px 0}
+.note{background:var(--accentsoft);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin:10px 0;font-size:14px}
+.note.good{background:var(--good-bg);border-color:var(--good)}
+.note.warn{background:var(--warn-bg);border-color:var(--warn)}.note.warn b{color:var(--warn)}
+.note.bad{background:var(--bad-bg);border-color:var(--bad)}.note.bad b{color:var(--bad)}
+.note.gold{background:var(--gold-bg);border-color:var(--gold)}.note.gold b{color:var(--gold)}
+ul,ol{margin:9px 0;padding-left:22px}
+li{margin:5px 0}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin:10px 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--bg);font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--dim)}
+td:first-child{font-weight:600}
+.mod{background:var(--panel);border:1px solid var(--line);border-radius:var(--rad);padding:16px 18px;box-shadow:var(--shadow);margin:14px 0}
+.mod .head{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline}
+.mod .num{font:700 13px ui-monospace,monospace;color:#fff;background:var(--accent);border-radius:7px;padding:3px 8px}
+.mod .title{font-size:16.5px;font-weight:700;margin:0}
+.mod .sub{color:var(--dim);font-size:13.5px;margin:4px 0 0}
+.pills{margin:8px 0}
+.pill{display:inline-block;font-size:11px;border-radius:999px;padding:2px 9px;margin:2px 4px 2px 0;border:1px solid var(--line);background:var(--bg);color:var(--dim)}
+.pill.phase{background:var(--accentsoft);color:var(--accent);border-color:var(--accent)}
+.pill.stage{background:var(--gold-bg);color:var(--gold);border-color:var(--gold)}
+.pill.mat-manual{color:var(--dim)}
+.pill.mat-handoff{background:var(--accentsoft);color:var(--accent2);border-color:var(--accent2)}
+.pill.mat-auto{background:var(--good-bg);color:var(--good);border-color:var(--good)}
+.pill.mat-priority{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
+.pill.st-new{background:var(--good-bg);color:var(--good);border-color:var(--good)}
+.pill.st-partial{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
+.mod h4{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);margin:14px 0 4px}
+.mod .body p{font-size:14px;margin:5px 0}
+.spec{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 13px;margin-top:10px;font-size:13px}
+.spec dt{font-weight:700;color:var(--accent2);margin-top:7px;font-size:12px}
+.spec dd{margin:2px 0 0;font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ink)}
+.ears{margin:4px 0 0;padding-left:18px}
+.ears li{font-size:12.5px;color:var(--ink);margin:3px 0}
+.foot{font-size:12.5px;color:var(--dim);text-align:center;margin-top:30px;border-top:1px solid var(--line);padding-top:16px}
+a.back{font-size:12px;color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<header class="top"><div class="inner">
+<h1>GSR <b>Course and Pipeline Overview</b></h1>
+<p>A plain-English snapshot so you can verify nothing has drifted. Built 2026-06-08 from the live course file, the workflow canon, and the UI strategy. Source of truth, not a guess.</p>
+</div></header>
+
+<div class="wrap">
+
+<nav class="toc">
+<h2>Jump to</h2>
+<a href="#part1">1. The Pipeline Process</a>
+<a href="#part2">2. The Course (m0 to m13)</a>
+<a href="#part3">3. The Tracks</a>
+<a href="#part4">4. Drift Check</a>
+</nav>
+
+<!-- ============ PART 1 ============ -->
+<section id="part1">
+<h2 class="part">Part 1 // The Pipeline Process<span class="lead">What we know about the show, end to end.</span></h2>
+
+<div class="card">
+<h3>The show</h3>
+<p><b>Genesis Science Report (GSR)</b> is a Christian creation-science TV show for David Rives Ministries. About <b>58 minutes</b>, <b>weekly</b>, currently <b>Season 3</b>. David Rives is the on-screen talent and ministry director.</p>
+<p><b>Batches of 5.</b> The team runs roughly <b>5 episodes in pre-production and 5 in post at the same time</b> (ten in flight). TV airs <b>Tuesday 8 PM CST</b>; YouTube publishes <b>Monday 4 PM ET</b>. Five Season-3 episodes were filmed May 28-29; all 48 episodes are already in the database.</p>
+</div>
+
+<div class="card">
+<h3>The stages, end to end</h3>
+<p>The course tracks a 10-step pipeline (its STAGES list). The UI strategy frames the oversight matrix as <b>9 real stages</b> (it added Record and Mark-aired, which the older 7-column mock had dropped). Both are shown below so you can see they line up.</p>
+<table>
+<tr><th>Stage</th><th>What happens</th><th>Who owns it</th></tr>
+<tr><td>Intake / Script</td><td>Upload a script per segment (teleprompter text); prerecorded segments come in as transcripts. The lower-thirds file is a separate, optional upload.</td><td>Daniel (writes scripts + lower thirds)</td></tr>
+<tr><td>Guests</td><td>Guest pairing and outreach (Daniel's own process; the system stores, does not write).</td><td>Daniel</td></tr>
+<tr><td>Lower Thirds</td><td>Pick one of three text variations per chyron line, validate the 55 to 65 character band, push to the Lower Thirds presentation in ProPresenter.</td><td>Daniel approves; human loads</td></tr>
+<tr><td>Graphics</td><td>Generate ideas, Daniel approves, the design team works the Graphics Tracker, files land on the Videoedit server.</td><td>Isaac (lead) + interns + Jakob / Jeremiah / Gabe / Daniel</td></tr>
+<tr><td>Rundown</td><td>Approved graphics become Rundown Creator cues (each graphic its own row). Lower thirds never go here.</td><td>Daniel confirms the preview</td></tr>
+<tr><td>ProPresenter</td><td>A graphic becomes loadable only when status is Created with a filename. The system signals ready; a human loads.</td><td>Isaac / interns (human load)</td></tr>
+<tr><td>Record (the Shoot)</td><td>The team records. Nothing in the system touches the live broadcast chain during the shoot.</td><td>Production crew (no automation)</td></tr>
+<tr><td>Edit / Review / Export</td><td>The finished master is edited, reviewed, and exported to a flat per-show Dropbox folder (the post trigger).</td><td>Isaac</td></tr>
+<tr><td>Transcript</td><td>A local Mac watcher extracts audio from the master and transcribes with speaker labels (WhisperKit + SpeakerKit). No Dropbox clutter.</td><td>Automated, runs on the Mac</td></tr>
+<tr><td>Metadata + Thumbnail</td><td>Templated descriptions and tags filled by button; only the title hook and chapters vary. Thumbnails and uploads handled in post.</td><td>Myriam</td></tr>
+<tr><td>Distribution</td><td>Heavy uploads run on the Mac, the dashboard triggers and tracks via a Supabase jobs table. The biggest time-saver, built now.</td><td>Myriam (YouTube + Rumble); Daniel oversees</td></tr>
+<tr><td>Aired / Published</td><td>Episode goes public; marked aired.</td><td>Myriam</td></tr>
+</table>
+<p class="note">The course STAGES list (10 nodes for the diagram): Intake, Lower Thirds, Graphics, Rundown, ProPresenter, Shoot, Transcript, Metadata, Distribution, Published. The UI Pipeline Matrix uses these 9 columns: Script, Guests, Graphics, ProPresenter, Record, Edit/Review/Export, Metadata + Thumbnail, Distribute, Aired.</p>
+</div>
+
+<div class="card">
+<h3>Roles (each person's scope)</h3>
+<table>
+<tr><th>Person</th><th>Scope</th></tr>
+<tr><td>Daniel Allen</td><td>Owner and producer (non-developer). Sees everything: full pipeline, crew board, distribution, approvals, system health. Owns scripts, guests, recording, approvals, and the final title call.</td></tr>
+<tr><td>Myriam</td><td>Metadata and post-production lead, and Daniel's successor. Owns metadata, thumbnails, YouTube + Rumble uploads, and marking episodes aired. Does not see graphics build, editing, or system internals. (Spelled Myriam in the role notes, Miryam elsewhere in canon.)</td></tr>
+<tr><td>Isaac</td><td>Graphics and edit lead. Owns the Graphics Tracker, ProPresenter load, editing, the review pass, and final export to Dropbox. Handles the monologue and both interviews.</td></tr>
+<tr><td>Interns</td><td>Same as Isaac minus post-production editing: Graphics Tracker, b-roll sourcing, and ProPresenter / Rundown Creator only. They use the tracker but are not individually rostered.</td></tr>
+<tr><td>Jakob</td><td>Roll-in segments (The Heavens Declare, Kids Corner, Q&amp;A, Featured Resource, GSM). Not the same person as Jacob (footage / THD). No distinct dashboard.</td></tr>
+<tr><td>Jeremiah</td><td>B-roll and raw footage to Dropbox. No distinct dashboard.</td></tr>
+<tr><td>Gabe</td><td>Genesis Science Minute (GSM) roll-ins. No distinct dashboard.</td></tr>
+<tr><td>David Rives</td><td>On-air talent and ministry director. Writes graphics instructions into the monologue scripts. Everything that could land on him on air is high stakes.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>The distribution stack (reconciled to Canon section 11, nothing omitted)</h3>
+<p>The live <code>distributions.platform</code> enum has <b>9 values</b>. Some platforms feed others automatically and are not separate uploads.</p>
+<table>
+<tr><th>Target</th><th>What it carries</th><th>How it is delivered</th></tr>
+<tr><td>YouTube</td><td>Full episode, the anchor and canonical URL</td><td>Official googleapis client (resumable), on the Mac. Private until the Google audit clears. Category 28; publish Mon 4 ET.</td></tr>
+<tr><td>Rumble</td><td>Secondary full episode</td><td><b>Manual web upload (Phase 1).</b> The YouTube-to-Rumble sync is structurally broken; the official Upload API is partner-gated (bd@rumble.com bounced).</td></tr>
+<tr><td>StreamHoster</td><td>Web-stream / OTT master</td><td><b>One FTPS upload</b> that fans out to Roku, Apple TV, the iOS app, and LG TV (basic-ftp).</td></tr>
+<tr><td>Real Life Network</td><td>Broadcast master</td><td><b>Signiant Media Shuttle</b> (-20 LKFS, 1200x1800 portrait thumb). RLN = RightNow Media, one and the same target.</td></tr>
+<tr><td>Dropbox</td><td>Broadcast master to unnamed network-partner stations; also the source for OTA broadcast; also the input trigger</td><td>Dropbox API (dropbox-sdk-js, chunked over 150MB). No metadata required.</td></tr>
+<tr><td>Genesis Science Network (GSN)</td><td>24/7 web stream / on-demand</td><td>Proposed Roku Direct Publisher JSON feed it polls (verify the channel is feed-driven, not a custom SDK channel).</td></tr>
+<tr><td>Podcast</td><td>Audio-only MP3</td><td><b>Transistor.fm</b> publish API; migrate off Fireside (read-only API) and 301 the feed. Spotify and Apple ride the RSS automatically.</td></tr>
+<tr><td>Social clip</td><td>Episode-level short-form status flag</td><td>Vizard (public API + scheduler) with a human review gate. Per-clip tracking in content_clips / social_posts.</td></tr>
+<tr><td>Other</td><td>Catch-all</td><td>--</td></tr>
+</table>
+<p><b>Deferred but real targets:</b> CTN (Creation TV Network) and WWN (Wonders Without Number) are still real targets, filmed less often, and must be built at a lower cadence (prereq enum addition). <b>GodTube is retired.</b> OTA broadcast is fed from Dropbox (not a separate upload). TBN "Creation in the 21st Century" is a finished archive already in Dropbox, no action needed.</p>
+<p class="note">Fed automatically by a listed platform, not separate uploads: Spotify and Apple Podcasts (via the podcast RSS); Roku, Apple TV, iOS app, LG TV (via the one StreamHoster FTPS upload); RightNow Media (= Real Life Network via Signiant).</p>
+</div>
+
+<div class="card">
+<h3>The two governing rules</h3>
+<p class="note bad"><b>The David Rule.</b> Before any action, ask "if this goes wrong, does it land on David to fix?" If yes, redesign until the answer is no. In practice: automation may write the database and call cloud APIs, but it <b>never</b> touches the live broadcast chain. A human always loads the live gear. This is the one hard line.</p>
+<p class="note"><b>The maturity dial.</b> Every generative task moves through three stages, flipped per feature in <code>app_config</code> as trust grows: <b>Manual</b> (Daniel does it, the system stores it), <b>Prompt handoff</b> (the system hands a context-loaded prompt, Daniel pastes it into Claude and pastes the result back through the same dry-run + Type YES gate), then <b>Auto</b> (the system makes the call itself, same gate). Automation is the end goal from day one; the dial just controls how fast each feature gets there. Even on an aggressive pace, high-stakes steps ship manual-trigger first.</p>
+</div>
+
+<div class="card">
+<h3>Off-limits infrastructure (non-negotiable)</h3>
+<ul>
+<li><b>ProPresenter production machine</b> (GSN-PropRes, Tailscale 100.98.215.7) -- off-limits to automation until David approves a tested path.</li>
+<li><b>ATEM switcher and Bitfocus Companion</b> -- production hardware, never driven by the system.</li>
+<li><b>QNAP</b> -- read-only SMB only. No admin, no writes, no file-watchers (QNAP3 10.2.2.3, QNAP5 10.2.2.5).</li>
+<li><b>Tailscale and direct server tools</b> -- permanently barred after the 2026-05-20 security incident. All automation goes through cloud APIs or read-only SMB.</li>
+<li><b>Notion</b> -- wiki-only after ADR-0012.</li>
+</ul>
+</div>
+</section>
+
+<!-- ============ PART 2 ============ -->
+<section id="part2">
+<h2 class="part">Part 2 // The Course, Module by Module<span class="lead">Fourteen modules, m0 through m13. Each maps to a pipeline stage.</span></h2>
+
+<!-- m0 -->
+<div class="mod">
+<div class="head"><span class="num">m0</span><h3 class="title">Orientation and GitHub: How This Course and Your Repo Work</h3></div>
+<p class="sub">Learn how the pipeline fits together and how to change your app safely on GitHub, so a mistake never reaches your real, working show.</p>
+<div class="pills"><span class="pill phase">Ground</span><span class="pill stage">Cross-cutting (no single stage)</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> Where do you make changes so a mistake never reaches your real, working app? (Answer: on a branch, a safe scratch copy you review before it counts.)</p>
+<p><b>Lesson:</b> How the course works (predict, learn, game, quiz, lock a decision, then export a build plan). GitHub for a non-coder: repo, commit, branch, pull request, merge, main. Git is your undo button. How to ask Claude Code to fix something by describing the symptom in plain English. The staged workflow (feat/fix branch, draft PR, tsc + eslint, squash merge) and the David Rule.</p>
+<p><b>Game (sort):</b> "Branch first, or never?" Sorts safe actions (experiment, open a PR, run tsc/eslint) from things that never go straight to main (untested push, no-review edits, automation pushing to ProPresenter on air). Teaches the seatbelt habit.</p>
+<h4>Decision it locks</h4>
+<p>Lock your workflow and pace. Recommended: branches + draft PRs + squash, build in <code>gsr-automation-v2</code>, manual-first dial. Alternative: same workflow, aggressive automation pace (the high-stakes steps still ship manual-trigger first).</p>
+<div class="spec"><span class="pill st-new">status: new</span>
+<dl>
+<dt>db</dt><dd>app_config: per-feature maturity column or rows (manual|handoff|auto). RLS service-role-only.</dd>
+<dt>routes / api</dt><dd>Cross-cutting. No new route; every feature server action reads the dial. No API; this sets policy.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN a feature reads maturity from app_config THE SYSTEM SHALL default to 'manual' if unset.</li><li>IF a write would touch ProPresenter, ATEM, Companion, QNAP admin, or Tailscale THEN the system SHALL refuse and log it.</li></ul>
+<dt>verify</dt><dd>npx tsc --noEmit; npx eslint src/; set a feature to auto and confirm a high-stakes step still asks for a human trigger.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m1 -->
+<div class="mod">
+<div class="head"><span class="num">m1</span><h3 class="title">Intake: Scripts + the Lower-Thirds File</h3></div>
+<p class="sub">The system starts by receiving what you already produce. It does not write your show.</p>
+<div class="pills"><span class="pill phase">Pre-Production</span><span class="pill stage">Stage: Intake</span><span class="pill mat-manual">Manual</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> A new episode begins. What is the FIRST thing the system should do? (Answer: receive a script per segment that you upload.)</p>
+<p><b>Lesson:</b> You keep your own writing process. The system ingests a script per segment as teleprompter text; prerecorded segments come in as transcripts. Lower thirds are a separate, optional file, importable any time, parsed deterministically (upload, preview counts, type YES, it lands).</p>
+<p><b>Game (sort):</b> "Route the upload." Sorts items into the Scripts table vs the separate Lower Thirds file. Teaches that lower thirds and graphics never mix.</p>
+<h4>Decision it locks</h4>
+<p>Recommended: manual upload, scripts per segment, LT file optional and any-time. Alternative: require the LT file with every script (tighter but blocks uploading a script before the LT file exists).</p>
+<div class="spec"><span class="pill st-partial">status: partial</span> <span class="pill">depends on m0</span>
+<dl>
+<dt>db</dt><dd>scripts (exists). graphics table (exists) currently holds lower thirds -> PREREQ rename to lower_thirds. graphics_variations holds the 3 variations.</dd>
+<dt>routes / api</dt><dd>/api/scripts (exists), /import and /lower-thirds pages (exist). LT import via POST /api/import (Zod + dry-run + Type YES). auto_extract_apply stays false.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN a script is uploaded THE SYSTEM SHALL upsert one row and not require a lower-thirds file.</li><li>WHEN a lower-thirds file is imported THE SYSTEM SHALL show a dry-run count and require a typed YES before any live write.</li></ul>
+<dt>verify</dt><dd>tsc; eslint; upload a segment script with no LT file and confirm it saves; then import an LT file and confirm the dry-run + YES gate.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m2 -->
+<div class="mod">
+<div class="head"><span class="num">m2</span><h3 class="title">Lower Thirds: the Variation Picker</h3></div>
+<p class="sub">A polished spreadsheet. Pick one of three takes per line; one Send pushes them to air-safe.</p>
+<div class="pills"><span class="pill phase">Pre-Production</span><span class="pill stage">Stage: Lower Thirds</span><span class="pill mat-manual">Manual</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> A chyron line runs to 71 characters. What should the page do? (Answer: flag it, it is over the 65 hard ceiling.)</p>
+<p><b>Lesson:</b> One row per lower third, three variations each, a live character count colored against the 55 to 65 band. One Send button formats ALL CAPS, validates the band, asks for a typed YES, then pushes to the Lower Thirds presentation in ProPresenter. Pipe only for a NAME | ORG | FIELD chyron; colon for topic lines. Lower thirds never go to Rundown Creator.</p>
+<p><b>Game (trim):</b> "Make it fit the title-safe frame." Preview lines in a TV title-safe frame and pick the one that lands 55 to 65, ALL CAPS, clean punctuation. Teaches the band and overflow.</p>
+<h4>Decision it locks</h4>
+<p>Recommended: 3-variation picker + char band + one Send to the LT presentation. Alternative (risky): auto-pick the in-band variation with no review.</p>
+<div class="spec"><span class="pill st-partial">status: partial</span> <span class="pill">depends on m1</span> <span class="pill">blocked by: ProPresenter slide/position mapping (Daniel TODO)</span>
+<dl>
+<dt>db</dt><dd>lower_thirds (PREREQ rename from graphics): beat, l3_type (15 values), variations via graphics_variations. Separate from production_graphics.</dd>
+<dt>routes / api</dt><dd>/lower-thirds and /lower-thirds/ready (exist). Regenerate 3 variations via POST /api/regenerate (@anthropic-ai/sdk, server-side). ProPresenter push is human-triggered.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN a chosen variation exceeds 65 characters THE SYSTEM SHALL block Send and flag the row.</li><li>WHEN lower thirds are sent THE SYSTEM SHALL never write them to Rundown Creator.</li></ul>
+<dt>verify</dt><dd>tsc; eslint; confirm the graphics -> lower_thirds rename migration applied; pick variations, force one over 65, confirm Send blocks and the Type YES gate fires.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m3 -->
+<div class="mod">
+<div class="head"><span class="num">m3</span><h3 class="title">Graphics: Ideas, Approval &amp; the Tracker</h3></div>
+<p class="sub">Separate from lower thirds. Ideas approved, then designed on a tracker that matches your sheet.</p>
+<div class="pills"><span class="pill phase">Pre-Production</span><span class="pill stage">Stage: Graphics</span><span class="pill mat-manual">Manual</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> An idea is approved and a designer assigned. What unlocks the push to ProPresenter? (Answer: status hits Created and a filename is entered.)</p>
+<p><b>Lesson:</b> Graphics are separate from lower thirds. Flow: generate ideas, Daniel approves, the team works the Graphics Tracker (matching the monthly Google Sheet: columns Segment, Graphic #, Graphic Type, Description, Status, Assigned To, Notes; tabs Show 1 to 5 plus Master). Statuses: Not Started -> In Progress -> Created -> Loaded In. At Created + filename, the file is pulled from the Videoedit server and a Push to ProPresenter action lights up. A drill-in shows the script side by side with each graphic's spot highlighted.</p>
+<p><b>Game (order):</b> "Status flow." Put the four statuses in order: Not Started -> In Progress -> Created -> Loaded In. Teaches that Created is the push gate.</p>
+<h4>Decision it locks</h4>
+<p>Recommended: idea -> approve -> tracker (your sheet layout) -> Created+filename -> push. Alternative (risky): auto-generate and auto-push graphics.</p>
+<div class="spec"><span class="pill st-new">status: new</span> <span class="pill">depends on m1</span> <span class="pill">blocked by: VideoEdit server address / SMB path (Daniel TODO)</span>
+<dl>
+<dt>db</dt><dd>production_graphics (exists, 0 rows). PREREQ: reorder status CHECK; add Book Cover to graphic_type CHECK; add Dreamstime to a new b-roll source enum (premade_library does not exist yet).</dd>
+<dt>routes / api</dt><dd>New /graphics page (Master + 5 show tabs, segment drill-in, script side-by-side). Read-only SMB confirms a filename. Idea generation is a prompt-handoff. Push to ProPresenter is a human-triggered signal only.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN a graphic row reaches Created AND a filename is entered THE SYSTEM SHALL light a Push-to-ProPresenter action.</li><li>IF a graphic is not Created or has no filename THEN the push action SHALL stay disabled.</li></ul>
+<dt>verify</dt><dd>tsc; eslint; confirm status reorder, Book Cover, Dreamstime migrations applied; flip a row to Created with a filename and confirm the push lights up.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m4 -->
+<div class="mod">
+<div class="head"><span class="num">m4</span><h3 class="title">Rundown Build (Graphics to Rundown Creator)</h3></div>
+<p class="sub">Approved graphics become rundown cues. The TD runs from this, so you preview before any write.</p>
+<div class="pills"><span class="pill phase">Pre-Production</span><span class="pill stage">Stage: Rundown</span><span class="pill mat-manual">Manual</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> You have more approved graphics than the rundown has default rows. What should the build do? (Answer: insert rows in the right place to match the real count.)</p>
+<p><b>Lesson:</b> Approved graphics are written to Rundown Creator, each graphic its own row. Graphics = col 1; Last Line = col 4 (final script line before the next graphic); Notes = duration in sentences. The build is fluid: it deletes unused rows and inserts new ones to match the real count, keyed by segment + beat. You confirm with a preview that mirrors the RC columns.</p>
+<p><b>Game (sort):</b> "Which RC column?" Sorts the graphic (col 1) from the last spoken line / cut cue (col 4). Teaches the column mapping.</p>
+<h4>Decision it locks</h4>
+<p>Recommended: manual confirm via an RC-mirror preview; fluid insert/delete; update in place. Alternative (risky): auto-write to RC on every change.</p>
+<div class="spec"><span class="pill st-partial">status: partial</span> <span class="pill">depends on m3</span> <span class="pill">blocked by: Rundown Creator API access (APIKey + APIToken in 1Password)</span>
+<dl>
+<dt>db</dt><dd>Reads approved rows from production_graphics; writes to RC, not the DB. episodes.rundown_creator_id maps the per-show RundownID.</dd>
+<dt>routes / api</dt><dd>/api/rc-explore and /api/rc-import (exist, read). Add a write path /api/rc-push. RC returns errors as HTTP 200 with a JSON body, so always read the body.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN there are more graphics than default rows THE SYSTEM SHALL insertRow in the correct place; WHEN fewer, deleteRow the unused defaults.</li><li>IF an RC response body contains an error THEN the system SHALL surface it and not report success (errors arrive as HTTP 200).</li></ul>
+<dt>verify</dt><dd>tsc; eslint; run a dry preview against a test RundownID, confirm columns match RC, then confirm one insert and one delete reconcile.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m5 -->
+<div class="mod">
+<div class="head"><span class="num">m5</span><h3 class="title">ProPresenter Load (the Read-Only Line)</h3></div>
+<p class="sub">The one piece of live gear. The sharpest test of the David Rule. The system signals; a human loads.</p>
+<div class="pills"><span class="pill phase">Live</span><span class="pill stage">Stage: ProPresenter</span><span class="pill mat-manual">Manual</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> The dashboard could technically push a slide straight to the on-air machine. Should it? (Answer: no, it surfaces a ready signal; a human does the load.)</p>
+<p><b>Lesson:</b> ProPresenter is the one piece of live gear. Lower thirds and graphics live in separate presentations inside the month's 5x show playlist templates. A graphic is loadable only at Created + filename. The system surfaces a ready signal; a human does the load. No automation commands the production machine until David approves a tested path.</p>
+<p><b>Game (branch, with consequences):</b> "The push decision." You wire the push action and see how it plays out. Gating on Created + filename holds the David Rule; enabling on approval alone or auto-pushing puts a blank slide on air for David to cover. Teaches the live-gear line viscerally.</p>
+<h4>Decision it locks</h4>
+<p>Recommended: system signals ready (on Created + filename), a human loads, mapping defined later. Alternative (off-limits): auto-push to the live machine.</p>
+<div class="spec"><span class="pill st-new">status: new</span> <span class="pill">depends on m3</span> <span class="pill">blocked by: ProPresenter mapping (Daniel TODO) + David's approval of any live path</span>
+<dl>
+<dt>db</dt><dd>Reads production_graphics (status, filename). No DB write for the push.</dd>
+<dt>routes / api</dt><dd>A 'ready to load' panel inside /graphics. No route commands the production machine. GSN-PropRes (100.98.215.7) is off-limits to automation.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN a graphic is Created with a filename THE SYSTEM SHALL show a ready-to-load signal naming the target presentation and position.</li><li>IF any code path would send a command to the production ProPresenter THEN it SHALL be refused until David approves a tested path.</li></ul>
+<dt>verify</dt><dd>tsc; eslint; confirm no network call targets 100.98.215.7; confirm the ready signal appears only on Created + filename.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m6 -->
+<div class="mod">
+<div class="head"><span class="num">m6</span><h3 class="title">The Shoot (the Hinge)</h3></div>
+<p class="sub">The one night it matters most. Nothing in the system touches the live chain.</p>
+<div class="pills"><span class="pill phase">Production</span><span class="pill stage">Stage: Shoot / Record</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> During the live shoot, what is the system's job? (Answer: wait, touch nothing in the live chain.)</p>
+<p><b>Lesson:</b> The shoot is the hinge between prep and post. Nothing in the system touches the live broadcast chain during the shoot. The team records; the database waits. Post-production picks up the finished master.</p>
+<p><b>Game (sort):</b> "Live show: allowed?" Sorts allowed (wait and watch, hold prepared data) from never (send commands to ATEM, author ProPresenter slides live). Teaches the hands-off posture.</p>
+<h4>Decision it locks</h4>
+<p>Confirm the production posture: fully hands-off during the live shoot (recommended, the only option). The David Rule made literal on the one night it matters most.</p>
+<div class="spec"><span class="pill st-new">status: new</span> <span class="pill">depends on m5</span>
+<dl>
+<dt>db / routes / api</dt><dd>No writes during the shoot. None active. A deliberate no-op in the live window. The master export later lands in a flat per-show Dropbox folder (the post trigger).</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN a live shoot is in progress THE SYSTEM SHALL perform no action in the live broadcast chain.</li><li>WHEN the master export lands in the flat per-show Dropbox folder THE SYSTEM SHALL treat that as the trigger to resume at post.</li></ul>
+<dt>verify</dt><dd>tsc; confirm no scheduled job or watcher fires against the live chain during a shoot window.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m7 -->
+<div class="mod">
+<div class="head"><span class="num">m7</span><h3 class="title">Transcription (Local, with Speakers)</h3></div>
+<p class="sub">No Dropbox clutter, no new work for the team. One Mac-native tool, speaker labels included.</p>
+<div class="pills"><span class="pill phase">Post-Production</span><span class="pill stage">Stage: Transcript</span><span class="pill mat-manual">Manual</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> You need a transcript with speaker labels. How should the audio be created? (Answer: auto-extract it locally from the master with ffmpeg.)</p>
+<p><b>Lesson:</b> A local Mac automation (Automator Folder Action, Hazel, or fswatch) watches the editor's master export folder, extracts a small audio file with ffmpeg, and transcribes. The team does nothing new; nothing clutters Dropbox. Speaker differentiation matters (it drives metadata, data, social) but through one tool: WhisperKit + SpeakerKit, written to Supabase.</p>
+<p><b>Game (order):</b> "Build the transcription pipeline." Master lands locally -> ffmpeg extracts audio -> WhisperKit + SpeakerKit transcribes -> transcript + SRT/VTT to Supabase. All local.</p>
+<h4>Decision it locks</h4>
+<p>Recommended: local auto-extract + WhisperKit/SpeakerKit (speaker-labeled). Alternative (limited): cloud Whisper, no speaker labels.</p>
+<div class="spec"><span class="pill st-new">status: new</span> <span class="pill">depends on m6</span>
+<dl>
+<dt>db</dt><dd>transcripts (exists): speaker-tagged transcript + SRT/VTT keyed to the episode.</dd>
+<dt>routes / api</dt><dd>No Vercel route. A local Mac job (fswatch/Hazel -> ffmpeg ~16kHz mono -> WhisperKit + SpeakerKit) writes to Supabase via the service role; the Mac polls the jobs table for the trigger.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN a master export lands in the watched local folder THE SYSTEM SHALL extract audio with ffmpeg without writing anything to Dropbox.</li><li>IF a file watcher would target the NAS/QNAP THEN it SHALL be refused (local watchers only).</li></ul>
+<dt>verify</dt><dd>tsc; drop a real two-person interview master locally, confirm the transcript appears in Supabase with correct speaker labels (sanity-check diarization).</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m8 -->
+<div class="mod">
+<div class="head"><span class="num">m8</span><h3 class="title">Metadata (Templated, Manually Triggered)</h3></div>
+<p class="sub">Consistent across episodes, so no per-episode AI. You click a button; only the hook and chapters vary.</p>
+<div class="pills"><span class="pill phase">Post-Production</span><span class="pill stage">Stage: Metadata</span><span class="pill mat-manual">Manual</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> How should descriptions and tags be produced? (Answer: templated, click a button, the template fills with episode fields.)</p>
+<p><b>Lesson:</b> Descriptions and tags are templated and consistent, so no per-episode AI. You click a button and the template fills. Only the title hook (your call) and chapters (from rundown timecodes) vary. Baked in: YouTube category 28, TV airs Tue 8 PM CST, YouTube publishes Mon 4 PM ET. Sponsor line for Cedarville University on episodes 1-24, sponsor-free from 25.</p>
+<p><b>Game (sort):</b> "Template or variable?" Sorts templated (boilerplate, anchor tags, category 28) from per-episode (title hook, chapters from timecodes).</p>
+<h4>Decision it locks</h4>
+<p>Recommended: templated, manually triggered; title hook + chapters vary. Alternative (not now): prompt-handoff generation per episode.</p>
+<div class="spec"><span class="pill st-new">status: new</span> <span class="pill">depends on m4, m7</span> <span class="pill">blocked by: Real YouTube playlist IDs (4) (Daniel TODO)</span>
+<dl>
+<dt>db</dt><dd>episodes (exists): air/publish dates, title. Read transcripts/rundown for chapters. Template + default tags from config/production.json.</dd>
+<dt>routes / api</dt><dd>A /metadata generate action filling the template per episode (video + podcast profiles). No external API; produces the payload Distribution uses.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN the metadata button is pressed THE SYSTEM SHALL fill the stored template with episode fields and require no per-episode AI for description/tags.</li><li>IF the episode number is 1-24 THEN the sponsor line SHALL be included; FROM episode 25 it SHALL be omitted.</li></ul>
+<dt>verify</dt><dd>tsc; eslint; generate metadata for one episode, confirm boilerplate + category 28 + sponsor logic + chapters from timecodes.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m9 -->
+<div class="mod">
+<div class="head"><span class="num">m9</span><h3 class="title">Distribution: the Publish Map &amp; Where It Runs</h3></div>
+<p class="sub">Your biggest time-saver, built now. The hard fact: the heavy upload cannot run on Vercel.</p>
+<div class="pills"><span class="pill phase">Distribution</span><span class="pill stage">Stage: Distribution</span><span class="pill mat-priority">Priority</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> Your master is multi-gigabyte. Where should the heavy upload run? (Answer: on the Mac or a small worker; the dashboard only triggers and tracks.)</p>
+<p><b>Lesson:</b> The biggest time-saver, built now and pushed to auto fastest with the dial. The hard fact: the heavy upload cannot run on Vercel (4.5 MB / 15 min caps). The Mac does the heavy lifting; the dashboard writes a job row to a Supabase jobs table that the Mac polls, and tracks status. No inbound connection, no Tailscale. Each platform gets a manual/auto dial in app_config.</p>
+<p><b>Game (sort):</b> "Runs where?" Sorts heavy jobs (master upload, transcription, resumable YouTube upload) onto the Mac/worker, light jobs (the trigger button, status tracker, template fill) onto the dashboard.</p>
+<h4>Decision it locks</h4>
+<p>Recommended: heavy work on Mac/worker, dashboard triggers + tracks via a Supabase jobs table, per-platform dial. Alternative (won't work): run everything inside the dashboard on Vercel.</p>
+<div class="spec"><span class="pill st-new">status: new</span> <span class="pill">depends on m7, m8</span>
+<dl>
+<dt>db</dt><dd>NEW jobs table (id, type, payload jsonb, status, claimed_at, finished_at, error). distributions (exists) tracks per-platform status (9-value enum). app_config holds the per-platform dial.</dd>
+<dt>routes / api</dt><dd>/api/distribute writes a job row (light). A local Mac poller claims and runs jobs. A /distribution tracker page reads distributions.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN a publish is triggered THE SYSTEM SHALL insert a jobs row and return immediately, never attempting the upload on Vercel.</li><li>IF a platform's dial is manual THEN publishing SHALL require an explicit human trigger.</li></ul>
+<dt>verify</dt><dd>tsc; eslint; confirm the jobs table migration applied; trigger a publish, confirm a jobs row appears and the Mac poller claims it and updates distributions.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m10 -->
+<div class="mod">
+<div class="head"><span class="num">m10</span><h3 class="title">YouTube: the Anchor (Private-First)</h3></div>
+<p class="sub">The canonical URL the others point at. The audit gate, not quota, is the real constraint.</p>
+<div class="pills"><span class="pill phase">Distribution</span><span class="pill stage">Stage: Published</span><span class="pill mat-manual">Manual</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> Until Google audits your API project, what state are API-uploaded videos forced into? (Answer: private, irreversibly per video.)</p>
+<p><b>Lesson:</b> YouTube is the anchor and canonical URL. Upload via the official googleapis Node client (videos.insert, resumable) on the Mac. The catch is the audit gate: until Google audits the API project, every API upload is locked private, irreversibly per video. Phase 1: upload private, a human flips public (or schedule with publishAt, which itself requires private). Start the audit form now. Quota is a non-issue.</p>
+<p><b>Game (order):</b> "Build the YouTube publish path." Metadata ready -> googleapis resumable upload from the Mac -> lands private (audit pending) -> human reviews, then flips public or schedules.</p>
+<h4>Decision it locks</h4>
+<p>Recommended: private-first via googleapis; human flips public; start the audit now. Alternative (won't work): public auto-publish now via youtubeuploader (dormant; pre-audit uploads are private anyway).</p>
+<div class="spec"><span class="pill st-new">status: new</span> <span class="pill">depends on m9, m8</span> <span class="pill">blocked by: Google API audit + YouTube OAuth in 1Password + real playlist IDs (4)</span>
+<dl>
+<dt>db</dt><dd>distributions: set platform='youtube' status; store the video URL on episodes.youtube_url.</dd>
+<dt>routes / api</dt><dd>A jobs row of type 'youtube_upload'; the Mac poller runs it. googleapis videos.insert (resumable) on the Mac; OAuth via 1Password, code must refresh the token and write it back. Phase 1 privacy=private. Category 28.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN the audit is not cleared THE SYSTEM SHALL upload as private and require a human to flip public or set publishAt.</li><li>IF the OAuth token has expired THEN the code SHALL refresh it, write the rotated token back, and alert on failure.</li></ul>
+<dt>verify</dt><dd>tsc; eslint; run one upload on the Mac to a private video, confirm category 28 + metadata, confirm a human flip-to-public step exists.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m11 -->
+<div class="mod">
+<div class="head"><span class="num">m11</span><h3 class="title">Rumble, Podcast, Broadcast &amp; OTT</h3></div>
+<p class="sub">The carriers a web search misses. Reconciled to your live platform enum and Vendor Registry.</p>
+<div class="pills"><span class="pill phase">Distribution</span><span class="pill stage">Cross-target (no single STAGES node)</span><span class="pill mat-manual">Manual</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> One StreamHoster FTPS upload does what? (Answer: feeds Roku, Apple TV, the iOS app, and LG TV at once.)</p>
+<p><b>Lesson:</b> Rumble's YouTube sync is structurally broken; Phase 1 is manual upload while pursuing the partner-gated API token (verify the 58-min HD tier, a 720p credibility risk). Podcast migrates Fireside (read-only API) to Transistor.fm with a 301. StreamHoster is one FTPS upload feeding all TV apps. Real Life Network (= RightNow Media) gets the master via Signiant (-20 LKFS). Dropbox drops to network partners (also the OTA source). GSN takes a Roku Direct Publisher JSON feed.</p>
+<p><b>Game (sort):</b> "Automatable path, or not?" Sorts targets with an automatable path (Transistor, GSN feed, StreamHoster, Signiant, Dropbox) from manual/blocked (Rumble upload, the dead YT->Rumble sync, Fireside publishing).</p>
+<h4>Decision it locks</h4>
+<p>Recommended: Rumble manual (pursue token), Transistor podcast, StreamHoster/Signiant/Dropbox for broadcast, Roku feed for GSN. Alternative (blocked): wait on the Rumble API, stay on Fireside, skip broadcast/OTT.</p>
+<div class="spec"><span class="pill st-new">status: new</span> <span class="pill">depends on m9, m10</span> <span class="pill">blocked by: Rumble token, Fireside 301, GSN channel type, Transistor/StreamHoster/Signiant creds</span>
+<dl>
+<dt>db</dt><dd>distributions rows for rumble, fireside_podcast (->transistor), streamhoster, real_life_network, dropbox, genesis_science_network. Recapture the -20 LKFS requirement for RLN.</dd>
+<dt>routes / api</dt><dd>jobs of types rumble_manual, transistor_upload, streamhoster_ftps, signiant_rln, dropbox_partner, gsn_feed. basic-ftp, api_client_media_shuttle_node, dropbox-sdk-js, Transistor publish API. Rumble manual now; stub simple-upload.php for when a token lands.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN the podcast is published THE SYSTEM SHALL use Transistor (Fireside is read-only) and SHALL NOT browser-automate Fireside.</li><li>WHEN the TV apps need the episode THE SYSTEM SHALL perform one StreamHoster FTPS upload that feeds Roku, Apple TV, iOS, and LG.</li><li>IF the target is Rumble THEN Phase 1 SHALL be a manual-upload tracker card, never the dead YouTube sync.</li></ul>
+<dt>verify</dt><dd>tsc; eslint; confirm Transistor + 301 plan; confirm one StreamHoster FTPS upload reaches the TV apps; confirm Signiant -20 LKFS; confirm CTN + WWN have a low-cadence path; confirm GodTube and c21c are NOT built.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m12 -->
+<div class="mod">
+<div class="head"><span class="num">m12</span><h3 class="title">Clips, Scheduling &amp; Secrets</h3></div>
+<p class="sub">Automatable clips with a review gate, on-stack scheduling, and secrets that will not fail silently.</p>
+<div class="pills"><span class="pill phase">Distribution</span><span class="pill stage">Cross-cutting (no single STAGES node)</span><span class="pill mat-priority">Priority</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> You wire AI clip generation. Should clips post before a human looks? (Answer: no, generate automatically but a human approves before publish at first.)</p>
+<p><b>Lesson:</b> Clips via Vizard (ingests 58-min videos, public API + scheduler) with a human review gate first. Opus Clip is enterprise-gated, so manual. Scheduling: Supabase Cron to an Edge Function (on-stack, sub-minute), not Vercel Cron. Secrets: a 1Password service account injects tokens, but 1Password does NOT refresh OAuth tokens; your code must do the refresh and write the rotated token back, with an alert on auth failure.</p>
+<p><b>Game (dial):</b> "Set the safe default for each." Clips = generate, human reviews before publish; scheduled jobs = Supabase Cron to Edge Function; OAuth tokens = code refreshes + alert on failure. Nothing goes full-auto on day one.</p>
+<h4>Decision it locks</h4>
+<p>Recommended: Vizard + review gate, Supabase Cron to Edge, 1Password service account with self-refresh + alert. Alternative (risky): auto-post clips and run media through Make.com.</p>
+<div class="spec"><span class="pill st-new">status: new</span> <span class="pill">depends on m9, m10</span> <span class="pill">blocked by: Vizard creds in 1Password + 1Password service account set up</span>
+<dl>
+<dt>db</dt><dd>content_clips + social_posts (exist) track per-clip status (social_posts enum: youtube_shorts, instagram, tiktok, facebook, x_twitter).</dd>
+<dt>routes / api</dt><dd>A Supabase Edge Function on a Cron schedule runs due jobs. A /clips review page gates posting. Vizard public API (pass a URL, not the master). 1Password service account via op run; code performs the OAuth refresh; ntfy alert on auth failure.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN clips are generated THE SYSTEM SHALL hold them for human review before any publish at first.</li><li>IF an OAuth token fails THEN the code SHALL attempt a refresh, write back the rotated token, and send a ntfy/email alert.</li><li>IF a workflow would route the multi-GB master through Make/n8n THEN it SHALL be refused (pass URLs instead).</li></ul>
+<dt>verify</dt><dd>tsc; eslint; generate clips and confirm the review gate; confirm a Cron Edge Function fires on schedule; simulate a token expiry and confirm refresh + alert.</dd>
+</dl></div>
+</div>
+</div>
+
+<!-- m13 -->
+<div class="mod">
+<div class="head"><span class="num">m13</span><h3 class="title">Finish the Build: Hand Your Plan to Claude</h3></div>
+<p class="sub">Export the build plan you enriched through this course, then have a fresh Claude Code session finish the system safely, one reviewed piece at a time.</p>
+<div class="pills"><span class="pill phase">Handoff</span><span class="pill stage">Cross-cutting (no single stage)</span></div>
+<div class="body">
+<h4>What it teaches</h4>
+<p><b>Predict:</b> What is the safest way to have Claude build the rest of the system? (Answer: export the plan, start a fresh Claude session, and have it work on branches with PRs you review.)</p>
+<p><b>Lesson:</b> The course has been assembling a build spec the whole time (each module's spec, every locked decision, the Setup/Creds/Prereqs tracks). At the end you export it all as one document. Steps: download the export, open a new Claude Code session on the <code>gsr-automation-v2</code> repo, paste the export plus a kickoff prompt, and let Claude build feature by feature on its own feat/ branch with a draft PR you review. Also ask it to build a Pipeline Review page that flags the fragile points. A supervisor-plus-workers agent shape keeps cost down without losing oversight. The high-stakes live steps still wait for your typed YES.</p>
+<p><b>Game (sort):</b> "Ready to hand over, or still your job first?" Sorts items Claude can build now (per-module specs, locked decisions, the Prereqs list) from human-only Setup (Google audit cleared, real playlist IDs, confirm GSN is Direct Publisher).</p>
+<h4>Decision it locks</h4>
+<p>Recommended: one feature per branch, you review each PR. Alternative (your call): batch several low-risk features per PR (keep high-stakes work one per branch regardless).</p>
+<div class="spec"><span class="pill st-new">status: new</span> <span class="pill">depends on m0</span>
+<dl>
+<dt>db / routes / api</dt><dd>None new; reads app_config maturity. This is the export + handoff.</dd>
+<dt>io</dt><dd>INPUT: the completed course state. OUTPUT: a downloadable build spec + paste-ready prompts + a pipeline-review.html.</dd>
+<dt>acceptance (key lines)</dt>
+<ul class="ears"><li>WHEN the build proceeds THE SYSTEM SHALL build one feature per feat/ branch with a draft PR before any merge.</li><li>IF a step is a live import or distribution THEN it SHALL still require an explicit human trigger (typed YES) before going live.</li></ul>
+<dt>verify</dt><dd>Open the export and confirm it contains every module spec, the decisions, and the Setup/Creds/Prereqs; confirm the kickoff prompt copies cleanly.</dd>
+</dl></div>
+</div>
+</div>
+</section>
+
+<!-- ============ PART 3 ============ -->
+<section id="part3">
+<h2 class="part">Part 3 // The Tracks<span class="lead">Cross-cutting setup, credentials, prerequisites, and recommended tools.</span></h2>
+
+<div class="card">
+<h3>Setup track (Decisions &amp; Setup)</h3>
+<table>
+<tr><th>Item</th><th>Current default / answer</th><th>Note</th></tr>
+<tr><td>Dropbox folder structure</td><td>LOCKED: FLAT, one folder per show</td><td>Locked 2026-06-06. The per-episode tree in production.json is not how it works today. A separate folder for web-stream episodes still needs creating.</td></tr>
+<tr><td>Mac &lt;-&gt; dashboard transport</td><td>LOCKED: the Mac polls a Supabase jobs table</td><td>Locked 2026-06-06. Dashboard writes a job row; the Mac polls and writes status back. No inbound connection, no Tailscale.</td></tr>
+<tr><td>Google API audit status</td><td>Not started yet, start the form now</td><td>Pre-audit YouTube API uploads are locked private, irreversibly per video. No promised turnaround, so start now.</td></tr>
+<tr><td>Rumble Upload API token pursuit</td><td>Pursue via support@rumble.com / live chat / Partner Program</td><td>bd@rumble.com bounced. Phase 1 Rumble is manual upload regardless.</td></tr>
+<tr><td>ProPresenter slide/presentation/playlist mapping</td><td>Define at my computer (deferred)</td><td>Until defined, the push stays a ready signal only. The production machine is off-limits to automation.</td></tr>
+<tr><td>VideoEdit server address / SMB path</td><td>Not needed until off local testing</td><td>The logical name and an example path exist; no hostname/IP/mount yet. Read-only SMB only.</td></tr>
+<tr><td>Real YouTube playlist IDs (4)</td><td>Placeholders in config, need the real IDs</td><td>Season 3, Kids Corner, Interviews, The Heavens Declare. config/production.json has PLxxxx placeholders.</td></tr>
+<tr><td>Fireside 301 redirect permission</td><td>Verify Fireside allows the 301 first</td><td>Needed before migrating the podcast feed to Transistor so Apple/Spotify subscribers carry over.</td></tr>
+<tr><td>GSN Roku channel type</td><td>Verify it is Direct Publisher (feed-driven)</td><td>The Roku Direct Publisher JSON feed only works if the channel is feed-driven.</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Credentials needed</h3>
+<p>The course collects these (referenced by 1Password item name, never pasted in chat):</p>
+<ul>
+<li>YouTube OAuth</li>
+<li>Dropbox</li>
+<li>Transistor</li>
+<li>Vizard</li>
+<li>StreamHoster FTPS</li>
+<li>Signiant</li>
+<li>Rundown Creator (APIKey + APIToken)</li>
+<li>1Password service account</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Prerequisites (schema fixes that must happen before or within the build)</h3>
+<ol>
+<li>Rename the <code>graphics</code> table to <code>lower_thirds</code> (it holds lower thirds; keep <code>production_graphics</code> as the Graphics Tracker).</li>
+<li>Add the <b>Book Cover</b> type to the <code>production_graphics.graphic_type</code> CHECK.</li>
+<li>Reorder the <code>production_graphics.status</code> CHECK to: Not Started -&gt; In Progress -&gt; Created -&gt; Loaded In (and restore 'In Progress' in PROMPT_LIBRARY).</li>
+<li>Add <b>Dreamstime</b> to a new b-roll source enum (premade_library; it does not exist yet).</li>
+<li>Add a <b>jobs</b> table (the Mac polls it) for the distribution control plane.</li>
+<li>Add <code>creation_tv_network</code> (CTN) and <code>wwn</code> (Wonders Without Number) to the <code>distributions.platform</code> enum (low-cadence broadcast targets that still must be built).</li>
+</ol>
+</div>
+
+<div class="card">
+<h3>Tools registry (recommended pick per category, from the course TOOLS list)</h3>
+<table>
+<tr><th>Category</th><th>Recommended</th><th>Notes / superseded</th></tr>
+<tr><td>Intake / file-watch</td><td>Local Mac watcher (fswatch / Hazel / Automator)</td><td>The only sanctioned file-watch. Honorable: Node fs.watch (local). Superseded: Chokidar-on-NAS (NAS watchers barred).</td></tr>
+<tr><td>Lower thirds AI</td><td>@anthropic-ai/sdk (server-side)</td><td>Already in the app; lower-thirds extraction + regenerate only. Honorable: Vercel AI SDK.</td></tr>
+<tr><td>Graphics tracker DB</td><td>Supabase Postgres (production_graphics)</td><td>Mirrors the monthly Google Sheet. Honorable: Google Sheets read (optional mirror).</td></tr>
+<tr><td>Rundown</td><td>Rundown Creator write API (insertRow / setRowProperties / deleteRow)</td><td>Errors arrive as HTTP 200, read the body. Honorable: deep-link into RC + column-accurate preview grid.</td></tr>
+<tr><td>Transcription</td><td>WhisperKit + SpeakerKit (Mac-native)</td><td>Transcript plus speaker labels in one local tool. Honorable: WhisperX, faster-whisper / whisper.cpp.</td></tr>
+<tr><td>Distribution orchestration</td><td>Mac polls a Supabase jobs table; Supabase Cron -&gt; Edge Function</td><td>No inbound connection, no Tailscale. Superseded: BullMQ / Redis.</td></tr>
+<tr><td>YouTube upload</td><td>Official googleapis Node client (resumable)</td><td>Superseded: youtubeuploader CLI (dormant since Aug 2024).</td></tr>
+<tr><td>Secondary / broadcast</td><td>dropbox-sdk-js; Transistor.fm API; Signiant media_shuttle SDK (-20 LKFS); basic-ftp (StreamHoster FTPS)</td><td>Superseded: Playwright for Fireside (Fireside API is read-only; migrate to Transistor).</td></tr>
+<tr><td>Clips</td><td>Vizard (public API + scheduler); ntfy (auth-failure alerts); 1Password service account (op run)</td><td>Keep a human review-before-publish gate. Honorable: Opus Clip (API enterprise-gated, manual only).</td></tr>
+</table>
+</div>
+</section>
+
+<!-- ============ PART 4 ============ -->
+<section id="part4">
+<h2 class="part">Part 4 // Drift Check<span class="lead">Does each module map cleanly to a pipeline stage? Anything stale or inconsistent?</span></h2>
+
+<div class="card">
+<h3>Module-to-stage map</h3>
+<p>Each module carries a <code>stage</code> field that points at a node in the pipeline diagram. Here is how they line up.</p>
+<table>
+<tr><th>Module</th><th>Module's stage field</th><th>Pipeline stage it serves</th><th>Lines up?</th></tr>
+<tr><td>m0 Orientation</td><td>null</td><td>Cross-cutting (workflow + dial policy)</td><td>Yes (by design, no single stage)</td></tr>
+<tr><td>m1 Intake</td><td>intake</td><td>Intake / Script</td><td>Yes</td></tr>
+<tr><td>m2 Lower Thirds</td><td>lt</td><td>Lower Thirds</td><td>Yes</td></tr>
+<tr><td>m3 Graphics</td><td>graphics</td><td>Graphics</td><td>Yes</td></tr>
+<tr><td>m4 Rundown</td><td>rundown</td><td>Rundown</td><td>Yes</td></tr>
+<tr><td>m5 ProPresenter</td><td>propres</td><td>ProPresenter</td><td>Yes</td></tr>
+<tr><td>m6 The Shoot</td><td>shoot</td><td>Shoot / Record</td><td>Yes</td></tr>
+<tr><td>m7 Transcription</td><td>transcribe</td><td>Transcript</td><td>Yes</td></tr>
+<tr><td>m8 Metadata</td><td>metadata</td><td>Metadata + Thumbnail</td><td>Yes</td></tr>
+<tr><td>m9 Distribution</td><td>distribute</td><td>Distribution</td><td>Yes</td></tr>
+<tr><td>m10 YouTube</td><td>published</td><td>Published / Aired</td><td>Yes</td></tr>
+<tr><td>m11 Rumble/Podcast/Broadcast</td><td>null</td><td>Distribution (sub-targets, no single node)</td><td>Yes (by design)</td></tr>
+<tr><td>m12 Clips/Scheduling/Secrets</td><td>null</td><td>Distribution (cross-cutting)</td><td>Yes (by design)</td></tr>
+<tr><td>m13 Finish the Build</td><td>null</td><td>Handoff (cross-cutting)</td><td>Yes (by design)</td></tr>
+</table>
+<p class="note good"><b>The module-to-stage mapping is consistent.</b> Every module with a stage points at a real pipeline node, and the four with no stage (m0, m11, m12, m13) are deliberately cross-cutting or sub-target. No orphaned or mismatched modules.</p>
+</div>
+
+<div class="card">
+<h3>Things that look proposed-vs-applied, stale, or worth a second look</h3>
+<p>These are real and openly flagged in the source. They are not bugs in this document; they are items where the plan and the live system have not yet been reconciled. Listing them so nothing slips.</p>
+<p class="note warn"><b>1. graphics -> lower_thirds rename (proposed, NOT applied).</b> The table that holds lower thirds is still named <code>graphics</code> in the live database. The course and canon both call for renaming it to <code>lower_thirds</code> (keeping <code>production_graphics</code> as the Graphics Tracker). Until the prereq migration runs, every query still uses <code>graphics</code> and the only thing named <code>lower-thirds</code> is the storage bucket. m1 and m2 depend on this rename.</p>
+<p class="note warn"><b>2. premade_library / Dreamstime enum (proposed, NOT applied).</b> The course prereq says to add Dreamstime to "a new b-roll source enum (premade_library; it does not exist yet)." Canon section 8, however, records that a <code>premade_library</code> table and a b-roll source enum already exist (migration 20260528005100), with values envato, storyblocks, nasa_svs, creation_com, own_production, other. So the table likely exists and what is actually missing is just the Dreamstime value. Worth confirming whether the build adds a value to the existing enum or creates a new one; the two source docs phrase it differently.</p>
+<p class="note warn"><b>3. production_graphics.status CHECK order (wrong in the DB).</b> The live CHECK lists the statuses in the wrong order (Not Started, Created, In Progress, Loaded In) versus the canon order (Not Started -&gt; In Progress -&gt; Created -&gt; Loaded In). Prereq 3 fixes this and restores 'In Progress' in PROMPT_LIBRARY. Cosmetic for the four values, but the order matters for the UI.</p>
+<p class="note warn"><b>4. Book Cover graphic type (used in the sheet, missing from the DB).</b> Book Cover appears in the live Google Sheet but is missing from the <code>production_graphics.graphic_type</code> CHECK. Prereq 2 adds it.</p>
+<p class="note warn"><b>5. GSN Roku channel-type assumption (unverified).</b> The Roku Direct Publisher JSON feed for GSN only works if the channel is feed-driven (Direct Publisher) rather than a custom SDK channel. This is assumed, not confirmed. It is a Setup item still flagged "verify."</p>
+<p class="note warn"><b>6. RLN -20 LKFS requirement (survives only in a superseded migration).</b> The -20 LKFS audio normalization for Real Life Network currently lives only in superseded migration ..002000, with nothing enforcing it. The course says to recapture it when RLN delivery is built.</p>
+<p class="note warn"><b>7. CTN and WWN enum values (named, not yet written).</b> Prereq 6 adds creation_tv_network and wwn to the distributions.platform enum. These are real low-cadence targets; the migration is named but not yet written.</p>
+<p class="note warn"><b>8. Naming: Myriam vs Miryam.</b> The role notes (2026-06-07) spell her name Myriam; earlier canon entries spell it Miryam. Same person (metadata, thumbnails, uploads, mark-aired, Daniel's successor). Worth settling one spelling.</p>
+<p class="note good"><b>Everything else lines up.</b> The pipeline stages, roles, distribution stack (all 9 enum values plus the deferred CTN/WWN, retired GodTube, archived c21c, OTA-from-Dropbox), the David Rule, the maturity dial, and the off-limits infrastructure are all consistent across the course, the canon, and the UI strategy. The items above are openly-tracked prereqs and verifications, not contradictions.</p>
+</div>
+</section>
+
+<div class="foot">
+Built 2026-06-08 from gsr-automation-v2-course.html (modules m0-m13, STAGES, TOOLS, SETUP, CREDS, PREREQS), GSR-WORKFLOW-CANON.md, CLAUDE.md, and 2026-06-07-gsr-ui-strategy.md. Source of truth, faithfully represented. <a class="back" href="#part1">Back to top</a>
+</div>
+
+</div>
+</body>
+</html>

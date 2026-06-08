@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="observatory" data-role="daniel">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>GSR Pipeline - Liquid Glass Design Lab</title>
+<style>
+/* =========================================================================
+   GSR Pipeline UI - Liquid Glass Design Lab  (mock only, 2026-06-07)
+   One file, no dependencies. Open on phone or desktop.
+   Top bar: switch THEME (the design options) and ROLE (who is looking).
+   The widget hub reskins by theme and recomposes by role.
+   ========================================================================= */
+
+/* ---- Theme tokens. Each [data-theme] swaps the whole palette. ---------- */
+:root{
+  --r: 22px;            /* Liquid Glass loves big soft corners */
+  --r-sm: 14px;
+  --pad: clamp(14px, 2.2vw, 22px);
+  --blur: 18px;
+  --ease: cubic-bezier(.22,.61,.36,1);
+}
+
+/* 1. OBSERVATORY - deep navy + gold star accent. Most on-brand. */
+[data-theme="observatory"]{
+  --bg0:#060c1a; --bg1:#0c1830; --bg2:#0a2447;
+  --ink:#eaf1ff; --ink-dim:#9fb4d6;
+  --accent:#e7b54e; --accent-2:#6db3ff;
+  --glass: rgba(255,255,255,.07);
+  --glass-2: rgba(255,255,255,.04);
+  --edge: rgba(255,255,255,.16);
+  --hi: rgba(255,255,255,.55);
+  --good:#46d39a; --warn:#e7b54e; --bad:#f0726a;
+  --shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 18px 40px -18px rgba(0,0,0,.7);
+}
+/* 2. DEEP SPACE SLATE - charcoal + electric cyan. Techy, modern. */
+[data-theme="slate"]{
+  --bg0:#080b10; --bg1:#0f151d; --bg2:#16222e;
+  --ink:#e7eef5; --ink-dim:#93a4b6;
+  --accent:#34d6e0; --accent-2:#5b9bff;
+  --glass: rgba(255,255,255,.06);
+  --glass-2: rgba(255,255,255,.03);
+  --edge: rgba(255,255,255,.14);
+  --hi: rgba(255,255,255,.5);
+  --good:#3fd6a0; --warn:#f0c24a; --bad:#f0726a;
+  --shadow: 0 1px 0 rgba(255,255,255,.05) inset, 0 18px 40px -18px rgba(0,0,0,.75);
+}
+/* 3. MIDNIGHT BRONZE - near-black blue + warm bronze. Premium, masculine. */
+[data-theme="bronze"]{
+  --bg0:#080810; --bg1:#12111c; --bg2:#1c1726;
+  --ink:#f1ece4; --ink-dim:#b3a899;
+  --accent:#d79a52; --accent-2:#8fa6c6;
+  --glass: rgba(255,255,255,.06);
+  --glass-2: rgba(255,255,255,.03);
+  --edge: rgba(255,255,255,.15);
+  --hi: rgba(255,255,255,.5);
+  --good:#5cc48a; --warn:#d79a52; --bad:#e8736b;
+  --shadow: 0 1px 0 rgba(255,255,255,.05) inset, 0 18px 40px -18px rgba(0,0,0,.78);
+}
+/* 4. DAYLIGHT GLASS - light frosted, navy + gold. Daytime / accessibility. */
+[data-theme="daylight"]{
+  --bg0:#dbe6f5; --bg1:#eef3fa; --bg2:#cfdcee;
+  --ink:#13233c; --ink-dim:#5a6b82;
+  --accent:#b8860b; --accent-2:#1e4f8f;
+  --glass: rgba(255,255,255,.55);
+  --glass-2: rgba(255,255,255,.4);
+  --edge: rgba(255,255,255,.75);
+  --hi: rgba(255,255,255,.95);
+  --good:#1d8a52; --warn:#b8860b; --bad:#c0392b;
+  --shadow: 0 1px 0 rgba(255,255,255,.7) inset, 0 16px 34px -18px rgba(30,60,110,.4);
+}
+
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0; height:100%;}
+body{
+  font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(1200px 800px at 78% -8%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 60%),
+    radial-gradient(900px 700px at 8% 110%, color-mix(in srgb, var(--accent-2) 20%, transparent), transparent 55%),
+    linear-gradient(160deg, var(--bg0), var(--bg1) 45%, var(--bg2));
+  background-attachment: fixed;
+  min-height:100%;
+  transition: color .35s var(--ease);
+}
+/* faint starfield for the dark cosmic themes */
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:.5;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+    radial-gradient(1px 1px at 70% 60%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 40% 80%, #fff, transparent),
+    radial-gradient(1px 1px at 85% 20%, #fff, transparent),
+    radial-gradient(1px 1px at 55% 12%, #fff, transparent),
+    radial-gradient(1px 1px at 12% 70%, #fff, transparent);
+  transition:opacity .4s var(--ease);
+}
+[data-theme="daylight"] body::before{opacity:0;}
+
+/* ---- Liquid Glass surface, the reusable material ---------------------- */
+.glass{
+  position:relative;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--hi) 10%, transparent), transparent 38%),
+    var(--glass);
+  backdrop-filter: blur(var(--blur)) saturate(165%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(165%);
+  border:1px solid var(--edge);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+/* the specular top-edge highlight that sells the "glass" read */
+.glass::after{
+  content:""; position:absolute; left:8%; right:8%; top:0; height:1px;
+  background:linear-gradient(90deg, transparent, var(--hi), transparent);
+  opacity:.9;
+}
+
+/* ---- Layout ----------------------------------------------------------- */
+.wrap{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:14px 14px 60px;}
+
+/* top control bar */
+.topbar{
+  display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  padding:10px 12px; margin-bottom:14px; position:sticky; top:8px; z-index:5;
+}
+.brand{display:flex; align-items:center; gap:10px; margin-right:auto;}
+.logo{
+  width:38px; height:38px; border-radius:12px; display:grid; place-items:center;
+  font-weight:800; letter-spacing:.5px; color:#0a0f1c;
+  background:linear-gradient(150deg, var(--accent), color-mix(in srgb,var(--accent) 50%, #fff));
+  box-shadow:0 6px 16px -6px var(--accent);
+}
+.brand b{font-size:15px; letter-spacing:.3px}
+.brand span{display:block; font-size:11px; color:var(--ink-dim); letter-spacing:.6px; text-transform:uppercase}
+
+.seg{display:flex; gap:4px; padding:4px; border-radius:999px;}
+.seg button{
+  appearance:none; border:0; cursor:pointer; font:inherit; font-size:12.5px; font-weight:600;
+  color:var(--ink-dim); background:transparent; padding:7px 12px; border-radius:999px;
+  transition:.25s var(--ease); white-space:nowrap;
+}
+.seg button[aria-pressed="true"]{
+  color:var(--ink);
+  background:linear-gradient(180deg, color-mix(in srgb,var(--hi) 22%,transparent), var(--glass));
+  border:1px solid var(--edge);
+  box-shadow:0 6px 14px -8px rgba(0,0,0,.6);
+}
+.seg .dot{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:-1px}
+.t-observatory{background:#e7b54e} .t-slate{background:#34d6e0} .t-bronze{background:#d79a52} .t-daylight{background:#cfdcee}
+
+.bar-label{font-size:10.5px; text-transform:uppercase; letter-spacing:.8px; color:var(--ink-dim); padding:0 6px 0 2px}
+
+/* hero status strip */
+.hero{display:grid; grid-template-columns:1.4fr 1fr; gap:12px; margin-bottom:14px}
+.hero .now{padding:var(--pad)}
+.kicker{font-size:11px; letter-spacing:.8px; text-transform:uppercase; color:var(--accent); font-weight:700}
+.hero h1{margin:6px 0 2px; font-size:clamp(20px,3.4vw,28px); letter-spacing:.2px}
+.hero .sub{color:var(--ink-dim); font-size:13px}
+.progress{margin-top:16px; height:10px; border-radius:999px; background:var(--glass-2); overflow:hidden; border:1px solid var(--edge)}
+.progress > i{display:block; height:100%; width:58%; border-radius:999px;
+  background:linear-gradient(90deg, var(--accent-2), var(--accent)); }
+.stage-row{display:flex; justify-content:space-between; margin-top:8px; font-size:10.5px; color:var(--ink-dim)}
+.stage-row b{color:var(--ink); font-weight:600}
+.airbox{padding:var(--pad); display:flex; flex-direction:column; justify-content:center; gap:2px}
+.airbox .big{font-size:30px; font-weight:800; letter-spacing:.5px}
+.airbox .lab{font-size:11px; text-transform:uppercase; letter-spacing:.7px; color:var(--ink-dim)}
+.airbox .pill{align-self:flex-start; margin-top:8px; font-size:11.5px; padding:5px 10px; border-radius:999px;
+  background:color-mix(in srgb,var(--good) 20%, transparent); color:var(--good); border:1px solid color-mix(in srgb,var(--good) 40%,transparent)}
+
+/* widget grid */
+.grid{display:grid; grid-template-columns:repeat(12,1fr); gap:12px}
+.card{grid-column:span 4; padding:var(--pad); display:flex; flex-direction:column; gap:10px; min-height:140px;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease)}
+.card:hover{transform:translateY(-3px)}
+.card.wide{grid-column:span 8}
+.card.full{grid-column:span 12}
+.card h3{margin:0; font-size:14px; display:flex; align-items:center; gap:9px}
+.ico{width:28px;height:28px;border-radius:9px; display:grid;place-items:center; font-size:14px;
+  background:color-mix(in srgb,var(--accent) 22%, transparent); color:var(--accent);
+  border:1px solid color-mix(in srgb,var(--accent) 35%, transparent)}
+.card p{margin:0; color:var(--ink-dim); font-size:12.5px}
+.metric{display:flex; align-items:baseline; gap:8px}
+.metric .n{font-size:30px; font-weight:800; letter-spacing:.4px}
+.metric .u{font-size:12px; color:var(--ink-dim)}
+.tag{font-size:10.5px; padding:3px 9px; border-radius:999px; border:1px solid var(--edge); color:var(--ink-dim)}
+.tag.g{color:var(--good); border-color:color-mix(in srgb,var(--good) 40%,transparent)}
+.tag.w{color:var(--warn); border-color:color-mix(in srgb,var(--warn) 40%,transparent)}
+.tag.b{color:var(--bad);  border-color:color-mix(in srgb,var(--bad) 40%,transparent)}
+.rowtags{display:flex; gap:6px; flex-wrap:wrap; margin-top:auto}
+.mini{display:flex; justify-content:space-between; font-size:12px; padding:6px 0; border-top:1px solid var(--edge)}
+.mini:first-of-type{border-top:0}
+.mini b{font-weight:600}
+.bars{display:flex; gap:5px; align-items:flex-end; height:42px; margin-top:auto}
+.bars i{flex:1; border-radius:5px 5px 2px 2px; background:linear-gradient(180deg,var(--accent-2),color-mix(in srgb,var(--accent-2) 30%,transparent))}
+.pipeline{display:flex; gap:6px; flex-wrap:wrap; margin-top:4px}
+.node{flex:1; min-width:64px; text-align:center; padding:9px 4px; border-radius:var(--r-sm); border:1px solid var(--edge);
+  background:var(--glass-2); font-size:10.5px; color:var(--ink-dim)}
+.node b{display:block; color:var(--ink); font-size:11px; margin-bottom:2px}
+.node.done{border-color:color-mix(in srgb,var(--good) 45%,transparent)}
+.node.done b{color:var(--good)}
+.node.active{border-color:color-mix(in srgb,var(--accent) 60%,transparent); background:color-mix(in srgb,var(--accent) 12%,transparent)}
+.node.active b{color:var(--accent)}
+
+.rolebar{margin:2px 0 14px; font-size:12.5px; color:var(--ink-dim); padding:10px 14px}
+.rolebar b{color:var(--ink)}
+.note{font-size:11.5px; color:var(--ink-dim); text-align:center; margin-top:26px; line-height:1.7}
+.note b{color:var(--accent)}
+
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr}
+  .card,.card.wide,.card.full{grid-column:span 12}
+  .topbar{position:static}
+  .brand{width:100%}
+}
+@media (min-width:881px) and (max-width:1040px){
+  .card{grid-column:span 6}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ======= CONTROL BAR ======= -->
+  <header class="topbar glass">
+    <div class="brand">
+      <div class="logo">GSR</div>
+      <div><b>Pipeline Command</b><span>Genesis Science Report</span></div>
+    </div>
+
+    <span class="bar-label">Theme</span>
+    <div class="seg glass" id="themeSeg">
+      <button data-theme="observatory" aria-pressed="true"><span class="dot t-observatory"></span>Observatory</button>
+      <button data-theme="slate"><span class="dot t-slate"></span>Slate</button>
+      <button data-theme="bronze"><span class="dot t-bronze"></span>Bronze</button>
+      <button data-theme="daylight"><span class="dot t-daylight"></span>Daylight</button>
+    </div>
+
+    <span class="bar-label">Who</span>
+    <div class="seg glass" id="roleSeg">
+      <button data-role="daniel" aria-pressed="true">Daniel</button>
+      <button data-role="myriam">Myriam</button>
+      <button data-role="isaac">Isaac</button>
+      <button data-role="intern">Interns</button>
+    </div>
+  </header>
+
+  <!-- ======= ROLE EXPLAINER ======= -->
+  <div class="rolebar glass" id="roleBar"></div>
+
+  <!-- ======= HERO ======= -->
+  <section class="hero">
+    <div class="now glass">
+      <div class="kicker">This week - Season 3</div>
+      <h1>Ep 49 - The Fine-Tuned Cosmos</h1>
+      <div class="sub">Guest: Dr. A. Lyle - Recorded - in post</div>
+      <div class="progress"><i></i></div>
+      <div class="stage-row">
+        <span><b>Stage 4 of 7</b> - Graphics</span>
+        <span>58% to air-ready</span>
+      </div>
+    </div>
+    <div class="airbox glass">
+      <div class="lab">Air date</div>
+      <div class="big">Tue 8:00p</div>
+      <div class="lab">Publish Mon 4:00p ET</div>
+      <div class="pill" id="airPill">On track</div>
+    </div>
+  </section>
+
+  <!-- ======= WIDGET HUB (rendered by JS per role) ======= -->
+  <section class="grid" id="grid"></section>
+
+  <p class="note">
+    <b>Design Lab - mock only.</b> Toggle <b>Theme</b> to compare the four directions, toggle <b>Who</b> to see the
+    same hub recompose per teammate. Liquid Glass is approximated in pure CSS (blur, translucency, specular edge);
+    the shipped app can push it further with SVG refraction. Numbers are placeholders.
+  </p>
+</div>
+
+<script>
+/* ---- Role definitions. Edit freely - this is the customization surface. */
+const ROLES = {
+  daniel: {
+    name:"Daniel - Owner / Producer",
+    blurb:"Scripts, guests, recording, approvals. Sees everything: full pipeline, the crew task board, distribution and system health.",
+  },
+  myriam:{
+    name:"Myriam - Metadata & Post-Production Lead (your successor)",
+    blurb:"Owns metadata, thumbnails, YouTube + Rumble uploads, and marking episodes aired. Not graphics build, editing, or system internals.",
+  },
+  isaac:{
+    name:"Isaac - Graphics & Edit Lead",
+    blurb:"Owns the Graphics Tracker, loads ProPresenter, edits, runs the review pass, and exports the final to Dropbox.",
+  },
+  intern:{
+    name:"Interns - Graphics & ProPresenter Support",
+    blurb:"Graphics Tracker and b-roll sourcing with script context, plus ProPresenter / Rundown Creator. Same as Isaac, minus post-production editing.",
+  },
+};
+
+/* ---- Widget catalog. `roles` lists who sees each widget. `size` sets width. */
+const WIDGETS = [
+  { id:"pipeline", size:"full", roles:["daniel","myriam","isaac","intern"],
+    icon:"◉", title:"Pipeline Overview",
+    html:`<p>Where this episode is, end to end.</p>
+      <div class="pipeline">
+        <div class="node done"><b>Script</b>Daniel</div>
+        <div class="node done"><b>Guests</b>Daniel</div>
+        <div class="node active"><b>Graphics</b>Isaac</div>
+        <div class="node"><b>ProPres</b>load</div>
+        <div class="node"><b>Edit</b>Isaac</div>
+        <div class="node"><b>Metadata</b>Myriam</div>
+        <div class="node"><b>Distribute</b>7 targets</div>
+      </div>` },
+
+  { id:"graphics", size:"span4", roles:["daniel","isaac","intern"],
+    icon:"▦", title:"Graphics Tracker",
+    html:`<div class="metric"><span class="n">14</span><span class="u">/ 22 created</span></div>
+      <p>By segment. 8 still to build, 2 need a filename before they load.</p>
+      <div class="rowtags"><span class="tag g">12 ready</span><span class="tag w">8 in progress</span><span class="tag">+ Book Cover (new)</span></div>` },
+
+  { id:"broll", size:"span4", roles:["daniel","isaac","intern"],
+    icon:"❑", title:"B-roll Sources",
+    html:`<div class="mini"><span>Storyblocks / Dreamstime / Envato</span><b>open</b></div>
+      <div class="mini"><span>Raw footage to Dropbox</span><b style="color:var(--good)">Jeremiah, done</b></div>
+      <div class="mini"><span>Clips sourced this ep</span><b>9</b></div>` },
+
+  { id:"propres", size:"span4", roles:["daniel","isaac","intern"],
+    icon:"▶", title:"ProPresenter + Rundown Creator",
+    html:`<div class="mini"><span>Rundown synced</span><b>3 min ago</b></div>
+      <div class="mini"><span>Slides ready</span><b>17 / 22</b></div>
+      <div class="mini"><span>Push to ProPres</span><b style="color:var(--warn)">human-gated</b></div>
+      <div class="rowtags"><span class="tag g">test machine only</span></div>` },
+
+  { id:"edit", size:"span4", roles:["daniel","isaac"],
+    icon:"✂", title:"Edit / Review / Export",
+    html:`<div class="metric"><span class="n">42:10</span><span class="u">rough cut</span></div>
+      <p>Color + audio pass, then review, then final export to Dropbox at -20 LKFS.</p>
+      <div class="rowtags"><span class="tag w">2 notes from David</span></div>` },
+
+  { id:"metadata", size:"span4", roles:["daniel","myriam"],
+    icon:"✎", title:"Metadata & Thumbnails",
+    html:`<div class="mini"><span>Title + description</span><b>drafted</b></div>
+      <div class="mini"><span>Thumbnail</span><b style="color:var(--warn)">to create</b></div>
+      <div class="mini"><span>YouTube category</span><b>28 Science</b></div>` },
+
+  { id:"uploads", size:"span4", roles:["daniel","myriam"],
+    icon:"⇪", title:"Uploads & Mark Aired",
+    html:`<div class="mini"><span>YouTube upload</span><b style="color:var(--warn)">pending</b></div>
+      <div class="mini"><span>Rumble upload</span><b style="color:var(--bad)">sync broken, manual</b></div>
+      <div class="mini"><span>Mark episode aired</span><b>after publish</b></div>` },
+
+  { id:"crew", size:"wide", roles:["daniel"],
+    icon:"☰", title:"Crew Task Board",
+    html:`<p>The 14-step episode checklist, by who owns it.</p>
+      <div class="pipeline">
+        <div class="node done"><b>Daniel</b>script + guests</div>
+        <div class="node active"><b>Isaac</b>graphics + edit</div>
+        <div class="node done"><b>Jeremiah</b>raw footage</div>
+        <div class="node"><b>Jakob</b>roll-ins</div>
+        <div class="node"><b>Gabe</b>GSM</div>
+        <div class="node"><b>Myriam</b>metadata + upload</div>
+      </div>` },
+
+  { id:"approvals", size:"span4", roles:["daniel"],
+    icon:"✓", title:"Approvals",
+    html:`<div class="metric"><span class="n">3</span><span class="u">waiting on you</span></div>
+      <p>Lower-thirds import is dry-run only until you type YES. You keep the final call on titles.</p>
+      <div class="rowtags"><span class="tag w">1 import</span><span class="tag w">2 graphics</span></div>` },
+
+  { id:"guests", size:"span4", roles:["daniel"],
+    icon:"☼", title:"Guests",
+    html:`<div class="metric"><span class="n">175</span><span class="u">in library</span></div>
+      <p>Next 3 episodes booked. Ep 51 needs a confirmed guest.</p>
+      <div class="rowtags"><span class="tag b">Ep 51 open</span></div>` },
+
+  { id:"distribution", size:"wide", roles:["daniel"],
+    icon:"↯", title:"Distribution - 7 targets",
+    html:`<p>One source of truth feeds every platform.</p>
+      <div class="pipeline">
+        <div class="node done"><b>YouTube</b>cat 28</div>
+        <div class="node"><b>Rumble</b>manual</div>
+        <div class="node"><b>StreamHoster</b>FTPS</div>
+        <div class="node"><b>RLN</b>Signiant</div>
+        <div class="node"><b>Dropbox</b>partners</div>
+        <div class="node"><b>GSN</b>feed</div>
+      </div>
+      <div class="rowtags" style="margin-top:10px"><span class="tag b">Rumble sync broken</span><span class="tag">CTN / WWN deferred</span></div>` },
+
+  { id:"health", size:"span4", roles:["daniel"],
+    icon:"⊕", title:"System Health",
+    html:`<div class="mini"><span>Supabase</span><b style="color:var(--good)">healthy</b></div>
+      <div class="mini"><span>Mac job poller</span><b style="color:var(--good)">running</b></div>
+      <div class="mini"><span>QNAP (read-only)</span><b style="color:var(--good)">reachable</b></div>
+      <div class="mini"><span>Rundown Creator API</span><b style="color:var(--warn)">watch</b></div>` },
+
+  { id:"activity", size:"span4", roles:["daniel","isaac","intern","myriam"],
+    icon:"≡", title:"This Week",
+    html:`<div class="bars"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:70%"></i><i style="height:95%"></i><i style="height:60%"></i></div>
+      <p style="margin-top:8px">Tasks completed, last 7 days.</p>` },
+];
+
+const grid = document.getElementById('grid');
+const roleBar = document.getElementById('roleBar');
+
+function render(role){
+  const r = ROLES[role];
+  roleBar.innerHTML = `<b>${r.name}.</b> ${r.blurb}`;
+  grid.innerHTML = '';
+  WIDGETS.filter(w => w.roles.includes(role)).forEach(w=>{
+    const el = document.createElement('div');
+    const sizeClass = w.size==='full' ? 'full' : w.size==='wide' ? 'wide' : '';
+    el.className = `card glass ${sizeClass}`;
+    el.innerHTML = `<h3><span class="ico">${w.icon}</span>${w.title}</h3>${w.html}`;
+    grid.appendChild(el);
+  });
+}
+
+/* segmented controls */
+function wireSeg(id, attr, onPick){
+  const seg = document.getElementById(id);
+  seg.addEventListener('click', e=>{
+    const b = e.target.closest('button'); if(!b) return;
+    [...seg.children].forEach(c=>c.setAttribute('aria-pressed','false'));
+    b.setAttribute('aria-pressed','true');
+    onPick(b.getAttribute(attr));
+  });
+}
+wireSeg('themeSeg','data-theme', t=> document.documentElement.setAttribute('data-theme', t));
+wireSeg('roleSeg','data-role', r=>{ document.documentElement.setAttribute('data-role', r); render(r); });
+
+render('daniel');
+</script>
+</body>
+</html>

@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSR Overview - Material 3 Expressive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #3F51E0;
+    --on-primary: #FFFFFF;
+    --primary-container: #DEE0FF;
+    --on-primary-container: #00105C;
+    --tertiary-container: #FFDF99;
+    --on-tertiary-container: #261900;
+    --success-container: #B6F2BE;
+    --on-success-container: #00210C;
+    --error: #BA1A1A;
+    --error-container: #FFDAD6;
+    --on-error-container: #410002;
+    --surface: #FBF8FF;
+    --surface-container: #EEEDF4;
+    --surface-container-high: #E9E7EF;
+    --surface-container-highest: #E3E1E9;
+    --on-surface: #191C20;
+    --on-surface-variant: #43474E;
+    --outline-variant: #C6C5D0;
+    --outline: #767680;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --primary: #BBC3FF;
+      --on-primary: #06157C;
+      --primary-container: #2435C7;
+      --on-primary-container: #DEE0FF;
+      --tertiary-container: #5C4400;
+      --on-tertiary-container: #FFDF99;
+      --success-container: #1E5128;
+      --on-success-container: #B6F2BE;
+      --error: #FFB4AB;
+      --error-container: #93000A;
+      --on-error-container: #FFDAD6;
+      --surface: #111318;
+      --surface-container: #1D2024;
+      --surface-container-high: #272A2F;
+      --surface-container-highest: #32353A;
+      --on-surface: #E2E2E9;
+      --on-surface-variant: #C4C6D0;
+      --outline-variant: #44474E;
+      --outline: #8E9099;
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+    background: var(--surface);
+    color: var(--on-surface);
+    -webkit-font-smoothing: antialiased;
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+    padding-bottom: 96px;
+  }
+
+  /* ---- Top app bar ---- */
+  .appbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--surface-container);
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    min-height: 64px;
+  }
+  .appbar .title {
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 28px;
+    flex: 1;
+  }
+  .avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    border-radius: 50%;
+    background: var(--primary-container);
+    color: var(--on-primary-container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+
+  .headline {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--on-surface-variant);
+    letter-spacing: 0.1px;
+    margin: 8px 4px 16px;
+  }
+
+  /* ---- Needs you card ---- */
+  .needs-card {
+    background: var(--surface-container-high);
+    border-radius: 24px;
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+  .needs-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .needs-head h2 {
+    font-size: 18px;
+    font-weight: 500;
+    flex: 1;
+  }
+  .count-badge {
+    background: var(--error);
+    color: #FFFFFF;
+    min-width: 24px;
+    height: 24px;
+    border-radius: 12px;
+    padding: 0 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .list-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-height: 56px;
+    padding: 8px 4px;
+    border-bottom: 1px solid var(--outline-variant);
+  }
+  .list-item:last-child { border-bottom: none; }
+  .dot {
+    width: 12px;
+    height: 12px;
+    min-width: 12px;
+    border-radius: 50%;
+  }
+  .dot.alert { background: var(--error); }
+  .dot.go { background: #2E7D32; }
+  .dot.info { background: var(--primary); }
+  .list-item .label {
+    flex: 1;
+    font-size: 15px;
+    line-height: 20px;
+  }
+
+  /* ---- Chips ---- */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 32px;
+    padding: 0 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid var(--outline-variant);
+    background: transparent;
+    color: var(--on-surface-variant);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .chip .ico { font-size: 16px; line-height: 1; }
+  .assist {
+    border-color: var(--outline);
+    color: var(--primary);
+  }
+
+  /* ---- Group label ---- */
+  .group-label {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--on-surface-variant);
+    margin: 24px 4px 12px;
+  }
+
+  /* ---- Episode grid ---- */
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 600px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 960px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+
+  .ep-card {
+    background: var(--surface-container);
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ep-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: space-between;
+  }
+  .ep-label {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .date-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .date-chip.soon { background: var(--primary-container); color: var(--on-primary-container); }
+  .date-chip.overdue { background: var(--error-container); color: var(--on-error-container); }
+  .date-chip .ico { font-size: 14px; line-height: 1; }
+
+  .ep-title {
+    font-size: 14px;
+    line-height: 20px;
+    color: var(--on-surface-variant);
+  }
+
+  /* ---- Stage strip ---- */
+  .stages {
+    display: flex;
+    gap: 3px;
+  }
+  .seg {
+    flex: 1;
+    height: 8px;
+    border-radius: 3px;
+    position: relative;
+  }
+  .seg.done { background: var(--success-container); }
+  .seg.active { background: var(--primary); }
+  .seg.todo { background: var(--surface-container-highest); }
+  .seg.blocked { background: var(--error); }
+  .stage-legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--on-surface-variant);
+    letter-spacing: 0.3px;
+  }
+
+  .ep-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 4px;
+    border-top: 1px solid var(--outline-variant);
+  }
+  .now {
+    font-size: 13px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .now.blocked-now { color: var(--error); }
+  .now .ico { font-size: 15px; }
+  .assignee {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--on-surface-variant);
+  }
+  .mini-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--tertiary-container);
+    color: var(--on-tertiary-container);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  /* ---- FAB ---- */
+  .fab {
+    position: fixed;
+    right: 16px;
+    bottom: 88px;
+    background: var(--primary-container);
+    color: var(--on-primary-container);
+    border: none;
+    border-radius: 16px;
+    min-height: 56px;
+    padding: 0 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    z-index: 20;
+  }
+  .fab .ico { font-size: 22px; }
+
+  /* ---- Bottom nav (phone) ---- */
+  .bottom-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--surface-container);
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+    z-index: 15;
+  }
+  .nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    min-height: 48px;
+    justify-content: center;
+    color: var(--on-surface-variant);
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .nav-item .nav-ico {
+    font-size: 22px;
+    padding: 4px 18px;
+    border-radius: 16px;
+    line-height: 1;
+  }
+  .nav-item.active { color: var(--on-surface); }
+  .nav-item.active .nav-ico {
+    background: var(--primary-container);
+    color: var(--on-primary-container);
+  }
+  @media (min-width: 600px) {
+    .bottom-nav { display: none; }
+    body { padding-bottom: 24px; }
+    .fab { bottom: 24px; }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0,0,0,0);
+    border: 0;
+  }
+</style>
+</head>
+<body>
+
+  <header class="appbar">
+    <span class="title">Genesis Science Report</span>
+    <div class="avatar" aria-label="Account: Daniel">DA</div>
+  </header>
+
+  <main class="container">
+    <h1 class="headline">This batch</h1>
+
+    <!-- Needs you -->
+    <section class="needs-card" aria-labelledby="needs-h">
+      <div class="needs-head">
+        <h2 id="needs-h">Needs you</h2>
+        <span class="count-badge" aria-label="4 items need attention">4</span>
+      </div>
+
+      <div class="list-item">
+        <span class="dot info" aria-hidden="true"></span>
+        <span class="label">Approve graphic ideas - Ep 49</span>
+        <button class="chip assist"><span class="ico" aria-hidden="true">&#10003;</span>Approve</button>
+      </div>
+      <div class="list-item">
+        <span class="dot alert" aria-hidden="true"></span>
+        <span class="label">Type YES to import lower thirds - Ep 50</span>
+        <button class="chip assist"><span class="ico" aria-hidden="true">&#9888;</span>Confirm</button>
+      </div>
+      <div class="list-item">
+        <span class="dot info" aria-hidden="true"></span>
+        <span class="label">Confirm guest - Ep 51</span>
+        <button class="chip assist"><span class="ico" aria-hidden="true">&#10003;</span>Confirm</button>
+      </div>
+      <div class="list-item">
+        <span class="dot go" aria-hidden="true"></span>
+        <span class="label">Final title - Ep 48</span>
+        <button class="chip assist"><span class="ico" aria-hidden="true">&#9998;</span>Review</button>
+      </div>
+    </section>
+
+    <!-- In production -->
+    <h2 class="group-label">In production</h2>
+    <div class="grid">
+
+      <article class="ep-card">
+        <div class="ep-top">
+          <span class="ep-label">Ep 52</span>
+          <span class="date-chip soon"><span class="ico" aria-hidden="true">&#128197;</span>Air in 5 days</span>
+        </div>
+        <p class="ep-title">The fine-tuned universe</p>
+        <div class="stages" role="img" aria-label="Stage progress: Script, Record done; Edit active; remaining not started">
+          <span class="seg done"></span><span class="seg done"></span><span class="seg active"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+        </div>
+        <div class="stage-legend"><span>Script</span><span>Aired</span></div>
+        <div class="ep-footer">
+          <span class="now"><span class="ico" aria-hidden="true">&#9654;</span>Now: Edit</span>
+          <span class="assignee"><span class="mini-avatar">M</span>Mark</span>
+        </div>
+      </article>
+
+      <article class="ep-card">
+        <div class="ep-top">
+          <span class="ep-label">Ep 53</span>
+          <span class="date-chip soon"><span class="ico" aria-hidden="true">&#128197;</span>Air in 7 days</span>
+        </div>
+        <p class="ep-title">Dating methods examined</p>
+        <div class="stages" role="img" aria-label="Stage progress: Script done; Record active; remaining not started">
+          <span class="seg done"></span><span class="seg active"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+        </div>
+        <div class="stage-legend"><span>Script</span><span>Aired</span></div>
+        <div class="ep-footer">
+          <span class="now"><span class="ico" aria-hidden="true">&#9654;</span>Now: Record</span>
+          <span class="assignee"><span class="mini-avatar">D</span>David</span>
+        </div>
+      </article>
+
+      <article class="ep-card">
+        <div class="ep-top">
+          <span class="ep-label">Ep 54</span>
+          <span class="date-chip soon"><span class="ico" aria-hidden="true">&#128197;</span>Air in 14 days</span>
+        </div>
+        <p class="ep-title">Soft tissue in fossils</p>
+        <div class="stages" role="img" aria-label="Stage progress: Script active; remaining not started">
+          <span class="seg active"></span><span class="seg todo"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+        </div>
+        <div class="stage-legend"><span>Script</span><span>Aired</span></div>
+        <div class="ep-footer">
+          <span class="now"><span class="ico" aria-hidden="true">&#9654;</span>Now: Script</span>
+          <span class="assignee"><span class="mini-avatar">S</span>Sara</span>
+        </div>
+      </article>
+
+      <article class="ep-card">
+        <div class="ep-top">
+          <span class="ep-label">Ep 55</span>
+          <span class="date-chip soon"><span class="ico" aria-hidden="true">&#128197;</span>Air in 21 days</span>
+        </div>
+        <p class="ep-title">The Cambrian explosion</p>
+        <div class="stages" role="img" aria-label="Stage progress: Script active; remaining not started">
+          <span class="seg active"></span><span class="seg todo"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+        </div>
+        <div class="stage-legend"><span>Script</span><span>Aired</span></div>
+        <div class="ep-footer">
+          <span class="now"><span class="ico" aria-hidden="true">&#9654;</span>Now: Script</span>
+          <span class="assignee"><span class="mini-avatar">S</span>Sara</span>
+        </div>
+      </article>
+
+      <article class="ep-card">
+        <div class="ep-top">
+          <span class="ep-label">Ep 56</span>
+          <span class="date-chip soon"><span class="ico" aria-hidden="true">&#128197;</span>Air in 28 days</span>
+        </div>
+        <p class="ep-title">Design in the cell</p>
+        <div class="stages" role="img" aria-label="Stage progress: all stages not started">
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+        </div>
+        <div class="stage-legend"><span>Script</span><span>Aired</span></div>
+        <div class="ep-footer">
+          <span class="now"><span class="ico" aria-hidden="true">&#9654;</span>Now: Script</span>
+          <span class="assignee"><span class="mini-avatar">S</span>Sara</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- In post -->
+    <h2 class="group-label">In post</h2>
+    <div class="grid">
+
+      <article class="ep-card">
+        <div class="ep-top">
+          <span class="ep-label">Ep 47</span>
+          <span class="date-chip soon"><span class="ico" aria-hidden="true">&#128197;</span>Air in 3 days</span>
+        </div>
+        <p class="ep-title">Galaxies and the young cosmos</p>
+        <div class="stages" role="img" aria-label="Stage progress: Script, Record, color done; Edit blocked; remaining not started">
+          <span class="seg done"></span><span class="seg done"></span><span class="seg done"></span>
+          <span class="seg blocked"></span><span class="seg todo"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+        </div>
+        <div class="stage-legend"><span>Script</span><span>Aired</span></div>
+        <div class="ep-footer">
+          <span class="now blocked-now"><span class="ico" aria-hidden="true">&#9888;</span>Blocked: Edit</span>
+          <span class="assignee"><span class="mini-avatar">M</span>Mark</span>
+        </div>
+      </article>
+
+      <article class="ep-card">
+        <div class="ep-top">
+          <span class="ep-label">Ep 48</span>
+          <span class="date-chip soon"><span class="ico" aria-hidden="true">&#128197;</span>Air in 6 days</span>
+        </div>
+        <p class="ep-title">Origins of language</p>
+        <div class="stages" role="img" aria-label="Stage progress: through Graphics done; Review active; remaining not started">
+          <span class="seg done"></span><span class="seg done"></span><span class="seg done"></span>
+          <span class="seg done"></span><span class="seg done"></span><span class="seg active"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+        </div>
+        <div class="stage-legend"><span>Script</span><span>Aired</span></div>
+        <div class="ep-footer">
+          <span class="now"><span class="ico" aria-hidden="true">&#9654;</span>Now: Review</span>
+          <span class="assignee"><span class="mini-avatar">D</span>David</span>
+        </div>
+      </article>
+
+      <article class="ep-card">
+        <div class="ep-top">
+          <span class="ep-label">Ep 49</span>
+          <span class="date-chip soon"><span class="ico" aria-hidden="true">&#128197;</span>Air in 13 days</span>
+        </div>
+        <p class="ep-title">Comets and the solar system</p>
+        <div class="stages" role="img" aria-label="Stage progress: through Edit done; Graphics active; remaining not started">
+          <span class="seg done"></span><span class="seg done"></span><span class="seg done"></span>
+          <span class="seg done"></span><span class="seg active"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+        </div>
+        <div class="stage-legend"><span>Script</span><span>Aired</span></div>
+        <div class="ep-footer">
+          <span class="now"><span class="ico" aria-hidden="true">&#9654;</span>Now: Graphics</span>
+          <span class="assignee"><span class="mini-avatar">J</span>Jen</span>
+        </div>
+      </article>
+
+      <article class="ep-card">
+        <div class="ep-top">
+          <span class="ep-label">Ep 50</span>
+          <span class="date-chip soon"><span class="ico" aria-hidden="true">&#128197;</span>Air in 20 days</span>
+        </div>
+        <p class="ep-title">Geology of the flood</p>
+        <div class="stages" role="img" aria-label="Stage progress: through Color done; Graphics active; remaining not started">
+          <span class="seg done"></span><span class="seg done"></span><span class="seg done"></span>
+          <span class="seg done"></span><span class="seg active"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+        </div>
+        <div class="stage-legend"><span>Script</span><span>Aired</span></div>
+        <div class="ep-footer">
+          <span class="now"><span class="ico" aria-hidden="true">&#9654;</span>Now: Graphics</span>
+          <span class="assignee"><span class="mini-avatar">J</span>Jen</span>
+        </div>
+      </article>
+
+      <article class="ep-card">
+        <div class="ep-top">
+          <span class="ep-label">Ep 51</span>
+          <span class="date-chip overdue"><span class="ico" aria-hidden="true">&#9888;</span>Overdue, behind</span>
+        </div>
+        <p class="ep-title">The information in DNA</p>
+        <div class="stages" role="img" aria-label="Stage progress: through Record done; Edit active; remaining not started; behind schedule">
+          <span class="seg done"></span><span class="seg done"></span><span class="seg active"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+          <span class="seg todo"></span><span class="seg todo"></span><span class="seg todo"></span>
+        </div>
+        <div class="stage-legend"><span>Script</span><span>Aired</span></div>
+        <div class="ep-footer">
+          <span class="now"><span class="ico" aria-hidden="true">&#9654;</span>Now: Edit</span>
+          <span class="assignee"><span class="mini-avatar">M</span>Mark</span>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Extended FAB -->
+  <button class="fab" aria-label="Add episode">
+    <span class="ico" aria-hidden="true">&#43;</span>Add episode
+  </button>
+
+  <!-- Bottom nav (phone) -->
+  <nav class="bottom-nav" aria-label="Primary">
+    <a class="nav-item active" aria-current="page">
+      <span class="nav-ico" aria-hidden="true">&#9750;</span>Home
+    </a>
+    <a class="nav-item">
+      <span class="nav-ico" aria-hidden="true">&#9635;</span>Episodes
+    </a>
+    <a class="nav-item">
+      <span class="nav-ico" aria-hidden="true">&#10138;</span>Distribute
+    </a>
+  </nav>
+
+</body>
+</html>

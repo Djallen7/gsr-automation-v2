@@ -4,14 +4,13 @@
 dashboards (see `docs/AUTOMATION_ROADMAP.md`).
 
 **Daniel's directive (2026-06-08):** keep Basecamp. The team already lives in it,
-so it stays a first-class, reliable source. The dashboard should integrate as
-much of the existing Basecamp system as practical, using **two-way sync** so
-Basecamp and the dashboard stay in agreement and anyone can work from either
-side. We do not ditch Basecamp.
+so it stays a first-class, reliable source. The dashboard integrates the existing
+Basecamp system via **two-way sync**, but only the parts you would otherwise have
+to open the Basecamp app to edit. Sync should be lean, not a mirror of everything.
 
-**Scope of this doc:** this lists only *what* Basecamp information feeds *which*
-role dashboard, and which direction it syncs. It deliberately does NOT say where
-on a page it appears or how it is displayed. Those are open and decided later.
+**Scope of this doc:** lists only *what* Basecamp information feeds *which* role
+dashboard, and which direction it syncs. It deliberately does NOT say where on a
+page it appears or how it is displayed.
 
 ---
 
@@ -19,92 +18,121 @@ on a page it appears or how it is displayed. Those are open and decided later.
 
 Confirmed by read-only API check, 2026-06-08.
 
-| Project | Tools present | Production relevance |
+| Project | Tools present | Used by this integration |
 |---|---|---|
-| **02_ Production** | Message Board, To-dos, Docs & Files, Chat, Card Table, **"Genesis Science Report" card table**, **"WWN" card table** | Primary. The live show pipeline. |
-| **01_DRM Staff** | Message Board, To-dos, Docs & Files, Chat, **Schedule**, Card Table | Secondary. Staff scheduling + admin tasks. |
-| **Aquarium** | Message Board, To-dos, Docs & Files, Chat, Schedule | Out of scope (not the show). |
-| **Prayer Request - Donors and Staff** | Chat only | Out of scope (donor/ministry). |
+| **02_ Production** | Message Board, To-dos, Docs & Files, Chat, Card Table, **"Genesis Science Report" card table**, **"WWN" card table** | Yes: the two named card tables, to-dos, scripts in Docs & Files. |
+| **01_DRM Staff** | Message Board, To-dos, Docs & Files, Chat, **Schedule**, Card Table | Yes: Schedule + admin to-dos. |
+| **Aquarium** | Message Board, To-dos, Docs & Files, Chat, Schedule | No (not the show). |
+| **Prayer Request - Donors and Staff** | Chat only | No (donor/ministry). |
 
-The **"Genesis Science Report" card table** is the real episode pipeline. Its
-columns (live as of 2026-06-08): `Triage -> Not now -> Recorded -> In Progress ->
-Editing -> Rendering -> Done`. The **"WWN" card table** mirrors it for Wonders
-Without Number: `Triage -> Not now -> In Queue -> Currently Editing -> Awaiting
-Approval -> Done`. (WWN is a real distribution target per workflow canon
-section 11.)
+The **"Genesis Science Report" card table** is the live episode pipeline. Columns
+(2026-06-08): `Triage -> Not now -> Recorded -> In Progress -> Editing ->
+Rendering -> Done`. The **"WWN" card table** mirrors it for Wonders Without
+Number: `Triage -> Not now -> In Queue -> Currently Editing -> Awaiting Approval
+-> Done`.
 
 ---
 
-## 2. Data elements available to integrate
+## 2. Data elements to integrate (narrowed, Daniel 2026-06-08)
 
-| # | Data element | Source in Basecamp | Sync direction |
+Only data that would otherwise require leaving the dashboard to edit in Basecamp.
+
+| # | Data element | Source in Basecamp | Sync |
 |---|---|---|---|
-| D1 | GSR episode pipeline cards (card + its column/stage, title, assignees, due, checklist) | 02_ Production -> "Genesis Science Report" card table | two-way |
-| D2 | WWN pipeline cards | 02_ Production -> "WWN" card table | two-way |
-| D3 | Generic production cards | 02_ Production -> Card Table | two-way |
-| D4 | Production to-dos (task, assignee, due date, done state) | 02_ Production -> To-dos | two-way |
-| D5 | Staff/admin to-dos | 01_DRM Staff -> To-dos + Card Table | two-way |
-| D6 | Schedule entries (shoot dates, air dates, staff dates) | 01_DRM Staff -> Schedule | two-way (read at minimum) |
-| D7 | Monologue Scripture + David's graphics-instruction docs | 02_ Production -> Docs & Files / Message Board | read-only (David owns these) |
-| D8 | Message board headlines / announcements | 02_ Production + 01_DRM Staff -> Message Board | read-only (link out) |
-| D9 | Activity signals (cards stuck in a column, overdue to-dos, recent changes) | derived from D1-D6 | read-only |
+| D1 | GSR pipeline cards (stage/column, title, assignee, due, checklist) | 02_ Production -> "Genesis Science Report" | two-way |
+| D2 | WWN pipeline cards | 02_ Production -> "WWN" | two-way |
+| D3 | To-dos you would otherwise edit/check off in Basecamp (task, assignee, due, done) | 02_ Production + 01_DRM Staff -> To-dos | two-way |
+| D4 | Scripts + monologue docs (incl. David's graphics instructions) | 02_ Production -> Docs & Files | two-way edit |
+| D5 | Calendar / schedule entries (shoot dates, air dates) | 01_DRM Staff -> Schedule | two-way edit |
+
+**Explicitly dropped (Daniel 2026-06-08):** message boards, chats/Campfire, the
+generic "Card Table", activity/headline feeds, and any other non-essential
+content. Not synced, not shown.
 
 ---
 
 ## 3. Per-role data inventory
 
-Roles and their scope are fixed in `docs/_handoff/GSR-WORKFLOW-CANON.md`
-section 12. The principle: one shared pipeline, each role gets only their stretch
-of it plus only the to-dos with their name on them.
+Roles and scope are fixed in `docs/_handoff/GSR-WORKFLOW-CANON.md` section 12.
+Principle: one shared pipeline, each role gets only their stretch of it, plus only
+the to-dos with their name on them.
 
 ### Daniel (owner / producer) - sees everything
-- D1 GSR pipeline cards, all columns.
-- D2 WWN pipeline cards, all columns.
-- D3 generic production cards.
-- D4 + D5 all to-dos, grouped by assignee.
-- D6 full schedule (shoot, air, staff).
-- D7 monologue + graphics-instruction docs.
-- D8 message board headlines (all production + staff).
-- D9 activity/health signals (stuck cards, overdue to-dos).
+- D1 GSR cards, all columns.
+- D2 WWN cards, all columns.
+- D3 all to-dos, grouped by assignee.
+- D4 scripts + monologue docs.
+- D5 full calendar (shoot + air).
 
-### Myriam (metadata, thumbnails, uploads, mark-aired) - successor to Daniel
-- D1 GSR cards in **Rendering** and **Done** only (post-edit, ready for metadata + upload).
+### Myriam (metadata, thumbnails, uploads, mark-aired)
+- D1 GSR cards in **Rendering** and **Done** only (ready for metadata + upload).
 - D2 WWN cards in **Awaiting Approval** and **Done**.
-- D4 + D5 only to-dos assigned to Myriam.
-- D6 schedule, publish/air dates only.
-- D7 only metadata-relevant docs (titles, descriptions, links).
-- Excludes: graphics build, editing internals, anything earlier in the pipeline.
+- D3 only to-dos assigned to Myriam.
+- D5 calendar: publish/air dates.
+- Excludes: graphics build, editing internals, earlier pipeline.
 
-### Isaac (graphics + edit lead) - owns Graphics Tracker, ProPresenter, edit, export
-- D1 GSR cards in **Recorded, In Progress, Editing, Rendering** (the build/edit zone).
+### Isaac (graphics + edit lead)
+- D1 GSR cards in **Recorded, In Progress, Editing, Rendering**.
 - D2 WWN cards in **In Queue, Currently Editing, Awaiting Approval**.
-- D4 + D5 only to-dos assigned to Isaac, plus graphics/edit card checklists.
-- D7 David's monologue Scripture + graphics-instruction docs (his pre-production input).
-- Excludes: uploads, metadata, distribution, staff scheduling.
+- D3 only to-dos assigned to Isaac.
+- D4 scripts + David's graphics-instruction docs (his pre-production input).
+- D5 calendar: shoot dates.
+- Excludes: uploads, metadata, distribution.
 
 ### Interns (graphics + b-roll sourcing; no post-production editing)
-- D1 GSR cards in **Recorded** and **In Progress** only (graphics + b-roll stage). Excludes Editing / Rendering / Done.
-- D4 their assigned graphics/b-roll to-dos, plus unassigned graphics/b-roll tasks.
-- D7 David's graphics-instruction docs (so they know what to build).
-- Excludes: editing, rendering, uploads, distribution, staff schedule, metadata.
+- D1 GSR cards in **Recorded** and **In Progress** only. Excludes Editing / Rendering / Done.
+- D3 their assigned graphics/b-roll to-dos, plus unassigned graphics/b-roll tasks.
+- D4 David's graphics-instruction docs (read, so they know what to build).
+- Excludes: editing, rendering, uploads, distribution, calendar, metadata.
 
 ---
 
-## 4. Out of scope for the role dashboards
+## 4. Integration approach (recommended)
 
-- **Prayer Request - Donors and Staff** (Chat only, donor/ministry, not production).
+### A. Embed the data, not Basecamp's pages
+Basecamp blocks its own screens from being iframed (frame headers), and a frame
+would need a separate Basecamp login, so a true page-embed is not viable. Instead
+pull D1-D5 through the Basecamp API and render them with the dashboard's own
+components; edits write back through the API. Users never leave the dashboard and
+no "go to Basecamp" link is needed on the main flow. Keep a single "Open in
+Basecamp" escape hatch only for what the API cannot cover (attachments, comment
+threads), kept off the main flow.
+
+### B. One owner per fact (resolves the conflicting-databases risk)
+Never keep two editable copies of the same field. Recommended ownership:
+- **Basecamp card = system of record for production stage + tasks.** The episode
+  row stores the card's id, not a competing status column. (Recommended because
+  the team already uses the card table and it holds the history. Open decision: the
+  dashboard could own stage instead. Everything else follows from this choice.)
+- **Supabase = owner of dashboard-only data:** lower thirds, metadata, distribution.
+
+This makes the sync two-way at the *system* level but single-owner at the *field*
+level, so no field is ever written from both sides and the two episode databases
+stop competing.
+
+### C. Stage vocabulary mapping
+A single mapping table translates the GSR card columns
+(`Triage/Not now/Recorded/In Progress/Editing/Rendering/Done`) to the dashboard's
+episode status, so a move on either side reads correctly on the other.
+
+**Caveat:** Basecamp docs are rich text; keep two-way script editing to simple
+structured text to avoid formatting loss.
+
+---
+
+## 5. Out of scope for the role dashboards
+
+- **Prayer Request - Donors and Staff** (donor/ministry, Chat only).
 - **Aquarium** (not the show).
-- Raw Chat/Campfire streams (ephemeral; link out rather than sync).
+- Message boards, chats/Campfire, generic card table, activity feeds.
 
-These are listed so it is explicit they were considered and set aside, not
-missed. They can be linked for Daniel only if he ever wants them.
+Listed so it is explicit these were considered and set aside, not missed.
 
 ---
 
-## 5. Write-side guardrail (because sync is two-way)
+## 6. Write-side guardrail (because sync is two-way)
 
-Two-way means the dashboard can write back into Basecamp, which the whole team
-uses live. So every dashboard-to-Basecamp write is a live-team action and follows
-the same discipline as other production writes: confirm before writing, and the
-David rule (if a wrong write would land on David or the team to clean up,
-redesign so it cannot). Reads from Basecamp carry no such risk.
+Two-way means the dashboard can write back into a tool the whole team uses live.
+Every dashboard-to-Basecamp write follows confirm-before-write + the David rule
+(if a wrong write would land on David or the team to clean up, redesign so it
+cannot). Reads carry no such risk.

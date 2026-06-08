@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GSR Broadcast Control Surface</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(0.15 0.018 287);
+    --surface: oklch(0.19 0.022 287);
+    --surface-2: oklch(0.23 0.028 287);
+    --border: oklch(0.30 0.02 287);
+    --fg: oklch(0.95 0.008 287);
+    --muted: oklch(0.68 0.018 287);
+    --faint: oklch(0.48 0.02 287);
+    --violet: oklch(0.64 0.19 287);
+    --violet-soft: oklch(0.64 0.19 287 / .16);
+    --success: oklch(0.74 0.16 150);
+    --warn: oklch(0.80 0.15 85);
+    --danger: oklch(0.64 0.21 25);
+    --info: oklch(0.74 0.13 210);
+
+    /* tally palette, kept off the brand violet */
+    --tally-red: oklch(0.62 0.22 25);
+    --tally-amber: oklch(0.80 0.15 85);
+    --tally-green: oklch(0.74 0.16 150);
+    --tally-idle: oklch(0.42 0.012 287);
+
+    --sans: "Inter", system-ui, sans-serif;
+    --label: "Space Grotesk", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+
+    --r: 10px;
+    --r-sm: 7px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100vh;
+    padding: 18px;
+    background:
+      radial-gradient(1200px 600px at 80% -10%, oklch(0.64 0.19 287 / .07), transparent 60%),
+      radial-gradient(900px 500px at -5% 110%, oklch(0.64 0.19 287 / .05), transparent 60%),
+      var(--bg);
+  }
+
+  .console {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* ---------- header ---------- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 4px 2px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-mark {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: linear-gradient(160deg, var(--violet), oklch(0.52 0.18 287));
+    box-shadow: 0 0 0 1px oklch(0.64 0.19 287 / .4), 0 6px 18px oklch(0.64 0.19 287 / .25);
+    display: grid; place-items: center;
+    font-family: var(--label);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .5px;
+    color: oklch(0.16 0.02 287);
+  }
+  .brand-text h1 {
+    font-family: var(--label);
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: .3px;
+  }
+  .brand-text p {
+    font-size: 11px;
+    color: var(--faint);
+    letter-spacing: .4px;
+    text-transform: uppercase;
+    font-family: var(--label);
+  }
+
+  .topbar-right {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .clock {
+    text-align: right;
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+  }
+  .clock .time { font-size: 15px; font-weight: 600; letter-spacing: .5px; }
+  .clock .date { font-size: 10.5px; color: var(--faint); letter-spacing: .6px; text-transform: uppercase; }
+
+  /* ON AIR sign for whole console */
+  .onair-sign {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-family: var(--label);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: oklch(0.98 0.02 25);
+    background: linear-gradient(180deg, oklch(0.4 0.16 25 / .35), oklch(0.3 0.12 25 / .2));
+    border: 1px solid oklch(0.62 0.22 25 / .55);
+    box-shadow: 0 0 22px oklch(0.62 0.22 25 / .28), inset 0 0 12px oklch(0.62 0.22 25 / .15);
+    position: relative;
+  }
+  .onair-sign .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--tally-red);
+    box-shadow: 0 0 10px var(--tally-red);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+
+  /* section scaffolding */
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 16px;
+  }
+  .panel-head {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .panel-head h2 {
+    font-family: var(--label);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .panel-head .rail {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--violet-soft), transparent);
+  }
+  .panel-head .count {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--faint);
+  }
+
+  /* ---------- program bus ---------- */
+  .bus {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .source {
+    position: relative;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    padding: 13px 13px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    overflow: hidden;
+    transition: border-color .2s ease, transform .15s ease;
+  }
+  .source::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--tally-idle);
+    opacity: .7;
+  }
+  .source.tally-red::before { background: var(--tally-red); box-shadow: 0 0 18px var(--tally-red); }
+  .source.tally-amber::before { background: var(--tally-amber); box-shadow: 0 0 12px oklch(0.80 0.15 85 / .6); }
+  .source.tally-green::before { background: var(--tally-green); box-shadow: 0 0 12px oklch(0.74 0.16 150 / .5); }
+
+  .source.tally-red {
+    border-color: oklch(0.62 0.22 25 / .55);
+    box-shadow: 0 0 26px oklch(0.62 0.22 25 / .22), inset 0 0 40px oklch(0.62 0.22 25 / .07);
+    animation: airglow 2.6s ease-in-out infinite;
+  }
+  .source.tally-amber { border-color: oklch(0.80 0.15 85 / .4); }
+  .source.tally-green { border-color: oklch(0.74 0.16 150 / .35); }
+  .source.idle { opacity: .72; }
+
+  .source-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .umd {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+  .umd .ep {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--faint);
+    letter-spacing: .8px;
+  }
+  .umd .title {
+    font-family: var(--label);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .2px;
+    line-height: 1.15;
+    text-transform: uppercase;
+  }
+
+  .tally {
+    flex-shrink: 0;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    background: var(--tally-idle);
+    border: 1px solid oklch(0.5 0.02 287 / .5);
+  }
+  .tally.red { background: var(--tally-red); box-shadow: 0 0 12px var(--tally-red); border-color: var(--tally-red); animation: pulse 2.4s ease-in-out infinite; }
+  .tally.amber { background: var(--tally-amber); box-shadow: 0 0 9px oklch(0.80 0.15 85 / .7); border-color: var(--tally-amber); }
+  .tally.green { background: var(--tally-green); box-shadow: 0 0 9px oklch(0.74 0.16 150 / .6); border-color: var(--tally-green); }
+
+  .source-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .stage-tag {
+    font-family: var(--label);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 3px 7px;
+    border-radius: 5px;
+    background: oklch(0.30 0.02 287 / .5);
+    border: 1px solid var(--border);
+  }
+  .status-line {
+    font-size: 11px;
+    color: var(--muted);
+    line-height: 1.35;
+    min-height: 15px;
+  }
+  .status-line.air { color: oklch(0.86 0.12 25); font-weight: 500; }
+  .status-line.atrisk { color: var(--warn); font-weight: 500; }
+  .status-line.needs { color: var(--warn); font-weight: 500; }
+
+  .meter {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--faint);
+  }
+  .meter .bar {
+    flex: 1;
+    height: 4px;
+    border-radius: 3px;
+    background: oklch(0.30 0.02 287 / .6);
+    overflow: hidden;
+  }
+  .meter .bar span {
+    display: block;
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--violet), oklch(0.7 0.16 287));
+  }
+
+  /* TAKE control */
+  .take {
+    margin-top: 2px;
+    width: 100%;
+    font-family: var(--label);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fg);
+    background: linear-gradient(180deg, var(--violet-soft), oklch(0.30 0.02 287 / .4));
+    border: 1px solid oklch(0.64 0.19 287 / .45);
+    border-radius: 7px;
+    padding: 10px;
+    min-height: 44px;
+    cursor: pointer;
+    transition: background .15s ease, transform .08s ease, border-color .15s ease;
+  }
+  .take:hover { background: linear-gradient(180deg, oklch(0.64 0.19 287 / .28), oklch(0.30 0.02 287 / .5)); border-color: var(--violet); }
+  .take:active { transform: translateY(1px); }
+  .take:focus-visible { outline: 2px solid var(--violet); outline-offset: 2px; }
+  .take[disabled] { opacity: .4; cursor: not-allowed; }
+
+  .take.confirm {
+    background: linear-gradient(180deg, oklch(0.62 0.22 25 / .3), oklch(0.30 0.02 287 / .5));
+    border-color: oklch(0.62 0.22 25 / .6);
+    color: oklch(0.92 0.08 25);
+    animation: nudge .25s ease;
+  }
+
+  /* ---------- signal flow lane ---------- */
+  .flow {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+  .stage-col {
+    background: oklch(0.17 0.02 287 / .5);
+    border: 1px solid var(--border);
+    border-radius: var(--r-sm);
+    padding: 10px 9px;
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .stage-col .col-label {
+    font-family: var(--label);
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: var(--faint);
+    text-align: center;
+    padding-bottom: 7px;
+    border-bottom: 1px solid var(--border);
+  }
+  .flow-chip {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--violet);
+    border-radius: 6px;
+    padding: 8px 9px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .flow-chip .fc-ep { font-family: var(--mono); font-size: 9px; color: var(--faint); letter-spacing: .6px; }
+  .flow-chip .fc-title { font-family: var(--label); font-size: 11px; font-weight: 600; letter-spacing: .2px; }
+  .flow-chip.red { border-left-color: var(--tally-red); }
+  .flow-chip.amber { border-left-color: var(--tally-amber); }
+  .flow-chip.green { border-left-color: var(--tally-green); }
+  .flow-chip.idle { border-left-color: var(--tally-idle); opacity: .7; }
+  .flow-chip.trailing {
+    border-left-color: var(--tally-amber);
+    box-shadow: -8px 0 18px oklch(0.80 0.15 85 / .14);
+    transform: translateY(6px);
+  }
+  .flow-chip .fc-note {
+    font-size: 9.5px;
+    color: var(--warn);
+    letter-spacing: .2px;
+  }
+
+  /* ---------- needs you ---------- */
+  .needs-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .need-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 13px;
+    background: oklch(0.80 0.15 85 / .08);
+    border: 1px solid oklch(0.80 0.15 85 / .28);
+    border-radius: 8px;
+  }
+  .need-item .need-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--tally-amber);
+    box-shadow: 0 0 8px var(--tally-amber);
+    flex-shrink: 0;
+  }
+  .need-item .need-text { flex: 1; font-size: 12.5px; }
+  .need-item .need-text b { font-family: var(--label); font-weight: 600; letter-spacing: .2px; }
+  .need-item .need-ep { font-family: var(--mono); font-size: 10px; color: var(--faint); }
+  .need-item .need-go {
+    font-family: var(--label);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--warn);
+    background: transparent;
+    border: 1px solid oklch(0.80 0.15 85 / .4);
+    border-radius: 6px;
+    padding: 7px 12px;
+    min-height: 36px;
+    cursor: pointer;
+    transition: background .15s ease;
+  }
+  .need-item .need-go:hover { background: oklch(0.80 0.15 85 / .14); }
+  .need-empty {
+    text-align: center;
+    padding: 20px;
+    color: var(--faint);
+    font-size: 12px;
+    letter-spacing: .3px;
+  }
+
+  /* ---------- transport bar ---------- */
+  .transport {
+    position: relative;
+  }
+  .transport-track {
+    position: relative;
+    height: 56px;
+    border-radius: 9px;
+    background: oklch(0.17 0.02 287 / .7);
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+  .transport-fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    border-radius: 9px 0 0 9px;
+    background: linear-gradient(90deg, var(--violet-soft), oklch(0.80 0.15 85 / .22) 78%, oklch(0.62 0.22 25 / .28));
+  }
+  .cue {
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 2px;
+    background: var(--faint);
+  }
+  .cue .cue-label {
+    position: absolute;
+    top: -1px;
+    left: 6px;
+    font-family: var(--label);
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+  .cue .cue-sub {
+    position: absolute;
+    bottom: 4px;
+    left: 6px;
+    font-family: var(--mono);
+    font-size: 9px;
+    color: var(--faint);
+    white-space: nowrap;
+  }
+  .cue.warn { background: var(--tally-amber); }
+  .cue.warn .cue-label { color: var(--warn); }
+  .cue.air { background: var(--tally-red); }
+  .cue.air .cue-label { color: oklch(0.86 0.12 25); }
+
+  .playhead {
+    position: absolute;
+    top: -6px; bottom: -6px;
+    width: 3px;
+    background: var(--violet);
+    box-shadow: 0 0 14px var(--violet);
+    border-radius: 2px;
+  }
+  .playhead::before {
+    content: "TODAY";
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--label);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+    color: var(--violet);
+    white-space: nowrap;
+  }
+  .playhead::after {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    width: 7px; height: 7px;
+    background: var(--violet);
+  }
+  .transport-legend {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--faint);
+  }
+
+  /* mobile transport rail (hidden on desktop) */
+  .transport-rail { display: none; }
+
+  /* layout grid for lower panels */
+  .lower-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 16px;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .35; }
+  }
+  @keyframes airglow {
+    0%, 100% { box-shadow: 0 0 26px oklch(0.62 0.22 25 / .22), inset 0 0 40px oklch(0.62 0.22 25 / .07); }
+    50% { box-shadow: 0 0 38px oklch(0.62 0.22 25 / .35), inset 0 0 52px oklch(0.62 0.22 25 / .12); }
+  }
+  @keyframes nudge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tally.red, .onair-sign .dot, .source.tally-red { animation: none !important; }
+  }
+
+  /* ---------- mobile ---------- */
+  @media (max-width: 860px) {
+    body { padding: 12px; }
+    .lower-grid { grid-template-columns: 1fr; }
+
+    .bus { grid-template-columns: 1fr; gap: 10px; }
+    .source {
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px 12px;
+    }
+    .source-top { flex: 1 1 100%; }
+    .source-meta { flex: 1 1 100%; }
+    .meter { flex: 1 1 100%; }
+    .take { flex: 1 1 100%; }
+
+    /* RED on-air pinned to top */
+    .bus { display: flex; flex-direction: column; }
+    .source.tally-red { order: -1; }
+
+    .flow {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .stage-col { min-height: auto; flex-direction: row; align-items: center; flex-wrap: wrap; }
+    .stage-col .col-label {
+      border-bottom: none;
+      border-right: 1px solid var(--border);
+      padding: 0 10px 0 2px;
+      flex: 0 0 92px;
+      text-align: left;
+    }
+    .flow-chip.trailing { transform: none; }
+
+    /* transport becomes slim vertical rail */
+    .transport-track, .transport-legend { display: none; }
+    .transport-rail {
+      display: flex;
+      gap: 14px;
+      align-items: stretch;
+    }
+    .rail-line {
+      position: relative;
+      width: 4px;
+      border-radius: 3px;
+      background: linear-gradient(180deg, var(--violet-soft), oklch(0.80 0.15 85 / .25) 75%, oklch(0.62 0.22 25 / .3));
+      flex-shrink: 0;
+      margin: 8px 2px;
+    }
+    .rail-head {
+      position: absolute;
+      left: -4px; right: -4px;
+      height: 3px;
+      background: var(--violet);
+      box-shadow: 0 0 12px var(--violet);
+      border-radius: 2px;
+    }
+    .rail-cues {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      flex: 1;
+      padding: 4px 0;
+    }
+    .rail-cue { display: flex; flex-direction: column; gap: 2px; }
+    .rail-cue .rc-label { font-family: var(--label); font-size: 10px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+    .rail-cue.warn .rc-label { color: var(--warn); }
+    .rail-cue.air .rc-label { color: oklch(0.86 0.12 25); }
+    .rail-cue .rc-sub { font-family: var(--mono); font-size: 10px; color: var(--faint); }
+
+    .topbar-right { gap: 9px; }
+    .clock .time { font-size: 13px; }
+    .onair-sign { padding: 7px 10px; font-size: 10px; letter-spacing: 1.4px; }
+  }
+</style>
+</head>
+<body>
+  <div class="console">
+
+    <!-- header -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">GSR</div>
+        <div class="brand-text">
+          <h1>Broadcast Control Surface</h1>
+          <p>Genesis Science Report &middot; June Batch</p>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="onair-sign"><span class="dot"></span>ON AIR</div>
+        <div class="clock">
+          <div class="time">14:32</div>
+          <div class="date">Mon Jun 8 2026</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- program bus -->
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Program Bus</h2>
+        <div class="rail"></div>
+        <div class="count">5 sources</div>
+      </div>
+      <div class="bus" id="bus"></div>
+    </section>
+
+    <!-- signal flow lane -->
+    <section class="panel">
+      <div class="panel-head">
+        <h2>Signal Flow</h2>
+        <div class="rail"></div>
+        <div class="count">planned &rarr; aired</div>
+      </div>
+      <div class="flow" id="flow"></div>
+    </section>
+
+    <!-- lower grid: needs you + transport -->
+    <div class="lower-grid">
+      <section class="panel">
+        <div class="panel-head">
+          <h2>The Month</h2>
+          <div class="rail"></div>
+          <div class="count">next cue: youtube mon</div>
+        </div>
+        <div class="transport">
+          <div class="transport-track" id="track"></div>
+          <div class="transport-legend">
+            <span>Jun 1</span>
+            <span>Jun 30</span>
+          </div>
+          <!-- mobile vertical rail -->
+          <div class="transport-rail" id="rail"></div>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Needs You</h2>
+          <div class="rail"></div>
+          <div class="count" id="needsCount"></div>
+        </div>
+        <div class="needs-strip" id="needs"></div>
+      </section>
+    </div>
+
+  </div>
+
+<script>
+  "use strict";
+
+  // ---- mock data (today = Mon Jun 8 2026) ----
+  var STAGES = ["planned", "in_prep", "shot", "in_post", "scheduled", "aired"];
+  var STAGE_LABELS = {
+    planned: "Planned",
+    in_prep: "In Prep",
+    shot: "Shot",
+    in_post: "In Post",
+    scheduled: "Scheduled",
+    aired: "Aired"
+  };
+
+  var shows = [
+    {
+      id: "ep312", ep: "EP-312", title: "UAP Disclosure",
+      stage: "scheduled", tally: "red",
+      status: "On air now. YouTube 4pm, TV Tue.", statusClass: "air",
+      meterLabel: "Distribution", meterVal: 1, meterMax: 8,
+      take: "Final Take"
+    },
+    {
+      id: "ep313", ep: "EP-313", title: "Soft Tissue in Fossils",
+      stage: "in_prep", tally: "amber", trailing: true,
+      status: "At risk. Behind for shoot Thu.", statusClass: "atrisk",
+      meterLabel: "Graphics", meterVal: 5, meterMax: 30,
+      take: "Take to Shot"
+    },
+    {
+      id: "ep314", ep: "EP-314", title: "Geosmin and the Rain",
+      stage: "in_post", tally: "amber",
+      status: "Needs you. Approve lower thirds, confirm rundown.", statusClass: "needs",
+      meterLabel: "Graphics", meterVal: 22, meterMax: 30,
+      take: "Take to Scheduled"
+    },
+    {
+      id: "ep315", ep: "EP-315", title: "Ice Age Models",
+      stage: "in_prep", tally: "idle", idle: true,
+      status: "Waiting on Jeremiah for b-roll.", statusClass: "",
+      meterLabel: "Graphics", meterVal: 0, meterMax: 30,
+      take: "Take to Shot"
+    },
+    {
+      id: "ep316", ep: "EP-316", title: "Guest TBC",
+      stage: "planned", tally: "idle", idle: true,
+      status: "Guest unconfirmed.", statusClass: "",
+      meterLabel: null,
+      take: "Take to Prep"
+    }
+  ];
+
+  var needs = [
+    { ep: "EP-314", text: "Approve lower thirds", action: "Review" },
+    { ep: "EP-314", text: "Confirm rundown", action: "Confirm" },
+    { ep: "EP-312", text: "Final take for YouTube", action: "Take" }
+  ];
+
+  // transport cue points across the month (% positions Jun 1..30)
+  var cues = [
+    { label: "Shoot Thu", sub: "Jun 11", cls: "warn", pos: 33 },
+    { label: "YouTube Mon", sub: "Jun 8 4pm", cls: "air", pos: 23 },
+    { label: "TV Tue", sub: "Jun 9", cls: "", pos: 27 }
+  ];
+  var todayPos = 23; // Jun 8 within Jun 1..30
+
+  // ---- render program bus ----
+  function tallyClass(t) {
+    if (t === "red") return "tally-red";
+    if (t === "amber") return "tally-amber";
+    if (t === "green") return "tally-green";
+    return "idle";
+  }
+
+  function el(tag, cls, html) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+
+  function renderBus() {
+    var bus = document.getElementById("bus");
+    bus.innerHTML = "";
+    shows.forEach(function (s) {
+      var card = el("div", "source " + tallyClass(s.tally) + (s.idle ? " idle" : ""));
+
+      var top = el("div", "source-top");
+      var umd = el("div", "umd");
+      umd.appendChild(el("span", "ep", s.ep));
+      umd.appendChild(el("span", "title", s.title));
+      top.appendChild(umd);
+      top.appendChild(el("span", "tally " + (s.tally === "idle" ? "" : s.tally)));
+      card.appendChild(top);
+
+      var meta = el("div", "source-meta");
+      meta.appendChild(el("span", "stage-tag", STAGE_LABELS[s.stage]));
+      card.appendChild(meta);
+
+      card.appendChild(el("div", "status-line " + (s.statusClass || ""), s.status));
+
+      if (s.meterLabel) {
+        var meter = el("div", "meter");
+        meter.appendChild(el("span", null, s.meterLabel));
+        var bar = el("div", "bar");
+        var fill = el("span");
+        fill.style.width = Math.round((s.meterVal / s.meterMax) * 100) + "%";
+        bar.appendChild(fill);
+        meter.appendChild(bar);
+        meter.appendChild(el("span", null, s.meterVal + "/" + s.meterMax));
+        card.appendChild(meter);
+      }
+
+      var btn = el("button", "take");
+      btn.type = "button";
+      btn.textContent = s.take;
+      btn.setAttribute("aria-label", "Take " + s.title + " to next stage");
+      wireTake(btn, s);
+      card.appendChild(btn);
+
+      bus.appendChild(card);
+    });
+  }
+
+  // inline confirm on TAKE
+  function wireTake(btn, show) {
+    var armed = false;
+    var resetTimer = null;
+    btn.addEventListener("click", function () {
+      if (!armed) {
+        armed = true;
+        btn.classList.add("confirm");
+        var original = show.take;
+        btn.textContent = "Confirm →";
+        resetTimer = setTimeout(function () {
+          armed = false;
+          btn.classList.remove("confirm");
+          btn.textContent = original;
+        }, 3500);
+        return;
+      }
+      // confirmed: advance one stage (prototype only, local state)
+      clearTimeout(resetTimer);
+      armed = false;
+      btn.classList.remove("confirm");
+      var idx = STAGES.indexOf(show.stage);
+      if (idx < STAGES.length - 1) {
+        show.stage = STAGES[idx + 1];
+        show.status = "Advanced to " + STAGE_LABELS[show.stage] + ".";
+        show.statusClass = "";
+      }
+      renderBus();
+      renderFlow();
+    });
+  }
+
+  // ---- render signal flow lane ----
+  function renderFlow() {
+    var flow = document.getElementById("flow");
+    flow.innerHTML = "";
+    STAGES.forEach(function (stage) {
+      var col = el("div", "stage-col");
+      col.appendChild(el("div", "col-label", STAGE_LABELS[stage]));
+      shows.filter(function (s) { return s.stage === stage; }).forEach(function (s) {
+        var chipCls = "flow-chip " + (s.tally === "idle" ? "idle" : s.tally) + (s.trailing ? " trailing" : "");
+        var chip = el("div", chipCls);
+        chip.appendChild(el("div", "fc-ep", s.ep));
+        chip.appendChild(el("div", "fc-title", s.title));
+        if (s.trailing) chip.appendChild(el("div", "fc-note", "trailing"));
+        col.appendChild(chip);
+      });
+      flow.appendChild(col);
+    });
+  }
+
+  // ---- render needs you ----
+  function renderNeeds() {
+    var wrap = document.getElementById("needs");
+    var count = document.getElementById("needsCount");
+    wrap.innerHTML = "";
+    if (needs.length === 0) {
+      count.textContent = "all clear";
+      wrap.appendChild(el("div", "need-empty", "Nothing waiting on you. Console at rest."));
+      return;
+    }
+    count.textContent = needs.length + " waiting";
+    needs.forEach(function (n) {
+      var item = el("div", "need-item");
+      item.appendChild(el("span", "need-dot"));
+      var txt = el("div", "need-text");
+      txt.appendChild(el("b", null, n.text));
+      txt.appendChild(el("span", "need-ep", "  " + n.ep));
+      item.appendChild(txt);
+      var go = el("button", "need-go");
+      go.type = "button";
+      go.textContent = n.action;
+      item.appendChild(go);
+      wrap.appendChild(item);
+    });
+  }
+
+  // ---- render transport ----
+  function renderTransport() {
+    var track = document.getElementById("track");
+    track.innerHTML = "";
+
+    var fill = el("div", "transport-fill");
+    fill.style.width = todayPos + "%";
+    track.appendChild(fill);
+
+    cues.forEach(function (c) {
+      var cue = el("div", "cue " + c.cls);
+      cue.style.left = c.pos + "%";
+      cue.appendChild(el("div", "cue-label", c.label));
+      cue.appendChild(el("div", "cue-sub", c.sub));
+      track.appendChild(cue);
+    });
+
+    var head = el("div", "playhead");
+    head.style.left = todayPos + "%";
+    track.appendChild(head);
+
+    // mobile vertical rail
+    var rail = document.getElementById("rail");
+    rail.innerHTML = "";
+    var line = el("div", "rail-line");
+    var rhead = el("div", "rail-head");
+    rhead.style.top = todayPos + "%";
+    line.appendChild(rhead);
+    rail.appendChild(line);
+
+    var cuesWrap = el("div", "rail-cues");
+    // order soonest first for the rail
+    cues.slice().sort(function (a, b) { return a.pos - b.pos; }).forEach(function (c) {
+      var rc = el("div", "rail-cue " + c.cls);
+      rc.appendChild(el("div", "rc-label", c.label));
+      rc.appendChild(el("div", "rc-sub", c.sub));
+      cuesWrap.appendChild(rc);
+    });
+    rail.appendChild(cuesWrap);
+  }
+
+  // ---- live clock (cosmetic) ----
+  function tickClock() {
+    var elc = document.querySelector(".clock .time");
+    if (!elc) return;
+    var d = new Date();
+    var hh = String(d.getHours()).padStart(2, "0");
+    var mm = String(d.getMinutes()).padStart(2, "0");
+    elc.textContent = hh + ":" + mm;
+  }
+
+  renderBus();
+  renderFlow();
+  renderNeeds();
+  renderTransport();
+  tickClock();
+  setInterval(tickClock, 30000);
+</script>
+</body>
+</html>

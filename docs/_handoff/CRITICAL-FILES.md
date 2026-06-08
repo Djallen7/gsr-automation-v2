@@ -106,6 +106,7 @@ The coverage audit skips these deliberately-disposable files:
 <!-- audit:ignore -->
 - `docs/_handoff/*-preview.html` — derived HTML previews of the handoff docs.
 - `*/.gitkeep` — empty directory placeholders.
+- `docs/2026-06-08-basecamp-env-diagnosis.md` — point-in-time Basecamp credential fix verification record; not carry-forward canon.
 <!-- audit:end -->
 
 ---

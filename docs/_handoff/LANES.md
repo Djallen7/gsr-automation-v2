@@ -28,7 +28,7 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-08 00:00:00 UTC (20 hours ago)._
+_Last updated 2026-06-08 19:59:05 UTC (just now)._
 
 ---
 
@@ -42,6 +42,8 @@ _Last updated 2026-06-08 00:00:00 UTC (20 hours ago)._
 - Render screenshots for review.
 **Blocked on:** Daniel's pick.
 **Files:** `docs/ui-mocks/preview-1..7-*.html`, `docs/_handoff/2026-06-07-gsr-ui-strategy.md`, `docs/_handoff/2026-06-07-gsr-ui-bakeoff-research.html`
+**Recent activity:**
+- 2026-06-08 - course: expand m0 to Orientation + GitHub, add m13 Finish-the-Build handoff
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 1), the 7 previews in docs/ui-mocks/, and 2026-06-07-gsr-ui-bakeoff-research.html. Daniel's chosen direction is: [FILL IN]. Build that direction into the real dashboard screens (Today queue, Schedule matrix, episode drill, graphics page), render desktop + mobile screenshots, and report. Do not pick the direction yourself.`
 
 ## Lane 2 - Course modules
@@ -54,6 +56,9 @@ _Last updated 2026-06-08 00:00:00 UTC (20 hours ago)._
 - Final polish + adaptive-gating review.
 **Blocked on:** Lane 1 (for the embedded UI screenshots).
 **Files:** `docs/_handoff/gsr-automation-v2-course.html`, `docs/_handoff/2026-06-08-gsr-course-overview.html`
+**Recent activity:**
+- 2026-06-08 - Fix course: premade_library is an existing table, not a missing enum
+- 2026-06-08 - Course fact-corrections + record role scopes and deferred per-role login
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 2), the course file docs/_handoff/gsr-automation-v2-course.html (the M array + engine), and the course overview. Build the UI Customization module matching the existing module schema, validate the JS with node --check, commit. Do not break the course.`
 
 ## Lane 3 - Episode & segment data
@@ -68,6 +73,8 @@ _Last updated 2026-06-08 00:00:00 UTC (20 hours ago)._
 - A per-episode chyron-affiliation field (see Lane 8).
 **Blocked on:** Basecamp (shoot dates) for the deferred ones.
 **Files:** `docs/_handoff/2026-06-08-s3-ep1-16-dataset.md`
+**Recent activity:**
+- 2026-06-08 - canon: topic-relevant guest affiliation/chyron + one-tap confirmation rules
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 3) and 2026-06-08-s3-ep1-16-dataset.md. Using the Supabase MCP (project lafkbxypmciopebentxp), fill any newly-available episode data (read-only verify first, then idempotent writes scoped to the episodes), and update the deferred shoot dates once Basecamp dates exist. Verify by read-back.`
 
 ## Lane 4 - Rundown Creator sync
@@ -100,6 +107,8 @@ _Last updated 2026-06-08 00:00:00 UTC (20 hours ago)._
 **To finish:**
 - After this branch deploys to main, a cleanup migration to DROP the old youtube_scheduled_publish_at column.
 **Blocked on:** The branch reaching main (Lane 7).
+**Recent activity:**
+- 2026-06-08 - Rename publish-date column to webstream via expand-contract; reframe generic publish docs
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 6). Only after the webstream code is live on main: write and apply an idempotent migration dropping episodes.youtube_scheduled_publish_at, regenerate types, verify.`
 
 ## Lane 7 - Ship the branch (PR to main)

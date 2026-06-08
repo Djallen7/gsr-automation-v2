@@ -1,6 +1,6 @@
 {
   "project": "GSR Automation",
-  "updated_at": "2026-06-08T00:00:00.000Z",
+  "updated_at": "2026-06-08T19:59:05.250Z",
   "lanes": [
     {
       "id": 1,
@@ -22,7 +22,13 @@
         "docs/_handoff/2026-06-07-gsr-ui-bakeoff-research.html"
       ],
       "resume_prompt": "Read docs/_handoff/LANES.md (Lane 1), the 7 previews in docs/ui-mocks/, and 2026-06-07-gsr-ui-bakeoff-research.html. Daniel's chosen direction is: [FILL IN]. Build that direction into the real dashboard screens (Today queue, Schedule matrix, episode drill, graphics page), render desktop + mobile screenshots, and report. Do not pick the direction yourself.",
-      "recent_activity": []
+      "recent_activity": [
+        {
+          "date": "2026-06-08",
+          "sha": "ea305b9",
+          "text": "course: expand m0 to Orientation + GitHub, add m13 Finish-the-Build handoff"
+        }
+      ]
     },
     {
       "id": 2,
@@ -45,7 +51,18 @@
         "docs/_handoff/2026-06-08-gsr-course-overview.html"
       ],
       "resume_prompt": "Read docs/_handoff/LANES.md (Lane 2), the course file docs/_handoff/gsr-automation-v2-course.html (the M array + engine), and the course overview. Build the UI Customization module matching the existing module schema, validate the JS with node --check, commit. Do not break the course.",
-      "recent_activity": []
+      "recent_activity": [
+        {
+          "date": "2026-06-08",
+          "sha": "a4df4e7",
+          "text": "Fix course: premade_library is an existing table, not a missing enum"
+        },
+        {
+          "date": "2026-06-08",
+          "sha": "f1bb33b",
+          "text": "Course fact-corrections + record role scopes and deferred per-role login"
+        }
+      ]
     },
     {
       "id": 3,
@@ -68,7 +85,13 @@
         "docs/_handoff/2026-06-08-s3-ep1-16-dataset.md"
       ],
       "resume_prompt": "Read docs/_handoff/LANES.md (Lane 3) and 2026-06-08-s3-ep1-16-dataset.md. Using the Supabase MCP (project lafkbxypmciopebentxp), fill any newly-available episode data (read-only verify first, then idempotent writes scoped to the episodes), and update the deferred shoot dates once Basecamp dates exist. Verify by read-back.",
-      "recent_activity": []
+      "recent_activity": [
+        {
+          "date": "2026-06-08",
+          "sha": "ae6de7a",
+          "text": "canon: topic-relevant guest affiliation/chyron + one-tap confirmation rules"
+        }
+      ]
     },
     {
       "id": 4,
@@ -126,7 +149,13 @@
       "blocked_on": "The branch reaching main (Lane 7).",
       "files": [],
       "resume_prompt": "Read docs/_handoff/LANES.md (Lane 6). Only after the webstream code is live on main: write and apply an idempotent migration dropping episodes.youtube_scheduled_publish_at, regenerate types, verify.",
-      "recent_activity": []
+      "recent_activity": [
+        {
+          "date": "2026-06-08",
+          "sha": "f294ecf",
+          "text": "Rename publish-date column to webstream via expand-contract; reframe generic publish docs"
+        }
+      ]
     },
     {
       "id": 7,
@@ -194,5 +223,27 @@
     "Repo consolidation: blueprint retired, everything in gsr-automation-v2 (2026-06-08).",
     "Course-freshness CI gate + conflict-purge batch 3 + role scopes: merged to main (PR #43).",
     "Session changelog written: docs/_handoff/2026-06-08-session-changelog.md."
+  ],
+  "general": [
+    {
+      "date": "2026-06-08",
+      "sha": "9929298",
+      "text": "Add Command Center: data-driven lanes dashboard + nightly updater"
+    },
+    {
+      "date": "2026-06-08",
+      "sha": "575a33c",
+      "text": "Add /resume-lane and /lanes slash commands (pick + auto-load lane context)"
+    },
+    {
+      "date": "2026-06-08",
+      "sha": "7425645",
+      "text": "Add LANES.md living work-lane tracker + point session orientation at it"
+    },
+    {
+      "date": "2026-06-08",
+      "sha": "4b9ede2",
+      "text": "docs: consolidate gsr-blueprint into v2 (single source of truth)"
+    }
   ]
 }

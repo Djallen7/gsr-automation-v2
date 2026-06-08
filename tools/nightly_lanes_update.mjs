@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // nightly_lanes_update.mjs
-// Nightly job: tags the last ~24h of commits on the current branch to lanes by
+// Nightly job: tags commits since the last run on the current branch to lanes by
 // keyword, APPENDS them as dated entries to each matched lane's recent_activity
 // in lanes.json (it records what happened; it does NOT auto-mark to_finish items
 // done), bumps updated_at, regenerates lanes.html + LANES.md via build_lanes.mjs,
@@ -60,8 +60,12 @@ function isoDate(d = new Date()) {
 }
 
 function main() {
+  // Look back to the last nightly run (cadence-agnostic: correct whether this runs
+  // nightly or every 7 days). Falls back to 8 days if there is no prior nightly.
+  // Duplicate shas are skipped below, so an overlapping window is harmless.
+  const lastNightly = tryGit(["log", "-1", "--grep=nightly: lanes activity update", "--pretty=format:%cI"]);
+  const since = (lastNightly.ok && lastNightly.out.trim()) ? lastNightly.out.trim() : "8 days ago";
   // Read recent commits. Format: <shortsha>\x1f<subject>
-  const since = "24 hours ago";
   const res = tryGit(["log", `--since=${since}`, "--no-merges", "--pretty=format:%h%x1f%s"]);
   if (!res.ok) {
     console.error("git log failed:", res.out);
@@ -133,7 +137,8 @@ function main() {
   // Regenerate html + md.
   execFileSync(process.execPath, [BUILD_SCRIPT], { cwd: ROOT, stdio: "inherit" });
 
-  // Commit and push. Rebase first to stay current with the remote branch.
+  // Stage and COMMIT first, then rebase onto the remote, then push. Committing
+  // before the rebase avoids the "index contains uncommitted changes" failure.
   git(["add", "-A"]);
   const status = git(["status", "--porcelain"]);
   if (!status) {
@@ -141,18 +146,25 @@ function main() {
     return;
   }
 
-  const pull = tryGit(["pull", "--rebase"]);
-  if (!pull.ok) console.warn("git pull --rebase warning:", pull.out);
-
   const msg = `nightly: lanes activity update ${today}`;
   const commit = tryGit(["commit", "-m", msg]);
   if (!commit.ok) {
-    console.warn("git commit said:", commit.out);
-  } else {
-    console.log(commit.out);
+    console.error("git commit failed:", commit.out);
+    process.exit(1);
   }
+  console.log(commit.out);
 
-  const push = tryGit(["push"]);
+  // Integrate any commits another session pushed, then push. Retry once.
+  const pull = tryGit(["pull", "--rebase"]);
+  if (!pull.ok) {
+    console.warn("git pull --rebase warning:", pull.out);
+    tryGit(["rebase", "--abort"]); // keep our local commit intact if it conflicted
+  }
+  let push = tryGit(["push"]);
+  if (!push.ok) {
+    tryGit(["pull", "--rebase"]);
+    push = tryGit(["push"]);
+  }
   if (!push.ok) {
     console.error("git push failed:", push.out);
     process.exit(1);

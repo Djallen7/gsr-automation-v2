@@ -4,9 +4,12 @@
 dashboards (see `docs/AUTOMATION_ROADMAP.md`).
 
 **Daniel's directive (2026-06-08):** keep Basecamp. The team already lives in it,
-so it stays a first-class, reliable source. The dashboard integrates the existing
-Basecamp system via **two-way sync**, but only the parts you would otherwise have
-to open the Basecamp app to edit. Sync should be lean, not a mirror of everything.
+so it stays a first-class, reliable source. **Every element we import syncs**
+(stays current from Basecamp). **Two-way editing** (the dashboard writes back to
+Basecamp) is enabled ONLY for items meant to be checked off / marked complete:
+post-production episode status, to-dos, and card checklist items. Everything else
+is read-only. The specific element list is under review in
+`docs/2026-06-08-basecamp-import-review-sheet.md`.
 
 **Scope of this doc:** lists only *what* Basecamp information feeds *which* role
 dashboard, and which direction it syncs. It deliberately does NOT say where on a
@@ -33,21 +36,25 @@ Number: `Triage -> Not now -> In Queue -> Currently Editing -> Awaiting Approval
 
 ---
 
-## 2. Data elements to integrate (narrowed, Daniel 2026-06-08)
+## 2. Data elements to integrate (Daniel 2026-06-08)
 
-Only data that would otherwise require leaving the dashboard to edit in Basecamp.
+All imported elements sync. Edit mode follows the rule: two-way only for
+check-off / complete items, everything else read-only. Pending Daniel's review
+sheet (`docs/2026-06-08-basecamp-import-review-sheet.md`).
 
-| # | Data element | Source in Basecamp | Sync |
+| # | Data element | Source in Basecamp | Edit mode |
 |---|---|---|---|
-| D1 | GSR pipeline cards (stage/column, title, assignee, due, checklist) | 02_ Production -> "Genesis Science Report" | two-way |
-| D2 | WWN pipeline cards | 02_ Production -> "WWN" | two-way |
-| D3 | To-dos you would otherwise edit/check off in Basecamp (task, assignee, due, done) | 02_ Production + 01_DRM Staff -> To-dos | two-way |
-| D4 | Scripts + monologue docs (incl. David's graphics instructions) | 02_ Production -> Docs & Files | two-way edit |
-| D5 | Calendar / schedule entries (shoot dates, air dates) | 01_DRM Staff -> Schedule | two-way edit |
+| D1 | GSR episode production status (card stage/column) | 02_ Production -> "Genesis Science Report" | two-way (check-off) |
+| D2 | WWN production status (card stage/column) | 02_ Production -> "WWN" | two-way (check-off) |
+| D3 | To-dos (task, assignee, due, done state) | 02_ Production + 01_DRM Staff -> To-dos | two-way (check-off) |
+| D4 | Card checklist steps | GSR / WWN cards | two-way (check-off) |
+| D5 | Card details (title, assignee, due date, notes) | GSR / WWN cards | read-only |
+| D6 | Scripts + monologue docs (incl. David's graphics instructions) | 02_ Production -> Docs & Files | read-only *(Daniel earlier asked two-way; confirm)* |
+| D7 | Calendar / schedule entries (shoot dates, air dates) | 01_DRM Staff -> Schedule | read-only *(Daniel earlier asked two-way; confirm)* |
 
 **Explicitly dropped (Daniel 2026-06-08):** message boards, chats/Campfire, the
 generic "Card Table", activity/headline feeds, and any other non-essential
-content. Not synced, not shown.
+content. Not imported.
 
 ---
 
@@ -58,31 +65,32 @@ Principle: one shared pipeline, each role gets only their stretch of it, plus on
 the to-dos with their name on them.
 
 ### Daniel (owner / producer) - sees everything
-- D1 GSR cards, all columns.
-- D2 WWN cards, all columns.
-- D3 all to-dos, grouped by assignee.
-- D4 scripts + monologue docs.
-- D5 full calendar (shoot + air).
+- GSR + WWN production status, all columns.
+- Card details + checklist steps.
+- All to-dos, grouped by assignee.
+- Scripts + monologue docs.
+- Full calendar (shoot + air).
 
 ### Myriam (metadata, thumbnails, uploads, mark-aired)
-- D1 GSR cards in **Rendering** and **Done** only (ready for metadata + upload).
-- D2 WWN cards in **Awaiting Approval** and **Done**.
-- D3 only to-dos assigned to Myriam.
-- D5 calendar: publish/air dates.
+- GSR status in **Rendering** and **Done** only (ready for metadata + upload).
+- WWN status in **Awaiting Approval** and **Done**.
+- Only to-dos assigned to Myriam.
+- Calendar: publish/air dates.
 - Excludes: graphics build, editing internals, earlier pipeline.
 
 ### Isaac (graphics + edit lead)
-- D1 GSR cards in **Recorded, In Progress, Editing, Rendering**.
-- D2 WWN cards in **In Queue, Currently Editing, Awaiting Approval**.
-- D3 only to-dos assigned to Isaac.
-- D4 scripts + David's graphics-instruction docs (his pre-production input).
-- D5 calendar: shoot dates.
+- GSR status in **Recorded, In Progress, Editing, Rendering**.
+- WWN status in **In Queue, Currently Editing, Awaiting Approval**.
+- Card details + checklist steps for those cards.
+- Only to-dos assigned to Isaac.
+- Scripts + David's graphics-instruction docs (his pre-production input).
+- Calendar: shoot dates.
 - Excludes: uploads, metadata, distribution.
 
 ### Interns (graphics + b-roll sourcing; no post-production editing)
-- D1 GSR cards in **Recorded** and **In Progress** only. Excludes Editing / Rendering / Done.
-- D3 their assigned graphics/b-roll to-dos, plus unassigned graphics/b-roll tasks.
-- D4 David's graphics-instruction docs (read, so they know what to build).
+- GSR status in **Recorded** and **In Progress** only. Excludes Editing / Rendering / Done.
+- Their assigned graphics/b-roll to-dos, plus unassigned graphics/b-roll tasks.
+- David's graphics-instruction docs (read, so they know what to build).
 - Excludes: editing, rendering, uploads, distribution, calendar, metadata.
 
 ---

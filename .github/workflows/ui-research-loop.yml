@@ -1,0 +1,76 @@
+name: ui-research-loop
+
+# Pings a fresh Claude run every 5 hours to continue the multi-session UI
+# research program (docs/ui-research-program/). It reads the resume prompt and
+# the running session log from the repo, does the next chunk of work, appends
+# its findings, and commits them back, so the next tick continues seamlessly.
+#
+# THREE WAYS IT FIRES:
+#   1. schedule  - automatic every 5 hours (only runs on the DEFAULT branch, main)
+#   2. workflow_dispatch - the "Run workflow" button in the Actions tab
+#   3. repository_dispatch - an external POST (e.g. an iPhone Shortcut). See
+#      docs/ui-research-program/AUTOMATION-SETUP.md.
+#
+# ARMING IT (it is inert until you do this):
+#   - Add a repo secret named ANTHROPIC_API_KEY (or CLAUDE_CODE_OAUTH_TOKEN for a
+#     Max/Pro subscription token). Settings > Secrets and variables > Actions.
+#   - For the 5-hour schedule to run, this workflow must exist on `main`.
+#   - Confirm the action version + input names against the current docs at
+#     https://github.com/anthropics/claude-code-action (the API evolves).
+#   - NOTE: each run consumes Claude usage/credits and pushes a commit.
+
+on:
+  schedule:
+    - cron: "0 */5 * * *"   # 00:00, 05:00, 10:00, 15:00, 20:00 UTC
+  workflow_dispatch:
+    inputs:
+      note:
+        description: "Optional note passed into this tick"
+        required: false
+        default: ""
+  repository_dispatch:
+    types: [ui-research-tick]
+
+concurrency:
+  group: ui-research-loop
+  cancel-in-progress: false   # never interrupt a tick that is mid-work
+
+permissions:
+  contents: write             # commit findings back
+  pull-requests: write
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50        # keep a single tick bounded
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/pipeline-ui-design-strategy-Nzivm   # work on the program branch
+          fetch-depth: 0
+
+      - name: Continue the UI research program
+        uses: anthropics/claude-code-action@v1
+        with:
+          # Provide ONE of these (see "ARMING IT" above):
+          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          # claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          prompt: |
+            You are continuing a multi-session UI research program for the GSR dashboard.
+            1. Read docs/ui-research-program/RESUME-PROMPT.md in full and follow it exactly.
+            2. Read docs/ui-research-program/SESSION-LOG.md to see what prior ticks found and where to resume.
+            3. Do the next chunk of work it specifies, doing real web research and dossier updates.
+            4. Append your findings to the right files under docs/ui-research-program/ and add a new dated entry to SESSION-LOG.md (what you did, what you found, the exact next step for the following tick).
+            5. Commit everything to this branch with a clear message. Do not open a PR; the existing PR already tracks this branch.
+          # Confirm these input names against current action docs before relying on them:
+          claude_args: "--max-turns 40"
+
+      - name: Safety commit (in case the action left uncommitted changes)
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            git config user.name  "gsr-research-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add -A
+            git commit -m "chore(ui-research): tick $(date -u +%FT%TZ) [skip ci]"
+            git push origin HEAD:claude/pipeline-ui-design-strategy-Nzivm
+          fi

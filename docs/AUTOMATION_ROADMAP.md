@@ -166,3 +166,13 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 **Why deferred (explicit precondition):** Do NOT build this until (1) the system is fully designed, (2) functionality has been tested across multiple mock episodes, and (3) the current real system has been completely imported. Building auth/role-gating earlier would lock in views before the workflow is proven.
 
 **Notes:** Role scopes are recorded in `docs/_handoff/GSR-WORKFLOW-CANON.md`. The Liquid Glass design mock in `gsr-blueprint/mock/` already structures the hub per role, so the views exist before the auth does. Jakob/Jeremiah/Gabe may share a generic landing page rather than distinct dashboards.
+
+---
+
+## Deferred: Basecamp two-way sync integration (Daniel, 2026-06-08)
+
+**What it is:** Integrate as much of the existing Basecamp system as practical into the dashboard via TWO-WAY sync, so Basecamp (which the team already uses daily) and the dashboard stay in agreement and anyone can work from either side. Basecamp is kept, not replaced. The primary data is the "Genesis Science Report" and "WWN" card tables + production/staff to-dos + the staff schedule (account 5805529). Per-role data inventory (what feeds each of the 4 role dashboards, and sync direction) is in `docs/2026-06-08-basecamp-dashboard-integration.md`. Credentials are verified working (`docs/2026-06-08-basecamp-env-diagnosis.md`).
+
+**Why deferred:** Sequenced with the per-role dashboards above (same preconditions: system designed, tested across mock episodes, real system imported). Display/placement is intentionally undecided. The earlier "Basecamp = read-only monologue ingestion, later feature" scope is superseded; monologue ingestion is now one slice of this broader two-way integration.
+
+**Guardrail:** two-way means the dashboard can write back into a tool the whole team uses live, so every dashboard-to-Basecamp write follows confirm-before-write + the David rule. Reads carry no such risk.

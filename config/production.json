@@ -7,8 +7,9 @@
     "episode_count": 48,
     "air_day": "Tuesday",
     "air_time_cst": "20:00",
-    "youtube_publish_day": "Monday",
-    "youtube_publish_time_et": "16:00",
+    "webstream_publish_day": "Monday",
+    "webstream_publish_time_et": "16:00",
+    "_webstream_note": "Webstream = the weekly online-release umbrella (the Monday 4PM ET drop) that fans out to ALL platforms (YouTube, Rumble, StreamHoster, GSN, podcast). YouTube is one target under it. The YouTube-specific scheduled-upload config lives in the youtube.upload_schedule block below.",
     "_dates_note": "Authoritative episode air dates live in the Supabase episodes table, not here. Ep1-15 have real 2026 dates; Ep16-48 are extrapolated Tuesdays through 2027-01-05. The old static season_3_start_date (2024-09-02) was wrong and has been removed.",
     "description": "A CNN/Fox News-style science news show exploring creation science and the evidence for design in the universe."
   },

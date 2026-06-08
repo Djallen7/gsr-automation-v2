@@ -100,7 +100,7 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 
 ### 8. YouTube RSS Poller (Supabase Edge Function)
 **What:** Hourly cron polling `https://www.youtube.com/feeds/videos.xml?channel_id=UCNZS3IEQaAfwofwltbEBwuw`. Parse `S03, EpN` from titles, write real `youtube_url` and `youtube_published_at` to matching episode row.  
-**Why:** All 48 S3 episode rows are in the DB now with `youtube_scheduled_publish_at`. Without the poller, those fields will never flip to actual publish dates — the dashboard will show stale data indefinitely.  
+**Why:** All 48 S3 episode rows are in the DB now with `webstream_scheduled_publish_at` (the weekly Monday 4PM ET release target). Without the poller, the YouTube actuals (`youtube_url`, `youtube_published_at`) will never flip from the scheduled target to real publish data, so the dashboard will show stale data indefinitely.  
 **Build path:** Supabase Edge Function + pg_cron trigger. No external dependencies.  
 **Effort:** Low. Schema ready; the `episodes` table already has the target columns.  
 **Priority: High.** Build immediately after Stage 7 resolves.
@@ -166,3 +166,13 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 **Why deferred (explicit precondition):** Do NOT build this until (1) the system is fully designed, (2) functionality has been tested across multiple mock episodes, and (3) the current real system has been completely imported. Building auth/role-gating earlier would lock in views before the workflow is proven.
 
 **Notes:** Role scopes are recorded in `docs/_handoff/GSR-WORKFLOW-CANON.md`. The Liquid Glass design mock in `gsr-blueprint/mock/` already structures the hub per role, so the views exist before the auth does. Jakob/Jeremiah/Gabe may share a generic landing page rather than distinct dashboards.
+
+---
+
+## Follow-up: drop youtube_scheduled_publish_at (contract step, 2026-06-08)
+
+**What it is:** The contract half of the `youtube_scheduled_publish_at` -> `webstream_scheduled_publish_at` expand-contract rename. Migration `20260608161708_add_webstream_scheduled_publish_at` already ADDED and BACKFILLED the new `webstream_scheduled_publish_at` column on `episodes`. The old `youtube_scheduled_publish_at` column is intentionally still present.
+
+**What is left:** Write a later migration `<ts>_drop_youtube_scheduled_publish_at.sql` that does `ALTER TABLE episodes DROP COLUMN IF EXISTS youtube_scheduled_publish_at;`, regenerate types, run advisors.
+
+**HARD PRECONDITION (do not skip):** Run this ONLY AFTER this branch is merged to `main` and the new build is deployed to Vercel. The currently-deployed app and the `v_episode_workflow` view still reference `youtube_scheduled_publish_at`; dropping it before the deploy that stops referencing it would break production. Update `v_episode_workflow` to use the new column in the same later migration, then drop. Priority: low, but do it before the column drifts out of memory.

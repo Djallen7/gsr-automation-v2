@@ -1,6 +1,6 @@
 {
   "project": "GSR Automation",
-  "updated_at": "2026-06-08T19:59:05.250Z",
+  "updated_at": "2026-06-08T20:00:44.993Z",
   "lanes": [
     {
       "id": 1,
@@ -244,6 +244,16 @@
       "date": "2026-06-08",
       "sha": "4b9ede2",
       "text": "docs: consolidate gsr-blueprint into v2 (single source of truth)"
+    },
+    {
+      "date": "2026-06-08",
+      "sha": "f10afa1",
+      "text": "Fix nightly lanes updater: commit before rebase; cadence-agnostic lookback"
+    },
+    {
+      "date": "2026-06-08",
+      "sha": "beb92c8",
+      "text": "nightly: lanes activity update 2026-06-08"
     }
   ]
 }

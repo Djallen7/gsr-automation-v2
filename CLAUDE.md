@@ -82,7 +82,8 @@ This is **not** the Next.js your training data knows. Read `apps/dashboard/AGENT
 1. `git status` and `git log --oneline -5`.
 2. `git fetch origin main && git log --oneline origin/main -3` to see if main moved.
 3. Read `docs/_handoff/HANDOFF.md` (and the SYSTEM-EVOLUTION reference for depth).
-4. Check open PRs if continuing existing work.
+4. Read `docs/_handoff/LANES.md` — the living tracker of active workstreams, what is left in each, and a paste-ready resume prompt per lane. Update it as you work.
+5. Check open PRs if continuing existing work.
 
 ---
 

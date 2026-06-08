@@ -41,3 +41,20 @@ Newest entries at the bottom. Each tick reads the last entry to know exactly whe
 **Open threads:** awaiting Daniel's gut reaction to pick the direction(s) to deepen. Orrery, Newsroom, Star-Map, Command Deck, Signal/Spectrum remain un-prototyped (Atlas only).
 
 **EXACT NEXT ACTION (Session 3):** On Daniel's pick, do (a) precedent teardowns (transcribe specific YouTube talks, pull real community threads on an unrestricted fetch path) and (b) a real data-binding pass: compute stage + deadline positions from actual `episodes` fields (air_date, shoot_date, youtube_url, youtube_scheduled_publish_at) via a derived view, so the chosen prototype stops using hardcoded positions. Then prototype its wow moment with full reduced-motion handling. Log the choice and results.
+
+---
+
+## Session 2b - 2026-06-08 - Template-driven rebuild (Arclon) - COMPLETE
+**Trigger:** Daniel shared a purchased Envato template (Arclon v1.0 by CoderThemes, Bootstrap 5 admin kit) via Google Drive and asked to see the GSR dashboard rebuilt in its style, tailored to his needs, with engaging/dynamic animations, as 3 variations.
+
+**Done:**
+- Pulled + studied the 33 MB template (kept in scratch only, not committed). Captured tokens/stack/options in `inbound-template/ARCLON-REFERENCE.md`.
+- Built 3 self-contained, mobile-friendly, Arclon-styled GSR dashboard variations (Arclon dark theme shifted to GSR violet #7b5bf2, tight radius, Atkinson Hyperlegible, soft status badges, count-ups, animated SVG charts/gauges, prefers-reduced-motion safe), all on the same June 5-episode data, all passing `node --check`:
+  - `arclon-rebuild-a.html` - Classic Admin (KPI cards, batch table, cycle radial, deadlines, crew workload, month calendar).
+  - `arclon-rebuild-b.html` - Pipeline Board (6-stage kanban, deadline countdowns, graphics + distribution rails).
+  - `arclon-rebuild-c.html` - Analytics Command Center (cycle gauge, 5 mini episode cards, batch/graphics/crew charts).
+- Added `arclon-index.html` launcher. Each added a GSR-specific "Needs you" production-gate queue Arclon lacks.
+
+**Key note:** stack mismatch stands - Arclon is Bootstrap/jQuery, GSR app is Next.js/shadcn/Tailwind. These mockups match Arclon's LOOK in portable HTML; turning the chosen one into real app code means rebuilding it in Tailwind/shadcn (or a deliberate stack decision).
+
+**EXACT NEXT ACTION:** Get Daniel's pick among A / B / C (and whether to keep pursuing the 8 original concepts or commit to the Arclon look). Then for the chosen variation: wire it to real `episodes` data via a derived view, build it as a real Next.js/Tailwind route (or decide the stack), and deepen its animations. Log the choice.

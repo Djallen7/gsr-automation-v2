@@ -454,7 +454,7 @@ var M=[
    {id:"autogfx",label:"Auto-generate and auto-push graphics",tag:"risky",why:"Graphics are visual and human-made. Keep approval and the Created gate."}],
   specs:[["Tracker","Segment | Graphic # | Type | Description | Status | Assigned To | Notes; Show 1-5 + Master"],["Statuses","Not Started -> In Progress -> Created -> Loaded In"],["Gate","Created + filename -> pull from Videoedit -> push lights up"],["Sources","Storyblocks, Dreamstime, Envato"]]},
  spec:{status:"new",dependsOn:["m1"],blockedBy:["VideoEdit server address / SMB path (Daniel TODO)"],
-  db:"production_graphics (exists, currently 0 rows): mirror the sheet columns. PREREQ: reorder status CHECK to Not Started -> In Progress -> Created -> Loaded In (the 4 statuses already exist; reorder is cosmetic); add Book Cover to graphic_type CHECK (confirmed missing); add Dreamstime to a NEW b-roll source enum (premade_library does not exist yet). production_graphics_updated_at trigger exists.",
+  db:"production_graphics (exists, currently 0 rows): mirror the sheet columns. PREREQ: reorder status CHECK to Not Started -> In Progress -> Created -> Loaded In (the 4 statuses already exist; reorder is cosmetic); add Book Cover to graphic_type CHECK (confirmed missing); add a Dreamstime source to the EXISTING premade_library table (it already exists and production_graphics.premade_library_id references it; only the Dreamstime entry is missing). production_graphics_updated_at trigger exists.",
   routes:"New /graphics page (Master + 5 show tabs, segment drill-in, script side-by-side). Files: src/app/graphics/ + a server action for status/filename.",
   api:"Read-only SMB to the Videoedit server to confirm a filename exists. Idea generation is a prompt-handoff (maturity dial). Push to ProPresenter is a human-triggered signal only.",
   io:"INPUT: approved ideas + filenames. OUTPUT: tracker rows; a 'ready to load' signal when Created + filename.",
@@ -886,7 +886,7 @@ var PREREQS=[
  "Rename the graphics table to lower_thirds (it holds lower thirds; keep production_graphics as the Graphics Tracker).",
  "Add the Book Cover type to the production_graphics.graphic_type CHECK.",
  "Reorder the production_graphics.status CHECK to: Not Started -> In Progress -> Created -> Loaded In (and restore 'In Progress' in PROMPT_LIBRARY).",
- "Add Dreamstime to a new b-roll source enum (premade_library; it does not exist yet).",
+ "Add a Dreamstime source to the existing premade_library table (it already exists; only the Dreamstime entry is missing).",
  "Add a jobs table (the Mac polls it) for the distribution control plane.",
  "Add creation_tv_network (CTN) and wwn (Wonders Without Number) to the distributions.platform enum (low-cadence broadcast targets that still must be built)."
 ];

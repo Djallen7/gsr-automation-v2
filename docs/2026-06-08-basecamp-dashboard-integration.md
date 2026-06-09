@@ -126,9 +126,9 @@ threads), kept off the main flow.
 ### B. One owner per fact (resolves the conflicting-databases risk)
 Never keep two editable copies of the same field. Recommended ownership:
 - **Basecamp card = system of record for production stage + tasks.** The episode
-  row stores the card's id, not a competing status column. (Recommended because
-  the team already uses the card table and it holds the history. Open decision: the
-  dashboard could own stage instead. Everything else follows from this choice.)
+  row stores the card's id, not a competing status column. (DECIDED by Daniel
+  2026-06-08: Basecamp owns stage. Stages stay linked and two-way; one stored value,
+  Basecamp wins any tie.)
 - **Supabase = owner of dashboard-only data:** lower thirds, metadata, distribution.
 
 This makes the sync two-way at the *system* level but single-owner at the *field*

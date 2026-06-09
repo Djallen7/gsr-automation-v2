@@ -45,15 +45,32 @@ dependencies in section 0 and 3). Until then this is the spec, not a build.
 - A stage-vocabulary mapping (small constant or table) translates the GSR columns
   `Triage/Not now/Recorded/In Progress/Editing/Rendering/Done` to the dashboard's
   episode status, so each side reads the other correctly.
-- **OPEN DECISION (Daniel):** whether Basecamp or the dashboard owns production
-  stage. Recommend Basecamp. The spec assumes Basecamp; flip the mapping direction
-  if Daniel chooses the dashboard.
+- **DECIDED (Daniel, 2026-06-08): Basecamp owns production stage.** Stages stay
+  linked and two-way; there is ONE stored value (the card's column). The dashboard
+  edits that value via the API and keeps no parallel status. Basecamp is only the
+  tiebreaker for the rare case where a stage changes on both sides between syncs,
+  or a write fails: Basecamp wins.
 
 ### 0.4 User -> Basecamp person mapping (dependency)
 - "Per-role, each sees only their own" requires mapping the logged-in dashboard
   user to a Basecamp person id (the assignee). This ties to the DEFERRED per-role
   login work. Interim: a small config/table mapping dashboard user -> Basecamp
-  person id for Daniel, Isaac, Myriam.
+  person id.
+- **Resolved mapping (read from Basecamp, 2026-06-08):**
+
+  | Dashboard user | Basecamp person | Person id | On projects |
+  |---|---|---|---|
+  | Daniel | Daniel Allen (danielallen.tn@gmail.com) | 46111483 | 02_ Production + 01_DRM Staff |
+  | Isaac | Isaac Washburn (isaac.djw@outlook.com) | 51111877 | 02_ Production only |
+  | Myriam | Miryam Rodes (rodes.miryam@yahoo.com) | 49242836 | 01_DRM Staff only |
+
+  Implication: My Tasks pulls Isaac's to-dos from 02_ Production, Miryam's from
+  01_DRM Staff, Daniel's from both. A person has no tasks in a project they are
+  not a member of.
+- **Still needed from Daniel:** confirm each person's dashboard LOGIN email so the
+  app can match login -> Basecamp person. Daniel's already matches his Basecamp
+  email; confirm whether Isaac and Miryam will log in with their Basecamp emails
+  above or different ones.
 
 ### 0.5 Sync model
 - Read from Basecamp on page load, cache server-side with a visible "last synced"
@@ -145,8 +162,10 @@ Staff" todoset, filtered to the user's Basecamp person id (section 0.4).
 
 ---
 
-## 4. Open decisions for Daniel
-1. Production-stage owner: Basecamp (recommended) or the dashboard.
-2. Write-confirmation model: optimistic + Undo (recommended) vs a Type-YES gate.
-3. How the dashboard user maps to a Basecamp person (interim config vs wait for
-   per-role auth).
+## 4. Decisions
+1. Production-stage owner: **DECIDED = Basecamp** (Daniel, 2026-06-08).
+2. Write-confirmation model: optimistic + Undo for reversible actions (card moves,
+   to-do check-offs), Type-YES reserved for irreversible bulk writes. **Recommended;
+   awaiting Daniel's final nod.**
+3. User -> Basecamp person mapping: resolved for the three people (section 0.4);
+   only the dashboard login emails for Isaac and Miryam still need confirming.

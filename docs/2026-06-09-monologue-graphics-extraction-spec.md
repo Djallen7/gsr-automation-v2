@@ -13,12 +13,20 @@ and any future dashboard extractor should read from here.
 ---
 
 ## 0. Where the monologues live (verified, don't re-check)
-- **Raw monologues = Basecamp vault `GSR Monologues` (id 9668065709), one doc each.**
-  This is the only home. A content-level scan of all Production-bucket docs for
-  David's signoff found 61 hits, but they are all **THD-segment scripts** (folder
-  `THD Scripts` 9668067133), a different segment — NOT monologues. The message board
-  holds no monologues. Season 1–2 and early S3 (Ep001–020) raw monologues are not in
-  Basecamp; only their finished graphics survive (in the trackers / Drive corpus).
+- **Raw monologues = Basecamp vault `GSR Monologues` (id 9668065709), one doc each** —
+  the canonical home, and the only one reachable by API. A content scan of all
+  Production-bucket docs for David's signoff found 61 hits, but they are all
+  **THD-segment scripts** (folder `THD Scripts` 9668067133), a different segment — NOT
+  monologues. Message boards, comments, uploads, and all four Campfire chats (~1,850
+  lines) hold no monologues either.
+- **Out-of-band source — Pings (direct messages):** David also sends monologues to
+  Daniel via Basecamp **Pings (1:1 DMs)** (confirmed by Daniel 2026-06-09). The bc3 API
+  does NOT expose Pings (all ping endpoints 404), so the extractor cannot pull these
+  automatically. **Workflow fix:** monologues David DMs should be filed into the
+  `GSR Monologues` vault so the pipeline has one canonical, reachable source. Until
+  then, those monologues must be pasted/exported manually.
+- Season 1–2 and early S3 (Ep001–020) raw monologues are not in Basecamp at all; only
+  their finished graphics survive (in the trackers / Drive corpus).
 - **Rundown Creator = the cleaned teleprompter "first edit."** It strips almost every
   visual cue down to `(PAUSE)` / `(Insert Clip w/audio)` / a verbal lead-in.
   **Never extract Pass-1 cues from RDC — extract from the Basecamp vault doc.**

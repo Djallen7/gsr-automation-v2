@@ -424,6 +424,39 @@ silently drops these.
   near-zero markers either side. These are the ones to escalate to David/Isaac rather
   than auto-fill — not a parser failure.
 
+### Finding 5 — David's links are REAL hyperlinks; harvest the `<a href>`, not the text
+(Added 2026-06-09, third pass: Daniel confirmed that when David wants a specific
+clip/graphic he usually drops a hyperlink to the photo/video.)
+
+Reading the document **HTML anchors** (not the rendered plain text) found **61
+resolvable hyperlinks across the 20 monologues**. The href is the single most
+precise Pass-1 signal — it names the exact asset — and the domain classifies the type:
+
+| href domain/pattern | Graphic type | Example |
+|---|---|---|
+| `youtube.com` / `youtu.be` / `/shorts/` / `/live/` | Clip w/audio (or B-roll if "just for visual") | Antarctic's 9 clips |
+| `wikipedia.org/...#/media/File:*.jpg` | **Picture — the exact image file** | Starry Night, Kilimanjaro, Two Men Contemplating the Moon |
+| news/journal domain (`jpost`, `sciencealert`, `sciencedaily`, `space.com`, `science.org`, `turkiyetoday`, `nps.gov`, `pennmedicine`, `pmc.ncbi`, `yahoo`, `3dprinting*`) | Article Screenshot / page image | Laodicea Athena (turkiyetoday) |
+| `*.mp3` (or other audio) | **Audio pull**, not video | Artemis → `nasa.gov/…/astronauts-episode-v3-revised.mp3` ("Pull audio from podcast 0:00-40") |
+| bare on-screen URL (`war.gov/ufo`) | On-screen URL | UFO monologue |
+
+**Two consequences that change the extractor design:**
+1. **Links hide mid-sentence and are invisible in plain text.** In "When Taxes" the
+   single word **`Nineveh`** is hyperlinked to a specific Wikipedia palace image; in
+   "Beyond Computation" the phrase **`Chaitin's information-theoretic incompleteness`**
+   is hyperlinked to a YouTube video. A text-only parser drops both. **Parse the HTML
+   `<a>` elements directly.**
+2. **The two zero-cue monologues are now doubly confirmed:** "Diversity" (June) and
+   "Darwin" (April) have **0 hyperlinks AND 0 markers**. These need human graphics
+   calls — flag, never auto-fill.
+
+**Procedure update to §5:** before line-scanning, extract every `<a href>` from the
+doc HTML as a cue, recording (anchor text, href, char offset). Classify by the table
+above. Then anchor each link to the spoken line it sits in/after, and attach any
+timecode that appears in the same or adjacent text run. Plain-text line-scanning
+(lead-ins, `[insert …]`, `FACT #`, scripture) runs as a SECOND pass to catch the
+cues David expresses without a link.
+
 ### New ambiguity for Daniel
 - **`Picture this:`** is sometimes a literal picture cue (When Taxes → `[insert picture]`
   right after) and sometimes just rhetorical. Should the extractor treat `Picture this:`

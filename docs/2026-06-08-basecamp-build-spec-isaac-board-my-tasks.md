@@ -82,8 +82,9 @@ dependencies in section 0 and 3). Until then this is the spec, not a build.
   card back, re-open the to-do). Proposal: optimistic update + Undo + a clear
   "synced" indicator, NOT a blocking "Type YES" gate. The Type-YES gate stays
   reserved for irreversible bulk writes like `/api/import`.
-- **FLAG:** confirm this interpretation with Daniel before building the write path,
-  since it touches a tool the whole team uses live.
+- **CONFIRMED (Daniel, 2026-06-08):** card moves and to-do check-offs use
+  optimistic update + Undo + a "synced" indicator, NO blocking confirmation. The
+  Type-YES gate stays reserved for irreversible bulk writes like `/api/import`.
 
 ---
 
@@ -164,8 +165,8 @@ Staff" todoset, filtered to the user's Basecamp person id (section 0.4).
 
 ## 4. Decisions
 1. Production-stage owner: **DECIDED = Basecamp** (Daniel, 2026-06-08).
-2. Write-confirmation model: optimistic + Undo for reversible actions (card moves,
-   to-do check-offs), Type-YES reserved for irreversible bulk writes. **Recommended;
-   awaiting Daniel's final nod.**
+2. Write-confirmation model: **DECIDED = optimistic + Undo** for reversible actions
+   (card moves, to-do check-offs); Type-YES reserved for irreversible bulk writes
+   (Daniel, 2026-06-08).
 3. User -> Basecamp person mapping: resolved for the three people (section 0.4);
    only the dashboard login emails for Isaac and Miryam still need confirming.

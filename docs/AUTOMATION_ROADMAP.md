@@ -12,6 +12,12 @@ The archaeology surface almost entirely **production automation** — the upstre
 
 ---
 
+## Queue (small standardizations)
+
+- **Standardize the first-graphic type as "Intro Graphic" across the board** (Daniel, 2026-06-09). Replace "Title Graphic" with "Intro Graphic" as the canonical Graphic Type for cue #1 everywhere: the June Pass-2 build, the monologue cue-extractor default, the graphics-type list in `docs/_handoff/GSR-WORKFLOW-CANON.md` §4, `PROMPT_LIBRARY.md`, and any DB `graphics` type CHECK/enum. Low effort; do alongside the next graphics-schema touch.
+
+---
+
 ## Production automation candidates
 
 Ranked by estimated friction-reduction per hour of build work.

@@ -28,7 +28,7 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-08 20:00:44 UTC (10 hours ago)._
+_Last updated 2026-06-08 20:00:44 UTC (15 hours ago)._
 
 ---
 
@@ -130,6 +130,7 @@ _Last updated 2026-06-08 20:00:44 UTC (10 hours ago)._
 **Summary:** Standing lane: keep applying recorded data standards and canon to new data.
 **Done:** Standards recorded in the canon, full guest names. Chyron uses the topic-relevant affiliation. One-tap confirmations. "webstream" = the weekly multi-platform release umbrella. Canon section 13 added: review decisions (L3 band 55-70 / Topic 60-65, standardize Intro Graphic, THD = The Heavens Declare, 270 hours, etc.) + Rumble outreach correction. Guest Corrections / Do-Not-Book / routing reference built (GUEST-CORRECTIONS.md), incl. the recovered booking frameworks (40/40/15/5, Five-Point Stakes, four hook types, Barentine Test, tiers). ADRs 0004-0006 authored (templated master-metadata, Dropbox-no-metadata, AI-metadata-needs-approval); SYSTEM-EVOLUTION reconciled. Voice profile: added the 'Phenomenon Before Term' intro rule. README pinned to Next.js 16.2.6.
 **To finish:**
+- BUILD TASK 1 (do first, stable session only): rename graphics -> production_lower_thirds + clean it (drop image cols, add ordering cols), keep production_graphics as the graphics table (+ display_duration, last_line, Intro Graphic/Book Cover types), per docs/_handoff/2026-06-09-build-task-1-schema-rename.md. Coordinated DB+code change (~20 call sites). Prereq: strip review-only public files + merge PR #47 to main.
 - Keep applying the standards to new data.
 - Add a per-episode chyron-affiliation override field on episode_guests (flagged enhancement).
 - Promote the booking frameworks from GUEST-CORRECTIONS.md into canon on the next pass.

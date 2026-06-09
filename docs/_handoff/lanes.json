@@ -209,6 +209,7 @@
         "Voice profile: added the 'Phenomenon Before Term' intro rule. README pinned to Next.js 16.2.6."
       ],
       "to_finish": [
+        "BUILD TASK 1 (do first, stable session only): rename graphics -> production_lower_thirds + clean it (drop image cols, add ordering cols), keep production_graphics as the graphics table (+ display_duration, last_line, Intro Graphic/Book Cover types), per docs/_handoff/2026-06-09-build-task-1-schema-rename.md. Coordinated DB+code change (~20 call sites). Prereq: strip review-only public files + merge PR #47 to main.",
         "Keep applying the standards to new data.",
         "Add a per-episode chyron-affiliation override field on episode_guests (flagged enhancement).",
         "Promote the booking frameworks from GUEST-CORRECTIONS.md into canon on the next pass.",

@@ -351,12 +351,98 @@ Antarctic alone yields ~14 cues — well within the 8–15 monologue target. Div
 
 ---
 
-## 7. Recommendations
+## 7. Non-obvious cue tells — from the Jan–April BC↔RDC cross-reference
 
-1. **Re-enter `RUNDOWN_CREATOR_API_KEY` cleanly** (one stray whitespace char). The
-   dashboard's `/api/rc-*` routes do not trim, so they are likely failing auth today.
+(Added 2026-06-09, second pass, at Daniel's request: look at earlier monologues'
+RDC early versions against their Basecamp originals to surface cues that the simple
+"title + link + timecode" rule would miss.)
+
+I matched nine older monologues that exist in BOTH places — David's raw vault doc
+and the typed RDC script:
+
+| Show | RDC RowID | Vault doc | Monologue |
+|---|---|---|---|
+| Mar S1 | 4214 | 9668065780 | Soft Cells |
+| Mar S2 | 4273 | 9668065768 | Saturn's Storms |
+| Mar S3 | 4332 | 9668065750 | Cascadia Updates |
+| Mar S4 | 4391 | 9668065743 | Brain Power in the Days of Youth |
+| Mar S5 | 4450 | 9668065727 | When Taxes Aren't Boring |
+| Apr S1 | 4570 | 9765358751 | GSR 5 – Artemis II |
+| Apr S2 | 4629 | 9765319169 | GSR 6 – Marketing Genius of Darwin |
+| Apr S3 | 4688 | 9765316011 | GSR 7 – How Do We Determine Truth |
+| Apr S5 | 4806 | 9775384053 | Beyond Computation |
+
+(Jan/Feb shows ran **two monologues each** and their second scripted row is actually
+the interview **tease** — "Coming up, Dr. X joins us…" — not a monologue. Those Jan/Feb
+monologue topics are no longer in the vault, so they have no raw counterpart to diff.)
+
+### Finding 1 — The RDC cue convention EVOLVED; David's prose lead-in did not
+- **March/April RDC** uses the formal tokens from the 06_MONOLOGUE GRAPHICS vocabulary,
+  spelled out by the typist: `Take a look: (Insert Clip w/audio)` (Soft Cells),
+  `Take a look: (Insert Video w/audio)` (Saturn), `Watch this: (Insert clip w/audio)`
+  (Cascadia).
+- **May RDC** abandoned those and collapsed everything to a bare `(PAUSE)`.
+- So **the formal `(Insert Clip/Video w/audio)` tokens are a typist artifact in RDC,
+  not something David writes** — and they are not even used consistently month to month.
+- **The one signal stable across every month is David's spoken lead-in phrase.**
+  Build the extractor on that, not on the production token.
+
+### Finding 2 — The spoken lead-in is the most reliable cue anchor (it survives link-stripping)
+Each of these introduces a graphic, lives in *prose*, and stays in RDC even when the
+link/title is deleted:
+
+`Take a look:` · `Watch this:` · `Watch:` · `Listen to this [outlet] headline:` ·
+`Here is a clip from…` · `Picture this:` · `Roll it:` · `Roll the clip.` ·
+`Take a listen` · `Pull audio from…`
+
+Proof: in **Brain Power**, RDC kept `Listen to this Science Daily headline:` and the
+quoted headline but **dropped the sciencedaily.com URL**. The graphic's source link
+is gone; only the lead-in marks the spot. Any extractor reading RDC alone would miss
+the graphic entirely; reading the lead-in (in either source) catches it.
+
+→ **Rule: treat an imperative-perception lead-in ("look / watch / listen / consider /
+picture / roll / take a listen" + colon) as a high-confidence cue anchor, then read
+the next 1–2 lines (or the rest of the sentence) for the media reference.**
+
+### Finding 3 — Cues hide MID-SENTENCE, not just on their own line
+- When Taxes: `…the capital city of Nineveh [insert picture] writes a demand…`
+- Cascadia: `Cascadia and San Andreas faults may be linked Insert clip.`
+
+The §5 detector must scan for `[insert …]`, `Insert clip`, `Insert photo`, `(Use picture)`,
+`- Use image` **anywhere in a line**, not only as standalone lines. A line-only rule
+silently drops these.
+
+### Finding 4 — Other non-obvious tells confirmed
+- **All-caps parenthetical stage directions**: `(SHOW ROLL-IN OF LAUNCH ETC)`,
+  `(voice over while subsequent clips play)` — dropped by RDC, BC-only.
+- **Angle-bracket cues** (Saturn): `Take a look < Saturn's Hexagon Storm Explained
+  (min 0.00-0-1.31) >` and section labels like `<The Hexagonal Marvel>`.
+- **Pasted media title with NO link and NO timecode** is still a cue — the suffix
+  `- YouTube` / `- Wikipedia` / `| <Outlet>` is the tell (e.g. `A soft cell in space - YouTube`).
+- **Bare editor instructions**: `Quote attribution`, `**I recommend pulling in Stock footage`.
+- **Some monologues are intrinsically low-cue** (Darwin, Truth, and June's Diversity):
+  near-zero markers either side. These are the ones to escalate to David/Isaac rather
+  than auto-fill — not a parser failure.
+
+### New ambiguity for Daniel
+- **`Picture this:`** is sometimes a literal picture cue (When Taxes → `[insert picture]`
+  right after) and sometimes just rhetorical. Should the extractor treat `Picture this:`
+  as a cue anchor (and flag for review), or ignore it unless an explicit marker follows?
+
+---
+
+## 8. Recommendations
+
+1. **Re-enter `RUNDOWN_CREATOR_API_KEY` cleanly.** Daniel removed the whitespace on
+   2026-06-09, but the running session still reads the old value with one stray char
+   (env is read at container start) — a session restart is needed for the clean value
+   to take, and the dashboard `/api/rc-*` routes (which don't trim) will keep failing
+   auth until then.
 2. **Point the Pass-1 extractor at the Basecamp "GSR Monologues" vault (id 9668065709),
    not RDC.** RDC strips David's visual cues down to bare `(PAUSE)`s.
+3. **Anchor the extractor on David's spoken lead-in phrases, not on production tokens**
+   (§7). The lead-in is the only signal stable across Jan→May; scan for mid-sentence
+   `[insert …]` / `Insert clip` markers too, not just standalone lines.
 3. **Match vault doc → episode by creation batch + content, not by title.** Doc
    IDs are monotonic; each "5 monologues" to-do batch maps to one show cycle in order.
 4. **Treat `just for visual(s)` / `pull clips` / `Stock footage` as B-roll/silent

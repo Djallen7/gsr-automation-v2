@@ -51,17 +51,40 @@ Outreach to these organizations must go through the named gatekeeper, not direct
 | Tom Rogers | CC **Derek** (derek@arneeon.com) | projectsB F-15 |
 | Real Life Network (RLN) | **"Alexa" always means Alexa Gerbrands** (agerbrands@reallifenetwork.com), never Amazon Alexa | projectsA DI-05; RLN thread |
 
-## 5. Booking + topic-evaluation frameworks (named; full detail to import)
+## 5. Booking + topic-evaluation frameworks (full text, recovered 2026-06-08)
 
-These frameworks are Daniel's booking policy. They are NAMED here so they are not forgotten; the full definitions live in the GSR Interview Research project context and should be imported verbatim into a reference doc (do not reconstruct from memory):
+Daniel's booking policy, recovered verbatim from the GSR Interview Research project context (export, project files 019d9832 / 019e27d6). Use these when building or vetting the monthly slate.
 
-- **Guest mix 40/40/15/5** — the target balance across guest categories. (shard-04 I-02)
-- **Five-Point Stakes Assessment** — the topic-evaluation rubric. (shard-04 I-03)
-- **Four hook types** — the interview-angle hook taxonomy. (shard-04 I-04)
-- **Barentine Test** — topics do not need a creationist angle; worldview-neutral big-science stories are in scope for a varied rotation. (shard-04 I-05; shard-12 Conv 329)
-- **Accessibility tiers** — the guest-reachability tiering used on guest cards (with the 0-100 fit score, 90+ = bullseye). (shard-14 F06)
+### Guest mix: 40/40/15/5
+The target balance across guest categories. Enforced at the **30-topic shortlist** level, not the 100-topic longlist, so the best stories survive the first cut on merit and the slate is balanced at the end.
+- **40%** explicit creationists / ID proponents (ICR, Discovery Institute, AiG, Logos)
+- **40%** neutral practitioners (NASA engineers, university researchers, field scientists, medical researchers)
+- **15%** faith-friendly guests
+- **5%** science communicators
 
-**Action:** import the full text of each framework from the interview-research project context into this section (Daniel to provide or point to the source doc), then promote the stable ones into `GSR-WORKFLOW-CANON.md`.
+### Five-Point Stakes Assessment
+Every candidate story must pass **all five** before booking. If a story fails any one, kill it or reframe until it passes.
+1. **Personal Impact** — Can viewers see themselves affected?
+2. **Visual Potential** — Can we show it, not just talk about it?
+3. **Novelty + Universality** — Fresh AND broadly relevant?
+4. **Emotional Payload** — Wonder, justice, awe, or understanding?
+5. **Accessibility Ladder** — Explainable to a teenager AND a PhD?
+
+### Four Hook Types (pick what the story already has)
+1. **Universal Anchor** — start with something everyone has a relationship with, then threaten or complicate it.
+2. **Incongruity** — two things that don't belong together.
+3. **Numbers Made Personal** — translate scale into something visceral.
+4. **Consequence Before Cause** — lead with the result, then explain how.
+
+### Topic / guest tags
+- **Accessibility tier:** BROAD / MID / SPECIALIST.
+- **Worldview fit:** CLEAN / NEEDS FRAMING / RISKY.
+- Guests also carry a 0-100 fit score (90+ = bullseye) on the guest cards.
+
+### The Barentine Test
+The John Barentine interview (Reflect Orbital's 50,000 mirrors in space) is the template: stories that are either extremely fascinating or have a clear "so what" for the average viewer, with universal anchors, real stakes, and visible impact on viewers' lives. **A topic does not need a creationist angle to qualify** (the worldview-neutral, big-science lane Daniel wants for a varied rotation).
+
+_Promote the stable parts of this into `GSR-WORKFLOW-CANON.md` on the next canon pass._
 
 ---
 

@@ -169,17 +169,16 @@ dallen@davidrives.com | (615) 939-1773
 ```
 Hey [DR./FIRST NAME],
 
-Just a heads up — you have an interview airing [tomorrow night / tonight]
+Just a heads up, you have an interview airing [tomorrow night / tonight]
 (Tuesday, [DATE]) at 8 PM CST.
 
-[YOUTUBE LIVE STREAM LINK - if available that night]
-[NETWORK BROADCAST LINK - genesissciencenetwork.com]
-
-You can also watch on Roku and Amazon Fire TV by searching "Genesis Science
-Network."
+Here is how to watch live:
+- Online at genesissciencenetwork.com
+- On TV: Roku, Apple TV, and Amazon Fire TV (search "Genesis Science Network")
+- On your phone: the Genesis Science Network app (iOS)
 
 Thanks again for being part of the show. I'll follow up next week with the
-YouTube link once the episode is posted.
+link once the episode is posted.
 
 Best,
 Daniel Allen
@@ -188,10 +187,11 @@ Producer, Genesis Science Network
 dallen@davidrives.com
 ```
 
-**Variable fields:** [DR./FIRST NAME], [tomorrow night / tonight], [DATE], [YOUTUBE LIVE URL], [NETWORK BROADCAST URL]
+**Variable fields:** [DR./FIRST NAME], [tomorrow night / tonight], [DATE]
 
 **Notes:**
-- Do NOT include the static YouTube URL here — that's for the post-air email.
+- No YouTube link in the pre-air email, live or static. The YouTube link goes in the post-air email (Template 6). List the live viewing options only here.
+- Platforms confirmed by Daniel 2026-06-08: genesissciencenetwork.com, Roku, Apple TV, Amazon Fire TV, and the iOS app. (LG was dropped as not in use.)
 - For a very established/casual relationship: opener can be even shorter — "Hey Michael, you've got another interview airing tomorrow night at 8!"
 - For a formal first-timer: swap "Just a heads up" for "I'm excited to let you know that your interview will air..."
 

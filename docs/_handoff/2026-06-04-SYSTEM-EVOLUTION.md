@@ -102,7 +102,7 @@ These are the architecture decision records that govern the project. Statuses ar
 | 0011 | No QNAP admin — cloud-first architecture with Notion database | 2026-05-20 | Accepted | 0009, 0010 | 0012 *(banner missing)* |
 | 0012 | Supabase backend, Next.js frontend | 2026-05-23 | Accepted (current architecture of record) | 0011 | — (current) |
 
-Notes for accuracy: there are **no records numbered 0004–0008**. The Tailscale / no-custom-auth decision is part of **0001**, not a separate record. ADR-0001 was never formally superseded (it is "historical," a judgment, not a supersession). And ADR-0012's text still specifies "Next.js 15," while the live stack is **Next.js 16.2.6** — an un-reconciled drift between the record and reality.
+Notes for accuracy (updated 2026-06-08): records **0004, 0005, and 0006 now exist** (templated master-metadata, Dropbox-delivery-carries-no-metadata, AI-metadata-requires-approval), authored to capture decisions that were referenced but never written. **0007 and 0008 remain unused** (no separate decision; earlier references to them were errors). The Tailscale / no-custom-auth decision is part of **0001**, not a separate record. ADR-0001 was never formally superseded (it is "historical," a judgment, not a supersession). ADR-0012's text was reconciled to note the live stack is **Next.js 16.2.6** (the framework choice stands; only the version number moved).
 
 ---
 

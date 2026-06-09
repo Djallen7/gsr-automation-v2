@@ -49,10 +49,11 @@
         "Course overview at docs/_handoff/2026-06-08-gsr-course-overview.html."
       ],
       "to_finish": [
+        "TOMORROW (2026-06-09): rebuild the course into the review-and-refine model, seeded by the 90-item decision backlog. Each stage = review your setup + add/edit/remove + Build/Later items shown as the plan + Discuss items shown as session flags (not cold questions) + plain-English coding logic + phased automation. Pilot one stage first (Lower Thirds or Distribution), then roll across all 15. Daniel paused this on 2026-06-08 to do lighter tasks first.",
         "Embed the chosen-UI screenshots into the UI Foundation module once a direction is built (Lane 1).",
         "Final polish + adaptive-gating review."
       ],
-      "blocked_on": "Lane 1 (only for embedding the eventual UI screenshots; the module itself is complete).",
+      "blocked_on": "Nothing for the rebuild (decisions are captured). Lane 1 only blocks embedding the eventual UI screenshots.",
       "files": [
         "docs/_handoff/gsr-automation-v2-course.html",
         "docs/_handoff/ui-research/",
@@ -60,6 +61,10 @@
       ],
       "resume_prompt": "Read docs/_handoff/LANES.md (Lane 2) and the course file docs/_handoff/gsr-automation-v2-course.html (the M array + engine). The UI Foundation module (id mui, m13) is built. Remaining: once Lane 1 builds a real direction, embed its screenshots into that module, then a final adaptive-gating polish pass. Validate the embedded JS after any edit (extract the <script> and run with a document stub). Do not break the course.",
       "recent_activity": [
+        {
+          "date": "2026-06-08",
+          "text": "19-agent archaeology sweep of the Claude data export (407 convs + projects + memories) -> 90-item backlog; Daniel triaged all 90 (24 build / 9 later / 29 skip / 28 discuss) and resolved 14 conflicts; decisions captured to canon section 13 + 2026-06-08-review-decisions.md. Course rebuild queued for tomorrow."
+        },
         {
           "date": "2026-06-08",
           "text": "Built the UI Foundation module (m13) + 4 cited research briefs; handoff renumbered to m14"

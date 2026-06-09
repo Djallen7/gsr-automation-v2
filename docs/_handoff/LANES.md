@@ -28,7 +28,7 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-08 20:00:44 UTC (22 minutes ago)._
+_Last updated 2026-06-08 20:00:44 UTC (4 hours ago)._
 
 ---
 
@@ -52,11 +52,13 @@ _Last updated 2026-06-08 20:00:44 UTC (22 minutes ago)._
 **Summary:** Build out and polish the automation course; one module is blocked on the chosen UI screenshots.
 **Done:** m0 reworked to Orientation + GitHub. Finish-the-Build handoff added (now m14). UI Foundation module (m13) built: ground-up dashboard design, deeply researched + cited (NN/g heuristics + progressive disclosure, Stephen Few operational vs analytical, Refactoring UI, Material 3 tokens, WCAG 2.2 AA numbers, Apple HIG touch targets). 15 modules, JS re-validated. Course overview at docs/_handoff/2026-06-08-gsr-course-overview.html.
 **To finish:**
+- TOMORROW (2026-06-09): rebuild the course into the review-and-refine model, seeded by the 90-item decision backlog. Each stage = review your setup + add/edit/remove + Build/Later items shown as the plan + Discuss items shown as session flags (not cold questions) + plain-English coding logic + phased automation. Pilot one stage first (Lower Thirds or Distribution), then roll across all 15. Daniel paused this on 2026-06-08 to do lighter tasks first.
 - Embed the chosen-UI screenshots into the UI Foundation module once a direction is built (Lane 1).
 - Final polish + adaptive-gating review.
-**Blocked on:** Lane 1 (only for embedding the eventual UI screenshots; the module itself is complete).
+**Blocked on:** Nothing for the rebuild (decisions are captured). Lane 1 only blocks embedding the eventual UI screenshots.
 **Files:** `docs/_handoff/gsr-automation-v2-course.html`, `docs/_handoff/ui-research/`, `docs/_handoff/2026-06-08-gsr-course-overview.html`
 **Recent activity:**
+- 2026-06-08 - 19-agent archaeology sweep of the Claude data export (407 convs + projects + memories) -> 90-item backlog; Daniel triaged all 90 (24 build / 9 later / 29 skip / 28 discuss) and resolved 14 conflicts; decisions captured to canon section 13 + 2026-06-08-review-decisions.md. Course rebuild queued for tomorrow.
 - 2026-06-08 - Built the UI Foundation module (m13) + 4 cited research briefs; handoff renumbered to m14
 - 2026-06-08 - Fix course: premade_library is an existing table, not a missing enum
 - 2026-06-08 - Course fact-corrections + record role scopes and deferred per-role login

@@ -12,39 +12,42 @@ docs once you decide.
 
 ---
 
-## Proposed to import
+## Import list (RESOLVED, Daniel 2026-06-08)
 
-| # | Element | What it is | From (Basecamp) | Edit mode | Recommend |
+| # | Element | What it is | From (Basecamp) | Edit mode | Status |
 |---|---|---|---|---|---|
 | 1 | Episode post-production status | The card's stage on the GSR pipeline (Recorded -> In Progress -> Editing -> Rendering -> Done) | 02_ Production -> "Genesis Science Report" | **Two-way** (advance the stage) | Keep |
-| 2 | WWN production status | Same stage tracking for the WWN show | 02_ Production -> "WWN" | **Two-way** | Keep |
-| 3 | To-dos | Production + staff task lists, checked off when done | 02_ Production + 01_DRM Staff -> To-dos | **Two-way** (check off) | Keep |
-| 4 | Card checklist steps | The sub-steps inside a pipeline card | GSR / WWN cards | **Two-way** (check off) | Keep |
-| 5 | Card details | Title, assignee, due date, notes on a card | GSR / WWN cards | Read-only | Keep |
-| 6 | Scripts + graphics instructions | David's monologue Scripture + his graphics notes | 02_ Production -> Docs & Files | Read-only *(flag)* | Keep |
-| 7 | Calendar | Shoot dates + air dates | 01_DRM Staff -> Schedule | Read-only *(flag)* | Keep |
+| 2 | WWN production status | Stage tracking for the WWN show | 02_ Production -> "WWN" | -- | **DEFERRED to future phases** |
+| 3 | To-dos (per person, own only) | Each member sees only their own tasks. Synced for **Daniel, Isaac, Myriam** (interns: none for now) | 02_ Production + 01_DRM Staff -> To-dos | **Two-way** (check off) | Keep |
+| 4 | Card checklist steps | The sub-steps inside a GSR card | GSR cards | **Two-way** (check off) | Keep |
+| 5 | Card details | Title, assignee, due date, notes on a card | GSR cards | Read-only | Keep |
+| 6 | Scripts + graphics instructions | David's monologue Scripture + his graphics notes | 02_ Production -> Docs & Files | Read-only *(open: two-way?)* | Keep |
+| 7 | Calendar, **`PROD \|` events only** | Shoot + air dates tagged `PROD \|` | 01_DRM Staff -> Schedule | Read-only | Keep |
 
-**(flag)** You earlier asked for two-way editing on scripts and the calendar.
-Under the new rule (two-way = check-off items only) these come in as read-only.
-Tell me if you want them two-way instead.
+**Isaac's GSR editing page:** Isaac gets a dedicated GSR editing page built to
+mirror his Basecamp "Genesis Science Report" card board as closely as possible
+(same columns, same card feel), so it adds no learning curve. Card moves advance
+post-production status two-way.
 
 ---
 
-## Proposed to exclude (opt any back in)
+## Excluded / deferred
 
-| Element | Why excluded |
+| Element | Reason |
 |---|---|
-| Message boards | You said not needed |
-| Chats / Campfire | You said not needed |
-| Generic "Card Table" (02_ Production) | Redundant with the GSR + WWN boards |
+| All WWN elements | Deferred to future phases |
+| Message boards | Not needed |
+| Chats / Campfire | Not needed |
+| Generic "Card Table" (02_ Production) | Redundant with the GSR board |
+| Calendar events without `PROD \|` | Out of scope |
 | Aquarium project | Not the show |
 | Prayer Request - Donors and Staff | Donor/ministry, not production |
 
 ---
 
-## Your call
-1. Cross out any row in the import table you want to **Drop**.
-2. For rows 6 and 7, write **read-only** or **two-way**.
-3. Tick any excluded element you actually want imported.
+## Remaining open question
+- Row 6 (scripts + graphics instructions): read-only (current default) or two-way?
+  Everything else is decided.
 
-Then I will update the integration design doc, the canon, and the roadmap to match.
+Final design + per-role inventory now lives in
+`docs/2026-06-08-basecamp-dashboard-integration.md`.

@@ -45,16 +45,27 @@ sheet (`docs/2026-06-08-basecamp-import-review-sheet.md`).
 | # | Data element | Source in Basecamp | Edit mode |
 |---|---|---|---|
 | D1 | GSR episode production status (card stage/column) | 02_ Production -> "Genesis Science Report" | two-way (check-off) |
-| D2 | WWN production status (card stage/column) | 02_ Production -> "WWN" | two-way (check-off) |
-| D3 | To-dos (task, assignee, due, done state) | 02_ Production + 01_DRM Staff -> To-dos | two-way (check-off) |
-| D4 | Card checklist steps | GSR / WWN cards | two-way (check-off) |
-| D5 | Card details (title, assignee, due date, notes) | GSR / WWN cards | read-only |
-| D6 | Scripts + monologue docs (incl. David's graphics instructions) | 02_ Production -> Docs & Files | read-only *(Daniel earlier asked two-way; confirm)* |
-| D7 | Calendar / schedule entries (shoot dates, air dates) | 01_DRM Staff -> Schedule | read-only *(Daniel earlier asked two-way; confirm)* |
+| D2 | To-dos, per person (each member sees only their own). Synced for **Daniel, Isaac, Myriam** | 02_ Production + 01_DRM Staff -> To-dos | two-way (check-off) |
+| D3 | Card checklist steps | GSR cards | two-way (check-off) |
+| D4 | Card details (title, assignee, due date, notes) | GSR cards | read-only |
+| D5 | Scripts + monologue docs (incl. David's graphics instructions) | 02_ Production -> Docs & Files | read-only *(Daniel earlier asked two-way; confirm)* |
+| D6 | Calendar events tagged **`PROD \|`** (shoot + air dates) | 01_DRM Staff -> Schedule | read-only |
+
+**Deferred to future phases (Daniel 2026-06-08):** ALL WWN elements (the "WWN"
+card table and its status). Not in the current build.
 
 **Explicitly dropped (Daniel 2026-06-08):** message boards, chats/Campfire, the
-generic "Card Table", activity/headline feeds, and any other non-essential
-content. Not imported.
+generic "Card Table", activity/headline feeds, calendar events without the
+`PROD |` tag, and any other non-essential content. Not imported.
+
+**Isaac's GSR editing page (Daniel 2026-06-08, layout specified by request):**
+Isaac gets a dedicated GSR editing page built as a board that mirrors his
+Basecamp "Genesis Science Report" card table as closely as possible: same columns
+(`Triage -> Not now -> Recorded -> In Progress -> Editing -> Rendering -> Done`)
+and the same card feel, so it is instantly familiar and adds no learning curve.
+Moving a card advances the post-production status two-way (writes back to
+Basecamp). This is the one place where layout is fixed, at Daniel's direction;
+everything else stays open.
 
 ---
 
@@ -65,32 +76,31 @@ Principle: one shared pipeline, each role gets only their stretch of it, plus on
 the to-dos with their name on them.
 
 ### Daniel (owner / producer) - sees everything
-- GSR + WWN production status, all columns.
+- GSR production status, all columns.
 - Card details + checklist steps.
-- All to-dos, grouped by assignee.
+- His own to-dos.
 - Scripts + monologue docs.
-- Full calendar (shoot + air).
+- Calendar: all `PROD |` events.
 
 ### Myriam (metadata, thumbnails, uploads, mark-aired)
 - GSR status in **Rendering** and **Done** only (ready for metadata + upload).
-- WWN status in **Awaiting Approval** and **Done**.
-- Only to-dos assigned to Myriam.
-- Calendar: publish/air dates.
+- Her own to-dos.
+- Calendar: `PROD |` events (publish/air).
 - Excludes: graphics build, editing internals, earlier pipeline.
 
 ### Isaac (graphics + edit lead)
-- GSR status in **Recorded, In Progress, Editing, Rendering**.
-- WWN status in **In Queue, Currently Editing, Awaiting Approval**.
+- **GSR editing page** that mirrors his Basecamp card board (see above): covers
+  **Recorded, In Progress, Editing, Rendering**, two-way status moves.
 - Card details + checklist steps for those cards.
-- Only to-dos assigned to Isaac.
+- His own to-dos.
 - Scripts + David's graphics-instruction docs (his pre-production input).
-- Calendar: shoot dates.
+- Calendar: `PROD |` events (shoot dates).
 - Excludes: uploads, metadata, distribution.
 
 ### Interns (graphics + b-roll sourcing; no post-production editing)
 - GSR status in **Recorded** and **In Progress** only. Excludes Editing / Rendering / Done.
-- Their assigned graphics/b-roll to-dos, plus unassigned graphics/b-roll tasks.
 - David's graphics-instruction docs (read, so they know what to build).
+- No Basecamp to-dos synced for now (to-do sync is Daniel/Isaac/Myriam only).
 - Excludes: editing, rendering, uploads, distribution, calendar, metadata.
 
 ---

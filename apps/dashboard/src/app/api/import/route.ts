@@ -39,10 +39,6 @@ const L3_TYPES = [
   'other',
 ] as const
 
-// Sentinel value for current_image_url on text-only graphics. The column is
-// NOT NULL today; until we make it nullable / drop it, every text-imported
-// row carries this marker so display code can render "no image" cleanly.
-const TEXT_ONLY_IMAGE_SENTINEL = '__text_only__'
 
 const ImportEpisode = z.object({
   season: z.number().int().min(1).max(99),
@@ -184,7 +180,7 @@ export async function POST(request: Request) {
   const existingGraphicsConflicts: string[] = []
   if (existingEpisodeMap.size > 0) {
     const { data: existingGfx, error: gfxErr } = await supabase
-      .from('graphics')
+      .from('production_lower_thirds')
       .select('episode_id, segment, beat_number')
       .in('episode_id', [...existingEpisodeMap.values()])
     if (gfxErr) {
@@ -293,17 +289,14 @@ export async function POST(request: Request) {
       l3_type: g.l3_type ?? null,
       beat_number: g.beat_number,
       initial_text: resolvePrimary(g),
-      var_1: g.var_1 ?? null,
-      var_2: g.var_2 ?? null,
       status: 'pending_review' as const,
-      current_image_url: TEXT_ONLY_IMAGE_SENTINEL,
       uploaded_by: user.id,
       // font_* and approved_* stay null until set in the UI
     }
   })
 
   const { data: insertedGraphics, error: insertGfxErr } = await supabase
-    .from('graphics')
+    .from('production_lower_thirds')
     .insert(graphicRows)
     .select('id, segment, beat_number, episode_id, initial_text')
   if (insertGfxErr) {
@@ -327,7 +320,7 @@ export async function POST(request: Request) {
   }))
   if (variationRows.length > 0) {
     const { error: varErr } = await supabase
-      .from('graphics_variations')
+      .from('lower_thirds_variations')
       .insert(variationRows)
     if (varErr) {
       // Graphics were inserted but variations failed — surface, don't roll back.

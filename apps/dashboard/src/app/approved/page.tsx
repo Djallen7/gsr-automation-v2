@@ -1,9 +1,7 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { buttonVariants } from '@/components/ui/button'
 import { CopyTextButton } from '@/components/copy-text-button'
 import { FontEditor } from '@/components/font-editor'
-import { isTextOnly } from '@/lib/text-only-sentinel'
 import { createClient } from '@/lib/supabase/server'
 import { PropresenterToggle } from './propresenter-toggle'
 
@@ -19,7 +17,6 @@ interface ApprovedRow {
   beat_number: number | null
   approved_text: string | null
   initial_text: string
-  current_image_url: string
   font_family: string | null
   font_size_pt: number | null
   font_color: string | null
@@ -33,9 +30,9 @@ export default async function ApprovedPage() {
   const supabase = await createClient()
 
   const { data: graphics } = await supabase
-    .from('graphics')
+    .from('production_lower_thirds')
     .select(
-      `id, segment, beat_number, approved_text, initial_text, current_image_url,
+      `id, segment, beat_number, approved_text, initial_text,
        font_family, font_size_pt, font_color,
        propresenter_added,
        episode:episodes(season, episode_number, title)`,
@@ -93,29 +90,12 @@ export default async function ApprovedPage() {
                       <ul className="grid gap-2">
                         {segments[seg].map((g) => {
                           const exportText = g.approved_text ?? g.initial_text
-                          const textOnly = isTextOnly(g.current_image_url)
                           return (
                             <li
                               key={g.id}
                               className="flex flex-col gap-2 rounded border p-2 text-sm"
                             >
                               <div className="flex items-center gap-3">
-                                {textOnly ? (
-                                  <div
-                                    aria-label="Text-only graphic"
-                                    className="flex h-12 w-24 shrink-0 items-center justify-center rounded bg-muted text-[10px] uppercase tracking-wide text-muted-foreground"
-                                  >
-                                    text-only
-                                  </div>
-                                ) : (
-                                  <Image
-                                    src={g.current_image_url}
-                                    alt={`LT ${g.segment} beat ${g.beat_number}`}
-                                    width={96}
-                                    height={48}
-                                    className="h-12 w-24 shrink-0 rounded bg-muted object-cover"
-                                  />
-                                )}
                                 <span className="text-xs text-muted-foreground">
                                   beat {g.beat_number ?? '—'}
                                 </span>

@@ -8,19 +8,21 @@ const SEGMENT_VALUES = [
   'featured_resource', 'heavens_declare', 'genesis_science_minute', 'other',
 ] as const
 
-// A held graphics row, stored by the extract-on-script-save edge function in
-// scripts.pending_extraction. Already in `graphics` insert shape.
+// A held lower-thirds row stored in scripts.pending_extraction.
+// The JSON blob may carry legacy fields (current_image_url, var_1, var_2)
+// written by older extractions; strip them before inserting.
 interface HeldGraphic {
   episode_id: string
   segment: string
   beat_number: number | null
   initial_text: string
   status: string
-  current_image_url: string
   l3_type: string
-  var_1: string | null
-  var_2: string | null
   source_doc: string
+  // legacy fields present in older blobs — stripped before DB insert
+  current_image_url?: string
+  var_1?: string | null
+  var_2?: string | null
 }
 
 interface PendingExtraction {
@@ -121,14 +123,17 @@ export async function POST(request: Request) {
 
   if (graphics.length > 0) {
     const { error: delErr } = await supabase
-      .from('graphics')
+      .from('production_lower_thirds')
       .delete()
       .eq('episode_id', parsed.episode_id)
       .eq('segment', parsed.segment)
       .eq('status', 'pending_review')
     if (delErr) return NextResponse.json({ error: delErr.message }, { status: 500 })
 
-    const { error: insErr } = await supabase.from('graphics').insert(graphics)
+    // Strip legacy fields that no longer exist on production_lower_thirds
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const insertRows = graphics.map(({ current_image_url: _img, var_1: _v1, var_2: _v2, ...rest }) => rest)
+    const { error: insErr } = await supabase.from('production_lower_thirds').insert(insertRows)
     if (insErr) return NextResponse.json({ error: insErr.message }, { status: 500 })
   }
 

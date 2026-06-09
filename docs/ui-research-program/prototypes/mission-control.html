@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>GSR Mission Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:oklch(0.15 0.018 287);
+    --surface:oklch(0.19 0.022 287);
+    --surface-2:oklch(0.23 0.028 287);
+    --border:oklch(0.30 0.02 287);
+    --fg:oklch(0.95 0.008 287);
+    --muted:oklch(0.68 0.018 287);
+    --faint:oklch(0.48 0.02 287);
+    --violet:oklch(0.64 0.19 287);
+    --violet-soft:oklch(0.64 0.19 287 / .16);
+    --success:oklch(0.74 0.16 150);
+    --warn:oklch(0.80 0.15 85);
+    --danger:oklch(0.64 0.21 25);
+    --info:oklch(0.74 0.13 210);
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+    --display:"Space Grotesk",system-ui,sans-serif;
+    --body:"Inter",system-ui,sans-serif;
+    --r:14px;
+    --r-sm:10px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--bg);
+    color:var(--fg);
+    font-family:var(--body);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+    background-image:
+      radial-gradient(1200px 600px at 85% -10%, oklch(0.64 0.19 287 / .07), transparent 60%),
+      radial-gradient(900px 500px at -5% 110%, oklch(0.64 0.19 287 / .05), transparent 55%);
+  }
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .label{font-family:var(--display);letter-spacing:.08em;text-transform:uppercase;font-size:.68rem;color:var(--faint);font-weight:600}
+  .wrap{max-width:1240px;margin:0 auto;padding:20px 22px 80px}
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    display:flex;align-items:center;gap:14px;
+    padding:8px 2px 18px;
+  }
+  .brandmark{
+    width:34px;height:34px;border-radius:9px;flex:none;
+    background:linear-gradient(140deg, var(--violet), oklch(0.45 0.16 287));
+    display:grid;place-items:center;
+    box-shadow:0 0 0 1px oklch(0.64 0.19 287 / .4), 0 8px 22px -10px oklch(0.64 0.19 287 / .8);
+  }
+  .brandmark svg{width:18px;height:18px}
+  .brandtext{font-family:var(--display);font-weight:700;letter-spacing:.04em;font-size:1rem}
+  .brandtext span{color:var(--faint);font-weight:500}
+  .topbar .spacer{flex:1}
+  .sysclock{font-family:var(--mono);font-size:.78rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+  .pulse{width:8px;height:8px;border-radius:50%;background:var(--success);box-shadow:0 0 0 0 oklch(0.74 0.16 150 / .6);animation:pulse 2.6s ease-out infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 oklch(0.74 0.16 150 / .5)}70%{box-shadow:0 0 0 7px oklch(0.74 0.16 150 / 0)}100%{box-shadow:0 0 0 0 oklch(0.74 0.16 150 / 0)}}
+
+  /* ---------- Master countdown ---------- */
+  .master{
+    position:relative;overflow:hidden;
+    border:1px solid oklch(0.64 0.19 287 / .35);
+    border-radius:var(--r);
+    background:
+      linear-gradient(180deg, var(--violet-soft), transparent 80%),
+      var(--surface);
+    padding:22px 26px;
+    display:flex;align-items:center;gap:28px;
+  }
+  .master::after{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:repeating-linear-gradient(0deg, oklch(1 0 0 / .025) 0 1px, transparent 1px 3px);
+    mix-blend-mode:overlay;opacity:.6;
+  }
+  .master .arc{flex:none;position:relative;width:108px;height:108px}
+  .master .arc .pct{
+    position:absolute;inset:0;display:grid;place-items:center;
+    font-family:var(--mono);font-weight:700;font-size:.84rem;color:var(--violet);
+  }
+  .master .mid{flex:1;min-width:0}
+  .master .mid .toprow{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+  .master .mission{
+    font-family:var(--display);font-weight:700;letter-spacing:.14em;font-size:.78rem;color:var(--fg);
+    text-transform:uppercase;
+  }
+  .master .sub{font-size:.74rem;color:var(--muted)}
+  .master .tminus{
+    font-family:var(--mono);font-weight:700;
+    font-size:clamp(2.3rem,6vw,3.6rem);line-height:1;letter-spacing:.02em;
+    color:var(--fg);margin-top:8px;
+    text-shadow:0 0 30px oklch(0.64 0.19 287 / .25);
+  }
+  .master .tminus .small{font-size:.4em;color:var(--faint);margin-left:6px;letter-spacing:.1em}
+  .master .target{margin-top:6px;font-size:.82rem;color:var(--muted)}
+  .master .target b{color:var(--violet);font-weight:600}
+
+  .section-head{display:flex;align-items:center;gap:12px;margin:30px 2px 14px}
+  .section-head .label{font-size:.72rem}
+  .section-head .rule{flex:1;height:1px;background:var(--border)}
+  .section-head .meta{font-family:var(--mono);font-size:.7rem;color:var(--faint)}
+
+  /* ---------- The Range ---------- */
+  .range{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+  .capsule{
+    position:relative;text-align:left;cursor:pointer;
+    border:1px solid var(--border);border-radius:var(--r);
+    background:var(--surface);
+    padding:16px 15px 15px;
+    display:flex;flex-direction:column;gap:11px;min-height:182px;
+    transition:transform .25s cubic-bezier(.2,.7,.3,1), border-color .25s, box-shadow .25s, opacity .4s;
+    color:inherit;font:inherit;
+    will-change:transform;
+  }
+  .capsule:hover{transform:translateY(-3px);border-color:var(--faint)}
+  .capsule:focus-visible{outline:2px solid var(--violet);outline-offset:2px}
+  .capsule .callsign{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .capsule .ep{font-family:var(--mono);font-size:.68rem;color:var(--faint);letter-spacing:.04em}
+  .capsule .title{font-family:var(--display);font-weight:600;font-size:.95rem;line-height:1.2;letter-spacing:.01em}
+  .capsule .phase{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-family:var(--display);font-weight:500}
+  .capsule .clock{margin-top:auto}
+  .capsule .clock .t{font-family:var(--mono);font-weight:700;font-size:1.42rem;letter-spacing:.01em;line-height:1}
+  .capsule .clock .deadline{font-size:.68rem;color:var(--faint);margin-top:3px;font-family:var(--mono)}
+
+  /* status chip */
+  .status{
+    display:inline-flex;align-items:center;gap:7px;
+    font-family:var(--display);font-weight:600;font-size:.68rem;letter-spacing:.07em;text-transform:uppercase;
+    padding:5px 9px;border-radius:99px;border:1px solid transparent;width:max-content;
+  }
+  .status svg{width:12px;height:12px;flex:none}
+  .s-nominal{color:var(--success);background:oklch(0.74 0.16 150 / .12);border-color:oklch(0.74 0.16 150 / .35)}
+  .s-needs{color:var(--warn);background:oklch(0.80 0.15 85 / .14);border-color:oklch(0.80 0.15 85 / .4)}
+  .s-risk{color:var(--danger);background:oklch(0.64 0.21 25 / .15);border-color:oklch(0.64 0.21 25 / .45)}
+  .s-planned{color:var(--faint);background:oklch(0.48 0.02 287 / .12);border-color:var(--border)}
+
+  /* emphasis: needs-you is brightest, risk is red-edged */
+  .capsule.is-needs{
+    border-color:oklch(0.80 0.15 85 / .55);
+    background:linear-gradient(180deg, oklch(0.80 0.15 85 / .06), transparent 60%), var(--surface-2);
+    box-shadow:0 0 0 1px oklch(0.80 0.15 85 / .25), 0 18px 40px -22px oklch(0.80 0.15 85 / .7);
+  }
+  .capsule.is-risk{
+    border-color:oklch(0.64 0.21 25 / .5);
+    box-shadow:0 0 0 1px oklch(0.64 0.21 25 / .18), 0 16px 36px -24px oklch(0.64 0.21 25 / .6);
+  }
+  .capsule.is-orbit{opacity:.42;filter:saturate(.5)}
+
+  /* ---------- Flight plan ---------- */
+  .flightplan{
+    border:1px solid var(--border);border-radius:var(--r);background:var(--surface);
+    padding:18px 18px 14px;overflow:hidden;
+  }
+  .fp-scroll{overflow-x:auto;padding-bottom:6px}
+  .fp-grid{position:relative;min-width:680px}
+  .fp-axis{position:relative;height:26px;margin-left:120px;border-bottom:1px solid var(--border)}
+  .ign{position:absolute;top:0;bottom:-9999px;width:0;border-left:1px dashed oklch(0.64 0.19 287 / .35)}
+  .ign.today{border-left:2px solid var(--violet);box-shadow:0 0 16px oklch(0.64 0.19 287 / .4)}
+  .ign .tag{
+    position:absolute;top:-2px;left:6px;white-space:nowrap;
+    font-family:var(--mono);font-size:.62rem;letter-spacing:.05em;color:var(--faint);
+  }
+  .ign.today .tag{color:var(--violet);font-weight:700}
+  .fp-row{position:relative;display:flex;align-items:center;height:38px}
+  .fp-row .name{
+    width:120px;flex:none;font-family:var(--display);font-weight:600;font-size:.74rem;
+    color:var(--muted);padding-right:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  }
+  .fp-track{position:relative;flex:1;height:38px}
+  .fp-baseline{position:absolute;top:50%;left:0;right:0;height:1px;background:var(--border)}
+  .fp-seg{
+    position:absolute;top:50%;transform:translateY(-50%);height:8px;border-radius:99px;
+    background:linear-gradient(90deg, oklch(0.64 0.19 287 / .9), oklch(0.5 0.16 287 / .7));
+  }
+  .fp-seg.trail{background:linear-gradient(90deg, oklch(0.64 0.21 25 / .85), oklch(0.5 0.18 25 / .6))}
+  .fp-seg.done{background:linear-gradient(90deg, oklch(0.74 0.16 150 / .85), oklch(0.55 0.14 150 / .6))}
+  .fp-dot{
+    position:absolute;top:50%;transform:translate(-50%,-50%);width:11px;height:11px;border-radius:50%;
+    background:var(--surface);border:2px solid var(--violet);
+  }
+  .fp-dot.risk{border-color:var(--danger)}
+  .fp-legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:.66rem;color:var(--faint);font-family:var(--mono)}
+  .fp-legend .k{display:inline-flex;align-items:center;gap:6px}
+  .fp-legend .sw{width:14px;height:6px;border-radius:99px}
+
+  /* ---------- Needs you strip ---------- */
+  .needs{border:1px solid var(--border);border-radius:var(--r);background:var(--surface);overflow:hidden}
+  .needs-empty{padding:26px 22px;display:flex;align-items:center;gap:14px}
+  .needs-empty .ic{width:40px;height:40px;border-radius:11px;background:oklch(0.74 0.16 150 / .12);display:grid;place-items:center;flex:none}
+  .needs-empty .ic svg{width:20px;height:20px;color:var(--success)}
+  .needs-empty .t{font-family:var(--display);font-weight:600}
+  .needs-empty .d{font-size:.82rem;color:var(--muted)}
+  .needs-item{
+    display:flex;align-items:center;gap:14px;padding:14px 18px;border-top:1px solid var(--border);
+  }
+  .needs-item:first-child{border-top:none}
+  .needs-item .dot{width:9px;height:9px;border-radius:50%;flex:none}
+  .needs-item .d-warn{background:var(--warn)}
+  .needs-item .d-info{background:var(--info)}
+  .needs-item .body{flex:1;min-width:0}
+  .needs-item .h{font-family:var(--display);font-weight:600;font-size:.9rem}
+  .needs-item .s{font-size:.78rem;color:var(--muted)}
+  .needs-item .s .num{color:var(--fg)}
+  .btn{
+    font-family:var(--display);font-weight:600;font-size:.78rem;letter-spacing:.03em;
+    border:1px solid var(--border);background:var(--surface-2);color:var(--fg);
+    padding:9px 15px;border-radius:var(--r-sm);cursor:pointer;white-space:nowrap;min-height:40px;
+    transition:border-color .2s, background .2s, transform .15s;
+  }
+  .btn:hover{border-color:var(--faint)}
+  .btn:active{transform:scale(.97)}
+  .btn-go{
+    background:linear-gradient(160deg, var(--violet), oklch(0.5 0.17 287));
+    border-color:oklch(0.64 0.19 287 / .6);color:white;
+    box-shadow:0 8px 22px -12px oklch(0.64 0.19 287 / .9);
+  }
+  .btn-go:hover{filter:brightness(1.08)}
+
+  /* ---------- The Pad (panel) ---------- */
+  .scrim{
+    position:fixed;inset:0;background:oklch(0.1 0.02 287 / .62);backdrop-filter:blur(3px);
+    opacity:0;pointer-events:none;transition:opacity .3s;z-index:40;
+  }
+  .scrim.open{opacity:1;pointer-events:auto}
+  .pad{
+    position:fixed;top:0;right:0;height:100dvh;width:min(440px,100vw);z-index:50;
+    background:var(--surface);border-left:1px solid var(--border);
+    transform:translateX(100%);transition:transform .36s cubic-bezier(.2,.7,.2,1);
+    display:flex;flex-direction:column;overflow:hidden;
+    box-shadow:-30px 0 60px -30px oklch(0 0 0 / .6);
+  }
+  .pad.open{transform:translateX(0)}
+  .pad-head{padding:22px 22px 16px;border-bottom:1px solid var(--border);position:relative}
+  .pad-head .close{
+    position:absolute;top:16px;right:16px;width:34px;height:34px;border-radius:9px;
+    border:1px solid var(--border);background:var(--surface-2);color:var(--muted);cursor:pointer;
+    display:grid;place-items:center;
+  }
+  .pad-head .close:hover{color:var(--fg);border-color:var(--faint)}
+  .pad-head .ep{font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.05em}
+  .pad-head .title{font-family:var(--display);font-weight:700;font-size:1.4rem;line-height:1.15;margin:4px 0 12px;padding-right:40px}
+  .pad-head .meta{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  .pad-body{flex:1;overflow-y:auto;padding:20px 22px}
+  .systems-title{margin-bottom:12px;display:flex;align-items:baseline;justify-content:space-between}
+  .systems-title .label{font-size:.66rem}
+  .systems-title .count{font-family:var(--mono);font-size:.72rem;color:var(--muted)}
+  .sysgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .chip{
+    display:flex;align-items:center;gap:9px;padding:11px 12px;border-radius:var(--r-sm);
+    border:1px solid var(--border);background:var(--surface-2);
+  }
+  .chip .led{width:9px;height:9px;border-radius:50%;flex:none}
+  .chip .nm{font-family:var(--display);font-weight:500;font-size:.82rem;flex:1}
+  .chip .st{font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;font-weight:600}
+  .chip .sub{font-family:var(--mono);font-size:.62rem;color:var(--faint);display:block}
+  .led-go{background:var(--success);box-shadow:0 0 8px oklch(0.74 0.16 150 / .7)}
+  .led-standby{background:var(--faint)}
+  .led-nogo{background:var(--danger);box-shadow:0 0 8px oklch(0.64 0.21 25 / .6)}
+  .st-go{color:var(--success)} .st-standby{color:var(--faint)} .st-nogo{color:var(--danger)}
+  .pad-foot{padding:16px 22px;border-top:1px solid var(--border)}
+  .launch-row{display:flex;flex-direction:column;gap:8px}
+  .launch-note{font-size:.74rem;color:var(--muted);text-align:center}
+  .btn-launch{
+    width:100%;min-height:52px;font-size:.95rem;letter-spacing:.08em;text-transform:uppercase;
+    border-radius:var(--r-sm);font-family:var(--display);font-weight:700;cursor:pointer;
+    transition:transform .15s, filter .2s, box-shadow .3s;
+  }
+  .btn-launch.ready{
+    background:linear-gradient(160deg, var(--success), oklch(0.6 0.15 150));color:oklch(0.14 0.02 150);
+    border:1px solid oklch(0.74 0.16 150 / .6);
+    box-shadow:0 0 30px -8px oklch(0.74 0.16 150 / .7);
+  }
+  .btn-launch.ready:hover{filter:brightness(1.06)}
+  .btn-launch.ready:active{transform:scale(.98)}
+  .btn-launch.locked{
+    background:var(--surface-2);color:var(--faint);border:1px solid var(--border);cursor:not-allowed;
+  }
+
+  /* ignition animation */
+  @keyframes ignite{
+    0%{transform:translateY(0) scale(1);opacity:1}
+    22%{transform:translateY(2px) scale(.985);opacity:1}
+    100%{transform:translateY(-46px) scale(.9);opacity:0}
+  }
+  .capsule.launching{animation:ignite .7s cubic-bezier(.4,0,.2,1) forwards;pointer-events:none}
+  .pad.launching{animation:ignite .7s cubic-bezier(.4,0,.2,1) forwards}
+
+  /* orbit shelf */
+  .shelf{display:flex;flex-wrap:wrap;gap:10px}
+  .orbit-chip{
+    display:inline-flex;align-items:center;gap:9px;padding:9px 13px;border-radius:99px;
+    border:1px solid oklch(0.74 0.16 150 / .35);background:oklch(0.74 0.16 150 / .08);
+    font-family:var(--display);font-weight:600;font-size:.78rem;
+  }
+  .orbit-chip svg{width:14px;height:14px;color:var(--success)}
+  .orbit-chip .ep{font-family:var(--mono);font-size:.66rem;color:var(--faint)}
+  .shelf-empty{font-size:.82rem;color:var(--faint);font-family:var(--mono)}
+
+  /* mobile sticky master + range only adjustments */
+  .mobile-only{display:none}
+  @media (max-width:880px){
+    .wrap{padding:14px 14px 70px}
+    .range{grid-template-columns:1fr;gap:10px}
+    .capsule{min-height:0;flex-direction:row;flex-wrap:wrap;align-items:center}
+    .capsule .callsign{flex:1 1 100%}
+    .capsule .clock{margin-top:0;margin-left:auto;text-align:right}
+    .stickytop{position:sticky;top:0;z-index:30;padding-top:8px;background:linear-gradient(180deg,var(--bg) 70%, transparent);margin:-14px -14px 0;padding:10px 14px 8px}
+    .master{padding:16px 16px;gap:16px}
+    .master .arc{width:74px;height:74px}
+    .desktop-only{display:none}
+    .pad{width:100vw;top:auto;bottom:0;height:88dvh;border-left:none;border-top:1px solid var(--border);border-radius:18px 18px 0 0;transform:translateY(100%)}
+    .pad.open{transform:translateY(0)}
+    @keyframes ignite{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-40px) scale(.92);opacity:0}}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.001ms !important;transition-duration:.08s !important}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <div class="brandmark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg>
+    </div>
+    <div>
+      <div class="brandtext">GSR MISSION CONTROL <span>// flight deck</span></div>
+    </div>
+    <div class="spacer"></div>
+    <div class="sysclock"><span class="pulse"></span><span id="sysclock">--:--:--</span> <span style="color:var(--faint)">LOCAL</span></div>
+  </div>
+
+  <!-- 1. MASTER COUNTDOWN -->
+  <div class="stickytop">
+  <section class="master" aria-label="Master countdown">
+    <div class="arc" aria-hidden="true">
+      <svg viewBox="0 0 120 120" width="100%" height="100%">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="oklch(0.30 0.02 287)" stroke-width="8"/>
+        <circle id="arcProg" cx="60" cy="60" r="52" fill="none" stroke="var(--violet)" stroke-width="8"
+          stroke-linecap="round" transform="rotate(-90 60 60)"
+          stroke-dasharray="326.7" stroke-dashoffset="80"
+          style="filter:drop-shadow(0 0 6px oklch(0.64 0.19 287 / .6))"/>
+      </svg>
+      <div class="pct" id="arcPct">75%</div>
+    </div>
+    <div class="mid">
+      <div class="toprow">
+        <span class="mission">JUNE BATCH</span>
+        <span class="sub">5 vehicles on the range</span>
+      </div>
+      <div class="tminus num" id="masterClock">T- 06:00:00<span class="small">TO LAUNCH</span></div>
+      <div class="target">Next ignition <b>SHOW 1 // UAP DISCLOSURE</b> to YouTube, today 4:00 PM. TV broadcast follows Tuesday.</div>
+    </div>
+  </section>
+  </div>
+
+  <!-- 2. THE RANGE -->
+  <div class="section-head">
+    <span class="label">The Range</span>
+    <span class="rule"></span>
+    <span class="meta desktop-only">tap a vehicle for systems</span>
+  </div>
+  <div class="range" id="range"></div>
+
+  <!-- 3. FLIGHT PLAN -->
+  <div class="section-head desktop-only">
+    <span class="label">Flight Plan</span>
+    <span class="rule"></span>
+    <span class="meta">today &rarr; end of cycle</span>
+  </div>
+  <section class="flightplan desktop-only" aria-label="Flight plan timeline">
+    <div class="fp-scroll">
+      <div class="fp-grid" id="fpGrid"></div>
+    </div>
+    <div class="fp-legend">
+      <span class="k"><span class="sw" style="background:var(--violet)"></span> on track</span>
+      <span class="k"><span class="sw" style="background:var(--danger)"></span> trailing</span>
+      <span class="k"><span class="sw" style="background:var(--success)"></span> complete</span>
+    </div>
+  </section>
+
+  <!-- 5. NEEDS YOU -->
+  <div class="section-head">
+    <span class="label">Needs You</span>
+    <span class="rule"></span>
+    <span class="meta" id="needsCount"></span>
+  </div>
+  <section class="needs" id="needs"></section>
+
+  <!-- ORBIT SHELF -->
+  <div class="section-head desktop-only">
+    <span class="label">In Orbit / Aired</span>
+    <span class="rule"></span>
+  </div>
+  <section class="desktop-only" style="margin-top:2px">
+    <div class="shelf" id="shelf"><span class="shelf-empty">No vehicles launched yet this cycle.</span></div>
+  </section>
+
+</div>
+
+<!-- 4. THE PAD -->
+<div class="scrim" id="scrim"></div>
+<aside class="pad" id="pad" aria-label="Vehicle detail" aria-hidden="true">
+  <div class="pad-head">
+    <button class="close" id="padClose" aria-label="Close panel">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="ep" id="padEp">EP-000</div>
+    <div class="title" id="padTitle">Vehicle</div>
+    <div class="meta" id="padMeta"></div>
+  </div>
+  <div class="pad-body">
+    <div class="systems-title">
+      <span class="label">Systems Status</span>
+      <span class="count" id="padSysCount"></span>
+    </div>
+    <div class="sysgrid" id="padSys"></div>
+  </div>
+  <div class="pad-foot">
+    <div class="launch-row">
+      <div class="launch-note" id="padNote"></div>
+      <button class="btn-launch locked" id="padLaunch" disabled>GO FOR LAUNCH</button>
+    </div>
+  </div>
+</aside>
+
+<script>
+(function(){
+  "use strict";
+
+  // ----- mock data (today = Mon Jun 8 2026) -----
+  var SS = ["Script","Footage","Edit","Graphics","Thumbnail","YouTube","TV"];
+  var vehicles = [
+    {
+      id:"s1", call:"SHOW 1", ep:"EP-312", title:"UAP DISCLOSURE",
+      phase:"scheduled", status:"nominal",
+      deadlineLabel:"YouTube today 4:00 PM", tMinusH:6,
+      dist:"1 / 8 distribution targets",
+      subs:{Script:"go",Footage:"go",Edit:"go",Graphics:"go",Thumbnail:"go",YouTube:"standby:needs final go",TV:"standby"},
+      note:"All build systems green. Awaiting your final GO for YouTube.",
+      fp:{start:0, end:14, state:"track", dot:14}
+    },
+    {
+      id:"s2", call:"SHOW 2", ep:"EP-313", title:"SOFT TISSUE IN FOSSILS",
+      phase:"in prep", status:"risk",
+      deadlineLabel:"Shoot Thu Jun 11", tMinusH:72,
+      dist:"Graphics 5 / 30",
+      subs:{Script:"go",Footage:"nogo",Edit:"standby",Graphics:"standby:5/30",Thumbnail:"standby",YouTube:"standby",TV:"standby"},
+      note:"Behind pace. Footage is NO-GO ahead of the shoot.",
+      fp:{start:0, end:24, state:"trail", dot:10}
+    },
+    {
+      id:"s3", call:"SHOW 3", ep:"EP-314", title:"GEOSMIN AND THE RAIN",
+      phase:"in post", status:"needs",
+      deadlineLabel:"Air Jun 23", tMinusH:360,
+      dist:"Graphics 22 / 30",
+      subs:{Script:"go",Footage:"go",Edit:"go",Graphics:"standby:22/30",Thumbnail:"standby",YouTube:"standby",TV:"standby"},
+      note:"Needs you: approve lower thirds and confirm the rundown.",
+      fp:{start:0, end:50, state:"track", dot:34}
+    },
+    {
+      id:"s4", call:"SHOW 4", ep:"EP-315", title:"ICE AGE MODELS",
+      phase:"in prep", status:"risk",
+      deadlineLabel:"Shoot Thu Jun 11", tMinusH:72,
+      dist:"Graphics 0",
+      subs:{Script:"standby",Footage:"standby",Edit:"standby",Graphics:"standby",Thumbnail:"standby",YouTube:"standby",TV:"standby"},
+      note:"Waiting on Jeremiah for b-roll before the shoot.",
+      fp:{start:0, end:24, state:"trail", dot:6}
+    },
+    {
+      id:"s5", call:"SHOW 5", ep:"EP-316", title:"GUEST TBC",
+      phase:"planned", status:"planned",
+      deadlineLabel:"Air Jul 7", tMinusH:696,
+      dist:"Not yet scheduled",
+      subs:{Script:"standby",Footage:"standby",Edit:"standby",Graphics:"standby",Thumbnail:"standby",YouTube:"standby",TV:"standby"},
+      note:"Planned. Guest not yet confirmed.",
+      fp:{start:0, end:96, state:"track", dot:4}
+    }
+  ];
+
+  var needsItems = [
+    {kind:"warn", h:"Final GO for Show 1 YouTube", s:"UAP DISCLOSURE launches at 4:00 PM. All build systems green.", cta:"Give GO", vid:"s1"},
+    {kind:"info", h:"Approve Show 3 lower thirds", s:"GEOSMIN AND THE RAIN, Graphics at 22 / 30.", cta:"Review", vid:"s3"},
+    {kind:"info", h:"Confirm Show 3 rundown", s:"GEOSMIN AND THE RAIN, before post wraps.", cta:"Confirm", vid:"s3"}
+  ];
+
+  // ----- helpers -----
+  var STATUS = {
+    nominal:{cls:"s-nominal", label:"Nominal", ic:'<path d="M20 6 9 17l-5-5"/>'},
+    needs:{cls:"s-needs", label:"Needs You", ic:'<path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/>'},
+    risk:{cls:"s-risk", label:"At Risk", ic:'<circle cx="12" cy="12" r="9"/><path d="M12 8v4M12 16h.01"/>'},
+    planned:{cls:"s-planned", label:"Planned", ic:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'}
+  };
+  function svg(inner){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'+inner+'</svg>';}
+  function statusChip(s){var d=STATUS[s];return '<span class="status '+d.cls+'">'+svg(d.ic)+d.label+'</span>';}
+
+  // T-minus formatting from hours-remaining (mock, static base + live seconds for show1)
+  function fmtTMinus(hours){
+    if(hours>=48){var d=Math.floor(hours/24);var hr=hours%24;return "T- "+d+"d "+String(hr).padStart(2,"0")+"h";}
+    var h=Math.floor(hours);var m=Math.floor((hours-h)*60);
+    return "T- "+String(h).padStart(2,"0")+":"+String(m).padStart(2,"0");
+  }
+
+  var orbit = [];
+
+  // ----- render the Range -----
+  var rangeEl = document.getElementById("range");
+  function renderRange(){
+    rangeEl.innerHTML = "";
+    vehicles.forEach(function(v){
+      var btn = document.createElement("button");
+      btn.className = "capsule" + (v.status==="needs"?" is-needs":"") + (v.status==="risk"?" is-risk":"");
+      btn.setAttribute("data-id", v.id);
+      btn.setAttribute("aria-label", v.call+" "+v.title+", "+STATUS[v.status].label);
+      btn.innerHTML =
+        '<div class="callsign"><span class="title">'+v.call+'</span><span class="ep num">'+v.ep+'</span></div>'+
+        '<div class="phase">'+v.title+'</div>'+
+        '<div class="phase" style="color:var(--faint)">'+v.phase+'</div>'+
+        statusChip(v.status)+
+        '<div class="clock"><div class="t num">'+fmtTMinus(v.tMinusH)+'</div><div class="deadline">'+v.deadlineLabel+'</div></div>';
+      btn.addEventListener("click", function(){ openPad(v.id); });
+      rangeEl.appendChild(btn);
+    });
+  }
+
+  // ----- Flight plan -----
+  function renderFlightPlan(){
+    var grid = document.getElementById("fpGrid");
+    // ignition markers as percentages across the cycle window (today..Jul 7)
+    var marks = [
+      {pct:0, label:"TODAY", today:true},
+      {pct:32, label:"SHOOT THU"},
+      {pct:5, label:"YT MON"},
+      {pct:10, label:"TV TUE"},
+      {pct:100, label:"JUL 7"}
+    ];
+    var axis = '<div class="fp-axis">';
+    marks.forEach(function(m){
+      axis += '<span class="ign'+(m.today?" today":"")+'" style="left:'+m.pct+'%"><span class="tag">'+m.label+'</span></span>';
+    });
+    axis += '</div>';
+
+    var rows = "";
+    vehicles.forEach(function(v){
+      var max = 96; // hours window scaled to %
+      var s = (v.fp.start/max)*100, e = (v.fp.end/max)*100, dot=(v.fp.dot/max)*100;
+      var segCls = v.fp.state==="trail"?"trail":(v.fp.state==="done"?"done":"");
+      rows +=
+        '<div class="fp-row">'+
+          '<span class="name">'+v.call+' '+'<span style="color:var(--faint);font-weight:500">'+v.ep+'</span></span>'+
+          '<div class="fp-track">'+
+            '<span class="fp-baseline"></span>'+
+            '<span class="fp-seg '+segCls+'" style="left:'+s+'%;width:'+(e-s)+'%"></span>'+
+            '<span class="fp-dot '+(v.status==="risk"?"risk":"")+'" style="left:'+dot+'%"></span>'+
+          '</div>'+
+        '</div>';
+    });
+    grid.innerHTML = axis + rows;
+  }
+
+  // ----- Needs You -----
+  function renderNeeds(){
+    var el = document.getElementById("needs");
+    var open = needsItems.filter(function(n){ return orbit.indexOf(n.vid)<0; });
+    document.getElementById("needsCount").textContent = open.length? open.length+" open" : "all clear";
+    if(open.length===0){
+      el.innerHTML =
+        '<div class="needs-empty">'+
+          '<div class="ic">'+svg('<path d="M20 6 9 17l-5-5"/>')+'</div>'+
+          '<div><div class="t">You are clear</div><div class="d">Nothing needs your go or no-go right now. The deck is calm.</div></div>'+
+        '</div>';
+      return;
+    }
+    el.innerHTML = open.map(function(n){
+      return '<div class="needs-item">'+
+        '<span class="dot d-'+n.kind+'"></span>'+
+        '<div class="body"><div class="h">'+n.h+'</div><div class="s">'+n.s+'</div></div>'+
+        '<button class="btn '+(n.kind==="warn"?"btn-go":"")+'" data-open="'+n.vid+'">'+n.cta+'</button>'+
+      '</div>';
+    }).join("");
+    el.querySelectorAll("[data-open]").forEach(function(b){
+      b.addEventListener("click", function(){ openPad(b.getAttribute("data-open")); });
+    });
+  }
+
+  // ----- Orbit shelf -----
+  function renderShelf(){
+    var el = document.getElementById("shelf");
+    if(orbit.length===0){ el.innerHTML = '<span class="shelf-empty">No vehicles launched yet this cycle.</span>'; return; }
+    el.innerHTML = orbit.map(function(id){
+      var v = vehicles.find(function(x){return x.id===id;});
+      return '<span class="orbit-chip">'+svg('<path d="M12 2a10 10 0 1 0 10 10"/><path d="M22 2 12 12"/>')+v.call+' '+v.title+' <span class="ep">AIRED</span></span>';
+    }).join("");
+  }
+
+  // ----- The Pad -----
+  var pad = document.getElementById("pad");
+  var scrim = document.getElementById("scrim");
+  var currentId = null;
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function subParts(raw){
+    var p = raw.split(":");
+    return {state:p[0], sub:p[1]||""};
+  }
+  function allGreen(v){
+    return SS.every(function(k){ return subParts(v.subs[k]).state==="go"; });
+  }
+
+  function openPad(id){
+    var v = vehicles.find(function(x){return x.id===id;});
+    if(!v || orbit.indexOf(id)>=0) return;
+    currentId = id;
+    document.getElementById("padEp").textContent = v.ep;
+    document.getElementById("padTitle").textContent = v.title;
+    document.getElementById("padMeta").innerHTML = statusChip(v.status) +
+      '<span class="status s-planned">'+svg('<path d="M3 9h18M3 15h18"/>')+v.phase+'</span>'+
+      '<span class="status s-planned">'+svg('<circle cx="12" cy="12" r="9"/>')+v.dist+'</span>';
+
+    var goCount = SS.filter(function(k){return subParts(v.subs[k]).state==="go";}).length;
+    document.getElementById("padSysCount").textContent = goCount+" / "+SS.length+" GO";
+
+    var grid = document.getElementById("padSys");
+    grid.innerHTML = SS.map(function(k){
+      var sp = subParts(v.subs[k]);
+      var st = sp.state==="go"?"GO":(sp.state==="nogo"?"NO-GO":"STANDBY");
+      var led = sp.state==="go"?"led-go":(sp.state==="nogo"?"led-nogo":"led-standby");
+      var stc = sp.state==="go"?"st-go":(sp.state==="nogo"?"st-nogo":"st-standby");
+      return '<div class="chip"><span class="led '+led+'"></span>'+
+        '<span class="nm">'+k+(sp.sub?'<span class="sub">'+sp.sub+'</span>':'')+'</span>'+
+        '<span class="st '+stc+'">'+st+'</span></div>';
+    }).join("");
+
+    var note = document.getElementById("padNote");
+    var launch = document.getElementById("padLaunch");
+    if(allGreen(v)){
+      note.textContent = "All systems GO. Cleared for launch.";
+      launch.className = "btn-launch ready";
+      launch.disabled = false;
+      launch.textContent = "GO FOR LAUNCH";
+    } else {
+      note.textContent = v.note;
+      launch.className = "btn-launch locked";
+      launch.disabled = true;
+      launch.textContent = "HOLD // SYSTEMS NOT GO";
+    }
+
+    scrim.classList.add("open");
+    pad.classList.add("open");
+    pad.setAttribute("aria-hidden","false");
+  }
+
+  function closePad(){
+    scrim.classList.remove("open");
+    pad.classList.remove("open");
+    pad.setAttribute("aria-hidden","true");
+    currentId = null;
+  }
+
+  document.getElementById("padClose").addEventListener("click", closePad);
+  scrim.addEventListener("click", closePad);
+  document.addEventListener("keydown", function(e){ if(e.key==="Escape") closePad(); });
+
+  // launch (wow moment)
+  document.getElementById("padLaunch").addEventListener("click", function(){
+    if(this.disabled || !currentId) return;
+    var id = currentId;
+    var capsule = rangeEl.querySelector('[data-id="'+id+'"]');
+    function finish(){
+      if(orbit.indexOf(id)<0) orbit.push(id);
+      closePad();
+      renderRange(); renderNeeds(); renderShelf();
+    }
+    if(reduceMotion){ finish(); return; }
+    pad.classList.add("launching");
+    if(capsule) capsule.classList.add("launching");
+    setTimeout(function(){ pad.classList.remove("launching"); finish(); }, 720);
+  });
+
+  // ----- live clocks -----
+  function pad2(n){return String(n).padStart(2,"0");}
+  // master clock: count down from a fixed offset (T-6h baseline) using real seconds
+  var masterTotal = 6*3600; // seconds remaining baseline
+  var startTs = Date.now();
+  function tick(){
+    var now = new Date();
+    document.getElementById("sysclock").textContent =
+      pad2(now.getHours())+":"+pad2(now.getMinutes())+":"+pad2(now.getSeconds());
+    var elapsed = Math.floor((Date.now()-startTs)/1000);
+    var rem = Math.max(0, masterTotal - elapsed);
+    var h=Math.floor(rem/3600), m=Math.floor((rem%3600)/60), s=rem%60;
+    document.getElementById("masterClock").innerHTML =
+      "T- "+pad2(h)+":"+pad2(m)+":"+pad2(s)+'<span class="small">TO LAUNCH</span>';
+    // arc fills toward launch
+    var frac = 1 - rem/masterTotal;
+    var circ = 326.7;
+    document.getElementById("arcProg").setAttribute("stroke-dashoffset", String(circ*(1-frac)));
+    document.getElementById("arcPct").textContent = Math.round(frac*100)+"%";
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ----- init -----
+  renderRange();
+  renderFlightPlan();
+  renderNeeds();
+  renderShelf();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GSR Pipeline - Arclon Rebuild B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg:#1b1c26; --surface:#23242f; --surface-2:#2a2b38;
+    --border:rgba(255,255,255,.09); --fg:#c4cdd5; --muted:#8391a2; --faint:#5b6677;
+    --primary:#7b5bf2; --primary-hi:#8f73ff; --primary-soft:rgba(123,91,242,.16);
+    --secondary:#5b69bc; --success:#30cf46; --info:#4bbee1; --warning:#faae37;
+    --danger:#f83f32; --pink:#ff8acc; --radius:.35rem;
+    --sidebar-w:248px; --topbar-h:64px;
+    --shadow:0 0 35px 0 rgba(0,0,0,.25);
+    --success-soft:rgba(48,207,70,.16); --info-soft:rgba(75,190,225,.16);
+    --warning-soft:rgba(250,174,55,.16); --danger-soft:rgba(248,63,50,.16);
+    --pink-soft:rgba(255,138,204,.16); --secondary-soft:rgba(91,105,188,.16);
+  }
+  [data-theme="light"] {
+    --bg:#f0f4f7; --surface:#ffffff; --surface-2:#f6f7fb;
+    --border:#e7e9eb; --fg:#4c4c5c; --muted:#8391a2; --faint:#a6b0c3;
+    --shadow:0 0 35px 0 rgba(154,161,171,.18);
+  }
+  * { box-sizing:border-box; }
+  html,body { margin:0; padding:0; }
+  body {
+    font-family:'Atkinson Hyperlegible', system-ui, sans-serif;
+    background:var(--bg); color:var(--fg);
+    font-size:14px; line-height:1.5;
+    transition:background .35s ease, color .35s ease;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono { font-family:'JetBrains Mono', monospace; font-variant-numeric:tabular-nums; }
+  a { color:inherit; text-decoration:none; }
+  ::-webkit-scrollbar { height:8px; width:8px; }
+  ::-webkit-scrollbar-thumb { background:var(--faint); border-radius:10px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+
+  /* ---------- App Shell ---------- */
+  .app { display:flex; min-height:100vh; }
+
+  .sidebar {
+    width:var(--sidebar-w); flex:0 0 var(--sidebar-w);
+    background:var(--surface); border-right:1px solid var(--border);
+    position:fixed; top:0; bottom:0; left:0; z-index:60;
+    display:flex; flex-direction:column;
+    transition:transform .3s ease, background .35s ease;
+  }
+  .brand {
+    height:var(--topbar-h); display:flex; align-items:center; gap:.6rem;
+    padding:0 1.4rem; border-bottom:1px solid var(--border);
+  }
+  .brand-mark {
+    width:34px; height:34px; border-radius:9px;
+    background:linear-gradient(135deg,var(--primary),var(--primary-hi));
+    display:grid; place-items:center; color:#fff; font-weight:700; font-size:15px;
+    box-shadow:0 4px 14px var(--primary-soft);
+  }
+  .brand-word { font-weight:700; font-size:1.25rem; letter-spacing:.04em; color:var(--fg); }
+  .nav-label {
+    font-size:.66rem; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); padding:1.3rem 1.4rem .5rem; font-weight:700;
+  }
+  .nav { padding:0 .7rem; flex:1; overflow-y:auto; }
+  .nav-item {
+    display:flex; align-items:center; gap:.85rem;
+    padding:.7rem .75rem; margin:.15rem 0; border-radius:var(--radius);
+    color:var(--muted); font-weight:700; font-size:.9rem;
+    position:relative; cursor:pointer; min-height:44px;
+    transition:background .18s, color .18s;
+  }
+  .nav-item svg { width:19px; height:19px; flex:0 0 19px; }
+  .nav-item:hover { color:var(--fg); background:var(--surface-2); }
+  .nav-item.active { color:var(--primary-hi); background:var(--primary-soft); }
+  .nav-item.active::before {
+    content:""; position:absolute; left:-0.7rem; top:6px; bottom:6px;
+    width:3px; border-radius:0 3px 3px 0; background:var(--primary);
+  }
+  .nav-item .nav-chip {
+    margin-left:auto; font-size:.66rem; padding:.1rem .4rem; border-radius:20px;
+    background:var(--danger); color:#fff; font-family:'JetBrains Mono',monospace; font-weight:700;
+  }
+
+  .main { flex:1; margin-left:var(--sidebar-w); min-width:0; display:flex; flex-direction:column; }
+
+  .topbar {
+    height:var(--topbar-h); position:sticky; top:0; z-index:40;
+    background:var(--surface); border-bottom:1px solid var(--border);
+    display:flex; align-items:center; gap:1rem; padding:0 1.3rem;
+    transition:background .35s ease;
+  }
+  .hamburger {
+    display:none; background:none; border:none; color:var(--muted);
+    width:42px; height:42px; border-radius:var(--radius); cursor:pointer;
+  }
+  .hamburger:hover { background:var(--surface-2); color:var(--fg); }
+  .page-title { font-weight:700; font-size:1.15rem; color:var(--fg); }
+  .crumb { color:var(--faint); font-size:.78rem; }
+  .crumb b { color:var(--muted); }
+  .topbar-search {
+    flex:1; max-width:360px; margin:0 auto; position:relative;
+  }
+  .topbar-search input {
+    width:100%; background:var(--surface-2); border:1px solid var(--border);
+    border-radius:var(--radius); padding:.55rem .8rem .55rem 2.2rem;
+    color:var(--fg); font-family:inherit; font-size:.85rem;
+  }
+  .topbar-search input::placeholder { color:var(--faint); }
+  .topbar-search svg { position:absolute; left:.7rem; top:50%; transform:translateY(-50%); width:16px; height:16px; color:var(--faint); }
+  .topbar-actions { display:flex; align-items:center; gap:.4rem; margin-left:auto; }
+  .icon-btn {
+    width:42px; height:42px; border-radius:var(--radius); border:none; cursor:pointer;
+    background:none; color:var(--muted); display:grid; place-items:center; position:relative;
+    transition:background .18s, color .18s;
+  }
+  .icon-btn:hover { background:var(--surface-2); color:var(--fg); }
+  .icon-btn svg { width:20px; height:20px; }
+  .bell-badge {
+    position:absolute; top:7px; right:8px; width:8px; height:8px; border-radius:50%;
+    background:var(--danger); border:2px solid var(--surface);
+  }
+  .avatar {
+    width:38px; height:38px; border-radius:50%; margin-left:.3rem;
+    background:linear-gradient(135deg,var(--secondary),var(--primary));
+    color:#fff; font-weight:700; display:grid; place-items:center; font-size:.85rem; cursor:pointer;
+  }
+
+  .content { padding:1.5rem; flex:1; }
+  .page-head { margin:0 0 1.2rem; }
+  .page-head h1 { margin:0 0 .15rem; font-size:1.4rem; color:var(--fg); }
+  .page-head p { margin:0; color:var(--muted); font-size:.85rem; }
+
+  /* ---------- Badges ---------- */
+  .badge {
+    display:inline-flex; align-items:center; gap:.3rem;
+    font-size:.68rem; font-weight:700; padding:.22rem .55rem;
+    border-radius:.3rem; letter-spacing:.02em;
+  }
+  .b-primary { background:var(--primary-soft); color:var(--primary-hi); }
+  .b-success { background:var(--success-soft); color:var(--success); }
+  .b-info { background:var(--info-soft); color:var(--info); }
+  .b-warning { background:var(--warning-soft); color:var(--warning); }
+  .b-danger { background:var(--danger-soft); color:var(--danger); }
+  .b-pink { background:var(--pink-soft); color:var(--pink); }
+  .b-secondary { background:var(--secondary-soft); color:var(--secondary); }
+  .b-muted { background:var(--surface-2); color:var(--muted); }
+  .ep-badge {
+    font-family:'JetBrains Mono',monospace; font-weight:700; font-size:.68rem;
+    background:var(--surface-2); color:var(--muted); padding:.18rem .45rem; border-radius:.3rem;
+    border:1px solid var(--border);
+  }
+
+  /* ---------- Countdown strip ---------- */
+  .countdown-strip {
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-bottom:1.5rem;
+  }
+  .stat-card {
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:1.1rem 1.2rem; box-shadow:var(--shadow); position:relative; overflow:hidden;
+    transition:background .35s ease, transform .2s ease;
+  }
+  .stat-card.soonest { border-color:rgba(248,63,50,.4); }
+  .stat-card.soonest::after {
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(120% 80% at 100% 0%, var(--danger-soft), transparent 60%);
+  }
+  .stat-top { display:flex; align-items:center; justify-content:space-between; margin-bottom:.4rem; }
+  .stat-label { font-size:.72rem; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:700; }
+  .stat-ico { width:36px; height:36px; border-radius:9px; display:grid; place-items:center; }
+  .stat-ico svg { width:18px; height:18px; }
+  .stat-count { font-size:1.7rem; font-weight:700; color:var(--fg); line-height:1.1; }
+  .stat-sub { font-size:.74rem; color:var(--muted); margin-top:.15rem; }
+  .deadline-bar { height:5px; border-radius:10px; background:var(--surface-2); margin-top:.85rem; overflow:hidden; }
+  .deadline-bar > span { display:block; height:100%; border-radius:10px; width:0; transition:width 1.1s cubic-bezier(.2,.7,.2,1); }
+
+  /* ---------- Pipeline Board ---------- */
+  .section-head { display:flex; align-items:center; gap:.7rem; margin:.2rem 0 .9rem; }
+  .section-head h2 { margin:0; font-size:1.05rem; color:var(--fg); }
+  .section-head .hint { margin-left:auto; font-size:.74rem; color:var(--faint); display:flex; align-items:center; gap:.35rem; }
+  .section-head .hint svg { width:14px; height:14px; }
+
+  .board {
+    display:grid; grid-auto-flow:column; grid-auto-columns:minmax(248px,1fr);
+    gap:1rem; overflow-x:auto; padding-bottom:.6rem; margin-bottom:1.6rem;
+  }
+  .stage-col { display:flex; flex-direction:column; min-width:0; }
+  .stage-head {
+    display:flex; align-items:center; gap:.5rem; padding:.55rem .7rem;
+    background:var(--surface); border:1px solid var(--border);
+    border-radius:var(--radius) var(--radius) 0 0; border-bottom:none;
+  }
+  .stage-dot { width:9px; height:9px; border-radius:50%; flex:0 0 9px; }
+  .stage-name { font-weight:700; font-size:.82rem; color:var(--fg); }
+  .count-chip {
+    margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:.7rem; font-weight:700;
+    background:var(--surface-2); color:var(--muted); padding:.1rem .45rem; border-radius:20px; min-width:22px; text-align:center;
+  }
+  .stage-body {
+    background:var(--bg); border:1px solid var(--border); border-top:none;
+    border-radius:0 0 var(--radius) var(--radius); padding:.6rem;
+    flex:1; min-height:130px; display:flex; flex-direction:column; gap:.6rem;
+    transition:background .35s ease;
+  }
+  [data-theme="light"] .stage-body { background:var(--surface-2); }
+  .stage-empty {
+    border:1px dashed var(--border); border-radius:var(--radius);
+    color:var(--faint); font-size:.74rem; text-align:center; padding:1.4rem .5rem; margin:auto 0;
+  }
+
+  .ep-card {
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    padding:.75rem .8rem; cursor:grab; position:relative;
+    box-shadow:0 1px 2px rgba(0,0,0,.12);
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .ep-card:hover { transform:translateY(-3px); box-shadow:0 10px 22px rgba(0,0,0,.28); border-color:var(--faint); }
+  .ep-card.at-risk { border-left:3px solid var(--danger); }
+  .ep-card.needs-you {
+    border:1px solid var(--primary);
+    box-shadow:0 0 0 3px var(--primary-soft), 0 0 18px var(--primary-soft);
+    animation:pulseGlow 2.6s ease-in-out infinite;
+  }
+  @keyframes pulseGlow {
+    0%,100% { box-shadow:0 0 0 3px var(--primary-soft), 0 0 14px var(--primary-soft); }
+    50% { box-shadow:0 0 0 4px rgba(123,91,242,.28), 0 0 26px rgba(123,91,242,.4); }
+  }
+  .ep-drag { position:absolute; top:.55rem; right:.6rem; color:var(--faint); opacity:.5; }
+  .ep-drag svg { width:14px; height:14px; }
+  .ep-card-top { display:flex; align-items:center; gap:.45rem; margin-bottom:.35rem; }
+  .ep-shownum {
+    font-family:'JetBrains Mono',monospace; font-size:.66rem; font-weight:700;
+    color:var(--primary-hi); background:var(--primary-soft); padding:.1rem .35rem; border-radius:4px;
+  }
+  .ep-title { font-weight:700; font-size:.92rem; color:var(--fg); margin:.1rem 0 .45rem; line-height:1.25; padding-right:1rem; }
+  .ep-meta-row { display:flex; align-items:center; gap:.55rem; margin-top:.6rem; }
+  .avatars { display:flex; }
+  .av {
+    width:24px; height:24px; border-radius:50%; display:grid; place-items:center;
+    font-size:.62rem; font-weight:700; color:#fff; border:2px solid var(--surface); margin-left:-7px;
+  }
+  .av:first-child { margin-left:0; }
+  .gfx-frac {
+    margin-left:auto; font-family:'JetBrains Mono',monospace; font-size:.72rem;
+    color:var(--muted); display:flex; align-items:center; gap:.3rem;
+  }
+  .gfx-frac svg { width:13px; height:13px; }
+  .mini-bar { height:5px; border-radius:10px; background:var(--surface-2); overflow:hidden; margin-top:.15rem; }
+  .mini-bar > span { display:block; height:100%; border-radius:10px; width:0; transition:width 1s ease .2s; }
+  .status-dot { width:8px; height:8px; border-radius:50%; display:inline-block; }
+  .ep-flag { font-size:.66rem; font-weight:700; display:flex; align-items:center; gap:.3rem; margin-bottom:.4rem; }
+  .ep-flag.risk { color:var(--danger); }
+  .ep-flag.attn { color:var(--primary-hi); }
+  .ep-flag svg { width:13px; height:13px; }
+
+  /* ---------- Bottom row ---------- */
+  .bottom-grid { display:grid; grid-template-columns:1.1fr 1fr 1fr; gap:1rem; }
+  .card {
+    background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); transition:background .35s ease;
+  }
+  .card-head { padding:.9rem 1.1rem; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:.5rem; }
+  .card-head h3 { margin:0; font-size:.95rem; color:var(--fg); }
+  .card-head .h-chip { margin-left:auto; }
+  .card-body { padding:1rem 1.1rem; }
+
+  .needs-item {
+    display:flex; align-items:center; gap:.75rem; padding:.7rem 0; border-bottom:1px solid var(--border);
+  }
+  .needs-item:last-child { border-bottom:none; padding-bottom:0; }
+  .needs-item:first-child { padding-top:0; }
+  .needs-ico { width:34px; height:34px; border-radius:8px; display:grid; place-items:center; flex:0 0 34px; }
+  .needs-ico svg { width:17px; height:17px; }
+  .needs-text { min-width:0; flex:1; }
+  .needs-text .nt-title { font-weight:700; font-size:.85rem; color:var(--fg); }
+  .needs-text .nt-sub { font-size:.74rem; color:var(--muted); }
+  .btn-primary {
+    background:var(--primary); color:#fff; border:none; border-radius:var(--radius);
+    padding:.5rem .85rem; font-weight:700; font-size:.78rem; cursor:pointer; font-family:inherit;
+    min-height:38px; white-space:nowrap; transition:background .18s, transform .12s;
+  }
+  .btn-primary:hover { background:var(--primary-hi); transform:translateY(-1px); }
+
+  .gfx-row { display:flex; align-items:center; gap:.6rem; padding:.55rem 0; }
+  .gfx-row .g-label { font-size:.8rem; color:var(--fg); width:74px; flex:0 0 74px; }
+  .gfx-row .g-label small { display:block; color:var(--faint); font-size:.66rem; }
+  .gfx-row .g-bar { flex:1; height:7px; border-radius:10px; background:var(--surface-2); overflow:hidden; }
+  .gfx-row .g-bar > span { display:block; height:100%; border-radius:10px; width:0; transition:width 1s ease; }
+  .gfx-row .g-val { font-family:'JetBrains Mono',monospace; font-size:.74rem; color:var(--muted); width:48px; text-align:right; flex:0 0 48px; }
+
+  .plat-grid { display:flex; flex-wrap:wrap; gap:.5rem; }
+  .plat-chip {
+    display:flex; align-items:center; gap:.4rem; padding:.4rem .6rem;
+    border:1px solid var(--border); border-radius:30px; font-size:.76rem; font-weight:700; color:var(--fg);
+    background:var(--surface-2);
+  }
+  .plat-chip .pc-dot { width:8px; height:8px; border-radius:50%; }
+  .dist-summary { margin-top:.9rem; font-size:.78rem; color:var(--muted); display:flex; align-items:center; gap:.4rem; }
+
+  /* ---------- Mobile accordion (hidden on desktop) ---------- */
+  .board-mobile { display:none; }
+  .overlay { display:none; }
+
+  @media (max-width:1100px) {
+    .bottom-grid { grid-template-columns:1fr; }
+  }
+  @media (max-width:880px) {
+    :root { --sidebar-w:260px; }
+    .sidebar { transform:translateX(-100%); box-shadow:var(--shadow); }
+    body.nav-open .sidebar { transform:translateX(0); }
+    body.nav-open .overlay { display:block; position:fixed; inset:0; background:rgba(0,0,0,.5); z-index:55; }
+    .main { margin-left:0; }
+    .hamburger { display:grid; place-items:center; }
+    .topbar-search { display:none; }
+    .countdown-strip { grid-template-columns:1fr; }
+    .board { display:none; }
+    .board-mobile { display:flex; flex-direction:column; gap:.7rem; margin-bottom:1.6rem; }
+    .acc {
+      background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
+    }
+    .acc-head {
+      display:flex; align-items:center; gap:.55rem; padding:.85rem 1rem; cursor:pointer; min-height:48px;
+      background:none; border:none; width:100%; color:var(--fg); font-family:inherit; text-align:left;
+    }
+    .acc-head .stage-name { font-size:.9rem; }
+    .acc-head .acc-caret { margin-left:.4rem; transition:transform .2s; color:var(--muted); }
+    .acc-head .acc-caret svg { width:16px; height:16px; }
+    .acc.open .acc-caret { transform:rotate(180deg); }
+    .acc-body { display:none; padding:0 .8rem .8rem; flex-direction:column; gap:.6rem; }
+    .acc.open .acc-body { display:flex; }
+  }
+
+  /* stagger entrance */
+  .anim { opacity:0; transform:translateY(14px); }
+  .anim.in { opacity:1; transform:none; transition:opacity .5s ease, transform .5s cubic-bezier(.2,.7,.2,1); }
+  @media (prefers-reduced-motion:reduce) {
+    *, *::before, *::after { animation:none !important; transition:none !important; }
+    .anim { opacity:1; transform:none; }
+    .deadline-bar > span, .mini-bar > span, .gfx-row .g-bar > span { transition:none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="overlay" id="overlay"></div>
+<div class="app">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-mark">GS</div>
+      <span class="brand-word">GSR</span>
+    </div>
+    <div class="nav-label">Pipeline</div>
+    <nav class="nav">
+      <a class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Now</a>
+      <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg>Episodes</a>
+      <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 14h18M7 18v1M17 18v1"/></svg>Lower Thirds<span class="nav-chip">3</span></a>
+      <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>Graphics</a>
+      <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>Distribution</a>
+      <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0M16 6a3 3 0 0 1 0 6M21 20a5 5 0 0 0-4-4.9"/></svg>Guests</a>
+      <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="7" r="3.5"/><path d="M5 21a7 7 0 0 1 14 0"/></svg>Crew</a>
+      <a class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-3"/></svg>Reports</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main">
+    <header class="topbar">
+      <button class="hamburger" id="hamburger" aria-label="Open menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+      <div>
+        <div class="page-title">Pipeline</div>
+        <div class="crumb"><b>GSR</b> / Production / <b>Now</b></div>
+      </div>
+      <div class="topbar-search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg>
+        <input type="text" placeholder="Search episodes, guests, graphics..." />
+      </div>
+      <div class="topbar-actions">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+          <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn" aria-label="Notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg><span class="bell-badge"></span></button>
+        <div class="avatar">DA</div>
+      </div>
+    </header>
+
+    <main class="content">
+      <div class="page-head">
+        <h1>Production Pipeline</h1>
+        <p>Monday, June 8, 2026 - 5 episodes in flight this month. Shoot day is Thursday.</p>
+      </div>
+
+      <!-- COUNTDOWN STRIP -->
+      <div class="countdown-strip">
+        <div class="stat-card soonest anim">
+          <div class="stat-top">
+            <span class="stat-label">YouTube Premiere</span>
+            <span class="stat-ico" style="background:var(--danger-soft);color:var(--danger)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="10 8 16 12 10 16 10 8"/><rect x="2" y="4" width="20" height="16" rx="3"/></svg></span>
+          </div>
+          <div class="stat-count mono" data-deadline="2026-06-08T16:00:00-04:00">--:--:--</div>
+          <div class="stat-sub">Today 4:00 PM ET - EP-312 UAP Disclosure</div>
+          <div class="deadline-bar"><span style="background:var(--danger)" data-fill="88"></span></div>
+        </div>
+        <div class="stat-card anim">
+          <div class="stat-top">
+            <span class="stat-label">Shoot Day</span>
+            <span class="stat-ico" style="background:var(--warning-soft);color:var(--warning)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></span>
+          </div>
+          <div class="stat-count mono" data-deadline="2026-06-11T09:00:00-04:00">--:--:--</div>
+          <div class="stat-sub">Thu Jun 11 - EP-313 and EP-315</div>
+          <div class="deadline-bar"><span style="background:var(--warning)" data-fill="55"></span></div>
+        </div>
+        <div class="stat-card anim">
+          <div class="stat-top">
+            <span class="stat-label">TV Broadcast</span>
+            <span class="stat-ico" style="background:var(--info-soft);color:var(--info)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M8 3l4 4 4-4"/></svg></span>
+          </div>
+          <div class="stat-count mono" data-deadline="2026-06-09T20:00:00-06:00">--:--:--</div>
+          <div class="stat-sub">Tue Jun 9 8:00 PM CST - EP-312</div>
+          <div class="deadline-bar"><span style="background:var(--info)" data-fill="40"></span></div>
+        </div>
+      </div>
+
+      <!-- PIPELINE BOARD -->
+      <div class="section-head">
+        <h2>Pipeline Board</h2>
+        <span class="hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5h2M9 12h2M9 19h2M14 5h2M14 12h2M14 19h2"/></svg>Drag cards between stages</span>
+      </div>
+
+      <div class="board" id="board"></div>
+
+      <!-- MOBILE ACCORDION -->
+      <div class="board-mobile" id="boardMobile"></div>
+
+      <!-- BOTTOM ROW -->
+      <div class="bottom-grid">
+        <!-- NEEDS YOU -->
+        <div class="card anim">
+          <div class="card-head">
+            <h3>Needs you</h3>
+            <span class="badge b-primary h-chip">3 gated</span>
+          </div>
+          <div class="card-body">
+            <div class="needs-item">
+              <span class="needs-ico" style="background:var(--primary-soft);color:var(--primary-hi)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg></span>
+              <div class="needs-text">
+                <div class="nt-title">Approve lower thirds</div>
+                <div class="nt-sub">EP-314 Geosmin and the Rain - 22 to review</div>
+              </div>
+              <button class="btn-primary">Review</button>
+            </div>
+            <div class="needs-item">
+              <span class="needs-ico" style="background:var(--primary-soft);color:var(--primary-hi)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>
+              <div class="needs-text">
+                <div class="nt-title">Confirm rundown</div>
+                <div class="nt-sub">EP-314 Rundown Creator import ready</div>
+              </div>
+              <button class="btn-primary">Confirm</button>
+            </div>
+            <div class="needs-item">
+              <span class="needs-ico" style="background:var(--warning-soft);color:var(--warning)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3.2"/><path d="M3 20a6 6 0 0 1 12 0M18 9v6M21 12h-6"/></svg></span>
+              <div class="needs-text">
+                <div class="nt-title">Confirm guest</div>
+                <div class="nt-sub">EP-316 air Jul 7 - still TBC</div>
+              </div>
+              <button class="btn-primary">Book</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GRAPHICS TRACKER -->
+        <div class="card anim">
+          <div class="card-head">
+            <h3>Graphics tracker</h3>
+            <span class="badge b-muted h-chip">5 shows</span>
+          </div>
+          <div class="card-body" id="gfxTracker"></div>
+        </div>
+
+        <!-- DISTRIBUTION -->
+        <div class="card anim">
+          <div class="card-head">
+            <h3>Distribution</h3>
+            <span class="badge b-info h-chip">EP-312</span>
+          </div>
+          <div class="card-body">
+            <div class="plat-grid" id="platGrid"></div>
+            <div class="dist-summary">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              1 of 8 platforms published - 7 queued for after premiere
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+// ---------- Crew avatar palette ----------
+var CREW = {
+  Isaac:   { i:"IS", c:"#7b5bf2" },
+  Jakob:   { i:"JK", c:"#4bbee1" },
+  Jeremiah:{ i:"JR", c:"#faae37" },
+  Gabe:    { i:"GB", c:"#30cf46" },
+  Myriam:  { i:"MY", c:"#ff8acc" }
+};
+
+// ---------- Episode data ----------
+var EPISODES = [
+  { num:"Show 5", ep:"EP-316", title:"Guest TBC", stage:"planned",
+    gfx:0, total:30, crew:["Myriam"], status:"warning", flag:null,
+    note:"Air Jul 7 - guest unconfirmed" },
+  { num:"Show 2", ep:"EP-313", title:"Soft Tissue in Fossils", stage:"prep",
+    gfx:5, total:30, crew:["Isaac","Jakob"], status:"danger", flag:"risk",
+    note:"At risk - behind for Thu shoot" },
+  { num:"Show 4", ep:"EP-315", title:"Ice Age Models", stage:"prep",
+    gfx:0, total:30, crew:["Jeremiah"], status:"warning", flag:null,
+    note:"Waiting on Jeremiah (b-roll)" },
+  { num:"Show 3", ep:"EP-314", title:"Geosmin and the Rain", stage:"post",
+    gfx:22, total:30, crew:["Gabe","Myriam"], status:"primary", flag:"attn",
+    note:"Needs you: approve lower thirds + confirm rundown" },
+  { num:"Show 1", ep:"EP-312", title:"UAP Disclosure", stage:"scheduled",
+    gfx:30, total:30, crew:["Isaac","Gabe"], status:"success", flag:null,
+    note:"On track - YouTube today 4pm, TV Tue" }
+];
+
+var STAGES = [
+  { key:"planned",   name:"Planned",   color:"#8391a2" },
+  { key:"prep",      name:"In Prep",   color:"#faae37" },
+  { key:"shot",      name:"Shot",      color:"#4bbee1" },
+  { key:"post",      name:"In Post",   color:"#7b5bf2" },
+  { key:"scheduled", name:"Scheduled", color:"#5b69bc" },
+  { key:"aired",     name:"Aired",     color:"#30cf46" }
+];
+
+var STATUS_COLOR = {
+  success:"#30cf46", warning:"#faae37", danger:"#f83f32",
+  primary:"#8f73ff", info:"#4bbee1", muted:"#8391a2"
+};
+
+// ---------- Helpers ----------
+function el(tag, cls, html) {
+  var e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html != null) e.innerHTML = html;
+  return e;
+}
+
+function avatarHTML(names) {
+  var out = '<div class="avatars">';
+  for (var i = 0; i < names.length; i++) {
+    var c = CREW[names[i]] || { i:"??", c:"#8391a2" };
+    out += '<span class="av" style="background:' + c.c + '" title="' + names[i] + '">' + c.i + '</span>';
+  }
+  return out + '</div>';
+}
+
+function cardHTML(epData) {
+  var pct = epData.total ? Math.round((epData.gfx / epData.total) * 100) : 0;
+  var barColor = pct >= 90 ? "var(--success)" : pct >= 50 ? "var(--warning)" : "var(--danger)";
+  var cls = "ep-card";
+  if (epData.flag === "risk") cls += " at-risk";
+  if (epData.flag === "attn") cls += " needs-you";
+
+  var flagHTML = "";
+  if (epData.flag === "risk") {
+    flagHTML = '<div class="ep-flag risk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>AT RISK</div>';
+  } else if (epData.flag === "attn") {
+    flagHTML = '<div class="ep-flag attn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>NEEDS YOU</div>';
+  }
+
+  var card = el("div", cls);
+  card.innerHTML =
+    '<span class="ep-drag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="6" r="1"/><circle cx="9" cy="12" r="1"/><circle cx="9" cy="18" r="1"/><circle cx="15" cy="6" r="1"/><circle cx="15" cy="12" r="1"/><circle cx="15" cy="18" r="1"/></svg></span>' +
+    flagHTML +
+    '<div class="ep-card-top"><span class="ep-shownum">' + epData.num + '</span><span class="ep-badge">' + epData.ep + '</span></div>' +
+    '<div class="ep-title">' + epData.title + '</div>' +
+    '<div class="mini-bar"><span data-fill="' + pct + '" style="background:' + barColor + '"></span></div>' +
+    '<div class="ep-meta-row">' +
+      avatarHTML(epData.crew) +
+      '<span class="gfx-frac"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>' + epData.gfx + '/' + epData.total + '</span>' +
+      '<span class="status-dot" style="background:' + STATUS_COLOR[epData.status] + '" title="' + epData.note + '"></span>' +
+    '</div>';
+  return card;
+}
+
+// ---------- Build desktop board ----------
+var board = document.getElementById("board");
+var boardMobile = document.getElementById("boardMobile");
+
+for (var s = 0; s < STAGES.length; s++) {
+  var stage = STAGES[s];
+  var eps = EPISODES.filter(function (e) { return e.stage === stage.key; });
+
+  // desktop column
+  var col = el("div", "stage-col");
+  var head = el("div", "stage-head");
+  head.innerHTML =
+    '<span class="stage-dot" style="background:' + stage.color + '"></span>' +
+    '<span class="stage-name">' + stage.name + '</span>' +
+    '<span class="count-chip">' + eps.length + '</span>';
+  col.appendChild(head);
+
+  var body = el("div", "stage-body anim");
+  if (eps.length === 0) {
+    body.appendChild(el("div", "stage-empty", "No episodes"));
+  } else {
+    for (var i = 0; i < eps.length; i++) body.appendChild(cardHTML(eps[i]));
+  }
+  col.appendChild(body);
+  board.appendChild(col);
+
+  // mobile accordion
+  var acc = el("div", "acc" + (eps.length ? " open" : ""));
+  var accHead = el("button", "acc-head");
+  accHead.setAttribute("type", "button");
+  accHead.innerHTML =
+    '<span class="stage-dot" style="background:' + stage.color + '"></span>' +
+    '<span class="stage-name">' + stage.name + '</span>' +
+    '<span class="count-chip">' + eps.length + '</span>' +
+    '<span class="acc-caret"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></span>';
+  var accBody = el("div", "acc-body");
+  if (eps.length === 0) {
+    accBody.appendChild(el("div", "stage-empty", "No episodes"));
+  } else {
+    for (var j = 0; j < eps.length; j++) accBody.appendChild(cardHTML(eps[j]));
+  }
+  accHead.addEventListener("click", (function (a) {
+    return function () { a.classList.toggle("open"); };
+  })(acc));
+  acc.appendChild(accHead);
+  acc.appendChild(accBody);
+  boardMobile.appendChild(acc);
+}
+
+// ---------- Graphics tracker ----------
+var gfxTracker = document.getElementById("gfxTracker");
+var sorted = EPISODES.slice().sort(function (a, b) { return a.num.localeCompare(b.num); });
+for (var g = 0; g < sorted.length; g++) {
+  var ep = sorted[g];
+  var pct = ep.total ? Math.round((ep.gfx / ep.total) * 100) : 0;
+  var col2 = pct >= 90 ? "var(--success)" : pct >= 50 ? "var(--warning)" : pct > 0 ? "var(--info)" : "var(--faint)";
+  var row = el("div", "gfx-row");
+  row.innerHTML =
+    '<div class="g-label">' + ep.num + '<small>' + ep.ep + '</small></div>' +
+    '<div class="g-bar"><span data-fill="' + pct + '" style="background:' + col2 + '"></span></div>' +
+    '<div class="g-val">' + ep.gfx + '/' + ep.total + '</div>';
+  gfxTracker.appendChild(row);
+}
+
+// ---------- Distribution platforms ----------
+var PLATFORMS = [
+  { name:"YouTube",          status:"success" },
+  { name:"Rumble",           status:"muted" },
+  { name:"Transistor",       status:"muted" },
+  { name:"Real Life Network",status:"muted" },
+  { name:"StreamHoster",     status:"muted" },
+  { name:"Dropbox",          status:"muted" },
+  { name:"GSN",              status:"muted" },
+  { name:"Social clips",     status:"warning" }
+];
+var DIST_COLOR = { success:"#30cf46", warning:"#faae37", muted:"#5b6677" };
+var DIST_LABEL = { success:"live", warning:"queued", muted:"pending" };
+var platGrid = document.getElementById("platGrid");
+for (var p = 0; p < PLATFORMS.length; p++) {
+  var pl = PLATFORMS[p];
+  var chip = el("div", "plat-chip");
+  chip.innerHTML =
+    '<span class="pc-dot" style="background:' + DIST_COLOR[pl.status] + '"></span>' + pl.name;
+  chip.title = pl.name + " - " + DIST_LABEL[pl.status];
+  platGrid.appendChild(chip);
+}
+
+// ---------- Countdown timers ----------
+function pad(n) { return (n < 10 ? "0" : "") + n; }
+function tickCountdowns() {
+  var nodes = document.querySelectorAll("[data-deadline]");
+  var now = new Date();
+  for (var i = 0; i < nodes.length; i++) {
+    var target = new Date(nodes[i].getAttribute("data-deadline"));
+    var diff = Math.floor((target - now) / 1000);
+    if (diff <= 0) { nodes[i].textContent = "00:00:00"; continue; }
+    var d = Math.floor(diff / 86400);
+    var h = Math.floor((diff % 86400) / 3600);
+    var m = Math.floor((diff % 3600) / 60);
+    var sec = diff % 60;
+    nodes[i].textContent = (d > 0 ? d + "d " : "") + pad(h) + ":" + pad(m) + ":" + pad(sec);
+  }
+}
+tickCountdowns();
+setInterval(tickCountdowns, 1000);
+
+// ---------- Animate bars + stagger entrance ----------
+var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+function fillBars() {
+  var bars = document.querySelectorAll("[data-fill]");
+  for (var i = 0; i < bars.length; i++) {
+    bars[i].style.width = bars[i].getAttribute("data-fill") + "%";
+  }
+}
+function staggerIn() {
+  var items = document.querySelectorAll(".anim");
+  for (var i = 0; i < items.length; i++) {
+    (function (node, idx) {
+      setTimeout(function () { node.classList.add("in"); }, reduce ? 0 : idx * 90);
+    })(items[i], i);
+  }
+}
+if (reduce) {
+  document.querySelectorAll(".anim").forEach(function (n) { n.classList.add("in"); });
+  fillBars();
+} else {
+  requestAnimationFrame(function () {
+    staggerIn();
+    setTimeout(fillBars, 350);
+  });
+}
+
+// ---------- Theme toggle ----------
+var html = document.documentElement;
+var themeToggle = document.getElementById("themeToggle");
+var themeIcon = document.getElementById("themeIcon");
+var SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+var MOON = '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+themeToggle.addEventListener("click", function () {
+  var next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+  html.setAttribute("data-theme", next);
+  themeIcon.innerHTML = next === "dark" ? MOON : SUN;
+});
+
+// ---------- Mobile nav ----------
+var hamburger = document.getElementById("hamburger");
+var overlay = document.getElementById("overlay");
+function closeNav() { document.body.classList.remove("nav-open"); }
+hamburger.addEventListener("click", function () { document.body.classList.toggle("nav-open"); });
+overlay.addEventListener("click", closeNav);
+</script>
+</body>
+</html>

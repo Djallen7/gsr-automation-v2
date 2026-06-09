@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GSR Broadcast Control Surface</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(0.15 0.018 287);
+    --surface: oklch(0.19 0.022 287);
+    --surface-2: oklch(0.23 0.028 287);
+    --border: oklch(0.30 0.02 287);
+    --fg: oklch(0.95 0.008 287);
+    --muted: oklch(0.68 0.018 287);
+    --faint: oklch(0.48 0.02 287);
+    --violet: oklch(0.64 0.19 287);
+    --violet-soft: oklch(0.64 0.19 287 / .16);
+    --success: oklch(0.74 0.16 150);
+    --warn: oklch(0.80 0.15 85);
+    --danger: oklch(0.64 0.21 25);
+    --info: oklch(0.74 0.13 210);
+
+    /* tally palette: deliberately NON-violet so signal never collides with brand chrome */
+    --tally-red: oklch(0.62 0.22 25);
+    --tally-amber: oklch(0.80 0.15 85);
+    --tally-green: oklch(0.74 0.16 150);
+    --tally-idle: oklch(0.42 0.012 287);
+
+    --font-label: "Space Grotesk", system-ui, sans-serif;
+    --font-body: "Inter", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+    --radius: 14px;
+    --radius-sm: 9px;
+    --gap: 14px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background:
+      radial-gradient(1200px 700px at 80% -10%, oklch(0.22 0.05 287 / .55), transparent 60%),
+      radial-gradient(900px 600px at -5% 110%, oklch(0.20 0.04 287 / .45), transparent 55%),
+      var(--bg);
+    color: var(--fg);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    font-variant-numeric: tabular-nums;
+    min-height: 100vh;
+  }
+
+  .console {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 22px 22px 130px;
+  }
+
+  /* ---------- top bar ---------- */
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+  .brand { display: flex; align-items: center; gap: 12px; }
+  .brand-mark {
+    width: 34px; height: 34px;
+    border-radius: 9px;
+    background: linear-gradient(160deg, var(--violet), oklch(0.45 0.16 287));
+    box-shadow: 0 0 0 1px var(--border), 0 6px 18px oklch(0.5 0.19 287 / .35);
+    display: grid; place-items: center;
+    font-family: var(--font-label);
+    font-weight: 700;
+    color: oklch(0.99 0 0);
+    font-size: 14px;
+    letter-spacing: .5px;
+  }
+  .brand-text { display: flex; flex-direction: column; line-height: 1.15; }
+  .brand-title {
+    font-family: var(--font-label);
+    font-weight: 600;
+    font-size: 15px;
+    letter-spacing: .3px;
+  }
+  .brand-sub {
+    font-size: 11px;
+    color: var(--faint);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .topbar-right { display: flex; align-items: center; gap: 14px; }
+  .clock {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: .04em;
+    text-align: right;
+    line-height: 1.4;
+  }
+  .clock b { color: var(--fg); font-weight: 600; }
+
+  /* the ON AIR house sign */
+  .onair-sign {
+    display: flex; align-items: center; gap: 9px;
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .22em;
+    color: oklch(0.97 0.02 25);
+    background: oklch(0.30 0.12 25 / .35);
+    border: 1px solid var(--tally-red);
+    box-shadow: 0 0 22px oklch(0.62 0.22 25 / .45), inset 0 0 18px oklch(0.62 0.22 25 / .22);
+    animation: signPulse 2.4s ease-in-out infinite;
+  }
+  .onair-sign .bulb {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--tally-red);
+    box-shadow: 0 0 10px 2px var(--tally-red);
+  }
+  @keyframes signPulse {
+    0%, 100% { box-shadow: 0 0 18px oklch(0.62 0.22 25 / .35), inset 0 0 14px oklch(0.62 0.22 25 / .18); }
+    50% { box-shadow: 0 0 30px oklch(0.62 0.22 25 / .6), inset 0 0 22px oklch(0.62 0.22 25 / .3); }
+  }
+
+  /* ---------- section scaffolding ---------- */
+  .section { margin-bottom: 24px; }
+  .section-head {
+    display: flex; align-items: baseline; gap: 12px;
+    margin: 0 2px 12px;
+    flex-wrap: wrap;
+  }
+  .section-title {
+    font-family: var(--font-label);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .section-hint { font-size: 11px; color: var(--faint); }
+
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px;
+  }
+
+  /* ---------- 1. PROGRAM BUS ---------- */
+  .bus {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--gap);
+  }
+  .source {
+    position: relative;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 14px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow: hidden;
+    transition: transform .12s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .source:hover { transform: translateY(-2px); }
+  /* top accent rail = tally bleeds into the block edge */
+  .source::before {
+    content: "";
+    position: absolute; inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--tally-idle);
+    opacity: .9;
+  }
+  .source.red::before { background: var(--tally-red); }
+  .source.amber::before { background: var(--tally-amber); }
+  .source.green::before { background: var(--tally-green); }
+
+  .source.red {
+    border-color: oklch(0.62 0.22 25 / .55);
+    box-shadow: 0 0 0 1px oklch(0.62 0.22 25 / .35), 0 0 34px oklch(0.62 0.22 25 / .28);
+    animation: onAirGlow 2.6s ease-in-out infinite;
+  }
+  @keyframes onAirGlow {
+    0%, 100% { box-shadow: 0 0 0 1px oklch(0.62 0.22 25 / .3), 0 0 22px oklch(0.62 0.22 25 / .22); }
+    50% { box-shadow: 0 0 0 1px oklch(0.62 0.22 25 / .55), 0 0 42px oklch(0.62 0.22 25 / .4); }
+  }
+  .source.amber { border-color: oklch(0.80 0.15 85 / .4); }
+
+  .umd {
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 8px;
+  }
+  .umd-label { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+  .umd-ep {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: .08em;
+    color: var(--faint);
+  }
+  .umd-title {
+    font-family: var(--font-label);
+    font-weight: 600;
+    font-size: 13.5px;
+    line-height: 1.2;
+    letter-spacing: .01em;
+  }
+
+  /* the tally light itself */
+  .tally {
+    flex: none;
+    width: 13px; height: 13px;
+    border-radius: 50%;
+    background: var(--tally-idle);
+    box-shadow: inset 0 0 0 1px oklch(1 0 0 / .08);
+    margin-top: 2px;
+  }
+  .tally.red { background: var(--tally-red); box-shadow: 0 0 9px 2px var(--tally-red); }
+  .tally.amber { background: var(--tally-amber); box-shadow: 0 0 8px 1px var(--tally-amber); }
+  .tally.green { background: var(--tally-green); box-shadow: 0 0 8px 1px var(--tally-green); }
+
+  .source-stage {
+    font-family: var(--font-label);
+    font-weight: 500;
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .source.red .source-stage { color: oklch(0.86 0.1 25); }
+  .source.amber .source-stage { color: oklch(0.85 0.13 85); }
+
+  .source-meta {
+    font-size: 11px;
+    color: var(--faint);
+    line-height: 1.4;
+    min-height: 30px;
+  }
+  .source-meta .dist {
+    font-family: var(--font-mono);
+    color: var(--muted);
+    font-size: 11px;
+  }
+
+  /* TAKE button: switcher transition control grammar */
+  .take {
+    margin-top: 2px;
+    width: 100%;
+    border: 1px solid var(--border);
+    background: linear-gradient(180deg, var(--surface), oklch(0.16 0.02 287));
+    color: var(--fg);
+    font-family: var(--font-label);
+    font-weight: 700;
+    font-size: 11.5px;
+    letter-spacing: .2em;
+    padding: 11px 0;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    min-height: 44px;
+    transition: background .15s ease, border-color .15s ease, box-shadow .15s ease;
+  }
+  .take:hover { border-color: var(--violet); box-shadow: 0 0 0 1px var(--violet-soft), 0 0 18px var(--violet-soft); }
+  .take:active { transform: translateY(1px); }
+  .take[disabled] { opacity: .35; cursor: not-allowed; }
+
+  .source.idle { opacity: .82; }
+  .source.idle:hover { transform: none; }
+
+  /* inline confirm shown inside a source */
+  .confirm {
+    margin-top: 2px;
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--violet);
+    border-radius: var(--radius-sm);
+    padding: 10px;
+  }
+  .confirm.show { display: flex; }
+  .confirm-text { font-size: 11px; color: var(--muted); line-height: 1.35; }
+  .confirm-text b { color: var(--fg); }
+  .confirm-row { display: flex; gap: 8px; }
+  .btn-sm {
+    flex: 1;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--fg);
+    font-family: var(--font-label);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: .08em;
+    padding: 9px 0;
+    cursor: pointer;
+    min-height: 38px;
+  }
+  .btn-sm.primary { background: var(--violet); border-color: var(--violet); color: oklch(0.99 0 0); }
+  .btn-sm:hover { border-color: var(--violet); }
+
+  /* ---------- 2. SIGNAL-FLOW LANE ---------- */
+  .lane {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+  .lane-col {
+    background: oklch(0.17 0.018 287 / .6);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 10px 9px;
+    min-height: 158px;
+    display: flex; flex-direction: column; gap: 9px;
+  }
+  .lane-col-head {
+    font-family: var(--font-label);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--faint);
+    display: flex; align-items: center; gap: 6px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .lane-col-head .idx {
+    font-family: var(--font-mono);
+    color: var(--violet);
+    font-size: 10px;
+  }
+  .flow-chip {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--tally-idle);
+    border-radius: 8px;
+    padding: 9px 9px 8px;
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  .flow-chip.red { border-left-color: var(--tally-red); }
+  .flow-chip.amber { border-left-color: var(--tally-amber); }
+  .flow-chip.green { border-left-color: var(--tally-green); }
+  .flow-chip.trailing {
+    background: oklch(0.30 0.07 85 / .14);
+    border-color: oklch(0.80 0.15 85 / .35);
+    transform: translateY(16px);
+    box-shadow: 0 6px 16px oklch(0 0 0 / .25);
+  }
+  .flow-ep { font-family: var(--font-mono); font-size: 9.5px; color: var(--faint); letter-spacing: .06em; }
+  .flow-title { font-family: var(--font-label); font-weight: 600; font-size: 11.5px; line-height: 1.2; }
+  .flow-tag {
+    font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase;
+    margin-top: 2px; font-weight: 600;
+  }
+  .flow-tag.behind { color: var(--warn); }
+  .flow-tag.onair { color: oklch(0.82 0.16 25); }
+
+  /* ---------- 5. NEEDS YOU ---------- */
+  .needs {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .needs.has-items { border-color: oklch(0.80 0.15 85 / .35); }
+  .needs-row {
+    display: flex; align-items: center; gap: 12px;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .needs-row:last-child { border-bottom: none; }
+  .needs-dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--tally-amber);
+    box-shadow: 0 0 8px 1px var(--tally-amber);
+    flex: none;
+  }
+  .needs-body { flex: 1; min-width: 0; }
+  .needs-what { font-size: 13px; font-weight: 500; }
+  .needs-who { font-size: 11px; color: var(--faint); margin-top: 2px; }
+  .needs-go {
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--fg);
+    border-radius: 8px;
+    font-family: var(--font-label);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: .08em;
+    padding: 9px 16px;
+    cursor: pointer;
+    min-height: 40px;
+    flex: none;
+  }
+  .needs-go:hover { border-color: var(--violet); box-shadow: 0 0 0 1px var(--violet-soft); }
+  .needs-empty {
+    padding: 26px 16px;
+    text-align: center;
+    color: var(--faint);
+    font-size: 13px;
+    display: none;
+  }
+  .needs-empty .calm { color: var(--success); font-weight: 600; }
+
+  /* ---------- 3. TRANSPORT BAR ---------- */
+  .transport {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    background: oklch(0.13 0.018 287 / .92);
+    backdrop-filter: blur(14px);
+    border-top: 1px solid var(--border);
+    padding: 12px 22px 14px;
+    z-index: 50;
+  }
+  .transport-inner { max-width: 1180px; margin: 0 auto; }
+  .transport-head {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 11px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .transport-label {
+    font-family: var(--font-label);
+    font-size: 10px; font-weight: 600;
+    letter-spacing: .2em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .transport-today {
+    font-family: var(--font-mono);
+    font-size: 11px; color: var(--fg);
+    display: flex; align-items: center; gap: 7px;
+  }
+  .transport-today .play-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--violet);
+    box-shadow: 0 0 8px 1px var(--violet);
+    flex: none;
+  }
+  .track {
+    position: relative;
+    height: 30px;
+    border-radius: 999px;
+    background: oklch(0.22 0.02 287);
+    border: 1px solid var(--border);
+    margin-top: 8px;
+  }
+  .fader-fill {
+    position: absolute; inset: 0 auto 0 0;
+    border-radius: 999px 0 0 999px;
+    background: linear-gradient(90deg, var(--violet) 0%, oklch(0.7 0.16 60) 70%, var(--tally-amber) 100%);
+    opacity: .55;
+  }
+  .cue {
+    position: absolute; top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cue-tick {
+    width: 2px; height: 18px;
+    background: var(--fg);
+    border-radius: 2px;
+    opacity: .55;
+  }
+  .cue-label {
+    position: absolute; top: -19px;
+    white-space: nowrap;
+    font-family: var(--font-label);
+    font-size: 9.5px; font-weight: 600;
+    letter-spacing: .1em;
+    color: var(--muted);
+  }
+  .cue.next .cue-tick { background: var(--tally-amber); opacity: 1; box-shadow: 0 0 8px var(--tally-amber); }
+  .cue.next .cue-label { color: var(--warn); }
+  .playhead {
+    position: absolute; top: -7px; bottom: -7px;
+    width: 3px;
+    background: var(--violet);
+    border-radius: 3px;
+    box-shadow: 0 0 12px 2px var(--violet);
+    transform: translateX(-50%);
+  }
+  .playhead::after {
+    content: "";
+    position: absolute; top: -5px; left: 50%;
+    transform: translateX(-50%);
+    width: 11px; height: 11px;
+    border-radius: 50%;
+    background: var(--violet);
+    box-shadow: 0 0 10px 2px var(--violet);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    .console { padding: 16px 14px 200px; }
+    .bus { grid-template-columns: 1fr; gap: 10px; }
+    /* mobile bus = vertical tally column rows */
+    .source {
+      flex-direction: row;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 12px;
+      padding: 13px 14px;
+    }
+    .source::before { inset: 0 auto 0 0; height: auto; width: 3px; }
+    .umd { flex: 1 1 auto; align-items: center; }
+    .source-stage { flex: 0 0 auto; order: 2; }
+    .source-meta { flex: 1 1 100%; order: 4; min-height: 0; }
+    .take { flex: 1 1 100%; order: 5; }
+    .confirm { flex: 1 1 100%; order: 6; }
+    .source.pinned { order: -1; }
+
+    .lane { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .lane-col { min-height: 0; }
+
+    .transport { padding: 10px 14px 12px; }
+    .cue-label { font-size: 8.5px; }
+  }
+
+  @media (max-width: 560px) {
+    .lane { grid-template-columns: 1fr; }
+    .onair-sign { padding: 7px 11px; font-size: 11px; letter-spacing: .16em; }
+    .brand-sub { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .source.red, .onair-sign { animation: none !important; }
+    .source.red { box-shadow: 0 0 0 1px oklch(0.62 0.22 25 / .5), 0 0 30px oklch(0.62 0.22 25 / .32); }
+  }
+</style>
+</head>
+<body>
+  <div class="console">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">GSR</div>
+        <div class="brand-text">
+          <span class="brand-title">Broadcast Control Surface</span>
+          <span class="brand-sub">Genesis Science Report &middot; Monthly Batch</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="clock">
+          <div><b>Mon Jun 8</b> 2026</div>
+          <div id="now">11:42 AM CT</div>
+        </div>
+        <div class="onair-sign" id="onairSign">
+          <span class="bulb"></span>
+          ON AIR
+        </div>
+      </div>
+    </header>
+
+    <!-- 1. PROGRAM BUS -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-title">Program Bus</span>
+        <span class="section-hint">5 shows this batch &middot; red is going out now</span>
+      </div>
+      <div class="bus" id="bus"></div>
+    </section>
+
+    <!-- 2. SIGNAL-FLOW LANE -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-title">Signal Flow</span>
+        <span class="section-hint">where each show sits &middot; a trailing chip is running behind</span>
+      </div>
+      <div class="panel">
+        <div class="lane" id="lane"></div>
+      </div>
+    </section>
+
+    <!-- 5. NEEDS YOU -->
+    <section class="section">
+      <div class="section-head">
+        <span class="section-title">Needs You</span>
+        <span class="section-hint">only the calls that are yours to make</span>
+      </div>
+      <div class="needs has-items" id="needs">
+        <div class="needs-empty" id="needsEmpty">
+          <span class="calm">All clear.</span> Nothing is waiting on you right now.
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 3. TRANSPORT BAR -->
+  <div class="transport">
+    <div class="transport-inner">
+      <div class="transport-head">
+        <span class="transport-label">This Month</span>
+        <span class="transport-today">
+          <span class="play-dot"></span>
+          Today &middot; Mon Jun 8 &middot; next up: shoot Thursday
+        </span>
+      </div>
+      <div class="track" id="track">
+        <div class="fader-fill" id="faderFill"></div>
+        <!-- cues + playhead injected -->
+      </div>
+    </div>
+  </div>
+
+<script>
+  "use strict";
+
+  // ---- mock data (today = Mon Jun 8 2026) ----
+  var shows = [
+    {
+      ep: "EP-312", title: "UAP DISCLOSURE", stage: "scheduled", tally: "red",
+      meta: "On air now · YouTube today 4pm, TV Tue", dist: "Distribution 1/8",
+      pinned: true, onair: true, takeLabel: "TAKE → AIRED",
+      next: "aired", takeWarn: "Mark <b>UAP DISCLOSURE</b> as fully aired across all 8 targets?"
+    },
+    {
+      ep: "EP-313", title: "SOFT TISSUE IN FOSSILS", stage: "in_prep", tally: "amber",
+      meta: "At risk · shoot Thursday", dist: "Graphics 5/30",
+      trailing: true, takeLabel: "TAKE → SHOT",
+      next: "shot", takeWarn: "Confirm <b>SOFT TISSUE IN FOSSILS</b> has been shot?"
+    },
+    {
+      ep: "EP-314", title: "GEOSMIN AND THE RAIN", stage: "in_post", tally: "amber",
+      meta: "Needs you · approve lower thirds + confirm rundown", dist: "Graphics 22/30",
+      takeLabel: "TAKE → SCHEDULED",
+      next: "scheduled", takeWarn: "Approve lower thirds and rundown, then schedule <b>GEOSMIN AND THE RAIN</b>?"
+    },
+    {
+      ep: "EP-315", title: "ICE AGE MODELS", stage: "in_prep", tally: "idle",
+      meta: "Waiting on Jeremiah · b-roll", dist: "Graphics 0",
+      idle: true, takeLabel: "TAKE → SHOT",
+      next: "shot", takeWarn: "Confirm <b>ICE AGE MODELS</b> has been shot?"
+    },
+    {
+      ep: "EP-316", title: "GUEST TBC", stage: "planned", tally: "idle",
+      meta: "Guest unconfirmed · parked", dist: "",
+      idle: true, takeLabel: "TAKE → IN PREP",
+      next: "in_prep", takeWarn: "Move <b>GUEST TBC</b> into prep? Guest is still unconfirmed."
+    }
+  ];
+
+  var stageLabels = {
+    planned: "Planned",
+    in_prep: "In Prep",
+    shot: "Shot",
+    in_post: "In Post",
+    scheduled: "Scheduled",
+    aired: "Aired"
+  };
+
+  function el(tag, cls, html) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+
+  // ---- render program bus ----
+  var bus = document.getElementById("bus");
+  shows.forEach(function (s) {
+    var card = el("div", "source " + s.tally + (s.idle ? " idle" : "") + (s.pinned ? " pinned" : ""));
+
+    var umd = el("div", "umd");
+    var lab = el("div", "umd-label");
+    lab.appendChild(el("span", "umd-ep", s.ep));
+    lab.appendChild(el("span", "umd-title", s.title));
+    umd.appendChild(lab);
+    umd.appendChild(el("span", "tally " + s.tally));
+    card.appendChild(umd);
+
+    card.appendChild(el("div", "source-stage", stageLabels[s.stage]));
+    card.appendChild(el("div", "source-meta",
+      s.meta + (s.dist ? '<br><span class="dist">' + s.dist + "</span>" : "")));
+
+    var take = el("button", "take", s.takeLabel);
+    if (s.idle) take.setAttribute("disabled", "disabled");
+    card.appendChild(take);
+
+    // inline confirm
+    var confirm = el("div", "confirm");
+    confirm.appendChild(el("div", "confirm-text", s.takeWarn));
+    var row = el("div", "confirm-row");
+    var cancel = el("button", "btn-sm", "Cancel");
+    var go = el("button", "btn-sm primary", "Take");
+    row.appendChild(cancel);
+    row.appendChild(go);
+    confirm.appendChild(row);
+    card.appendChild(confirm);
+
+    take.addEventListener("click", function () {
+      confirm.classList.add("show");
+      take.style.display = "none";
+    });
+    cancel.addEventListener("click", function () {
+      confirm.classList.remove("show");
+      take.style.display = "";
+    });
+    go.addEventListener("click", function () {
+      confirm.classList.remove("show");
+      take.textContent = "✓ ADVANCED";
+      take.setAttribute("disabled", "disabled");
+      take.style.display = "";
+      card.querySelector(".source-stage").textContent = stageLabels[s.next] || s.next;
+    });
+
+    bus.appendChild(card);
+  });
+
+  // ---- render signal-flow lane ----
+  var lane = document.getElementById("lane");
+  var stageOrder = ["planned", "in_prep", "shot", "in_post", "scheduled", "aired"];
+  stageOrder.forEach(function (stage, idx) {
+    var col = el("div", "lane-col");
+    var head = el("div", "lane-col-head");
+    head.appendChild(el("span", "idx", String(idx + 1)));
+    head.appendChild(document.createTextNode(stageLabels[stage]));
+    col.appendChild(head);
+
+    shows.filter(function (s) { return s.stage === stage; }).forEach(function (s) {
+      var chip = el("div", "flow-chip " + s.tally + (s.trailing ? " trailing" : ""));
+      chip.appendChild(el("div", "flow-ep", s.ep));
+      chip.appendChild(el("div", "flow-title", s.title));
+      if (s.trailing) chip.appendChild(el("div", "flow-tag behind", "Behind"));
+      else if (s.onair) chip.appendChild(el("div", "flow-tag onair", "On air"));
+      col.appendChild(chip);
+    });
+
+    lane.appendChild(col);
+  });
+
+  // ---- render NEEDS YOU ----
+  var needsItems = [
+    { what: "Approve Show 3 lower thirds", who: "GEOSMIN AND THE RAIN · EP-314", go: "Review" },
+    { what: "Confirm Show 3 rundown", who: "GEOSMIN AND THE RAIN · EP-314", go: "Open" },
+    { what: "Final take for Show 1 YouTube", who: "UAP DISCLOSURE · EP-312 · 4pm", go: "Take" }
+  ];
+  var needs = document.getElementById("needs");
+  var needsEmpty = document.getElementById("needsEmpty");
+  if (needsItems.length === 0) {
+    needs.classList.remove("has-items");
+    needsEmpty.style.display = "block";
+  } else {
+    needsItems.forEach(function (it) {
+      var row = el("div", "needs-row");
+      row.appendChild(el("span", "needs-dot"));
+      var body = el("div", "needs-body");
+      body.appendChild(el("div", "needs-what", it.what));
+      body.appendChild(el("div", "needs-who", it.who));
+      row.appendChild(body);
+      var btn = el("button", "needs-go", it.go);
+      row.appendChild(btn);
+      needs.insertBefore(row, needsEmpty);
+    });
+  }
+
+  // ---- render transport cues + playhead ----
+  // month maps Jun 1 -> Jun 30 across the track. today = Jun 8.
+  var monthStart = 1, monthEnd = 30;
+  function pct(day) { return ((day - monthStart) / (monthEnd - monthStart)) * 100; }
+  var cues = [
+    { day: 11, label: "SHOOT THU", next: true },
+    { day: 15, label: "YT MON", next: false },
+    { day: 16, label: "TV TUE", next: false }
+  ];
+  var todayDay = 8;
+  var track = document.getElementById("track");
+
+  cues.forEach(function (c) {
+    var cue = el("div", "cue" + (c.next ? " next" : ""));
+    cue.style.left = pct(c.day) + "%";
+    cue.appendChild(el("span", "cue-label", c.label));
+    cue.appendChild(el("span", "cue-tick"));
+    track.appendChild(cue);
+  });
+
+  var playhead = el("div", "playhead");
+  playhead.style.left = pct(todayDay) + "%";
+  track.appendChild(playhead);
+
+  // fader fill warms from start toward today; warms further as next cue nears
+  document.getElementById("faderFill").style.width = pct(todayDay) + "%";
+
+  // ---- live-ish clock (cosmetic only) ----
+  function tick() {
+    var d = new Date();
+    var h = d.getHours(), m = d.getMinutes();
+    var ampm = h >= 12 ? "PM" : "AM";
+    var h12 = h % 12; if (h12 === 0) h12 = 12;
+    var mm = m < 10 ? "0" + m : "" + m;
+    document.getElementById("now").textContent = h12 + ":" + mm + " " + ampm + " CT";
+  }
+  tick();
+  setInterval(tick, 30000);
+</script>
+</body>
+</html>

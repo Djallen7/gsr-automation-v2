@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSR x Arclon - 3 rebuild variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=JetBrains+Mono:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1b1c26;--surface:#23242f;--surface-2:#2a2b38;--border:rgba(255,255,255,.09);
+  --fg:#c4cdd5;--muted:#8391a2;--faint:#5b6677;--primary:#7b5bf2;--primary-hi:#8f73ff;
+  --primary-soft:rgba(123,91,242,.16);--secondary:#5b69bc;--radius:.5rem}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Atkinson Hyperlegible",system-ui,sans-serif;background:
+  radial-gradient(800px 460px at 82% -8%,rgba(123,91,242,.20),transparent 60%),var(--bg);
+  color:var(--fg);min-height:100vh;padding:46px 20px 80px;line-height:1.55}
+.wrap{max-width:980px;margin:0 auto}
+.badge{font-weight:700;letter-spacing:2px;font-size:13px;color:#fff;background:var(--primary);padding:5px 9px;border-radius:6px;box-shadow:0 0 22px -4px var(--primary)}
+h1{font-weight:700;font-size:28px;margin:18px 0 6px}
+.sub{color:var(--muted);font-size:15px;max-width:660px;margin-bottom:30px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:820px){.grid{grid-template-columns:1fr}body{padding:30px 15px 70px}}
+.card{display:block;text-decoration:none;color:inherit;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px;transition:.18s;position:relative;overflow:hidden}
+.card:hover{border-color:var(--primary);transform:translateY(-3px);box-shadow:0 16px 38px -20px #000}
+.card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--primary)}
+.k{font-size:11px;letter-spacing:1.3px;text-transform:uppercase;color:var(--faint)}
+.card h2{font-weight:700;font-size:18px;margin:6px 0 8px}
+.card p{font-size:13.5px;color:var(--muted)}
+.open{margin-top:15px;font-family:"JetBrains Mono";font-size:12px;border:1px solid var(--border);border-radius:8px;padding:6px 11px;display:inline-block}
+.note{margin-top:34px;font-size:13px;color:var(--faint);border-top:1px solid var(--border);padding-top:16px}
+.note code{font-family:"JetBrains Mono";color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="badge">GSR x ARCLON</span>
+  <h1>Your template, rebuilt for GSR - three approaches</h1>
+  <p class="sub">The Genesis Science Report dashboard built in the visual style of your Arclon template (its dark theme shifted to GSR violet, tight corners, Atkinson Hyperlegible type, soft status badges, animated counters and charts), tailored to the monthly 5-episode pipeline. Same June data in all three. Open each, toggle the theme, and tell me which approach to take forward.</p>
+
+  <div class="grid">
+    <a class="card" href="./arclon-rebuild-a.html">
+      <div class="k">Variation A</div>
+      <h2>Classic Admin</h2>
+      <p>The standard Arclon dashboard: KPI stat cards, the batch table with stage bars, a cycle radial, deadlines, crew workload, and a production calendar.</p>
+      <span class="open">Open &rsaquo;</span>
+    </a>
+    <a class="card" href="./arclon-rebuild-b.html">
+      <div class="k">Variation B</div>
+      <h2>Pipeline Board</h2>
+      <p>A kanban of the six stages with episode cards flowing through, deadline countdowns up top, and graphics + distribution rails below.</p>
+      <span class="open">Open &rsaquo;</span>
+    </a>
+    <a class="card" href="./arclon-rebuild-c.html">
+      <div class="k">Variation C</div>
+      <h2>Command Center</h2>
+      <p>The charts-forward version: a big cycle gauge, five episode mini-cards, and animated batch, graphics, and crew charts.</p>
+      <span class="open">Open &rsaquo;</span>
+    </a>
+  </div>
+
+  <div class="note">
+    All three are static, self-contained, mobile-friendly mockups using the same mock June batch, styled to match Arclon. The full reference (tokens, stack, license note) is in <code>../inbound-template/ARCLON-REFERENCE.md</code>. The eight earlier concept directions live in <code>../CONCEPT-ATLAS.md</code>.
+  </div>
+</div>
+</body>
+</html>

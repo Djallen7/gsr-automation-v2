@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>GSR Control - Violet/Black Mockup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --radius:10px;
+  --font-head:"Space Grotesk",system-ui,sans-serif;
+  --font-body:"Inter",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",ui-monospace,monospace;
+}
+[data-theme="dark"]{
+  --bg:oklch(0.16 0.018 287);
+  --surface:oklch(0.195 0.022 287);
+  --surface-2:oklch(0.235 0.028 287);
+  --border:oklch(0.32 0.02 287);
+  --fg:oklch(0.95 0.008 287);
+  --muted:oklch(0.70 0.018 287);
+  --faint:oklch(0.50 0.02 287);
+  --primary:oklch(0.64 0.19 287);
+  --primary-hi:oklch(0.70 0.20 287);
+  --primary-soft:oklch(0.64 0.19 287 / 0.16);
+  --success:oklch(0.74 0.16 150);
+  --warning:oklch(0.81 0.14 85);
+  --danger:oklch(0.66 0.20 25);
+  --info:oklch(0.74 0.13 210);
+  --grid-line:oklch(0.62 0.04 287 / 0.05);
+}
+[data-theme="light"]{
+  --bg:oklch(0.975 0.005 287);
+  --surface:oklch(1 0 0);
+  --surface-2:oklch(0.97 0.006 287);
+  --border:oklch(0.89 0.012 287);
+  --fg:oklch(0.20 0.03 287);
+  --muted:oklch(0.48 0.03 287);
+  --faint:oklch(0.62 0.03 287);
+  --primary:oklch(0.50 0.21 287);
+  --primary-hi:oklch(0.44 0.22 287);
+  --primary-soft:oklch(0.50 0.21 287 / 0.12);
+  --success:oklch(0.52 0.15 150);
+  --warning:oklch(0.62 0.14 75);
+  --danger:oklch(0.55 0.20 27);
+  --info:oklch(0.52 0.13 235);
+  --grid-line:oklch(0.50 0.04 287 / 0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font-body);background:var(--bg);color:var(--fg);line-height:1.5;min-height:100dvh;position:relative;overflow-x:hidden;font-feature-settings:"tnum" 0}
+.num{font-variant-numeric:tabular-nums;font-family:var(--font-mono)}
+/* observatory grid + violet glow + grain */
+.bg-grid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);background-size:46px 46px}
+.bg-glow{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;transition:opacity .6s}
+[data-theme="dark"] .bg-glow{opacity:1;background:radial-gradient(900px 500px at 78% -8%,oklch(0.55 0.19 287 / .22),transparent 60%),radial-gradient(700px 500px at -8% 108%,oklch(0.50 0.16 300 / .16),transparent 55%)}
+.bg-grain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.app{position:relative;z-index:1}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ============ TOP BAR ============ */
+.topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:14px;height:58px;padding:0 18px;background:color-mix(in oklch,var(--bg) 80%,transparent);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.wm{display:flex;align-items:center;gap:10px}
+.wm-badge{font-family:var(--font-head);font-weight:700;letter-spacing:2px;font-size:13px;color:#fff;background:var(--primary);padding:5px 8px;border-radius:6px;box-shadow:0 0 22px -4px var(--primary)}
+.wm-sub{font-family:var(--font-head);font-weight:600;letter-spacing:.4px;color:var(--muted);font-size:14px}
+.spacer{flex:1}
+.kbd-hint{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--faint);border:1px solid var(--border);padding:5px 10px;border-radius:8px;background:var(--surface)}
+.kbd{font-family:var(--font-mono);font-size:10px;background:var(--surface-2);padding:1px 5px;border-radius:4px;border:1px solid var(--border)}
+.icon-btn{width:36px;height:36px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--fg);cursor:pointer;font-size:15px;display:grid;place-items:center;transition:.15s}
+.icon-btn:hover{border-color:var(--primary)}
+.role{display:flex;align-items:center;gap:8px;padding:4px 11px 4px 4px;border-radius:999px;border:1px solid var(--border);background:var(--surface);font-size:13px;font-weight:500}
+.av{width:26px;height:26px;border-radius:50%;background:linear-gradient(140deg,var(--primary),oklch(0.55 0.17 320));display:grid;place-items:center;color:#fff;font-weight:700;font-size:11px;font-family:var(--font-head)}
+
+/* ============ SHELL ============ */
+.shell{display:flex;max-width:1340px;margin:0 auto}
+.rail{width:212px;flex-shrink:0;padding:18px 12px;border-right:1px solid var(--border);position:sticky;top:58px;height:calc(100dvh - 58px)}
+.rail h4{font-family:var(--font-head);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;color:var(--faint);padding:0 12px 8px;margin-top:14px}
+.rail h4:first-child{margin-top:0}
+.ri{width:100%;text-align:left;display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:9px;color:var(--muted);font-family:var(--font-body);font-size:14px;font-weight:500;cursor:pointer;transition:.15s;position:relative;border:none;background:transparent;min-height:40px}
+.ri:hover{background:var(--surface);color:var(--fg)}
+.ri.active{color:var(--fg);background:var(--primary-soft)}
+.ri.active::before{content:"";position:absolute;left:0;top:8px;bottom:8px;width:3px;background:var(--primary);border-radius:0 3px 3px 0;box-shadow:0 0 12px -1px var(--primary)}
+.ri .ic{width:16px;text-align:center;opacity:.85}
+.ri .cnt{margin-left:auto;font-family:var(--font-mono);font-size:11px;background:var(--surface-2);padding:1px 7px;border-radius:999px}
+.main{flex:1;min-width:0;padding:20px 26px 96px}
+
+/* ============ CONTEXT BAR ============ */
+.ctx{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.crumb{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+.crumb b{color:var(--fg);font-weight:600}
+.crumb .sep{color:var(--faint)}
+.crumb-pick{border:1px solid var(--border);background:var(--surface);border-radius:7px;padding:4px 9px;color:var(--fg);font-size:12.5px;cursor:pointer;display:flex;gap:6px;align-items:center}
+.compass{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.dots{display:flex;gap:4px}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--surface-2);border:1px solid var(--border)}
+.dots i.done{background:var(--faint);border-color:var(--faint)}
+.dots i.cur{background:var(--primary);border-color:var(--primary);box-shadow:0 0 8px -1px var(--primary)}
+
+/* ============ VERDICT ============ */
+.verdict{display:flex;align-items:center;gap:18px;padding:18px 20px;border:1px solid var(--border);border-radius:14px;background:var(--surface);position:relative;overflow:hidden;margin-bottom:16px}
+.verdict::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--success)}
+.verdict.attn::before{background:var(--warning)}
+.verdict .vmain{flex:1}
+.verdict .vlabel{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:var(--faint);font-family:var(--font-head);margin-bottom:4px}
+.verdict h1{font-family:var(--font-head);font-weight:600;font-size:23px;letter-spacing:.2px;line-height:1.2}
+.verdict h1 .pill{color:var(--warning)}
+.ring{width:62px;height:62px;flex-shrink:0;position:relative;display:grid;place-items:center}
+.ring svg{transform:rotate(-90deg)}
+.ring .rv{position:absolute;font-family:var(--font-mono);font-weight:700;font-size:15px}
+.countdown{text-align:right;flex-shrink:0}
+.countdown .cd-l{font-size:10.5px;letter-spacing:1px;text-transform:uppercase;color:var(--faint);font-family:var(--font-head)}
+.countdown .cd-v{font-family:var(--font-mono);font-weight:700;font-size:18px;color:var(--primary)}
+
+/* ============ NEEDS YOU ============ */
+.section-h{font-family:var(--font-head);font-weight:600;letter-spacing:.6px;font-size:12px;text-transform:uppercase;color:var(--muted);margin:20px 0 11px;display:flex;align-items:center;gap:9px}
+.section-h::after{content:"";flex:1;height:1px;background:var(--border)}
+.section-h .badge{font-family:var(--font-mono);font-size:11px;background:var(--primary);color:#fff;padding:1px 8px;border-radius:999px}
+.needs{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.gate{border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:14px;position:relative;border-left:3px solid var(--primary)}
+.gate .gwhy{font-size:11px;color:var(--info);margin-bottom:6px;font-weight:600}
+.gate .gt{font-weight:600;font-size:14.5px;margin-bottom:3px}
+.gate .gs{color:var(--muted);font-size:12.5px;margin-bottom:12px}
+.btn{font-family:var(--font-body);font-weight:600;font-size:13px;padding:8px 14px;border-radius:8px;cursor:pointer;border:1px solid transparent;transition:.15s;min-height:36px}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-hi)}
+.btn-ghost{background:transparent;border-color:var(--border);color:var(--fg)}
+.btn-ghost:hover{border-color:var(--primary)}
+.btn-sm{padding:5px 11px;font-size:12px;min-height:30px}
+.next-line{margin-top:12px;font-size:13px;color:var(--muted)}
+.next-line b{color:var(--fg)}
+
+/* ============ RIBBON ============ */
+.ribbon{display:flex;align-items:center;gap:14px;margin:6px 0 4px}
+.ribbon-track{flex:1;display:flex;gap:4px}
+.ribbon-track .seg{flex:1;height:7px;border-radius:4px;background:var(--surface-2);border:1px solid var(--border)}
+.ribbon-track .seg.done{background:var(--faint);border-color:var(--faint)}
+.ribbon-track .seg.cur{background:var(--primary);border-color:var(--primary);box-shadow:0 0 10px -2px var(--primary)}
+.ribbon .rlabel{font-size:12px;color:var(--muted);white-space:nowrap}
+.ribbon .rlabel b{color:var(--fg)}
+
+/* ============ DIRECTION TOGGLE ============ */
+.dirtabs{display:inline-flex;gap:4px;padding:4px;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:14px}
+.dirtab{font-family:var(--font-head);font-weight:600;letter-spacing:.3px;padding:7px 13px;border-radius:7px;cursor:pointer;font-size:12.5px;color:var(--muted);border:none;background:transparent;transition:.15s}
+.dirtab.active{background:var(--primary);color:#fff}
+.hero{display:none}
+.hero.active{display:block}
+
+/* ============ HEALTH LIST (Direction A) ============ */
+.hrow{display:grid;grid-template-columns:200px 1fr auto auto;gap:16px;align-items:center;padding:13px 16px;border:1px solid var(--border);border-radius:12px;background:var(--surface);margin-bottom:9px;transition:.2s}
+.hrow.attn{background:var(--surface-2);border-color:color-mix(in oklch,var(--warning) 30%,var(--border))}
+.hrow.dim{opacity:.5}
+.hid{display:flex;align-items:center;gap:10px;min-width:0}
+.hid .sh{font-family:var(--font-head);font-weight:700;font-size:14px}
+.hid .ti{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.stagetrack{display:flex;gap:3px;align-items:center}
+.stagetrack .st{flex:1;height:8px;border-radius:3px;background:var(--surface-2);border:1px solid var(--border);min-width:14px}
+.stagetrack .st.done{background:var(--faint);border-color:var(--faint)}
+.stagetrack .st.cur{background:var(--primary);border-color:var(--primary);box-shadow:0 0 9px -2px var(--primary)}
+.cells{display:flex;gap:7px}
+.chip{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 8px;border-radius:7px;border:1px solid var(--border);white-space:nowrap}
+.chip .g{width:8px;height:8px;border-radius:50%;display:inline-block}
+.chip.ok{color:var(--success)} .chip.ok .g{background:var(--success);border-radius:1px}
+.chip.prog{color:var(--warning)} .chip.prog .g{background:var(--warning)}
+.chip.none{color:var(--faint);border-style:dashed} .chip.none .g{background:transparent;border:1px solid var(--faint)}
+.chip.info{color:var(--info)} .chip.info .g{background:var(--info)}
+.hhealth{display:flex;align-items:center;gap:8px}
+.hring{width:22px;height:22px;border-radius:50%;border:2px solid var(--success)}
+.hring.risk{border-style:dashed;border-color:var(--warning)}
+.hring.late{border-color:var(--danger)}
+.hdue{font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.blk{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted)}
+.blk .ba{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:9px;color:#fff;font-weight:700;font-family:var(--font-head)}
+
+/* ============ PIPELINE RAIL (Direction B) ============ */
+.lanes{border:1px solid var(--border);border-radius:14px;background:var(--surface);padding:20px 18px 14px;position:relative;overflow:hidden}
+.lane-axis{display:grid;grid-template-columns:90px 1fr;gap:14px;font-size:9.5px;letter-spacing:.6px;text-transform:uppercase;color:var(--faint);font-family:var(--font-head);margin-bottom:10px}
+.lane-axis .ax{display:flex;justify-content:space-between}
+.lane{display:grid;grid-template-columns:90px 1fr;gap:14px;align-items:center;margin-bottom:11px;position:relative}
+.lane .lname{font-family:var(--font-head);font-weight:600;font-size:13px}
+.lane .lname small{display:block;color:var(--muted);font-size:10px;font-weight:400}
+.track{position:relative;height:24px}
+.track .base{position:absolute;top:50%;left:0;right:0;height:2px;background:var(--surface-2);transform:translateY(-50%)}
+.track .fill{position:absolute;top:50%;left:0;height:2px;background:var(--faint);transform:translateY(-50%)}
+.track .lag{position:absolute;top:50%;height:3px;background:var(--warning);transform:translateY(-50%);opacity:.8}
+.track .mk{position:absolute;top:50%;width:13px;height:13px;border-radius:50%;background:var(--primary);transform:translate(-50%,-50%);box-shadow:0 0 10px -1px var(--primary);border:2px solid var(--bg)}
+.track .mk.beh{background:var(--surface);border:2px solid var(--warning)}
+.track .mk.done{background:var(--success);box-shadow:none;border-color:var(--bg)}
+.today{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--primary);opacity:.55;border-radius:2px}
+.today::after{content:"TODAY";position:absolute;top:-14px;left:50%;transform:translateX(-50%);font-size:8px;letter-spacing:1px;color:var(--primary);font-family:var(--font-head)}
+
+/* ============ DIAL (Direction C) ============ */
+.dialwrap{display:flex;gap:26px;align-items:center;flex-wrap:wrap;border:1px solid var(--border);border-radius:14px;background:var(--surface);padding:22px}
+#dial{flex-shrink:0}
+.dial-side{flex:1;min-width:220px}
+.dial-side .dl{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--faint);font-family:var(--font-head)}
+.dial-list{margin-top:10px}
+.dial-list .dlr{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
+.dial-list .dlr:last-child{border:none}
+.dial-list .dlr .sh{font-family:var(--font-head);font-weight:600;width:54px}
+.dial-list .dlr .stg{color:var(--muted);font-size:12px;flex:1}
+.dial-list .dlr .d{font-family:var(--font-mono);font-size:11px;color:var(--faint)}
+
+/* ============ READINESS / WIDGETS ============ */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{border:1px solid var(--border);border-radius:12px;background:var(--surface);padding:16px}
+.card .ct{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--faint);font-family:var(--font-head);margin-bottom:12px}
+.frac{margin-bottom:11px}
+.frac .fl{display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:5px}
+.frac .fl b{font-family:var(--font-mono)}
+.frac .ftrack{height:5px;border-radius:3px;background:var(--surface-2);overflow:hidden}
+.frac .ffill{height:100%;background:var(--primary);border-radius:3px}
+.frac.full .ffill{background:var(--success)}
+/* char meter */
+.cm{margin-top:6px}
+.cm .cmtrack{position:relative;height:8px;border-radius:4px;background:var(--surface-2);overflow:hidden}
+.cm .band{position:absolute;top:0;bottom:0;left:84.6%;right:0;background:repeating-linear-gradient(45deg,transparent,transparent 3px,color-mix(in oklch,var(--danger) 35%,transparent) 3px,color-mix(in oklch,var(--danger) 35%,transparent) 6px)}
+.cm .goodband{position:absolute;top:0;bottom:0;left:84.6%;width:0}
+.cm .cmfill{position:absolute;top:0;bottom:0;left:0;background:var(--success);border-radius:4px}
+.cm .lab{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:10.5px;margin-top:4px}
+.l3text{font-family:var(--font-mono);font-weight:600;letter-spacing:.5px;font-size:12px;padding:9px 10px;border:1px solid var(--primary);background:var(--primary-soft);border-radius:8px;margin-bottom:8px}
+.dist8{display:flex;gap:5px;flex-wrap:wrap}
+.dist8 .d{width:30px;height:30px;border-radius:7px;display:grid;place-items:center;font-size:12px;border:1px solid var(--border);background:var(--surface-2);position:relative;color:var(--muted)}
+.dist8 .d.done{color:var(--success);border-color:color-mix(in oklch,var(--success) 40%,var(--border))}
+.dist8 .d.done::after{content:"";position:absolute;right:-2px;bottom:-2px;width:9px;height:9px;background:var(--success);border-radius:50%;border:2px solid var(--surface)}
+.dist8 .d.pend{border-style:dashed;color:var(--faint)}
+
+/* ============ MOBILE / PHONE ============ */
+.bottom-nav{display:none}
+.phone-wrap{display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start;margin-top:6px}
+.phone{width:288px;flex-shrink:0;border-radius:34px;padding:10px;background:oklch(0.10 0.02 287);box-shadow:0 24px 60px -22px #000,0 0 0 1px var(--border)}
+.pscreen{background:var(--bg);border-radius:25px;overflow:hidden;height:580px;display:flex;flex-direction:column;position:relative}
+.pscreen .bg-glow{position:absolute}
+.pbar{padding:13px 15px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px;position:relative;z-index:1}
+.pcontent{flex:1;overflow-y:auto;padding:13px;position:relative;z-index:1}
+.pctx{font-size:11px;color:var(--muted);background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:8px 11px;margin-bottom:11px;display:flex;justify-content:space-between}
+.pl3{border-radius:13px;border:1px solid var(--border);background:var(--surface);padding:16px;text-align:center;position:relative;overflow:hidden}
+.pl3::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--primary)}
+.pl3 .big{font-family:var(--font-mono);font-weight:600;letter-spacing:.6px;font-size:14px;line-height:1.4;margin:8px 0 12px}
+.pswipe{display:flex;justify-content:space-between;font-size:10.5px;color:var(--faint);margin-top:9px}
+.pactions{display:flex;gap:9px;padding:11px 13px;border-top:1px solid var(--border);position:relative;z-index:1}
+.pactions .btn{flex:1;text-align:center}
+.ptabs{display:flex;border-top:1px solid var(--border);background:var(--surface);position:relative;z-index:1}
+.ptab{flex:1;padding:8px 0 11px;text-align:center;font-size:9.5px;color:var(--faint)}
+.ptab.active{color:var(--primary)}
+.ptab .ti{font-size:17px;display:block;margin-bottom:2px}
+.callout{flex:1;min-width:280px;font-size:13px;color:var(--muted)}
+.callout h3{font-family:var(--font-head);color:var(--fg);margin-bottom:9px;font-size:16px}
+.callout li{margin:6px 0 6px 18px}
+
+@media (max-width:980px){
+  .rail{display:none}
+  .main{padding:16px 14px 92px}
+  .needs,.grid3{grid-template-columns:1fr}
+  .hrow{grid-template-columns:1fr;gap:10px;align-items:stretch}
+  .lane,.lane-axis{grid-template-columns:70px 1fr}
+  .bottom-nav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;inset:auto 0 0 0;z-index:50;background:color-mix(in oklch,var(--bg) 92%,transparent);backdrop-filter:blur(14px);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom)}
+  .bn{padding:8px 0 10px;text-align:center;color:var(--faint);font-size:10px;min-height:52px;cursor:pointer;border:none;background:transparent}
+  .bn.active{color:var(--primary)}
+  .bn .bi{font-size:18px;display:block;margin-bottom:2px}
+  .verdict{flex-wrap:wrap}
+  .verdict h1{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div><div class="bg-glow"></div><div class="bg-grain"></div>
+<div class="app">
+
+  <header class="topbar">
+    <div class="wm"><span class="wm-badge">GSR</span><span class="wm-sub">Control</span></div>
+    <div class="spacer"></div>
+    <span class="kbd-hint">Jump <span class="kbd">Cmd</span><span class="kbd">K</span></span>
+    <button class="icon-btn" id="themeBtn" title="Toggle theme">&#9789;</button>
+    <div class="role"><span class="av">DA</span>Daniel</div>
+  </header>
+
+  <div class="shell">
+    <aside class="rail">
+      <h4>Pipeline</h4>
+      <button class="ri active"><span class="ic">&#9678;</span> Now</button>
+      <button class="ri"><span class="ic">&#9707;</span> Lower Thirds <span class="cnt">12</span></button>
+      <button class="ri"><span class="ic">&#9638;</span> Graphics <span class="cnt">5</span></button>
+      <button class="ri"><span class="ic">&#9202;</span> Episodes</button>
+      <h4>Output</h4>
+      <button class="ri"><span class="ic">&#9741;</span> Distribution</button>
+      <button class="ri"><span class="ic">&#9787;</span> Guests</button>
+      <h4>System</h4>
+      <button class="ri"><span class="ic">&#9889;</span> Health</button>
+    </aside>
+
+    <main class="main">
+      <!-- CONTEXT BAR -->
+      <div class="ctx">
+        <div class="crumb">
+          <button class="crumb-pick">Cycle: June &#9662;</button>
+          <span class="sep">&rsaquo;</span>
+          <button class="crumb-pick">All 5 shows &#9662;</button>
+        </div>
+        <div class="compass">
+          June &middot; <b style="color:var(--fg)">3 of 5</b>
+          <span class="dots"><i class="done"></i><i class="done"></i><i class="cur"></i><i></i><i></i></span>
+        </div>
+      </div>
+
+      <!-- VERDICT -->
+      <div class="verdict attn">
+        <div class="ring">
+          <svg width="62" height="62"><circle cx="31" cy="31" r="26" fill="none" stroke="var(--surface-2)" stroke-width="5"/><circle cx="31" cy="31" r="26" fill="none" stroke="var(--primary)" stroke-width="5" stroke-linecap="round" stroke-dasharray="163.4" stroke-dashoffset="65"/></svg>
+          <span class="rv">60%</span>
+        </div>
+        <div class="vmain">
+          <div class="vlabel">June cycle</div>
+          <h1><span class="pill">3 things need you</span> &middot; then the batch is on track</h1>
+        </div>
+        <div class="countdown">
+          <div class="cd-l">Next gate</div>
+          <div class="cd-v num">YT &middot; 1d</div>
+        </div>
+      </div>
+
+      <!-- NEEDS YOU -->
+      <div class="section-h">Needs you <span class="badge num">3</span></div>
+      <div class="needs">
+        <div class="gate">
+          <div class="gwhy">Unblocks Isaac's build</div>
+          <div class="gt">Approve 6 graphic ideas</div>
+          <div class="gs">Show 2 &middot; Interview 1</div>
+          <button class="btn btn-primary btn-sm">Review</button>
+        </div>
+        <div class="gate">
+          <div class="gwhy">Due in 1 day</div>
+          <div class="gt">Confirm rundown</div>
+          <div class="gs">Show 3 &middot; ready to push to RC</div>
+          <button class="btn btn-primary btn-sm">Open</button>
+        </div>
+        <div class="gate">
+          <div class="gwhy">Goes public, hard to reverse</div>
+          <div class="gt">Trigger YouTube upload</div>
+          <div class="gs">Show 1 &middot; private until audit</div>
+          <button class="btn btn-ghost btn-sm">Confirm</button>
+        </div>
+      </div>
+      <div class="next-line">Next: <b>approve Show 2's 6 graphic ideas</b> so Isaac can start designing today.</div>
+
+      <!-- RIBBON -->
+      <div class="section-h">Where we are in the month</div>
+      <div class="ribbon">
+        <div class="ribbon-track">
+          <span class="seg done" title="Plan"></span><span class="seg done" title="Build"></span><span class="seg cur" title="Shoot"></span><span class="seg" title="Air week"></span><span class="seg" title="Distribute"></span>
+        </div>
+        <span class="rlabel"><b>Air week</b> &middot; Day 18 of 30 &middot; <span class="num">1d</span> to YouTube</span>
+      </div>
+
+      <!-- HERO with direction toggle -->
+      <div class="section-h">The batch of 5</div>
+      <div class="dirtabs">
+        <button class="dirtab active" data-dir="a">Command Deck</button>
+        <button class="dirtab" data-dir="b">Pipeline Rail</button>
+        <button class="dirtab" data-dir="c">Cycle Dial</button>
+      </div>
+
+      <!-- DIRECTION A: HEALTH LIST -->
+      <section class="hero active" id="hero-a">
+        <div class="hrow attn">
+          <div class="hid"><span class="av" style="width:24px;height:24px;font-size:9px">2</span><div><div class="sh">Show 2</div><div class="ti">Soft tissue in fossils</div></div></div>
+          <div class="stagetrack"><span class="st done"></span><span class="st cur"></span><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span></div>
+          <div class="cells"><span class="chip prog"><span class="g"></span>Gfx 5/30</span><span class="chip none"><span class="g"></span>LT</span><span class="chip ok"><span class="g"></span>Guests</span></div>
+          <div class="hhealth"><span class="hring risk"></span><span class="hdue num">prep</span></div>
+        </div>
+        <div class="hrow attn">
+          <div class="hid"><span class="av" style="width:24px;height:24px;font-size:9px">3</span><div><div class="sh">Show 3</div><div class="ti">Geosmin and the rain</div></div></div>
+          <div class="stagetrack"><span class="st done"></span><span class="st done"></span><span class="st done"></span><span class="st cur"></span><span class="st"></span><span class="st"></span></div>
+          <div class="cells"><span class="chip prog"><span class="g"></span>Gfx 22/30</span><span class="chip ok"><span class="g"></span>LT</span><span class="chip ok"><span class="g"></span>Guests</span></div>
+          <div class="hhealth"><span class="hring late"></span><span class="hdue num" style="color:var(--danger)">YT 1d</span></div>
+        </div>
+        <div class="hrow">
+          <div class="hid"><span class="av" style="width:24px;height:24px;font-size:9px">1</span><div><div class="sh">Show 1</div><div class="ti">UAP disclosure</div></div></div>
+          <div class="stagetrack"><span class="st done"></span><span class="st done"></span><span class="st done"></span><span class="st done"></span><span class="st cur"></span><span class="st"></span></div>
+          <div class="cells"><span class="chip ok"><span class="g"></span>Gfx 30/30</span><span class="chip ok"><span class="g"></span>LT</span><span class="chip info"><span class="g"></span>Dist 1/8</span></div>
+          <div class="hhealth"><span class="hring"></span><span class="hdue num">scheduled</span></div>
+        </div>
+        <div class="hrow dim">
+          <div class="hid"><span class="av" style="width:24px;height:24px;font-size:9px">4</span><div><div class="sh">Show 4</div><div class="ti">Ice age models</div></div></div>
+          <div class="stagetrack"><span class="st done"></span><span class="st cur"></span><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span></div>
+          <div class="cells"><span class="chip none"><span class="g"></span>Gfx</span><span class="chip none"><span class="g"></span>LT</span><span class="blk"><span class="ba" style="background:var(--info)">Je</span>b-roll</span></div>
+          <div class="hhealth"><span class="hring"></span><span class="hdue num">in prep</span></div>
+        </div>
+        <div class="hrow dim">
+          <div class="hid"><span class="av" style="width:24px;height:24px;font-size:9px">5</span><div><div class="sh">Show 5</div><div class="ti">Guest TBC</div></div></div>
+          <div class="stagetrack"><span class="st cur"></span><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span><span class="st"></span></div>
+          <div class="cells"><span class="chip none"><span class="g"></span>Gfx</span><span class="chip none"><span class="g"></span>LT</span><span class="chip prog"><span class="g"></span>Guest unconfirmed</span></div>
+          <div class="hhealth"><span class="hring"></span><span class="hdue num">planned</span></div>
+        </div>
+        <p style="font-size:11.5px;color:var(--faint);margin-top:10px">The two shows that need you rise to the top and brighten; healthy shows dim. Nothing is added, the same 5 rows re-rank. Stage is derived from real signals, so it stays honest even with today's sparse data.</p>
+      </section>
+
+      <!-- DIRECTION B: PIPELINE RAIL -->
+      <section class="hero" id="hero-b">
+        <div class="lanes">
+          <div class="lane-axis"><span></span><span class="ax"><span>planned</span><span>in_prep</span><span>shot</span><span>in_post</span><span>sched</span><span>aired</span></span></div>
+          <div class="lane"><div class="lname">Show 1<small>UAP</small></div><div class="track"><div class="base"></div><div class="fill" style="width:90%"></div><div class="mk done" style="left:90%"></div></div></div>
+          <div class="lane"><div class="lname">Show 2<small>Fossils</small></div><div class="track"><div class="base"></div><div class="fill" style="width:20%"></div><div class="lag" style="left:20%;width:30%"></div><div class="mk beh" style="left:20%"></div></div></div>
+          <div class="lane"><div class="lname">Show 3<small>Geosmin</small></div><div class="track"><div class="base"></div><div class="fill" style="width:62%"></div><div class="mk" style="left:62%"></div></div></div>
+          <div class="lane"><div class="lname">Show 4<small>Ice age</small></div><div class="track"><div class="base"></div><div class="fill" style="width:24%"></div><div class="mk beh" style="left:24%"></div></div></div>
+          <div class="lane"><div class="lname">Show 5<small>TBC</small></div><div class="track"><div class="base"></div><div class="fill" style="width:6%"></div><div class="mk" style="left:6%"></div></div></div>
+          <div class="today" style="left:calc(90px + 14px + (100% - 104px) * 0.5)"></div>
+        </div>
+        <p style="font-size:11.5px;color:var(--faint);margin-top:10px">Each show rides its lane to its current stage; the vertical line is where it should be today. A marker left of the line is behind (amber lag bar). The healthy batch reads as a clean diagonal; a flat lane breaks it and your eye snaps to it. Deferred to a deep-dive page until per-segment data is live.</p>
+      </section>
+
+      <!-- DIRECTION C: DIAL -->
+      <section class="hero" id="hero-c">
+        <div class="dialwrap">
+          <svg id="dial" width="240" height="240" viewBox="0 0 240 240"></svg>
+          <div class="dial-side">
+            <div class="dl">Next milestone</div>
+            <div style="font-family:var(--font-head);font-weight:700;font-size:22px;margin:4px 0">YouTube lock</div>
+            <div class="num" style="color:var(--primary);font-weight:700">Mon 4:00pm &middot; in 1d 6h</div>
+            <div class="dial-list">
+              <div class="dlr"><span class="sh">Show 1</span><span class="stg">scheduled</span><span class="d num">Jun 9</span></div>
+              <div class="dlr"><span class="sh">Show 2</span><span class="stg">in prep &middot; behind</span><span class="d num">Jun 16</span></div>
+              <div class="dlr"><span class="sh">Show 3</span><span class="stg">in post</span><span class="d num">Jun 23</span></div>
+              <div class="dlr"><span class="sh">Show 4</span><span class="stg">in prep</span><span class="d num">Jun 30</span></div>
+              <div class="dlr"><span class="sh">Show 5</span><span class="stg">planned</span><span class="d num">Jul 7</span></div>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:11.5px;color:var(--faint);margin-top:10px">The ring is the month, the violet hand is today, each puck is an episode filling through its 6 stages. Beautiful and the most on-brand, but a dial is prettier than it is legible, so the list beside it is always the source of truth. Offered as an optional widget, not the default.</p>
+      </section>
+
+      <!-- READINESS / WIDGETS -->
+      <div class="section-h">Show 3 readiness</div>
+      <div class="grid3">
+        <div class="card">
+          <div class="ct">Build progress</div>
+          <div class="frac"><div class="fl"><span>Graphics</span><b>22 / 30</b></div><div class="ftrack"><div class="ffill" style="width:73%"></div></div></div>
+          <div class="frac full"><div class="fl"><span>Lower thirds</span><b>15 / 15</b></div><div class="ftrack"><div class="ffill" style="width:100%"></div></div></div>
+          <div class="frac full"><div class="fl"><span>Guests</span><b>2 / 2</b></div><div class="ftrack"><div class="ffill" style="width:100%"></div></div></div>
+        </div>
+        <div class="card">
+          <div class="ct">Lower-third check</div>
+          <div class="l3text">STREPTOMYCES: RAIN'S SMELL AND LIFE-SAVING DRUGS</div>
+          <div class="cm">
+            <div class="cmtrack"><div class="cmfill" style="width:90.7%"></div><div class="band"></div></div>
+            <div class="lab"><span style="color:var(--success)">59 good</span><span style="color:var(--faint)">55-65 band &middot; max 65</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ct">Distribution &middot; 1 of 8</div>
+          <div class="dist8">
+            <span class="d done">&#9654;</span><span class="d pend">R</span><span class="d pend">&#9835;</span><span class="d pend">&#9851;</span><span class="d pend">&#9741;</span><span class="d pend">&#9729;</span><span class="d pend">&#9706;</span><span class="d pend">&#9986;</span>
+          </div>
+          <p style="font-size:11px;color:var(--faint);margin-top:9px">YouTube live. Seven targets await the master export. Done lights up; pending stays a dashed outline, never a red zero.</p>
+        </div>
+      </div>
+
+      <!-- MOBILE -->
+      <div class="section-h">On a phone</div>
+      <div class="phone-wrap">
+        <div class="phone"><div class="pscreen"><div class="bg-glow"></div>
+          <div class="pbar"><span class="wm-badge" style="font-size:10px;padding:3px 6px">GSR</span><span style="font-size:13px;font-weight:600">Review</span><span class="num" style="margin-left:auto;font-size:11px;color:var(--muted)">7 / 17</span></div>
+          <div class="pcontent">
+            <div class="pctx"><span>JUN &rsaquo; Show 3 &rsaquo; Interview 1</span><span class="num">beat 7</span></div>
+            <div class="pl3">
+              <span class="chip prog" style="position:absolute;top:11px;right:11px"><span class="g"></span>discussion</span>
+              <div class="big">STREPTOMYCES: RAIN'S SMELL AND LIFE-SAVING DRUGS</div>
+              <div class="cm"><div class="cmtrack"><div class="cmfill" style="width:90.7%"></div><div class="band"></div></div><div class="lab"><span style="color:var(--success)">59 good</span><span style="color:var(--faint)">/65</span></div></div>
+            </div>
+            <div class="pswipe"><span>&#8592; swipe reject</span><span>swipe approve &#8594;</span></div>
+          </div>
+          <div class="pactions"><button class="btn btn-ghost">Reject</button><button class="btn btn-primary">Approve</button></div>
+          <div class="ptabs"><div class="ptab active"><span class="ti">&#9678;</span>Now</div><div class="ptab"><span class="ti">&#9707;</span>Review</div><div class="ptab"><span class="ti">&#9638;</span>Graphics</div><div class="ptab"><span class="ti">&#9741;</span>Send</div><div class="ptab"><span class="ti">&#8943;</span>More</div></div>
+        </div></div>
+        <div class="callout">
+          <h3>What the phone proves</h3>
+          <ul>
+            <li>The first thumb-screen is the Needs-You lane plus a compact "where am I" bar, scoped to the person logged in.</li>
+            <li>Bottom tab bar of the role's top destinations, every target at least 48px, violet only when active.</li>
+            <li>One lower-third per screen, large, with the live character meter; swipe right approve, left reject, with visible buttons as the fallback.</li>
+            <li>The 5-row health list becomes accordion rows; the rail becomes vertical lanes; the dial becomes a small arc above the list.</li>
+            <li>Any live or irreversible action still routes through the Type-YES gate.</li>
+          </ul>
+          <p style="margin-top:10px">Resize this window narrow to watch the whole mockup reflow and the bottom nav appear.</p>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<nav class="bottom-nav">
+  <button class="bn active"><span class="bi">&#9678;</span>Now</button>
+  <button class="bn"><span class="bi">&#9707;</span>Review</button>
+  <button class="bn"><span class="bi">&#9638;</span>Graphics</button>
+  <button class="bn"><span class="bi">&#9741;</span>Send</button>
+  <button class="bn"><span class="bi">&#8943;</span>More</button>
+</nav>
+
+<script>
+const root=document.documentElement;
+document.getElementById('themeBtn').addEventListener('click',()=>{root.dataset.theme=root.dataset.theme==='dark'?'light':'dark';drawDial();});
+// direction toggle
+document.querySelectorAll('.dirtab').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.dirtab').forEach(x=>x.classList.remove('active'));
+  t.classList.add('active');
+  document.querySelectorAll('.hero').forEach(h=>h.classList.toggle('active',h.id==='hero-'+t.dataset.dir));
+  if(t.dataset.dir==='c') drawDial();
+}));
+// rail active
+document.querySelectorAll('.ri').forEach(r=>r.addEventListener('click',()=>{document.querySelectorAll('.ri').forEach(x=>x.classList.remove('active'));r.classList.add('active');}));
+document.querySelectorAll('.bn').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.bn').forEach(x=>x.classList.remove('active'));b.classList.add('active');}));
+
+// ---- Cycle Dial (SVG) ----
+function cssv(n){return getComputedStyle(document.body).getPropertyValue(n).trim();}
+function pol(cx,cy,r,deg){const a=(deg-90)*Math.PI/180;return[cx+r*Math.cos(a),cy+r*Math.sin(a)];}
+function arc(cx,cy,r,a0,a1){const[x0,y0]=pol(cx,cy,r,a0),[x1,y1]=pol(cx,cy,r,a1);const big=(a1-a0)>180?1:0;return`M${x0} ${y0} A${r} ${r} 0 ${big} 1 ${x1} ${y1}`;}
+function drawDial(){
+  const svg=document.getElementById('dial');if(!svg)return;
+  const cx=120,cy=120,R=92;
+  const primary=cssv('--primary'),faint=cssv('--faint'),surf2=cssv('--surface-2'),border=cssv('--border'),success=cssv('--success'),muted=cssv('--muted');
+  // episodes: angle = day-of-month -> degrees; stageFrac 0..1
+  const eps=[{a:30,f:0.85,beh:false},{a:108,f:0.30,beh:true},{a:170,f:0.55,beh:false},{a:235,f:0.18,beh:false},{a:300,f:0.05,beh:false}];
+  const today=150; // sweep angle
+  let s=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="${surf2}" stroke-width="10"/>`;
+  // faint concentric grid
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R-22}" fill="none" stroke="${border}" stroke-width="1" opacity="0.5"/>`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R+14}" fill="none" stroke="${border}" stroke-width="1" opacity="0.35"/>`;
+  // week ticks
+  for(let d=0;d<360;d+=30){const[x0,y0]=pol(cx,cy,R+9,d),[x1,y1]=pol(cx,cy,R+14,d);s+=`<line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="${faint}" stroke-width="1" opacity="0.5"/>`;}
+  // sweep hand
+  const[hx,hy]=pol(cx,cy,R+6,today);
+  s+=`<line x1="${cx}" y1="${cy}" x2="${hx}" y2="${hy}" stroke="${primary}" stroke-width="2.5" stroke-linecap="round"/>`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="4" fill="${primary}"/>`;
+  // pucks (mini arcs around their seat)
+  eps.forEach((e,i)=>{
+    const[px,py]=pol(cx,cy,R,e.a);
+    const pr=13;
+    s+=`<circle cx="${px}" cy="${py}" r="${pr}" fill="${cssv('--surface')}" stroke="${border}" stroke-width="1.5"/>`;
+    // progress arc on puck
+    const a0=e.a-150,a1=e.a-150+360*e.f;
+    const col=e.beh?cssv('--warning'):success;
+    s+=`<path d="${arc(px,py,pr-3,a0,Math.max(a0+1,a1))}" fill="none" stroke="${col}" stroke-width="3" stroke-linecap="round"/>`;
+    s+=`<text x="${px}" y="${py+3.5}" text-anchor="middle" font-family="var(--font-head)" font-weight="700" font-size="10" fill="${cssv('--fg')}">${i+1}</text>`;
+  });
+  // center label
+  s+=`<text x="${cx}" y="${cy-6}" text-anchor="middle" font-family="var(--font-head)" font-size="9" letter-spacing="1" fill="${faint}">JUNE</text>`;
+  s+=`<text x="${cx}" y="${cy+12}" text-anchor="middle" font-family="var(--font-mono)" font-weight="700" font-size="15" fill="${cssv('--fg')}">Day 18</text>`;
+  svg.innerHTML=s;
+}
+drawDial();
+</script>
+</body>
+</html>

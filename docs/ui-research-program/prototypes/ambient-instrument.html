@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>GSR . Ambient Instrument</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: oklch(0.15 0.018 287);
+    --surface: oklch(0.19 0.022 287);
+    --surface-2: oklch(0.23 0.028 287);
+    --border: oklch(0.30 0.02 287);
+    --fg: oklch(0.95 0.008 287);
+    --muted: oklch(0.68 0.018 287);
+    --faint: oklch(0.48 0.02 287);
+    --violet: oklch(0.64 0.19 287);
+    --violet-soft: oklch(0.64 0.19 287 / .16);
+    --success: oklch(0.74 0.16 150);
+    --warn: oklch(0.80 0.15 85);
+    --danger: oklch(0.64 0.21 25);
+    --info: oklch(0.74 0.13 210);
+    --sans: "Inter", system-ui, sans-serif;
+    --label: "Space Grotesk", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    overscroll-behavior: none;
+  }
+
+  body {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    /* deep cosmic field behind the instrument */
+    background:
+      radial-gradient(120% 90% at 50% 42%, oklch(0.21 0.04 287) 0%, var(--bg) 58%, oklch(0.11 0.02 287) 100%);
+  }
+
+  /* faint starfield, pure CSS */
+  .stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 12% 22%, oklch(0.9 0.02 287 / .5), transparent),
+      radial-gradient(1px 1px at 78% 14%, oklch(0.9 0.02 287 / .4), transparent),
+      radial-gradient(1px 1px at 33% 71%, oklch(0.9 0.02 287 / .35), transparent),
+      radial-gradient(1px 1px at 64% 64%, oklch(0.9 0.02 287 / .45), transparent),
+      radial-gradient(1px 1px at 88% 82%, oklch(0.9 0.02 287 / .3), transparent),
+      radial-gradient(1px 1px at 21% 88%, oklch(0.9 0.02 287 / .35), transparent),
+      radial-gradient(1.5px 1.5px at 50% 30%, oklch(0.9 0.02 287 / .25), transparent),
+      radial-gradient(1px 1px at 6% 54%, oklch(0.9 0.02 287 / .3), transparent),
+      radial-gradient(1px 1px at 94% 46%, oklch(0.9 0.02 287 / .3), transparent);
+    opacity: .8;
+  }
+
+  .stage {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+  }
+
+  svg#instrument {
+    width: min(100vw, 100svh);
+    height: min(100vw, 100svh);
+    max-width: 760px;
+    max-height: 760px;
+    display: block;
+    touch-action: manipulation;
+  }
+
+  /* ---- header brand ---- */
+  .brand {
+    position: absolute;
+    top: max(18px, env(safe-area-inset-top));
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .brand .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--violet);
+    box-shadow: 0 0 10px var(--violet);
+  }
+  .brand .name {
+    font-family: var(--label);
+    font-weight: 600;
+    letter-spacing: .28em;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ---- bottom status line ---- */
+  .statusbar {
+    position: absolute;
+    left: 0; right: 0;
+    bottom: max(20px, env(safe-area-inset-bottom));
+    display: flex;
+    justify-content: center;
+    padding: 0 16px;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .statusbar .line {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .02em;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+    line-height: 1.5;
+  }
+  .statusbar .line b { color: var(--fg); font-weight: 700; }
+  .statusbar .line .risk { color: var(--danger); }
+  .statusbar .line .need { color: var(--violet); }
+
+  /* ---- reduced-motion toggle ---- */
+  .controls {
+    position: absolute;
+    top: max(16px, env(safe-area-inset-top));
+    right: max(16px, env(safe-area-inset-right));
+    z-index: 6;
+  }
+  .toggle {
+    -webkit-appearance: none; appearance: none;
+    border: 1px solid var(--border);
+    background: oklch(0.19 0.022 287 / .6);
+    color: var(--muted);
+    font-family: var(--label);
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    padding: 10px 12px;
+    min-height: 44px;
+    border-radius: 999px;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color .25s, border-color .25s, background .25s;
+  }
+  .toggle:hover { color: var(--fg); border-color: var(--violet); }
+  .toggle .pip {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--faint);
+    transition: background .25s, box-shadow .25s;
+  }
+  .toggle[aria-pressed="true"] {
+    color: var(--fg);
+    border-color: var(--violet);
+    background: var(--violet-soft);
+  }
+  .toggle[aria-pressed="true"] .pip {
+    background: var(--violet);
+    box-shadow: 0 0 8px var(--violet);
+  }
+
+  /* ---- detail card ---- */
+  .scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 8;
+    background: oklch(0.10 0.02 287 / .55);
+    backdrop-filter: blur(3px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease;
+  }
+  .scrim.open { opacity: 1; pointer-events: auto; }
+
+  .card {
+    position: absolute;
+    left: 50%;
+    bottom: max(20px, env(safe-area-inset-bottom));
+    transform: translate(-50%, 16px);
+    width: min(420px, calc(100vw - 28px));
+    z-index: 9;
+    background: linear-gradient(180deg, oklch(0.21 0.026 287 / .96), oklch(0.17 0.022 287 / .98));
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 20px 20px 18px;
+    box-shadow: 0 24px 60px oklch(0.06 0.02 287 / .6), inset 0 1px 0 oklch(0.95 0.01 287 / .06);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .3s ease, transform .3s cubic-bezier(.2,.8,.2,1);
+  }
+  .card.open { opacity: 1; pointer-events: auto; transform: translate(-50%, 0); }
+
+  .card .top {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .card .glyph {
+    width: 14px; height: 14px; border-radius: 50%;
+    margin-top: 5px;
+    flex: 0 0 auto;
+    box-shadow: 0 0 14px currentColor;
+  }
+  .card h2 {
+    font-family: var(--label);
+    font-weight: 600;
+    font-size: 19px;
+    letter-spacing: -.01em;
+    line-height: 1.2;
+  }
+  .card .sub {
+    font-family: var(--label);
+    font-size: 10.5px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 5px;
+  }
+  .card .close {
+    margin-left: auto;
+    -webkit-appearance: none; appearance: none;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    flex: 0 0 auto;
+    transition: color .2s, border-color .2s;
+  }
+  .card .close:hover { color: var(--fg); border-color: var(--violet); }
+
+  .card .rows { display: grid; gap: 1px; background: var(--border); border-radius: 14px; overflow: hidden; }
+  .card .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    background: oklch(0.20 0.024 287);
+    padding: 12px 14px;
+  }
+  .card .row .k {
+    font-family: var(--label);
+    font-size: 10.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--faint);
+  }
+  .card .row .v {
+    font-family: var(--mono);
+    font-size: 14px;
+    text-align: right;
+    color: var(--fg);
+    font-variant-numeric: tabular-nums;
+  }
+  .card .row .v.warnv { color: var(--warn); }
+  .card .row .v.dangerv { color: var(--danger); }
+  .card .row .v.okv { color: var(--success); }
+
+  .card .action {
+    margin-top: 14px;
+    padding: 14px 15px;
+    border-radius: 14px;
+    background: var(--violet-soft);
+    border: 1px solid oklch(0.64 0.19 287 / .4);
+    display: flex;
+    gap: 11px;
+    align-items: center;
+  }
+  .card .action.idle {
+    background: oklch(0.74 0.16 150 / .1);
+    border-color: oklch(0.74 0.16 150 / .3);
+  }
+  .card .action .ico { font-size: 16px; flex: 0 0 auto; }
+  .card .action .txt { font-size: 13.5px; line-height: 1.4; color: var(--fg); }
+  .card .action .txt b { font-family: var(--label); font-weight: 600; }
+
+  .visually-hidden {
+    position: absolute; width: 1px; height: 1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
+  }
+
+  @media (max-width: 420px) {
+    .brand .name { font-size: 11px; letter-spacing: .22em; }
+    .statusbar .line { font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+
+  <header class="brand" aria-hidden="true">
+    <span class="dot"></span>
+    <span class="name">Genesis Science Report</span>
+  </header>
+
+  <div class="controls">
+    <button class="toggle" id="motionToggle" aria-pressed="false" title="Reduced motion">
+      <span class="pip" aria-hidden="true"></span>
+      <span id="motionLabel">Calm</span>
+    </button>
+  </div>
+
+  <main class="stage">
+    <svg id="instrument" viewBox="0 0 1000 1000" role="img"
+         aria-label="Monthly cycle of five episodes shown as orbs riding a pipeline ring.">
+      <defs>
+        <radialGradient id="coreGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="oklch(0.64 0.19 287 / .55)" />
+          <stop offset="45%" stop-color="oklch(0.64 0.19 287 / .14)" />
+          <stop offset="100%" stop-color="oklch(0.64 0.19 287 / 0)" />
+        </radialGradient>
+        <radialGradient id="orbHealthy" cx="42%" cy="40%" r="62%">
+          <stop offset="0%" stop-color="oklch(0.98 0.02 287)" />
+          <stop offset="55%" stop-color="oklch(0.74 0.16 287)" />
+          <stop offset="100%" stop-color="oklch(0.52 0.18 287)" />
+        </radialGradient>
+        <filter id="soft" x="-80%" y="-80%" width="260%" height="260%">
+          <feGaussianBlur stdDeviation="6" />
+        </filter>
+        <filter id="softBig" x="-120%" y="-120%" width="340%" height="340%">
+          <feGaussianBlur stdDeviation="16" />
+        </filter>
+      </defs>
+
+      <!-- layered groups, painted back to front -->
+      <g id="ringLayer"></g>
+      <g id="stageLabels"></g>
+      <g id="emptyLayer"></g>
+      <g id="tailLayer"></g>
+      <g id="orbLayer"></g>
+      <g id="coreLayer"></g>
+    </svg>
+  </main>
+
+  <footer class="statusbar">
+    <div class="line" id="statusLine" aria-live="polite"></div>
+  </footer>
+
+  <!-- detail card -->
+  <div class="scrim" id="scrim"></div>
+  <section class="card" id="card" role="dialog" aria-modal="true" aria-labelledby="cardTitle" aria-hidden="true">
+    <div class="top">
+      <span class="glyph" id="cardGlyph" aria-hidden="true"></span>
+      <div>
+        <h2 id="cardTitle">Episode</h2>
+        <div class="sub" id="cardSub">Stage</div>
+      </div>
+      <button class="close" id="cardClose" aria-label="Close detail">&times;</button>
+    </div>
+    <div class="rows" id="cardRows"></div>
+    <div class="action" id="cardAction">
+      <span class="ico" id="actionIco">&#10227;</span>
+      <span class="txt" id="actionTxt"></span>
+    </div>
+  </section>
+
+<script>
+"use strict";
+
+// ------------------------------------------------------------------
+// Geometry constants (SVG user space is 1000 x 1000)
+// ------------------------------------------------------------------
+var CX = 500, CY = 500;
+var R_RING = 330;          // radius episodes orbit on
+var R_CORE = 96;           // now-core radius
+
+// today, fixed for the mock
+var NOW = new Date("2026-06-08T10:00:00");
+
+// ------------------------------------------------------------------
+// Pipeline stages, laid clockwise from 12 o'clock.
+// stageAngle: degrees measured clockwise from top (12 o'clock = 0).
+// "aired" sits just before "planned" so the cycle closes at the top.
+// ------------------------------------------------------------------
+var STAGES = [
+  { key: "planned",   label: "Planned",   angle: 0 },
+  { key: "in_prep",   label: "In Prep",   angle: 60 },
+  { key: "shot",      label: "Shot",      angle: 120 },
+  { key: "in_post",   label: "In Post",   angle: 195 },
+  { key: "scheduled", label: "Scheduled", angle: 270 },
+  { key: "aired",     label: "Aired",     angle: 330 }
+];
+function stageAngle(key) {
+  for (var i = 0; i < STAGES.length; i++) if (STAGES[i].key === key) return STAGES[i].angle;
+  return 0;
+}
+function stageLabel(key) {
+  for (var i = 0; i < STAGES.length; i++) if (STAGES[i].key === key) return STAGES[i].label;
+  return key;
+}
+
+// degrees clockwise-from-top -> SVG x/y on a circle of radius r
+function polar(angleDeg, r) {
+  var rad = (angleDeg - 90) * Math.PI / 180; // -90 so 0deg points up
+  return { x: CX + r * Math.cos(rad), y: CY + r * Math.sin(rad) };
+}
+
+// ------------------------------------------------------------------
+// MOCK DATA (today = Jun 8 2026)
+// health: 0 = healthy/violet .. 1 = at-risk/coral
+// ------------------------------------------------------------------
+var EPISODES = [
+  {
+    id: 1, title: "UAP Disclosure", stage: "scheduled",
+    health: 0.0, needsYou: false,
+    deadline: new Date("2026-06-08T16:00:00"),
+    deadlineLabel: "YouTube premiere",
+    detailLabel: "Goes live today 4:00 PM",
+    dist: "1 of 8 platforms",
+    action: null
+  },
+  {
+    id: 2, title: "Soft Tissue in Fossils", stage: "in_prep",
+    health: 0.85, needsYou: false,
+    deadline: new Date("2026-06-11T09:00:00"),
+    deadlineLabel: "Shoot day",
+    detailLabel: "Behind pace for shoot",
+    dist: "Graphics 5 of 30",
+    action: null
+  },
+  {
+    id: 3, title: "Geosmin and the Rain", stage: "in_post",
+    health: 0.18, needsYou: true,
+    deadline: new Date("2026-06-13T17:00:00"),
+    deadlineLabel: "Lock for delivery",
+    detailLabel: "Waiting on your approval",
+    dist: "Graphics 22 of 30",
+    action: "Approve the lower thirds"
+  },
+  {
+    id: 4, title: "Ice Age Models", stage: "in_prep",
+    health: 0.34, needsYou: false,
+    deadline: new Date("2026-06-20T09:00:00"),
+    deadlineLabel: "B-roll due",
+    detailLabel: "Waiting on Jeremiah for b-roll",
+    dist: "Graphics 0 of 30",
+    action: null
+  },
+  {
+    id: 5, title: "Guest TBC", stage: "planned",
+    health: 0.12, needsYou: false, dim: true,
+    deadline: null,
+    deadlineLabel: "Guest unconfirmed",
+    detailLabel: "Guest not yet confirmed",
+    dist: "Not scheduled",
+    action: null
+  }
+];
+
+// Empty slots = "room for an episode" (a calendar that holds 5 + room to grow)
+var EMPTY_SLOTS = 1; // one faint unlit orbit beyond the 5
+
+// ------------------------------------------------------------------
+// Color from health (violet-white -> amber -> coral)
+// ------------------------------------------------------------------
+function healthColor(h, lightBoost) {
+  lightBoost = lightBoost || 0;
+  if (h < 0.45) {
+    // healthy: violet, brighter as h->0
+    var L = 0.74 + (0.45 - h) * 0.32 + lightBoost; // up toward white
+    var C = 0.12 + h * 0.16;
+    return "oklch(" + L.toFixed(3) + " " + C.toFixed(3) + " 287)";
+  } else if (h < 0.7) {
+    // warming: violet -> amber
+    var t = (h - 0.45) / 0.25;
+    var hue = 287 - t * 202; // 287 -> 85 (amber)
+    return "oklch(" + (0.80 + lightBoost).toFixed(3) + " 0.15 " + hue.toFixed(0) + ")";
+  } else {
+    // at-risk: coral / red
+    var t2 = (h - 0.7) / 0.3;
+    return "oklch(" + (0.70 - t2 * 0.06 + lightBoost).toFixed(3) + " " + (0.16 + t2 * 0.05).toFixed(3) + " " + (40 - t2 * 15).toFixed(0) + ")";
+  }
+}
+
+// ------------------------------------------------------------------
+// Time helpers
+// ------------------------------------------------------------------
+function hoursUntil(date) {
+  if (!date) return Infinity;
+  return (date.getTime() - NOW.getTime()) / 3600000;
+}
+function countdownText(date) {
+  if (!date) return "no date set";
+  var h = hoursUntil(date);
+  if (h <= 0) return "now";
+  if (h < 24) {
+    var hr = Math.round(h);
+    return hr + (hr === 1 ? " hour" : " hours");
+  }
+  var d = Math.floor(h / 24);
+  var rh = Math.round(h - d * 24);
+  if (d < 7) return d + (d === 1 ? " day " : " days ") + rh + "h";
+  var w = Math.floor(d / 7);
+  return w + (w === 1 ? " week" : " weeks");
+}
+
+// ------------------------------------------------------------------
+// Build static ring + labels + empty orbits
+// ------------------------------------------------------------------
+var SVGNS = "http://www.w3.org/2000/svg";
+function el(name, attrs) {
+  var n = document.createElementNS(SVGNS, name);
+  if (attrs) for (var k in attrs) n.setAttribute(k, attrs[k]);
+  return n;
+}
+
+var ringLayer = document.getElementById("ringLayer");
+var stageLabelLayer = document.getElementById("stageLabels");
+var emptyLayer = document.getElementById("emptyLayer");
+var tailLayer = document.getElementById("tailLayer");
+var orbLayer = document.getElementById("orbLayer");
+var coreLayer = document.getElementById("coreLayer");
+
+function buildRing() {
+  // main ring track
+  ringLayer.appendChild(el("circle", {
+    cx: CX, cy: CY, r: R_RING, fill: "none",
+    stroke: "oklch(0.30 0.02 287)", "stroke-width": 1.4, "stroke-opacity": 0.6
+  }));
+  // a soft inner guide
+  ringLayer.appendChild(el("circle", {
+    cx: CX, cy: CY, r: R_RING, fill: "none",
+    stroke: "oklch(0.64 0.19 287 / .12)", "stroke-width": 14
+  }));
+
+  // stage tick marks + labels
+  for (var i = 0; i < STAGES.length; i++) {
+    var a = STAGES[i].angle;
+    var inP = polar(a, R_RING - 12);
+    var outP = polar(a, R_RING + 12);
+    ringLayer.appendChild(el("line", {
+      x1: inP.x, y1: inP.y, x2: outP.x, y2: outP.y,
+      stroke: "oklch(0.48 0.02 287)", "stroke-width": 1.4, "stroke-opacity": 0.7
+    }));
+    var lp = polar(a, R_RING + 42);
+    var t = el("text", {
+      x: lp.x, y: lp.y, "text-anchor": "middle", "dominant-baseline": "middle",
+      "font-family": "Space Grotesk, sans-serif", "font-size": 17,
+      "letter-spacing": 2.5, fill: "oklch(0.48 0.02 287)"
+    });
+    t.textContent = STAGES[i].label.toUpperCase();
+    stageLabelLayer.appendChild(t);
+  }
+}
+
+function buildEmptySlots() {
+  // faint unlit orbits: render as dim dashed seats at the planned stage region
+  for (var i = 0; i < EMPTY_SLOTS; i++) {
+    var c = el("circle", {
+      cx: 0, cy: 0, r: 15, fill: "none",
+      stroke: "oklch(0.48 0.02 287 / .35)", "stroke-width": 1.4,
+      "stroke-dasharray": "3 5"
+    });
+    c.dataset.empty = "1";
+    emptyLayer.appendChild(c);
+  }
+}
+
+// ------------------------------------------------------------------
+// Build now-core
+// ------------------------------------------------------------------
+var coreParts = {};
+function buildCore() {
+  coreParts.glow = el("circle", { cx: CX, cy: CY, r: R_CORE + 46, fill: "url(#coreGlow)" });
+  coreLayer.appendChild(coreParts.glow);
+
+  coreParts.disc = el("circle", {
+    cx: CX, cy: CY, r: R_CORE, fill: "oklch(0.17 0.024 287 / .85)",
+    stroke: "oklch(0.64 0.19 287 / .5)", "stroke-width": 1.4
+  });
+  coreLayer.appendChild(coreParts.disc);
+
+  // sweep / gnomon marking today
+  coreParts.sweep = el("line", {
+    x1: CX, y1: CY, x2: CX, y2: CY - (R_RING + 12),
+    stroke: "oklch(0.64 0.19 287 / .42)", "stroke-width": 2, "stroke-linecap": "round"
+  });
+  tailLayer.appendChild(coreParts.sweep); // behind orbs but above ring
+
+  var month = el("text", {
+    x: CX, y: CY - 14, "text-anchor": "middle", "dominant-baseline": "middle",
+    "font-family": "Space Grotesk, sans-serif", "font-size": 44, "font-weight": 600,
+    "letter-spacing": 6, fill: "oklch(0.95 0.008 287)"
+  });
+  month.textContent = "JUNE";
+  coreLayer.appendChild(month);
+
+  var sub = el("text", {
+    x: CX, y: CY + 26, "text-anchor": "middle", "dominant-baseline": "middle",
+    "font-family": "JetBrains Mono, monospace", "font-size": 17,
+    "letter-spacing": 2, fill: "oklch(0.68 0.018 287)"
+  });
+  sub.textContent = "DAY 8 . 5 EPISODES";
+  coreLayer.appendChild(sub);
+
+  coreParts.cycle = el("text", {
+    x: CX, y: CY + 52, "text-anchor": "middle", "dominant-baseline": "middle",
+    "font-family": "Space Grotesk, sans-serif", "font-size": 11,
+    "letter-spacing": 3.5, fill: "oklch(0.48 0.02 287)"
+  });
+  coreParts.cycle.textContent = "THE MONTHLY CYCLE";
+  coreLayer.appendChild(coreParts.cycle);
+}
+
+// ------------------------------------------------------------------
+// Build orbs (each = a group with glow, body, hover label)
+// ------------------------------------------------------------------
+var orbs = []; // runtime state per episode
+
+function buildOrbs() {
+  for (var i = 0; i < EPISODES.length; i++) {
+    var ep = EPISODES[i];
+    var g = el("g", { class: "orb", tabindex: "0", role: "button" });
+    g.setAttribute("aria-label", ep.title + ", stage " + stageLabel(ep.stage));
+
+    var glow = el("circle", { r: 30, filter: "url(#softBig)", opacity: 0.7 });
+    var body = el("circle", { r: 14 });
+    var rim = el("circle", { r: 14, fill: "none", "stroke-width": 1, "stroke-opacity": 0.5 });
+
+    // hover/tap title label
+    var lbl = el("text", {
+      "text-anchor": "middle", "dominant-baseline": "middle",
+      "font-family": "Space Grotesk, sans-serif", "font-size": 15,
+      "letter-spacing": 0.4, fill: "oklch(0.95 0.008 287)",
+      opacity: ep.dim ? 0.3 : 0.55
+    });
+    lbl.textContent = ep.title;
+
+    g.appendChild(glow);
+    g.appendChild(body);
+    g.appendChild(rim);
+    g.appendChild(lbl);
+    orbLayer.appendChild(g);
+
+    // base orbital angle = its stage angle, plus a small offset so co-located orbs spread
+    var base = stageAngle(ep.stage);
+
+    var st = {
+      ep: ep, g: g, glow: glow, body: body, rim: rim, lbl: lbl,
+      baseAngle: base,
+      angle: base,
+      drift: 0,
+      // healthy slow; at-risk faster. base speed in deg/sec
+      speed: 0,
+      pulse: Math.random() * Math.PI * 2,
+      tail: null
+    };
+    computeSpeed(st);
+    orbs.push(st);
+
+    // events
+    (function (state) {
+      g.addEventListener("click", function () { openCard(state.ep, state); });
+      g.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCard(state.ep, state); }
+      });
+      g.addEventListener("pointerenter", function () { state.hover = true; });
+      g.addEventListener("pointerleave", function () { state.hover = false; });
+    })(st);
+  }
+}
+
+function computeSpeed(st) {
+  var ep = st.ep;
+  var h = hoursUntil(ep.deadline);
+  // serene base
+  var s = 2.2;
+  if (ep.dim) s = 1.2;
+  // urgency: deadline inside ~48h orbits a touch faster
+  if (h < 48) s += (48 - h) / 48 * 4.5;
+  // at-risk health adds restlessness
+  s += ep.health * 3.0;
+  st.speed = s; // deg/sec
+}
+
+// ------------------------------------------------------------------
+// Tail (comet) for needs-me orbs, pointing toward center
+// ------------------------------------------------------------------
+function ensureTail(st) {
+  if (st.tail) return st.tail;
+  var t = el("path", {
+    fill: "url(#orbHealthy)", opacity: 0.55, filter: "url(#soft)"
+  });
+  // we will recolor inline; simpler to set a flat violet
+  t.setAttribute("fill", "oklch(0.7 0.19 287 / .55)");
+  tailLayer.appendChild(t);
+  st.tail = t;
+  return t;
+}
+
+// ------------------------------------------------------------------
+// Status line
+// ------------------------------------------------------------------
+function buildStatusLine() {
+  var inPost = 0, atRisk = 0, needYou = 0;
+  for (var i = 0; i < EPISODES.length; i++) {
+    var ep = EPISODES[i];
+    if (ep.stage === "in_post") inPost++;
+    if (ep.health >= 0.7) atRisk++;
+    if (ep.needsYou) needYou++;
+  }
+  var parts = [];
+  parts.push('<b>' + inPost + '</b> in post');
+  parts.push('<span class="risk"><b>' + atRisk + '</b> at risk</span>');
+  parts.push('<span class="need"><b>' + needYou + '</b> need you</span>');
+  document.getElementById("statusLine").innerHTML = parts.join(' &middot; ');
+}
+
+// ------------------------------------------------------------------
+// Detail card
+// ------------------------------------------------------------------
+var scrim = document.getElementById("scrim");
+var card = document.getElementById("card");
+var cardClose = document.getElementById("cardClose");
+var lastFocus = null;
+
+function rowHTML(k, v, cls) {
+  return '<div class="row"><span class="k">' + k + '</span><span class="v ' + (cls || '') + '">' + v + '</span></div>';
+}
+
+function openCard(ep, st) {
+  lastFocus = st ? st.g : null;
+  document.getElementById("cardTitle").textContent = ep.title;
+  document.getElementById("cardSub").textContent = stageLabel(ep.stage).toUpperCase();
+
+  var col = healthColor(ep.health, 0.04);
+  document.getElementById("cardGlyph").style.background = col;
+  document.getElementById("cardGlyph").style.color = col;
+
+  // health verbal + class
+  var healthWord, healthCls;
+  if (ep.health >= 0.7) { healthWord = "At risk"; healthCls = "dangerv"; }
+  else if (ep.health >= 0.45) { healthWord = "Watch"; healthCls = "warnv"; }
+  else { healthWord = "On track"; healthCls = "okv"; }
+
+  var cd = ep.deadline ? countdownText(ep.deadline) : "not set";
+  var cdCls = "";
+  var h = hoursUntil(ep.deadline);
+  if (h < 48 && h !== Infinity) cdCls = ep.health >= 0.7 ? "dangerv" : "warnv";
+
+  var rows = "";
+  rows += rowHTML("Stage", stageLabel(ep.stage));
+  rows += rowHTML("Health", healthWord, healthCls);
+  rows += rowHTML(ep.deadlineLabel || "Deadline", cd, cdCls);
+  rows += rowHTML("Distribution", ep.dist);
+  document.getElementById("cardRows").innerHTML = rows;
+
+  var actionEl = document.getElementById("cardAction");
+  var ico = document.getElementById("actionIco");
+  var txt = document.getElementById("actionTxt");
+  if (ep.action) {
+    actionEl.classList.remove("idle");
+    ico.innerHTML = "&#9889;"; // bolt
+    txt.innerHTML = "<b>Needs you.</b> " + ep.action + ".";
+  } else if (ep.detailLabel) {
+    actionEl.classList.add("idle");
+    ico.innerHTML = "&#10003;"; // check
+    txt.innerHTML = ep.detailLabel + ".";
+  }
+
+  scrim.classList.add("open");
+  card.classList.add("open");
+  card.setAttribute("aria-hidden", "false");
+  cardClose.focus();
+}
+
+function closeCard() {
+  scrim.classList.remove("open");
+  card.classList.remove("open");
+  card.setAttribute("aria-hidden", "true");
+  if (lastFocus && lastFocus.focus) lastFocus.focus();
+}
+
+scrim.addEventListener("click", closeCard);
+cardClose.addEventListener("click", closeCard);
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && card.classList.contains("open")) closeCard();
+});
+
+// ------------------------------------------------------------------
+// Reduced motion handling
+// ------------------------------------------------------------------
+var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+var reducedMotion = prefersReduced.matches;
+var motionToggle = document.getElementById("motionToggle");
+var motionLabel = document.getElementById("motionLabel");
+
+function applyMotionState() {
+  motionToggle.setAttribute("aria-pressed", reducedMotion ? "true" : "false");
+  motionLabel.textContent = reducedMotion ? "Still" : "Calm";
+}
+motionToggle.addEventListener("click", function () {
+  reducedMotion = !reducedMotion;
+  applyMotionState();
+  if (reducedMotion) {
+    renderStatic();
+  } else {
+    lastTs = 0;
+    requestAnimationFrame(loop);
+  }
+});
+prefersReduced.addEventListener("change", function (e) {
+  reducedMotion = e.matches;
+  applyMotionState();
+  if (reducedMotion) renderStatic(); else { lastTs = 0; requestAnimationFrame(loop); }
+});
+
+// ------------------------------------------------------------------
+// Positioning + per-frame render of one orb
+// ------------------------------------------------------------------
+function placeEmptySlots(t) {
+  var children = emptyLayer.childNodes;
+  for (var i = 0; i < children.length; i++) {
+    var node = children[i];
+    if (node.nodeType !== 1) continue;
+    // sit them in the gap between aired(330) and planned(0/360), the "room to grow" arc
+    var a = 345 + i * 8 + (reducedMotion ? 0 : Math.sin(t / 4000 + i) * 2);
+    var p = polar(a, R_RING);
+    node.setAttribute("cx", p.x);
+    node.setAttribute("cy", p.y);
+  }
+}
+
+function renderOrb(st, t, dt) {
+  var ep = st.ep;
+
+  // advance angle by speed (unless reduced)
+  if (!reducedMotion) {
+    st.angle += st.speed * dt;
+  }
+  // gentle drift wobble around the stage seat so they feel alive but stay legible
+  var seat = st.baseAngle;
+  // keep orb tethered near its stage: oscillate within a small band rather than full orbit
+  var band = ep.health >= 0.7 ? 16 : (ep.dim ? 5 : 9);
+  var osc = reducedMotion ? 0 : Math.sin((st.angle) * Math.PI / 180) * band;
+  var ang = seat + osc;
+
+  var p = polar(ang, R_RING);
+
+  // pulse
+  st.pulse += dt * (ep.health >= 0.7 ? 3.2 : 1.1);
+  var pulseAmt = reducedMotion ? 0 : (Math.sin(st.pulse) * 0.5 + 0.5);
+  var baseR = ep.dim ? 9 : 13;
+  var r = baseR + (ep.health >= 0.7 ? pulseAmt * 3.5 : pulseAmt * 1.2);
+
+  // color
+  var col = healthColor(ep.health);
+  var litExtra = st.hover ? 0.06 : 0;
+  var bodyCol = healthColor(ep.health, litExtra);
+
+  st.body.setAttribute("cx", p.x);
+  st.body.setAttribute("cy", p.y);
+  st.body.setAttribute("r", r);
+  st.body.setAttribute("fill", bodyCol);
+  if (ep.dim) st.body.setAttribute("fill-opacity", "0.55");
+
+  st.rim.setAttribute("cx", p.x);
+  st.rim.setAttribute("cy", p.y);
+  st.rim.setAttribute("r", r + 5);
+  st.rim.setAttribute("stroke", col);
+
+  st.glow.setAttribute("cx", p.x);
+  st.glow.setAttribute("cy", p.y);
+  st.glow.setAttribute("r", r + 16 + (ep.health >= 0.7 ? pulseAmt * 6 : 0));
+  st.glow.setAttribute("fill", col);
+  st.glow.setAttribute("opacity", ep.dim ? 0.25 : (0.45 + pulseAmt * 0.2));
+
+  // label sits just outside the orb, toward the ring exterior
+  var lp = polar(ang, R_RING + 64);
+  st.lbl.setAttribute("x", lp.x);
+  st.lbl.setAttribute("y", lp.y);
+  var targetOpacity = st.hover ? 1 : (ep.dim ? 0.3 : 0.55);
+  st.lbl.setAttribute("opacity", targetOpacity);
+
+  // comet tail toward center when needs-me
+  if (ep.needsYou) {
+    var tail = ensureTail(st);
+    // direction from orb to center
+    var dx = CX - p.x, dy = CY - p.y;
+    var len = Math.sqrt(dx * dx + dy * dy);
+    var ux = dx / len, uy = dy / len;
+    // perpendicular for width
+    var px = -uy, py = ux;
+    var tailLen = 78 + (reducedMotion ? 0 : pulseAmt * 22);
+    var w = r * 0.8;
+    var tipX = p.x + ux * tailLen, tipY = p.y + uy * tailLen;
+    var b1x = p.x + px * w, b1y = p.y + py * w;
+    var b2x = p.x - px * w, b2y = p.y - py * w;
+    tail.setAttribute("d",
+      "M " + b1x.toFixed(1) + " " + b1y.toFixed(1) +
+      " Q " + p.x.toFixed(1) + " " + p.y.toFixed(1) + " " + b2x.toFixed(1) + " " + b2y.toFixed(1) +
+      " L " + tipX.toFixed(1) + " " + tipY.toFixed(1) + " Z");
+    tail.setAttribute("opacity", 0.4 + pulseAmt * 0.25);
+  }
+}
+
+// ------------------------------------------------------------------
+// Core pulse + sweep
+// ------------------------------------------------------------------
+function renderCore(t) {
+  var pulse = reducedMotion ? 0.5 : (Math.sin(t / 1400) * 0.5 + 0.5);
+  coreParts.glow.setAttribute("opacity", (0.6 + pulse * 0.4).toFixed(3));
+  coreParts.glow.setAttribute("r", R_CORE + 40 + pulse * 12);
+
+  // sweep marks "today" within the month: day 8 of 30 -> 8/30 of full turn
+  var dayFrac = 8 / 30;
+  var sweepAngle = dayFrac * 360;
+  // a subtle live tick on top of the day position
+  var liveWobble = reducedMotion ? 0 : Math.sin(t / 3000) * 1.2;
+  var p = polar(sweepAngle + liveWobble, R_RING + 8);
+  coreParts.sweep.setAttribute("x2", p.x);
+  coreParts.sweep.setAttribute("y2", p.y);
+}
+
+// ------------------------------------------------------------------
+// Main loop
+// ------------------------------------------------------------------
+var lastTs = 0;
+function loop(ts) {
+  if (reducedMotion) return; // static path takes over
+  if (!lastTs) lastTs = ts;
+  var dt = Math.min((ts - lastTs) / 1000, 0.05); // clamp dt for stability
+  lastTs = ts;
+
+  renderCore(ts);
+  placeEmptySlots(ts);
+  for (var i = 0; i < orbs.length; i++) renderOrb(orbs[i], ts, dt);
+
+  requestAnimationFrame(loop);
+}
+
+function renderStatic() {
+  // freeze a meaningful snapshot: orbs at their stage seats, no motion
+  renderCore(0);
+  placeEmptySlots(0);
+  for (var i = 0; i < orbs.length; i++) {
+    orbs[i].pulse = Math.PI / 2; // mid pulse for a calm look
+    renderOrb(orbs[i], 0, 0);
+  }
+}
+
+// ------------------------------------------------------------------
+// Boot
+// ------------------------------------------------------------------
+buildRing();
+buildEmptySlots();
+buildCore();
+buildOrbs();
+buildStatusLine();
+applyMotionState();
+
+if (reducedMotion) {
+  renderStatic();
+} else {
+  requestAnimationFrame(loop);
+}
+</script>
+</body>
+</html>

@@ -11,9 +11,14 @@ post-production episode status, to-dos, and card checklist items. Everything els
 is read-only. The specific element list is under review in
 `docs/2026-06-08-basecamp-import-review-sheet.md`.
 
-**Scope of this doc:** lists only *what* Basecamp information feeds *which* role
-dashboard, and which direction it syncs. It deliberately does NOT say where on a
-page it appears or how it is displayed.
+**Scope of this doc:** Sections 1-6 list *what* Basecamp information feeds *which*
+role dashboard and the sync direction, without dictating detailed layout. Section
+7 (added 2026-06-08 at Daniel's request) maps each Basecamp element onto the
+EXISTING dashboard framework so the BC elements are folded into the current design
+rather than bolted on. This mapping is **additive**: it does not remove, replace,
+or override any per-role element already listed here or anything else Daniel has
+asked for in each role's dashboard. Detailed visual layout stays open for every
+role except Isaac's GSR editing board, whose layout Daniel has fixed.
 
 ---
 
@@ -156,3 +161,36 @@ Two-way means the dashboard can write back into a tool the whole team uses live.
 Every dashboard-to-Basecamp write follows confirm-before-write + the David rule
 (if a wrong write would land on David or the team to clean up, redesign so it
 cannot). Reads carry no such risk.
+
+---
+
+## 7. Folding BC elements into the existing dashboard framework (additive, Daniel 2026-06-08)
+
+**Rule:** integrate the Basecamp elements INTO the existing dashboard rather than
+build a parallel app. Attach each element to an existing page where one fits; add
+a NEW page only where nothing existing can host it. Nothing here removes or
+overrides any per-role element in Section 3 or any other dashboard element Daniel
+has requested. This is purely "where in the current framework each BC element
+lives," at a high level.
+
+Existing pages today: `/import`, `/lower-thirds`, `/lower-thirds/ready`,
+`/approved`, `/upload`, `/extract`, `/episodes`, `/guests`, `/workflow`,
+`/toolkit`.
+
+| BC element | Lands in existing page | Or new page | Notes |
+|---|---|---|---|
+| D1 GSR production status | `/episodes` (status reflected on each episode, filtered to the role's columns) | **New: Isaac's GSR editing board** (his view only) | Episode row links to its Basecamp card id (Section 4B). Isaac's board is a new page that does not replace his other elements. |
+| D2 To-dos (Daniel/Isaac/Myriam) | — | **New: a per-role "My Tasks" view/panel** | No existing page hosts personal to-dos; add a light per-role tasks surface, each person sees only their own. |
+| D3 Card checklist steps | within the episode detail (`/episodes`) and Isaac's board cards | — | Check-off writes back two-way. |
+| D4 Card details | within the episode detail (`/episodes`) and Isaac's board cards | — | Read-only. |
+| D5 Scripts + monologue docs | the existing script flow (`/upload`, `/extract`, and the scripts concept) | — | Read-only display of David's monologue docs alongside the script pipeline; this is also where the monologue graphics-cue work plugs in later. |
+| D6 Calendar `PROD \|` events | `/workflow` (already date/scheduling oriented) | — | A dates strip or small calendar panel; read-only. |
+
+**Net effect by role (additive to Section 3):**
+- **Daniel:** BC status + checklist on `/episodes`; his to-dos in the new tasks view; `PROD |` dates on `/workflow`; monologue docs in the script flow. All his existing dashboard elements remain.
+- **Myriam:** Rendering/Done status on `/episodes`; her to-dos in the tasks view; publish/air `PROD |` dates on `/workflow`. Unchanged elsewhere.
+- **Isaac:** his existing elements PLUS a new GSR editing board page (mirrors Basecamp), card details/checklists there, his to-dos in the tasks view, monologue docs in the script flow.
+- **Interns:** Recorded/In Progress status on `/episodes`; monologue graphics docs in the script flow. No personal to-dos for now.
+
+New build surfaces required: (1) Isaac's GSR editing board page, (2) a per-role
+"My Tasks" view. Everything else attaches to pages that already exist.

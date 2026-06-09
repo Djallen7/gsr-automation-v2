@@ -109,6 +109,7 @@ The coverage audit skips these deliberately-disposable files:
 - `*/.gitkeep` — empty directory placeholders.
 - `docs/2026-06-08-basecamp-env-diagnosis.md` — point-in-time Basecamp credential fix verification record; not carry-forward canon.
 - `docs/2026-06-08-basecamp-import-review-sheet.md` — transient decision aid for Daniel to pick Basecamp import elements; superseded once the integration doc is finalized.
+- `docs/2026-06-08-monologue-cue-spec.md` — provisional monologue graphics-cue spec from the data export; superseded once validated against a real David sample.
 <!-- audit:end -->
 
 ---

@@ -76,3 +76,29 @@ Re-entering the credentials fixed the leading-space corruption. All four env var
 are clean, the OAuth refresh works end-to-end with the raw stored values, and the
 API returns the expected ~4 projects on account 5805529. Basecamp auth is good to
 build on.
+
+---
+
+## Same bug found on Rundown Creator (2026-06-08) — NOT yet fixed
+
+While wiring up RDC access, the **same whitespace corruption** turned up on the
+Rundown Creator credential:
+
+- `RUNDOWN_CREATOR_API_KEY` has a **leading space** (one `0x20` byte): raw length
+  vs whitespace-stripped length differ by 1, space is at position 0.
+- `RUNDOWN_CREATOR_API_TOKEN` is clean.
+
+Symptom: building the RDC URL with the raw key fails with the identical error from
+the Basecamp case, `curl: (3) URL rejected: Malformed input to a URL function`.
+Stripping the space makes RDC work (read-only `getRundowns` returned the rundown
+list).
+
+**Impact:** this is not just an analysis blocker. The live dashboard routes
+`/api/rc-explore` and `/api/rc-import` build the URL from
+`process.env.RUNDOWN_CREATOR_API_KEY` the same way, so **Rundown Creator import is
+currently broken in the app** by this stray space.
+
+**Fix needed:** re-enter `RUNDOWN_CREATOR_API_KEY` in the environment with no
+leading space (same fix that worked for the Basecamp vars). Until then, callers
+must trim the key at call time.
+

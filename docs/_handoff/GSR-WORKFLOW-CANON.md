@@ -284,3 +284,38 @@ From the export-archaeology triage (full record in `docs/_handoff/2026-06-08-rev
 **Correction, Rumble Upload API outreach (verified in Gmail 2026-06-08):** Earlier notes (canon section 9d, the distribution research) said "bd@rumble.com BOUNCED," implying the Rumble addresses are dead. That is WRONG. On 2026-05-15 Daniel emailed BOTH `bd@rumble.com` and `support@rumble.com` from `dallen@davidrives.com`, and both bounced with the same Google diagnostic: "The account dallen@davidrives.com is disabled" (SMTP 5.2.1). The failure was sender-side; the messages never reached Rumble, so Rumble never received the request and the `support@rumble.com` / `bd@rumble.com` addresses are NOT proven invalid. Action (2026-06-08): a fresh Upload API request was drafted in Daniel's Gmail to `support@rumble.com`, to be sent from a working account (not the disabled `dallen@davidrives.com`). Backup channel: Rumble Partner Program (ads.rumble.com) web form or live chat. The request also asks Rumble to confirm 58-minute long-form uploads stay 1080p (the historical 720p-downgrade risk).
 
 **Guest corrections, do-not-book & routing (started 2026-06-08):** A protective reference now lives at `docs/_handoff/GUEST-CORRECTIONS.md`: who not to contact (deceased: Bechly; vetoed: Fuz Rana per David, Tim Mulgrew), title/affiliation corrections for chyrons (Labedz = cryoseismologist, Rana = President/CEO RTB, Hugh Ross left Liberty, etc.), org routing gatekeepers (ICR -> Mary Clair Kelly, RTB -> Melanie Martell, Discovery -> Winkler/Crowther, RLN "Alexa" = Alexa Gerbrands, UK -> Nadina, Tom Rogers -> Derek), and the booking frameworks (40/40/15/5 mix, Five-Point Stakes, four hook types, Barentine Test, accessibility tiers), now captured IN FULL in `GUEST-CORRECTIONS.md` section 5 (recovered from the interview-research project on 2026-06-08). Entries flagged "(confirm)" came from chat history and must be verified by Daniel before they drive any automated action. Check this file before any guest outreach or chyron build.
+
+## 14. Flight-worksheet decisions (Daniel, gospel 2026-06-09)
+
+From the offline flight worksheet (answers pasted 2026-06-09). Full open-discussion list in `docs/_handoff/2026-06-09-discussion-queue.md`.
+
+**Graphics:**
+- Monologue: 8-15 graphics, one every 2-5 sentences. #1 is an Intro Graphic, with occasional exceptions when David includes a graphic cue during or right after the "but first" line.
+- Interviews: 5-9 is the average. **Hard constraint: in-studio interviews use ONLY the article screenshot + the intro graphic; you CANNOT trigger graphics mid-interview in the in-studio format.** More graphics are only possible on remote/Zoom interviews.
+- First-two interview order: Intro Graphic + Article Screenshot; which is cued first depends on when David mentions the study/article. If within the first ~30 seconds, the Article Screenshot goes first.
+- AI graphic suggestions (interviews): graphic #1 = a visual suggestion to accompany the interview title, generated together with the lower thirds; #2 = the article screenshot the interview is anchored in; if no article is mentioned in the script, the system confirms with Daniel whether to skip it. Suggestions must be based on a comprehensive analysis of patterns in past Graphics Trackers. Provide a "copy prompt" secondary option when the suggestions miss. **All dashboard prompts must be thorough, comprehensively informed by these conversations, and easy to edit + refresh in the dashboard.**
+- Graphics Tracker / request-template columns: ADD a graphic display-DURATION column (so Rundown Creator pulls it directly); STANDARDIZE the Rundown Creator column names to match the Graphics Tracker (reduce confusion); ADD a LAST LINE column to the tracker, auto-populated once all graphics for the monologue / interview-setup scripts are approved.
+- Multi-agent graphics-philosophy scan: combine the 1,737-graphic archive WITH the graphics-tracking archive (overlap is fine), paying specific attention to monologue and interview graphics.
+- Graphic Type: standardize "Intro Graphic" (no "Title Graphic").
+
+**Lower thirds (expanded definition):**
+- Lower thirds = ALL non-graphic on-screen text, including CTAs and any textual info not assigned a graphic in the tracker, not only discussion/script-based L3s.
+- Featured Resource uses a set rotation of select recycled lower thirds, reused show to show.
+- Lower thirds are currently text slides in ProPresenter, hand-pasted each show; limited layers mean no animate-on/off unless they are video files on a timer. Daniel is open to AE/MOGRT templates if it streamlines or opens options.
+- **Location tags are NOT lower thirds:** they live in the super-source box, in a separate file on the ATEM / mix-effect computer (controlled by the TD, not the ProPres graphics operator). Daniel is open to streamlining this.
+
+**Segment timing (58:00 calculator):** the per-segment target times need adjustment; the current values do NOT account for segues/transitions, and the calculator must include a segue/transition budget. Baseline he gave totals 3000s; about 480s remains for segues/transitions/breaks toward the 3480s (58:00) target.
+
+**ProPresenter:**
+- QA / thumbnail verification: build a review screen so that when anything is pushed to ProPresenter, the system pulls and displays the slide screenshots next to the linked graphic / lower-third info for verification (if it is not too heavy a task).
+- The ProPresenter / Tailscale MCP is **preproduction only, never live production**. The one exception is live lower-thirds generation, if that path is ever built. Future idea: a live photo/b-roll sourcing program using live transcription to pull topic-relevant visuals from permitted sources during interviews.
+
+**Distribution / data:**
+- YouTube category 28 (confirmed again).
+- 507-contact import: first use the email correspondence to classify which contacts were reached out to AS GSR GUESTS vs for other reasons, before importing.
+
+**Confirms:**
+- Run-of-show map (canon 9c) confirmed.
+- Kilauea: Daniel believes "Episode 48" is a count of past volcanic events in the article (not an episode number), to be reframed as a record-breaking figure; he asked to be fact-checked, so VERIFY against the article before using it on air.
+
+**Worksheet decision snapshot:** BUILD = monologue 5-beat arc, graphics-philosophy scan, ProPresenter QA-verification screen, ProPres MCP (preprod-only), 507-contact import (after email classification), Operator Runbook (pending Daniel seeing its value), fix the SessionStart hook, YouTube cat 28, Intro Graphic standardization. LATER = Signiant/RLN form auto-fill, OpusClip short-form. SKIP = "Create Episode L3 Package" bulk action, the 8-phase gfx-cue pipeline. DISCUSS (queue) = the rest.

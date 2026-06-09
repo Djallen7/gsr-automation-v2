@@ -28,7 +28,7 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-08 20:00:44 UTC (4 hours ago)._
+_Last updated 2026-06-08 20:00:44 UTC (10 hours ago)._
 
 ---
 
@@ -128,12 +128,15 @@ _Last updated 2026-06-08 20:00:44 UTC (4 hours ago)._
 ## Lane 8 - Data standards & canon
 **Status:** IN PROGRESS.
 **Summary:** Standing lane: keep applying recorded data standards and canon to new data.
-**Done:** Standards recorded in the canon, full guest names. Chyron uses the topic-relevant affiliation. One-tap confirmations. "webstream" = the weekly multi-platform release umbrella.
+**Done:** Standards recorded in the canon, full guest names. Chyron uses the topic-relevant affiliation. One-tap confirmations. "webstream" = the weekly multi-platform release umbrella. Canon section 13 added: review decisions (L3 band 55-70 / Topic 60-65, standardize Intro Graphic, THD = The Heavens Declare, 270 hours, etc.) + Rumble outreach correction. Guest Corrections / Do-Not-Book / routing reference built (GUEST-CORRECTIONS.md), incl. the recovered booking frameworks (40/40/15/5, Five-Point Stakes, four hook types, Barentine Test, tiers). ADRs 0004-0006 authored (templated master-metadata, Dropbox-no-metadata, AI-metadata-needs-approval); SYSTEM-EVOLUTION reconciled. Voice profile: added the 'Phenomenon Before Term' intro rule. README pinned to Next.js 16.2.6.
 **To finish:**
 - Keep applying the standards to new data.
 - Add a per-episode chyron-affiliation override field on episode_guests (flagged enhancement).
+- Promote the booking frameworks from GUEST-CORRECTIONS.md into canon on the next pass.
 - Periodic guest/data hygiene.
-**Files:** `docs/_handoff/GSR-WORKFLOW-CANON.md`
+**Files:** `docs/_handoff/GSR-WORKFLOW-CANON.md`, `docs/_handoff/GUEST-CORRECTIONS.md`, `docs/decisions/0004-templated-master-metadata.md`
+**Recent activity:**
+- 2026-06-08 - Captured review decisions to canon s13; built GUEST-CORRECTIONS.md (+ frameworks); authored ADRs 0004-0006; intro rule + README version pin.
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 8) and GSR-WORKFLOW-CANON.md. Apply the recorded standards to any new data, and when ready, add the per-episode chyron-affiliation override on episode_guests (migration + types + verify).`
 
 ## Lane 9 - Autonomous research loop
@@ -151,3 +154,6 @@ _Last updated 2026-06-08 20:00:44 UTC (4 hours ago)._
 - Repo consolidation: blueprint retired, everything in gsr-automation-v2 (2026-06-08).
 - Course-freshness CI gate + conflict-purge batch 3 + role scopes: merged to main (PR #43).
 - Session changelog written: docs/_handoff/2026-06-08-session-changelog.md.
+- Export archaeology: 19-agent sweep of the full Claude data export + 90-item decision triage; decisions captured to canon s13, 2026-06-08-review-decisions.md, and export-archaeology-backlog.json (2026-06-08).
+- Easy-builds chain executed: guest corrections, guest topic-brief template, ADRs 0004-0006, intro rule, pre-air email update, README pin. Tracker: 2026-06-08-easy-builds-chain.md (2026-06-08).
+- Outreach: Rumble / StreamHoster / Fireside emails drafted in Daniel's Gmail (his to send from a working account); flight decisions worksheet delivered (gsr-flight-worksheet.html) (2026-06-08).

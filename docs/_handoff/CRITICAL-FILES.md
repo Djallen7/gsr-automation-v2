@@ -85,6 +85,7 @@ reverse-engineering the live system, but you would not want to.
 - `docs/decisions/` — the ADRs; the decision record of record (esp. 0012 Supabase backend).
 - `docs/runbooks/stage-7-episode-test.md` — the live episode-test runbook (the real Stage 7 milestone).
 - `docs/2026-06-08-basecamp-dashboard-integration.md` — the Basecamp two-way-sync data contract: which Basecamp data feeds each of the 4 role dashboards, and sync direction.
+- `docs/2026-06-08-basecamp-build-spec-isaac-board-my-tasks.md` — build spec for the two new Basecamp surfaces (Isaac's GSR editing board + per-role My Tasks): data model, API ops, EARS acceptance, open decisions.
 - `scripts/extract_email_voice.py` — the email-voice extraction script.
 
 <!-- check:end -->

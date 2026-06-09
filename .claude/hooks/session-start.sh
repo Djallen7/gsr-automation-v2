@@ -69,4 +69,52 @@ if command -v gh &>/dev/null; then
   fi
 fi
 
+# ── Handoff pointers (read first) ────────────────────────────────────────────
+echo ""
+echo "=== Read first (single source of truth) ==="
+for f in \
+  "docs/_handoff/HANDOFF.md" \
+  "docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md" \
+  "docs/_handoff/VERIFIED-FACTS.md" \
+  "docs/_handoff/GSR-WORKFLOW-CANON.md" \
+  "docs/_handoff/2026-06-08-basecamp-map.md"; do
+  if [ -f "$REPO_ROOT/$f" ]; then echo "  - $f"; fi
+done
+echo "  Invoke the gsr-architect subagent for GSR work; it boots knowing the system."
+
+# ── Project + git state ──────────────────────────────────────────────────────
+echo ""
+echo "=== Git state ==="
+echo "  branch: $(git -C "$REPO_ROOT" branch --show-current 2>/dev/null || echo '?')"
+echo "  recent commits:"
+git -C "$REPO_ROOT" log --oneline -5 2>/dev/null | sed 's/^/    /' || true
+if git -C "$REPO_ROOT" fetch origin main --quiet 2>/dev/null; then
+  AHEAD=$(git -C "$REPO_ROOT" rev-list --count HEAD..origin/main 2>/dev/null || echo "?")
+  echo "  origin/main is $AHEAD commit(s) ahead of this branch"
+fi
+if command -v gh &>/dev/null; then
+  OPEN_PRS=$(gh pr list --repo Djallen7/gsr-automation-v2 --state open \
+    --json number,title,headRefName \
+    --jq '.[] | "    #\(.number) \(.title) [\(.headRefName)]"' 2>/dev/null || true)
+  if [ -n "$OPEN_PRS" ]; then echo "  open PRs:"; echo "$OPEN_PRS"; fi
+fi
+
+# ── Basecamp access token ────────────────────────────────────────────────────
+# Mint a fresh ~14-day token from the stored refresh token (set BASECAMP_*
+# env vars). Written mode-600 to a file; never printed. See
+# docs/_handoff/2026-06-08-basecamp-map.md.
+echo ""
+BC_HELPER="$REPO_ROOT/scripts/basecamp_token.py"
+BC_TOKEN_FILE="$HOME/.gsr-basecamp-access-token"
+if [ -n "${BASECAMP_REFRESH_TOKEN:-}" ] && [ -f "$BC_HELPER" ]; then
+  if BC_TOKEN=$(python3 "$BC_HELPER" 2>/dev/null); then
+    ( umask 077; printf '%s' "$BC_TOKEN" > "$BC_TOKEN_FILE" )
+    echo "Basecamp: fresh token at $BC_TOKEN_FILE (not printed). API base https://3.basecampapi.com/$(printf '%s' "${BASECAMP_ACCOUNT_ID:-}" | tr -d '[:space:]')"
+  else
+    echo "Basecamp: token refresh failed; diagnose with: python3 scripts/basecamp_token.py --check"
+  fi
+else
+  echo "Basecamp: BASECAMP_REFRESH_TOKEN not set; token not minted."
+fi
+
 echo ""

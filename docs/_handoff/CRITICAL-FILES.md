@@ -85,6 +85,7 @@ reverse-engineering the live system, but you would not want to.
 - `docs/decisions/` — the ADRs; the decision record of record (esp. 0012 Supabase backend).
 - `docs/runbooks/stage-7-episode-test.md` — the live episode-test runbook (the real Stage 7 milestone).
 - `scripts/extract_email_voice.py` — the email-voice extraction script.
+- `scripts/basecamp_token.py` — mints the Basecamp access token from the stored refresh token; the entry point for every Basecamp API read.
 
 <!-- check:end -->
 
@@ -100,6 +101,7 @@ police these; rebuild them on demand.
 - `docs/_handoff/gsr-automation-v2-course.html` — derived presentation of facts already in the handoff docs.
 - `docs/GIT_CHEATSHEET.md` — convenience reference; reproducible from any git docs.
 - The bulk of `apps/dashboard/src/app/**/*.tsx` UI — rebuildable from the canon + specs above.
+- `docs/_handoff/2026-06-08-basecamp-map.md` — point-in-time read-only snapshot of the Basecamp account; re-pull anytime via `scripts/basecamp_token.py` + the API.
 
 The coverage audit skips these deliberately-disposable files:
 

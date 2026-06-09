@@ -250,3 +250,33 @@ This registry is the durable, never-re-ask record of WHERE GSR episodes go and H
 **Guest affiliations are topic-relevant per episode (Daniel, 2026-06-08):** A guest may have more than one valid affiliation. The on-screen chyron uses the affiliation relevant to that episode's specific interview topic, not a fixed default. Example: Dan Janzen is both Executive Director of Fellowship of Christian Farmers International and a UFO/biblical-theology researcher; on the S3 Ep15 UFO episode his chyron shows the UFO-researcher affiliation, not the farming one. Storage note (2026-06-08): the schema has no per-episode chyron-affiliation field (`guests` holds a single affiliation via `job_title`/`organization`; `episode_guests` has no affiliation/role column). DEFERRED enhancement: add an affiliation/chyron override on `episode_guests` so each appearance can carry its own topic-relevant affiliation cleanly. Interim handling for Ep15: both Janzen affiliations are preserved on his `guests` row, his primary `job_title` was set UFO-researcher-first (Ep15 is his only Season 3 appearance and is UFO-themed), the multi-affiliation rule is recorded in his `guests.notes`, and the intended Ep15 chyron is noted in that link's `episode_guests.appearance_notes`.
 
 **Interaction: present confirmations as one-tap choices (Daniel, 2026-06-08):** When Claude has items for Daniel to confirm or address, present them as one-tap choices (tappable options with the recommended option pre-marked), never open-ended homework. Daniel is often on mobile; the goal is to save his time. Recommend, do not poll.
+
+## 13. Findings-review decisions (Daniel, gospel 2026-06-08)
+
+From the export-archaeology triage (full record in `docs/_handoff/2026-06-08-review-decisions.md`; backlog in `export-archaeology-backlog.json`). These supersede any earlier conflicting note.
+
+**Settled facts (now canon):**
+- **Lower-thirds length band is 55 to 70 characters, 60-65 sweet spot.** This RAISES the old 65 hard ceiling to 70. The char-count checker should read: under 55 short (amber), 60-65 ideal (green), over 70 blocked (red). **Topic L3 stays 60-65.** Replaces the prior "55-65, 65 ceiling" wherever it appears, including m2 of the course and the live `graphic-card.tsx` validator.
+- **"Intro Graphic" is the standard term system-wide; "Title Graphic" is eliminated.** Same meaning. Move the Graphics Tracker, the `production_graphics.graphic_type` list, PROMPT_LIBRARY, and the course to "Intro Graphic." This overrides the earlier canon note that said use "Title Graphic."
+- **The guest chyron is 3 topic-relevant variations**, each highlighting whatever credential/affiliation adds the most relevance and credibility for that episode's specific interview topic. Build the 3 from past examples. Not a single fixed `NAME | ORG | FIELD` order. Extends the 2026-06-08 topic-relevant-affiliation rule.
+- **"THD" = The Heavens Declare** (the on-air pre-produced roll-in segment). Do not read it as "That's a Fact."
+- **GSN content figure = 270 hours long-form + hundreds of short-form interstitial fillers.** Purge every "nearly 1,000 hours" / "1,000 hours" remnant in docs and pitch materials.
+- **"GSR has no graphics" is a legacy monologue-copy rule only** (monologue spoken copy must stand on the ear, not depend on a graphic). It is NOT a claim the show lacks graphics; the full lower-thirds + graphics systems exist.
+- **Lower thirds get their own table, separate from the graphics tracker** (`production_graphics`). The two systems must not be conflated in the schema. Plan a clean migration (the current `graphics` table actually holds lower thirds; design the separation before touching data).
+- **Monologue = 15 approved lower thirds total.**
+- **Ming Wang interview, June 15: 9:30 AM arrival, 10:00 AM film time.**
+- Confirmed as-live: **YouTube category 28** (one category only per video), **Season 3 = 48 episodes**, **Next.js 16.2.6** (fix the ADR-0012 text that still says 15), the lower-thirds data table is named `graphics` today.
+- **Author the missing ADRs 0004 through 0008** (master-metadata, Dropbox-no-metadata, AI-metadata-needs-approval, and the rest); their content is real even though the files were never written.
+
+**Build-scope refinements (Daniel):**
+- **Voice DNA** work is scoped to **GSR interview segments only**, specifically improving the interview setup; pulls from the same voice sources.
+- **Title + timecode pipeline outputs to the Supabase DB, not a Google Drive sheet.**
+- **Diarization must label the 2 correspondent segments** (Viewer Voices, Featured Resource) in addition to David and guests.
+- **Guest profiles become the source of tone adaptation** for outreach.
+- **The dashboard must include** (not necessarily on the homepage): email via the **Mac Mail app** (not Gmail), a **production-urgency tracker**, and a **rolling Apple Notes to-do**.
+- A monologue 5-beat L3 arc is acceptable **only if it leaves room for flexibility and exceptions.**
+
+**Needs a working session before building (Daniel asked to schedule):**
+- A dedicated **graphics-decisions session**: the AI graphic-suggestion rules (combine the 1,737-graphic archive with the graphics-tracking archive for past monologue + interview graphics), the AI graphics request template, the MOGRT set, and the multi-agent philosophy scan.
+- A **segment-timing breakdown** session for the 58:00 runtime calculator (interview 780s + 30s outro, balance to 58:00).
+- Confirm the **run-of-show interview-tease row map** (C-14, undecided).

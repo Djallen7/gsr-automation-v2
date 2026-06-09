@@ -2013,3 +2013,35 @@ GSR November 5th 2025 Filming Schedule.docx
 # Refresh token
 
 A refresh token was issued during this OAuth exchange. It is intentionally NOT written into this repo. Store it as the environment variable BASECAMP_REFRESH_TOKEN (handoff step in chat).
+
+---
+
+# How this fits the larger Basecamp integration (plumbing vs design)
+
+Two work streams touch Basecamp. This note keeps them straight so they do not drift. It deliberately does NOT restate the design decisions; those live in the design docs below and remain the authority, even as they evolve.
+
+## What is already on main (the plumbing, this work)
+The auth and read layer, merged and live:
+- `scripts/basecamp_token.py` — mints a fresh access token from the stored refresh token. The single entry point for any Basecamp API call.
+- `docs/_handoff/2026-06-08-basecamp-map.md` — this file: the read-only snapshot of the account (projects, the PROD events, the card tables, to-dos, scripts).
+- `.claude/hooks/session-start.sh` — on web sessions, mints the token to a mode-600 file and surfaces orientation.
+
+This layer is read-only and makes no decisions about what the dashboard shows or writes back.
+
+## What the design stream defines (the other Basecamp session)
+The data contract and two-way sync design. When that session merges, its docs are the source of truth for everything below:
+- `docs/2026-06-08-basecamp-dashboard-integration.md` — which Basecamp data feeds which role dashboard, and sync direction.
+- `docs/2026-06-08-basecamp-import-review-sheet.md` — the element-by-element keep/drop + edit-mode decisions.
+- `docs/_handoff/GSR-WORKFLOW-CANON.md` (Basecamp section) — the durable canon record.
+- `docs/AUTOMATION_ROADMAP.md` — where the integration is sequenced.
+
+If anything in this note disagrees with those docs, those docs win.
+
+## How they connect
+- The design stream's reads and write-backs all go through the token from `scripts/basecamp_token.py`. There is one auth path, not two.
+- This map is a point-in-time snapshot; the live integration should read fresh from the API, not from this file.
+- Two-way write-back (when built) is a live-team action: confirm-before-write plus the David rule. Reads carry no such risk.
+
+## Merge mechanics (so the two streams combine cleanly)
+- The plumbing (helper, map, this file, the hook) and the design docs are different files, so there is no code-level conflict between the two streams.
+- The only overlap is shared manifests: `docs/_handoff/CRITICAL-FILES.md` and the canon. When the design stream merges, keep BOTH sets of added bullets; do not drop either. As of this writing the design branch auto-merges cleanly against main.

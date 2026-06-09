@@ -65,7 +65,9 @@ Basecamp "Genesis Science Report" card table as closely as possible: same column
 and the same card feel, so it is instantly familiar and adds no learning curve.
 Moving a card advances the post-production status two-way (writes back to
 Basecamp). This is the one place where layout is fixed, at Daniel's direction;
-everything else stays open.
+everything else stays open. Daniel confirmed (2026-06-08) that a CLOSE mirror of
+the Basecamp board (same columns + card feel, rendered API-native in our own UI)
+is good enough; it does not need to be pixel-identical to Basecamp's app.
 
 ---
 

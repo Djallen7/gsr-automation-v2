@@ -245,10 +245,21 @@ Deno.serve(async (req: Request) => {
 
     // Build the graphics rows (shared by both the apply-now and hold-for-confirm paths)
     const rejected = Array.isArray(extracted.rejected) ? extracted.rejected : []
+    const extractedGraphics = extracted.graphics as Array<Record<string, unknown>>
+
+    // Normalize var_1/var_2 once so both the apply and hold paths agree on which
+    // alternate phrasings are non-empty.
+    const normVar = (v: unknown): string | null => {
+      const s = typeof v === 'string' ? v.trim() : ''
+      return s.length > 0 ? s : null
+    }
+
     // NOTE: current_image_url, var_1, and var_2 were dropped from this table by
     // 20260609120000_rename_graphics_to_production_lower_thirds.sql. Only columns
-    // that survive that migration are written here.
-    const newGraphics = (extracted.graphics as Array<Record<string, unknown>>).map((g) => ({
+    // that survive that migration are written to production_lower_thirds here.
+    // var_1/var_2 are preserved separately in lower_thirds_variations (apply path)
+    // or carried in the held blob for the confirm path to persist.
+    const newGraphics = extractedGraphics.map((g) => ({
       episode_id,
       segment,
       beat_number: Number(g.beat_number) || null,
@@ -256,6 +267,14 @@ Deno.serve(async (req: Request) => {
       status: 'pending_review',
       l3_type: String(g.l3_type ?? 'generic_safety_net'),
       source_doc: `${episodeLabel} ${segment} — auto-extract`,
+    }))
+
+    // Held blob mirrors newGraphics but keeps var_1/var_2 so the confirm-extraction
+    // route can re-persist them into lower_thirds_variations on apply.
+    const heldGraphics = newGraphics.map((row, i) => ({
+      ...row,
+      var_1: normVar(extractedGraphics[i]?.var_1),
+      var_2: normVar(extractedGraphics[i]?.var_2),
     }))
 
     // Optional confirm step: only auto-write graphics when the flag is explicitly 'true'.
@@ -274,7 +293,7 @@ Deno.serve(async (req: Request) => {
         const { error: holdErr } = await supabase
           .from('scripts')
           .update({
-            pending_extraction: { graphics: newGraphics, rejected, count: newGraphics.length },
+            pending_extraction: { graphics: heldGraphics, rejected, count: heldGraphics.length },
             extraction_status: 'pending_confirmation',
             extracted_at: new Date().toISOString(),
           })
@@ -304,7 +323,10 @@ Deno.serve(async (req: Request) => {
       .eq('segment', segment)
       .eq('status', 'pending_review')
 
-    const { error: insertErr } = await supabase.from('production_lower_thirds').insert(newGraphics)
+    const { data: insertedGraphics, error: insertErr } = await supabase
+      .from('production_lower_thirds')
+      .insert(newGraphics)
+      .select('id, initial_text')
 
     if (insertErr) {
       console.error('Insert error:', insertErr)
@@ -312,6 +334,48 @@ Deno.serve(async (req: Request) => {
         status: 500,
         headers: { 'Content-Type': 'application/json' },
       })
+    }
+
+    // Preserve the generated alternate phrasings: variation_number 1 mirrors the
+    // primary (generated_by='human'); slots 2/3 hold var_1/var_2 when non-empty.
+    // .select() returns rows in insert order, so index i aligns with extractedGraphics[i].
+    const variationRows = (insertedGraphics ?? []).flatMap((row, i) => {
+      const rows = [
+        {
+          graphic_id: row.id,
+          variation_number: 1,
+          text_content: row.initial_text,
+          generated_by: 'human',
+          generation_context: { source: 'extract_on_script_save' },
+        },
+      ]
+      const variants = [
+        { slot: 2, text: normVar(extractedGraphics[i]?.var_1) },
+        { slot: 3, text: normVar(extractedGraphics[i]?.var_2) },
+      ]
+      for (const { slot, text } of variants) {
+        if (text) {
+          rows.push({
+            graphic_id: row.id,
+            variation_number: slot,
+            text_content: text,
+            generated_by: 'ai_extraction',
+            generation_context: { source: 'extract_on_script_save' },
+          })
+        }
+      }
+      return rows
+    })
+
+    if (variationRows.length > 0) {
+      const { error: varErr } = await supabase.from('lower_thirds_variations').insert(variationRows)
+      if (varErr) {
+        console.error('Variation insert error:', varErr)
+        return new Response(JSON.stringify({ error: varErr.message }), {
+          status: 500,
+          headers: { 'Content-Type': 'application/json' },
+        })
+      }
     }
 
     if (script_id != null) {

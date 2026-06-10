@@ -245,16 +245,16 @@ Deno.serve(async (req: Request) => {
 
     // Build the graphics rows (shared by both the apply-now and hold-for-confirm paths)
     const rejected = Array.isArray(extracted.rejected) ? extracted.rejected : []
+    // NOTE: current_image_url, var_1, and var_2 were dropped from this table by
+    // 20260609120000_rename_graphics_to_production_lower_thirds.sql. Only columns
+    // that survive that migration are written here.
     const newGraphics = (extracted.graphics as Array<Record<string, unknown>>).map((g) => ({
       episode_id,
       segment,
       beat_number: Number(g.beat_number) || null,
       initial_text: String(g.primary ?? ''),
       status: 'pending_review',
-      current_image_url: '__text_only__',
       l3_type: String(g.l3_type ?? 'generic_safety_net'),
-      var_1: g.var_1 ? String(g.var_1) : null,
-      var_2: g.var_2 ? String(g.var_2) : null,
       source_doc: `${episodeLabel} ${segment} — auto-extract`,
     }))
 
@@ -298,13 +298,13 @@ Deno.serve(async (req: Request) => {
 
     // APPLY: clear existing pending_review graphics for this episode+segment (approved are preserved)
     await supabase
-      .from('graphics')
+      .from('production_lower_thirds')
       .delete()
       .eq('episode_id', episode_id)
       .eq('segment', segment)
       .eq('status', 'pending_review')
 
-    const { error: insertErr } = await supabase.from('graphics').insert(newGraphics)
+    const { error: insertErr } = await supabase.from('production_lower_thirds').insert(newGraphics)
 
     if (insertErr) {
       console.error('Insert error:', insertErr)

@@ -27,6 +27,15 @@ END $$;
 -- 3. Drop obsolete columns from production_lower_thirds
 --    (lower thirds are text-only, confirmed 2026-06-09)
 -- ============================================================
+
+-- Pre-drop safety snapshot: the DROP COLUMN below is irreversible and would
+-- discard the image/variant data permanently. Capture the primary key (id)
+-- plus every column we are about to drop into an archive table first, so the
+-- drop is recoverable (restore by joining this table back on id).
+CREATE TABLE IF NOT EXISTS public._archive_lower_thirds_dropped_cols_20260609 AS
+  SELECT id, current_image_url, asset_source_urls, var_1, var_2
+  FROM public.production_lower_thirds;
+
 ALTER TABLE public.production_lower_thirds
   DROP COLUMN IF EXISTS current_image_url,
   DROP COLUMN IF EXISTS asset_source_urls,
@@ -142,33 +151,9 @@ ALTER TABLE public.production_graphics
   ADD COLUMN IF NOT EXISTS last_line text;
 
 -- ============================================================
--- 8. production_graphics: fix graphic_type CHECK
---    Add Intro Graphic + Book Cover; retire Title Graphic
+-- 8. production_graphics: graphic_type CHECK + Title->Intro rename
 -- ============================================================
-ALTER TABLE public.production_graphics
-  DROP CONSTRAINT IF EXISTS production_graphics_graphic_type_check;
-
-ALTER TABLE public.production_graphics
-  ADD CONSTRAINT production_graphics_graphic_type_check
-  CHECK (graphic_type = ANY (ARRAY[
-    'Intro Graphic',
-    'Book Cover',
-    'B-roll',
-    'Pre-made: B-roll',
-    'Pre-made: Graphic',
-    'Clip w/audio',
-    'Article Screenshot',
-    'Picture',
-    'Propres Quote',
-    'Propres Graphic',
-    'Roll-in',
-    'Graphic'
-  ]));
-
--- Migrate any legacy Title Graphic rows
-UPDATE public.production_graphics
-  SET graphic_type = 'Intro Graphic'
-  WHERE graphic_type = 'Title Graphic';
+-- DEFERRED 2026-06-09: Title Graphic -> Intro Graphic standardization moved to its own follow-up migration (was aborting this migration because the CHECK constraint was added before the data cleanup). Do not re-add here.
 
 -- ============================================================
 -- 9. production_graphics: fix status CHECK to canonical order

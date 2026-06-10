@@ -36,6 +36,13 @@ CREATE TABLE IF NOT EXISTS public._archive_lower_thirds_dropped_cols_20260609 AS
   SELECT id, current_image_url, asset_source_urls, var_1, var_2
   FROM public.production_lower_thirds;
 
+-- Lock down the archive: it lives in `public`, so PostgREST would otherwise
+-- expose it once it holds data. Enable RLS with no policies (deny-all via the
+-- API) and revoke the PostgREST roles. service_role and migrations bypass RLS,
+-- so recovery access is unaffected.
+ALTER TABLE public._archive_lower_thirds_dropped_cols_20260609 ENABLE ROW LEVEL SECURITY;
+REVOKE ALL ON public._archive_lower_thirds_dropped_cols_20260609 FROM anon, authenticated;
+
 ALTER TABLE public.production_lower_thirds
   DROP COLUMN IF EXISTS current_image_url,
   DROP COLUMN IF EXISTS asset_source_urls,

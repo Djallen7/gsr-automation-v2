@@ -89,6 +89,24 @@ Before designing or building any automation: **name the deliverable and the ship
 
 ---
 
+## Data-source access — APIs first, NOT the Drive MCP (Daniel, 2026-06-10)
+
+Reach every external data source through its **API**, using a committed helper script + an
+env-injected credential. **Do NOT use the Google Drive MCP for the graphics trackers** — it
+is read-only and has no cell-write; defaulting to it is what caused the "I can't write"
+dead-ends. A source only survives fresh web sessions if BOTH its helper is committed AND its
+secret is in the environment config (that is why Basecamp/RDC persist and Sheets did not).
+
+| Source | How | State |
+|--------|-----|-------|
+| Basecamp | `scripts/basecamp_token.py` + `BASECAMP_*` env (incl. Pings via `/search.json`) | ✅ wired |
+| Rundown Creator | `RUNDOWN_CREATOR_API_KEY`/`_TOKEN` env → `https://www.rundowncreator.com/davidrives/API.php` | ✅ wired |
+| **Google Sheets graphics trackers** | **Sheets API v4** (a committed `scripts/` helper + a Google credential in env) | ⚠️ **NOT WIRED HERE** — no Google credential is injected and no helper is committed, so it dies every session. **TO FIX (do once):** commit a Sheets helper mirroring `basecamp_token.py` and add a Google credential (service-account JSON, or OAuth client+refresh token) to the web-environment env config. Until then a session cannot read/write the tracker except via the read-only Drive MCP. |
+
+Tracker IDs (Drive folder `18RZ8UNF2nN67G6as-Uj5o5O3BbNFChoR`): May `1GmdVDOP4h0k6FmOdZLMJNroz7_x4xDcErBYmdGU0890`, June `13_PQdT3RKCodjA_FzRxwpQR6yA1Kn8E5sKxN9VWPAJs`.
+
+---
+
 ## Next.js 16 caveat
 
 This is **not** the Next.js your training data knows. Read `apps/dashboard/AGENTS.md` and `apps/dashboard/node_modules/next/dist/docs/` before writing route handlers, server actions, or App Router code. App Router only; `@supabase/ssr` (not the deprecated `@supabase/auth-helpers-nextjs`).

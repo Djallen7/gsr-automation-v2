@@ -27,6 +27,11 @@ teleprompter. You do Pass 1 only.
 ## Source rules (do not violate)
 - Raw monologues live in the Basecamp vault `GSR Monologues` (id 9668065709). Pull a
   doc via `scripts/basecamp_token.py` + `/buckets/37738136/documents/{id}.json`.
+- Some monologues exist ONLY in Pings (1:1 DMs), not the vault. Reach them via the
+  Search API: `GET /search.json?q=<signature>&exclude_chat=0` (search `I'm David Rives`
+  / `Genesis Science Report`, not "monologue"); ping hits give a
+  `/buckets/{b}/chats/{c}/lines/{l}.json` url — page the thread like a campfire. The
+  Daniel↔David thread is bucket 37938438 / chat 7507269814. (Full method in the spec §0.)
 - **Extract from the raw Basecamp HTML, never from Rundown Creator** (RDC is the
   cleaned read and has the cues stripped). Always parse the `<a href>` anchors first —
   links hide mid-sentence and are invisible in plain text.

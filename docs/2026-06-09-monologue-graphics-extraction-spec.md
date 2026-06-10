@@ -19,12 +19,27 @@ and any future dashboard extractor should read from here.
   **THD-segment scripts** (folder `THD Scripts` 9668067133), a different segment — NOT
   monologues. Message boards, comments, uploads, and all four Campfire chats (~1,850
   lines) hold no monologues either.
-- **Out-of-band source — Pings (direct messages):** David also sends monologues to
-  Daniel via Basecamp **Pings (1:1 DMs)** (confirmed by Daniel 2026-06-09). The bc3 API
-  does NOT expose Pings (all ping endpoints 404), so the extractor cannot pull these
-  automatically. **Workflow fix:** monologues David DMs should be filed into the
-  `GSR Monologues` vault so the pipeline has one canonical, reachable source. Until
-  then, those monologues must be pasted/exported manually.
+- **Pings (direct messages) — REACHABLE via the Search API (corrected 2026-06-09).**
+  David sends some monologues only by Ping (1:1 DM), never filed to the vault. There is
+  no `/pings` endpoint (those 404), but Basecamp's **Search API indexes Pings** and is
+  the workaround:
+  1. `GET /search.json?q=<term>&exclude_chat=0&per_page=50&page=N`. Searchable types
+     include Pings. Ping hits return as `type: Chat::Lines::RichText` with
+     `url = /buckets/{bucket}/chats/{chat}/lines/{line}.json` and `bucket.name` = the
+     DM participant roster.
+  2. The ping "bucket" IS the DM thread; page all of it via
+     `GET /buckets/{bucket}/chats/{chat}/lines.json` (follow `Link rel=next`), exactly
+     like a campfire.
+  3. Search by **signature phrases**, not the word "monologue": `I'm David Rives`,
+     `Genesis Science Report`, `heavens declare` — David titles a monologue by topic, so
+     a keyword search on "monologue" misses most of them.
+  - **Known monologue-bearing ping:** Daniel ↔ David = **bucket 37938438, chat
+    7507269814**. Holds monologues absent from the vault — e.g. a 2026-01-29 line
+    (~21 KB) batching 4 monologues incl. "The Altar at Shiloh" (inline `Insert …` +
+    pasted image/URL cues), and 2026-02-08 "The Bacteria That Plays Dead!".
+  - **Workflow fix still stands:** David should file monologues into the `GSR Monologues`
+    vault so there's one canonical source; the Search-API path is the catch-all for the
+    ones he only DMs.
 - Season 1–2 and early S3 (Ep001–020) raw monologues are not in Basecamp at all; only
   their finished graphics survive (in the trackers / Drive corpus).
 - **Rundown Creator = the cleaned teleprompter "first edit."** It strips almost every

@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSR Graphics — June cycle (full-coverage rebuild)</title>
+<style>
+:root{--bg:#f4f6fa;--panel:#fff;--ink:#16202e;--dim:#5b6b7e;--line:#e2e8f0;--accent:#2563eb;--accentsoft:#eaf1ff;
+ --ns:#8a98a8;--ns-bg:#eef1f5;--ip:#b7791f;--ip-bg:#fdf3e2;--cr:#1d6fd6;--cr-bg:#e6f0fe;--li:#1d8a52;--li-bg:#e6f6ec;}
+*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font:13.5px/1.5 -apple-system,Segoe UI,Roboto,Inter,sans-serif}
+.app{height:100dvh;display:flex;flex-direction:column}
+header.top{background:#0e1726;color:#eaf1ff;padding:9px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;flex:0 0 auto}
+header .ttl{font-weight:600;font-size:14px}.ttl b{color:#7fb0ff}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.tab{background:#1b2942;color:#cfe0f7;border:1px solid #2b3f63;border-radius:7px;padding:5px 12px;font-size:12.5px;cursor:pointer}
+.tab.on{background:#2563eb;border-color:#2563eb;color:#fff}.tab.master{background:#13203a}
+.view{flex:1;min-height:0}
+.master{height:100%;overflow:auto;padding:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;align-content:start}
+.showcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;box-shadow:0 1px 3px rgba(16,32,55,.06)}
+.showcard:hover{border-color:#b9d2ff}.showcard h3{margin:0 0 2px;font-size:14px}.showcard .ep{color:var(--dim);font-size:12px}
+.cnt{font-size:11.5px;color:var(--dim);margin-top:8px}.cnt b{color:var(--ink)}
+.segmini{margin-top:9px;border-top:1px dashed var(--line);padding-top:8px;display:flex;flex-direction:column;gap:3px}
+.segmini div{display:flex;justify-content:space-between;font-size:11.5px;color:var(--dim)}
+.show{height:100%;display:grid;grid-template-columns:200px minmax(280px,1fr) minmax(340px,1.15fr);min-height:0}
+.col{min-height:0;overflow:auto;border-right:1px solid var(--line);background:var(--panel)}.col:last-child{border-right:0}
+.colhead{position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--line);padding:8px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);z-index:2}
+.seg{padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer}.seg:hover{background:#f7f9fc}
+.seg.on{background:var(--accentsoft);border-left:3px solid var(--accent);padding-left:9px}
+.seg .n{font-size:12.5px;font-weight:600}.seg .m{font-size:11px;color:var(--dim);margin-top:2px}
+.script{padding:14px 16px;font-size:14px;line-height:2.0}.script p{margin:0 0 12px}
+mark.cue{border-radius:3px;padding:1px 1px;cursor:pointer;background:var(--ns-bg);box-shadow:inset 0 -2px 0 var(--ns)}
+mark.cue[data-st=cr]{background:var(--cr-bg);box-shadow:inset 0 -2px 0 var(--cr)}
+mark.cue[data-st=p2]{background:#f3eaff;box-shadow:inset 0 -2px 0 #7a3fb0}
+mark.cue .b{display:inline-block;min-width:15px;height:15px;line-height:15px;text-align:center;font:700 9px ui-monospace,monospace;color:#fff;background:var(--ns);border-radius:3px;margin-right:4px;vertical-align:middle}
+mark.cue[data-st=cr] .b{background:var(--cr)}mark.cue[data-st=p2] .b{background:#7a3fb0}
+mark.cue.active{outline:2px solid var(--accent);outline-offset:1px}
+.glist{padding:9px}
+.grow{border:1px solid var(--line);border-radius:9px;padding:9px 10px;margin-bottom:8px;background:#fff;cursor:pointer}
+.grow.p2{background:#fcfcff;border-style:dashed}.grow.active{border-color:var(--accent);box-shadow:0 0 0 2px var(--accentsoft)}
+.gtop{display:flex;gap:7px;align-items:center}
+.gnum{font:700 11px ui-monospace,monospace;color:#fff;background:var(--ns);min-width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center}
+.gtype{font-weight:600;font-size:12.5px}.gwho{margin-left:auto;font-size:11px;color:var(--dim)}
+.pass{font:700 9px ui-monospace,monospace;border-radius:4px;padding:1px 5px;margin-left:6px}
+.pass.p1{background:#e6f0fe;color:#1d6fd6}.pass.p2{background:#f3eaff;color:#7a3fb0}
+.gdesc{font-size:12.5px;margin:5px 0 5px}
+.hold{font-size:10.5px;color:#1d8a52;margin-bottom:4px}
+.gsrc{font-size:11px;margin-top:3px}.gsrc a{color:var(--accent)}
+.kw{font-size:10.5px;color:#7a3fb0;margin-top:3px;font-family:ui-monospace,Menlo,monospace}
+.gnotes{font-size:11px;color:var(--dim);margin-top:4px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--dim);padding:7px 12px;background:var(--panel);border-top:1px solid var(--line);flex:0 0 auto}
+.legend span{display:inline-flex;gap:5px;align-items:center}.dot{width:10px;height:10px;border-radius:3px}
+.back{cursor:pointer;color:#7fb0ff;font-size:12.5px}
+@media (max-width:760px){.show{grid-template-columns:1fr;grid-template-rows:auto minmax(0,42%) minmax(0,1fr)}
+ .col{border-right:0;border-bottom:1px solid var(--line)}.railcol{display:flex;overflow-x:auto}.railcol .colhead{display:none}
+ .railcol .seg{flex:0 0 auto;min-width:150px;border-bottom:0;border-right:1px solid var(--line)}.master{grid-template-columns:1fr}.tabs{margin-left:0}}
+</style>
+</head>
+<body>
+<div class="app">
+ <header class="top">
+  <span class="ttl">GSR <b>Graphics</b> &middot; June cycle &middot; full-coverage rebuild</span>
+  <span id="crumb" class="back" style="display:none"></span>
+  <div class="tabs" id="tabs"></div>
+ </header>
+ <div class="view" id="view"></div>
+ <div class="legend">
+  <span><span class="dot" style="background:#e6f0fe;border:1px solid #1d6fd6"></span>P1 = David's cue</span>
+  <span><span class="dot" style="background:#f3eaff;border:1px solid #7a3fb0"></span>P2 = suggestion (draft)</span>
+  <span style="margin-left:auto">Each highlight = one graphic's span; its last sentence is the RDC "Last Line." Near-total coverage is the point.</span>
+ </div>
+</div>
+<script>
+const order=['ns','ip','cr','li'];
+// g(num,type,desc,pass,who,cue,hold,notes,src,kw)
+function g(n,type,desc,pass,who,cue,hold,notes,src,kw){return{n,type,desc,pass,who,cue:cue||null,hold:hold||'',notes:notes||'',src:src||[],kw:kw||''};}
+function P(h){return h}
+function M(g,txt){return '<mark class="cue" data-g="'+g+'"><span class="b">'+g+'</span>'+txt+'</mark>'}
+
+const DATA={month:'June',shows:[
+
+{id:1,ep:'S03 Ep026',title:'The Maker\'s Hands and 3D Printers',segments:[{name:'Opening Monologue',
+ script:[
+  P(M(1,'Genesis 1:27.')+' '+M(2,'"So God CREATED man in His own image, in the image of God He created him." The very first thing we learn about ourselves is that we are MADE by a Maker. CREATED by a Creator.')),
+  P(M(3,'And hidden inside that one simple truth is something extraordinary: when we build, when we invent, when we shape raw stuff into something that did not exist before, we are ECHOING the very heartbeat of the One who spoke galaxies into being. I want to tell you a story tonight, about a machine that in just forty years has gone from a science fiction dream to changing the way we care for the sick, build our homes, and reach for the stars. I\'m talking about 3D PRINTING.')),
+  P(M(4,'It started in 1983. A man named Chuck Hull figured out something simple but stunning: if you shine an ultraviolet light on a special liquid resin, that liquid HARDENS. Layer by layer, drop by drop, he could grow a solid object right out of a pool of goo. He called it stereolithography.')),
+  P(M(5,'At the same time, a graduate student named Carl Deckard was walking a different road. He was using a LASER to fuse together beds of fine powder.')+' '+M(6,'It may sound strange, but POWDER holds itself up. You can print shapes inside of shapes, gears already assembled, structures that are impossible to make any other way. Two men, two different paths, both REFLECTING the creativity born in heaven.')),
+  P(M(7,'Fast forward some years. Around 2013, the world went WILD for 3D printing. The magazines screamed that every home would have a printer. Factories would die. The future had arrived. And then it didn\'t. The printers were slow and finicky, churning out cheap plastic trinkets nobody really needed. The hype CRASHED and entire companies folded.')),
+  P(M(8,'But after that crash, the engineers got serious. They stopped chasing the toy market and turned to the work that MATTERED: aerospace, medicine, and manufacturing. Then in 2015, a company called Carbon broke the biggest wall of all, SPEED. Their technology grows objects continuously out of a pool of resin, up to a hundred times faster than the old way, and the parts came out STRONG in every direction. Adidas now prints the soles of running shoes this way, at scale.')),
+  P(M(9,'And while everyone was staring at the small stuff, engineers took the same idea, scaled it up to the size of a HOUSE, and started printing with CONCRETE. Entire neighborhoods in Texas, one hundred homes, rising from a robotic nozzle. Watch this:')+' '+M(10,'[Icon &amp; Lennar clip plays]')),
+  P(M(11,'What an amazing technology. It is the same technology NASA is testing to build shelters on the MOON and on MARS. God gave us dirt and dust, and we are learning to build cities from it.')),
+  P(M(12,'Now I want to be honest with you; the headlines oversell this. When you print a metal part, you can\'t just walk away with it. You have to cut it off the build plate, bake out the stress, machine the surfaces smooth. The Star Trek replicator?')+' '+M(13,'[Star Trek montage plays]')),
+  P(M(14,'We are not there yet. 3D printing handles the impossible shapes, and traditional tools handle the finishing touches. Human INGENUITY at work! So where does this go next? Medicine: custom titanium implants made for one specific patient\'s spine, or living tissue being printed in laboratories, moving toward clinical trials right now. That isn\'t science fiction; that is happening.')),
+  P(M(15,'Then, what about deep space travel? Such as habitats grown from Martian soil. And finally, it will change aspects of our everyday lives, such as the replacement of a part for the appliance nobody makes anymore, or a custom brace for the runner with one leg shorter than the other.')),
+  P(M(16,'Here is the wonder of it all. Every breakthrough I just described came from a HUMAN MIND, a mind made in the IMAGE of the One who carved canyons and hung stars. When Chuck Hull stared at a pool of resin and saw a future, when Carl Deckard looked at powder and saw possibility, they were doing what we were CREATED to do: to create, and to build, to REFLECT their Maker. 3D printing isn\'t just a machine; it is the result of the intelligent Mind that made intelligent minds.'))],
+ graphics:[
+  g(1,'Intro Graphic','Intro: "The Maker\'s Hands and 3D Printers"','p1','Isaac',1,'title card'),
+  g(2,'Propres Quote','Genesis 1:27 propres','p1','Isaac',2,'holds over the verse + "Maker/Creator"'),
+  g(3,'Pre-made: B-roll','PM Galaxy / cosmos loop (reusable)','p2','Isaac',3,'broad — holds the "spoke galaxies / reach for the stars" intro',[],'galaxy, nebula, cosmos, stars timelapse'),
+  g(4,'Picture','Chuck Hull portrait (developed for 4 sentences → dedicate)','p1','Isaac',4,'David: (Use picture)',[['3dprintingdublin','https://www.3dprintingdublin.com/chuck-hall/']]),
+  g(5,'Picture','Carl Deckard portrait','p1','Isaac',5,'David: (Use image) — named, brief hold',[['3dprintingjournal','https://www.3dprintingjournal.com/p/12-23-2019-carl-deckardpioneer-of']]),
+  g(6,'B-roll','SLS laser powder-bed printing (reusable 3D-print process loop)','p2','Jeremiah',6,'holds the powder/SLS explanation',[['Wikimedia: SLS','https://commons.wikimedia.org/wiki/Category:Selective_laser_sintering']],'selective laser sintering, powder bed 3D printer, laser fusing powder'),
+  g(7,'B-roll','Consumer/desktop 3D-printer montage (reusable)','p2','Jeremiah',7,'holds the 2013 hype-and-crash stretch',[],'desktop 3D printer printing, makerspace, FDM hobby printer'),
+  g(8,'B-roll','Industrial / resin 3D printing close-up (reusable)','p2','Jeremiah',8,'holds recovery + Carbon + Adidas',[],'industrial 3D printer, resin printing close up, factory additive manufacturing'),
+  g(9,'B-roll','ICON concrete house printing (reusable construction loop)','p2','Jeremiah',9,'holds the concrete-homes setup',[],'ICON Vulcan concrete 3D printer, 3D printed house construction'),
+  g(10,'Clip w/audio','FIRST EVER 3D Printed Homes, Icon & Lennar (2:37-3:21)','p1','Isaac',10,'David clip — PAUSE',[['YouTube','https://www.youtube.com/watch?v=G17vlbKyRSU']]),
+  g(11,'Pre-made: B-roll','PM Mars/Moon habitat (NASA, reusable)','p2','Isaac',11,'NASA 3D-printed habitat; reuse for the Mars beat later too',[['NASA habitat','https://www.nasa.gov/humans-in-space/3d-printing-in-space/']],'NASA 3D printed lunar habitat, Mars base concept'),
+  g(12,'B-roll','Metal 3D printing + post-processing / machine shop (reusable)','p2','Jeremiah',12,'holds the "honest about it" stretch',[],'metal 3D printing DMLS, CNC machining part, deburring metal part'),
+  g(13,'Clip w/audio','Star Trek replicator montage (TNG / Voyager)','p1','Isaac',13,'David clips — PAUSE',[['TNG','https://www.youtube.com/watch?v=8kw9_O10Fh8'],['Voyager','https://www.youtube.com/watch?v=qD4EVXkfe0w']]),
+  g(14,'B-roll','Medical 3D printing: titanium implant + bioprinting (reusable)','p2','Jeremiah',14,'holds the medicine stretch; pair a specific implant Picture if wanted',[['Wikimedia: implant','https://commons.wikimedia.org/wiki/Category:3D_printed_medical_implants']],'3D printed titanium spinal implant, bioprinting tissue lab'),
+  g(15,'Pre-made: B-roll','PM Mars habitat (reuse of #11) + everyday-objects print','p2','Isaac',15,'reuse the Mars loop; broad close on "everyday life"',[],'Mars habitat, 3D printed prosthetic brace, spare part printing'),
+  g(16,'Pre-made: B-roll','PM Earth-from-space / creation closer (reusable)','p2','Isaac',16,'holds the "human mind / reflect their Maker" close',[],'earth from space, sunrise from orbit, creation cosmos')]}
+]},
+
+{id:2,ep:'S03 Ep027',title:'Diversity in the Ancient Animal Kingdom',segments:[{name:'Opening Monologue',
+ script:[
+  P(M(1,'Today we are talking about three creatures of the ancient world. As we look around the modern world, it is astounding how many kinds of creatures there are. But how many times have you wondered what existed in ancient times, perhaps before the flood, or at least millennia before today?')),
+  P(M(2,'What we find is a sprawling, dazzling canvas of life, an EXPLOSION of diversity. We find a world that was bursting with fully-formed, endlessly inventive creatures, animals so strange and so specialized that they stop the experts in their tracks. Every one of them is a brushstroke from the hand of a Creator whose imagination simply has no end. Let me show you three creatures, all described by scientists just in the last year or so, that put that boundless creativity on full display.')),
+  P(M(3,'First, let\'s talk about the crocodile that walked the floodplains. We tend to think we\'ve got crocodiles figured out, don\'t we? Low-slung, lurking at the waterline, eyes and nostrils poking up like a periscope. A solved problem.')),
+  P(M(4,'And then a team working down in Argentine Patagonia pulls a skull out of a rock, and we meet Kostensuchus atrox. This was a BEAST. Around eleven and a half feet long, a quarter of a ton in weight, with a broad, deep skull and big, blade-edged teeth. The researchers call it a hypercarnivore, an apex predator that lived right alongside the dinosaurs and very likely ate the medium-sized ones.')),
+  P(M(5,'In a modern crocodile, the eyes and nostrils ride high on the skull, perfect for lying submerged and waiting. Kostensuchus breaks that mold. Its nostrils faced FORWARD, its eyes sat out on the SIDES of a tall, deep head. The scientists who described it concluded this was no patient ambusher lurking in the shallows; its anatomy points to an animal that searched out its prey across the land, part of a whole "land of crocs" that once flourished across the southern continents.')),
+  P(M(6,'At this time, it seems there were small and giant crocodiles, meat-eaters and plant-eaters, water-stalkers and land-hunters, an entire spectrum of design built on a single, familiar frame. To me, that isn\'t the look of a blind accident. That\'s the look of a Designer working a theme through brilliant variations.')),
+  P(M(7,'Next, let\'s talk about what is being called the "Hell Pig" of the ancient plains, the Daeodon. Daeodon isn\'t a true pig at all. It thundered across North America in ancient times, a member of an extinct group called the entelodonts, categorized with the even-toed hoofed mammals. It was extraordinary. The largest stood around six feet at the shoulder, taller than a man, rivaling a bison, and carried a skull nearly three feet long. To hold that enormous head up, it grew tall spines over its shoulders that anchored a great muscular hump and a cable of neck muscle, the same engineering trick a bison uses today.')),
+  P(M(8,'And the behavior the fossils hint at is just as remarkable. Those jaws and thick teeth could CRUSH bone. Scientists have found "meat caches" out in Wyoming, leftovers stockpiled for later, with bite marks that match an entelodont\'s jaws. Many researchers think Daeodon made its living as a scavenger, and we have no living animal that fills quite the same shoes. Looking at Daeodon, you can\'t help but marvel at the sheer raw power packed into the creatures that have walked this earth.')),
+  P(M(9,'Last, let\'s look at a miniature masterpiece. This kind of brilliant design doesn\'t only show up on a giant scale. Sometimes it arrives in a package the size of a chicken. For a long time, a handful of little bones from northern Spain were assumed to be the remains of a baby, just a juvenile of some bigger dinosaur, not worth a second look.')),
+  P(M(10,'But when researchers ran the bone microstructure under the microscope, they got a surprise: this wasn\'t a youngster at all. It was a fully grown, mature ADULT, and it was barely the size of a chicken. They named it Foskeia pelendonum. For such a tiny creature, Foskeia had a startlingly sophisticated, highly specialized skull, unexpected anatomical innovations in an animal you could hold in your arms. The bone studies even suggest it grew fast, with a brisk metabolism more like a bird or a small mammal, living a quick, agile life in dense forests.')),
+  P(M(11,'The instinct is always to assume the small thing is the simple thing, the primitive thing. Foskeia refuses that completely. I see a Creator who poured just as much care and ingenuity into a chicken-sized dinosaur as into a towering one. The attention to detail doesn\'t shrink when the animal does.')),
+  P(M(12,'Put these three side by side and step back. The history of life on this earth is richer, stranger, and more mysterious and inventive than any of us can imagine. There are so many breathtaking ways to be alive, and we keep digging up more of them. So whatever comes out of the ground next, truly, the HEAVENS declare the glory of God.'))],
+ graphics:[
+  g(1,'Intro Graphic','Intro: "Diversity in the Ancient Animal Kingdom"','p1','Isaac',1,'title card'),
+  g(2,'Pre-made: B-roll','PM Fossil / creation diversity montage (reusable)','p2','Isaac',2,'broad — holds the "explosion of diversity" setup',[],'fossils, museum specimens, paleo diversity, dig site'),
+  g(3,'B-roll','Modern crocodile at the waterline (reusable)','p2','Jeremiah',3,'holds the "we think we have crocs figured out" beat',[],'saltwater crocodile eyes nostrils waterline, crocodile submerged'),
+  g(4,'Picture','Kostensuchus atrox restoration — AI-GEN','p2','Isaac',4,'2024 taxon, no public-domain art. Check Wikimedia first; else generate. Developed 3+ sentences → dedicate + hold.',[['Commons (check)','https://commons.wikimedia.org/w/index.php?search=Kostensuchus']],'AI: photoreal paleoart Kostensuchus atrox, deep-skulled land crocodyliform, Patagonia floodplain'),
+  g(5,'Picture','Kostensuchus skull / head diagram — AI or paleo-art','p2','Isaac',5,'holds the "nostrils forward, eyes on sides" anatomy beat (reuse #4 art if no diagram)',[],'AI: Kostensuchus skull, forward nostrils, lateral eyes diagram'),
+  g(6,'B-roll','Crocodilian variety montage (reusable)','p2','Jeremiah',6,'holds the "whole spectrum / land of crocs" beat — generic croc footage',[],'crocodiles, caimans, gharial, alligator variety'),
+  g(7,'Picture','Daeodon ("Hell Pig") restoration','p2','Isaac',7,'Wikimedia has CC-BY restorations (credit); AI fallback. Developed 5+ sentences → dedicate + hold.',[['Commons: Daeodon','https://commons.wikimedia.org/wiki/Category:Daeodon']],'AI fallback: entelodont Daeodon, bison-sized, bony jaw flanges, plains'),
+  g(8,'B-roll','American bison (shoulder-hump analogy) + bone-crush context (reusable)','p2','Jeremiah',8,'holds the bison-hump + scavenger beat',[],'American bison shoulder hump, bison herd plains'),
+  g(9,'Pre-made: B-roll','PM Fossil dig / northern Spain excavation (reusable)','p2','Isaac',9,'holds the "little bones assumed to be a baby" setup',[],'paleontology excavation, fossil bones in rock, dig brush'),
+  g(10,'Picture','Foskeia pelendonum restoration — AI-GEN + bone-histology inset','p2','Isaac',10,'2025 taxon, no stock. Generate. Pair a real bone-histology image for the microscope beat.',[['Commons: bone histology','https://commons.wikimedia.org/wiki/Category:Bone_histology']],'AI: small agile theropod chicken-sized adult, specialized skull, dense forest'),
+  g(11,'Pre-made: B-roll','PM Creation / design loop (reusable)','p2','Isaac',11,'holds the "Creator poured care into the small" reflection',[],'nature detail macro, design in nature, intricate creatures'),
+  g(12,'Graphic','Three-creature side-by-side card + creation close','p2','Isaac',12,'closing "put these three side by side"; composite of #4/#7/#10 art over a HEAVENS-declare close')]}
+]},
+
+{id:3,ep:'S03 Ep028',title:'The Goddess in the Rubble of Laodicea',segments:[{name:'Opening Monologue',
+ script:[
+  P(M(1,'Earlier this year in southwestern Turkey, archaeologists found a statue of Athena face down.')+' '+M(2,'Not standing tall in some grand temple where you\'d expect a goddess to be, but lying in the dirt, in a pile of rubble, behind the stage wall of a theater. On March 31, 2026, archaeologists working behind the old stage building came across something buried in the fill, lying face down. And when they rolled her over, there she was. Athena, just without her HEAD.')),
+  P(M(3,'She\'s a headless white marble statue, nearly six and a half feet tall, draped in a long flowing gown, with a cloak at her neck and the head of Medusa carved across her chest, ringed with serpents. Her head and hands are missing, but the work that\'s left takes your breath away. The folds of the fabric look soft enough to touch. Scholars say the style points to the age of Caesar Augustus, twenty-seven B.C. to fourteen A.D. In other words, the world of the New Testament.')),
+  P(M(4,'And here\'s a little detail I love. The back of the statue was left rough and unfinished because she was only ever meant to be seen from the front, tucked between columns. She stood in the West Theater, a soaring three-story stage where statues between the pillars told stories of Homer\'s tales, Odysseus and the Cyclops, the sea monster Scylla. A whole wall of gods and heroes, watching over the crowd.')),
+  P(M(5,'And of all the gods they could have dug up, it was Athena. Goddess of war, yes, but also the goddess of WEAVING. The goddess of the loom. Because Laodicea was a weaving town.')),
+  P(M(6,'Let me paint you the picture, because if you\'ve spent any time in your Bible you have probably heard a bit about Laodicea. The city was founded in the third century B.C. by a king named Antiochus, who named it after his wife, Laodice, who is thought to have later poisoned her husband. Laodicea sat on a hill near two rivers, right on a major trade road, just a few miles from Colossae, yes, THAT Colossae, the one Paul wrote his letter to.')),
+  P(M(7,'And this was no sleepy village. At its peak it may have held more than a hundred thousand people, when most ancient cities had forty or fifty thousand. It had one of the biggest stadiums in the ancient world, and five marketplaces where most cities made do with one. Under Rome it became the leading city of two dozen surrounding towns; the Roman Senator and writer Cicero himself held court there.')),
+  P(M(8,'And it was RICH. Famous for three things: banking, with its own gold exchange; a glossy black wool woven into prized clothing; and a medical school that made an eye salve sold all across the Roman world. So rich, in fact, that when an earthquake flattened the city around A.D. 60, and Rome offered to help pay to rebuild it, the people of Laodicea said no thanks, we\'ve got the money ourselves.')),
+  P(M(9,'And then there\'s the water. Laodicea had no spring of its own. Water came in through a long pipe from miles away, so full of minerals the engineers built little caps on the pipes just to scrape out the gunk. By the time it arrived, it was lukewarm and unpleasant to drink. Yes, LUKEWARM.')),
+  P(M(10,'Because to this very city, the risen Christ sent a letter through the Apostle John, written down in Revelation chapter three. And listen to how He speaks their language:')),
+  P(M(11,'To a banking town with a gold exchange, "buy from Me gold tried in the fire."')+' '+M(12,'To a city of fine wool, "white raiment, that thou mayest be clothed."')+' '+M(13,'To the makers of eye salve, "anoint thine eyes, that thou mayest see."')),
+  P(M(14,'And to a people choking down warm, mineral water, "So then because thou art lukewarm, and neither cold nor hot, I will spue thee out of my mouth."')+' '+M(15,'"Because thou sayest, I am rich, and increased with goods, and have need of nothing; and knowest not that thou art wretched, and miserable, and poor, and blind, and naked."')),
+  P(M(16,'Now think about that statue one MORE time. The goddess of the loom, in a city that grew wealthy at the loom. The old myths carved in beautiful marble, polished where the crowd could see, and rough and unfinished on the back where nobody would look. That\'s the very thing Christ was warning them about. Athena lay there, face down in the rubble, for two thousand years. The thing they trusted, toppled and buried in the dust. And the warning still stands, and even archaeology backs up God\'s word.'))],
+ graphics:[
+  g(1,'Intro Graphic','Intro: "The Goddess in the Rubble of Laodicea"','p1','Isaac',1,'title card'),
+  g(2,'Article Screenshot','Athena statue discovery + clean statue photo','p1','Isaac',2,'David link; hold over the discovery story',[['Türkiye Today','https://www.turkiyetoday.com/culture/archaeologists-discover-giant-marble-athena-statue-in-ancient-laodikeia-in-turkiye-3218661']]),
+  g(3,'Picture','Close-ups of the Athena statue (Medusa chest, fabric folds)','p2','Isaac',3,'holds the description beat; dig-team / agency press photos, fair use'),
+  g(4,'B-roll','Roman theater ruins + statue-lined stage (reusable antiquity loop)','p2','Jeremiah',4,'holds the West Theater detail',[],'Roman theatre ruins, classical statues colonnade, ancient stage'),
+  g(5,'Picture','Athena as goddess of weaving / the loom','p2','Isaac',5,'ties war-goddess to the loom; Wikimedia Athena + loom imagery (credit)',[['Commons: Athena','https://commons.wikimedia.org/wiki/Category:Athena']]),
+  g(6,'Picture','Map: Laodicea on the Lycus, near Colossae','p2','Isaac',6,'holds the founding/location beat; Wikimedia map (credit)',[['Commons: Laodicea','https://commons.wikimedia.org/wiki/Category:Laodicea_on_the_Lycus']]),
+  g(7,'B-roll','Laodicea ruins flythrough (David, silent)','p1','Jeremiah',7,'David: "just for visual"; holds the city-tour stretch (no audio)',[['YouTube','https://www.youtube.com/watch?v=wC_XAwMeiYo']]),
+  g(8,'B-roll','Ancient wealth: gold coins + black wool weaving (reusable)','p2','Jeremiah',8,'holds the "RICH: banking/wool/eye salve" beat',[['Commons: aureus','https://commons.wikimedia.org/wiki/Category:Aurei']],'Roman gold coins, hand weaving wool loom, ancient marketplace'),
+  g(9,'B-roll','Pamukkale / Hierapolis travertine + mineral water (reusable)','p2','Jeremiah',9,'the "lukewarm mineral water" beat (Hierapolis is next door)',[],'Pamukkale travertine terraces, mineral spring water flowing'),
+  g(10,'Propres Graphic','Revelation 3 — letter to Laodicea (intro card)','p2','Isaac',10,'the "Christ sent a letter" lead-in to the quote run'),
+  g(11,'Propres Quote','Rev 3:18 "gold tried in the fire"','p1','Isaac',11,'David scripture'),
+  g(12,'Propres Quote','Rev 3:18 "white raiment"','p1','Isaac',12,'David scripture'),
+  g(13,'Propres Quote','Rev 3:18 "anoint thine eyes"','p1','Isaac',13,'David scripture'),
+  g(14,'Propres Quote','Rev 3:16 "lukewarm... spue thee out"','p1','Isaac',14,'David scripture'),
+  g(15,'Propres Quote','Rev 3:17 "thou sayest, I am rich..."','p1','Isaac',15,'David scripture'),
+  g(16,'B-roll','Athena face-down in the rubble (callback) + ruins (reusable)','p2','Jeremiah',16,'closing callback to the toppled statue',[],'fallen statue rubble, archaeology excavation, ruins dusk')]}
+]},
+
+{id:4,ep:'S03 Ep029',title:'Deep Sea Discoveries in Australia',segments:[{name:'Opening Monologue',
+ script:[
+  P(M(1,'"Scientists Discover Over 110 New Species in the Coral Sea." "Mysterious Creatures Pulled From Three Kilometers Beneath the Waves." "An Entire Hidden World Found Off the Coast of Australia." What these headlines describe is nothing short of ASTONISHING.')),
+  P(M(2,'The Coral Sea lies off the northeastern coast of Australia, and it is enormous beyond easy comprehension. The marine park alone covers nearly 390,000 square miles and plunges to depths of 20,000 feet. It shelters thirty-four sprawling reef systems and dozens of tiny islands scattered across the open water. It is the largest marine park in all of Australian waters, and yet here is the part that ought to HUMBLE us all: the vast majority of it had never been explored by anyone.')),
+  P(M(3,'We had mapped the surface of Mars and photographed the rings of distant Saturn, and all the while this immense living sea sat right here on our own planet, waiting in the dark, holding secrets.')),
+  P(M(4,'So a team of scientists set out to change that. For thirty-five days they sailed aboard a research vessel called the Investigator, lowering their instruments down through the water column, nearly two miles under water. That is a realm where sunlight has never reached and never will, a place of crushing pressure and perpetual cold and total darkness, and into that darkness they went looking for whatever might be living there.')),
+  P(M(5,'What they found exceeded all expectation. Marine scientists identified more than one hundred and ten species of fish and invertebrates entirely new to science, creatures that no human being had ever before named or described, and they tell us this number is likely to climb past two hundred as they continue to study the strange forms they carried back to the surface.')),
+  P(M(6,'Imagine that for a moment: more than two HUNDRED kinds of living things that were swimming in our oceans all this time, and we never knew a single one of them was there. God did. He made them. But we remained totally unaware until this discovery.')),
+  P(M(7,'The shark expert leading the expedition identified four new species himself, including two rays, a deepwater catshark, and a ghostly creature called a chimaera that haunts the deep.')),
+  P(M(8,'But the discoveries did not stop with the great fish, because the team also brought up brittle stars and crabs and delicate sea anemones, along with sponges and jellyfish and worms that came drifting from the waters beside the Great Barrier Reef and from remote underwater mountains rising lonely and unseen from the ocean floor. They also captured footage of a rare sand tiger shark, a creature of the deep, gliding through the blackness on a camera lowered into a world we have only just begun to glimpse.')),
+  P(M(9,'Now you might wonder how anyone confirms that a creature is truly new. These scientists studied the precise shape and structure of each animal, and then they read the letters of its DNA, the genetic signature written into every living thing that has ever existed.')),
+  P(M(10,'Consider now the scale of all that still remains unknown. Scientists have so far catalogued around two hundred and forty thousand marine species, which sounds like a tremendous number until you learn that they believe millions more are still hidden out there, millions of living things in the waters of this planet that have never been seen, never been named, never once been known to us.')),
+  P(M(11,'I find in all of this a kind of holy reminder. We worship a Creator with such creative magnificence. Because, let\'s be honest, we tend to walk around feeling certain that we understand our world, carrying the whole of human knowledge in our pockets, and then the ocean quietly opens up and shows us that we have barely even begun.')),
+  P(M(12,'A single voyage to a single sea turned up more than a hundred living marvels we never knew existed, and that fact alone should set our hearts racing at the thought of all that still waits down there in the dark, patient and silent, for the day we finally come looking. What a deep and wondrous world, revealing the most incredible God.'))],
+ graphics:[
+  g(1,'Intro Graphic','Intro: "Deep Sea Discoveries in Australia"','p1','Isaac',1,'title card'),
+  g(2,'Article Screenshot','3 opening headlines (stacked, animated)','p1','Isaac',2,'David: the three quoted headlines'),
+  g(3,'B-roll','Coral Sea reef + open ocean aerial (reusable)','p2','Jeremiah',3,'David "pull clips"; holds the Coral Sea scale beat',[['YouTube','https://www.youtube.com/watch?v=THnF0IQ8JJM']],'coral reef aerial, Coral Sea Australia, open ocean drone'),
+  g(4,'Pre-made: B-roll','PM Astronomy (Mars / Saturn) loop','p2','Isaac',4,'the "we mapped Mars while this sea sat in the dark" line',[['NASA Cassini','https://photojournal.jpl.nasa.gov/mission/Cassini']],'Mars surface, Saturn rings'),
+  g(5,'B-roll','NOAA deep-sea ROV descent into the abyss (PUBLIC DOMAIN)','p2','Jeremiah',5,'holds the "35 days, two miles down, total darkness" voyage beat',[['NOAA Ocean Exploration','https://oceanexplorer.noaa.gov/']],'NOAA Okeanos ROV descent, abyssal dark water, submersible lights'),
+  g(6,'Picture','RV Investigator (the research vessel)','p2','Isaac',6,'specific ship; CSIRO image (credit)',[['CSIRO','https://mnf.csiro.au/en/RV-Investigator']]),
+  g(7,'Graphic','"110+ new species → likely 200+" count card','p2','Isaac',7,'holds the discovery-count beat; simple number card over reef b-roll'),
+  g(8,'Picture','Chimaera (ghost shark) — specific creature','p2','Isaac',8,'David develops the shark-expert finds; chimaera is the striking one. NOAA/Wikimedia PD',[['Commons: Chimaeridae','https://commons.wikimedia.org/wiki/Category:Chimaeridae']]),
+  g(9,'B-roll','Deep-sea creatures montage: rays, catshark, brittle stars, anemones, sand tiger (PUBLIC DOMAIN)','p2','Jeremiah',9,'holds the long list of creatures + sand tiger shark',[['NOAA Exploration','https://oceanexplorer.noaa.gov/']],'deep sea fish, ray, brittle star, sea anemone, sand tiger shark dark'),
+  g(10,'Picture','DNA sequencing / barcoding readout','p2','Isaac',10,'the "read the letters of its DNA" beat; NHGRI PD',[['NHGRI','https://www.genome.gov/']]),
+  g(11,'B-roll','Vast ocean surface / earth-ocean from space (reusable)','p2','Jeremiah',11,'holds the "240,000 catalogued, millions hidden / holy reminder" reflection',[],'ocean from space, vast ocean surface aerial, blue planet'),
+  g(12,'Pre-made: B-roll','PM deep ocean / creation closer (reusable)','p2','Isaac',12,'closing "deep and wondrous world, most incredible God"',[],'deep ocean light rays, bioluminescence, ocean wonder')]}
+]},
+
+{id:5,ep:'S03 Ep030',title:'Beneath the Antarctic Ice (10 Facts)',segments:[{name:'Opening Monologue',
+ script:[
+  P(M(1,'Imagine a place so vast, so utterly inhospitable, that it makes the Arctic look like a beach resort. Antarctica covers 5 million square miles, nearly the size of two Australias, and it\'s almost entirely covered in ice.')+' '+M(2,'Ninety percent of the world\'s ice is locked beneath that frozen surface. Seventy percent of our planet\'s fresh water. This is the last great wilderness on Earth, a continent so extreme that no permanent human settlements exist there. Only scientists, explorers, and the incredibly resilient creatures that call it home. But here\'s what most people don\'t realize: Antarctica isn\'t just a frozen wasteland. It\'s a time machine, and in 2025 there was an incredible discovery buried beneath the ice.')),
+  P(M(3,'FACT #1: A LOST WORLD BURIED BENEATH ICE. Over a mile beneath the Antarctic ice, scientists just discovered something that rewrites our understanding of this continent. Using satellite technology and ice-penetrating radar, researchers uncovered an ancient landscape, untouched for millennia. What they found was extraordinary: valleys and ridges carved by ancient rivers, a terrain roughly the size of Wales, shaped by flowing water. Perhaps before the flood, this part of the earth could have been like the Pacific Northwest or New Zealand.')+' '+M(4,'And there were palm trees, yes, PALM TREES in Antarctica. Scientists found pollen from them preserved in the ice, proof that this continent once teemed with life. It\'s like opening a time capsule of Earth itself, frozen at a moment when our planet was fundamentally different.')),
+  P(M(5,'FACT #2: BLOOD FALLS, WHERE THE GLACIER BLEEDS RED. There\'s a waterfall in Antarctica that looks like the continent is bleeding. Called Blood Falls, it emerges from the Taylor Glacier in streams of deep crimson red. Discovered in 1911, scientists were mystified for over 100 years. Finally they found the answer: the water is so saturated with iron oxide it turns rust-colored, and it supports life forms that have lived in complete darkness and isolation, an alien ecosystem that exists nowhere else on Earth.')),
+  P(M(6,'FACT #3: MOUNT EREBUS, THE ONLY VOLCANO IN ANTARCTICA, AND IT ERUPTS CONTINUOUSLY. Mount Erebus sits on Ross Island, the world\'s southernmost active volcano. It\'s been erupting continuously since 1972, lava fountains shooting hundreds of meters into subzero air, molten rock at 1,200 degrees meeting ice at minus 50. The volcano creates its own pocket of geothermal heat in Antarctica\'s frozen hell. Even in Earth\'s most extreme places, heat finds a way.')),
+  P(M(7,'FACT #4: WHERE THE SKY LITERALLY BURNS YOUR SKIN. Every Antarctic spring, UV radiation is so intense it can sunburn your skin in minutes.')+' '+M(8,'FACT #5: THE MCMURDO DRY VALLEYS, A PLACE MORE ALIEN THAN MARS. In the Taylor Valley, patches of ground likely haven\'t seen rain in millennia. The McMurdo Dry Valleys are the most extreme desert on Earth, colder and drier than Mars. Yet life thrives there: microbes in the soil, bacteria adapted to the cold with antifreeze proteins, frozen for millennia and able to simply wake up.')),
+  P(M(9,'FACT #6: SUBGLACIAL LAKES, 400 WORLDS HIDDEN BENEATH THE ICE. Over 400 lakes exist beneath the Antarctic ice sheet, completely isolated from sunlight. Lake Vostok, the largest, is roughly the size of Lake Ontario. Scientists have never drilled down to reach it; they don\'t want to contaminate it. But they know it\'s there.')+' '+M(10,'FACT #7: METEORITES RAIN DOWN FROM SPACE, AND ANTARCTICA COLLECTS THEM. Antarctica receives more meteorites per square mile than anywhere on Earth. Scientists have recovered over 20,000, fragments that traveled through space only to land in the one place where humans could actually find and study them.')),
+  P(M(11,'FACT #8: ANTIFREEZE FISH AND TRANSPARENT OCTOPUSES. Antarctic fish carry antifreeze proteins in their blood, actual molecules that prevent ice crystals from forming; their blood has a lower freezing point than freshwater. In these deeper waters, octopuses and squid have transparent heads. You can see their organs through their skin.')),
+  P(M(12,'FACT #9: THE ENDURANCE, A GHOST SHIP THAT HAUNTED HISTORY FOR 107 YEARS. In 1914, Ernest Shackleton\'s ship, the Endurance, became trapped in Antarctic pack ice.')+' '+M(13,'The crew drifted for nearly two years before abandoning it as the ice crushed the hull. For 107 years, no one knew where it was. Then, in 2022, researchers found it on the ocean floor, remarkably preserved, wood intact, artifacts undisturbed. The extreme cold and lack of wood-eating organisms froze the Endurance in time.')),
+  P(M(14,'FACT #10: THE POLAR VORTEX, ANTARCTICA AFFECTS YOUR WEATHER. The polar vortex is a jet stream phenomenon centered over Antarctica. When it wobbles, it sends ripples across the entire planet, Arctic air as far south as Florida. Blizzards. Ice storms. Dangerous cold snaps.')),
+  P(M(15,'Antarctica isn\'t just a frozen continent sitting at the bottom of the world. It\'s like a thermostat. Those 10 facts are something that makes you stand in awe of God\'s power, manifested at the very ends of the earth. Indeed, Antarctica is the most extreme place on Earth. It\'s home to impossible life, impossible geology, impossible beauty. And now, with the recent discovery in 2025, we know how incredible this place was in God\'s original design.'))],
+ graphics:[
+  g(1,'Intro Graphic','Intro: "Beneath the Antarctic Ice (10 Facts)"','p1','Isaac',1,'title card'),
+  g(2,'B-roll','Antarctica drone flyover (David) + ice-continent aerials (reusable)','p1','Jeremiah',2,'David clip; holds the whole opening scale beat',[['YouTube','https://www.youtube.com/watch?v=TiXOQn7z9Hg']],'Antarctica aerial, ice sheet drone, frozen continent'),
+  g(3,'Graphic','FACT #1 card + jpost article + sub-ice radar map','p1','Isaac',3,'David: jpost link; FACT lower-third + BAS radar landscape',[['Jerusalem Post','https://www.jpost.com/science/article-856909']]),
+  g(4,'B-roll','Lush rivers/valleys + palm pollen (David NZ clip, silent)','p1','Jeremiah',4,'David: NZ "just for visuals" for the "palm trees / time capsule" beat',[['YouTube','https://www.youtube.com/watch?v=GOrwaPG_4E8']],'lush river valley aerial, palm trees, green wilderness'),
+  g(5,'Graphic','FACT #2 card + Blood Falls','p1','Isaac',5,'David clip; P2 still = Blood Falls (Peter Rejcek/NSF, PUBLIC DOMAIN)',[['David clip','https://www.youtube.com/watch?v=Nl0Fuzns_o8'],['Commons: Blood Falls','https://commons.wikimedia.org/wiki/Category:Blood_Falls']]),
+  g(6,'Graphic','FACT #3 card + Mount Erebus lava lake','p1','Isaac',6,'David clip; P2 still = Erebus lava lake (USGS/NSF PD)',[['David clip','https://www.youtube.com/watch?v=_vcsei-Jq6U'],['Commons: Erebus','https://commons.wikimedia.org/wiki/Category:Mount_Erebus']]),
+  g(7,'Graphic','FACT #4 card + 24hr sun timelapse','p1','Isaac',7,'David clip (silent); short fact',[['David clip','https://www.youtube.com/watch?v=in0B1OQG3-M']]),
+  g(8,'Graphic','FACT #5 card + Dry Valleys','p1','Isaac',8,'David clip (silent); holds the Dry Valleys + microbe beat',[['David clip','https://www.youtube.com/watch?v=II7edARSvvk']]),
+  g(9,'Graphic','FACT #6 card + subglacial lakes diagram','p1','Isaac',9,'David clip; P2 add = Lake Vostok cross-section (NASA/NSF)',[['David clip','https://www.youtube.com/watch?v=KOnB47PyZJw']]),
+  g(10,'Graphic','FACT #7 card + Antarctic meteorite on ice','p1','Isaac',10,'David clip (silent); P2 still = ANSMET meteorite (NASA JSC PD)',[['David clip','https://www.youtube.com/watch?v=VpbLGPyfgnA']]),
+  g(11,'Graphic','FACT #8 card + icefish / glass octopus','p2','Isaac',11,'NO DAVID LINK. icefish (Wikimedia/NOAA) + glass octopus (NOAA Nautilus)',[['Commons: icefish','https://commons.wikimedia.org/wiki/Category:Channichthyidae'],['NOAA glass octopus','https://oceanexplorer.noaa.gov/']],'Antarctic icefish, transparent glass octopus deep sea'),
+  g(12,'Clip w/audio','FACT #9 card + ENDURANCE trailer (:18-24)','p1','Isaac',12,'David clip — plays with audio (PAUSE)',[['NatGeo','https://www.youtube.com/watch?v=563_lBO3wiY']]),
+  g(13,'Graphic','Endurance wreck stills (2022 discovery)','p2','Isaac',13,'holds the "found in 2022, frozen in time" beat; Falklands Maritime Heritage Trust, fair use'),
+  g(14,'Graphic','FACT #10 card + polar vortex visualization','p2','Isaac',14,'NO DAVID LINK. NOAA/NASA polar-vortex stratosphere viz (PUBLIC DOMAIN)',[['NASA SVS','https://svs.gsfc.nasa.gov/']],'polar vortex jet stream visualization, stratosphere swirl'),
+  g(15,'Pre-made: B-roll','PM Earth-from-space "thermostat" closer (reusable)','p2','Isaac',15,'closing "ends of the earth / God\'s original design"',[],'earth from space Antarctica, blue marble, ice from orbit')]}
+]}
+]};
+
+let cur={view:'master',show:null,seg:0};
+const $=s=>document.querySelector(s);
+function renderTabs(){const t=$('#tabs');t.innerHTML='';
+ const m=document.createElement('span');m.className='tab master'+(cur.view==='master'?' on':'');m.textContent='Master';m.onclick=()=>{cur.view='master';render()};t.appendChild(m);
+ DATA.shows.forEach(s=>{const b=document.createElement('span');b.className='tab'+(cur.view==='show'&&cur.show===s.id?' on':'');b.textContent='Show '+s.id;b.onclick=()=>{cur.view='show';cur.show=s.id;cur.seg=0;render()};t.appendChild(b)})}
+function renderMaster(){$('#crumb').style.display='none';const v=$('#view');v.innerHTML='';const w=document.createElement('div');w.className='master';
+ DATA.shows.forEach(s=>{const all=s.segments.flatMap(x=>x.graphics);const p1=all.filter(x=>x.pass==='p1').length;const p2=all.filter(x=>x.pass==='p2').length;
+  const c=document.createElement('div');c.className='showcard';
+  c.innerHTML='<h3>Show '+s.id+' &middot; '+s.title+'</h3><div class="ep">'+s.ep+'</div><div class="cnt"><b>'+p1+'</b> P1 (David) &middot; <b>'+p2+'</b> P2 suggestions &middot; '+all.length+' graphics</div>'+
+   '<div class="segmini">'+s.segments.map(sg=>'<div><span>'+sg.name+'</span><span>'+sg.graphics.length+'</span></div>').join('')+'</div>';
+  c.onclick=()=>{cur.view='show';cur.show=s.id;cur.seg=0;render()};w.appendChild(c)});v.appendChild(w)}
+function renderShow(){const s=DATA.shows.find(x=>x.id===cur.show);const seg=s.segments[cur.seg];
+ const cb=$('#crumb');cb.style.display='';cb.textContent='← Master / Show '+s.id+' · '+s.title;cb.onclick=()=>{cur.view='master';render()};
+ const v=$('#view');v.innerHTML='';const grid=document.createElement('div');grid.className='show';
+ const c1=document.createElement('div');c1.className='col railcol';c1.innerHTML='<div class="colhead">Segments</div>';
+ s.segments.forEach((sg,i)=>{const d=document.createElement('div');d.className='seg'+(i===cur.seg?' on':'');d.innerHTML='<div class="n">'+sg.name+'</div><div class="m">'+sg.graphics.length+' graphics</div>';d.onclick=()=>{cur.seg=i;render()};c1.appendChild(d)});grid.appendChild(c1);
+ const c2=document.createElement('div');c2.className='col';c2.id='scriptcol';c2.innerHTML='<div class="colhead">Script · '+seg.name+' — every highlight is one graphic\'s span (last sentence = RDC Last Line)</div>';
+ const sd=document.createElement('div');sd.className='script';sd.innerHTML=seg.script.map(p=>'<p>'+p+'</p>').join('');c2.appendChild(sd);
+ seg.graphics.forEach(gr=>{if(gr.cue){const m=c2.querySelector('.cue[data-g="'+gr.cue+'"]');if(m)m.dataset.st=(gr.pass==='p2'?'p2':'cr')}});grid.appendChild(c2);
+ const c3=document.createElement('div');c3.className='col';c3.innerHTML='<div class="colhead">Graphics · '+seg.name+'</div>';const gl=document.createElement('div');gl.className='glist';
+ seg.graphics.forEach(gr=>{const row=document.createElement('div');row.className='grow'+(gr.pass==='p2'?' p2':'');row.dataset.g=gr.cue||'';
+  const isB=/B-roll|Picture|Article|Graphic/.test(gr.type);
+  const srcH=gr.src&&gr.src.length?'<div class="gsrc">Source: '+gr.src.map(x=>'<a href="'+x[1]+'" target="_blank">'+x[0]+'</a>').join(' &middot; ')+'</div>':'';
+  const kwH=gr.kw?'<div class="kw">keywords: '+gr.kw+'</div>':'';
+  const holdH=gr.hold?'<div class="hold">▸ '+gr.hold+'</div>':'';
+  row.innerHTML='<div class="gtop"><span class="gnum">'+gr.n+'</span><span class="gtype">'+gr.type+'</span><span class="pass '+gr.pass+'">'+gr.pass.toUpperCase()+'</span><span class="gwho">'+gr.who+'</span></div>'+
+   '<div class="gdesc">'+gr.desc+'</div>'+holdH+srcH+kwH+(gr.notes?'<div class="gnotes">'+gr.notes+'</div>':'');
+  gl.appendChild(row);row.onclick=e=>{if(e.target.closest('a'))return;focusCue(gr.cue,row)}});
+ c3.appendChild(gl);grid.appendChild(c3);v.appendChild(grid)}
+function focusCue(cue,row){document.querySelectorAll('.cue.active,.grow.active').forEach(e=>e.classList.remove('active'));if(row)row.classList.add('active');if(!cue)return;const m=$('#scriptcol .cue[data-g="'+cue+'"]');if(m){m.classList.add('active');m.scrollIntoView({block:'center',behavior:'smooth'})}}
+function render(){renderTabs();cur.view==='master'?renderMaster():renderShow()}
+render();
+</script>
+</body>
+</html>

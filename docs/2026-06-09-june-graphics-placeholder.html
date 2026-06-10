@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSR Graphics — June placeholder (Pass 1)</title>
+<style>
+:root{
+  --bg:#f4f6fa;--panel:#fff;--ink:#16202e;--dim:#5b6b7e;--line:#e2e8f0;--accent:#2563eb;--accentsoft:#eaf1ff;
+  --ns:#8a98a8;--ns-bg:#eef1f5;--ip:#b7791f;--ip-bg:#fdf3e2;--cr:#1d6fd6;--cr-bg:#e6f0fe;--li:#1d8a52;--li-bg:#e6f6ec;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font:13.5px/1.5 -apple-system,Segoe UI,Roboto,Inter,sans-serif}
+.app{height:100vh;display:flex;flex-direction:column}
+header.top{background:#0e1726;color:#eaf1ff;padding:9px 16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;flex:0 0 auto}
+header .ttl{font-weight:600;font-size:14px}.ttl b{color:#7fb0ff}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto}
+.tab{background:#1b2942;color:#cfe0f7;border:1px solid #2b3f63;border-radius:7px;padding:5px 12px;font-size:12.5px;cursor:pointer}
+.tab.on{background:#2563eb;border-color:#2563eb;color:#fff}
+.tab.master{background:#13203a}
+.view{flex:1;min-height:0}
+/* ===== MASTER ===== */
+.master{height:100%;overflow:auto;padding:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;align-content:start}
+.showcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;cursor:pointer;box-shadow:0 1px 3px rgba(16,32,55,.06)}
+.showcard:hover{border-color:#b9d2ff}
+.showcard h3{margin:0 0 2px;font-size:14px}.showcard .ep{color:var(--dim);font-size:12px}
+.bar{display:flex;height:10px;border-radius:999px;overflow:hidden;margin:10px 0 6px;border:1px solid var(--line)}
+.bar i{display:block}.bar .ns{background:var(--ns)}.bar .ip{background:var(--ip)}.bar .cr{background:var(--cr)}.bar .li{background:var(--li)}
+.cnt{font-size:11.5px;color:var(--dim)}.cnt b{color:var(--ink)}
+.segmini{margin-top:9px;border-top:1px dashed var(--line);padding-top:8px;display:flex;flex-direction:column;gap:3px}
+.segmini div{display:flex;justify-content:space-between;font-size:11.5px;color:var(--dim)}
+.segmini .done{color:var(--li)}
+/* ===== SHOW (3 panes, no page scroll) ===== */
+.show{height:100%;display:grid;grid-template-columns:200px minmax(280px,1fr) minmax(330px,1.1fr);min-height:0}
+.col{min-height:0;overflow:auto;border-right:1px solid var(--line);background:var(--panel)}
+.col:last-child{border-right:0}
+.colhead{position:sticky;top:0;background:var(--panel);border-bottom:1px solid var(--line);padding:8px 12px;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);z-index:2}
+/* segment rail */
+.seg{padding:9px 12px;border-bottom:1px solid var(--line);cursor:pointer}
+.seg:hover{background:#f7f9fc}.seg.on{background:var(--accentsoft);border-left:3px solid var(--accent);padding-left:9px}
+.seg .n{font-size:12.5px;font-weight:600}.seg .m{font-size:11px;color:var(--dim);display:flex;justify-content:space-between;margin-top:2px}
+.sdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px}
+/* script */
+.script{padding:14px 16px;font-size:14px;line-height:1.95}
+.script p{margin:0 0 13px}
+mark.cue{border-radius:3px;padding:1px 2px;cursor:pointer;background:var(--ns-bg);box-shadow:inset 0 -2px 0 var(--ns)}
+mark.cue[data-st=ip]{background:var(--ip-bg);box-shadow:inset 0 -2px 0 var(--ip)}
+mark.cue[data-st=cr]{background:var(--cr-bg);box-shadow:inset 0 -2px 0 var(--cr)}
+mark.cue[data-st=li]{background:var(--li-bg);box-shadow:inset 0 -2px 0 var(--li)}
+mark.cue .b{display:inline-block;min-width:15px;height:15px;line-height:15px;text-align:center;font:700 9px ui-monospace,monospace;color:#fff;background:var(--ns);border-radius:3px;margin-right:4px;vertical-align:middle}
+mark.cue[data-st=ip] .b{background:var(--ip)}mark.cue[data-st=cr] .b{background:var(--cr)}mark.cue[data-st=li] .b{background:var(--li)}
+mark.cue.active{outline:2px solid var(--accent);outline-offset:1px}
+.noscript{color:var(--dim);font-size:12.5px;padding:14px 16px;font-style:italic}
+/* graphics */
+.glist{padding:9px}
+.grow{border:1px solid var(--line);border-radius:9px;padding:9px 10px;margin-bottom:8px;background:#fff;cursor:pointer}
+.grow.active{border-color:var(--accent);box-shadow:0 0 0 2px var(--accentsoft)}
+.gtop{display:flex;gap:7px;align-items:center}
+.gnum{font:700 11px ui-monospace,monospace;color:#fff;background:var(--ns);min-width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center}
+.grow[data-st=ip] .gnum{background:var(--ip)}.grow[data-st=cr] .gnum{background:var(--cr)}.grow[data-st=li] .gnum{background:var(--li)}
+.gtype{font-weight:600;font-size:12.5px}.gwho{margin-left:auto;font-size:11px;color:var(--dim)}
+.gdesc{font-size:12.5px;margin:5px 0 6px}
+.r2{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+select.st{font:inherit;font-size:11.5px;border:1px solid var(--line);border-radius:6px;padding:2px 5px}
+.fname{flex:1;min-width:120px;font:11px ui-monospace,Menlo,monospace;border:1px dashed #c4ccd8;border-radius:6px;padding:3px 6px;background:#fcfdff}
+.src{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.src a{font-size:10.5px;color:var(--accent);border:1px solid #cfe0ff;background:#f3f8ff;border-radius:5px;padding:1px 6px;text-decoration:none}
+.gnotes{font-size:11px;color:var(--dim);font-style:italic;margin-top:5px}
+.push{margin-top:7px;width:100%;font-size:11.5px;font-weight:600;border:1px solid #cdd8e4;background:#f1f3f7;color:#9aa6b4;border-radius:7px;padding:5px;cursor:not-allowed}
+.push.ready{background:var(--li);border-color:var(--li);color:#fff;cursor:pointer;box-shadow:0 0 0 3px var(--li-bg)}
+.lt{margin:9px;border:1px dashed #c9b3e6;background:#f6f0ff;border-radius:9px;padding:8px 10px;color:#5a3a8a;font-size:11.5px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:11px;color:var(--dim);padding:7px 12px;background:var(--panel);border-top:1px solid var(--line);flex:0 0 auto}
+.legend span{display:inline-flex;gap:5px;align-items:center}.dot{width:10px;height:10px;border-radius:3px}
+.back{cursor:pointer;color:#7fb0ff;font-size:12.5px}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <span class="ttl">GSR <b>Graphics</b> &middot; June cycle &middot; Pass 1 (David's cues)</span>
+    <span id="crumb" class="back" style="display:none"></span>
+    <div class="tabs" id="tabs"></div>
+  </header>
+  <div class="view" id="view"></div>
+  <div class="legend">
+    <span><span class="dot" style="background:var(--ns)"></span>Not Started</span>
+    <span><span class="dot" style="background:var(--ip)"></span>In Progress</span>
+    <span><span class="dot" style="background:var(--cr)"></span>Created (filename in = ready to push)</span>
+    <span><span class="dot" style="background:var(--li)"></span>Loaded In</span>
+    <span style="margin-left:auto">Pass 1 = only what David cued. Empty slots / "Pass-2" notes = creative pass still to come.</span>
+  </div>
+</div>
+
+<script>
+const ST={ns:'Not Started',ip:'In Progress',cr:'Created',li:'Loaded In'};
+const order=['ns','ip','cr','li'];
+function g(n,type,desc,st,who,file,notes,cue){return{n,type,desc,st,who,file:file||'',notes:notes||'',cue:cue||null};}
+function P(html){return html;}
+
+const DATA={month:'June',shows:[
+ {id:1,ep:'S03 Ep026',title:'The Maker\'s Hands & 3D Printers',segments:[
+   {name:'Opening Monologue',script:[
+     P('<mark class="cue" data-g="1"><span class="b">1</span>Genesis 1:27.</mark> <mark class="cue" data-g="2"><span class="b">2</span>"So God CREATED man in His own image, in the image of God He created him."</mark> The very first thing we learn about ourselves is that we are MADE by a Maker, CREATED by a Creator.'),
+     P('I want to tell you a story tonight, about a machine that in just forty years has gone from science fiction to changing how we care for the sick, build our homes, and reach for the stars. I\'m talking about 3D PRINTING.'),
+     P('<mark class="cue" data-g="3"><span class="b">3</span>It started in 1983. A man named Chuck Hull discovered that if you shine ultraviolet light on a special resin, it HARDENS, layer by layer. He called it stereolithography.</mark>'),
+     P('<mark class="cue" data-g="4"><span class="b">4</span>At the same time, a graduate student named Carl Deckard took a different road, using a LASER to fuse beds of fine powder into shapes impossible to make any other way.</mark> Two men, two paths, both reflecting the creativity born in heaven.'),
+     P('The hype crashed around 2013, then the engineers got serious. <mark class="cue" data-g="5"><span class="b">5</span>They scaled it up to the size of a HOUSE and started printing with concrete. Entire neighborhoods in Texas, one hundred homes, rising from a robotic nozzle. Watch this:</mark>'),
+     P('It is the same technology NASA is testing to build shelters on the Moon and Mars. Now, the headlines oversell it. <mark class="cue" data-g="6"><span class="b">6</span>The Star Trek replicator? We are not there yet.</mark> 3D printing handles the impossible shapes; traditional tools handle the finish.'),
+     P('Every breakthrough came from a HUMAN MIND, made in the image of the One who carved canyons and hung stars. 3D printing isn\'t just a machine, it is the result of the intelligent Mind that made intelligent minds.')],
+    graphics:[
+      g(1,'Intro Graphic','Intro: "THE MAKER\'S HANDS AND 3D PRINTERS"','ns','Isaac','','',1),
+      g(2,'Propres Quote','Genesis 1:27 KJV propres graphic','ns','Isaac','','',2),
+      g(3,'Picture','Chuck Hull portrait','ns','Isaac','','David cue: "(Use picture)" — 3dprintingdublin.com/chuck-hall',3),
+      g(4,'Picture','Carl Deckard, SLS pioneer','ns','Isaac','','David cue: "- Use image" — 3dprintingjournal.com obituary',4),
+      g(5,'Clip w/audio','3D-printed homes, Icon & Lennar, Austin TX (2:37-3:21)','ns','Isaac','','youtube G17vlbKyRSU. PAUSE — plays with audio.',5),
+      g(6,'Clip w/audio','Star Trek replicator montage x3 (TNG :1-11 / Replicator :3-14 / Voyager :5-24)','ns','Isaac','','3 youtube clips on one beat. PAUSE.',6)]}
+ ]},
+ {id:2,ep:'S03 Ep027',title:'Diversity in the Ancient Animal Kingdom',segments:[
+   {name:'Opening Monologue',script:[
+     P('<mark class="cue" data-g="1"><span class="b">1</span>Today we are talking about three creatures of the ancient world, a sprawling, dazzling canvas of life, an EXPLOSION of diversity.</mark> Every one is a brushstroke from the hand of a Creator whose imagination has no end.'),
+     P('First, the crocodile that walked the floodplains. <mark class="cue" data-g="2"><span class="b">2</span>A team in Argentine Patagonia pulled a skull from the rock, and we meet Kostensuchus atrox, eleven feet long, a quarter ton, with forward-facing nostrils and eyes on the sides of a tall, deep head.</mark>'),
+     P('<mark class="cue" data-g="3"><span class="b">3</span>Next, the "Hell Pig," the Daeodon. It thundered across ancient North America, six feet at the shoulder, a skull nearly three feet long, with jaws that could crush bone.</mark>'),
+     P('<mark class="cue" data-g="4"><span class="b">4</span>Last, a miniature masterpiece. Little bones from northern Spain turned out to be a fully grown adult barely the size of a chicken. They named it Foskeia pelendonum.</mark> The attention to detail doesn\'t shrink when the animal does.')],
+    graphics:[
+      g(1,'Intro Graphic','Intro: "DIVERSITY IN THE ANCIENT ANIMAL KINGDOM"','ns','Isaac','','',1),
+      g(2,'Picture','Kostensuchus atrox (giant land croc)','ns','Isaac','','DAVID GAVE NO CUE OR LINK. Pass-2 decision — recent 2024-25 find, little public-domain imagery. AI-gen / paleo-art candidate.',2),
+      g(3,'Picture','Daeodon ("Hell Pig" entelodont)','ns','Isaac','','DAVID GAVE NO CUE OR LINK. Pass-2 — stock paleo-art or AI-gen candidate.',3),
+      g(4,'Picture','Foskeia pelendonum (chicken-sized dinosaur)','ns','Isaac','','DAVID GAVE NO CUE OR LINK. Pass-2 — AI-gen candidate (named 2025, no stock).',4)]}
+ ]},
+ {id:3,ep:'S03 Ep028',title:'The Goddess in the Rubble of Laodicea',segments:[
+   {name:'Opening Monologue',script:[
+     P('<mark class="cue" data-g="1"><span class="b">1</span>Earlier this year in southwestern Turkey, archaeologists found a statue of Athena, face down in the rubble behind a theater stage wall.</mark> <mark class="cue" data-g="2"><span class="b">2</span>A headless white marble statue, six and a half feet tall, the head of Medusa carved across her chest, dating to the age of Caesar Augustus.</mark>'),
+     P('Of all the gods they could have dug up, it was Athena, goddess of war, but also the goddess of WEAVING, the goddess of the loom. <mark class="cue" data-g="3"><span class="b">3</span>Because Laodicea was a weaving town, and if you\'ve spent time in your Bible you have heard of it.</mark>'),
+     P('It was RICH, famous for banking with its own gold exchange, glossy black wool, and an eye salve sold across the Roman world. The water came in lukewarm through a long mineral pipe. Because to this city the risen Christ sent a letter in Revelation three, and listen how He speaks their language:'),
+     P('<mark class="cue" data-g="4"><span class="b">4</span>To a banking town with a gold exchange, "buy from Me gold tried in the fire."</mark> <mark class="cue" data-g="5"><span class="b">5</span>To a city of fine wool, "white raiment, that thou mayest be clothed."</mark> <mark class="cue" data-g="6"><span class="b">6</span>To the makers of eye salve, "anoint thine eyes, that thou mayest see."</mark>'),
+     P('<mark class="cue" data-g="7"><span class="b">7</span>And to a people choking down warm water, "because thou art lukewarm... I will spue thee out of my mouth."</mark> <mark class="cue" data-g="8"><span class="b">8</span>"Because thou sayest, I am rich... and knowest not that thou art wretched, and miserable, and poor, and blind, and naked."</mark>'),
+     P('The goddess of the loom, polished where the crowd could see and rough on the back where nobody looked. That is the very thing Christ warned them about. And the warning still stands.')],
+    graphics:[
+      g(1,'Intro Graphic','Intro: "THE GODDESS IN THE RUBBLE OF LAODICEA"','ns','Isaac','','',1),
+      g(2,'Article Screenshot','Athena statue discovery, Laodicea (Türkiye Today)','ns','Isaac','','David hyperlink: turkiyetoday.com. Fair-use editorial / statue photo.',2),
+      g(3,'B-roll','Laodicea ruins flythrough (:3-:7)','ns','Jeremiah','','David cue: "just for visual" = SILENT b-roll under VO. youtube wC_XAwMeiYo',3),
+      g(4,'Propres Quote','Rev 3:18a — "gold tried in the fire"','ns','Isaac','','',4),
+      g(5,'Propres Quote','Rev 3:18b — "white raiment"','ns','Isaac','','',5),
+      g(6,'Propres Quote','Rev 3:18c — "anoint thine eyes"','ns','Isaac','','',6),
+      g(7,'Propres Quote','Rev 3:16 — "lukewarm... spue thee out"','ns','Isaac','','',7),
+      g(8,'Propres Quote','Rev 3:17 — "thou sayest, I am rich..."','ns','Isaac','','',8)]}
+ ]},
+ {id:4,ep:'S03 Ep029',title:'Deep Sea Discoveries in Australia',segments:[
+   {name:'Opening Monologue',script:[
+     P('<mark class="cue" data-g="1"><span class="b">1</span>"Scientists Discover Over 110 New Species in the Coral Sea." "Mysterious Creatures Pulled From Three Kilometers Beneath the Waves." "An Entire Hidden World Found Off the Coast of Australia."</mark> These headlines are nothing short of astonishing.'),
+     P('<mark class="cue" data-g="2"><span class="b">2</span>The Coral Sea off northeastern Australia covers nearly 390,000 square miles and plunges to 20,000 feet, and the vast majority of it had never been explored.</mark> We mapped Mars while this living sea sat in the dark.'),
+     P('For thirty-five days a research vessel lowered instruments nearly two miles down. <mark class="cue" data-g="3"><span class="b">3</span>What they found exceeded all expectation, more than one hundred and ten species entirely new to science, likely climbing past two hundred.</mark>'),
+     P('<mark class="cue" data-g="4"><span class="b">4</span>The shark expert identified four new species himself, two rays, a deepwater catshark, and a ghostly chimaera, plus brittle stars, crabs, sponges, and a rare sand tiger shark.</mark> They read the DNA of each.'),
+     P('Scientists have named around 240,000 marine species and believe millions more are still hidden. A single voyage turned up a hundred marvels we never knew. What a deep and wondrous world, revealing the most incredible God.')],
+    graphics:[
+      g(1,'Intro Graphic','Intro: "DEEP SEA DISCOVERIES IN AUSTRALIA"','ns','Isaac','','',1),
+      g(2,'Article Screenshot','3 opening headlines (110 new species / Coral Sea)','ns','Isaac','','David: three quoted headlines at the open. Could be animated headline lower-thirds.',2),
+      g(3,'B-roll','Coral Sea reef + deep-ocean loop','ns','Jeremiah','','David cue: "pull some clips from this for the Coral Sea" — youtube THnF0IQ8JJM (also WVlG4ocMBS0)',3),
+      g(4,'B-roll','New deep-sea creatures (rays, catshark, chimaera, sand tiger)','ns','Jeremiah','','David linked the 110-species doc (EMwsikS4hLY) but flagged it "feels AI generated" — editor aside, do NOT put that text on screen.',4)]}
+ ]},
+ {id:5,ep:'S03 Ep030',title:'Beneath the Antarctic Ice (10 Facts)',segments:[
+   {name:'Opening Monologue',script:[
+     P('<mark class="cue" data-g="1"><span class="b">1</span>Antarctica covers 5 million square miles and is almost entirely covered in ice, the last great wilderness on Earth.</mark> <mark class="cue" data-g="2"><span class="b">2</span>It is a time machine, and in 2025 there was an incredible discovery buried beneath the ice.</mark>'),
+     P('<mark class="cue" data-g="3"><span class="b">3</span>FACT 1: a lost world. A mile down, radar found valleys and ridges carved by ancient rivers, the size of Wales, even pollen from PALM TREES.</mark>'),
+     P('<mark class="cue" data-g="4"><span class="b">4</span>FACT 2: Blood Falls, where the Taylor Glacier bleeds red from iron-rich brine.</mark> <mark class="cue" data-g="5"><span class="b">5</span>FACT 3: Mount Erebus, the southernmost active volcano, erupting continuously since 1972.</mark>'),
+     P('<mark class="cue" data-g="6"><span class="b">6</span>FACT 4: spring UV so intense it can sunburn skin in minutes.</mark> <mark class="cue" data-g="7"><span class="b">7</span>FACT 5: the McMurdo Dry Valleys, colder and drier than Mars, yet microbes thrive.</mark>'),
+     P('<mark class="cue" data-g="8"><span class="b">8</span>FACT 6: over 400 subglacial lakes, Lake Vostok the size of Lake Ontario.</mark> <mark class="cue" data-g="9"><span class="b">9</span>FACT 7: Antarctica collects more meteorites per square mile than anywhere, over 20,000 recovered.</mark>'),
+     P('<mark class="cue" data-g="10"><span class="b">10</span>FACT 8: antifreeze fish and transparent octopuses.</mark> <mark class="cue" data-g="11"><span class="b">11</span>FACT 9: the Endurance, Shackleton\'s ship, found in 2022 after 107 years.</mark> <mark class="cue" data-g="12"><span class="b">12</span>FACT 10: the polar vortex that sends Arctic air as far south as Florida.</mark>'),
+     P('Antarctica is like a thermostat. These 10 facts make you stand in awe of God\'s power at the very ends of the earth.')],
+    graphics:[
+      g(1,'Intro Graphic','Intro: "BENEATH THE ANTARCTIC ICE (10 FACTS)"','ns','Isaac','','',1),
+      g(2,'B-roll','Antarctica drone flyover (2:12-2:22)','ns','Jeremiah','','youtube TiXOQn7z9Hg',2),
+      g(3,'Graphic','FACT 1 lower-third + lost-world article','ns','Isaac','','Section card. David link: jpost.com (article screenshot) + NZ b-roll "just for visual" GOrwaPG_4E8',3),
+      g(4,'Graphic','FACT 2 lower-third + Blood Falls b-roll','ns','Isaac','','Nl0Fuzns_o8 :7-11 "just for visual"',4),
+      g(5,'Graphic','FACT 3 lower-third + Mt. Erebus b-roll','ns','Isaac','','_vcsei-Jq6U :41-58 "just for visual"',5),
+      g(6,'Graphic','FACT 4 lower-third + 24hr sun timelapse','ns','Isaac','','in0B1OQG3-M :7-10 "just for visual"',6),
+      g(7,'Graphic','FACT 5 lower-third + Dry Valleys b-roll','ns','Isaac','','II7edARSvvk :3-8 "just for visual"',7),
+      g(8,'Graphic','FACT 6 lower-third + subglacial lakes b-roll','ns','Isaac','','KOnB47PyZJw 7:25-30',8),
+      g(9,'Graphic','FACT 7 lower-third + meteorites b-roll','ns','Isaac','','VpbLGPyfgnA 2:20-27 "just for visual"',9),
+      g(10,'Graphic','FACT 8 lower-third + antifreeze fish / octopus','ns','Isaac','','DAVID GAVE NO LINK — Pass-2 visual (stock or AI candidate).',10),
+      g(11,'Clip w/audio','FACT 9 lower-third + ENDURANCE trailer (:18-24)','ns','Isaac','','563_lBO3wiY — plays with audio (PAUSE).',11),
+      g(12,'Graphic','FACT 10 lower-third + polar vortex','ns','Isaac','','DAVID GAVE NO LINK — Pass-2 visual.',12)]}
+ ]}
+]};
+
+let cur={view:'master',show:null,seg:0};
+const $=s=>document.querySelector(s);
+function allG(show){return show.segments.flatMap(s=>s.graphics);}
+function counts(list){const c={ns:0,ip:0,cr:0,li:0};list.forEach(x=>c[x.st]++);return c;}
+
+function renderTabs(){
+  const t=$('#tabs');t.innerHTML='';
+  const m=document.createElement('span');m.className='tab master'+(cur.view==='master'?' on':'');m.textContent='Master';m.onclick=()=>{cur.view='master';render();};
+  t.appendChild(m);
+  DATA.shows.forEach(s=>{const b=document.createElement('span');b.className='tab'+(cur.view==='show'&&cur.show===s.id?' on':'');b.textContent='Show '+s.id;b.onclick=()=>{cur.view='show';cur.show=s.id;cur.seg=0;render();};t.appendChild(b);});
+}
+function bar(c){const tot=c.ns+c.ip+c.cr+c.li||1;return '<div class="bar">'+order.map(k=>'<i class="'+k+'" style="width:'+(c[k]/tot*100)+'%"></i>').join('')+'</div>';}
+
+function renderMaster(){
+  $('#crumb').style.display='none';
+  const v=$('#view');v.innerHTML='';const wrap=document.createElement('div');wrap.className='master';
+  DATA.shows.forEach(s=>{
+    const c=counts(allG(s));const tot=c.ns+c.ip+c.cr+c.li;
+    const card=document.createElement('div');card.className='showcard';
+    card.innerHTML='<h3>Show '+s.id+' &middot; '+s.title+'</h3><div class="ep">'+s.ep+'</div>'+bar(c)+
+      '<div class="cnt"><b>'+(c.cr+c.li)+'</b> of <b>'+tot+'</b> ready or loaded &middot; '+c.ns+' not started &middot; '+c.ip+' in progress</div>'+
+      '<div class="segmini">'+s.segments.map(seg=>{const sc=counts(seg.graphics);const done=sc.li+sc.cr===seg.graphics.length;return '<div><span>'+seg.name+'</span><span class="'+(done?'done':'')+'">'+(sc.li+sc.cr)+'/'+seg.graphics.length+'</span></div>';}).join('')+'</div>';
+    card.onclick=()=>{cur.view='show';cur.show=s.id;cur.seg=0;render();};
+    wrap.appendChild(card);
+  });
+  v.appendChild(wrap);
+}
+
+function renderShow(){
+  const s=DATA.shows.find(x=>x.id===cur.show);const seg=s.segments[cur.seg];
+  const cb=$('#crumb');cb.style.display='';cb.textContent='← Master / Show '+s.id+' · '+s.title;cb.onclick=()=>{cur.view='master';render();};
+  const v=$('#view');v.innerHTML='';
+  const grid=document.createElement('div');grid.className='show';
+
+  const c1=document.createElement('div');c1.className='col';c1.innerHTML='<div class="colhead">Segments</div>';
+  s.segments.forEach((sg,i)=>{const sc=counts(sg.graphics);const st=sg.graphics.every(x=>x.st==='li')?'li':(sc.ns===sg.graphics.length?'ns':'ip');
+    const d=document.createElement('div');d.className='seg'+(i===cur.seg?' on':'');
+    d.innerHTML='<div class="n">'+sg.name+'</div><div class="m"><span><span class="sdot" style="background:var(--'+st+')"></span>'+(sc.cr+sc.li)+'/'+sg.graphics.length+' ready</span></div>';
+    d.onclick=()=>{cur.seg=i;render();};c1.appendChild(d);});
+  grid.appendChild(c1);
+
+  const c2=document.createElement('div');c2.className='col';c2.id='scriptcol';
+  c2.innerHTML='<div class="colhead">Script · '+seg.name+' (highlight = where the graphic sits, 2-3 sentences of context)</div>';
+  if(seg.script&&seg.script.length){const sd=document.createElement('div');sd.className='script';sd.innerHTML=seg.script.map(p=>'<p>'+p+'</p>').join('');c2.appendChild(sd);
+    seg.graphics.forEach(gr=>{if(gr.cue){const m=c2.querySelector('.cue[data-g="'+gr.cue+'"]');if(m)m.dataset.st=gr.st;}});
+  } else {c2.innerHTML+='<div class="noscript">This is a pre-produced roll-in. No teleprompter script.</div>';}
+  grid.appendChild(c2);
+
+  const c3=document.createElement('div');c3.className='col';c3.innerHTML='<div class="colhead">Graphics · '+seg.name+'</div>';
+  const gl=document.createElement('div');gl.className='glist';
+  seg.graphics.forEach(gr=>{
+    const row=document.createElement('div');row.className='grow';row.dataset.st=gr.st;row.dataset.g=gr.cue||'';
+    const opts=order.map(k=>'<option value="'+k+'"'+(k===gr.st?' selected':'')+'>'+ST[k]+'</option>').join('');
+    const isBroll=/B-roll|Picture|Article/.test(gr.type);
+    row.innerHTML='<div class="gtop"><span class="gnum">'+gr.n+'</span><span class="gtype">'+gr.type+'</span><span class="gwho">'+gr.who+'</span></div>'+
+      '<div class="gdesc">'+gr.desc+'</div>'+
+      '<div class="r2"><select class="st">'+opts+'</select><input class="fname" value="'+gr.file+'" placeholder="filename when created..."></div>'+
+      (isBroll?'<div class="src">Find: <a>Storyblocks</a><a>Dreamstime</a><a>Envato</a></div>':'')+
+      (gr.notes?'<div class="gnotes">'+gr.notes+'</div>':'')+
+      '<button class="push"></button>';
+    gl.appendChild(row);
+    const sel=row.querySelector('.st'),fn=row.querySelector('.fname'),push=row.querySelector('.push');
+    function sync(){gr.st=sel.value;row.dataset.st=gr.st;gr.file=fn.value;
+      if(gr.cue){const m=c2.querySelector('.cue[data-g="'+gr.cue+'"]');if(m)m.dataset.st=gr.st;}
+      const hasF=fn.value.trim().length>0;
+      if(gr.st==='li'){push.className='push';push.textContent='In ProPresenter';}
+      else if(gr.st==='cr'&&hasF){push.className='push ready';push.textContent='Push to ProPresenter';}
+      else{push.className='push';push.textContent=hasF?'Mark Created to push':'Filename + Created to push';}
+    }
+    sel.onchange=sync;fn.oninput=sync;sync();
+    row.onclick=e=>{if(e.target.closest('select,input,a,button'))return;focusCue(gr.cue,row);};
+  });
+  c3.appendChild(gl);
+  grid.appendChild(c3);
+  v.appendChild(grid);
+}
+
+function focusCue(cue,row){
+  document.querySelectorAll('.cue.active,.grow.active').forEach(e=>e.classList.remove('active'));
+  if(row)row.classList.add('active');
+  if(!cue)return;
+  const m=$('#scriptcol .cue[data-g="'+cue+'"]');
+  if(m){m.classList.add('active');m.scrollIntoView({block:'center',behavior:'smooth'});}
+}
+function render(){renderTabs();cur.view==='master'?renderMaster():renderShow();}
+render();
+</script>
+</body>
+</html>

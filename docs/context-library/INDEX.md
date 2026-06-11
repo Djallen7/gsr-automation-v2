@@ -50,6 +50,7 @@ MCP connector for app read/write. Entries are written row-shaped so Phase 2 is a
 | `distribution.md` | delivery targets, platforms, vendors (StreamHoster, Signiant/RLN, Dropbox, deferred GodTube/OTA/TBN/CTN) | `GSR-WORKFLOW-CANON.md` §11, `distributions.platform` enum, `config/production.json` |
 | `crew-and-people.md` | David Rives, guests, the team (Isaac, Jakob, Jeremiah, Gabe, Miryam, Anderson, Ethan, Bella), who owns what | `GSR-WORKFLOW-CANON.md` crew section |
 | `infrastructure-and-security.md` | ProPresenter/ATEM/QNAP, off-limits gear, the 2026-05-20 security incident, SSH/credential rules | `CLAUDE.md` "Off-limits" + "Security Rules" |
+| `claude-code-tooling.md` | Claude Code capabilities (goals, loops, agent teams, hooks, skills, plugins, MCP), Fable 5 patterns, **multi-session management**, the capabilities playbook, tool-adoption decisions | official Claude Code docs, `claude-code-guide` agent, `docs/2026-06-11-fable5-pipeline-build-research-prompt.md` |
 | `decisions-log.md` | cross-cutting decisions that don't fit one domain; open questions awaiting Daniel | this file + `decisions/` ADRs |
 
 > New domains get a new category here + its file, created together.

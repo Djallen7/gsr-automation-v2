@@ -127,8 +127,9 @@ Code / Agent SDK / API behavior.
    connector fast.
 6. **Multi-session continuity (companion track — Daniel has dispatched this to another session; do not
    duplicate, but design to consume its output):** how a single session can review the state of ~10
-   concurrent Code/desktop sessions, and a third-party/centralized way to manage them. Coordinate via
-   the context library so both tracks converge.
+   concurrent Code/desktop sessions, and a third-party/centralized way to manage them. The rendezvous
+   is `docs/context-library/claude-code-tooling.md` — read its "Multi-session management" entry for the
+   other track's findings before designing, and append your own there so the tracks converge.
 
 **End Phase 1 with a self-critique loop:** "What did I miss? Which findings are unverified? What would
 make this pipeline better that Daniel has not asked for? What further removes his toil?" Fold the

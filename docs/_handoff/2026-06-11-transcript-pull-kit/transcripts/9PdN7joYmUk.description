@@ -1,0 +1,12 @@
+c9watch is a lightweight macOS desktop app that gives you a real-time dashboard of every Claude Code session running on your machine.
+
+Built with Tauri, Rust, and Svelte - c9watch automatically discovers all your Claude Code sessions regardless of where you start them (VS Code, Zed, iTerm2, or any terminal). No plugins required. No vendor lock-in.
+
+Key Features:
+  ✓ Auto-discovery - Detects all running Claude Code sessions at the OS level
+  ✓ Real-time status - See which sessions are Working, Need Permission, or Idle
+  ✓ Conversation viewer - Expand any session to view the full conversation
+  ✓ Session control - Stop sessions, open terminals, or rename for easier
+tracking
+  ✓ Multi-project view - Sessions grouped by project with git branch info
+  ✓ Lightweight - Built with Tauri and Rust, not Electron

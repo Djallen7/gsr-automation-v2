@@ -17,7 +17,7 @@
       "verifier_evidence": "Phase E live test, see 2026-06-11-mission-run-notes.md Addendum: the /loop skill's scheduling backend (CronCreate/ScheduleWakeup) is not exposed here either; 30-min cadence emulated with a persistent Monitor tick. /lanes and /resume-lane DID surface as invocable skills mid-session (run-notes Phase E table corrected).",
       "gsr_application": "Goal conditions are emulated as AND-checklists + independent verifier agent; /loop drives checkpoint cadence",
       "lane": "Lane 9 (research loop)",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-002",
@@ -28,7 +28,7 @@
       "verifier_evidence": "Live test 2026-06-11: youtube_transcript_api raised IpBlocked",
       "gsr_application": "Seed-corpus transcript mining must run on Daniel's Mac (rung 2 kit pre-staged in 2026-06-11-transcript-pull-kit/)",
       "lane": "Lane 9 / R1",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-003",
@@ -39,7 +39,7 @@
       "verifier_evidence": "Live test 2026-06-11: inv.nadeko.net lists caption tracks but serves 0-byte caption bodies; /videos endpoint disabled; yewtu.be 403; pipedapi.kavin.rocks timeout. Metadata sometimes available, transcript content not. Matches 2026 reports that YouTube's PO-token requirement broke caption proxying.",
       "gsr_application": "Do not plan rung 4 as a backbone; opportunistic only, as the mission doc already says",
       "lane": "Lane 9 / R1",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-004",
@@ -50,7 +50,7 @@
       "verifier_evidence": "Doc-verified 2026-06-11 per mission contract; env version 2.1.173 satisfies the floor; feature simply not surfaced in the web harness (CL-001); [video jUL-0O4cu2c] Confirms /goal show displays turns taken, tokens consumed, and goal name. Confirms /goal clear. Confirms 'goal achieved' message on completion.",
       "gsr_application": "Daniel's Mac CLI sessions CAN use /goal for build lanes; web sessions emulate",
       "lane": "Lane 9 / R2",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-005",
@@ -61,7 +61,7 @@
       "verifier_evidence": "Contradicts canon s15 prompt-hygiene ruling and Anthropic's own confirmation-gate guidance; the mission doc itself flags it as hype. Logged per doctrine so it is on the record as not-build-on-able.",
       "gsr_application": "None. Confirmation gates stay.",
       "lane": "Lane 9 / R1",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "id": "CL-006",
@@ -72,7 +72,7 @@
       "verifier_evidence": "Long-established in repo across /api/rc-* implementations; re-confirmed in CLAUDE.md current state",
       "gsr_application": "Any new RC automation (Lane 4 sync) wraps calls in a body-checking client",
       "lane": "Lane 4",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-007",
@@ -83,7 +83,7 @@
       "verifier_evidence": "Read-only Supabase SQL 2026-06-11: production_lower_thirds, lower_thirds_variations, production_graphics all EXIST (0 rows each); 'graphics'/'graphics_variations' are GONE; episodes=48, guests=175.",
       "gsr_application": "First build slice (answer 1A) must sequence on this: DB is ahead of deployed code",
       "lane": "Lane 8 / build slice 1",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-008",
@@ -94,7 +94,7 @@
       "verifier_evidence": "Claude Code settings schema (update-config skill, 2026-06-11): cleanupPeriodDays is a general settings.json key; settings load user -> project -> local and merge. Caveat: THIS session's permission layer blocks settings.json edits (self-modification guard), so applying it falls to Daniel or a Mac session (one-liner recorded in run-notes).",
       "gsr_application": "Mission Control needs Daniel's Mac session JSONL to survive; if user-only, the plan tells his Mac to set it once",
       "lane": "Lane 9 / Mission Control",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-009",
@@ -105,7 +105,7 @@
       "verifier_evidence": "Live DB table list 2026-06-11 (graphics absent) + main's code references graphics (PR #50 diff renames ~20 call sites, unmerged). Impact bounded: all lower-thirds tables have 0 rows, so no data loss, but the deployed pages error against a missing relation.",
       "gsr_application": "Raises urgency of Daniel's Q16 merge decision: merging the PR stack closes the skew window. Build plan sequences slice 1 after that merge.",
       "lane": "Lane 7 / Lane 8",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -116,7 +116,7 @@
       "verifier_evidence": "v0.5.0 2026-05-13, MIT, 3.5k stars; brew install --cask claude-devtools",
       "gsr_application": "Mission Control forensics layer: ADOPT (one-tap yes, 8B)",
       "lane": "Mission Control",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -127,7 +127,7 @@
       "verifier_evidence": "uvx claude-code-log@latest --open-browser; MIT",
       "gsr_application": "WATCH: overlaps claude-devtools",
       "lane": "Mission Control",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "date_heard": "2026-06-11",
@@ -138,7 +138,7 @@
       "verifier_evidence": "v9.0.1 2026-05-15, MIT, 216 stars",
       "gsr_application": "WATCH: memory not live oversight; later lane candidate",
       "lane": "Mission Control",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "date_heard": "2026-06-11",
@@ -149,7 +149,7 @@
       "verifier_evidence": "v20.0.11 2026-06-10, MIT, 16k stars; [video 9nb23iA8VGc] CC Usage (npx cc-usage or bunx cc-usage) confirmed working for Claude Code + Codex combined usage. Video shows both monthly/weekly/daily/session breakdowns. Confirms ccusage reads from local files; Codex does not expose weekly data but Claude Code does.",
       "gsr_application": "ADOPT as weekly cost lens, not a live monitor",
       "lane": "Mission Control",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -160,7 +160,7 @@
       "verifier_evidence": "v1.0.18, AGPL-3.0, 7.8k stars",
       "gsr_application": "SKIP: autoyes against the David Rule's spirit; Agent View covers it",
       "lane": "Mission Control",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "date_heard": "2026-06-11",
@@ -171,7 +171,7 @@
       "verifier_evidence": "Research preview since v2.1.139 (~2026-05-13); disableAgentView kill switch exists; [video tJVUAzLZUyI] Confirms Agent View (claude agents) shows background sessions; adds specific CLI: 'claude --bg <prompt>' creates background session, Ctrl+X stops, Shift+Tab cycles permission modes, arrow navigation.; [video msiaY6wec90] Confirms Agent View dashboard shows colored status indicators per session. Adds detail: yellow = needs input, green = done. Also confirms 'claude agents' as the CLI command to list all background sessions.; [video ZAaxx3qyT8g] Confirms Agent View shows all sessions, status indicators (yellow=needs input, green=done). Adds left/right arrow navigation, /bg command, Ctrl+X twice to kill, reply-from-view capability.",
       "gsr_application": "Mission Control live layer: ADOPT + the /bg habit; claude agents --json feeds a lanes.json sessions block (the extend-lanes build)",
       "lane": "Mission Control",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -182,7 +182,7 @@
       "verifier_evidence": "v0.44.0 2026-06-03, MIT, 84 stars (young, Jan 2026)",
       "gsr_application": "WATCH: fallback if the /bg habit annoys; disable telemetry if ever adopted",
       "lane": "Mission Control",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -193,7 +193,7 @@
       "verifier_evidence": "MIT, self-hosted Next.js+SQLite, updated 2026-06-11",
       "gsr_application": "SKIP: replaces the workflow (anti-churn) instead of extending lanes",
       "lane": "Mission Control",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "date_heard": "2026-06-11",
@@ -204,7 +204,7 @@
       "verifier_evidence": "Official docs label Broadcast the recommended method; needs RLS policy on realtime.messages + trigger setup",
       "gsr_application": "Live status on /workflow, /lower-thirds, /episodes without refresh; build realtime features broadcast-first",
       "lane": "dashboard realtime",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -215,7 +215,7 @@
       "verifier_evidence": "Queues is pull-only (Mac still polls); pgmq_public exposure must be explicitly enabled + RLS-considered",
       "gsr_application": "Supersedes the hand-rolled jobs-table plan in canon s12 orchestration (refinement, same shape); distribution backbone",
       "lane": "distribution",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -226,7 +226,7 @@
       "verifier_evidence": "Treat hook URL as a password; personal tokens team-scoped, set expiration",
       "gsr_application": "Automation can redeploy the dashboard and watch the deploy land before reporting success",
       "lane": "ops",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -237,7 +237,7 @@
       "verifier_evidence": "Webhook cap per account (507 when exceeded)",
       "gsr_application": "Basecamp lane MUST build the token-refresh loop before any webhook consumer ships; push-style sync viable",
       "lane": "Lane 5 (Basecamp)",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -248,7 +248,7 @@
       "verifier_evidence": "Safety is procedural: read-only GET verification, then triggers on TEST machine only; pin + record test-machine version before trigger work",
       "gsr_application": "Defines the authorized ProPresenter lane: verify-by-GET, fire-on-test, live rig human-yes per canon s15",
       "lane": "ProPresenter",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -259,7 +259,7 @@
       "verifier_evidence": "Third-party sources date the change Dec 2025; the practical GSR gate is the ONE-TIME project audit",
       "gsr_application": "Distribution unblocked quota-wise; publishAt fits the Monday-4PM webstream model; START THE AUDIT EARLY",
       "lane": "distribution",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -270,7 +270,7 @@
       "verifier_evidence": "Vendor-side evidence; revisit only if many always-on event integrations outgrow Cron/Queues/webhooks; [video ZeJXI2MAhj0] Confirms n8n and Claude Code are complementary: n8n for deterministic scheduled automations with existing infrastructure; Claude Code for conversational/iterative agentic workflows. Adds Trigger.dev as a third option for deployed agentic workflows.; [video Dug97la9YoQ] Confirms use-case split: n8n for scheduled, data-driven, high-volume, compliance-sensitive automations; Claude Code for iterative/conversational workflows, custom apps, and anything requiring human-in-the-loop back-and-forth.; [video Vc3I-8eQ7rA] Confirms complementary framing. Adds pattern: use Claude Code agentic workflow to prototype and explore, then rebuild the validated solution in n8n for production scheduling.; [video ZeJXI2MAhj0] Confirms n8n knowledge is complementary, not wasted — agentic workflows (Claude Code + trigger.dev) are additive to n8n skills, not a replacement.; [video uUEa6K-FLB8] Confirmed: n8n and Claude Code used together in production — n8n handles workflow orchestration and error detection; Claude Code (via MCP server + skills) handles diagnosis and repair. Video demonstrates a live working integration.; [video tDGiWn0flK8] Confirmed: video explicitly states traditional n8n automation remains ideal for deterministic/repetitive tasks while agentic Claude Code handles variable judgment-call tasks; the two are described as complementary, not competitive.; [video wb4uDdsFh6o] Author explicitly states n8n is not dead and will not be replaced by Claude Code; they are fundamentally different tools and complementary. Also confirms from OCO3aq3G0mk (n8n MCP pattern). Provides the 10-minute rule as a concrete decision heuristic.",
       "gsr_application": "ADR-0012's n8n deferral HOLDS; seed-corpus n8n videos are technique sources only",
       "lane": "architecture",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -281,7 +281,7 @@
       "verifier_evidence": "Mission doc's '/goal show' is wrong - correction recorded in run-notes; [video jZgcWCzxh1I] Confirmed: /goal described as a depth-first loop checking 'done == true' repeatedly; contrasted with workflows (width-first parallel fan-out). Video clarifies /goal can run 24+ hours if criteria are vague.; [video jUL-0O4cu2c] Confirms /goal keeps working across turns until condition met, consistent with evaluator pattern described in CL-025.",
       "gsr_application": "Mac lanes: /goal <AND-list> with a turn-cap clause as cost brake",
       "lane": "Lane 9 + build lanes",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -292,7 +292,7 @@
       "verifier_evidence": "Loops die with the session; [video fOpFgjH8IfQ] Confirms /loop is built-in; adds that /loop sessions expire after 3 days requiring renewal workaround, and that tmux is necessary for persistence across disconnects.; [video xJ5oz63mIec] Confirms /loop creates session-scoped crons. Clarifies: in terminal /clear preserves crons; in desktop app /clear kills crons. 7-day expiry confirmed in terminal; desktop app shows 3 days (possible UI bug or version difference).; [video jqoFP9QapXI] Confirms /loop for recurring tasks. Video states loops last 3 days (desktop app) vs 7 days (terminal/documentation). Adds: can set loops to auto-kill after N iterations.; [video jqoFP9QapXI] Video states /loop lasts \"3 days\" — CONFLICTS with CL-026 which says 7 days. This discrepancy is worth flagging; the 7-day figure may reflect a later update to the feature after this video was recorded.; [video OUyfxhFtGCo] Confirms /loop 3-day expiry and recurring task behavior; adds that default interval is 10 min if unspecified and that loops are strictly per-session (cron_list only sees loops from the current session); [video RLjaUES9P8A] /loop confirmed: 'run it without a prompt and Claude will go into maintenance mode and just keep your project tidy' -- handles unfinished tasks, PR comments, merge conflicts on a schedule.",
       "gsr_application": "In-day babysitting only; standing schedules go to Routines or Supabase Cron",
       "lane": "Lane 9 + ops",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -303,7 +303,7 @@
       "verifier_evidence": "Structurally cannot touch QNAP/ProPresenter (clone + connectors only); [video xn6Z5PYyAIE] Routines explicitly defined in transcript as: 'In Claude, we're able to set up these things called routines. And what routines are is it basically just on a set cadence injects a prompt into Claude code.' The video demonstrates scheduling a routine that references a Google Sheet for content pipeline generation, confirming the inject-on-cadence mechanism described in CL-027.; [video ehg4fhydTgs] Confirms routines run on Anthropic cloud, fresh GitHub clone, no permission carryover. Adds: secrets must go in environment variables (not .env which is gitignored), environment variables set per cloud environment object in settings.; [video xJ5oz63mIec] Confirms routines run on Anthropic cloud with no local file access. Adds three trigger types: schedule, API webhook, GitHub event. Confirms minimum 1hr interval.; [video ctu_RyQNR5w] Confirms Routines run on Anthropic cloud; adds specific run caps (Pro=5/day, Max=15/day, Team/Enterprise=25/day) and hard minimum schedule interval of 1 hour.; [video D3pxbkPg0KE] Confirms remote Routines; adds that Cowork local scheduled tasks skip (then catch up) if app is closed, and that model can be selected per task.; [video fOpFgjH8IfQ] Confirms Routines cloud path; this video uses /loop as the local equivalent and highlights the 3-day session expiry as a key limitation not present in cloud Routines.; [video 6MC1XqZSltw] Remote routines confirmed: fresh GitHub clone in cloud, no permission carryover. Extends with: cloud environment is destroyed after run; files must be pushed back to repo; 'allow unrestricted branch pushes' permission required; API keys must be in environment variables not .env.",
       "gsr_application": "Nightly data audits, RC dry-run reports, lanes refresh: the laptop-closed layer (14A)",
       "lane": "ops + Mission Control",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -314,7 +314,7 @@
       "verifier_evidence": "Requires v2.1.32+; [video vfWTyEreOEc] Agent teams confirmed experimental, must enable in .claude/settings.json. Video confirms they share task list and can talk to each other, distinguishing them from subagents.; [video vDVSGVpB2vc] Confirms agent teams are disabled by default and enabled via CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS env var in .claude/settings.local.json (project-level). Video shows the exact setup flow.; [video HlqAe1LL7U8] Second independent confirmation of agent teams setup via settings.json env var; also shows display_mode option (in-process vs split panes) as a setup question Claude asks during configuration.; [video oC3F2SFaF9w] Confirms agent teams is experimental and not enabled by default; requires adding configuration to settings.json. Also confirms that team agents can request information from each other (unlike regular sub-agents which only report back to the orchestrator).; [video jZgcWCzxh1I] Confirmed: agent teams described as 'group chat' where agents share a task list and talk to each other; distinguished from sub-agents (parallel but no inter-agent communication) and workflows (JavaScript-orchestrated fan-out).; [video zm-BBZIAJ0c] Confirms CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS is still experimental and disabled by default. Adds: version must be >= 2.1.32, env var belongs in the settings.json 'env' section.; [video y9IYtWELMHw] Confirms experimental flag in settings.json; confirms teammates get CLAUDE.md, MCPs, skills but not lead conversation history.; [video BT_yyd_djGw] Confirms experimental agent teams feature and tmux split-pane mode.; [video StCB3P71CUw] Confirms experimental flag via settings.json env block; confirms tmux or iTerm2 required for split pane.; [video MbKUeufUZIY] Confirms CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 in settings.json; confirms multi-session parallel execution.; [video vDVSGVpB2vc] Confirms CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS is the env var (placed in settings.local.json not settings.json); adds that teammates inherit permissions and can access all project MCP servers and skills; [video oC3F2SFaF9w] Confirms agent teams require experimental settings.json flag; video adds that tmax is recommended for multi-pane visibility and that Pro plan usage per task can reach ~$7-8 (50% of a Pro session).",
       "gsr_application": "Stay on subagents/background sessions; at most a one-off adversarial review",
       "lane": "architecture",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -325,7 +325,7 @@
       "verifier_evidence": "Tutorial at /hooks-guide; [video BlNJFa3Btm8] Confirms hook support for scheduled tasks -- video demonstrates adding a hook so that every time a scheduled task session finishes a sound notification plays, invoked via natural language to Claude; [video G9OBGn0h6LE] Hooks lifecycle confirmed: PreToolUse, PostToolUse, Stop (post-response) trigger points all demonstrated. Stop hook fires when Claude concludes its response. Settings.json hook entry matches on tool name array.; [video RLjaUES9P8A] Confirms ~30 hook events for Claude Code; provides contrast with Codex (~6 events), confirming the 30-event figure and illustrating practical significance.",
       "gsr_application": "Mechanical rule enforcement: PreToolUse command hook hard-blocking Tailscale-IP/QNAP-write commands; prompt Stop hook as automated David-Rule check",
       "lane": "ops/safety",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -336,7 +336,7 @@
       "verifier_evidence": "Mission doc's 'Session.History' is wrong - correction recorded; [video TqC1qOfiVcQ] Agent SDK confirmed as Claude Code packaged as a library. Anthropic presenter (Thariq Shihipar) confirms list_sessions / agent loop primitives and sub-agent patterns. File system + bash are the primary tools.; [video xJ5oz63mIec] Confirms Agent SDK stateless by default. Adds: pass session_id to make stateful. SDK auto-compacts but does not /clear. Monthly subscription credit applies to Agent SDK as a separate dedicated budget.",
       "gsr_application": "Mission Control extend-lanes build: ~20-line script list_sessions() -> lanes.json sessions block -> lanes.html",
       "lane": "Mission Control",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -347,7 +347,7 @@
       "verifier_evidence": "Verbatim doc quote in agent report",
       "gsr_application": "Name lane sessions so claude --resume lower-thirds works; raise cleanupPeriodDays (CL-008)",
       "lane": "Mission Control",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -358,7 +358,7 @@
       "verifier_evidence": "; [video jZgcWCzxh1I] Confirmed: /effort levels low/medium/high/xhigh/max shown in use; video introduces a 6th level 'ultra code' above max that auto-invokes dynamic workflows on every prompt.; [video q5lg3npxjAc] Confirms effort levels low/medium/high/xhigh/max. Adds 'ultra code' as a 6th tier (xhigh+workflows). Confirms default is high.",
       "gsr_application": "Lanes default high; xhigh/ultracode only for hard builds; maps to Weight/Fragility/API-cost scoring",
       "lane": "ops",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -369,7 +369,7 @@
       "verifier_evidence": "; [video l4mSSN6exGg] Confirms /rewind usage; Anthropic's own non-engineering teams use checkpoint-then-restart rather than correction as their primary recovery pattern.; [video _qZvORxGqI0] Confirms /rewind and double-Esc for checkpointing. Adds: /rewind menu includes a 'summarize from here' option that generates a handoff summary for the next session.; [video jqoFP9QapXI] Confirms /rewind rolls back conversation to a checkpoint. Also confirms bash-modified files tracked.",
       "gsr_application": "Git discipline + Type-YES gates stay the safety net for scripted ops",
       "lane": "ops",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "date_heard": "2026-06-11",
@@ -380,7 +380,7 @@
       "verifier_evidence": "Version-date mapping via code.claude.com/docs/en/whats-new",
       "gsr_application": "The 5-10 lanes can run as supervised background sessions that verify their own completion; fallbackModel for unattended resilience",
       "lane": "Lane 9 + all",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -391,7 +391,7 @@
       "verifier_evidence": "Mission doc table slightly off; corrected in run-notes; [video msiaY6wec90] Confirms Agent View shows no token counts. Reviewer notes token drain is invisible — reinforces that background agents provide zero cost visibility in the dashboard.; [video ZAaxx3qyT8g] Confirms Agent View is CLI-only and shows session runtime. Adds: regular sessions auto-appear in agent view without needing /bg.",
       "gsr_application": "Pair Agent View with ccusage as the cost lens (CL-013)",
       "lane": "Mission Control",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -402,7 +402,7 @@
       "verifier_evidence": "claude mcp add --transport sse youtube-transcript https://youtube-transcript-mcp.ergut.workers.dev/sse; thin maintenance (1-person)",
       "gsr_application": "The ONLY vetted path that may unblock transcript mining from CLOUD sessions; INSTALL candidate (one-tap yes, then live-test whether YouTube serves Cloudflare)",
       "lane": "Lane 9 / R1",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -413,7 +413,7 @@
       "verifier_evidence": "v0.5.7 Jan 2026, deps bumped Feb 2026, CI green; runs on the session's own IP (Mac only)",
       "gsr_application": "INSTALL candidate for Daniel's Mac (one-tap yes); pairs with ergut remote for full coverage; @sinco-lab variant SKIPped (weaker)",
       "lane": "Lane 9 / R1",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -424,7 +424,7 @@
       "verifier_evidence": "Caveat: indexes everything incl. accidentally-pasted secrets (locally); installs 6 hooks; pin version + skim setup script",
       "gsr_application": "Safe to propose; final adopt call deferred to Mission Control phase (CL-012 WATCH stands)",
       "lane": "Mission Control",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -435,7 +435,7 @@
       "verifier_evidence": "v0.1.5 2026-05-27, 2.2k stars; npx skills add supabase/agent-skills; [video jNpH_hOFvg4] Skills confirmed as markdown instruction files, context-efficient. Presenter from Replit confirms skill support added to Replit agent using same skills.sh framework, consistent with Anthropic's skills spec.",
       "gsr_application": "INSTALL candidate (near-zero risk): accuracy boost on every migration/RLS/edge-function task",
       "lane": "all DB lanes",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -446,7 +446,7 @@
       "verifier_evidence": "Active 2026; note Vercel's own evals found AGENTS.md slightly outperforms skills - complements our existing apps/dashboard/AGENTS.md",
       "gsr_application": "INSTALL candidate (near-zero risk): npx skills add vercel-labs/next-skills --skill next-best-practices",
       "lane": "dashboard",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "date_heard": "2026-06-11",
@@ -457,7 +457,7 @@
       "verifier_evidence": "/plugin install commit-commands@claude-plugins-official; PR-based flow matches repo branch rules",
       "gsr_application": "INSTALL candidate: cuts the most frequent manual chore; sibling pr-review-toolkit SKIPped (duplicates built-in review skills)",
       "lane": "ops",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -468,7 +468,7 @@
       "verifier_evidence": "91 commits, no tagged releases, 89 stars; third-party write access needs a code skim",
       "gsr_application": "WATCH: highest input-reduction potential but needs a 30-min vetting pass (token storage + write-path review) before proposing to Daniel; Lane 5 builds its own refresh loop regardless (CL-021)",
       "lane": "Lane 5 (Basecamp)",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -479,7 +479,7 @@
       "verifier_evidence": "v1.0.1 2026-01-31, 11 stars",
       "gsr_application": "WATCH: only ever pointable at the TEST machine; live rig keeps the in-the-moment human yes (canon s15); candidate for the ProPresenter lane's test-machine phase",
       "lane": "ProPresenter",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "date_heard": "2026-06-11",
@@ -490,7 +490,7 @@
       "verifier_evidence": "",
       "gsr_application": "SKIP unless the existing pipeline breaks",
       "lane": "transcription",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "date_heard": "2026-06-11",
@@ -501,7 +501,7 @@
       "verifier_evidence": "Single secondary source; not needed anyway given Agent View decision",
       "gsr_application": "Confirms SKIP of third-party orchestrators",
       "lane": "Mission Control",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "id": "CL-046",
@@ -512,7 +512,7 @@
       "verifier_evidence": "PR bodies read via GitHub MCP 2026-06-11; #52 explains the deferral (constraint-before-cleanup aborted the migration)",
       "gsr_application": "Slice 1 scope: 1.1 (Intro Graphic follow-up migration) still needed; 1.2 becomes a reconcile (add under-55 amber + over-70 hard block per canon s13 if missing); 1.5 shrinks to post-merge verify + the 3 topic-relevant chyron variations",
       "lane": "Lane 10",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-047",
@@ -523,7 +523,7 @@
       "verifier_evidence": "Repo-verified fact sheet dated 2026-06-04; re-verify currency at 7.2 build time per never-stale rule",
       "gsr_application": "Transcription build (7.2) stays on the canon registry pick: WhisperKit + SpeakerKit local, WhisperX honorable fallback",
       "lane": "Lane 12",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-048",
@@ -534,7 +534,7 @@
       "verifier_evidence": "USGS verbatim quote fetched from the page; corroborated by watchers.news 2026-06-02. Caveat: episode 49 was forecast ~Jun 12-15, so RE-CHECK the live count at usgs.gov/volcanoes/kilauea/volcano-updates on record day and swap the number. Scope guard: say 'any Kilauea eruption', never 'biggest eruption ever'. NOTE: no Austin/Kilauea episode row exists in the DB yet (verified by SELECT), so the wording is parked here + canon until Lane 3 creates the row; on-air-safe wording recorded in canon s14 resolution.",
       "gsr_application": "Plan 4.4 resolved: on-air wording locked, count qualified by date; Dr. Steve Austin exists in guests but is linked to no episode yet",
       "lane": "Lane 8 / Lane 3",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-049",
@@ -545,7 +545,7 @@
       "verifier_evidence": "Example: 'steve austin' returned 12 real products incl. Footprints in the Ash, the exact resource named in the June Topic 09 interview doc; nonsense query returned the no-products signal",
       "gsr_application": "Spec committed (2026-06-11-superstore-lookup-spec.md); build lands in plan 7.4 with the never-fabricate empty contract",
       "lane": "Lane 12 / 7.4",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-050",
@@ -556,7 +556,7 @@
       "verifier_evidence": "Consistent with Claude Code agent teams docs: teammates inherit the spawning session's tool permissions and settings.",
       "gsr_application": "When spinning up a GSR research or script-prep agent team, permission allowlists set on the main session propagate to all subagents without re-configuration.",
       "lane": "multi-agent",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-051",
@@ -567,7 +567,7 @@
       "verifier_evidence": "",
       "gsr_application": "For multi-session GSR research runs, tmux gives a live split-screen view of each agent's progress and allows direct mid-run steering of any single agent.",
       "lane": "multi-agent",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-052",
@@ -578,7 +578,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR research teams could gate execution behind a human-approval step to prevent runaway research or costly API calls before Daniel confirms the plan.",
       "lane": "multi-agent",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-053",
@@ -589,7 +589,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR multi-agent research or script-prep prompts must include explicit 'create an agent team' language or agents will not be spawned.",
       "lane": "multi-agent",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-054",
@@ -600,7 +600,7 @@
       "verifier_evidence": "Supabase docs confirm pg_cron can invoke edge functions on a schedule; the table-as-queue + edge function worker is a documented Supabase production pattern.",
       "gsr_application": "GSR's RC import, lower-thirds generation, and AI script extraction are all slow operations that would benefit from this queue pattern to avoid Vercel timeout limits and keep the dashboard UI responsive.",
       "lane": "supabase",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-055",
@@ -611,7 +611,7 @@
       "verifier_evidence": "",
       "gsr_application": "Daniel must run 'claude agents' to check for zombie sessions after closing any terminal with active background agents, especially /goal loops, to avoid invisible credit drain.",
       "lane": "sessions",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-056",
@@ -622,7 +622,7 @@
       "verifier_evidence": "",
       "gsr_application": "Daniel can use /bg to move a long-running GSR research or RC import session to the background dashboard while starting a new foreground session.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-057",
@@ -633,14 +633,14 @@
       "verifier_evidence": "",
       "gsr_application": "Any GSR parallel agent run (e.g. multiple episode research sessions) must be launched from different working directories or use explicit file-naming conventions to prevent agents stomping each other's outputs.",
       "lane": "multi-agent",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "claim": "Custom sub-agents can be stored in three scopes: (1) ./.claude/agents/ for project-level shared with the team, (2) ~/.claude/agents/ for personal use across all projects, (3) via plugin system for distribution. The CLI flag --agent is session-only and saves nothing to disk. Agents can be invoked with @agentname syntax to force-call a specific agent.",
       "source": "video MbKUeufUZIY Claude Code Sub-Agents: Step-by-Step Beginner Tutorial",
       "gsr_application": "GSR's gsr-architect agent should live in .claude/agents/ so it is version-controlled and available to all team Claude sessions without manual setup.",
       "lane": "multi-agent",
-      "priority": 2,
+      "priority": "P2",
       "id": "CL-058",
       "date_heard": "2026-06-11",
       "status": "ASSUMED",
@@ -651,7 +651,7 @@
       "source": "video 4_2j5wgt_ds Claude Code Task System: ANTI-HYPE Agentic Coding (Advanced)",
       "gsr_application": "The GSR multi-stage pipeline (research -> scoring -> RC import -> lower-thirds) maps naturally to a task list where each stage blocks the next, with agents pinging completion rather than requiring manual session handoffs.",
       "lane": "multi-agent",
-      "priority": 1,
+      "priority": "P1",
       "id": "CL-059",
       "date_heard": "2026-06-11",
       "status": "ASSUMED",
@@ -662,7 +662,7 @@
       "source": "video vQkJaM2NZPc Claude code teams vs Gastown: Multi-Agent orchestration compared",
       "gsr_application": "For long-running GSR automation tasks that span multiple days, Gastown's persistence model may be worth evaluating vs native agent teams once teams stabilize.",
       "lane": "multi-agent",
-      "priority": 3,
+      "priority": "P3",
       "id": "CL-060",
       "date_heard": "2026-06-11",
       "status": "ASSUMED",
@@ -673,7 +673,7 @@
       "source": "video bOrKWA18PZ4 Oh-My-ClaudeCode: Visualize Multi-agent Orchestration with One Prompt",
       "gsr_application": "OMC could simplify spinning up ad-hoc GSR research agent teams without requiring full agent .md file authoring for one-off tasks.",
       "lane": "multi-agent",
-      "priority": 3,
+      "priority": "P3",
       "id": "CL-061",
       "date_heard": "2026-06-11",
       "status": "ASSUMED",
@@ -684,7 +684,7 @@
       "source": "video XzlSn1M6WKw Stop Using Claude's /goal Feature | Here's What Works",
       "gsr_application": "For GSR's every-5-hour Studio v4 scheduled task, this pattern could reduce context buildup across long-running production pipeline loops.",
       "lane": "sessions",
-      "priority": 2,
+      "priority": "P2",
       "id": "CL-062",
       "date_heard": "2026-06-11",
       "status": "ASSUMED",
@@ -699,7 +699,7 @@
       "verifier_evidence": "",
       "gsr_application": "Daniel can instrument gsr-automation-v2 session activity via OTEL on his Max plan without needing enterprise access, enabling real token/latency visibility across parallel sessions.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-064",
@@ -710,7 +710,7 @@
       "verifier_evidence": "https://github.com/arindam200/cclens",
       "gsr_application": "Alternative to ccusage for Daniel to audit which sessions are expensive and which MCP tools are called most; useful for diagnosing RC or Supabase MCP latency issues.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-065",
@@ -721,7 +721,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR pipeline hooks (e.g., lower-thirds validation, RC write guards) should stay deterministic shell scripts; calling Claude inside a PreToolUse hook will slow every single tool call in a session.",
       "lane": "hooks",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-066",
@@ -732,7 +732,7 @@
       "verifier_evidence": "",
       "gsr_application": "When writing GSR pipeline hooks (e.g., guard against RC writes without dry-run), the settings.json entry must match Bash broadly; the script body must check the actual command pattern before acting.",
       "lane": "hooks",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-067",
@@ -743,7 +743,7 @@
       "verifier_evidence": "",
       "gsr_application": "For unattended GSR automation (nightly RC sync, scheduled lower-thirds generation), set bypassPermissions so the agent doesn't stall waiting for human approval.",
       "lane": "sdk",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-068",
@@ -754,7 +754,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR pipeline agents (extract lower thirds, score guests) can use structured outputs to guarantee JSON schema conformance without post-processing heuristics.",
       "lane": "sdk",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-069",
@@ -765,7 +765,7 @@
       "verifier_evidence": "",
       "gsr_application": "When Daniel builds multi-stage GSR pipeline agents (research -> scoring -> script), spin up sub-agents per stage rather than one long context; each sub-agent returns its summary to the orchestrator.",
       "lane": "sdk",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-070",
@@ -776,7 +776,7 @@
       "verifier_evidence": "",
       "gsr_application": "In GSR's multi-agent pipeline, give the RC sub-agent only the RC MCP, and the Supabase sub-agent only the Supabase MCP, to avoid context pollution that degrades accuracy.",
       "lane": "sdk",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-071",
@@ -787,7 +787,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR's Next.js API routes already call Claude server-side; this confirms that Agent SDK with skill loading from the project's .claude/skills/ folder is a valid pattern for the gsr-automation-v2 codebase.",
       "lane": "sdk",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-072",
@@ -798,7 +798,7 @@
       "verifier_evidence": "",
       "gsr_application": "Baseline cost awareness for GSR pipeline: each automated Agent SDK invocation (lower-thirds generation, RC sync) costs ~28k tokens overhead before any prompt content, relevant when estimating Max plan usage across 5-10 parallel sessions.",
       "lane": "sdk",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-073",
@@ -809,7 +809,7 @@
       "verifier_evidence": "",
       "gsr_application": "Daniel can install skill-creator and run evals on GSR editorial skills (lower thirds format, hook framework) to catch regressions when Anthropic updates the underlying model, and improve trigger accuracy so skills fire on natural language prompts.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-074",
@@ -820,7 +820,7 @@
       "verifier_evidence": "",
       "gsr_application": "For GSR skills that should only run on explicit request (e.g., RC import), set disable_model_invocation: true to prevent accidental triggering during unrelated sessions.",
       "lane": "sessions",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-075",
@@ -831,7 +831,7 @@
       "verifier_evidence": "",
       "gsr_application": "Use ultrathink when GSR pipeline decisions affect the whole system (schema migrations, RC API integration architecture, multi-session orchestration design).",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-076",
@@ -842,7 +842,7 @@
       "verifier_evidence": "",
       "gsr_application": "Run parallel Claude sessions for GSR dashboard features (e.g., lower-thirds UI and RC import logic) without branch collisions.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-077",
@@ -853,7 +853,7 @@
       "verifier_evidence": "",
       "gsr_application": "When GSR sessions bloat from RC API calls and schema context, use /context to diagnose then /compact with specific retention instructions to stay productive.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-078",
@@ -864,7 +864,7 @@
       "verifier_evidence": "",
       "gsr_application": "Multi-session GSR orchestration (research + booking + script prep in parallel) could use tmux to monitor each specialized agent independently; budget $7-8 per complex multi-step task.",
       "lane": "multi-agent",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-079",
@@ -875,7 +875,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR background automations (YouTube transcript checks, RC poller, guest outreach scheduler) can be deployed to trigger.dev for always-on cloud execution without requiring Daniel's laptop to stay open.",
       "lane": "pipeline",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-080",
@@ -886,7 +886,7 @@
       "verifier_evidence": "",
       "gsr_application": "If session costs spike unexpectedly, check for a recurrence of the caching bug. For accessing all features, prefer the terminal CLI over VS Code extension for production GSR pipeline work.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-081",
@@ -897,7 +897,7 @@
       "verifier_evidence": "Claude Code desktop scheduled tasks are documented as running locally; cloud Routines are the Anthropic-managed alternative per CL-027.",
       "gsr_application": "Confirms that GSR scheduled tasks using Claude desktop app will fail when Daniel's machine is off; use trigger.dev or Routines (cloud) for always-on automations.",
       "lane": "pipeline",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-082",
@@ -908,7 +908,7 @@
       "verifier_evidence": "",
       "gsr_application": "Confirms that GSR tooling must use Anthropic's own interfaces (Claude Code, API key) rather than any third-party harness that tunnels the Claude subscription -- relevant if evaluating workflow runners.",
       "lane": "unsorted",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-083",
@@ -919,7 +919,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR routines that update episode state, lower-thirds drafts, or research notes must include an explicit push-back step in the routine prompt, and the 'allow unrestricted branch pushes' permission must be on, or state will be lost between runs.",
       "lane": "multi-agent",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-084",
@@ -930,7 +930,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR's Supabase, Rundown Creator, and Anthropic API keys for remote routines must be entered in the cloud environment settings panel, not in any .env committed to the GitHub repo, and the routine prompt must reference them by exact variable name.",
       "lane": "multi-agent",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-085",
@@ -941,7 +941,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR could use Claude Design to prototype lower-thirds layouts, slide templates for internal presentations, or show graphics concepts before handing them off to Claude Code for implementation, keeping everything in the Anthropic ecosystem.",
       "lane": "unsorted",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "id": "CL-086",
@@ -952,7 +952,7 @@
       "verifier_evidence": "",
       "gsr_application": "Reinforces CL-024 with an actionable decision rule: GSR's simple webhook-triggered notifications or data-sync automations belong in n8n; the pipeline stages requiring multi-step reasoning or file manipulation belong in Claude Code.",
       "lane": "pipeline",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-094",
@@ -963,7 +963,7 @@
       "verifier_evidence": "",
       "gsr_application": "The Dispatch mechanism (not channels) is the right choice for GSR -- Daniel can send a task from his phone to a running local session without setting up a full iMessage bridge.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-095",
@@ -974,7 +974,7 @@
       "verifier_evidence": "",
       "gsr_application": "Daniel runs 5-10 parallel sessions with multiple MCPs (Supabase, RC, Gmail, Vercel) -- disconnecting unused MCPs between tasks could recover tens of thousands of tokens per session.",
       "lane": "sessions",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-096",
@@ -985,7 +985,7 @@
       "verifier_evidence": "",
       "gsr_application": "For complex GSR architecture decisions (e.g., designing the RC-to-Supabase import pipeline), /ultra plan could produce a higher-quality plan faster than local plan mode, at the cost of requiring a git remote.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-097",
@@ -996,7 +996,7 @@
       "verifier_evidence": "",
       "gsr_application": "Managed Agents are not the right fit for GSR automation (no native cron, needs external trigger glue) -- reinforces continuing with Claude Code desktop scheduled tasks or trigger.dev patterns instead.",
       "lane": "multi-agent",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "id": "CL-098",
@@ -1007,7 +1007,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR routines for guest research, lower thirds generation, and RC sync now have a concrete resource envelope to design against; trusted mode blocks non-Anthropic domains so API calls to RC or Supabase may require full or custom mode.",
       "lane": "sessions",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-099",
@@ -1018,7 +1018,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR could trigger RC-sync or episode-processing routines via webhook from Basecamp or a Vercel deploy hook rather than only on a fixed schedule.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-100",
@@ -1029,7 +1029,7 @@
       "verifier_evidence": "",
       "gsr_application": "Daniel can ask quick mid-session questions about RC column IDs or episode numbers without polluting his main context window.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-101",
@@ -1040,7 +1040,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR multi-session pipeline work: staying on one model throughout a session preserves cache; subagents used for RC or Supabase calls reset their own 5-min TTL, so frequent subagent invocations are more expensive than expected.",
       "lane": "sessions",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-102",
@@ -1051,7 +1051,7 @@
       "verifier_evidence": "",
       "gsr_application": "Replaces manual summary step when chaining GSR pipeline sessions (research -> scoring -> script prep).",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-103",
@@ -1062,7 +1062,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR loops monitoring RC for new rundown rows or checking Supabase for pending extractions should be run from the terminal to survive /clear context resets during long sessions.",
       "lane": "sessions",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-104",
@@ -1073,7 +1073,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR local scheduled tasks (e.g. overnight episode prep) will replay if Daniel's Mac was off; tasks that should NOT replay (one-shots) must be paused before shutdown.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-105",
@@ -1084,7 +1084,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR automation scripts calling the Agent SDK for RC sync or lower-thirds generation must pass session_id to maintain context across pipeline stages; otherwise each call is blind.",
       "lane": "sdk",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-106",
@@ -1095,7 +1095,7 @@
       "verifier_evidence": "",
       "gsr_application": "Before merging GSR dashboard changes touching Supabase RLS policies, lower-thirds import logic, or RC API integration, /ultra review catches verified bugs without false positives.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-107",
@@ -1106,7 +1106,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR sessions reading large Supabase query results or RC row dumps would have their context blown out by raw JSON; Context Mode would compress these to summaries before they pollute the window.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-108",
@@ -1117,7 +1117,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR could use /deep research to do multi-source adversarial research on guest credentials or episode topics, spinning up parallel agents and voting on each claim.",
       "lane": "multi-agent",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-109",
@@ -1128,7 +1128,7 @@
       "verifier_evidence": "",
       "gsr_application": "Confirms the /effort slider in CL-032; ultra code is a new sixth tier above max that auto-invokes workflows. Daniel's existing GSR sessions at default high effort can be tuned down for simple lower-thirds runs and up for research-heavy sessions.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-110",
@@ -1139,7 +1139,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR could build a dedicated rc-importer agent (read-only, Haiku model, max_turns=5) and a supabase-query agent -- each invoked automatically by the main session without re-explaining context, with explicit tool denylist preventing destructive operations.",
       "lane": "multi-agent",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-111",
@@ -1150,7 +1150,7 @@
       "verifier_evidence": "",
       "gsr_application": "Daniel can manage 3-5 parallel GSR pipeline sessions (research, scoring, RC editing, lower-thirds generation) from one agent view pane, replying to sessions needing approval without switching terminal tabs.",
       "lane": "sessions",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-112",
@@ -1161,7 +1161,7 @@
       "verifier_evidence": "",
       "gsr_application": "Fable would consume Daniel's $200/month Max plan session limit significantly faster than Opus; not recommended for routine GSR pipeline work (lower thirds, RC sync) but potentially valuable for deep guest research requiring multi-step reasoning.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-113",
@@ -1172,7 +1172,7 @@
       "verifier_evidence": "",
       "gsr_application": "Daniel can run /insights monthly to spot which GSR pipeline phases consume the most tokens and identify automation opportunities; auto memory reduces the manual CLAUDE.md upkeep burden.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-114",
@@ -1183,7 +1183,7 @@
       "verifier_evidence": "",
       "gsr_application": "A custom Rundown Creator CLI via Printing Press could replace the RC MCP server, reducing per-call token overhead significantly and eliminating MCP tool-definition context bloat on every GSR session.",
       "lane": "pipeline",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-115",
@@ -1194,7 +1194,7 @@
       "verifier_evidence": "Documented at https://docs.anthropic.com/en/docs/claude-code/remote-control",
       "gsr_application": "Daniel could start a GSR pipeline task at his desk and monitor or steer it from his phone while away, without needing a separate cloud agent setup.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-116",
@@ -1205,7 +1205,7 @@
       "verifier_evidence": "Consistent with Anthropic Claude Code skills documentation structure",
       "gsr_application": "Defines the canonical file structure for GSR production skills (lower-thirds extraction, RC import, script generation) so Daniel can build them without guessing layout.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-117",
@@ -1216,7 +1216,7 @@
       "verifier_evidence": "",
       "gsr_application": "GSR Studio v4 five-hour scheduled Claude resume task must use the desktop app and account for statelessness -- each task should read a status file from the prior run to maintain continuity.",
       "lane": "sessions",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-118",
@@ -1227,7 +1227,7 @@
       "verifier_evidence": "",
       "gsr_application": "For short-duration GSR monitoring tasks (e.g., check RC for new rows every 10 min during a shoot day), /loop is the right tool; for persistent daily jobs use scheduled tasks.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-119",
@@ -1238,7 +1238,7 @@
       "verifier_evidence": "",
       "gsr_application": "If Daniel ever runs a multi-stage GSR pipeline (research + script + RC import simultaneously), agent teams with file ownership per agent prevents overwrite collisions.",
       "lane": "multi-agent",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-120",
@@ -1249,7 +1249,7 @@
       "verifier_evidence": "",
       "gsr_application": "Auto Dream can keep GSR project memory files compact and accurate across Daniel's 5-10 parallel sessions, reducing context bloat in the MEMORY.md-heavy workflow.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-121",
@@ -1260,7 +1260,7 @@
       "verifier_evidence": "",
       "gsr_application": "Auto mode is the recommended middle path for unattended GSR pipeline runs -- safer than dangerously skip permissions without the constant approval interruptions of ask-before-edits.",
       "lane": "sessions",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-122",
@@ -1271,7 +1271,7 @@
       "verifier_evidence": "",
       "gsr_application": "The Dispatch mechanism (not channels) is the right choice for GSR -- Daniel can send a task from his phone to a running local session without setting up a full iMessage bridge.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-123",
@@ -1282,7 +1282,7 @@
       "verifier_evidence": "",
       "gsr_application": "Daniel runs 5-10 parallel sessions with multiple MCPs (Supabase, RC, Gmail, Vercel) -- disconnecting unused MCPs between tasks could recover tens of thousands of tokens per session.",
       "lane": "sessions",
-      "priority": 1
+      "priority": "P1"
     },
     {
       "id": "CL-124",
@@ -1293,7 +1293,7 @@
       "verifier_evidence": "",
       "gsr_application": "For complex GSR architecture decisions (e.g., designing the RC-to-Supabase import pipeline), /ultra plan could produce a higher-quality plan faster than local plan mode, at the cost of requiring a git remote.",
       "lane": "sessions",
-      "priority": 2
+      "priority": "P2"
     },
     {
       "id": "CL-125",
@@ -1304,7 +1304,7 @@
       "verifier_evidence": "",
       "gsr_application": "Managed Agents are not the right fit for GSR automation (no native cron, needs external trigger glue) -- reinforces continuing with Claude Code desktop scheduled tasks or trigger.dev patterns instead.",
       "lane": "multi-agent",
-      "priority": 3
+      "priority": "P3"
     },
     {
       "id": "CL-126",
@@ -2317,6 +2317,50 @@
       "gsr_application": "GSR's local transcription pipeline at ~/Productions currently uses fswatch+ffmpeg+whisper - Open Whisper app provides a hotkey-triggered UI alternative for Daniel to transcribe guest interview recordings or David's studio takes without a CLI workflow",
       "lane": "whisper-pipeline",
       "priority": "P3"
+    },
+    {
+      "id": "CL-218",
+      "claim": "/remote-control command (Opus 4.8+) generates a one-time URL that lets Claude Code keep working after you disconnect — pairs with /goal for fully unattended overnight runs without leaving a terminal open",
+      "source": "youtube:5HVPeux24WU:Embrace long-running tasks with Opus 4.8 and Claude Code",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "From official video description: 'Ship features with /goal and step away from your computer with /remote-control. Claude Code handles complex work without needing constant check-ins.'",
+      "gsr_application": "GSR nightly RC rundown prep: start /goal session, /remote-control to disconnect, pick up completed rundown in the morning — no terminal babysitting",
+      "lane": "remote-execution",
+      "priority": "P1"
+    },
+    {
+      "id": "CL-219",
+      "claim": "Opus 4.8 introduced /remote-control as a first-class 'hand off and walk away' workflow — Anthropic's own announcement frames it as the preferred pattern for long-running coding tasks",
+      "source": "youtube:5HVPeux24WU:Embrace long-running tasks with Opus 4.8 and Claude Code",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "Description links to anthropic.com/news/claude-opus-4-8 for official announcement",
+      "gsr_application": "Validate /remote-control approach for GSR pipeline before recommending it to the team — check Anthropic announcement for rate limits or session duration caps",
+      "lane": "multi-session",
+      "priority": "P2"
+    },
+    {
+      "id": "CL-220",
+      "claim": "c9watch is a free open-source (Tauri/Rust/Svelte) macOS desktop app that auto-discovers ALL Claude Code sessions at the OS level — shows real-time Working/Need Permission/Idle status for every session regardless of where it was started (VS Code, Zed, iTerm2, any terminal)",
+      "source": "youtube:9PdN7joYmUk:c9watch - Monitor All Your Claude Code Sessions from One Dashboard",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "From video description: 'Auto-discovery — Detects all running Claude Code sessions at the OS level. Real-time status — See which sessions are Working, Need Permission, or Idle.'",
+      "gsr_application": "Daniel runs multiple parallel Claude Code sessions (RC prep, script writing, guest research) — c9watch as a lightweight dashboard to see which need attention without switching terminals",
+      "lane": "multi-session",
+      "priority": "P1"
+    },
+    {
+      "id": "CL-221",
+      "claim": "c9watch groups sessions by project with git branch info and includes a conversation viewer — full conversation text of any session visible from one window without opening each terminal",
+      "source": "youtube:9PdN7joYmUk:c9watch - Monitor All Your Claude Code Sessions from One Dashboard",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "From video description: 'Multi-project view — Sessions grouped by project with git branch info. Conversation viewer — Expand any session to view the full conversation.'",
+      "gsr_application": "Monitor overnight GSR pipeline runs — check conversation viewer in the morning to see what each scheduled agent did without reading .jsonl files manually",
+      "lane": "multi-session",
+      "priority": "P1"
     }
   ]
 }

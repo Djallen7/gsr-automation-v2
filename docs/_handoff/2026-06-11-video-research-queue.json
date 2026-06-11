@@ -1190,7 +1190,7 @@
       "summary": "[Claude (official Anthropic channel)] First-party Anthropic guidance on handing multi-hour work to Claude Code.",
       "url": "https://www.youtube.com/watch?v=5HVPeux24WU",
       "source": "R6-lead:1 goal-long-horizon",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1465,7 +1465,7 @@
       "summary": "[minchenlee] Lightweight macOS app: real-time dashboard of every local Claude Code session.",
       "url": "https://www.youtube.com/watch?v=9PdN7joYmUk",
       "source": "R6-lead:4 mission-control",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1611,7 +1611,7 @@
       "status": "rejected",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-      "reject_reason": "Hindi-language Flutter/mobile app tutorial with no Claude Code SDK, hooks, agent, or GSR-relevant insights - covers basic Supabase setup for a Flutter expense tracker, not applicable to the Next.js/TypeScript GSR stack"
+      "reject_reason": "Hindi-language tutorial; YouTube auto-captions too poor quality to mine actionable claims"
     },
     {
       "quarter": "R6-2026",
@@ -1635,7 +1635,7 @@
       "status": "rejected",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-      "reject_reason": "Hindi-language Next.js + Supabase job board tutorial - no Claude Code, agent SDK, or automation insights; basic SaaS setup walkthrough not relevant to GSR pipeline architecture"
+      "reject_reason": "Hindi-language tutorial; 189KB auto-captions are transliterated Hinglish, not mineable"
     },
     {
       "quarter": "R6-2026",

@@ -145,10 +145,11 @@ Pattern: Sonnet does the volume, one short heavy-model review per milestone.
 
 ## Mining summary — R6 transcript sweep (2026-06-11, Mac CLI session)
 
-**Final counts:** 107 mined · 53 rejected · 2 pending (no transcript) · 210 claims total (CL-001–CL-217)
+**Final counts:** 109 mined · 53 rejected · 0 pending · 214 claims total (CL-001–CL-221) · 84 P1
 
 Wave 1: 62 mined / 31 rejected / 57 claims (parallel mine + parallel merge → race conditions; ~30 video statuses lost, recovered in wave 2)
 Wave 2: 45 mined / 22 rejected / 2 pending / 92 new claims (parallel mine + single atomic merge → clean)
+Wave 3 cleanup: 4 remaining videos resolved (2 mined from description, 2 rejected as Hindi auto-captions); 4 new claims CL-218–CL-221; priority field normalized across all 214 claims (wave 1 used int 1/2/3, waves 2-3 used string "P1"/"P2"/"P3" — unified to string format)
 
 **10 highest-value claims by ID**
 

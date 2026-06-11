@@ -29,7 +29,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "n8n tutorial + agency money-making content \u2014 not Claude Code relevant"
+   "rejected_reason": "n8n tutorial + agency money-making content — not Claude Code relevant"
   },
   {
    "quarter": "Q1-2026",
@@ -129,7 +129,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
-   "rejected_reason": "n8n to agentic workflows transition pitch \u2014 conceptual, no specific Claude Code syntax or GSR-applicable claims"
+   "rejected_reason": "n8n to agentic workflows transition pitch — conceptual, no specific Claude Code syntax or GSR-applicable claims"
   },
   {
    "quarter": "Q1-2026",
@@ -190,7 +190,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Feb 7, 2026",
-   "title": "How I\u00e2\u20ac\u2122d Teach a 10 Year Old to Build Agentic Workflows (Claude Code)",
+   "title": "How Iâ€™d Teach a 10 Year Old to Build Agentic Workflows (Claude Code)",
    "summary": "Agentic workflows explained simply enough for a 10 year old",
    "url": "https://youtu.be/3GAxd90fEE4",
    "resources": "https://drive.google.com/drive/folders/10RU0oHWIw2Cy5-rXOKw4iUD3LuMCDXLp",
@@ -307,7 +307,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Image generation tool (Nano Banana 2) \u2014 not relevant to GSR pipeline"
+   "rejected_reason": "Image generation tool (Nano Banana 2) — not relevant to GSR pipeline"
   },
   {
    "quarter": "Q1-2026",
@@ -319,7 +319,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
-   "rejected_reason": "Website-building with a skill/Nano Banana \u2014 front-end vibe coding demo, no GSR-relevant signal"
+   "rejected_reason": "Website-building with a skill/Nano Banana — front-end vibe coding demo, no GSR-relevant signal"
   },
   {
    "quarter": "Q1-2026",
@@ -390,7 +390,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 10, 2026",
-   "title": "Google\u00e2\u20ac\u2122s New Tool Just 10x\u00e2\u20ac\u2122d Claude Code",
+   "title": "Googleâ€™s New Tool Just 10xâ€™d Claude Code",
    "summary": "Google's new tool supercharges Claude Code productivity by 10x",
    "url": "https://youtu.be/Wu67lLD8bB0",
    "resources": null,
@@ -419,7 +419,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "RAG/embeddings tutorial (Gemini Embedding 2 + Pinecone) \u2014 not Claude Code specific"
+   "rejected_reason": "RAG/embeddings tutorial (Gemini Embedding 2 + Pinecone) — not Claude Code specific"
   },
   {
    "quarter": "Q1-2026",
@@ -431,7 +431,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "10-hour beginner course \u2014 orientation content, no new specific claims beyond existing CL entries"
+   "rejected_reason": "10-hour beginner course — orientation content, no new specific claims beyond existing CL entries"
   },
   {
    "quarter": "Q1-2026",
@@ -454,7 +454,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
-   "rejected_reason": "Stop learning n8n / learn Claude Code + trigger.dev \u2014 conceptual argument, trigger.dev claims captured from UGIZnh6HNLc which is more technical"
+   "rejected_reason": "Stop learning n8n / learn Claude Code + trigger.dev — conceptual argument, trigger.dev claims captured from UGIZnh6HNLc which is more technical"
   },
   {
    "quarter": "Q1-2026",
@@ -477,7 +477,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Cal AI $100M app story \u2014 business success story, no Claude Code technical signal"
+   "rejected_reason": "Cal AI $100M app story — business success story, no Claude Code technical signal"
   },
   {
    "quarter": "Q1-2026",
@@ -548,7 +548,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 30, 2026",
-   "title": "I\u00e2\u20ac\u2122ve Built 500 AI Workflows, This is What Businesses Want in 2026",
+   "title": "Iâ€™ve Built 500 AI Workflows, This is What Businesses Want in 2026",
    "summary": "Lessons from 500 AI workflows: what businesses actually want",
    "url": "https://youtu.be/Y3PcRp5RFzk",
    "resources": "https://drive.google.com/drive/folders/13pBzMyvJksi5RJLBpRr_Vk-zA1w8vF3C",
@@ -559,7 +559,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 31, 2026",
-   "title": "Codex Just 10x\u00e2\u20ac\u2122d Claude Code Projects",
+   "title": "Codex Just 10xâ€™d Claude Code Projects",
    "summary": "Codex integration makes Claude Code projects 10x more powerful",
    "url": "https://youtu.be/B2Kh_ZoLVTM",
    "resources": null,
@@ -570,7 +570,7 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 1, 2026",
-   "title": "Claude Code Source Code Just Leaked\u00e2\u20ac\u00a6 8 Things You Must Do",
+   "title": "Claude Code Source Code Just Leakedâ€¦ 8 Things You Must Do",
    "summary": "8 things you must do after the Claude Code source code leak",
    "url": "https://youtu.be/tXtCK66fPj8",
    "resources": "https://drive.google.com/drive/folders/14V5Xym3SWQ8RUUScGF5X-YY4sGmIYjFb",
@@ -614,7 +614,7 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 5, 2026",
-   "title": "Andrej Karpathy Just 10x\u00e2\u20ac\u2122d Everyone\u00e2\u20ac\u2122s Claude Code",
+   "title": "Andrej Karpathy Just 10xâ€™d Everyoneâ€™s Claude Code",
    "summary": "How Andrej Karpathy's techniques 10x'd Claude Code for everyone",
    "url": "https://youtu.be/sboNwYmH3AY",
    "resources": null,
@@ -636,14 +636,14 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 7, 2026",
-   "title": "Claude\u00e2\u20ac\u2122s New AI Just Changed the Internet Forever",
+   "title": "Claudeâ€™s New AI Just Changed the Internet Forever",
    "summary": "Claude's new AI model and how it changes the internet",
    "url": "https://youtu.be/DG1wRgEpdO4",
    "resources": null,
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Claude Mythos security model hype \u2014 not actionable for GSR production pipeline"
+   "rejected_reason": "Claude Mythos security model hype — not actionable for GSR production pipeline"
   },
   {
    "quarter": "Q2-2026",
@@ -666,7 +666,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Crypto/trading bots content \u2014 no Claude Code relevance"
+   "rejected_reason": "Crypto/trading bots content — no Claude Code relevance"
   },
   {
    "quarter": "Q2-2026",
@@ -697,7 +697,7 @@
    "summary": "Install and use the Superpowers plugin to level up Claude Code",
    "url": "https://youtu.be/4XqVR6xI6Kw",
    "resources": "https://drive.google.com/drive/folders/14FLA0lcBqKzNVY5VpBtppxo6_LNyiN4H",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -719,7 +719,7 @@
    "summary": "Set up cloud-based scheduled automations with Claude Code routines",
    "url": "https://youtu.be/ehg4fhydTgs",
    "resources": "https://drive.google.com/drive/folders/1gk3WhEGd3GpQsq2YgCWbtH4hqgIb0Wwn",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -777,7 +777,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
-   "rejected_reason": "Video editing with Claude Design / HyperFrames \u2014 content creation tooling, not GSR pipeline"
+   "rejected_reason": "Video editing with Claude Design / HyperFrames — content creation tooling, not GSR pipeline"
   },
   {
    "quarter": "Q2-2026",
@@ -786,7 +786,7 @@
    "summary": "Manage Claude Code session limits better than 99% of people",
    "url": "https://youtu.be/_qZvORxGqI0",
    "resources": "https://drive.google.com/drive/folders/1Gec-42rgEGFXpktKAwWLAqvaU--OuAhZ",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -833,7 +833,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Model benchmark hype (GPT 5.5 vs Opus 4.7) \u2014 no actionable pipeline claims"
+   "rejected_reason": "Model benchmark hype (GPT 5.5 vs Opus 4.7) — no actionable pipeline claims"
   },
   {
    "quarter": "Q2-2026",
@@ -867,7 +867,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
-   "rejected_reason": "Claude Design beginner course \u2014 design tool tutorial, no Claude Code/pipeline/sessions/SDK signal"
+   "rejected_reason": "Claude Design beginner course — design tool tutorial, no Claude Code/pipeline/sessions/SDK signal"
   },
   {
    "quarter": "Q2-2026",
@@ -879,7 +879,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Beginner AIOS orientation course \u2014 mindset frameworks only, no actionable Claude Code specifics"
+   "rejected_reason": "Beginner AIOS orientation course — mindset frameworks only, no actionable Claude Code specifics"
   },
   {
    "quarter": "Q2-2026",
@@ -888,7 +888,7 @@
    "summary": "The 6 Claude Code skills businesses actually pay for",
    "url": "https://youtu.be/eRS3CmvrOvA",
    "resources": "https://drive.google.com/drive/folders/1ctUfwOovOz7EJ3zBeDIZdzLKWO4nFuFQ",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -935,7 +935,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
-   "rejected_reason": "Generic tool-stack mindset overview \u2014 no actionable Claude Code specifics"
+   "rejected_reason": "Generic tool-stack mindset overview — no actionable Claude Code specifics"
   },
   {
    "quarter": "Q2-2026",
@@ -944,7 +944,7 @@
    "summary": "Turn any service into an agent-native CLI in 10 minutes with Printing Press",
    "url": "https://youtu.be/YHk45NEpspE",
    "resources": "https://drive.google.com/drive/folders/1oEhmzskmLL1flFAnebGPpoLr7XCnv86j",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -955,7 +955,7 @@
    "summary": "Claude Code's new agent view turns terminal-tab chaos into one tab",
    "url": "https://youtu.be/ZAaxx3qyT8g",
    "resources": "https://drive.google.com/drive/folders/13j4CmIdlYf0BO2pbqNmPLbCFSDwW_tW3",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -977,7 +977,7 @@
    "summary": "3 ways to deploy Claude Code agents and when to use each",
    "url": "https://youtu.be/xJ5oz63mIec",
    "resources": "https://drive.google.com/drive/folders/1ZnE-Pkg6W3rJKxPblEcrgFEXU3qXVkJk",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -991,7 +991,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Chief AI officer career opportunity \u2014 business/career content, no technical signal"
+   "rejected_reason": "Chief AI officer career opportunity — business/career content, no technical signal"
   },
   {
    "quarter": "Q2-2026",
@@ -1011,7 +1011,7 @@
    "summary": "The one prompt-caching habit that doubles your Claude Code session limit",
    "url": "https://youtu.be/6cEQEba0i2A",
    "resources": "https://drive.google.com/drive/folders/1H7mXhGOEYuuLQswTPFf5CZ2Z-vcZWLSd",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -1025,7 +1025,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Agency sales pitch \u2014 selling AI consulting hours, no technical signal"
+   "rejected_reason": "Agency sales pitch — selling AI consulting hours, no technical signal"
   },
   {
    "quarter": "Q2-2026",
@@ -1045,7 +1045,7 @@
    "summary": "How to actually use the new Opus 4.8 effort tiers and prompting principles",
    "url": "https://youtu.be/q5lg3npxjAc",
    "resources": "https://drive.google.com/drive/folders/1p-jO2sO0GSt6VRBJkeWQn1Yzw0ujUDSX",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -1067,7 +1067,7 @@
    "summary": "Claude Code dynamic workflows explained, and when they're worth the cost",
    "url": "https://youtu.be/jZgcWCzxh1I",
    "resources": "https://drive.google.com/drive/folders/15IX51slGq6veq-qZKx4-LRXMUoG37qaZ",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -1078,7 +1078,7 @@
    "summary": "Every Claude Code feature ranked D-to-S, plus the 12 Nate uses daily",
    "url": "https://youtu.be/vfWTyEreOEc",
    "resources": "https://drive.google.com/drive/folders/1fcI8jAM7EoXC5xMlVnR6yNq4HKKlQ0dT",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -1089,7 +1089,7 @@
    "summary": "Use the grill me skill to extract what's in your head into AI context",
    "url": "https://youtu.be/c0kaKxM2pHg",
    "resources": "https://drive.google.com/drive/folders/1m4YrG7y-AR5bqHoqNVWcFywOze87TJ9_",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -1111,7 +1111,7 @@
    "summary": "Turn the new Claude Fable model into your entire second brain",
    "url": "https://youtu.be/8QQ_INxAhRs",
    "resources": "https://drive.google.com/drive/folders/1F4ZovwWfnYMXkpLpnyTOa4XFHQANURta",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -1598,7 +1598,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-   "rejected_reason": "Generic Supabase beginner tutorial \u2014 no production patterns beyond training knowledge"
+   "rejected_reason": "Generic Supabase beginner tutorial — no production patterns beyond training knowledge"
   },
   {
    "quarter": "R6-2026",
@@ -1654,7 +1654,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-   "rejected_reason": "Church AV system design (StreamDeck/ATEM) \u2014 hardware automation, no Claude Code relevance"
+   "rejected_reason": "Church AV system design (StreamDeck/ATEM) — hardware automation, no Claude Code relevance"
   },
   {
    "quarter": "R6-2026",
@@ -1721,7 +1721,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-   "rejected_reason": "YouTube content creation workflow stack \u2014 social media automation, not GSR production"
+   "rejected_reason": "YouTube content creation workflow stack — social media automation, not GSR production"
   },
   {
    "quarter": "R6-2026",

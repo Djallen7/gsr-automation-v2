@@ -953,6 +953,83 @@
       "gsr_application": "Reinforces CL-024 with an actionable decision rule: GSR's simple webhook-triggered notifications or data-sync automations belong in n8n; the pipeline stages requiring multi-step reasoning or file manipulation belong in Claude Code.",
       "lane": "pipeline",
       "priority": 2
+    },
+    {
+      "id": "CL-087",
+      "claim": "Chrome DevTools MCP loads every tool with its description into context, making it far more token-heavy than Playwright CLI for browser automation tasks. The author switched from Chrome DevTools MCP to Playwright CLI specifically to reduce token usage per session.",
+      "source": "video J-6pnl5DQg8 Claude Code + Playwright Automates Literally Anything",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "When GSR pipeline needs browser automation (e.g. scraping show schedules, HeyGen dashboard interaction), prefer Playwright CLI over any browser MCP server to preserve session token budget.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-088",
+      "claim": "Playwright CLI supports a persistent browser profile mode: Claude launches Chrome with the user's existing Chrome user-data directory so pre-existing logins are already active. On first run the user logs in manually; subsequent runs reuse the saved session/cookies without re-authentication.",
+      "source": "video J-6pnl5DQg8 Claude Code + Playwright Automates Literally Anything",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Any GSR automation needing authenticated web sessions (e.g. HeyGen dashboard, Rundown Creator web UI fallback) can use Playwright persistent profile to avoid re-login each run.",
+      "lane": "pipeline",
+      "priority": 2
+    },
+    {
+      "id": "CL-089",
+      "claim": "Claude Code currently has approximately 30 hook events; OpenAI Codex has about 6. This 5x difference means Claude Code allows automated behavior to fire at far more granular points in the agent workflow (prompt submit, tool run, session start, task create, etc.).",
+      "source": "video RLjaUES9P8A 100 Hours Testing Claude Code vs ChatGPT Codex (honest results)",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Confirms the hook count in CL-029 (which cited ~30 events). GSR hooks for pre-tool validation, post-import dry-run gates, and episode-state logging all rely on this granularity being available.",
+      "lane": "hooks",
+      "priority": 2
+    },
+    {
+      "id": "CL-090",
+      "claim": "Claude Code can auto-delegate sub-agents on its own when a task warrants it; Codex docs explicitly state it will not spawn sub-agents unless the user explicitly requests them. With Claude Code you give it a complex task and it decides on its own to spin up planner, explorer, and reviewer agents as needed.",
+      "source": "video RLjaUES9P8A 100 Hours Testing Claude Code vs ChatGPT Codex (honest results)",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Multi-stage GSR pipeline tasks (research + scoring + outreach in one session) can benefit from Claude Code's auto-delegation without requiring manual sub-agent invocation in the prompt.",
+      "lane": "multi-agent",
+      "priority": 2
+    },
+    {
+      "id": "CL-091",
+      "claim": "/ultra plan and /ultra review are slash commands in research preview. /ultra plan ships the planning phase to a cloud Claude Code session and lets you review the plan in your browser with inline comments before sending it back to the terminal for execution. /ultra review spins up multiple reviewer agents and delivers a deep multi-agent code review; pro and max subscribers get 3 free runs and then it is billed per run.",
+      "source": "video RLjaUES9P8A 100 Hours Testing Claude Code vs ChatGPT Codex (honest results)",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "For high-stakes GSR pipeline changes (new import logic, schema migrations), /ultra review provides a multi-agent safety check before the change lands in production.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-092",
+      "claim": "A Channels MCP server exists that pushes external events from Telegram, Discord, or iMessage into a running Claude Code session, effectively letting you text your agent from a phone. This is distinct from Playwright-based Telegram bots and works as a live message injector into a session.",
+      "source": "video RLjaUES9P8A 100 Hours Testing Claude Code vs ChatGPT Codex (honest results)",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Daniel could send corrections or approvals to a running GSR pipeline session from his phone via Telegram without needing to be at the computer, fitting his mobile/car-use workflow.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-093",
+      "claim": "Claude Code session logs are stored as JSONL files and can be read by asking Claude to read its own JSONL, which will surface per-run token counts, cache reads, and elapsed time. This is how the author extracted comparative metrics without any external tooling.",
+      "source": "video RLjaUES9P8A 100 Hours Testing Claude Code vs ChatGPT Codex (honest results)",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR can audit routine runs and multi-session pipeline costs by having Claude read its own JSONL logs rather than installing a separate usage dashboard.",
+      "lane": "sessions",
+      "priority": 2
     }
   ]
 }

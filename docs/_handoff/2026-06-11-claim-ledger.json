@@ -955,83 +955,6 @@
       "priority": 2
     },
     {
-      "id": "CL-087",
-      "claim": "claude remote-control (or /remote-control in existing session) generates a QR code and URL to control a local Claude Code session from any browser or phone. Session stays entirely local -- phone is just a window. Requires Pro or Max plan (not team/enterprise yet). Connection drops after ~10 minutes without internet; laptop must stay on and terminal must stay open.",
-      "source": "video EqhKw0Oro_k Claude Code Just Added What Everyone Wanted (Remote Control)",
-      "date_heard": "2026-06-11",
-      "status": "VERIFIED",
-      "verifier_evidence": "Documented at https://docs.anthropic.com/en/docs/claude-code/remote-control",
-      "gsr_application": "Daniel could start a GSR pipeline task at his desk and monitor or steer it from his phone while away, without needing a separate cloud agent setup.",
-      "lane": "sessions",
-      "priority": 2
-    },
-    {
-      "id": "CL-088",
-      "claim": "Skills live at .claude/skills/<skillname>/skill.md with YAML front matter (name, description fields) followed by step-by-step instructions. Supporting scripts and reference files can be nested directly under the skill folder or stored elsewhere in the project -- as long as the skill.md points to their path. Skills can call sub-agents and external scripts.",
-      "source": "video zKBPwDpBfhs Master 95% of Claude Code Skills in 28 Minutes",
-      "date_heard": "2026-06-11",
-      "status": "VERIFIED",
-      "verifier_evidence": "Consistent with Anthropic Claude Code skills documentation structure",
-      "gsr_application": "Defines the canonical file structure for GSR production skills (lower-thirds extraction, RC import, script generation) so Daniel can build them without guessing layout.",
-      "lane": "sessions",
-      "priority": 2
-    },
-    {
-      "id": "CL-089",
-      "claim": "Scheduled tasks (desktop app only, not terminal or VS Code extension) are stateless -- each run is a fresh session with no context from prior runs. The cron metadata lives in the desktop app's global folder. Desktop app must stay open; if missed, the app looks back 7 days and catches up. Use /schedule in an existing session or the Schedule tab in the desktop app to create.",
-      "source": "video BlNJFa3Btm8 Claude Code 2.0 Is Finally Here",
-      "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
-      "gsr_application": "GSR Studio v4 five-hour scheduled Claude resume task must use the desktop app and account for statelessness -- each task should read a status file from the prior run to maintain continuity.",
-      "lane": "sessions",
-      "priority": 1
-    },
-    {
-      "id": "CL-090",
-      "claim": "/loop uses three internal tools: cron_create (schedule), cron_list (list active), and cron_delete (cancel). Loop jobs are per-session -- a cron_list in session A cannot see loops created in session B. Closing the terminal or re-opening a conversation tab kills all loops for that session. Default interval is 10 minutes if none specified.",
-      "source": "video OUyfxhFtGCo This New Claude Code Feature is a Game Changer",
-      "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
-      "gsr_application": "For short-duration GSR monitoring tasks (e.g., check RC for new rows every 10 min during a shoot day), /loop is the right tool; for persistent daily jobs use scheduled tasks.",
-      "lane": "sessions",
-      "priority": 2
-    },
-    {
-      "id": "CL-091",
-      "claim": "Agent teams are enabled by adding CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS to .claude/settings.local.json (not settings.json). Teammates inherit all permissions from the main session. Teammates can access all project files, MCP servers, and skills. Running in tmux allows direct messaging to individual teammate terminals. Recommended team size is 3-5 agents; larger swarms multiply cost proportionally.",
-      "source": "video vDVSGVpB2vc How to Build Claude Agent Teams Better Than 99% of People",
-      "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
-      "gsr_application": "If Daniel ever runs a multi-stage GSR pipeline (research + script + RC import simultaneously), agent teams with file ownership per agent prevents overwrite collisions.",
-      "lane": "multi-agent",
-      "priority": 2
-    },
-    {
-      "id": "CL-092",
-      "claim": "Auto Dream is a background sub-agent that consolidates and prunes Claude memory .md files. Access via /memory, toggle 'auto dream on', manually invoke with /dream. Only touches memory files (never code/scripts). Triggers based on elapsed hours or session count (exact thresholds unconfirmed). Reviewing what it changed: it reports which files were updated, entries added, and sections removed.",
-      "source": "video LrgfmZkl3nc Claude Code Just Dropped Memory 2.0",
-      "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
-      "gsr_application": "Auto Dream can keep GSR project memory files compact and accurate across Daniel's 5-10 parallel sessions, reducing context bloat in the MEMORY.md-heavy workflow.",
-      "lane": "sessions",
-      "priority": 2
-    },
-    {
-      "id": "CL-093",
-      "claim": "Auto mode (claude --enable-auto-mode) runs a classifier before every tool call to detect risky actions (destructive commands, sensitive data). Safe actions execute automatically; risky ones are blocked and Claude tries an alternative approach. It is more expensive than normal mode because of the per-call classifier. Currently research preview, available to Claude team plan users only; org admin must enable it under organization settings > Claude Code > auto permissions mode.",
-      "source": "video pkSxISewcw8 STOP Using Bypass Permissions, Use This New Feature Instead",
-      "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
-      "gsr_application": "Auto mode is the recommended middle path for unattended GSR pipeline runs -- safer than dangerously skip permissions without the constant approval interruptions of ask-before-edits.",
-      "lane": "sessions",
-      "priority": 1
-    },
-    {
       "id": "CL-094",
       "claim": "Claude Code channels are distinct from remote control and dispatch: Dispatch = message-based task delegation (send task, Claude runs locally); Channels = event-based push from Telegram/Discord/iMessage into a running session (best for reacting to external events); Remote Control = direct steering of an active session from another device. iMessage channel requires bun, Mac full disk access granted to the terminal/VS Code, and launching Claude with the channel plugin active. Enterprise/team users need admin to enable channels.",
       "source": "video hHlpVeooPrI Claude Code + iMessage is Finally Here.",
@@ -1261,6 +1184,127 @@
       "gsr_application": "A custom Rundown Creator CLI via Printing Press could replace the RC MCP server, reducing per-call token overhead significantly and eliminating MCP tool-definition context bloat on every GSR session.",
       "lane": "pipeline",
       "priority": 2
+    },
+    {
+      "id": "CL-115",
+      "claim": "claude remote-control (or /remote-control in existing session) generates a QR code and URL to control a local Claude Code session from any browser or phone. Session stays entirely local -- phone is just a window. Requires Pro or Max plan (not team/enterprise yet). Connection drops after ~10 minutes without internet; laptop must stay on and terminal must stay open.",
+      "source": "video EqhKw0Oro_k Claude Code Just Added What Everyone Wanted (Remote Control)",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Documented at https://docs.anthropic.com/en/docs/claude-code/remote-control",
+      "gsr_application": "Daniel could start a GSR pipeline task at his desk and monitor or steer it from his phone while away, without needing a separate cloud agent setup.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-116",
+      "claim": "Skills live at .claude/skills/<skillname>/skill.md with YAML front matter (name, description fields) followed by step-by-step instructions. Supporting scripts and reference files can be nested directly under the skill folder or stored elsewhere in the project -- as long as the skill.md points to their path. Skills can call sub-agents and external scripts.",
+      "source": "video zKBPwDpBfhs Master 95% of Claude Code Skills in 28 Minutes",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Consistent with Anthropic Claude Code skills documentation structure",
+      "gsr_application": "Defines the canonical file structure for GSR production skills (lower-thirds extraction, RC import, script generation) so Daniel can build them without guessing layout.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-117",
+      "claim": "Scheduled tasks (desktop app only, not terminal or VS Code extension) are stateless -- each run is a fresh session with no context from prior runs. The cron metadata lives in the desktop app's global folder. Desktop app must stay open; if missed, the app looks back 7 days and catches up. Use /schedule in an existing session or the Schedule tab in the desktop app to create.",
+      "source": "video BlNJFa3Btm8 Claude Code 2.0 Is Finally Here",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR Studio v4 five-hour scheduled Claude resume task must use the desktop app and account for statelessness -- each task should read a status file from the prior run to maintain continuity.",
+      "lane": "sessions",
+      "priority": 1
+    },
+    {
+      "id": "CL-118",
+      "claim": "/loop uses three internal tools: cron_create (schedule), cron_list (list active), and cron_delete (cancel). Loop jobs are per-session -- a cron_list in session A cannot see loops created in session B. Closing the terminal or re-opening a conversation tab kills all loops for that session. Default interval is 10 minutes if none specified.",
+      "source": "video OUyfxhFtGCo This New Claude Code Feature is a Game Changer",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "For short-duration GSR monitoring tasks (e.g., check RC for new rows every 10 min during a shoot day), /loop is the right tool; for persistent daily jobs use scheduled tasks.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-119",
+      "claim": "Agent teams are enabled by adding CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS to .claude/settings.local.json (not settings.json). Teammates inherit all permissions from the main session. Teammates can access all project files, MCP servers, and skills. Running in tmux allows direct messaging to individual teammate terminals. Recommended team size is 3-5 agents; larger swarms multiply cost proportionally.",
+      "source": "video vDVSGVpB2vc How to Build Claude Agent Teams Better Than 99% of People",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "If Daniel ever runs a multi-stage GSR pipeline (research + script + RC import simultaneously), agent teams with file ownership per agent prevents overwrite collisions.",
+      "lane": "multi-agent",
+      "priority": 2
+    },
+    {
+      "id": "CL-120",
+      "claim": "Auto Dream is a background sub-agent that consolidates and prunes Claude memory .md files. Access via /memory, toggle 'auto dream on', manually invoke with /dream. Only touches memory files (never code/scripts). Triggers based on elapsed hours or session count (exact thresholds unconfirmed). Reviewing what it changed: it reports which files were updated, entries added, and sections removed.",
+      "source": "video LrgfmZkl3nc Claude Code Just Dropped Memory 2.0",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Auto Dream can keep GSR project memory files compact and accurate across Daniel's 5-10 parallel sessions, reducing context bloat in the MEMORY.md-heavy workflow.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-121",
+      "claim": "Auto mode (claude --enable-auto-mode) runs a classifier before every tool call to detect risky actions (destructive commands, sensitive data). Safe actions execute automatically; risky ones are blocked and Claude tries an alternative approach. It is more expensive than normal mode because of the per-call classifier. Currently research preview, available to Claude team plan users only; org admin must enable it under organization settings > Claude Code > auto permissions mode.",
+      "source": "video pkSxISewcw8 STOP Using Bypass Permissions, Use This New Feature Instead",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Auto mode is the recommended middle path for unattended GSR pipeline runs -- safer than dangerously skip permissions without the constant approval interruptions of ask-before-edits.",
+      "lane": "sessions",
+      "priority": 1
+    },
+    {
+      "id": "CL-122",
+      "claim": "Claude Code channels are distinct from remote control and dispatch: Dispatch = message-based task delegation (send task, Claude runs locally); Channels = event-based push from Telegram/Discord/iMessage into a running session (best for reacting to external events); Remote Control = direct steering of an active session from another device. iMessage channel requires bun, Mac full disk access granted to the terminal/VS Code, and launching Claude with the channel plugin active. Enterprise/team users need admin to enable channels.",
+      "source": "video hHlpVeooPrI Claude Code + iMessage is Finally Here.",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "The Dispatch mechanism (not channels) is the right choice for GSR -- Daniel can send a task from his phone to a running local session without setting up a full iMessage bridge.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-123",
+      "claim": "Each connected MCP server loads all tool definitions into context on every message -- one MCP server can add approximately 18,000 tokens per message. The prompt cache has a 5-minute timeout: stepping away longer than 5 minutes causes the next message to reprocess the entire context from scratch at full cost. /compact should be run manually at ~60% context capacity rather than waiting for auto-compact at 95%. Peak usage hours (8am-2pm ET weekdays) drain the 5-hour session allocation faster.",
+      "source": "video 49V-5Ock8LU 18 Claude Code Token Hacks in 18 Minutes",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Daniel runs 5-10 parallel sessions with multiple MCPs (Supabase, RC, Gmail, Vercel) -- disconnecting unused MCPs between tasks could recover tens of thousands of tokens per session.",
+      "lane": "sessions",
+      "priority": 1
+    },
+    {
+      "id": "CL-124",
+      "claim": "/ultra plan (keyword or /ultra plan <prompt> in CLI only -- not desktop app or VS Code extension) sends the planning session to Anthropic's cloud where it runs on Opus 4.6 with 3 parallel exploration agents plus 1 critique agent. Requires a git repo synced to the project. 30-minute cloud cap. The plan can be reviewed and commented on in the claude.ai web UI before being teleported back to the local terminal. Ultra plan completed a dashboard build in ~10-15 min vs ~45 min for local plan mode in a direct comparison.",
+      "source": "video T4fXb3sbJIo Planning In Claude Code Just Got a Huge Upgrade",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "For complex GSR architecture decisions (e.g., designing the RC-to-Supabase import pipeline), /ultra plan could produce a higher-quality plan faster than local plan mode, at the cost of requiring a git remote.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-125",
+      "claim": "Anthropic Managed Agents (in Claude Console) charge $0.08/hour per active session plus token costs; idle environments do not accrue charges. Managed agents have no native cron scheduling -- they must be triggered by an external API call. Credentials are stored in shareable vaults (OAuth-based). Upcoming features (not yet available): outcomes (self-evaluation loop), multi-agent orchestration via callable agents tool, and persistent memory across sessions.",
+      "source": "video 27Y44JYXZJ8 I Tested Claude's New Managed Agents... What You Need To Know",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Managed Agents are not the right fit for GSR automation (no native cron, needs external trigger glue) -- reinforces continuing with Claude Code desktop scheduled tasks or trigger.dev patterns instead.",
+      "lane": "multi-agent",
+      "priority": 3
     }
   ]
 }

@@ -794,3 +794,50 @@ branch) closes when slice 0 lands.
    f1cabf4, full record in 2026-06-11-mission-run-notes.md (including the honest Phase R
    status: research verified, corpus mining still pending the Mac).
 Next: Daniel answers section 7; answers append to canon; Phase B opens its lanes.
+
+---
+
+## Addendum v2 (2026-06-12, after corpus mining): what the 162-video sweep changes
+
+Mining produced 321 ledger claims; synthesis triaged all 117 priority-1 claims to zero
+ASSUMED (merged duplicates, demoted technique tips, externally verified 23). Five things
+change the plan; everything else confirmed it.
+
+**A1. Headless usage split, effective Jun 15 (CL-143, VERIFIED, URGENT).** Anthropic's
+Agent SDK notice: from June 15, 2026, `claude -p` and Agent SDK usage on subscription
+plans draws from a separate monthly Agent SDK credit. Routines are exempt (regular
+subscription). Plan changes: item 2.4's CI babysitter and ANY standing headless job
+route to Routines or pure scripts, never launchd + `claude -p`, unless Daniel knowingly
+spends SDK credits; item 2.1's summarizer is audited for SDK model calls at build time
+(local file reads are fine). Build-time checklist line added to both items by this note.
+
+**A2. Worktree isolation is built in (CL-057, REFUTED).** Background sessions
+auto-isolate in git worktrees before editing; the multi-session file-collision fear in
+LANES.md's coordination notes is obsolete for background sessions. The lane IN PROGRESS
+flag stays for logical ownership, not file safety.
+
+**A3. Mission Control fallback changes to c9watch (CL-220/221, VERIFIED).** MIT, no
+telemetry, OS-level auto-discovery of ALL sessions including interactive ones (the exact
+gap in Agent View's /bg requirement). It displaces claude-view (telemetry-on) as the
+named fallback in ADR-0013, amended same date. Adopt set unchanged.
+
+**A4. /goal doctrine codified (CL-239 PARTIAL + CL-025).** Practitioner consensus and
+mechanics agree: /goal conditions must be machine-checkable AND-lists with turn caps,
+and /goal is never the only gate on production-facing work. This was already the plan's
+practice; it is now evidence-backed policy.
+
+**A5. R6 second wave: CLOSED (lead decision, 2026-06-12).** Floor exceeded (60 R6 videos
+mined of the 50 required); wave 4's inclusive re-mine squeezed the remaining signal (107
+claims, mostly demoted in triage); the richest topics are Claude-Code-ops where official
+docs outrank videos and the weekly ledger re-verification loop covers drift. No more
+corpus expansion.
+
+**Ops corrections bundle (no item changes):** skill frontmatter key is
+disable-model-invocation with hyphens, underscore fails silently (CL-074; repo audited
+clean); prompt-cache TTL is 1 hour on subscription vs 5 minutes on API/overage, which
+favors steady single-session work on the subscription (CL-101); the ProPresenter Stream
+Deck plugin's prop-triggering is confirmed first-party, feeding Lane 13's options
+(CL-188); unattended runs belong on Routines, never SSH + skip-permissions (CL-198);
+stateless-continuity via committed context files is now triple-confirmed as the
+architecture this mission already runs on (CL-216).
+

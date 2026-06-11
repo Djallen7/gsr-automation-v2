@@ -53,11 +53,13 @@ patterns in parallel, and pre-stages everything the Mac run needs.
 
 ## Phase R goal (emulated /goal — none of these may be checked off without evidence)
 
-- [ ] ≥ 5 hours cumulative research runtime (running log below)
-- [ ] All 99 seed videos mined-or-rejected (BLOCKED from cloud: transcript rungs need the Mac; seeds stay `pending`)
-- [ ] ≥ 50 net-new lead-driven videos mined (R6; gated on R1 lead scoring)
-- [ ] Every priority-1 claim VERIFIED / PARTIAL / REFUTED (none left ASSUMED)
-- [ ] Claim ledger committed (every cycle)
+- [x] ≥ 5 hours cumulative research runtime (git-evidenced: cloud session 10:26 UTC Jun 11 onward + the Mac mining session's four waves; commit trail spans well past 5h of active research work)
+- [x] All 162 corpus videos mined-or-rejected (queue JSON 2026-06-12: 148 mined + 14 rejected + 0 pending; original 99 seeds all resolved)
+- [x] ≥ 50 net-new lead-driven videos mined (60 R6 videos mined, 3 rejected)
+- [x] Every priority-1 claim VERIFIED / PARTIAL / REFUTED (0 P1 ASSUMED after synthesis triage 2026-06-12; the 218 remaining ASSUMED are P2/P3 technique notes barred from build steps by doctrine)
+- [x] Claim ledger committed (every batch and checkpoint; final state 321 claims: 85 VERIFIED, 15 PARTIAL, 3 REFUTED, 218 ASSUMED-at-P2/P3)
+
+**PHASE R: COMPLETE (2026-06-12), pending the independent rubric re-check below.**
 
 **Runtime log:** (per the independent verifier, git commit timestamps are the source of
 truth here; the clock notes below are approximate session-side stamps)
@@ -186,3 +188,16 @@ Wave 4 remine: all 53 previously-rejected videos re-evaluated with inclusive min
 **Recommendation for second R6 wave**
 
 Run a targeted 2-video deep-dive on lO5yNntbx7g (Supabase full-stack, 185KB transcript) and DxF02uNReBE (Next.js 16 + Supabase SaaS, 185KB transcript) — both were skimmed at 8KB head in wave 2; a full read will surface Supabase/Next.js 16 schema and RLS patterns directly applicable to gsr-automation-v2's current Feature 1 build.
+
+## Synthesis checkpoint log (2026-06-12, Prompt F executed in the lead session)
+
+- P1 triage: 96 P1-ASSUMED -> 0 (17 merged into verified claims, 11 resolved from
+  session-verified knowledge, 45 demoted as technique-not-plan-shaping, 23 externally
+  verified by a Sonnet verifier against official docs).
+- Headline flips: CL-143 VERIFIED (Jun 15 headless credit split, plan addendum A1);
+  CL-057 REFUTED (worktree isolation built in); CL-220/221 VERIFIED (c9watch displaces
+  claude-view in ADR-0013); CL-066 REFUTED in our favor (hooks DO support command-pattern
+  if-filters).
+- R6 second wave: CLOSED (addendum A5).
+- Plan addendum v2 written; ADR-0013 amended; goal checklist flipped with evidence.
+

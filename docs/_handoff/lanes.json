@@ -1,6 +1,6 @@
 {
   "project": "GSR Automation",
-  "updated_at": "2026-06-11T17:22:30.195229+00:00",
+  "updated_at": "2026-06-11T21:55:19.317244+00:00",
   "lanes": [
     {
       "id": 1,
@@ -257,6 +257,10 @@
       "resume_prompt": "Read docs/_handoff/LANES.md (Lane 9), docs/_handoff/2026-06-11-pipeline-build-plan.md (the plan, v3), docs/_handoff/2026-06-11-mission-run-notes.md (goal checklist + corrections), and docs/_handoff/2026-06-11-claim-ledger.json. If transcripts exist in 2026-06-11-transcript-pull-kit/transcripts/, mine them per item 3.2 (statuses mined/rejected, claims ASSUMED->verified). If Daniel has answered section 7, append answers to canon dated and open the Phase B lanes the plan lists in section 9. Starred defaults stand unless he says otherwise. Never bypass canon s15 gates.",
       "recent_activity": [],
       "activity": [
+        {
+          "date": "2026-06-12",
+          "note": "PHASE R COMPLETE: 162/162 videos resolved (148 mined, 60 of them R6), 321-claim ledger with 0 P1 ASSUMED after synthesis triage. Addendum v2 in the plan (Jun-15 headless credit split is the urgent one); ADR-0013 amended to c9watch; R6 closed. Awaiting independent rubric re-check + Daniel's merge and calendar."
+        },
         {
           "date": "2026-06-11",
           "note": "Track 2 burst while the Mac pulls transcripts: lanes.html sessions panel shipped (plan 2.2), ADR-0013 Mission Control (2.5), frameworks promoted to canon s16 (4.2), Kilauea fact-check RESOLVED with on-air wording in canon s14 (4.4, Daniel was right per USGS), superstore lookup spec committed (4.3, CL-049), gsr-research handoff + branch safety net shipped as that repo's PR #1 (P14). Ledger at 49 claims."

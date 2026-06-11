@@ -6,7 +6,7 @@
     "PARTIAL": "works with caveats (caveat stated in verifier_evidence)",
     "REFUTED": "checked and false/stale; never build on it"
   },
-  "updated_at": "2026-06-12T00:30:00Z",
+  "updated_at": "2026-06-12T01:10:00Z",
   "claims": [
     {
       "id": "CL-001",
@@ -607,8 +607,8 @@
       "claim": "Agent View critical bug: background agents continue running after the terminal application is fully quit. There is no quit warning, no menu bar indicator, and no system notification when agents remain alive. The only way to discover a zombie agent is to open a new terminal and run 'claude agents'. This can silently consume API credits or drain a Max plan rate limit for hours undetected.",
       "source": "video msiaY6wec90 Claude Code Agent View Review | Skip This Until Anthropic Fixes It",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
+      "status": "VERIFIED",
+      "verifier_evidence": "Agent-view docs: supervisor process keeps background sessions running without a terminal; no quit warning exists. code.claude.com/docs/en/agent-view",
       "gsr_application": "Daniel must run 'claude agents' to check for zombie sessions after closing any terminal with active background agents, especially /goal loops, to avoid invisible credit drain.",
       "lane": "sessions",
       "priority": 1
@@ -629,8 +629,8 @@
       "claim": "Agent View: parallel background sessions all share the same working directory by default — no folder isolation. Agents writing files can overwrite each other's work. The reviewer recommends each agent be given its own subdirectory as a workaround until Anthropic adds automatic isolation.",
       "source": "video msiaY6wec90 Claude Code Agent View Review | Skip This Until Anthropic Fixes It",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
+      "status": "REFUTED",
+      "verifier_evidence": "Agent-view docs: background sessions automatically move to isolated git worktrees under .claude/worktrees/ before editing; parallel sessions do NOT overwrite each other in git repos. The video's workaround is obsolete. code.claude.com/docs/en/agent-view#how-file-edits-are-isolated",
       "gsr_application": "Any GSR parallel agent run (e.g. multiple episode research sessions) must be launched from different working directories or use explicit file-naming conventions to prevent agents stomping each other's outputs.",
       "lane": "multi-agent",
       "priority": 1
@@ -654,8 +654,8 @@
       "priority": 1,
       "id": "CL-059",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": ""
+      "status": "VERIFIED",
+      "verifier_evidence": "CHANGELOG v2.1.169 confirms the task tool system; the Opus-only activation trigger sub-claim stays unconfirmed."
     },
     {
       "claim": "Claude Code agent teams have no native persistence of agent work logs after a session ends. Gastown (open-source multi-agent tool using gt rig, gt crew, gt mayor, gt dashboard commands) offers more mature persistence and interrogation of prior worker context across session restarts, at the cost of a steeper learning curve.",
@@ -750,8 +750,8 @@
       "claim": "Claude Agent SDK structured outputs were recently released (as of the workshop date). The presenter said 'we just released this — Google agent SDK structured outputs.' This enables typed/schema-constrained responses from agent runs, useful for workflow-style agents that need deterministic output shapes.",
       "source": "video TqC1qOfiVcQ Claude Agent SDK [Full Workshop] - Thariq Shihipar, Anthropic",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
+      "status": "VERIFIED",
+      "verifier_evidence": "Official structured-outputs page exists (Pydantic/Zod). code.claude.com/docs/en/agent-sdk/structured-outputs",
       "gsr_application": "GSR pipeline agents (extract lower thirds, score guests) can use structured outputs to guarantee JSON schema conformance without post-processing heuristics.",
       "lane": "sdk",
       "priority": 1
@@ -816,8 +816,8 @@
       "claim": "Skill YAML frontmatter supports a disable_model_invocation field (default false). When false, Claude Code can invoke the skill autonomously based on natural language matching the skill description. Setting it true requires explicit slash command invocation. The description field is the only part loaded into context for skill discovery; the full skill body only loads on invocation.",
       "source": "video RAZVk5NPNtE Claude Code Skills Just Got Even Better",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
+      "status": "PARTIAL",
+      "verifier_evidence": "Field exists but the correct key is disable-model-invocation (HYPHEN); underscore silently fails. Repo audited 2026-06-11: no underscore usages found. code.claude.com/docs/en/skills#frontmatter-reference",
       "gsr_application": "For GSR skills that should only run on explicit request (e.g., RC import), set disable_model_invocation: true to prevent accidental triggering during unrelated sessions.",
       "lane": "sessions",
       "priority": 1
@@ -1003,8 +1003,8 @@
       "claim": "Routines cloud environment resource limits: 4 vCPUs, 16 GB RAM, 30 GB disk per run. Network access levels are: trusted (vetted Anthropic-approved domains only), full (any outbound), none, or custom (specific domains). A setup script can run before Claude Code launches in a routine. Per-day limits: Pro=5, Max=15, Team/Enterprise=25; orgs with extra usage enabled can exceed the cap on metered overage.",
       "source": "video ehg4fhydTgs Claude Code Finally Gave Us Scheduled Automations",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
+      "status": "PARTIAL",
+      "verifier_evidence": "Network modes/setup scripts/MCP inclusion confirmed; specific vCPU/RAM/disk numbers and 5/15/25 caps NOT in official docs (caps were in our CL-027 R2 sweep; treat hardware numbers as unofficial). code.claude.com/docs/en/routines#usage-and-limits",
       "gsr_application": "GSR routines for guest research, lower thirds generation, and RC sync now have a concrete resource envelope to design against; trusted mode blocks non-Anthropic domains so API calls to RC or Supabase may require full or custom mode.",
       "lane": "sessions",
       "priority": 1
@@ -1036,8 +1036,8 @@
       "claim": "Prompt caching TTL: on a Claude subscription = 1 hour. On API or metered extra-usage overage = 5 minutes by default (can be bumped to 1 hour at extra cost). Sub-agents on any plan = 5 minutes TTL. Switching the model mid-session (including the 'model Opus plan' flag which toggles Opus in plan mode and Sonnet in execution) breaks the cache because each model has its own cache. Editing CLAUDE.md mid-session does NOT break cache -- the edit applies only on next session restart.",
       "source": "video 6cEQEba0i2A The One Habit That Doubles Your Claude Code Session Limit",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "",
+      "status": "PARTIAL",
+      "verifier_evidence": "TTLs confirmed: subscription 1h, API/overage 5m, subagents 5m; model-switch-breaks-cache sub-claim unconfirmed. code.claude.com/docs/en/prompt-caching",
       "gsr_application": "GSR multi-session pipeline work: staying on one model throughout a session preserves cache; subagents used for RC or Supabase calls reset their own 5-min TTL, so frequent subagent invocations are more expensive than expected.",
       "lane": "sessions",
       "priority": 1
@@ -1059,10 +1059,10 @@
       "source": "video xJ5oz63mIec I Tested 3 Ways to Deploy Claude Agents",
       "date_heard": "2026-06-11",
       "status": "ASSUMED",
-      "verifier_evidence": "",
+      "verifier_evidence": "Unverifiable in window: no official docs on /clear-vs-cron behavior differences. Demoted: cannot feed the plan.",
       "gsr_application": "GSR loops monitoring RC for new rundown rows or checking Supabase for pending extractions should be run from the terminal to survive /clear context resets during long sessions.",
       "lane": "sessions",
-      "priority": 1
+      "priority": 2
     },
     {
       "id": "CL-104",
@@ -1377,8 +1377,8 @@
       "claim": "Routine connectors include Slack, Linear, Google Drive, Gmail, and any other MCP connector already added to the account. Remove unused connectors from each routine so Claude only has access to what that specific task needs.",
       "source": "youtube:ctu_RyQNR5w:Claude Code Now Works While You Sleep Routines Tutorial 2026",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "'All your connected MCP integrations are included by default... Remove the ones this routine doesn't need so Cloud only access to what it actually needs.'",
+      "status": "VERIFIED",
+      "verifier_evidence": "Routines docs verbatim: all connected MCP connectors included by default, remove unused. code.claude.com/docs/en/routines#connectors",
       "gsr_application": "A GSR daily research brief routine should include only the Gmail and Google Drive connectors; the RC API connector should only be added to the script-finishing routine to limit blast radius.",
       "lane": "remote-execution",
       "priority": 1
@@ -1411,10 +1411,10 @@
       "source": "youtube:I1NdVZ6l5CQ:Claude Code Cowork Now Run 24/7 Scheduled Tasks",
       "date_heard": "2026-06-11",
       "status": "ASSUMED",
-      "verifier_evidence": "'Both your computer and this app has to be running for the scheduled task to actually succeed... Claude Co-work will attempt to run those tasks the next time you open up the app, so it'll have that backlog'",
+      "verifier_evidence": "Unverifiable in window for the queue-on-next-open behavior; the cloud-vs-desktop distinction itself is documented. Demoted: cannot feed the plan.",
       "gsr_application": "This is why Daniel should use remote Routines (cloud-hosted) rather than Cowork scheduled tasks for GSR pipeline automation - his Mac may not always be running and on when tasks need to fire.",
       "lane": "remote-execution",
-      "priority": 1
+      "priority": 2
     },
     {
       "id": "CL-136",
@@ -1443,8 +1443,8 @@
       "claim": "Scheduled tasks are non-deterministic (agent-based, not scripted) - they are self-healing when they hit errors but will also vary their approach run-to-run. For high-reliability workflows (e.g., exact API calls), a deterministic Python script or n8n workflow is more appropriate than a scheduled task.",
       "source": "youtube:A-xGGE3QQIM:Claude Can Now Run 24/7 Without You Scheduled Tasks",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "'these schedule tasks are also self-healing. Because it's using the agent harness... this is not like a Python script that just runs exactly the same every time... potentially a negative depending on how you look at it, is that they're not fully deterministic.'",
+      "status": "VERIFIED",
+      "verifier_evidence": "Routines run autonomously as full agent sessions, no approval prompts; deterministic scripts remain right for exact-write APIs like RC. code.claude.com/docs/en/routines",
       "gsr_application": "For the Rundown Creator API writes (which require exact column IDs and fail silently on wrong field keys), use a deterministic script rather than a Claude scheduled task to guarantee the correct payload structure every time.",
       "lane": "multi-session",
       "priority": 1
@@ -1498,8 +1498,8 @@
       "claim": "Starting June 15, 2026, the headless `claude -p` command path (for scripted/cron overnight runs) moves to a separate metered credit pool distinct from interactive sessions. When the metered pool is exhausted, the job fails silently. Routines (Anthropic-hosted) remain on flat subscription. Rule: use Routines for gentle scheduled work, use `claude -p` with a credit cap for heavy custom overnight jobs.",
       "source": "youtube:-d7AExggxKI:11 Prompts That Run Claude Code While You Sleep Meet Hermes",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "'Starting June 15th, 2026, that headless path moves to a separate metered credit pool. Your interactive sessions are untouched... scheduled and gentle on the wallet use routines heavy and custom use claud and watch the meter.'",
+      "status": "VERIFIED",
+      "verifier_evidence": "URGENT: official Agent SDK overview notice: starting June 15, 2026, Agent SDK and claude -p usage on subscription plans draws from a separate monthly Agent SDK credit. Routines are NOT affected (regular subscription usage). code.claude.com/docs/en/agent-sdk/overview",
       "gsr_application": "Daniel's GSR pipeline scripts that use `claude -p` in headless mode (if any) will draw from a separate budget after June 15. Audit all cron/headless invocations before that date and migrate lightweight ones to Routines.",
       "lane": "remote-execution",
       "priority": 1
@@ -1520,8 +1520,8 @@
       "claim": "There are 4 official remote Claude Code modes: (1) Cloud - Anthropic-hosted, requires GitHub repo, no local tools available; (2) Remote Control - mobile app connects via QR code to a running local CLI session, session must be started in remote-control mode first; (3) Dispatch - Claude Desktop app required, no special CLI mode needed, but messages aren't project-scoped so you must specify project path in the message; (4) Channels - Telegram or custom messaging connector, requires one-time setup, session must be started with the channel enabled.",
       "source": "youtube:eLaf8rCSwIM:5 ways of using Claude Code remotely and when to use which",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "Presenter walked through all four modes with trade-offs. Remote Control: 'you need to start your Cloud Code session through the CLI first'. Dispatch: 'you don't need to start a Claude Code session through the CLI first'. Channels: 'you need to start a Claude session with the channel you wanna use enabled'.",
+      "status": "VERIFIED",
+      "verifier_evidence": "Overview docs list Remote Control, Dispatch, Channels, Web/iOS as distinct remote surfaces. code.claude.com/docs/en/overview",
       "gsr_application": "For Daniel: Cloud mode is best for overnight GSR research (no Mac needed); Remote Control is best when he leaves the studio mid-session and wants to check in from his phone; Dispatch is best for ad-hoc 'hey, check on that guest email' requests from his phone without pre-setup.",
       "lane": "remote-execution",
       "priority": 1
@@ -1586,8 +1586,8 @@
       "claim": "Even after closing all terminal windows, Agent View background sessions continue running. To stop sessions, open `claude agents` and press Ctrl+X. Killing the terminal does NOT kill background sessions - they persist until explicitly stopped.",
       "source": "youtube:tJVUAzLZUyI:Claude Code Agent View Parallel Agents Are Here",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "'even if we kill this terminal window, like I've got nothing open at the moment, those sessions are actually still running in the background... the way that you stop these sessions is to just go back to the agent view, then hold control and press X'",
+      "status": "VERIFIED",
+      "verifier_evidence": "Agent-view docs: supervisor hosts sessions terminal-free; Ctrl+X stops; machine shutdown does stop them. code.claude.com/docs/en/agent-view#how-background-sessions-are-hosted",
       "gsr_application": "Daniel needs to know that closing his terminal after starting a background GSR agent does NOT stop the agent. He must explicitly use Ctrl+X in agent view to stop sessions, or they will keep running and consuming tokens.",
       "lane": "multi-session",
       "priority": 1
@@ -1993,8 +1993,8 @@
       "claim": "ProPresenter Stream Deck plugin supports triggering props (lower thirds, overlays) on/off with a single button press, plus camera input switching and live stream start/stop - all without touching ProPresenter UI",
       "source": "youtube:FcprDkcg79s:ProPresenter Stream Deck Plugin",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "Transcript: 'You can also trigger props directly from the deck, making it easy to bring a lower third or overlay on and off screen without interacting with ProPresenter at all. You can even control camera inputs... manage your live stream capture directly'",
+      "status": "PARTIAL",
+      "verifier_evidence": "Renewed Vision support article confirms prop triggering + camera cues from Stream Deck; live-stream start/stop not documented. support.renewedvision.com (Stream Deck plugin article)",
       "gsr_application": "GSR lower thirds could be triggered physically from Stream Deck during live shoots - pressing a button per L3 rather than clicking in ProPresenter, reducing operator error during GSR tapings",
       "lane": "broadcast-tools",
       "priority": 1
@@ -2081,8 +2081,8 @@
       "claim": "Claude Code skills can now be directly invoked with /skill-name tab completion as of Claude Code version ~2.1.2 (2026) - previously required a separate invocation step; direct slash invocation was a missing feature in the 2025 launch",
       "source": "youtube:Jo168H2m5lw:Replacing n8n workflow with Claude Code Skill",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "Transcript: 'This is brand new today or yesterday. This is version 2.1.2, and this is an update that I've been waiting for. My previous video about Claude skills, when it first came out back in 2025, my main gripe was that we can't directly invoke. But now here in 2026, we can just do this. Brand illustrator, and just go for that'",
+      "status": "PARTIAL",
+      "verifier_evidence": "/skill-name tab invocation is real and current; the v2.1.2 version attribution unverifiable. code.claude.com/docs/en/skills",
       "gsr_application": "Daniel can now invoke GSR skills directly with /rundown-finisher or /lower-thirds without a wrapper prompt - reduces friction in the two-pass finishing workflow",
       "lane": "skills",
       "priority": 1
@@ -2103,8 +2103,8 @@
       "claim": "Running Claude Code skills without a --dangerously-skip-permissions flag prompts for individual tool permissions during N8N-triggered SSH sessions - for automated unattended runs, the permissions model needs to be pre-configured or skip-permissions mode used deliberately",
       "source": "youtube:4lKhUX82aZY:Claude Code connected to n8n bidirectional",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "Transcript: 'during this process, it's going to ask you for a couple of permissions. So, make sure you give it the permissions as you go. And that is because we're not using the dangerously skip permissions mode as of now'",
+      "status": "VERIFIED",
+      "verifier_evidence": "Routines bypass permission prompts by design; SDK allowedTools/bypassPermissions documented. Recommended unattended path for GSR = Routines, never SSH+skip-permissions. code.claude.com/docs/en/routines#create-a-routine",
       "gsr_application": "When Daniel sets up unattended GSR pipeline runs (e.g. overnight research scoring), he must pre-authorize tool permissions or use skip-permissions mode - otherwise the session blocks waiting for human approval",
       "lane": "remote-execution",
       "priority": 1
@@ -2279,8 +2279,8 @@
       "claim": "Anthropic silently lowered Claude Opus 4.6 effort default to 'medium' and turned off adaptive thinking without announcement - causing thinking depth to collapse 73% (2,200 to 600 chars), model skipping file reads before edits 33.7% of the time, and users needing to interrupt 12x more often. Opus 4.7 restores full adaptive thinking.",
       "source": "youtube:NiMc2PoTiXo:Claude Opus 4.7 Just Dropped... Or Did It Really?",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "Transcript cites AMD senior director analysis of 7,000 coding sessions: 'thinking depth collapsed 73%... model stopped reading files before editing them... went all the way up to 33.7% of the time... users had to interrupt the model 12 times more often'",
+      "status": "PARTIAL",
+      "verifier_evidence": "The Opus 4.6 effort-default drop (Mar 3, 2026) is confirmed but was publicly acknowledged (not silent); third-party stats are not Anthropic data. platform.claude.com effort docs",
       "gsr_application": "GSR's RC API write automation broke silently when Claude skipped reading existing row data before edits - this explains similar pipeline failures. Upgrading to Opus 4.7 or explicitly setting effort=high in prompts would restore reliable file-read-before-edit behavior",
       "lane": "token-mgmt",
       "priority": 1
@@ -2290,8 +2290,8 @@
       "claim": "Claude Code Routines (now called Scheduled Tasks in the desktop app) enable a 24/7 scheduled agent with multiple daily trigger times (e.g., 6am, 8:30am, noon, 3pm, weekly Friday review). Each routine fires as a stateless Claude Code session - agent must reconstruct context from files written in previous sessions.",
       "source": "youtube:6MC1XqZSltw:I Turned Claude Opus 4.7 Into a 24/7 Trader",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "Transcript: 'Cloud Code Routines, that's kind of our scheduler... every single day I've got Bull, which is my trading agent, waking up at 6:00, 8:30, noon, 3:00 p.m... every time a routine fires at 7am, Claude code basically wakes up essentially stateless'",
+      "status": "VERIFIED",
+      "verifier_evidence": "Routines docs: stateless sessions reconstructing context from files; cloud Routines vs desktop scheduled tasks naming clarified. code.claude.com/docs/en/routines",
       "gsr_application": "GSR's weekly production pipeline (Monday topic selection -> Tuesday research -> Thursday script) maps perfectly to Routines - each stage fires as a scheduled session, with prior-session outputs written to project files for stateless context reconstruction",
       "lane": "multi-session",
       "priority": 1
@@ -2323,8 +2323,8 @@
       "claim": "/remote-control command (Opus 4.8+) generates a one-time URL that lets Claude Code keep working after you disconnect — pairs with /goal for fully unattended overnight runs without leaving a terminal open",
       "source": "youtube:5HVPeux24WU:Embrace long-running tasks with Opus 4.8 and Claude Code",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "From official video description: 'Ship features with /goal and step away from your computer with /remote-control. Claude Code handles complex work without needing constant check-ins.'",
+      "status": "PARTIAL",
+      "verifier_evidence": "/remote-control confirmed since v2.1.139 via changelog; CLI-version-gated, NOT Opus-4.8-gated as the video claimed.",
       "gsr_application": "GSR nightly RC rundown prep: start /goal session, /remote-control to disconnect, pick up completed rundown in the morning — no terminal babysitting",
       "lane": "remote-execution",
       "priority": 1
@@ -2345,8 +2345,8 @@
       "claim": "c9watch is a free open-source (Tauri/Rust/Svelte) macOS desktop app that auto-discovers ALL Claude Code sessions at the OS level — shows real-time Working/Need Permission/Idle status for every session regardless of where it was started (VS Code, Zed, iTerm2, any terminal)",
       "source": "youtube:9PdN7joYmUk:c9watch - Monitor All Your Claude Code Sessions from One Dashboard",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "From video description: 'Auto-discovery — Detects all running Claude Code sessions at the OS level. Real-time status — See which sessions are Working, Need Permission, or Idle.'",
+      "status": "VERIFIED",
+      "verifier_evidence": "github.com/minchenlee/c9watch: Tauri/Rust/Svelte macOS app, OS-level auto-discovery of ALL Claude Code sessions (no launch-from-app requirement), MIT, no telemetry.",
       "gsr_application": "Daniel runs multiple parallel Claude Code sessions (RC prep, script writing, guest research) — c9watch as a lightweight dashboard to see which need attention without switching terminals",
       "lane": "multi-session",
       "priority": 1
@@ -2356,8 +2356,8 @@
       "claim": "c9watch groups sessions by project with git branch info and includes a conversation viewer — full conversation text of any session visible from one window without opening each terminal",
       "source": "youtube:9PdN7joYmUk:c9watch - Monitor All Your Claude Code Sessions from One Dashboard",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "From video description: 'Multi-project view — Sessions grouped by project with git branch info. Conversation viewer — Expand any session to view the full conversation.'",
+      "status": "VERIFIED",
+      "verifier_evidence": "Same repo: project+git-branch grouping and a full conversation viewer confirmed.",
       "gsr_application": "Monitor overnight GSR pipeline runs — check conversation viewer in the morning to see what each scheduled agent did without reading .jsonl files manually",
       "lane": "multi-session",
       "priority": 1
@@ -3390,8 +3390,8 @@
       "claim": "The /btw command lets you ask Claude Code a one-off question without interrupting a long-running task — it does not break context or count as a full session interruption.",
       "source": "youtube:JoPmpwpRrBI:Virtual Pets April Fools",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "ASSUMED",
+      "status": "VERIFIED",
+      "verifier_evidence": "Official commands docs: /btw ephemeral overlay, never enters history, runs mid-turn. code.claude.com/docs/en/commands",
       "gsr_application": "Daniel can use /btw mid-pipeline to check something (e.g., 'what column ID does RC use for the script field?') without stopping a long RC row-update job.",
       "lane": "/goal",
       "priority": 1

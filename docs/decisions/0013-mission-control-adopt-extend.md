@@ -37,9 +37,11 @@ auto-accept mode conflicts with the David Rule, CL-014) and the builderz-labs
 mission-control platform (replaces the workflow instead of extending lanes; anti-churn,
 CL-017).
 
-**Watch:** claude-view (closest third-party fit if the /bg habit annoys, but young and
-telemetry-on-by-default, CL-016), claude-code-log (CL-011), claude-self-reflect (passed
-install-safety, solves memory not oversight, CL-012/CL-038). The ergut remote transcript
+**Watch (amended 2026-06-12):** c9watch is now the named fallback if the /bg habit
+fails: MIT, no telemetry, OS-level auto-discovery of ALL sessions including interactive
+ones (CL-220/CL-221, verified against the repo). claude-view drops to second fallback
+(telemetry-on-by-default, CL-016). Still watching: claude-code-log (CL-011),
+claude-self-reflect (passed install-safety, solves memory not oversight, CL-012/CL-038). The ergut remote transcript
 MCP is deferred separately (canon, 2026-06-11): the Mac pull makes it redundant unless
 coverage falls under ~60%.
 

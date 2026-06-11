@@ -26,20 +26,23 @@ mining), and the DISCUSS queue as decision-ready proposals, all under canon s15 
    already renamed `graphics` -> `production_lower_thirds` (PR #50's migration is applied),
    but deployed main still queries `graphics`, so the deployed lower-thirds pages hit a
    missing table until the stack merges and deploys. Verified live 2026-06-11; impact is
-   bounded because every lower-thirds table has 0 rows. (CL-007, CL-009.) Re-confirmed today:
-   even this dev branch carries 20 `.from('graphics')` call sites and no rename migration;
-   only the PR branch has the fix. Nothing dashboard-side builds until the stack lands.
+   bounded because every lower-thirds table has 0 rows. (CL-007, CL-009.) Nothing dashboard-side builds until the stack lands (this branch also still
+   queries the old name: 15 `.from('graphics')` call sites, ~20 total string refs; only
+   the PR branch carries the fix).
 2. Slice 1 (lower-thirds vertical slice, answer 1A) sits directly on the renamed schema.
 3. Mission Control (slice 2) and transcript mining (slice 3) have **zero dependency on the
    PR stack** and start immediately, in parallel.
-4. The Mac jobs-table poller (slice 7 opener) is the control plane every heavy Mac task
-   needs: transcription, uploads, Mac Mail, Apple Notes. It gates slices 7 onward.
+4. The Mac jobs-table poller (slice 7 opener) is the single hand-off channel (the "control
+   plane") every heavy Mac task needs: transcription, uploads, Mac Mail, Apple Notes. It
+   gates slices 7 onward.
 5. Two Daniel working sessions (graphics decisions, segment timing) gate their own small
    build clusters; nothing else waits on them.
 
-Ship dates below assume Daniel approves this plan and merges the PR stack by **2026-06-13**.
-Every date after slice 0 slides day for day with that merge. June 15 is kept clear of asks
-(Ming Wang filming, 9:30 arrival).
+Ship dates below assume the production fix (decision 1) lands by **2026-06-13** and
+everything else respects a **Daniel-light window through Jun 16** (Ming Wang filming Jun 15,
+9:30 arrival): the ONLY ask before Jun 16 is decision 1. All other taps (the install batch,
+the Mac transcript run, the Rumble send, proposal taps) batch into one decision card on
+Jun 16. Dates slide day for day if decision 1 slips.
 
 ---
 
@@ -47,17 +50,17 @@ Every date after slice 0 slides day for day with that merge. June 15 is kept cle
 
 | # | Slice | Ships | Depends on |
 |---|---|---|---|
-| 0 | Merge gate + post-merge verification | Jun 12-13 | Daniel's merge |
-| 1 | Lower-thirds vertical slice on `production_lower_thirds` | Jun 13-18 | Slice 0 |
+| 0 | Production fix (decision 1) + post-merge verification | Jun 12-13 | Daniel's pick |
+| 1 | Lower-thirds vertical slice on `production_lower_thirds` | Jun 16-20 | Slice 0; 1.0 gate |
 | 2 | Mission Control on lanes.html + standing loops | Jun 12-14 | nothing (parallel now) |
-| 3 | Transcript mining resumption (Mac kit + R6) | Jun 12-19 | Daniel's Mac, ~15 min |
-| 4 | Quick wins batch (docs, one-tap sends, fact checks) | Jun 12-14 | nothing |
-| 5 | Dashboard UI operational default (3A locked) | Jun 18-23 | Slice 1 |
-| 6 | Data + sync backbone (RC, backfill, contacts, schedule) | Jun 22-27 | Slice 0; P1 yes |
-| 7 | Mac worker + transcription + metadata | Jun 26 - Jul 1 | jobs table (7.1) |
-| 8 | Voice DNA + monologue arc | Jun 30 - Jul 2 | nothing hard |
-| 9 | Social clips + posts UI | Jul 2-6 | Slice 5 patterns |
-| 10 | ProPresenter test-machine track | Jun 27 - Jul 9 | feasibility verify (10.1) |
+| 3 | Transcript mining resumption (Mac kit + R6) | Jun 16-22 | Daniel's Mac, ~15 min, post-filming |
+| 4 | Quick wins batch (docs, one-tap sends, fact checks) | Jun 16-18 | Jun-16 decision card |
+| 5 | Dashboard UI operational default (3A locked) | Jun 20-25 | Slice 1 |
+| 6 | Data + sync backbone (RC, backfill, contacts, schedule) | Jun 23-28 | Slice 0; P1 yes |
+| 7 | Mac worker + transcription + metadata | Jun 27 - Jul 2 | jobs queue (7.1) |
+| 8 | Voice DNA + monologue arc | Jul 1-3 | nothing hard |
+| 9 | Social clips + posts UI | Jul 3-7 | Slice 5 patterns |
+| 10 | ProPresenter test-machine track | Jun 28 - Jul 10 | guards (10.0) + feasibility (10.1) |
 
 Working sessions (Daniel, 30-45 min each, proposed week of Jun 22): graphics decisions;
 segment timing. Their gated builds are in section 4.
@@ -76,10 +79,17 @@ Cite: CL-007, CL-009; Daniel's Q16 answer (A).
 
 **0.2 Post-merge verification + docs truth sweep.**
 Ship same day as merge · Lane 8 · Effort S · W1 F1 $0.
-Done when: `list_migrations` shows the rename migration; security+performance advisors clean;
+Done when: `list_migrations` shows the rename migration; security+performance advisors
+(Supabase's built-in checkup reports) clean;
 `npx tsc --noEmit` + `npx eslint src/` clean on main; CLAUDE.md Project State and canon
-section 0 say `production_lower_thirds`; AUTOMATION_ROADMAP's stale "graphics" lines updated;
-repo grep for "the lower-thirds table is `graphics`" returns nothing.
+section 0 say `production_lower_thirds`; AUTOMATION_ROADMAP's stale "graphics" lines AND its
+Phase 1A "UI still needed" rows updated (the /workflow page already shipped); HANDOFF.md,
+gsr-automation-v2-course.html (section 4 facts), VERIFIED-FACTS.md, and SYSTEM-EVOLUTION
+reconciled to the renamed schema and the real migration count; CLAUDE.md's blanket "No
+Tailscale" off-limits line and canon s12's Tailscale line gain the s15 carve-out note (s15
+authorizes the ProPresenter path specifically, Daniel 2026-06-11) so future sessions do not
+balk at Lane 13; repo grep for "the lower-thirds table is `graphics`" returns nothing;
+`list_tables` confirms `content_clips` + `social_posts` exist live (slice 9 builds on them).
 Cite: CL-009; build-task-1 verify list (2026-06-09-build-task-1-schema-rename.md).
 
 ### Slice 1 - Lower-thirds vertical slice (Lane 10, new) (Jun 13-18)
@@ -88,30 +98,45 @@ This is answer 1A. PR #50 carries the rename migration + ~20 call-site code upda
 remains is everything Build Task 1 listed that the stack does not already include, plus the
 first real data and the variations flow.
 
+**1.0 Import gate hardened BEFORE any new import UI (red-team blocker fix).**
+Ship Jun 16 · Lane 10 · Effort S · W1 F1 $0.
+Verified in-repo: `/api/import` currently treats a missing `dry_run` flag as a LIVE write
+(`dry_run` defaults to false), and `episode-workspace.tsx` is a one-click import path with
+no YES gate. Before 1.4 or any new UI touches the route: the route requires an explicit
+confirm token (omitting it = dry-run, never a live write), and `episode-workspace.tsx` is
+either wired through the full dry-run + Type-YES gate or deleted. Done when: a request
+without the token cannot write; a grep shows no caller bypassing the gate; tsc/eslint clean.
+Cite: canon s15 Type-YES gate; canon s11 purge-audit order; red team finding 2.
+
 **1.1 Intro Graphic follow-up migration on `production_graphics`.**
 Ship Jun 13 · Lane 10 · Effort S · W1 F2 $0.
-Scope: `graphic_type` CHECK gains "Intro Graphic" + "Book Cover", any "Title Graphic" rows
+Scope: the `graphic_type` CHECK (the database rule listing allowed types) gains
+"Intro Graphic" + "Book Cover", any "Title Graphic" rows
 migrate, the term retires system-wide. PR #50 already ships `display_duration` + `last_line`;
 PR #52 explicitly DEFERRED this Intro Graphic standardization to its own follow-up migration
-(the in-migration version aborted), so this item is that follow-up. Done when: migration
-listed remotely, advisors clean, types regenerated.
+(the in-migration version aborted), so this item is that follow-up. It is DB-only and
+merge-independent (production_graphics already exists live); it is sequenced here only so
+type regeneration happens once, after the stack lands. Done when: migration listed
+remotely, advisors clean, types regenerated.
 Cite: canon s13 (Intro Graphic standard), s14 (duration + last-line columns); CL-046.
 
 **1.2 Character validator reconciled to the canon 55-70 band.**
 Ship Jun 13 · Lane 10 · Effort S · W1 F1 $0.
 PR #52 already moves the validator to soft amber over 65 (66-70 allowed, never blocks) and
-targets 60-65 in the extraction prompt. Canon s13 additionally wants: under 55 amber, and
-over 70 BLOCKED red. This item adds those two missing edges post-merge (Topic L3 stays
-60-65). Done when: component shows amber under 55, green 60-65, amber 66-70, red block over
-70; tsc/eslint clean.
+targets 60-65 in the extraction prompt; the component already shows amber under 55. The one
+genuinely missing edge is the over-70 hard block (canon s13). This item adds it post-merge
+and verifies the under-55 amber survived #52 (Topic L3 stays 60-65). Done when: component
+shows amber under 55, green 60-65, amber 66-70, red block over 70; tsc/eslint clean.
 Cite: canon s13 length ruling; CL-046.
 
 **1.3 Webstream contract migration (Lane 6 unblock).**
 Ship Jun 14 · Lane 6 · Effort S · W1 F2 $0.
 Drop `episodes.youtube_scheduled_publish_at` and repoint `v_episode_workflow` to
 `webstream_scheduled_publish_at`, in one migration, ONLY after slice 0 deploys (the deployed
-view still references the old column until then). Done when: migration applied, view
-queries clean, advisors clean.
+view still references the old column until then). Caught by red team: `/workflow` reads
+the view with select-star, so a renamed column vanishes SILENTLY instead of erroring. Done
+when: migration applied AND types regenerated AND a repo grep for the old field name is
+clean AND the WorkflowRow consumer is updated, all in one PR; advisors clean.
 Cite: AUTOMATION_ROADMAP follow-up section; canon s12 webstream ruling.
 
 **1.4 First real episode import through the Type-YES gate.**
@@ -127,11 +152,15 @@ Cite: CL-007; canon s15 Type-YES gate; CLAUDE.md import rule.
 Ship Jun 17 · Lane 10 · Effort M · W2 F2 · $ ~0.05-0.15 per regenerate call.
 PR #50 renames the child table and #52 already persists Var 1/Var 2 into
 `lower_thirds_variations` slots 2/3 (slot 1 = primary) across all three write paths, so this
-item is: post-merge verify that flow on real rows, then extend the chyron path to produce 3
-topic-relevant variations per guest (each highlighting the credential most relevant to that
-episode's topic), drawing on past examples. Done when: a regenerate on a real row yields 3
-stored variations, tsc/eslint clean.
-Cite: canon s13 chyron-variations ruling; CL-046.
+item is two phases. Phase A (Jun 17): post-merge verify the variations flow on real rows.
+Phase B (Jun 25, AFTER 6.6 lands the per-episode affiliation field it depends on): extend
+the chyron path to produce 3 topic-relevant variations per guest (each highlighting the
+credential most relevant to that episode's topic). Past-example source named: the legacy
+Graphics Tracker archive (import a reference sheet of past chyrons before building; the
+live tables hold 0 rows today, so there is nothing in-DB to learn from yet). Done when: a
+regenerate on a real row yields 3 stored variations that differ by affiliation, tsc/eslint
+clean.
+Cite: canon s13 chyron-variations ruling; canon s12 Janzen case; CL-046; red team finding 9.
 
 **1.6 Three-column comparison view (lt-three-column-view).**
 Ship Jun 17 · Lane 10 · Effort M · W2 F1 $0.
@@ -152,15 +181,13 @@ Answer 11A: extend lanes.html, one place, already works on Daniel's phone. Assum
 parallel sessions (12B). No parallel tracker gets built (anti-churn).
 
 **2.1 Sessions summarizer script -> `sessions` block in lanes.json.**
-Ship Jun 13 · Lane 11 · Effort M · W2 F3 (JSONL format can shift between CLI versions) · $0
+Ship Jun 13 · Lane 11 · Effort M · W2 F3 (Claude's session-log file format can shift between CLI versions) · $0
 (local parse; ~$0.02/refresh if a model summarizes).
-A script on Daniel's Mac merges two verified feeds into per-session rows (last task, state,
-files touched, last activity): `claude agents --json` for live background-session state, and
-Agent SDK `list_sessions()` whose `SDKSessionInfo.summary` field already carries an
-auto-generated per-session summary (the transcript reader, if ever needed, is
-`get_session_messages()`, not "Session.History"). The official "Building a session browser"
-cookbook is the reference pattern. Done when: `lanes.json` validates with a populated
-`sessions` block from at least 3 real sessions.
+A script on Daniel's Mac merges Claude's two built-in session feeds into per-session rows
+(last task, state, files touched, last activity): the live background-session feed and the
+session list with its ready-made per-session summaries. Done when: `lanes.json` validates
+with a populated `sessions` block from at least 3 real sessions. (Exact APIs are in the
+Lane 11 resume prompt.)
 Cite: CL-015 (claude agents --json), CL-030 (SDK session APIs + cookbook), CL-031 (storage).
 
 **2.2 lanes.html sessions panel.**
@@ -179,15 +206,18 @@ Cite: CL-008 (verified: project-level key is honored).
 **2.4 Standing loops wired.**
 Ship Jun 14 · Lane 11 · Effort M · W1-2 F2 · $ varies, ~$0.50-2.00/day total at current usage.
 (a) nightly lanes updater: `tools/nightly_lanes_update.mjs` exists, schedule it (Routine on
-the Mac, launchd fallback); (b) CI babysitter per open PR (15-min loop: re-check CI, diagnose
-+ push fix, never merge per 9A); (c) weekly claim-ledger re-verification (tools shift weekly);
+the Mac, with launchd, the Mac's built-in scheduler, as fallback); (b) CI babysitter per open PR, comment-and-prepare only: it diagnoses
+failures and prepares the patch, but on the merge-gate stack (#47/#50/#52) it NEVER pushes;
+elsewhere a push flips the PR to "re-review required" so Daniel never merges code no human
+re-read (host: Mac launchd, since /loop dies with its session and Routines push only
+claude/-prefixed branches); (c) weekly claim-ledger re-verification (tools shift weekly);
 (d) Mission Control refresh feeding 2.1. Loops PREPARE but never fire a gated action (canon
 s15). Placement rule from verification: /loop tasks are session-scoped and expire after 7
 days, so anything standing goes to a Routine (Anthropic cloud, fresh clone, structurally
 cannot reach QNAP/ProPresenter; caps Pro 5 / Max 15 runs/day, min interval 1h) or to
 Supabase Cron, never to a long-lived /loop. Done when: each loop has run once with logged
 output.
-Cite: mission §5 standing loops; CL-026 (/loop limits), CL-027 (Routines verified).
+Cite: mission section 5 standing loops; CL-026 (/loop limits), CL-027 (Routines verified).
 
 **2.5 Adopt memo + ADR (adopt vs extend) + the 8B install batch.**
 Ship Jun 14 · Lane 11 · Effort S · $0.
@@ -196,8 +226,8 @@ guess): ADOPT = official Agent View (`claude agents`, built-in, no install; need
 habit of backgrounding working sessions with `/bg` or left-arrow) + ccusage as the weekly
 cost lens (its live monitor was removed in v18; `blocks --active` still shows burn) +
 claude-devtools for after-the-fact forensics (MIT, zero outbound network). WATCH =
-claude-code-log, claude-self-reflect (passed install-safety), claude-view (telemetry
-default-on). SKIP = claude-squad (its autoyes mode fails the David Rule's spirit) and the
+claude-code-log, claude-self-reflect (passed install-safety), claude-view (sends usage
+data out by default). SKIP = claude-squad (its autoyes mode fails the David Rule's spirit) and the
 mission-control platform (replaces the workflow; anti-churn). The same memo carries the R3
 stack proposals: supabase/agent-skills + vercel-labs/next-skills (both first-party,
 instruction-only), commit-commands (official plugin), ergut remote transcript MCP (cloud
@@ -212,7 +242,10 @@ Cite: CL-010..CL-017 (Mission Control verdicts), CL-036..CL-041 (R3 candidates);
 Ship Jun 13 · Owner: Daniel (~15 min active) or a Mac session · Effort S · F3 (YouTube
 blocking is the known risk) · $0 on free rungs.
 Run the pre-staged kit (`docs/_handoff/2026-06-11-transcript-pull-kit/`, urls.txt ready,
-rank-1 seeds first); transcripts land in `transcripts/`. Paid rungs 5-7 only after a one-tap
+rank-1 seeds first); transcripts land in `transcripts/`. IP hygiene (red team): the kit
+already sleeps between requests; keep it un-throttled no further, never run it signed in
+to your Google account, and prefer the ergut path (decision 2c) once approved so your home
+IP stays clean for the Google API audit. Paid rungs 5-7 only after a one-tap
 cost yes. CLOUD SHORTCUT (one-tap, part of the decision-2 batch): connect the ergut remote
 transcript MCP, which fetches from Cloudflare's IP, then live-test it from a cloud session;
 if YouTube serves it, cloud sessions mine without waiting for the Mac.
@@ -221,17 +254,19 @@ logged failures.
 Cite: CL-002 (cloud IP block, live-tested); CL-036 (ergut remote, endpoint live-checked);
 CL-037 (jkawamoto local for the Mac); mission rung ladder.
 
-**3.2 Mine the 99 seeds into the ledger.**
-Ship Jun 18 · Lane 9 · Effort M · $ token cost only.
-Every seed ends `mined` or `rejected` with claims logged ASSUMED -> verified per doctrine.
-Done when: queue JSON shows 0 `pending` seeds; ledger committed.
-Cite: mission R1; canon s15 doctrine.
+**3.2 Mine the corpus into the ledger (162 videos queued: 99 seeds + 63 R6 candidates).**
+Ship Jun 20 · Lane 9 · Effort M-L · $ token cost only.
+The R6 expansion already happened at the queueing level (63 lead-driven candidates found
+and oEmbed-verified on 2026-06-11; the Mac pull list carries all 162, highest-value first).
+Every video ends `mined` or `rejected` with claims logged ASSUMED -> verified per doctrine.
+Done when: queue JSON shows 0 `pending`; ledger committed.
+Cite: mission R1 + R6; answer 6A; canon s15 doctrine.
 
-**3.3 R6 lead-driven expansion, +50 to +100 videos (answer 6A).**
-Ship Jun 19 · Lane 9 · Effort M · $ token cost only.
-Score the seed corpus for leads, add net-new videos with `source: "R6-lead:<lead>"`, mine
-through the same doctrine. Done when: >= 50 net-new videos mined; low-signal finds rejected
-with one-line reasons.
+**3.3 R6 second wave, only while leads stay hot.**
+Ship Jun 22 · Lane 9 · Effort S-M · $ token cost only.
+After mining, if a thread keeps producing VERIFIED GSR-applicable claims, add and mine more
+(6A allows +50 to +100 past the floor); stop a thread the moment it stops producing. Done
+when: a dated note in the ledger says which leads were extended or closed and why.
 Cite: mission R6; answer 6A.
 
 **3.4 Plan addendum v2.**
@@ -324,8 +359,11 @@ Cite: Lane 4 recipe.
 
 **6.3 Season 3 backfill agent team (ops-season3-backfill-agents).**
 Ship Jun 25 · Lane 3 · Effort M · $ ~2-5 per run (agent tokens).
-Fill ep9-16 descriptions, eps 18+ rows as aired, early-episode rc_rundown_id mapping. Done
-when: row-count and field-fill deltas reported; read-back verified; idempotent.
+Fill ep9-16 descriptions, eps 18+ rows as aired, early-episode rc_rundown_id mapping.
+Gate (red team): the team produces a DELTA SHEET first, Daniel one-taps approve, THEN it
+writes; never write-then-report on on-air-adjacent facts. Done when: approved delta sheet
+matches the row-count and field-fill deltas; read-back verified; idempotent (safe to
+re-run; a second run adds nothing).
 Cite: review-decisions BUILD; Lane 3 to-finish.
 
 **6.4 Email cross-reference + 507-contact classification.**
@@ -341,11 +379,13 @@ Cite: review-decisions guests-email-crossref-agents; canon s14 (classify first).
 Ship Jun 26 · Lane 5 · Effort M · W2 F3 · $0.
 Tapings + air + webstream dates rendered in the dashboard from Basecamp (`PROD |` calendar
 events only) + the airing schedule. Read-only; the full two-way sync stays deferred per the
-roadmap. Hard prerequisite from verification: Basecamp OAuth tokens expire after TWO WEEKS,
-so even this read-only view ships with the token-refresh loop (launchpad refresh_token
-grant) or it dies quietly in 14 days. Per-project webhooks (10x retry) are the later
-push-sync path. Done when: page renders the season calendar; refresh loop proven by a
-forced-expiry test; zero Basecamp writes.
+roadmap. Hard prerequisite from verification: Basecamp's login tokens expire after TWO WEEKS, so
+even this read-only view ships with an automatic token-refresh loop or it dies quietly in
+14 days. Rotated tokens are stored in Supabase Vault (server-side, never a plaintext file;
+the 1Password rule covers the bootstrap secret). Per-project webhooks (10x retry) are the
+later push-sync path. Done when: page renders the season calendar WITH a "data as of"
+staleness banner; refresh loop proven by a forced-expiry test; an ntfy alert fires on
+refresh failure; zero Basecamp writes.
 Cite: canon s12 Basecamp rulings; CL-021 (token expiry + webhooks, verified).
 
 **6.6 Per-episode chyron-affiliation override on `episode_guests`.**
@@ -355,22 +395,25 @@ carries its topic-relevant affiliation; feeds 1.5's three variations. Done when:
 applied, advisors clean, Ep15 case representable without notes-field workarounds.
 Cite: canon s12 affiliation ruling.
 
-**6.7 YouTube RSS poller Edge Function.**
+**6.7 YouTube RSS poller (a small scheduled function inside Supabase).**
 Ship Jun 27 · Lane 3 · Effort S-M · W1 F2 · $0 (RSS, no quota).
-Hourly pg_cron poll of the channel feed; parses `S03, EpN`; flips `youtube_url` +
-`youtube_published_at` from scheduled to actual. RSS costs zero API quota, and the upload
+Hourly poll (pg_cron, Supabase's timer) of the channel feed; parses `S03, EpN`; fills `youtube_url` +
+`youtube_published_at` ONLY when null (never overwrites a non-null value); an ambiguous
+title match writes a pending row + alert instead of data. RSS costs zero API quota, and the upload
 quota itself is no longer scarce (videos.insert now = 1 unit in a 100-uploads/day bucket);
 the real distribution gate is the one-time Google API project audit, started early in
 slice 4 era. Done when: function deployed, one real row flipped or a dry log proves the
 match logic.
 Cite: AUTOMATION_ROADMAP item 8 (priority high); CL-023 (quota flip + audit gate, verified).
 
-**6.8 Guest email workflow UI (roadmap Phase 1A).**
-Ship Jun 27 · Lane 3 · Effort M · W2 F1 $0.
-Surface `v_episode_workflow` due dates (zoom link, pre-air, post-shoot, YouTube emails);
-mark-sent buttons write timestamps. Done when: page renders computed due dates; a mark-sent
-round-trips to `episode_guests`.
-Cite: AUTOMATION_ROADMAP Phase 1A (schema ready).
+**6.8 Guest email workflow page: POLISH ONLY (the page already shipped).**
+Ship Jun 28 · Lane 3 · Effort S · W1 F1 $0.
+Repo audit found `/workflow` already does what the roadmap still lists as "UI needed": it
+reads `v_episode_workflow` due dates and its mark-sent buttons write the timestamps. This
+item is only: fix the stale roadmap rows (in 0.2), then a small polish pass (sorting,
+mobile check) if real use surfaces friction. Done when: roadmap corrected; any polish
+committed with a screenshot.
+Cite: gsr-health round-2 finding 1; AUTOMATION_ROADMAP Phase 1A rows marked stale.
 
 ### Slice 7 - Mac worker + transcription + metadata (Lane 12, new) (Jun 26 - Jul 1)
 
@@ -378,13 +421,17 @@ Cite: AUTOMATION_ROADMAP Phase 1A (schema ready).
 Ship Jun 26 · Lane 12 · Effort M · W2 F2 $0.
 Canon-locked shape: dashboard writes a job; the Mac polls Supabase, runs, writes status back;
 no inbound connection to the Mac. Implementation refinement from verification: build it on
-Supabase Queues (pgmq, the official pull-queue) exposed through the Data API with a
-visibility timeout, instead of a hand-rolled table; same polling shape Daniel locked, but
-durability, retries, and archival come free. Done when: a no-op test job round-trips
-dashboard -> Mac -> status row; migration + RLS + types committed.
+Supabase Queues (pgmq, the official pull-queue) reached through Supabase's normal API,
+with automatic retry if the Mac dies mid-job (the "visibility timeout"), instead of a
+hand-rolled table; same polling shape Daniel locked, but durability, retries, and archival
+come free. Liveness (red team): the poller writes a heartbeat row, and an ntfy alert fires
+when any job sits unclaimed over 15 minutes, so a dead poller can never fail silently
+during a production week. Done when: a no-op test job round-trips dashboard -> Mac ->
+status row; the heartbeat + unclaimed-job alert both proven by a forced test; migration +
+RLS (row-level security, the database's own access rules) + types committed.
 Cite: canon s12 job-transport ruling; CL-019 (Supabase Queues verified, pull-only).
 
-**7.2 Diarized transcription (trans-diarization).**
+**7.2 Diarized (who-said-what) transcription (trans-diarization).**
 Ship Jun 29 · Lane 12 · Effort L · W3 F3 · $0 (local).
 WhisperKit + SpeakerKit per the canon registry (WhisperX honorable fallback), labeling
 David, guests, AND the two correspondent segments (Viewer Voices, Featured Resource). Runs
@@ -396,8 +443,10 @@ CL-047 (WhisperKit v1.0.0 + SpeakerKit, repo-verified 2026-06-04; re-verify at b
 **7.3 Title + timecode pipeline -> Supabase.**
 Ship Jun 30 · Lane 12 · Effort M · W2 F2 · $ ~0.20 per episode (Claude titles).
 Transcript -> segment cues -> 30%-shorter YouTube titles, written to the DB (NOT a Drive
-sheet, per Daniel). Done when: one episode's segments + titles land in the DB; the
-30%-shorter rule is enforced in the prompt + a length assert.
+sheet, per Daniel) as SUGGESTIONS with draft status: Daniel picks, nothing flows to
+metadata as final without his pick (canon 9d keeps titles his call). Done when: one
+episode's segments + titles land in the DB as drafts; the 30%-shorter rule is enforced in
+the prompt + a length assert.
 Cite: review-decisions meta-title-timecode-pipeline + canon s13 output ruling.
 
 **7.4 Superstore live lookup (from spec 4.3).**
@@ -408,9 +457,12 @@ Cite: AUTOMATION_ROADMAP item 6.
 
 **7.5 Mac Mail + Apple Notes surfaces (ui-daniel-homepage, part 2).**
 Ship Jul 1 · Lane 12 · Effort M-L · W2 F3 · $0.
-Via the jobs poller: Mac-side scripts read Mail + the rolling Notes to-do; dashboard renders
-them. Read-only first. Done when: both render real data in the dashboard; zero writes to
-Mail/Notes.
+Via the jobs poller: Mac-side scripts read Mail + the rolling Notes to-do. Red-team gate:
+per-role logins are deferred (canon s12), so until role scopes exist, anyone who can open
+the dashboard could read the owner's inbox surface. Therefore: the Mac-side plumbing ships
+now, but the dashboard surface stays behind a feature flag OFF until role auth lands; until
+then it renders only on Daniel's Mac (local file). Done when: both render real data on the
+Mac; the dashboard flag exists and is off; zero writes to Mail/Notes.
 Cite: review-decisions ui-daniel-homepage (Mac Mail not Gmail); canon s13.
 
 **7.6 Google Sheets write path (ops-sheets-mcp-gap).**
@@ -456,28 +508,43 @@ Cite: AUTOMATION_ROADMAP (content_clips ready); review-decisions social-clips-so
 **9.2 Social posts UI.**
 Ship Jul 6 · Lane 15 · Effort M · W2 F1 $0.
 Captions, hashtags, platform + type, schedule/mark-posted; FK to clips + episodes. Done
-when: a post row round-trips; links to a clip.
+when: a post row round-trips; each post is database-linked (FK) to a real clip and episode.
 Cite: same.
 
 ### Slice 10 - ProPresenter test-machine track (Lane 13, new) (Jun 27 - Jul 9)
 
 All of this is test machine only until the live-rig design doc + Daniel's in-the-moment
-yes path (canon s15). Nothing here touches GSN-PropRes.
+yes path (canon s15). Nothing here touches GSN-PropRes. Execution environment (named per
+red team): these items run from Daniel's Mac on the studio LAN with the test machine
+powered on; the ProPresenter API is LAN-only, so cloud sessions cannot run them.
+
+**10.0 Mechanical guards BEFORE any trigger code exists (red-team blocker fix).**
+Ship Jun 28 · Lane 13 · Effort S · W1 F1 $0.
+Two guards, both proven before 10.2 may start: (a) the ProPresenter client module hard-codes
+a host allowlist that refuses 100.98.215.7 (GSN-PropRes) and accepts only the pinned
+test-machine address, with a test proving a production-host call throws; (b) the CL-029
+PreToolUse hook lands in repo settings, hard-blocking any shell command aimed at a Tailscale
+IP. Human care is not a guard; these are. Done when: both tests pass in CI and the hook is
+committed.
+Cite: canon s15; CL-029; red team finding 1.
 
 **10.1 Thumbnail-export feasibility verify (gates 10.3).**
 Ship Jun 27 · Lane 13 · Effort S · $0.
 Can ProPresenter export slide thumbnails programmatically? Live-test on the test machine
-against the official HTTP API (openapi.propresenter.com). Verification already settled the
-surface: the official API covers trigger/status/props/looks/macros/timers/clear-layer with
-chunked-HTTP status streaming, and the product's version era is now ProPresenter 17+
-subscription, so FIRST record the test machine's exact version and pin it in the ledger.
+against the official HTTP API (openapi.propresenter.com). Verification settled the surface:
+the official API covers control + status, and the product's version era is now
+ProPresenter 17+ subscription, so FIRST record the test machine's exact version and pin it
+in the ledger.
 Done when: version pinned + a thumbnail yes/no with evidence is in the ledger.
 Cite: discussion queue QA note; CL-022 (official API surface + version era, verified).
 
 **10.2 ProPresenter pre-population from the Graphics Tracker.**
-Ship Jul 7 · Lane 13 · Effort L · W2 F3 · $0.
-Tracker rows -> test-machine playlist/slides. Done when: a sample episode's tracker rows
-appear as slides on the test machine; a re-run is idempotent.
+Ship Jul 8 · Lane 13 · Effort L · W2 F3 · $0.
+Depends on 10.0 guards proven + the read-only GET-verify/preview layer (built here, not in
+the later design doc): every trigger call is preceded by a status GET proving the target,
+and a show-before-fire preview. Tracker rows -> test-machine playlist/slides. Done when: a
+sample episode's tracker rows appear as slides on the test machine; a re-run is idempotent;
+the preview step is demonstrated.
 Cite: review-decisions pp-prepop-from-tracker; canon s14 (preproduction only) + s15.
 
 **10.3 ProPresenter QA verification screen.**
@@ -506,8 +573,8 @@ archive + tracking-archive philosophy scan, monologue + interview attention),
 graphics-request-template + image-gen feasibility, MOGRT scope. Builds land ~Jul 3 after
 the session. Cite: canon s13 "needs a working session"; s14 graphics block.
 
-**Segment-timing session (30-45 min)** unlocks: the 58:00 runtime calculator (3000s baseline
-+ ~480s segue/transition budget, per-segment targets adjusted) and resolves C-14 (run-of-show
+**Segment-timing session (30-45 min)** unlocks: the 58:00 runtime calculator (50:00 of content
++ about 8:00 of segues, per-segment targets adjusted) and resolves C-14 (run-of-show
 tease rows) in the same sitting. Build is S once numbers exist; lands ~Jul 3.
 Cite: canon s13 + s14 timing notes; conflicts table C-14.
 
@@ -539,7 +606,8 @@ fix one file, not every feature. You flagged this one ASAP yourself. **Recommend
 first in slice 6 (6.1) before any more RC automation.**
 
 **P2. Transcription: buy vs build (trans-decision-a).** Buying (a paid API) is easy but
-recurring cost plus an upload step for 58-minute masters every week. Building local
+recurring: about $0.35 per 58-minute episode (Whisper API at ~$0.36/hr, the repo's verified
+figure), every week, forever, plus an upload step for each master. Building local
 (WhisperKit + SpeakerKit on the Mac, already the canon registry pick) is free, private, and
 the jobs poller gives it a clean trigger; the cost is one setup day. **Recommend: BUILD
 local (7.2); revisit only if correspondent-segment diarization quality fails on the first
@@ -566,7 +634,8 @@ queue. The three-column comparison view (1.6) plus the ready queue covers review
 **Recommend: SKIP for now; revisit after three real weekly cycles tell us what view you
 actually reach for.**
 
-**P7. Five L3 quality tests before approval.** A 5-point checklist per lower third.
+**P7. Five L3 quality tests before approval.** A 5-point checklist per lower third. The
+five: length band, banned characters, ALL CAPS, pipe/colon usage, end punctuation (see 1.7).
 **Recommend: YES as soft warnings only (1.7), never hard blocks, so an exception never
 requires a workaround on tape day.**
 
@@ -612,20 +681,37 @@ log in 1Password, close forever.**
 
 ## 7. Decisions only Daniel can make
 
-1. **Merge the PR stack: #47, then #50, then #52.** Everything in slice 1 waits on it, and
-   merging closes the live schema-skew window (deployed code currently queries a table that
-   no longer exists; zero data at risk, but the pages error). Recommend: this week.
-2. **The one-tap install batch (8B), each individually yes/no:** (a) ccusage - weekly cost
-   lens, local-only; (b) claude-devtools - session forensics, zero outbound network;
-   (c) ergut remote transcript MCP - may let CLOUD sessions mine YouTube transcripts (the
-   big R1 unblock; live-tested reachable today); (d) jkawamoto local transcript MCP for
-   your Mac; (e) supabase/agent-skills + vercel-labs/next-skills - first-party instruction
-   files, near-zero risk; (f) commit-commands official plugin. Recommend: yes to all six.
-   Agent View itself is built-in (no install) - just adopt the /bg backgrounding habit.
+1. **Unbreak production: one of two lanes, your pick.** The deployed lower-thirds pages
+   query a table that no longer exists (zero data at risk, but they error).
+   Lane A: review + squash-merge the full stack #47 -> #50 -> #52 (about 30 focused
+   minutes). Lane B (if the full review does not fit before filming): merge #47 + #50 only,
+   which restores working pages; #52 (the polish fixes) merges after filming.
+   Recommend: Lane A by Fri Jun 13 if the 30 minutes exist, otherwise Lane B; dates in
+   section 2 key off this.
+2. **The one-tap install batch (8B), each individually yes/no** (an MCP is a plug-in tool
+   Claude can call):
+   - (a) ccusage - weekly cost lens, local-only.
+   - (b) claude-devtools - session forensics, zero outbound network.
+   - (c) ergut remote transcript MCP - may let CLOUD sessions mine YouTube transcripts
+     (the big R1 unblock; live-tested reachable today; it sees only video URLs, never
+     credentials). Once approved, prefer it over hammering your home IP.
+   - (d) jkawamoto local transcript MCP for your Mac.
+   - (e) supabase/agent-skills + vercel-labs/next-skills - first-party instruction files,
+     near-zero risk.
+   - (f) commit-commands official plugin - ready-made /commit shortcuts that write clean
+     commit and PR messages.
+   Recommend: yes to all six. Agent View itself is built-in (no install) - just adopt the
+   /bg backgrounding habit.
 3. **RC adapter (P1): yes/no.** Gates slice 6. Recommend: yes.
 4. **Transcription buy vs build (P2).** Gates slice 7's shape. Recommend: build local.
-5. **Calendar: pick two 30-45 minute working sessions** (graphics decisions; segment
-   timing), proposed week of Jun 22. They unblock the section-4 builds.
+5. **Calendar: two 30-45 minute working sessions** (graphics decisions; segment timing).
+   They unblock the section-4 builds. Recommend: both back to back, Tue Jun 24 morning;
+   name a better slot only if that fails.
+6. **Three small taps with builds riding on them:** P7 quality warnings (gates 1.7),
+   P14 gsr-research repo hygiene (gates 4.6), and the jobs-queue internals upgrade to
+   Supabase Queues (7.1: same Mac-polls-Supabase shape you locked, better plumbing; your
+   call because it refines a decision you made). Recommend: yes to all three; each lands
+   in canon, dated, after your yes.
 
 One owner ACTION, not a decision: tap send on the drafted Rumble email (4.1).
 
@@ -668,7 +754,7 @@ New lanes to add when the plan is approved:
   prompt: `Read docs/_handoff/LANES.md (Lane 10) and docs/_handoff/2026-06-11-pipeline-build-plan.md slice 1. Confirm PR #47/#50/#52 are merged and deployed (do not start otherwise). Work the slice items in order on a feat/ branch; tsc + eslint clean; draft PR; the import step requires Daniel's Type-YES after a dry-run. Update LANES.md as you go.`
 - **Lane 11 - Mission Control + standing loops.** Summary: sessions block in lanes.json +
   lanes.html panel, nightly/CI/ledger/refresh loops, adopt-set proposals (8B), ADR. Resume
-  prompt: `Read docs/_handoff/LANES.md (Lane 11) and the build plan slice 2. Build the sessions summarizer against ~/.claude/projects JSONL (Agent SDK list_sessions if available), extend tools/build_lanes.mjs to render it, wire the standing loops, and keep installs proposal-only per 8B. Never bypass canon s15 gates from a loop.`
+  prompt: `Read docs/_handoff/LANES.md (Lane 11) and the build plan slice 2. Build the sessions summarizer: merge claude agents --json (live state) with Agent SDK list_sessions() (SDKSessionInfo.summary per session; transcript reader is get_session_messages(); reference = the official Building-a-session-browser cookbook). Extend tools/build_lanes.mjs to render it, wire the standing loops, keep installs proposal-only per 8B. Never bypass canon s15 gates from a loop.`
 - **Lane 12 - Mac worker + transcription/metadata.** Summary: jobs table + Mac poller
   control plane, diarized transcription (incl. the 2 correspondent segments), title +
   timecode pipeline to Supabase, superstore lookup, Mac Mail/Notes surfaces, Sheets write
@@ -676,14 +762,15 @@ New lanes to add when the plan is approved:
 - **Lane 13 - ProPresenter test-machine track.** Summary: thumbnail feasibility, tracker
   pre-population, QA screen, live-rig design doc under s15 gates. Resume prompt: `Read docs/_handoff/LANES.md (Lane 13), the build plan slice 10, and canon s15. Test machine only; run 10.1 feasibility first; the live rig gets a design doc, not commands; every future live action needs Daniel's in-the-moment yes.`
 - **Lane 14 - Voice DNA + monologue intake.** Summary: versioned voice table, 4 interview
-  skills, flexible 5-beat arc + 15-L3 rule. Resume prompt: `Read docs/_handoff/LANES.md (Lane 14), the build plan slice 8, GSR_VOICE_PROFILE.md, and canon s13's Voice DNA scope (interview segments only). Build the table, then the skills, then the arc as soft guidance.`
+  skills, flexible 5-beat arc + 15-L3 rule. Resume prompt: `Read docs/_handoff/LANES.md (Lane 14), the build plan slice 8, docs/GSR_VOICE_PROFILE.md, and canon s13's Voice DNA scope (interview segments only). Build the table, then the skills, then the arc as soft guidance.`
 - **Lane 15 - Social clips + posts UI.** Summary: content clips UI then social posts UI on
   the live schema. Resume prompt: `Read docs/_handoff/LANES.md (Lane 15) and the build plan slice 9. Build clips first, posts second, matching slice 5's UI patterns; tsc + eslint clean; draft PR.`
 
 Edits to existing lanes on approval: Lane 8's BUILD TASK 1 is absorbed by PR #50/#52 (mark
 done on merge; keep the standing standards work); Lane 6 unblocks at slice 0 and closes with
 1.3; Lane 1 absorbs slice 5; Lane 4 absorbs 6.1-6.2; Lane 5 absorbs 6.5; Lane 3 absorbs 6.3,
-6.4, 6.6, 6.7, 6.8; Lane 9 stays open through the mission's end (slice 3 + addendum v2).
+6.4, 6.6, 6.7, 6.8; Lane 9 stays open through the mission's end (slice 3 + addendum v2); Lane 7 (ship the
+branch) closes when slice 0 lands.
 
 ---
 

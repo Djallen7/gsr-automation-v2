@@ -367,3 +367,28 @@ read-only, 1Password-only credentials.
   decision 5 (calendar for the two working sessions; default Tue Jun 24 morning stands),
   the Rumble send, and the physical Mac runs.
 
+## 16. Booking + topic-evaluation frameworks (Daniel, promoted to canon 2026-06-11)
+
+Recovered verbatim from the GSR Interview Research project on 2026-06-08 (full text:
+`GUEST-CORRECTIONS.md` section 5); promoted here per Lane 8 so they govern every monthly
+slate. Use them when building or vetting guests and topics.
+
+- **Guest mix 40/40/15/5**, enforced at the 30-topic shortlist (not the 100-topic
+  longlist): 40% explicit creationists / ID proponents (ICR, Discovery, AiG, Logos),
+  40% neutral practitioners (NASA engineers, university researchers, field scientists,
+  medical researchers), 15% faith-friendly, 5% science communicators.
+- **Five-Point Stakes Assessment, all five or kill/reframe:** personal impact; visual
+  potential; novelty + universality; emotional payload (wonder, justice, awe,
+  understanding); accessibility ladder (teenager AND PhD).
+- **Four hook types (use what the story already has):** universal anchor; incongruity;
+  numbers made personal; consequence before cause.
+- **Tags:** accessibility tier BROAD / MID / SPECIALIST; worldview fit CLEAN / NEEDS
+  FRAMING / RISKY; guests carry a 0-100 fit score (90+ = bullseye).
+- **The Barentine Test:** the template is the John Barentine interview (Reflect Orbital's
+  50,000 mirrors): extremely fascinating or a clear "so what" for the average viewer,
+  universal anchors, real stakes, visible impact. A topic does NOT need a creationist
+  angle to qualify.
+
+Cross-reference, not duplicated here: confirmed is not booked; talking points only, never
+verbatim questions; chyron = 3 topic-relevant variations (s13).
+

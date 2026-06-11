@@ -84,7 +84,7 @@ Every candidate story must pass **all five** before booking. If a story fails an
 ### The Barentine Test
 The John Barentine interview (Reflect Orbital's 50,000 mirrors in space) is the template: stories that are either extremely fascinating or have a clear "so what" for the average viewer, with universal anchors, real stakes, and visible impact on viewers' lives. **A topic does not need a creationist angle to qualify** (the worldview-neutral, big-science lane Daniel wants for a varied rotation).
 
-_Promote the stable parts of this into `GSR-WORKFLOW-CANON.md` on the next canon pass._
+_Promoted into `GSR-WORKFLOW-CANON.md` section 16 on 2026-06-11 (plan item 4.2). This section stays the full-text source._
 
 ---
 

@@ -26,9 +26,10 @@
    "summary": "Live build of a paid AI system in 3 hours, start to finish",
    "url": "https://youtu.be/Q4iEslmyMyM",
    "resources": "https://drive.google.com/drive/folders/1v6Xqty7Ss5GUIaIYiJ-Nq0y8Rr7Vccrg",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "n8n tutorial + agency money-making content — not Claude Code relevant"
   },
   {
    "quarter": "Q1-2026",
@@ -158,7 +159,7 @@
    "summary": "Turn Clawdbot into a personal assistant that handles everything",
    "url": "https://youtu.be/rlJovzVhlIo",
    "resources": null,
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
   },
@@ -192,7 +193,7 @@
    "summary": "Agentic workflows explained simply enough for a 10 year old",
    "url": "https://youtu.be/3GAxd90fEE4",
    "resources": "https://drive.google.com/drive/folders/10RU0oHWIw2Cy5-rXOKw4iUD3LuMCDXLp",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
   },
@@ -302,9 +303,10 @@
    "summary": "Nano Banana 2 + Antigravity outperforms every AI image tool",
    "url": "https://youtu.be/iTKkoGd3YcM",
    "resources": "https://drive.google.com/drive/folders/1y5Fp9ZvadSgn5lEBN1Z6IklnAOZoVKbm",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "Image generation tool (Nano Banana 2) — not relevant to GSR pipeline"
   },
   {
    "quarter": "Q1-2026",
@@ -412,9 +414,10 @@
    "summary": "Google's new model + Claude Code transforms RAG forever",
    "url": "https://youtu.be/hem5D1uvy-w",
    "resources": null,
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "RAG/embeddings tutorial (Gemini Embedding 2 + Pinecone) — not Claude Code specific"
   },
   {
    "quarter": "Q1-2026",
@@ -423,9 +426,10 @@
    "summary": "Comprehensive 10+ hour course on building and selling with Claude Code",
    "url": "https://youtu.be/mpALXah_PBg",
    "resources": "https://drive.google.com/drive/folders/1Mnc-l2aeAMsQNPKx43Nh34nSzD20bkB6",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "Beginner Claude Code intro course — no new actionable claims beyond existing corpus"
   },
   {
    "quarter": "Q1-2026",
@@ -478,7 +482,7 @@
    "summary": "Claude Code's latest major upgrade and what's new",
    "url": "https://youtu.be/X6EGzi9qm3E",
    "resources": null,
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
   },
@@ -533,7 +537,7 @@
    "summary": "Claude Code + Paperclip destroys OpenClaw in head-to-head test",
    "url": "https://youtu.be/HJ-dwefABss",
    "resources": "https://drive.google.com/drive/folders/16Q-59pQFeYe1Um84JDScO8irGBkVgGsL",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
   },
@@ -599,7 +603,7 @@
    "summary": "Use Ollama with Claude Code to cut costs by 99%",
    "url": "https://youtu.be/O2k_qwZA8HU",
    "resources": "https://drive.google.com/drive/folders/1RSZmdxLSiqH8jlCf-dIAJ3Zoo_bVW_Hp",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
   },
@@ -657,7 +661,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Crypto/stock trading bot challenge — not relevant to GSR production"
+   "rejected_reason": "Crypto/trading bots content — no Claude Code relevance"
   },
   {
    "quarter": "Q2-2026",
@@ -820,9 +824,10 @@
    "summary": "Hands-on test of GPT-5.5 vs Opus 4.7 on cost, speed, and token efficiency",
    "url": "https://youtu.be/WX4rp-vP3zo",
    "resources": null,
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "Model benchmark hype (GPT 5.5 vs Opus 4.7) — no actionable pipeline claims"
   },
   {
    "quarter": "Q2-2026",
@@ -864,9 +869,10 @@
    "summary": "Build and sell Claude Code Operating Systems with the Three Ms framework",
    "url": "https://youtu.be/bCljOfCH8Ms",
    "resources": "https://drive.google.com/drive/folders/1xp6z0dEdAzU274VviyErquYw5-oSbgPh",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "Beginner AIOS orientation course — mindset frameworks only, no actionable Claude Code specifics"
   },
   {
    "quarter": "Q2-2026",
@@ -897,7 +903,7 @@
    "summary": "Turn Claude Code into a creative agency with Higgsfield for image and video ads",
    "url": "https://youtu.be/xn6Z5PYyAIE",
    "resources": "https://drive.google.com/drive/folders/1iRE-2mo8C9_cpvo4kPzZvCxoxG_cd8L7",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
   },
@@ -919,9 +925,10 @@
    "summary": "Steal Nate's S/A/B/C tier AI tool stack and the mindset that keeps it lean",
    "url": "https://youtu.be/35WuZxbAY68",
    "resources": "https://drive.google.com/drive/folders/1J4XacDfnEuQcet2wKRaWUHrTUXOblac6",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 2,
-   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+   "rejected_reason": "Generic tool-stack mindset overview — no actionable Claude Code specifics"
   },
   {
    "quarter": "Q2-2026",
@@ -1084,7 +1091,7 @@
    "summary": "Build Claude Code subagents that keep your context clean and cut costs",
    "url": "https://youtu.be/e18sdZLwP7o",
    "resources": "https://drive.google.com/drive/folders/1ZplrrnPj0EOX9e5so63A9HzRATJgjOA6",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },

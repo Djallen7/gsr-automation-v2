@@ -1,6 +1,6 @@
 {
   "project": "GSR Automation",
-  "updated_at": "2026-06-11T14:56:20.702210+00:00",
+  "updated_at": "2026-06-11T15:02:50.044328+00:00",
   "lanes": [
     {
       "id": 1,
@@ -253,7 +253,7 @@
       "activity": [
         {
           "date": "2026-06-11",
-          "note": "Phase R cloud half COMPLETE (47-claim ledger, 0 priority-1 ASSUMED; R6 +63 candidates queued, 162 total); Phase S build plan v3 drafted, critiqued 3 rounds (2 red-team blockers fixed), rubric-verified; awaiting Daniel's section-7 answers. Transcript mining (R1 depth) still pending the Mac kit run."
+          "note": "Cloud-side research (R2-R5) verified into a 47-claim ledger, 0 priority-1 ASSUMED; R6 +63 candidates queued (162 total, none mined yet - Phase R NOT done, mining needs the Mac kit). Phase S build plan v3 drafted, critiqued 3 rounds (2 red-team blockers fixed), independently rubric-checked 7/7 AFTER the fixes; awaiting Daniel's section-7 answers."
         },
         {
           "date": "2026-06-11",

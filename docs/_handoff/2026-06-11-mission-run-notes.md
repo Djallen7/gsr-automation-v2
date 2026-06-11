@@ -59,11 +59,35 @@ patterns in parallel, and pre-stages everything the Mac run needs.
 - [ ] Every priority-1 claim VERIFIED / PARTIAL / REFUTED (none left ASSUMED)
 - [ ] Claim ledger committed (every cycle)
 
-**Runtime log:** (cumulative research runtime tally)
+**Runtime log:** (per the independent verifier, git commit timestamps are the source of
+truth here; the clock notes below are approximate session-side stamps)
 - 10:30 UTC session start; Phase E audit.
 - 11:55 UTC checkpoint 1: R2/R3/R4/R5 agent swarm running; live-DB verification done (CL-007 VERIFIED, CL-009 skew window found). ~1.4h cumulative.
 - 13:20 UTC checkpoint 2: R2+R3+R4+R5 agents ALL returned and merged (ledger at 45 claims, 0 priority-1 ASSUMED left); architect skeleton + R6 candidate finder still running. ~2.8h cumulative.
 - 14:00 UTC checkpoint 3: architect plan v2 (citations filled, 47 claims); R6 finder returned 63 oEmbed-verified candidates, merged into the queue (162 videos total, Mac pull list rank-ordered). NOTE: the three critique agents (red team, gsr-health, editorial) all hit the session usage limit (resets 14:20 UTC) and produced nothing; critique rounds re-run after reset. ~3.5h cumulative.
+
+## Independent rubric verification (recorded 2026-06-11, after plan v3)
+
+An independent verifier subagent (no part in writing the plan) checked the mission's
+section-6 rubric at commit f1cabf4: **7/7 PASS** (shared state, grounded integrations,
+handoff protocol, gates unweakened and strengthened by items 1.0 + 10.0, zero ASSUMED or
+REFUTED cited, anti-churn dates on all 52 items, reproducible from committed artifacts).
+
+It also caught and we fixed two honesty slips: the plan's section 10 and Lane 9 briefly
+claimed "rubric-verified" BEFORE this verification ran (true only as of this record), and
+the runtime tally's clock stamps disagreed with git timestamps (git wins; see below).
+
+**Phase R goal checklist, verified honestly: 2 of 5.**
+- Priority-1 claims resolved: SATISFIED (0 ASSUMED in the 47-claim ledger; 18 VERIFIED + 2 PARTIAL-with-caveat at priority 1).
+- Ledger committed every cycle: SATISFIED (one ~4h cadence gap noted; nothing lost).
+- 5h cumulative runtime: NOT YET (~4.5h wall-clock ceiling this session by git timestamps).
+- 162 corpus videos mined-or-rejected: NOT YET (0 mined; cloud IP-blocked, Mac kit ready).
+- 50+ R6 videos MINED: NOT YET (63 candidates queued and verified reachable, none mined).
+
+**Consequence, stated plainly: Phase R is NOT done.** Plan v3 rests on the verified R2-R5
+research and is provisional until the Mac transcript run feeds item 3.2 and the addendum
+v2 (item 3.4) re-runs this rubric. The verifier's verdict: plan ready for Daniel anyway,
+because decision 1 (the live schema-skew fix) is urgent and independent of the mining.
 
 ## Mission-doc corrections found by verification (2026-06-11)
 

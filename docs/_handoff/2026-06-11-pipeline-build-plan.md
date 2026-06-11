@@ -785,5 +785,7 @@ branch) closes when slice 0 lands.
 3. Critique round 2, gsr-health vs repo: 9 findings; fixed (6.8 rescoped, truth sweep
    extended, counts corrected).
 4. Critique round 3, editorial: 25 fixes applied; verdict ship-ready.
-5. Independent rubric verification recorded in 2026-06-11-mission-run-notes.md.
+5. Independent rubric verification ran AFTER the critique fixes: 7/7 PASS at commit
+   f1cabf4, full record in 2026-06-11-mission-run-notes.md (including the honest Phase R
+   status: research verified, corpus mining still pending the Mac).
 Next: Daniel answers section 7; answers append to canon; Phase B opens its lanes.

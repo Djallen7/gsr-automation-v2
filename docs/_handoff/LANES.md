@@ -28,7 +28,7 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-11 15:02:50 UTC (just now)._
+_Last updated 2026-06-11 15:02:50 UTC (2 hours ago)._
 
 ---
 

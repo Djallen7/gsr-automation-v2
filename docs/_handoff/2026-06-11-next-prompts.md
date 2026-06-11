@@ -26,6 +26,37 @@ broadcast/production automation, transcript/whisper pipelines, n8n-vs-agentic ar
 NOT valuable: money-making/agency content, crypto/trading, model-news hype, generic
 beginner tours.
 
+STEP 0 - INGEST FIRST (the pull run left 156 .srt files in ~/Downloads; the repo needs
+them as clean .txt). Save this as docs/_handoff/2026-06-11-transcript-pull-kit/clean_srt.py
+and run python3 clean_srt.py from the repo root:
+
+  import re, json, pathlib
+  src = pathlib.Path.home() / "Downloads"
+  kit = pathlib.Path("docs/_handoff/2026-06-11-transcript-pull-kit")
+  dst = kit / "transcripts"; dst.mkdir(exist_ok=True)
+  q = json.load(open("docs/_handoff/2026-06-11-video-research-queue.json"))
+  ids = [re.search(r"(?:youtu\.be/|watch\?v=)([\w-]{6,})", v["url"]).group(1) for v in q["videos"]]
+  n = 0
+  for srt in src.glob("*.srt"):
+      vid = next((i for i in ids if i in srt.name), None)
+      if not vid or (dst / f"{vid}.txt").exists(): continue
+      lines, seen, out = srt.read_text(errors="ignore").splitlines(), set(), []
+      for ln in lines:
+          ln = re.sub(r"<[^>]+>", "", ln).strip()
+          if not ln or "-->" in ln or ln.isdigit(): continue
+          if ln not in seen: seen.add(ln); out.append(ln)
+      (dst / f"{vid}.txt").write_text("\n".join(out)); n += 1
+  print("converted", n, "| total txt now", len(list(dst.glob("*.txt"))))
+
+Expect ~150+ converted (15 already exist from the earlier partial). If it reports far
+fewer, the SRTs are elsewhere: ask Daniel where the pull saved them, fix src, rerun.
+Then retry the 6 rate-limited failures ONCE (they have cooled off): from the kit folder,
+yt-dlp --write-auto-subs --write-subs --sub-langs en --skip-download --sub-format vtt
+--cookies-from-browser firefox --sleep-requests 3 -a failed.txt
+-o "transcripts/%(id)s.%(ext)s" --ignore-errors, then python3 clean_vtt.py. Whatever
+still fails stays pending. Commit: git add the kit folder, commit "transcripts: full
+corpus ingested as clean txt", git pull --rebase, push. THEN mine.
+
 THE FILES: transcripts live in docs/_handoff/2026-06-11-transcript-pull-kit/transcripts/
 as <VIDEO_ID>.txt. The queue docs/_handoff/2026-06-11-video-research-queue.json maps ids
 (in each url) to titles + triage_rank (1 = mine first). The ledger

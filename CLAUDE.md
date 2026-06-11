@@ -39,8 +39,7 @@ Before designing or building any automation: **name the deliverable and the ship
 
 - **ProPresenter production machine** (GSN-PropRes, Tailscale 100.98.215.7).
 - **ATEM, Bitfocus Companion** — production hardware.
-- **QNAP** — read-only SMB only; no admin, no writes, no file-watchers.
-- **No Tailscale or direct server tools** — permanently off-limits after the 2026-05-20 security incident. All automation goes through cloud APIs or read-only SMB.
+- **QNAP admin dashboard** — off-limits via any access method. The 2026-05-20 incident was caused by admin dashboard access (tweaking server settings), not Tailscale. Tailscale read-only SMB access to QNAP is permitted. No writes, no file-watchers on the NAS (confirmed by David and Daniel, 2026-06-11).
 - **Notion** — wiki-only after ADR-0012.
 
 ---

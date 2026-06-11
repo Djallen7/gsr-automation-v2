@@ -29,7 +29,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "n8n tutorial + agency money-making content — not Claude Code relevant"
+   "rejected_reason": "n8n tutorial + agency money-making content \u2014 not Claude Code relevant"
   },
   {
    "quarter": "Q1-2026",
@@ -126,9 +126,10 @@
    "summary": "How agentic workflows with Claude Code are changing AI automation",
    "url": "https://youtu.be/AO5aW01DKHo",
    "resources": "https://drive.google.com/drive/folders/1vJYIcW0eVO4tJY_w5EqGYpnR3G2xa30m",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 2,
-   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+   "rejected_reason": "n8n to agentic workflows transition pitch \u2014 conceptual, no specific Claude Code syntax or GSR-applicable claims"
   },
   {
    "quarter": "Q1-2026",
@@ -189,7 +190,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Feb 7, 2026",
-   "title": "How Iâ€™d Teach a 10 Year Old to Build Agentic Workflows (Claude Code)",
+   "title": "How I\u00e2\u20ac\u2122d Teach a 10 Year Old to Build Agentic Workflows (Claude Code)",
    "summary": "Agentic workflows explained simply enough for a 10 year old",
    "url": "https://youtu.be/3GAxd90fEE4",
    "resources": "https://drive.google.com/drive/folders/10RU0oHWIw2Cy5-rXOKw4iUD3LuMCDXLp",
@@ -248,7 +249,7 @@
    "summary": "Simplest way to host and deploy Claude Code agents online",
    "url": "https://youtu.be/UGIZnh6HNLc",
    "resources": "https://drive.google.com/drive/folders/1fFYXra4_Cs69fnwcmTZ3CBuG9OaYtCP-",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
   },
@@ -306,7 +307,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Image generation tool (Nano Banana 2) — not relevant to GSR pipeline"
+   "rejected_reason": "Image generation tool (Nano Banana 2) \u2014 not relevant to GSR pipeline"
   },
   {
    "quarter": "Q1-2026",
@@ -315,9 +316,10 @@
    "summary": "Build $10k-quality websites with Nano Banana 2 and Claude Code",
    "url": "https://youtu.be/q0TgUtj6vIs",
    "resources": "https://drive.google.com/drive/folders/1EJAYDqcda1sArWIBoowwoqeyD1aJ1uC8",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 2,
-   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+   "rejected_reason": "Website-building with a skill/Nano Banana \u2014 front-end vibe coding demo, no GSR-relevant signal"
   },
   {
    "quarter": "Q1-2026",
@@ -348,7 +350,7 @@
    "summary": "Cursor Automations explained clearly, worth learning or not",
    "url": "https://youtu.be/NDnv16PY2XQ",
    "resources": null,
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
   },
@@ -388,7 +390,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 10, 2026",
-   "title": "Googleâ€™s New Tool Just 10xâ€™d Claude Code",
+   "title": "Google\u00e2\u20ac\u2122s New Tool Just 10x\u00e2\u20ac\u2122d Claude Code",
    "summary": "Google's new tool supercharges Claude Code productivity by 10x",
    "url": "https://youtu.be/Wu67lLD8bB0",
    "resources": null,
@@ -417,7 +419,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "RAG/embeddings tutorial (Gemini Embedding 2 + Pinecone) — not Claude Code specific"
+   "rejected_reason": "RAG/embeddings tutorial (Gemini Embedding 2 + Pinecone) \u2014 not Claude Code specific"
   },
   {
    "quarter": "Q1-2026",
@@ -429,7 +431,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Beginner Claude Code intro course — no new actionable claims beyond existing corpus"
+   "rejected_reason": "10-hour beginner course \u2014 orientation content, no new specific claims beyond existing CL entries"
   },
   {
    "quarter": "Q1-2026",
@@ -449,9 +451,10 @@
    "summary": "Why you should learn Claude Code instead of n8n in 2026",
    "url": "https://youtu.be/ZeJXI2MAhj0",
    "resources": null,
-   "status": "mined",
+   "status": "rejected",
    "triage_rank": 2,
-   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+   "rejected_reason": "Stop learning n8n / learn Claude Code + trigger.dev \u2014 conceptual argument, trigger.dev claims captured from UGIZnh6HNLc which is more technical"
   },
   {
    "quarter": "Q1-2026",
@@ -471,9 +474,10 @@
    "summary": "How a $100M AI app is changing the software landscape forever",
    "url": "https://youtu.be/T6_Ges4j1qY",
    "resources": "https://drive.google.com/drive/folders/1EAohU9M2NdRCpvziBIHI0WPg7rvaqBtg",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "Cal AI $100M app story \u2014 business success story, no Claude Code technical signal"
   },
   {
    "quarter": "Q1-2026",
@@ -544,7 +548,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 30, 2026",
-   "title": "Iâ€™ve Built 500 AI Workflows, This is What Businesses Want in 2026",
+   "title": "I\u00e2\u20ac\u2122ve Built 500 AI Workflows, This is What Businesses Want in 2026",
    "summary": "Lessons from 500 AI workflows: what businesses actually want",
    "url": "https://youtu.be/Y3PcRp5RFzk",
    "resources": "https://drive.google.com/drive/folders/13pBzMyvJksi5RJLBpRr_Vk-zA1w8vF3C",
@@ -555,7 +559,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 31, 2026",
-   "title": "Codex Just 10xâ€™d Claude Code Projects",
+   "title": "Codex Just 10x\u00e2\u20ac\u2122d Claude Code Projects",
    "summary": "Codex integration makes Claude Code projects 10x more powerful",
    "url": "https://youtu.be/B2Kh_ZoLVTM",
    "resources": null,
@@ -566,7 +570,7 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 1, 2026",
-   "title": "Claude Code Source Code Just Leakedâ€¦ 8 Things You Must Do",
+   "title": "Claude Code Source Code Just Leaked\u00e2\u20ac\u00a6 8 Things You Must Do",
    "summary": "8 things you must do after the Claude Code source code leak",
    "url": "https://youtu.be/tXtCK66fPj8",
    "resources": "https://drive.google.com/drive/folders/14V5Xym3SWQ8RUUScGF5X-YY4sGmIYjFb",
@@ -610,7 +614,7 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 5, 2026",
-   "title": "Andrej Karpathy Just 10xâ€™d Everyoneâ€™s Claude Code",
+   "title": "Andrej Karpathy Just 10x\u00e2\u20ac\u2122d Everyone\u00e2\u20ac\u2122s Claude Code",
    "summary": "How Andrej Karpathy's techniques 10x'd Claude Code for everyone",
    "url": "https://youtu.be/sboNwYmH3AY",
    "resources": null,
@@ -632,13 +636,14 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 7, 2026",
-   "title": "Claudeâ€™s New AI Just Changed the Internet Forever",
+   "title": "Claude\u00e2\u20ac\u2122s New AI Just Changed the Internet Forever",
    "summary": "Claude's new AI model and how it changes the internet",
    "url": "https://youtu.be/DG1wRgEpdO4",
    "resources": null,
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "Claude Mythos security model hype \u2014 not actionable for GSR production pipeline"
   },
   {
    "quarter": "Q2-2026",
@@ -661,7 +666,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Crypto/trading bots content — no Claude Code relevance"
+   "rejected_reason": "Crypto/trading bots content \u2014 no Claude Code relevance"
   },
   {
    "quarter": "Q2-2026",
@@ -703,7 +708,7 @@
    "summary": "Compare Claude Code and Antigravity after 100 hours of real testing",
    "url": "https://youtu.be/99VHENEKA9o",
    "resources": "https://drive.google.com/drive/folders/1CkR5P-kfzjxiJXveCiGPYrzzXd7ZPyC4",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
   },
@@ -769,9 +774,10 @@
    "summary": "Two natural-language motion-graphic workflows using Claude Design and Hyperframes with Claude Code",
    "url": "https://youtu.be/ZNbgOhxhzXg",
    "resources": "https://github.com/nateherkai/hyperframes-student-kit",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 2,
-   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+   "rejected_reason": "Video editing with Claude Design / HyperFrames \u2014 content creation tooling, not GSR pipeline"
   },
   {
    "quarter": "Q2-2026",
@@ -827,7 +833,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Model benchmark hype (GPT 5.5 vs Opus 4.7) — no actionable pipeline claims"
+   "rejected_reason": "Model benchmark hype (GPT 5.5 vs Opus 4.7) \u2014 no actionable pipeline claims"
   },
   {
    "quarter": "Q2-2026",
@@ -847,7 +853,7 @@
    "summary": "32 Claude Code hacks across beginner, intermediate, and advanced tiers",
    "url": "https://youtu.be/jqoFP9QapXI",
    "resources": "https://drive.google.com/drive/folders/1KYQGVMSgJeBtiGMw4cdBAIDmZgT5mcgi",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -858,9 +864,10 @@
    "summary": "Two-hour masterclass on building a complete brand and launch video in Claude Design",
    "url": "https://youtu.be/ovabeVoWrA0",
    "resources": "https://drive.google.com/drive/folders/14-Evyvr8MvOBQD-hfM3aGxBDfYLOYsQU",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 2,
-   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+   "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+   "rejected_reason": "Claude Design beginner course \u2014 design tool tutorial, no Claude Code/pipeline/sessions/SDK signal"
   },
   {
    "quarter": "Q2-2026",
@@ -872,7 +879,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Beginner AIOS orientation course — mindset frameworks only, no actionable Claude Code specifics"
+   "rejected_reason": "Beginner AIOS orientation course \u2014 mindset frameworks only, no actionable Claude Code specifics"
   },
   {
    "quarter": "Q2-2026",
@@ -928,7 +935,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
-   "rejected_reason": "Generic tool-stack mindset overview — no actionable Claude Code specifics"
+   "rejected_reason": "Generic tool-stack mindset overview \u2014 no actionable Claude Code specifics"
   },
   {
    "quarter": "Q2-2026",
@@ -981,9 +988,10 @@
    "summary": "The CAIO wave nobody on AI YouTube is talking about, broken down from IBM data",
    "url": "https://youtu.be/iIfOprq2kCM",
    "resources": "https://drive.google.com/drive/folders/1AUFKElWvT-o5MnnUd0HtPViP-eAiso6a",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "Chief AI officer career opportunity \u2014 business/career content, no technical signal"
   },
   {
    "quarter": "Q2-2026",
@@ -1014,9 +1022,10 @@
    "summary": "The rung-zero AI consulting offer you can sell tomorrow morning",
    "url": "https://youtu.be/Pi-m8R068r4",
    "resources": "https://drive.google.com/drive/folders/1pajU5tstK3opSCoM7LWBsjeGkhK7zTw6",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "Agency sales pitch \u2014 selling AI consulting hours, no technical signal"
   },
   {
    "quarter": "Q2-2026",
@@ -1289,7 +1298,7 @@
    "summary": "[Turing College] Calls Agent Teams the most production-ready multi-agent implementation, worked examples.",
    "url": "https://www.youtube.com/watch?v=oC3F2SFaF9w",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1589,7 +1598,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-   "rejected_reason": "Generic Supabase beginner tutorial — no production patterns beyond training knowledge"
+   "rejected_reason": "Generic Supabase beginner tutorial \u2014 no production patterns beyond training knowledge"
   },
   {
    "quarter": "R6-2026",
@@ -1645,7 +1654,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-   "rejected_reason": "Church AV system design (StreamDeck/ATEM) — hardware automation, no Claude Code relevance"
+   "rejected_reason": "Church AV system design (StreamDeck/ATEM) \u2014 hardware automation, no Claude Code relevance"
   },
   {
    "quarter": "R6-2026",
@@ -1712,7 +1721,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-   "rejected_reason": "YouTube content creation workflow stack — social media automation, not GSR production"
+   "rejected_reason": "YouTube content creation workflow stack \u2014 social media automation, not GSR production"
   },
   {
    "quarter": "R6-2026",

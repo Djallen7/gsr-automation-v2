@@ -898,6 +898,61 @@
       "gsr_application": "Confirms that GSR scheduled tasks using Claude desktop app will fail when Daniel's machine is off; use trigger.dev or Routines (cloud) for always-on automations.",
       "lane": "pipeline",
       "priority": 2
+    },
+    {
+      "id": "CL-082",
+      "claim": "Anthropic's official policy (stated in Agent SDK docs): unless previously approved, Anthropic does not allow third-party developers to offer Claude.ai login or pass-through of plan rate limits for their products, including agents built on the Agent SDK. Using a Claude subscription inside third-party harnesses like OpenClaw is not permitted without Anthropic approval.",
+      "source": "video RLjaUES9P8A 100 Hours Testing Claude Code vs ChatGPT Codex (honest results)",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Confirms that GSR tooling must use Anthropic's own interfaces (Claude Code, API key) rather than any third-party harness that tunnels the Claude subscription -- relevant if evaluating workflow runners.",
+      "lane": "unsorted",
+      "priority": 2
+    },
+    {
+      "id": "CL-083",
+      "claim": "Remote Claude Code routines clone the linked GitHub repository into a cloud environment at run time, execute the prompt, then destroy that environment. Any file changes the routine writes (memory files, logs, trade journals) must be committed and pushed back to the repo during the run, or the next routine invocation will not see them. The routine settings include a permission toggle called 'allow unrestricted branch pushes' that must be enabled for Claude to push to any branch.",
+      "source": "video 6MC1XqZSltw I Turned Claude Into a 24/7 Trader",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR routines that update episode state, lower-thirds drafts, or research notes must include an explicit push-back step in the routine prompt, and the 'allow unrestricted branch pushes' permission must be on, or state will be lost between runs.",
+      "lane": "multi-agent",
+      "priority": 1
+    },
+    {
+      "id": "CL-084",
+      "claim": "API keys for remote Claude Code routines must be stored as named environment variables in the cloud environment configuration (set in the Claude desktop app under the environment's settings), not in a .env file inside the repo. The environment variable names in the routine prompt must match exactly letter-for-letter the names configured in the environment, or the routine cannot find them.",
+      "source": "video 6MC1XqZSltw I Turned Claude Into a 24/7 Trader",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR's Supabase, Rundown Creator, and Anthropic API keys for remote routines must be entered in the cloud environment settings panel, not in any .env committed to the GitHub repo, and the routine prompt must reference them by exact variable name.",
+      "lane": "multi-agent",
+      "priority": 1
+    },
+    {
+      "id": "CL-085",
+      "claim": "Claude Design is a new Anthropic Labs product (research preview as of June 2026) for building prototypes, slide decks, and one-pagers via natural language. It is powered by Opus 4.7. It supports a design system feature where brand assets and guidelines are ingested once and applied to all subsequent projects. Finished designs can be handed off to Claude Code via a generated copy command that fetches the design file as a zip and implements it in a local project. Exports include Canva, PDF, PowerPoint, and HTML.",
+      "source": "video gAoZ95kqG7w Claude Design Just Became Unstoppable",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR could use Claude Design to prototype lower-thirds layouts, slide templates for internal presentations, or show graphics concepts before handing them off to Claude Code for implementation, keeping everything in the Anthropic ecosystem.",
+      "lane": "unsorted",
+      "priority": 3
+    },
+    {
+      "id": "CL-086",
+      "claim": "The author's practical heuristic for choosing between n8n and Claude Code: if a use case can be built in n8n in 10 minutes or less, build it there because publishing, error workflows, execution logs, and triggers are already configured. Use Claude Code for complex iterative builds or tasks that need deep reasoning. The two tools are complementary, not substitutional, and existing n8n automations do not need to be migrated.",
+      "source": "video wb4uDdsFh6o Is n8n Dead?",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Reinforces CL-024 with an actionable decision rule: GSR's simple webhook-triggered notifications or data-sync automations belong in n8n; the pipeline stages requiring multi-step reasoning or file manipulation belong in Claude Code.",
+      "lane": "pipeline",
+      "priority": 2
     }
   ]
 }

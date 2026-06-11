@@ -4,8 +4,18 @@
 **Authoritative source:** `CLAUDE.md` "Data-source access" + `scripts/basecamp_token.py`.
 
 ## Entries
-### 2026-06-11 — Daniel's existing MCP connectors are unreliable  [status: active]
-Decision: several of Daniel's current MCP connectors fail/are flaky. Therefore Phase-1 of the context library is built MCP-free (repo files), and any future MCP (Phase 2) is gated on a reliability proof first. Diagnosing why his connectors fail is a candidate task.
+### 2026-06-11 — Connector health check (empirical, this session)  [status: active]
+Decision: tested the live MCP connectors read-only. **Healthy now:** GitHub (Djallen7), Supabase ("GSN Hub" `lafkbxypmciopebentxp`, ACTIVE_HEALTHY, pg17), **Google Drive (reads full Drive AND full tracker cell contents)**, Gmail (labels incl. dallen@davidrives.com). **Untested:** Vercel (needs teamId), Postman. **Flagged for removal:** a crypto-*trading* MCP with live order-execution/deposit tools is wired into this env — no place in a ministry environment; never called.
+Implication: "all my connectors are flaky" is NOT true for the four that matter today; Phase-2 footing is better than feared. The Drive read-only ceiling (no cell-write) is the only real tracker gap — see Sheets entry.
+Why: turn "they're unreliable" into evidence before building Phase 2.
+Source: Daniel (2026-06-11) + live test
+
+### 2026-06-11 — Drive MCP reads tracker cell contents in full  [status: active]
+Decision: `read_file_content` on a Google Sheet returns all cell data as markdown tables (verified on the June tracker `13_PQdT…`, an empty per-episode template). So a session CAN read any tracker directly now; the prior "cannot read the tracker except via read-only Drive MCP" framing understated this. Note: the June sheet has a tab "⚠️ RESERVED FOR =CLAUDE... FUNCTIONS" (Key/Value/Expiration) — evidence of a prior Sheets-side Claude bridge; do not edit it.
+Source: live test (2026-06-11)
+
+### 2026-06-11 — Daniel's existing MCP connectors are unreliable (claim)  [status: active, partially refuted]
+Decision: Daniel reports several connectors fail/are flaky. Phase-1 of the library is built MCP-free regardless, and Phase-2 stays gated on a reliability proof. BUT the 2026-06-11 health check found the four core connectors healthy — so the flakiness is intermittent or limited to specific connectors, not universal. Diagnosing WHICH ones fail and why is the real task.
 Source: Daniel (2026-06-11)
 
 ### 2026-06-10 — APIs first, NOT the Drive MCP  [status: active]

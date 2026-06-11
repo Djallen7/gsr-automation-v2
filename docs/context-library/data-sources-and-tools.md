@@ -4,6 +4,10 @@
 **Authoritative source:** `CLAUDE.md` "Data-source access" + `scripts/basecamp_token.py`.
 
 ## Entries
+### 2026-06-11 — Claude Data Export location (Drive)  [status: active]
+Finding: the Claude conversation data export lives in Drive folder **"Data archive"** (`10-OljqoLf27K5S4MV2g4f5BpO7l6Le-U`) → subfolder **"CLaude Data Export"** (`1ntN4DJsFi5ALbilRzc7hma248fBJjGfS`). Same parent also holds "Open AI Data Expoert", "Multisource Forensic Data", and a 41 MB export zip. This is the export the Fable build prompt tells a session to mine for prior decisions.
+Source: live Drive scan (2026-06-11)
+
 ### 2026-06-11 — Sheets write helper committed (dormant)  [status: active]
 Decision: `scripts/sheets_helper.py` is committed — read/write via Sheets API v4, env-driven (`GOOGLE_SERVICE_ACCOUNT_JSON` or `_FILE`), mirrors `basecamp_token.py`, CLI writes gated behind `--confirm`, `--check` probes tracker tabs. It is dormant until Daniel injects a service-account credential + `pip install google-auth google-api-python-client` + shares the tracker folder with the service account's client_email. "Solve from both ends": my half (the helper) is done; his half is the one-time credential. Recommended over OAuth refresh tokens (those expire/revoke — the flakiness to avoid).
 Source: built this session (2026-06-11)

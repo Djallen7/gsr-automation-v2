@@ -10,9 +10,16 @@ Date: 2026-06-09. Read-only. Source: Google Drive, folder **"Graphics Tracking"*
 | March | `1iGx1vQGKd1saSQuIBkBkc9IIT8oDwUZuOFH1jv5PHew` | 28 KB | Populated (lighter) |
 | **June (Ep026–030)** | `13_PQdT3RKCodjA_FzRxwpQR6yA1Kn8E5sKxN9VWPAJs` | 32 KB | **Blank template — Pass-2 target** |
 | July–December (07–12) | templates in same folder | 32 KB ea. | Blank |
-There is no `04_`/April Season-3 sheet; April monologues appear only in the
-`*_corpus_*.txt` extracts. Season-2 archive months (Aug–Nov) exist as `gold_corpus`
-text dumps in Drive if deeper history is wanted.
+**Correction (2026-06-11):** an `04_`/April Season-3 sheet DOES exist
+(`1-m8RQe8yTvmlWOkCytB6Hd5BGpkIXMj-I8gXLHHgcSQ`, owner accounts@davidrives.com).
+And Season 2 survives as fully-populated `.xlsx` trackers — folder
+**"Season 2 - Graphics Tracking"** (`18bTNHG-X7PNdzWarJ7gkQA77Qdol1XuQ`, under
+`GSR-Archive/season_2/`): Aug `1Gs66EWCIHnOmEgeTsGBnzWxOyH2fDsvC`, Sep
+`17hNrfrym4JbayceyKg6Agz4MruLpG5jc`, Oct `1XF98MU8AK3MUeQpbk_YB1Uz_BoXJmzzz`,
+Nov `1LzHw9dmC58HetsSa4K_GgbFVQgib25Hb` — not just the `gold_corpus` text dumps.
+The full ~1,700-graphic archive is the union of these monthly trackers across both
+seasons; there is no single consolidated master file. Read any with the Drive MCP
+`read_file_content(fileId)` (handles `.xlsx` and Sheets), not `download`/openpyxl.
 
 Tab/column shape (matches GSR-WORKFLOW-CANON §4): one tab per show; each segment block
 is `Segment | Graphic # | Graphic Type | Description | Status | Assigned To | Notes`.

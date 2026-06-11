@@ -15,9 +15,10 @@
       "summary": "Core RAG concepts that make building agents in n8n click",
       "url": "https://youtu.be/kOKavHnlPik",
       "resources": "https://drive.google.com/drive/folders/1veFG7SwuGHgRT8Z_eIm7lbo2uhSuv2XQ",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "n8n RAG methodology video - no Claude Code SDK, hooks, scheduled tasks, or GSR-relevant pipeline patterns"
     },
     {
       "quarter": "Q1-2026",
@@ -38,9 +39,10 @@
       "summary": "Automated voice agent that calls and qualifies every new lead",
       "url": "https://youtu.be/BO-jFbN4p8Y",
       "resources": "https://drive.google.com/drive/folders/153-dVBo9XpK4_MxiVf-xV7JNEt11gxnt",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "Voice agent for lead qualification using n8n + Vapi - off-topic: cold email/sales voice agent"
     },
     {
       "quarter": "Q1-2026",
@@ -49,9 +51,10 @@
       "summary": "Step-by-step n8n workflow migration between cloud and self-hosted",
       "url": "https://youtu.be/t1PTmpas0bg",
       "resources": "https://drive.google.com/drive/folders/1iRWNtD8XogUl3XTuFct3ciRMT6w9EWgJ",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "n8n workflow migration tutorial - no relevance to Claude Code, Agent SDK, or GSR pipeline"
     },
     {
       "quarter": "Q1-2026",
@@ -60,7 +63,7 @@
       "summary": "Using Claude Code to build and manage n8n workflows from scratch",
       "url": "https://youtu.be/B6k_vAjndMo",
       "resources": "https://drive.google.com/drive/folders/1lQ_C3U2Yub8rvaQTnZyiQ-0seMQ5rre4",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -71,7 +74,7 @@
       "summary": "Build full apps and automations with Claude Code and n8n",
       "url": "https://youtu.be/OCO3aq3G0mk",
       "resources": null,
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -82,9 +85,10 @@
       "summary": "AI system that auto-generates client proposals using n8n and Gamma",
       "url": "https://youtu.be/KGXFkUlBHxw",
       "resources": "https://drive.google.com/drive/folders/1JspZDqbygDUrTaO9mJYqHUbbQPodiNam",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "n8n + Gamma proposal generation for client acquisition - off-topic: freelancing/client automation"
     },
     {
       "quarter": "Q1-2026",
@@ -93,9 +97,10 @@
       "summary": "Instantly generate polished proposal decks with n8n AI agents",
       "url": "https://youtu.be/-Q_P7HFydZk",
       "resources": "https://drive.google.com/drive/folders/16PDGopv9srR-EJPZ9BfM2Q2wYUdzb2BJ",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "Duplicate of KGXFkUlBHxw - same n8n + Gamma proposal deck workflow, off-topic"
     },
     {
       "quarter": "Q1-2026",
@@ -116,7 +121,7 @@
       "summary": "Let Claude Code auto-detect and fix broken n8n workflows",
       "url": "https://youtu.be/uUEa6K-FLB8",
       "resources": "https://drive.google.com/drive/folders/1jPxiiS0AJd3BQTa2TgaHpipMw_IKw6ba",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -139,9 +144,10 @@
       "summary": "Set up Clawdbot on a VPS without needing a Mac Mini",
       "url": "https://youtu.be/BhjK2Gr0Ryc",
       "resources": null,
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "Clawdbot VPS setup tutorial using Hostinger - no actionable Claude Code SDK or GSR pipeline insights beyond VPS hosting basics"
     },
     {
       "quarter": "Q1-2026",
@@ -150,7 +156,7 @@
       "summary": "Honest comparison after 100 hours testing Clawdbot vs Claude Code",
       "url": "https://youtu.be/CBNbcbMs_Lc",
       "resources": "https://drive.google.com/drive/folders/1rN6XlFS5O4OcLPDxmrrAwu3-71i3rJtZ",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 3,
       "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
     },
@@ -172,9 +178,10 @@
       "summary": "Honest take on whether n8n is still relevant in 2026",
       "url": "https://youtu.be/wb4uDdsFh6o",
       "resources": null,
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 2,
-      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+      "reject_reason": "Opinion/commentary video about n8n vs Claude Code market trends - no actionable technical claims about Claude Code SDK, hooks, agents, MCP, Supabase, or any GSR-relevant tooling."
     },
     {
       "quarter": "Q1-2026",
@@ -206,7 +213,7 @@
       "summary": "Convert any website into clean, LLM-ready data instantly",
       "url": "https://youtu.be/4efAzBiTeVo",
       "resources": "https://drive.google.com/drive/folders/17IXJBlb4HBNy5w1cPrjE3k56itSPMVy5",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -217,9 +224,10 @@
       "summary": "Exact cold email framework a college student used to make $500k",
       "url": "https://youtu.be/XB2xmX3USUI",
       "resources": "https://drive.google.com/drive/folders/1Eyp_cM4ZgGkC1y21Q3PqMtlUueU_QAYA",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "Cold email client acquisition framework - off-topic: freelancing/agency sales, no Claude Code or GSR pipeline relevance"
     },
     {
       "quarter": "Q1-2026",
@@ -228,9 +236,10 @@
       "summary": "How to land AI workflow clients starting with zero followers",
       "url": "https://youtu.be/_rZAR-s4KIo",
       "resources": "https://drive.google.com/drive/folders/1HxxJCGtVGgLcAq96sHdPnEAm4RJ22plf",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "Freelancer client acquisition playbook - off-topic: agency business development"
     },
     {
       "quarter": "Q1-2026",
@@ -239,7 +248,7 @@
       "summary": "Build stunning websites with Claude Code, no design skills needed",
       "url": "https://youtu.be/86HM0RUWhCk",
       "resources": "https://drive.google.com/drive/folders/1V5H7yxrUnA6C0hmSxVMtJL5-MF3q2I4l",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -261,7 +270,7 @@
       "summary": "Build your first agentic AI workflow from scratch in 26 minutes",
       "url": "https://youtu.be/tDGiWn0flK8",
       "resources": "https://drive.google.com/drive/folders/1vBWsH1jwku4DdTsb8AqLgXAkeLFdyYe1",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -397,7 +406,7 @@
       "summary": "Google's new tool supercharges Claude Code productivity by 10x",
       "url": "https://youtu.be/Wu67lLD8bB0",
       "resources": null,
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 3,
       "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
     },
@@ -408,9 +417,10 @@
       "summary": "Claude Code learns to play Tetris and beats the world record",
       "url": "https://youtu.be/l1jnOXc52NY",
       "resources": null,
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "Claude Code browser automation demo using Tetris and game bots - off-topic: April Fools/Tetris category, no actionable pipeline insights"
     },
     {
       "quarter": "Q1-2026",
@@ -534,9 +544,10 @@
       "summary": "Gemini 3.1 Flash Live transforms voice agent development",
       "url": "https://youtu.be/Qt3zMBH-FNg",
       "resources": "https://drive.google.com/drive/folders/1Mbq4I-1zqlSUxVEMzOkHnxNVY3A_vQ9r",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "Gemini voice model benchmark review - GSR uses Claude stack; Gemini voice agent not relevant to current pipeline"
     },
     {
       "quarter": "Q1-2026",
@@ -556,9 +567,10 @@
       "summary": "Lessons from 500 AI workflows: what businesses actually want",
       "url": "https://youtu.be/Y3PcRp5RFzk",
       "resources": "https://drive.google.com/drive/folders/13pBzMyvJksi5RJLBpRr_Vk-zA1w8vF3C",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 2,
-      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+      "reject_reason": "Freelancing and client acquisition content - covers lead response automation, document processing, and nurture sequences as services to sell to external businesses. No Claude Code SDK, hooks, Supabase, MCP, or GSR-relevant technical patterns."
     },
     {
       "quarter": "Q1-2026",
@@ -567,7 +579,7 @@
       "summary": "Codex integration makes Claude Code projects 10x more powerful",
       "url": "https://youtu.be/B2Kh_ZoLVTM",
       "resources": null,
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 3,
       "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
     },
@@ -578,7 +590,7 @@
       "summary": "8 things you must do after the Claude Code source code leak",
       "url": "https://youtu.be/tXtCK66fPj8",
       "resources": "https://drive.google.com/drive/folders/14V5Xym3SWQ8RUUScGF5X-YY4sGmIYjFb",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 3,
       "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
     },
@@ -589,9 +601,10 @@
       "summary": "Claude Code's April Fools virtual pets Easter egg explained",
       "url": "https://youtu.be/JoPmpwpRrBI",
       "resources": null,
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "April Fools release - /buddy virtual pet system in Claude Code v2.1.89, no actionable production pipeline insights"
     },
     {
       "quarter": "Q2-2026",
@@ -622,7 +635,7 @@
       "summary": "How Andrej Karpathy's techniques 10x'd Claude Code for everyone",
       "url": "https://youtu.be/sboNwYmH3AY",
       "resources": null,
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -679,7 +692,7 @@
       "summary": "Why Claude says to stop using their best model, and what to use instead",
       "url": "https://youtu.be/1EPsUXSManU",
       "resources": "https://github.com/nateherkai/advisor-tool-demo",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 3,
       "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
     },
@@ -690,9 +703,10 @@
       "summary": "Build stunning websites with Seedance 2.0 looping videos and Claude Code",
       "url": "https://youtu.be/NvxiSG34mPU",
       "resources": "https://drive.google.com/drive/folders/1yD1n7UIJqHXxiHCxwqmhzJRew9eYDCfq",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 2,
-      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+      "reject_reason": "Website building with AI video generation (Seedance/Higgsfield) for commercial web design - no Claude Code SDK, hooks, MCP, Supabase, or GSR production pipeline relevance."
     },
     {
       "quarter": "Q2-2026",
@@ -734,9 +748,10 @@
       "summary": "Build a fully automated video production pipeline using Claude Code, HeyGen avatars, and ElevenLabs voice cloning",
       "url": "https://youtu.be/EbJu9T30nfI",
       "resources": "https://drive.google.com/drive/folders/1XsUFIYKYnoI5oT8xt9Cjnepf5QX-WacT",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 2,
-      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+      "reject_reason": "HeyGen AI avatar video creation for freelance course content - falls under the HeyGen video creation off-topic category. No actionable Claude Code SDK, hooks, MCP, Supabase, or GSR broadcast production patterns."
     },
     {
       "quarter": "Q2-2026",
@@ -745,7 +760,7 @@
       "summary": "Breakdown of the Opus 4.7 launch and the 4.6 quality controversy",
       "url": "https://youtu.be/NiMc2PoTiXo",
       "resources": null,
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 3,
       "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
     },
@@ -756,7 +771,7 @@
       "summary": "Autonomous Opus 4.7 trading bot on Claude Code cloud routines placing live Alpaca trades",
       "url": "https://youtu.be/6MC1XqZSltw",
       "resources": "https://drive.google.com/file/d/1XgwarwhlzcCPUAKVRzF7YiChfKLoLvHK/view?usp=sharing",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 3,
       "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
     },
@@ -767,7 +782,7 @@
       "summary": "Set up Claude Design so every AI output stays on-brand across your team",
       "url": "https://youtu.be/gAoZ95kqG7w",
       "resources": null,
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -801,9 +816,10 @@
       "summary": "Full course on building 3D scroll-driven websites in Claude Design",
       "url": "https://youtu.be/TcFeSjwTo7g",
       "resources": "https://drive.google.com/drive/folders/1IokjDhZPaLlAEQKRUWIdmMAZV58DQ7CS",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 2,
-      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+      "reject_reason": "Claude Design for luxury/3D marketing website creation using AI video loops (Seedance/Higgsfield) - focuses on commercial web design aesthetics. No Claude Code SDK, hooks, MCP, Supabase, or GSR production pipeline relevance."
     },
     {
       "quarter": "Q2-2026",
@@ -812,9 +828,10 @@
       "summary": "10 practical ways to use GPT Image 2, OpenAI's new top-ranked image model",
       "url": "https://youtu.be/GY-kAiZGLOw",
       "resources": "https://drive.google.com/drive/folders/1lDDSfutdU7hrZl55LPWV-bJW4T7F40bO",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "OpenAI image generation model comparison (GPT Image 2 vs Imagen 3) - off-topic: photo generation"
     },
     {
       "quarter": "Q2-2026",
@@ -823,9 +840,10 @@
       "summary": "End-to-end AI video editing with Claude Code, Video Use, and HyperFrames",
       "url": "https://youtu.be/Aw3BkmhYu4I",
       "resources": "https://drive.google.com/drive/folders/1ElzX-mUaOkZFuXTawgn7Bk3_DNPF-rsg",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 2,
-      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
+      "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1",
+      "reject_reason": "AI video editing pipeline using HeyGen HyperFrames and VideoUse for automated motion graphics - falls under HeyGen video creation off-topic category. No Claude Code SDK, hooks, MCP, or GSR production/broadcast automation relevance."
     },
     {
       "quarter": "Q2-2026",
@@ -846,7 +864,7 @@
       "summary": "Automate literally anything on the web with Claude Code and Playwright",
       "url": "https://youtu.be/J-6pnl5DQg8",
       "resources": "https://drive.google.com/drive/folders/18jZRRBb9a1h8PFbTKJqrxgpvoTiTRyhR",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -903,9 +921,10 @@
       "summary": "Build a realistic sales-and-booking voice agent with Claude Code, ElevenLabs, and Cal.com",
       "url": "https://youtu.be/-cdexJWN8YA",
       "resources": "https://drive.google.com/drive/folders/1mgGliw6EvO13GI5ATa9zU3Qxceve5qyU",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "ElevenLabs voice agent built via Claude Code - voice agent for lead gen/content chat, not broadcast/newsroom automation. Pattern is interesting but no GSR-specific application"
     },
     {
       "quarter": "Q2-2026",
@@ -925,9 +944,10 @@
       "summary": "Master 97% of Codex in one hour with a full end-to-end project build",
       "url": "https://youtu.be/3TdD8Qv5Tk8",
       "resources": "https://drive.google.com/drive/folders/1g64yKt4QF6TT4XJkyUgIqnDMOS-shuiJ",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 3,
-      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+      "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+      "reject_reason": "OpenAI Codex full course - covers ChatGPT-based agentic coding, not Claude Code SDK or GSR pipeline patterns"
     },
     {
       "quarter": "Q2-2026",
@@ -970,7 +990,7 @@
       "summary": "The 5 levels of Claude every user needs to know",
       "url": "https://youtu.be/ZRb7D6R64hM",
       "resources": "https://drive.google.com/drive/folders/1aLs-mLYpivfGm7J8vAwwgmgUjf5dOKvU",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -1004,7 +1024,7 @@
       "summary": "Convert any Claude Code project to Codex with one natural-language prompt",
       "url": "https://youtu.be/kB9iMD0EjT8",
       "resources": "https://drive.google.com/drive/folders/1FsAOu4oKGCdfE4AaNlC3yC8yePwMzrgH",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -1038,7 +1058,7 @@
       "summary": "Compare Claude Code and Codex across features, pricing, and three live builds",
       "url": "https://youtu.be/RLjaUES9P8A",
       "resources": "https://drive.google.com/drive/folders/1UtKVjCvnj0PE56TEc1vZcqgdeOSrbuZx",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -1060,7 +1080,7 @@
       "summary": "Run your entire business from one Claude Code AI operating system",
       "url": "https://youtu.be/0WDkwMxj13s",
       "resources": "https://drive.google.com/drive/folders/12WSgT4_Yu-yoBIn4xX2s6o62jjHHG-sW",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
     },
@@ -1291,7 +1311,7 @@
       "summary": "[ExamPro] Coordinator/architect patterns in multi-agent systems.",
       "url": "https://www.youtube.com/watch?v=vRYBG_R8JAI",
       "source": "R6-lead:2 agent-teams",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1313,7 +1333,7 @@
       "summary": "[Brian Casel] Indie-builder's real daily workflow for parallel agents without losing the thread.",
       "url": "https://www.youtube.com/watch?v=eFf2NszosQo",
       "source": "R6-lead:2 agent-teams",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1324,7 +1344,7 @@
       "summary": "[AyyazTech] Routines tutorial: cloud-run scheduled workflows, GitHub-event and webhook triggers.",
       "url": "https://www.youtube.com/watch?v=ctu_RyQNR5w",
       "source": "R6-lead:3 routines-overnight",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1335,7 +1355,7 @@
       "summary": "[Productive Dude] Routines walkthrough oriented to non-developer automation use cases.",
       "url": "https://www.youtube.com/watch?v=D3pxbkPg0KE",
       "source": "R6-lead:3 routines-overnight",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1346,7 +1366,7 @@
       "summary": "[Kenny Liao] Early scheduled-tasks coverage across Claude Code and Cowork with setup specifics.",
       "url": "https://www.youtube.com/watch?v=I1NdVZ6l5CQ",
       "source": "R6-lead:3 routines-overnight",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1357,7 +1377,7 @@
       "summary": "[The AI Automators] Practical scheduled-tasks demo from an automation-engineering channel.",
       "url": "https://www.youtube.com/watch?v=A-xGGE3QQIM",
       "source": "R6-lead:3 routines-overnight",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1368,7 +1388,7 @@
       "summary": "[Artem Zhutov] /loop plus scheduled tasks for overnight runs, same primitive as the GSR loop.",
       "url": "https://www.youtube.com/watch?v=fOpFgjH8IfQ",
       "source": "R6-lead:3 routines-overnight",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1379,7 +1399,7 @@
       "summary": "[Hyperautomation Labs] Named overnight framework with concrete prompts and guardrails, honest about failure modes.",
       "url": "https://www.youtube.com/watch?v=-d7AExggxKI",
       "source": "R6-lead:3 routines-overnight",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1390,7 +1410,7 @@
       "summary": "[Mayank Aggarwal] Full crash course on cloud-hosted Claude Code sessions running continuously.",
       "url": "https://www.youtube.com/watch?v=X_jUPbfbFnU",
       "source": "R6-lead:3 routines-overnight",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1401,7 +1421,7 @@
       "summary": "[Academind] Maps remote control, dispatch, channels, cloud sessions to use cases.",
       "url": "https://www.youtube.com/watch?v=eLaf8rCSwIM",
       "source": "R6-lead:3 routines-overnight",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1412,7 +1432,7 @@
       "summary": "[Simon Scrapes] Non-engineer workflow patterns from Anthropic's own internal usage, fits Daniel's profile.",
       "url": "https://www.youtube.com/watch?v=l4mSSN6exGg",
       "source": "R6-lead:3 routines-overnight",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1434,7 +1454,7 @@
       "summary": "[Leon van Zyl] Tutorial-grade tour of Agent View with /bg and /goal driving parallel sessions.",
       "url": "https://www.youtube.com/watch?v=tJVUAzLZUyI",
       "source": "R6-lead:4 mission-control",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1577,7 +1597,7 @@
       "summary": "[Piyush Garg] Start of a structured multi-part SDK series from a large dev educator.",
       "url": "https://www.youtube.com/watch?v=aqyzdD26qIw",
       "source": "R6-lead:5 hooks-sdk",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 1,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1588,9 +1608,10 @@
       "summary": "[You B Tech] Full-stack 2026 Supabase build including realtime pieces.",
       "url": "https://www.youtube.com/watch?v=lO5yNntbx7g",
       "source": "R6-lead:6 supabase-next",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 2,
-      "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
+      "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
+      "reject_reason": "Hindi-language Flutter/mobile app tutorial with no Claude Code SDK, hooks, agent, or GSR-relevant insights - covers basic Supabase setup for a Flutter expense tracker, not applicable to the Next.js/TypeScript GSR stack"
     },
     {
       "quarter": "R6-2026",
@@ -1611,9 +1632,10 @@
       "summary": "[Az Bytes] One of the few tutorials explicitly on Next.js 16 + Supabase, matches the GSR stack exactly.",
       "url": "https://www.youtube.com/watch?v=DxF02uNReBE",
       "source": "R6-lead:6 supabase-next",
-      "status": "pending",
+      "status": "rejected",
       "triage_rank": 2,
-      "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
+      "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
+      "reject_reason": "Hindi-language Next.js + Supabase job board tutorial - no Claude Code, agent SDK, or automation insights; basic SaaS setup walkthrough not relevant to GSR pipeline architecture"
     },
     {
       "quarter": "R6-2026",
@@ -1633,7 +1655,7 @@
       "summary": "[Bailey] Real church install (Menlo Church) wiring Companion to ProPresenter, Resi, Ross switcher.",
       "url": "https://www.youtube.com/watch?v=7sP6Juuda3w",
       "source": "R6-lead:7 propresenter",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1644,7 +1666,7 @@
       "summary": "[Crazy Amazing Designs] Install half of a two-part 2026 Companion control-system build.",
       "url": "https://www.youtube.com/watch?v=fLDR8MEgkpQ",
       "source": "R6-lead:7 propresenter",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1667,7 +1689,7 @@
       "summary": "[Renewed Vision] Brand-new first-party video from ProPresenter's maker on one-touch external control.",
       "url": "https://www.youtube.com/watch?v=FcprDkcg79s",
       "source": "R6-lead:7 propresenter",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1678,7 +1700,7 @@
       "summary": "[InBroadcast] Associated Press at NAB 2026 on agentic AI inside real newsroom/rundown workflows.",
       "url": "https://www.youtube.com/watch?v=P19OwQiwZU8",
       "source": "R6-lead:8 broadcast-ai",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1689,7 +1711,7 @@
       "summary": "[Key Code Media] Broadcast2Post engineering episode on IP and automation shifts in newsroom production.",
       "url": "https://www.youtube.com/watch?v=MTBtfV9yReQ",
       "source": "R6-lead:8 broadcast-ai",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1700,7 +1722,7 @@
       "summary": "[Eric Tech] Programmatic video generation pipeline (5 concrete steps) driven by Claude Code.",
       "url": "https://www.youtube.com/watch?v=uK-SNyzmFGI",
       "source": "R6-lead:8 broadcast-ai",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1734,7 +1756,7 @@
       "summary": "[Chase AI] Recent take on n8n/Claude Code interop tooling rather than a pure versus piece.",
       "url": "https://www.youtube.com/watch?v=Gq0l4IYRIIU",
       "source": "R6-lead:9 n8n-vs-cc",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1767,7 +1789,7 @@
       "summary": "[Brian Casel] A week-long n8n workflow rebuilt as a 30-minute Claude Code skill, directly relevant to GSR's stance.",
       "url": "https://www.youtube.com/watch?v=Jo168H2m5lw",
       "source": "R6-lead:9 n8n-vs-cc",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1778,7 +1800,7 @@
       "summary": "[Yashica Jain] Hybrid architecture demo: Claude as builder/reasoner, n8n as runtime.",
       "url": "https://www.youtube.com/watch?v=4lKhUX82aZY",
       "source": "R6-lead:9 n8n-vs-cc",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1789,7 +1811,7 @@
       "summary": "[Better Stack] Engineering channel demo of a fully offline Whisper transcription app.",
       "url": "https://www.youtube.com/watch?v=-Z-Clxo-v-g",
       "source": "R6-lead:10 whisper-mac",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1800,7 +1822,7 @@
       "summary": "[Daniel Gaiswinkler] In-window local-Whisper install tutorial (German-language, flag for triage).",
       "url": "https://www.youtube.com/watch?v=G7EeOpXZ93I",
       "source": "R6-lead:10 whisper-mac",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 3,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     },
@@ -1811,7 +1833,7 @@
       "summary": "[Filip Delac] whisper.cpp setup pipeline closest to the existing ~/Productions fswatch+ffmpeg+whisper rig.",
       "url": "https://www.youtube.com/watch?v=-yBIGVs0DO0",
       "source": "R6-lead:10 whisper-mac",
-      "status": "pending",
+      "status": "mined",
       "triage_rank": 2,
       "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
     }

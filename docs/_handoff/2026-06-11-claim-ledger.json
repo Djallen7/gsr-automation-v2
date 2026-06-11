@@ -6,7 +6,7 @@
     "PARTIAL": "works with caveats (caveat stated in verifier_evidence)",
     "REFUTED": "checked and false/stale; never build on it"
   },
-  "updated_at": "2026-06-11T13:50:00Z",
+  "updated_at": "2026-06-11T18:40:00Z",
   "claims": [
     {
       "id": "CL-001",
@@ -523,6 +523,28 @@
       "verifier_evidence": "Repo-verified fact sheet dated 2026-06-04; re-verify currency at 7.2 build time per never-stale rule",
       "gsr_application": "Transcription build (7.2) stays on the canon registry pick: WhisperKit + SpeakerKit local, WhisperX honorable fallback",
       "lane": "Lane 12",
+      "priority": 2
+    },
+    {
+      "id": "CL-048",
+      "claim": "Kilauea 'Episode 48' is USGS's numbered lava-fountaining episode count in the Halemaumau eruption (began Dec 23 2024), NOT a TV episode number; episode 48 ran June 1 2026 (~650 ft fountains) and 'set a new record number of fountaining episodes in any one Kilauea eruption', passing Puu Oo 1983-86's 47. Daniel's read was correct.",
+      "source": "USGS HVO: usgs.gov/observatories/hvo/news/photo-video-chronology-episode-48-kilauea-summit-a-new-record (fetched 2026-06-11)",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "USGS verbatim quote fetched from the page; corroborated by watchers.news 2026-06-02. Caveat: episode 49 was forecast ~Jun 12-15, so RE-CHECK the live count at usgs.gov/volcanoes/kilauea/volcano-updates on record day and swap the number. Scope guard: say 'any Kilauea eruption', never 'biggest eruption ever'. NOTE: no Austin/Kilauea episode row exists in the DB yet (verified by SELECT), so the wording is parked here + canon until Lane 3 creates the row; on-air-safe wording recorded in canon s14 resolution.",
+      "gsr_application": "Plan 4.4 resolved: on-air wording locked, count qualified by date; Dr. Steve Austin exists in guests but is linked to no episode yet",
+      "lane": "Lane 8 / Lane 3",
+      "priority": 2
+    },
+    {
+      "id": "CL-049",
+      "claim": "creationsuperstore.com is WordPress+WooCommerce with the entire /wp-json/ tree (incl. WooCommerce Store API) host-blocked 403; the workable lookup is HTML search (?s=<q>&post_type=product, browser UA, 48/page) with a deterministic empty-result signal ('No products were found matching your selection'), plus 3 Yoast product sitemaps (~2,113 products) for a cached slug index.",
+      "source": "live probes 2026-06-11 (sitemap.xml, /products.json 404, /wp-json 403, three search queries incl. an empty-contract test)",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Example: 'steve austin' returned 12 real products incl. Footprints in the Ash, the exact resource named in the June Topic 09 interview doc; nonsense query returned the no-products signal",
+      "gsr_application": "Spec committed (2026-06-11-superstore-lookup-spec.md); build lands in plan 7.4 with the never-fabricate empty contract",
+      "lane": "Lane 12 / 7.4",
       "priority": 2
     }
   ]

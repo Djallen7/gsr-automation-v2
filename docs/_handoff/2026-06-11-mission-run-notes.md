@@ -114,6 +114,19 @@ Use the corrected names in anything written to canon or the build plan.
   the youtube_scheduled_publish_at contract step.
 - 2026-06-11: Lane 9 claimed (autonomous research loop = this mission), status IN PROGRESS.
 
+## Model routing (usage preservation, lead call 2026-06-11)
+
+The heavy reasoning (research verification, plan, critiques, decisions) is committed; the
+artifacts carry the quality. Route accordingly:
+- **Sonnet-safe (run these on Sonnet 4.6 sessions or Sonnet/Haiku subagents):** transcript
+  mining per the Lane 9 resume prompt; build-slice execution against the plan's done-when
+  criteria (tsc/eslint + code-review as the net; /goal on the Mac CLI); checkpoint
+  commits, CI babysitting, lanes updates, doc sweeps.
+- **Fable/Opus only (short, focused check-ins):** plan addendum v2 synthesis after mining;
+  the independent rubric re-run and red-team passes; anything that changes canon or the
+  plan's shape.
+Pattern: Sonnet does the volume, one short heavy-model review per milestone.
+
 ## Retros (one per build cycle, mission section 5)
 
 **2026-06-11, research cycle (Phase E + R cloud-side + S):**

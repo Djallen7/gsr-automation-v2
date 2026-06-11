@@ -62,6 +62,15 @@ patterns in parallel, and pre-stages everything the Mac run needs.
 **Runtime log:** (cumulative research runtime tally)
 - 10:30 UTC session start; Phase E audit.
 - 11:55 UTC checkpoint 1: R2/R3/R4/R5 agent swarm running; live-DB verification done (CL-007 VERIFIED, CL-009 skew window found). ~1.4h cumulative.
+- 13:20 UTC checkpoint 2: R2+R3+R4+R5 agents ALL returned and merged (ledger at 45 claims, 0 priority-1 ASSUMED left); architect skeleton + R6 candidate finder still running. ~2.8h cumulative.
+
+## Mission-doc corrections found by verification (2026-06-11)
+
+The mission contract's Phase E table had three small but quotable errors, now corrected in the ledger:
+1. There is no `/goal show` subcommand; bare `/goal` prints status (CL-025).
+2. The Agent SDK transcript reader is `get_session_messages()`, not `Session.History`; `list_sessions()` already returns a per-session summary field (CL-030).
+3. Agent View shows no token counts, and the background command is `/bg` / `/background` / left-arrow, not `/agent` (CL-035).
+Use the corrected names in anything written to canon or the build plan.
 
 ## Decisions and assumptions log
 

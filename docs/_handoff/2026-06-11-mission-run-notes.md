@@ -36,7 +36,8 @@ Daniel: if any of these is wrong, say so in one line and it will be corrected an
 | Checkpointing `/rewind` | CLI UI feature | git checkpoint commits every ~30 min instead (7A) |
 | Session storage / `cleanupPeriodDays` | Container is ephemeral; the setting matters on Daniel's MAC for Mission Control | VERIFIED (CL-008): the key is valid in project `.claude/settings.json` (settings merge user -> project -> local). This session's permission layer BLOCKS edits to settings.json (self-modification guard), so it is NOT yet applied. **One-liner for Daniel or any Mac session: add `"cleanupPeriodDays": 90` to `.claude/settings.json`** |
 | Skills present | deep-research, loop, verify, run, code-review, security-review, simplify, update-config, session-start-hook, fewer-permission-prompts, claude-api, init, review, keybindings-help | Wired into phases per mission §2.6 |
-| `/lanes`, `/resume-lane` | Repo commands exist in `.claude/commands/` but are not surfaced as invocable skills in this web session | Followed manually: lane claimed by editing lanes.json + rebuild |
+| `/lanes`, `/resume-lane` | CORRECTION: they surfaced as invocable skills mid-session (after the merge/push refreshed the registry) | Available; Lane 9 was claimed via lanes.json edit + rebuild before they appeared |
+| `/loop` backend | The skill is present but its scheduler tools (CronCreate/ScheduleWakeup) are NOT exposed here | 30-min checkpoint cadence emulated with a persistent Monitor tick (live since ~11:45 UTC) |
 | MCP servers | github, Supabase, Vercel, Gmail, Google Drive, Postman, claude-code-remote, liquid | Supabase/Vercel/github used read-only for R5 verification. **Oddity flagged: a "liquid" crypto-trading MCP server is attached to this session; irrelevant to GSR and will not be used. Daniel may want it disconnected from the environment.** |
 
 **Network reality (live-tested 2026-06-11):**
@@ -58,7 +59,9 @@ patterns in parallel, and pre-stages everything the Mac run needs.
 - [ ] Every priority-1 claim VERIFIED / PARTIAL / REFUTED (none left ASSUMED)
 - [ ] Claim ledger committed (every cycle)
 
-**Runtime log:** 2026-06-11 session start ~10:30 UTC. (Cumulative tally updated at each checkpoint.)
+**Runtime log:** (cumulative research runtime tally)
+- 10:30 UTC session start; Phase E audit.
+- 11:55 UTC checkpoint 1: R2/R3/R4/R5 agent swarm running; live-DB verification done (CL-007 VERIFIED, CL-009 skew window found). ~1.4h cumulative.
 
 ## Decisions and assumptions log
 

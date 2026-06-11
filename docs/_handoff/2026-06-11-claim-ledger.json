@@ -6,7 +6,7 @@
     "PARTIAL": "works with caveats (caveat stated in verifier_evidence)",
     "REFUTED": "checked and false/stale; never build on it"
   },
-  "updated_at": "2026-06-11T11:25:00Z",
+  "updated_at": "2026-06-11T11:55:00Z",
   "claims": [
     {
       "id": "CL-001",
@@ -14,7 +14,7 @@
       "source": "live session audit (claude --version + skill registry)",
       "date_heard": "2026-06-11",
       "status": "VERIFIED",
-      "verifier_evidence": "Phase E live test, see 2026-06-11-mission-run-notes.md",
+      "verifier_evidence": "Phase E live test, see 2026-06-11-mission-run-notes.md Addendum: the /loop skill's scheduling backend (CronCreate/ScheduleWakeup) is not exposed here either; 30-min cadence emulated with a persistent Monitor tick. /lanes and /resume-lane DID surface as invocable skills mid-session (run-notes Phase E table corrected).",
       "gsr_application": "Goal conditions are emulated as AND-checklists + independent verifier agent; /loop drives checkpoint cadence",
       "lane": "Lane 9 (research loop)",
       "priority": 1
@@ -79,8 +79,8 @@
       "claim": "The live DB already has production_lower_thirds / lower_thirds_variations (PR #50's migration applied) while main's deployed code still reads 'graphics' — the rename ships code-side only when PR #47 + #50 + #52 merge.",
       "source": "PR #50 body ('Migration listed in Supabase list_migrations (verified applied)') + open-PR audit 2026-06-11",
       "date_heard": "2026-06-11",
-      "status": "ASSUMED",
-      "verifier_evidence": "Pending read-only Supabase MCP check of live tables (R5)",
+      "status": "VERIFIED",
+      "verifier_evidence": "Read-only Supabase SQL 2026-06-11: production_lower_thirds, lower_thirds_variations, production_graphics all EXIST (0 rows each); 'graphics'/'graphics_variations' are GONE; episodes=48, guests=175.",
       "gsr_application": "First build slice (answer 1A) must sequence on this: DB is ahead of deployed code",
       "lane": "Lane 8 / build slice 1",
       "priority": 1
@@ -95,6 +95,17 @@
       "gsr_application": "Mission Control needs Daniel's Mac session JSONL to survive; if user-only, the plan tells his Mac to set it once",
       "lane": "Lane 9 / Mission Control",
       "priority": 2
+    },
+    {
+      "id": "CL-009",
+      "claim": "Production is in a schema-skew window: the live DB no longer has the 'graphics' table (renamed by PR #50's applied migration) while the deployed main-branch app still queries 'graphics', so the deployed lower-thirds pages/API hit a missing table until PR #47+#50+#52 merge and deploy.",
+      "source": "deduction from live-DB check + open-PR audit",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Live DB table list 2026-06-11 (graphics absent) + main's code references graphics (PR #50 diff renames ~20 call sites, unmerged). Impact bounded: all lower-thirds tables have 0 rows, so no data loss, but the deployed pages error against a missing relation.",
+      "gsr_application": "Raises urgency of Daniel's Q16 merge decision: merging the PR stack closes the skew window. Build plan sequences slice 1 after that merge.",
+      "lane": "Lane 7 / Lane 8",
+      "priority": 1
     }
   ]
 }

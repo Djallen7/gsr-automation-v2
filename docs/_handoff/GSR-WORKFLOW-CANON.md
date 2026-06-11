@@ -335,3 +335,35 @@ Stated in the 2026-06-11 session while commissioning the Fable 5 pipeline missio
 - **Optimistic intake:** community/video/hearsay claims may be provisionally assumed true so work keeps moving, BUT every claim adopted into a plan must immediately spawn a verification agent (official docs, changelog, or live test) and carry a status: ASSUMED -> VERIFIED / PARTIAL / REFUTED. Nothing REFUTED or still-ASSUMED ships in a final build step.
 - The research phase runs as a **continuous loop with a minimum 5-hour runtime**, checkpoint-committing findings as it goes.
 - Seed corpus: `docs/_handoff/2026-06-11-video-research-queue.json` (99 curated videos, Jan-Jun 2026, from Daniel's Q1/Q2 sheets).
+
+**Lead-agent directive (Daniel, gospel 2026-06-11, spoken while reviewing the mission run):**
+Claude is the lead on the pipeline project. Wherever Claude holds a researched
+recommendation, it makes the call and records it here, dated, without re-asking; it asks
+Daniel only when it genuinely lacks the information for the right call, and batches those
+questions. Usage preservation: heavy mechanical work (transcript pulls, bulk file
+processing) routes to a separate local session on Daniel's other account whenever it can
+run without project context; outputs flow back via the mission branch. NOT waived, ever:
+merges need Daniel's yes, the Type-YES import gate, the live-rig in-the-moment yes, QNAP
+read-only, 1Password-only credentials.
+
+**Decisions exercised under that directive (Claude as lead, 2026-06-11):**
+- Install batch: YES to ccusage, claude-devtools, jkawamoto local transcript MCP,
+  supabase/agent-skills, vercel-labs/next-skills, commit-commands (all run on the Mac
+  prompt). The ergut REMOTE transcript MCP is DEFERRED, not installed: the Mac pull makes
+  cloud mining redundant; revisit only if the Mac run covers under ~60% of the queue.
+- Rundown Creator adapter (plan P1/decision 3): YES, build in slice 6 before any further
+  RC automation.
+- Transcription (P2/decision 4): BUILD local (WhisperKit + SpeakerKit per the canon
+  registry); revisit only if correspondent-segment diarization fails on the first episode.
+- Decision 6 taps: YES to all three - P7 five quality checks as soft warnings only, P14
+  gsr-research repo hygiene, and the jobs-queue internals on Supabase Queues (pgmq; same
+  Mac-polls-Supabase shape s12 locked, better plumbing).
+- Proposal dispositions locked as recommended in plan v3 section 6: P3 runbook after
+  slice 7; P4 fold guest-picker + Monday Tasks into the dashboard, keep lanes.html
+  standalone; P5 no separate STATUS.md; P6 skip extra L3 views for now; P11 live-ASR
+  deferred behind 10.3/10.4; P13 skip Cline rules. P16 stays exactly as Daniel ruled
+  (skip), with the standing exposure flag on record.
+- Still Daniel-only: decision 1 (merge the PR stack - his yes, two lanes offered),
+  decision 5 (calendar for the two working sessions; default Tue Jun 24 morning stands),
+  the Rumble send, and the physical Mac runs.
+

@@ -681,7 +681,12 @@ log in 1Password, close forever.**
 
 ---
 
-## 7. Decisions only Daniel can make
+## 7. Decisions (status updated 2026-06-11 under Daniel's lead-agent directive)
+
+Daniel directed Claude to make every call it has a researched recommendation for. Result:
+decisions 2, 3, 4, and 6 below are DECIDED as recommended (recorded in canon, dated;
+ergut deferred with reason). Open and his alone: decision 1 (the merge) and decision 5
+(the calendar). Original text kept for the record:
 
 1. **Unbreak production: one of two lanes, your pick.** The deployed lower-thirds pages
    query a table that no longer exists (zero data at risk, but they error).

@@ -26,7 +26,7 @@ condition).
 3. `docs/_handoff/GSR-WORKFLOW-CANON.md` — Daniel's gospel. Especially **s13** (findings-review decisions), **s14** (flight-worksheet decisions), **s15** (this mission's authorizations + research doctrine).
 4. `docs/_handoff/2026-06-08-review-decisions.md` — the 90-item triage (24 build / 9 later / 29 skip / 28 discuss).
 5. `docs/_handoff/2026-06-09-discussion-queue.md` — the open DISCUSS items.
-6. `docs/_handoff/2026-06-08-export-archaeology.md` + `export-archaeology-backlog.json` — the mined 407-conversation data export.
+6. `docs/_handoff/2026-06-08-export-archaeology.md` + `export-archaeology-backlog.json` — the mined 407-conversation data export. **The raw, LATEST export folder lives on Daniel's Mac at `/Users/claudefix/Downloads/data-a0c958ae-c858-4f3c-8cb5-de25e9d2ac18-1781155946-9c587659-batch-0000` — read it directly (conversations.json, projects, memories) when running on the Mac; it is newer than the mined summary and is the source of truth for export-derived context. If running in a cloud/web session that cannot see that path, work from the committed archaeology docs and ask Daniel to surface anything missing.**
 7. `docs/_handoff/2026-06-11-video-research-queue.json` — the 99-video seed corpus for Phase R.
 8. `docs/AUTOMATION_ROADMAP.md`, `docs/decisions/` (ADRs; 0012 is the architecture of record).
 
@@ -79,11 +79,82 @@ just confirm your environment has them — `/help` + version check):
 3. Raise `cleanupPeriodDays` in settings so session history survives long enough for
    Mission Control (§5) to analyze it.
 
+## 2.5 How to use /goal and /loop across this mission (Daniel's directive)
+
+Use them — this mission is long-horizon convergence work, exactly what they are for. But
+use them where they earn their keep and not as decoration.
+
+**`/goal` = a finish line that can't be faked.** Use it whenever a phase has an objective,
+checkable success condition. The per-turn evaluator stops the session from declaring "done"
+early. Good fits: Phase R completion, the synthesis plan passing the rubric, each build
+lane reaching its acceptance criteria. Write goal conditions as AND-lists of verifiable
+facts (counts, "tsc/eslint clean", "PR opened", "rubric 7/7"), never vague ("make it
+great"). `/goal show` to read its reasoning, `/goal clear` to stop.
+
+**`/loop` = recurring upkeep on an interval.** Use it for work that should repeat on a
+clock, not race to a finish: checkpoint-commits, CI babysitting, periodic re-verification
+of the claim ledger (tools shift weekly here), Mission Control refresh. For overnight or
+laptop-closed runs, prefer a cloud **Routine** (`/schedule`) so it survives sleep.
+
+**When NOT to use them.** Don't wrap a short, one-shot task in a goal/loop (wasted tokens
+and churn). Don't set a goal whose condition an LLM could rationalize as met without real
+evidence — make the condition machine-checkable. Watch spend: these run hot; keep `/effort`
+tuned and let the loop checkpoint so a stop is never a loss.
+
+**Hard rule — goals and loops never bypass a confirmation gate.** An autonomous loop may
+PREPARE a live ProPresenter action, a bulk `/api/import`, or anything irreversible, but it
+must still stop and get Daniel's in-the-moment "yes" before firing (canon s15). QNAP stays
+read-only inside any loop. A goal is reached by doing the work safely, not by skipping the
+seatbelt.
+
+## 2.6 Skills, plugins, and subagents to use — with their triggers
+
+Run `/help` to confirm what is installed, then lean on these. "Trigger" = what invokes it.
+
+**Already in this repo (use immediately):**
+- **gsr-architect** (subagent) — the system-aware planner. Trigger: any planning/design step
+  (Phase S especially). Invoke via the Agent tool / "use the gsr-architect agent".
+- **gsr-health** (subagent) — repo-health auditor. Trigger: start of a build session, and
+  critique round 2 in Phase S. "use the gsr-health agent".
+- **gsr-editorial** (subagent) — copy/voice review against Daniel's tone (plain English, no
+  em-dashes). Trigger: any Daniel-facing copy, and critique round 3.
+
+**Built-in skills to wire in (type the slash command):**
+- **/deep-research** — fan-out web search + adversarial verification + cited report. Trigger:
+  the verification swarm in Phases R2-R6. This is the workhorse for "assume then verify".
+- **/loop** and **/goal** — the long-horizon engine (see §2.5). Trigger: every phase.
+- **/lanes** and **/resume-lane** — show / pick-and-resume a work lane with its context
+  auto-loaded. Trigger: session start and any handoff between parallel sessions.
+- **/verify** — launch the app and confirm a change actually works. Trigger: after each
+  build slice, before opening/marking a PR ready.
+- **/run** — start the app / screenshot it. Trigger: UI work, demoing a slice to Daniel.
+- **/code-review** — review the diff for correctness bugs (`--comment` posts inline on the
+  PR, `--fix` applies). Trigger: before every PR is marked ready.
+- **/security-review** — security pass on pending changes. Trigger: before merging anything
+  that touches auth, credentials, or the ProPresenter/Tailscale path.
+- **/simplify** — reuse/cleanup pass. Trigger: after a feature works, before PR.
+- **/update-config** — edit settings.json: add hooks, set permissions, env vars. Trigger:
+  setting up the SessionStart hook, the standing loops, raising `cleanupPeriodDays`.
+- **session-start-hook** — build a SessionStart hook so every web session boots ready
+  (tests/linters/context). Trigger: Mission Control + reliable session startup.
+- **fewer-permission-prompts** — allowlist common safe commands. Trigger: before long
+  unattended runs, so the loop is not blocked on prompts (never allowlist anything that
+  writes to QNAP or fires a live action — those keep their gates).
+- **claude-api** — authoritative reference for Claude model IDs / API. Trigger: any code
+  that calls the Claude API (regenerate route, future automations).
+
+**To evaluate installing in R3** (vet before installing; 1Password rule always stands):
+a YouTube-transcript MCP server (rung 3 above), claude-self-reflect (cross-session memory),
+and any skill the corpus surfaces that is VERIFIED and reduces Daniel's input. Install via
+`npx skills add <github-url>` or `/plugin marketplace add <repo>`; log each in the ledger
+with a yes/no recommendation.
+
 ## 3. Phase R — The research loop (minimum 5 hours, Daniel's directive)
 
 **Loop mechanics (verified features):** set the long-horizon condition with
 `/goal Phase R complete: ≥5 hours cumulative research runtime AND all 99 seed videos
-mined-or-rejected AND every priority-1 claim VERIFIED/PARTIAL/REFUTED AND ledger committed`.
+mined-or-rejected AND ≥50 net-new lead-driven videos mined (R6) AND every priority-1 claim
+VERIFIED/PARTIAL/REFUTED AND ledger committed`.
 Layer `/loop 30m` for checkpoint commits (commit ledger + queue + notes, push). If running
 unattended/overnight, prefer a cloud **Routine** (`/schedule`) so the loop survives the
 laptop sleeping. Do not declare Phase R done before the goal condition holds.
@@ -104,25 +175,56 @@ application, lane, priority. This file is the loop's heartbeat; commit it every 
 
 **R1 — Video corpus mining.** Work through
 `docs/_handoff/2026-06-11-video-research-queue.json` (99 videos, Jan 5 – Jun 10 2026,
-newest first — recency matters in this space). Transcript extraction, verified recipe
-(run on Daniel's Mac; cloud IPs get blocked by YouTube):
-
-```bash
-brew install yt-dlp   # then, batched + resumable:
-yt-dlp --skip-download --write-auto-subs --sub-langs "en" --convert-subs srt \
-  --download-archive done.txt --sleep-requests 2 --cookies-from-browser chrome \
-  -a video-urls.txt -o "transcripts/%(upload_date)s-%(id)s.%(ext)s"
-```
-
-Expect occasional HTTP 429s — just re-run; `done.txt` skips finished videos. Fallback for
-stragglers: `pip install youtube-transcript-api` (works from residential IPs, throttle to
-a few/min). If this session can't reach YouTube at all, hand Daniel the one-liner and mine
-whatever returns; mark the rest `pending`. For each mined video: log techniques into the
-claim ledger, set the video's `status` to `mined` or `rejected` in the queue file. Expand
-past 99 when a mined video points at something newer worth chasing. Expect hype: the
-corpus's own sample transcript claims "auto mode never does anything crazy" and "the model
-is smarter than you, lean on it for all thinking" — log such claims like any other and let
+newest first — recency matters in this space). For each mined video: log techniques into
+the claim ledger, set the video's `status` to `mined` or `rejected`. The corpus's own
+sample transcript is pure hype ("auto mode never does anything crazy", "the model is
+smarter than you, lean on it for all thinking") — log such claims like any other and let
 verification sort them.
+
+**Transcript extraction — a 10-rung fallback ladder (Daniel's directive: never let one
+failure stop the batch).** All verified June 2026; run on Daniel's Mac (cloud/datacenter
+IPs are hard-blocked by YouTube). Try in this order, each video falling through to the next
+rung only on failure. **First, check ownership:** if these videos are on the David Rives /
+GSR-owned channel, jump to rung 9 (Data API v3 with owner OAuth) as the primary — it is
+fully sanctioned and sidesteps every bot-block.
+
+1. **youtube-transcript-api, no proxy** — `pip install youtube-transcript-api`;
+   `youtube_transcript_api VIDEO_ID --languages en`. Free, fast; works for many before the
+   IP cools.
+2. **yt-dlp + browser cookies + PO-token provider** — `brew install yt-dlp ffmpeg`; run the
+   bgutil PO-token provider (`docker run -d -p 4416:4416 brainicism/bgutil-ytdlp-pot-provider`
+   + `pip install -U bgutil-ytdlp-pot-provider`); then
+   `yt-dlp --write-auto-subs --write-subs --sub-langs en --skip-download --sub-format vtt --cookies-from-browser firefox --download-archive done.txt --sleep-requests 2 -a urls.txt -o "transcripts/%(id)s.%(ext)s"`.
+   Resumable (`done.txt` skips finished); use Firefox or a CLOSED Chrome (Chrome 127+
+   encrypts cookies on a running browser).
+3. **YouTube-transcript MCP server** — local `claude mcp add youtube-transcript -- npx -y
+   @sinco-lab/mcp-youtube-transcript`, or the remote `ergut/youtube-transcript-mcp` (runs
+   from the host's IP = a different block profile, useful failover).
+4. **Invidious / Piped front-end** — Piped `https://<instance>/streams/VIDEO_ID` or
+   Invidious `https://<instance>/api/v1/captions/VIDEO_ID`. Free but instances are flaky;
+   opportunistic straggler-catcher, not a backbone.
+5. **youtube-transcript-api + Webshare RESIDENTIAL proxy** — first paid rung; cheaply
+   solves the IP block. Must be the "Residential" plan (not "Proxy Server"/"Static").
+6. **Supadata** (supadata.ai) — managed API, 100 free credits then ~$17/mo; the only one
+   with **AI fallback** (returns a transcript even when the video has NO captions). Best
+   single managed option.
+7. **Apify YouTube Transcript Scraper / ScrapeCreators** — managed alternates if Supadata
+   limits hit; their own proxy pools absorb the IP problem.
+8. **Local Whisper (caption-independent ultimate fallback)** — needs no YouTube captions at
+   all, only the audio (the least-blocked YouTube surface):
+   `yt-dlp -x --audio-format wav -o "%(id)s.%(ext)s" "URL"` then
+   `whisper-cli -m ggml-large-v3-turbo.bin -f VIDEO_ID.wav -otxt` (`brew install whisper-cpp`)
+   or faster-whisper. GSR videos are ~58 min, so use a turbo/base model or Apple-Silicon
+   Metal build for speed. Output quality beats auto-captions.
+9. **YouTube Data API v3 captions** — `captions.list` then `captions.download` with OAuth.
+   Only works if you OWN the channel (403 otherwise). If owned, this is the cleanest, safest
+   primary — promote it to rung 1.
+10. **Browser / manual** — YouTube's "Show transcript" panel, or Tactiq/Kome/NoteGPT/Glasp.
+    Last resort for the handful that beat every automated rung.
+
+If this session cannot reach YouTube at all, hand Daniel the rung-2 command block and mine
+whatever returns; mark the rest `pending`. **David-rule note:** confirm channel ownership
+before paying for proxies/APIs — rung 9 may make all the paid rungs unnecessary.
 
 **R2 — Official-source sweep (highest signal, run in parallel with R1).** Anthropic docs,
 the Claude Code changelog, engineering blog, Agent SDK docs, skills/plugins registry.
@@ -163,9 +265,31 @@ authorized path, YouTube upload pipeline), research the current best automated p
 ledger + verify; map each to a roadmap item or lane. Distribution facts defer to canon s11
 (StreamHoster, Signiant/RLN, Dropbox, GSN, deferred GodTube/OTA/TBN/CTN) — never to memory.
 
+**R6 — Lead-driven corpus expansion (Daniel's directive: at least 50 MORE videos).** The
+99 seeds are a starting point, not the ceiling. As R1 mines them, the highest-value
+threads will reveal themselves (a creator, a tool, a technique that keeps paying off).
+Pursue them: find and mine **at least 50 additional videos beyond the 99 seeds**, chosen
+strategically from the most promising leads, not at random. Method:
+1. After the first pass, score the seed corpus: which topics/creators/tools produced the
+   most VERIFIED, GSR-applicable claims? Those are your leads.
+2. For each top lead, search YouTube (newest-first, 2026) for: that creator's other recent
+   uploads; the specific tool/technique by name (e.g. "/goal Claude Code", "agent teams
+   tutorial", "claude-self-reflect", "Supabase realtime Next.js 16", "ProPresenter API
+   websocket", "n8n vs Claude Code 2026"); and anything a mined video explicitly points to.
+3. Add each new video to `2026-06-11-video-research-queue.json` with `source: "R6-lead:<which lead>"`
+   and `status: pending`, then mine it through the same ledger + verification doctrine.
+4. Bias toward GSR-relevant signal (broadcast/graphics/scheduling/automation/multi-session
+   orchestration) over generic hype; mark low-signal finds `rejected` with a one-line reason.
+Target: 50+ net-new mined videos (150+ total). Keep going past 50 while strong leads remain
+and the 5-hour clock allows; stop a thread once it stops producing new VERIFIED claims.
+
 ## 4. Phase S — Synthesis: the build plan, self-critiqued
 
-When Phase R's 5 hours are done and the top-priority claims are VERIFIED:
+When Phase R's 5 hours are done and the top-priority claims are VERIFIED, drive the
+critique loop with a goal so it doesn't stop at a mediocre first draft:
+`/goal Build plan passes the §6 rubric 7/7 AND red-team has zero unresolved findings AND
+gsr-health reports no conflict with repo state AND every plan item has a deliverable + ship
+date + ledger citation`. Then:
 
 1. Draft `docs/_handoff/2026-06-XX-pipeline-build-plan.md`: lane-aligned, every item named
    with a deliverable + ship date (anti-churn rule — no nameless scaffolding), sequenced by
@@ -182,10 +306,14 @@ When Phase R's 5 hours are done and the top-priority claims are VERIFIED:
 ## 5. Phase B — Build (begins only after Daniel okays the plan)
 
 - Work lanes, one owner per lane, IN PROGRESS flags set, exactly as LANES.md prescribes.
-- **Standing loops to establish where the environment supports them:** nightly lanes
-  updater (already exists: `tools/nightly_lanes_update.mjs`), a CI babysitter per open PR,
-  a claim-ledger re-verification pass (tools change weekly in this space), and Mission
-  Control refresh (below).
+- **Run each lane under a goal:** `/goal Lane <n> done: acceptance criteria met AND
+  npx tsc --noEmit + npx eslint src/ clean AND draft PR opened AND LANES.md updated`. The
+  goal keeps the session on the lane until it is genuinely finished, not just touched.
+- **Standing loops to establish where the environment supports them** (use `/loop` or a
+  cloud Routine): nightly lanes updater (already exists: `tools/nightly_lanes_update.mjs`),
+  a CI babysitter per open PR (`/loop 15m re-check open PR CI; on failure diagnose + push a
+  fix`), a claim-ledger re-verification pass (tools change weekly in this space), and
+  Mission Control refresh (below).
 - **Mission Control (named deliverable):** recommended shape = adopt + extend.
   (a) ADOPT day one (zero build): claude-devtools or claude-code-log for the rear-view,
   claude-self-reflect so any session can semantically query past sessions, ccusage for
@@ -238,8 +366,9 @@ Defaults marked ★ apply if you skip a question. Reply like: "1A 2B 3 all 4A �
    Mac for the yt-dlp transcript pulls.
 5. Transcript extraction on your Mac is likely needed (cloud sessions may not reach
    YouTube). OK to install yt-dlp via Homebrew when asked? A★ yes · B no, ask per-tool.
-6. Cap on NEW videos beyond the 99 seeds: A★ +50 max · B unlimited if signal is high ·
-   C seeds only.
+6. Beyond the 99 seeds you've directed at least 50 more (R6, lead-driven). How high may it
+   go past that floor? A★ +50 to +100 as leads warrant · B unlimited while signal is high ·
+   C exactly 50.
 7. Research loop cadence/checkpoint: A★ commit every ~30 min · B hourly.
 
 **Autonomy**

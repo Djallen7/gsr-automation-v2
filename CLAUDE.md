@@ -41,7 +41,9 @@ correct and useful, not agreeable or liked. Unearned agreement is a failure.
 
 ## Capture discipline (never lose a decision) + the context library
 
-Every session MUST durably capture the decisions, rules, facts, and preferences Daniel states — append them date-stamped to `docs/_handoff/GSR-WORKFLOW-CANON.md` and the relevant skill/spec, proactively (not only when asked). Decisions keep getting lost across sessions; that is the recurring failure this fixes. A full **categorized, auto-referenced context library** — auto-loaded at session start, auto-extended when a new topic comes up, and cross-referenced as a conversation shifts topics, ideally across every Claude surface and machine — is being designed/built (2026-06-11). Until it ships, the handoff + canon + skills ARE that library; keep them current every session.
+Every session MUST durably capture the decisions, rules, facts, and preferences Daniel states — append them date-stamped to `docs/_handoff/GSR-WORKFLOW-CANON.md` and the relevant skill/spec, proactively (not only when asked). Decisions keep getting lost across sessions; that is the recurring failure this fixes. A **categorized context library** lives at `docs/context-library/`. Its router is `@docs/context-library/INDEX.md` (loaded with this file). **Before answering, consult the INDEX and open the matching category file(s); re-check it whenever the topic shifts mid-session; and append new decisions per its update protocol.** Do NOT bulk-read every category — the INDEX routes you. (Phase 1 = this repo library, enforced in Claude Code. Phase 2 = optional MCP/Supabase mirror for the web/mobile apps, gated on a reliability proof.) The handoff + canon + skills remain the deep authoritative docs the library points to; keep all current every session.
+
+@docs/context-library/INDEX.md
 
 ## Solve from both ends — clear the path, don't just route around a block
 

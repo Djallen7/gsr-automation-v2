@@ -1,0 +1,244 @@
+I just opened a pull request on GitHub.
+I didn't tell anyone. I didn't run any
+command. Watch what happens. Cloud
+reviewed it for me automatically while
+my laptop was closed. This is a routine
+Anthropic just shipped it around 10 days
+ago and it changes how Cloud Code fits
+into your day. A routine is saved Cloud
+Code configuration, a prompt, a repo,
+and connectors that runs automatically
+on Anthropic's Cloud. Three things make
+it different from normal Cloud Code
+session. Number one, it runs without
+you. Schedule, GitHub event, or webhook.
+Pick what triggers it. Number two, it
+runs in the Cloud, so your laptop can be
+closed, Wi-Fi off, it doesn't matter.
+Number three, it's a full Cloud Code
+session. It reads files, makes commit,
+open PRs, post to Slack, and send
+emails, or anything Cloud Code can do, a
+routine can do automatically for you.
+Until now, Cloud Code was reactive. You
+opened a terminal, you typed a prompt,
+and it did the work. Routines flip that.
+Now, Cloud Code can be the thing that
+pings you with a daily briefing, with a
+PR review the moment a teammate opens
+one, with an alert when your
+dependencies are out of date. Every
+developer has tasks they do every
+morning, every Monday, every deploy.
+Routines automate those for free if you
+are already on the Cloud plan. Quick
+note on limits before we build one.
+Routines count against your Cloud plan.
+Plus, they have a daily run cap on top.
+So, Pro plan has five runs per day, Max
+plan allows you 15 runs per day, Team
+and Enterprise allows you 25 runs per
+day. So, if you are on Pro and you set
+up something hourly, you'll burn through
+your budget by lunch. Pick the cadence
+carefully. Most useful routines run once
+a day or once a week, not constantly.
+Okay, let's see practically how it
+works. So, open your Claude and click on
+the code button to open the Claude code
+in your desktop application. And in the
+left sidebar, you will notice we have a
+button routines. Just click on that and
+click on the new routine. And here we
+have two options, local or remote. You
+can start routine locally as well as on
+the remote. If you select local, then
+you will have to keep your laptop on
+forever. But, if you don't want to keep
+your laptop or computer on, then you
+should select the remote option that
+will host the routine on the Anthropic's
+cloud. So, you Here you got this form
+with five things. You have name, the
+instruction field where you can provide
+the prompt. And here you can select a
+GitHub repository by clicking on this
+button. And here we have trigger. And
+below that, we have connectors. So, you
+can connect all of your connectors that
+you need for this routine. You can add
+more connectors as well, or you can
+remove any unnecessary connectors. So,
+let's give it a name, PR auto reviewer.
+And I will give it this prompt. A pull
+request was just opened on this
+repository. Review it carefully and post
+a comment on the PR with these items. A
+one-line summary of what the PR changes,
+any potential bugs, edge cases, or
+security concerns you spot. And here you
+can select the model that you want to
+use for this. I will keep Opus 4.7
+selected. So, this prompt is the most
+important part. Routines run
+automatically with no human in the loop.
+So, write the prompt like you are
+handing it to a contractor. Be explicit
+about what to do and what success looks
+like. Now, let's pick the repo the
+Claude should clone every time the
+routine runs. Each run starts fresh from
+the default branch. Here I'm I'm to use
+this GitHub repository, task tracker
+API. Just select that. You can add
+multiple repositories as well by
+clicking on this button. Now, let's add
+a trigger. I will use GitHub event. So,
+let's click on that and here it says
+that install Cloud GitHub app on this
+repository to use webhook triggers or
+pick a different repository. So, you
+have to install the application on that
+repository. Just click on the install
+GitHub app. It will take you to this
+page where you need to select the
+account that you the GitHub account that
+you want to use. And then on this page,
+GitHub will ask your confirmation.
+GitHub app is installed. And once your
+GitHub is connected in the trigger, we
+have four options: PR opened, PR merged,
+release published, issue opened. Pick PR
+opened and here we see a warning saying
+"Fires on every matching event. This can
+consume your routine run limits very
+quickly. So, add a filter to narrow it
+down." Here, I will add my GitHub
+username. So, here I added a filter to
+only fire when I open the PR. You can
+also filter by branch, labels, draft
+status, or whether it is from a fork or
+not. Okay, the trigger has been
+configured and at the end we have the
+connectors. All your connected MCP
+integrations are included by default.
+The routine can read and write through
+any of them like Slack, Linear, Google
+Drive, Gmail, or any other connector
+that you have added. Remove the ones
+this routine doesn't need so Cloud only
+access to what it actually needs. So, I
+will just remove these ones. I don't
+need to add them. Now, let's click on
+the create button and done. You see,
+routine is live. Now, let's prove it
+works. So, this is the GitHub repository
+that I'm going to use. I have some
+commits here and I have a branch and it
+has a lot of commits as well. Let's
+create a new PR. Select the feature
+branch here. You see the difference
+here. Now, I will create the PR. As soon
+as we create the PR, the routine will be
+triggered in Cloud Code on their cloud.
+Pull request is created. Now, let's go
+back to the Cloud and go to the routine.
+You see that routine has been triggered
+and if you click on that, you can see
+the progress all of the changes that it
+is doing. It's you see initialize the
+session.
+So, you see that routine fired the
+moment the PR opened. You can watch the
+session live here as we are doing right
+now and see Cloud reading the PR,
+looking at the diff, forming its review.
+And it is done. You see at the end it is
+saying the comment posted on PR one. And
+let's go back to our GitHub. There is
+the comment. You see how detailed it is.
+From PR open to review posted, under a
+minute. No human touched anything in
+between. So, you can you can review and
+fix them. So, that is really nice. You
+see at the end it is saying generated by
+Cloud Code. Now, let's create a second
+routine about daily stand-up brief. I
+will just click on this, create a remote
+new routine and here is my prompt. And
+the name of the routine is daily
+stand-up brief. Let's select our
+repository. Repository is task tracker
+API. And in this prompt I'm saying read
+all open PRs and recent commits in the
+repository, post a Slack message to my
+stand-up channel with what landed
+yesterday, what's in flight, open PRs,
+anything blocked or stale PRs older than
+3 days, keep it under 10 lines, use
+bullet points. Let's click on schedule,
+set it to daily, 9:00 a.m. So, you see
+same form, different trigger schedule.
+So, this will run every day at 9:00 a.m.
+and post our stand-up digest to Slack. I
+kept the Slack connector selected. I
+already had installed and connected
+Slack with my Slack channel, so I will
+show you shortly on my Slack. I think
+everything is done. No more writing the
+same update by hand. The minimum
+schedule interval is 1 hour, as you can
+see. That's the hard limit. Now, let's
+create it. Now, our routine is waiting
+for the right time to be triggered, but
+let's hit the run now to test it without
+waiting for the schedule. So, let's
+click on that. The routine has been
+started. So, let's open that. So, this
+is the same routine that will fire
+automatically tomorrow morning.
+I don't have the stand-up channel. It
+will just pick up any random channel, so
+it found the general channel, so it used
+the general channel in my Slack. And all
+commits are from today, not yesterday,
+so I will reflect that accurately.
+Let's quickly go to the Slack and see if
+message is received. All right, look at
+this. I'm in my Slack, and you see
+today, right now at 8:46 p.m., I
+received this message sent using Cloud.
+So, here you see all of the summary
+landed today, main branch, and these are
+the details. In flight, there is one PR
+that is currently open, and nothing is
+blocked or stale, so we got everything
+that we wanted to receive on Slack.
+That's really awesome. So, you see we
+have three triggers scheduling for
+recurring work, daily stand-ups, weekly
+reports, dependency checks. Then we have
+GitHub event for code-driven work, PR
+reviews, release notes, CI failure
+analysis. Then we have API trigger for
+everything else. Your monitoring tool
+can post to our routine endpoint, and
+Cloud responds. You can stack triggers
+on the same routine. For example, a PR
+reviewer can fire on GitHub events and
+run nightly to catch what slipped
+through. Routines aren't a chatbot
+upgrade. They are the moment Claude code
+becomes a teammate that works while you
+sleep. Reviewing PRs, drafting stand-up
+notes, catching stale issues, sending
+you the morning brief. Pro plan gives
+you five runs a day, max gives you 15.
+Pick the work you do every day or every
+week. Automate the highest friction one
+first. If this saved you setup time,
+drop a like, subscribe for more Claude
+code workflows, and let me know in the
+comments which routine you would build
+first. Thanks for watching. See you in
+the next video.

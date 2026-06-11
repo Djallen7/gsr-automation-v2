@@ -1,0 +1,609 @@
+If you are still
+using Firebase for the back end of your project,
+then consider yourself making a big mistake
+because there are many
+paid features in Firebase like cloud functions, storage
+limit, back end deployment and many advanced
+things due to which you have to pay money again and again.
+But now this is not going to happen at all.
+Because in this video I am going to
+tell you about the best alternative of Fireweb
+where you will get all these features
+completely free.  Yes, I am
+talking about super bass here.  With Super Base,
+you can create a powerful, free back up for a mobile app, web app, or even a full
+website.
+That too without any hidden charges
+and there was a lot of demand from some of you to
+bring a full course on Super Base.  So
+in this video I will teach you step by step
+super base setup, back end creation and creation of a
+full stack powerful admin application.
+That too in a single video.
+So don't make the mistake of skipping this video.
+And if you want me to
+teach you how to create your own professional backend using C-Panel in the next video, then make sure this video reaches 1000 likes.
+So let's start without wasting any time.   So
+let's learn how to create our own application using Superb.
+First of all
+you have to come to the browser and then search
+Super Base.  After this
+you have to open this first number website.  Let
+me tell you in advance that this is
+not a sponsored video.
+I am making this video on your demand.
+Talking about Superb, Superb is a back end
+provider.  Like Firebase, it provides us the backend for all the
+framework applications and coding
+projects.
+Like Firebase does.  And just
+like Firebase, we get to
+see a readymade back end here.  Meaning
+we don't need to build a custom back end.
+We can easily create
+our application website whatever your
+project is by using the back end of Superb.
+And I think the best part of Super Base is
+that its first plan is
+available to watch free of cost.  On which you
+also get to see 1GB of storage.
+But we have to pay something to enable storage on FireB.
+So if we
+talk about our free plan, then API can
+send unlimited.  At least
+we can keep 500 users active monthly.
+And talking about the database size,
+we get 500 GB of storage
+to store the database with 500 GB of RAM.  And
+talking about storage, we get to see 1GB of
+storage which
+we get to see free of cost.
+And there are some limitations
+in the free plan like you can create two projects
+and if there is no activity in your project within one week then
+it will automatically pause.  So if you are
+getting so much in the free plan then it is enough.
+Now if you scroll down here, you
+can see that React Native, Flutter, and
+Quickland are supported by almost all frameworks, including
+React and Flutter.  Now let's start setting up the back end.
+So first of all
+you have to authenticate through your GetUp account
+or
+create your account through email.  After this
+you have to come to the dashboard.  When you
+authenticate for the first time, you will
+see an interface like this.  Here
+we have to give the name.
+You can also type the company name.  I'll leave a random one here.
+After this we will
+select type as personal.  After this we will select the free plan.
+Click on Create Organization.  After the organization is created,
+we have to
+enter the name of the project here.  Whatever you
+want to make the project.  So we
+want to build an expansion tracker app using Flutter.
+So the name has been entered here.  After this
+we will have to enter the database password here.
+So we can select a strong password.
+Or you can also do it.
+After entering the password,
+we have to select the religion here.  So here we will
+select our nearby location
+so that we get fast database speed.
+So we have selected our location.
+I have selected South Asia Mumbai here.
+Now after this we will
+click on Create New Project.  So
+a new project will be created on our super base.
+Ok.  So our project has been successfully created on Super Base.
+Now let's
+talk about the features of the side bar.  So here
+we start with the table editor.  So the
+table editor is here for us to see.  In
+which we
+can see our database in table format.  You can edit it together.
+SQL editor is also
+available here.  On which you
+can enter your SQL queries
+and create your database.
+And on the database you will get the proper to see the database of your project.   If you
+come to Authentication, you will get to
+see the list of all authenticated users here
+and you
+can create buckets of your application or project on the storage.
+Where you can store your project media
+type content or document type content
+whatever you
+want to store.  And in edge function you
+can basically create server less function back end logic API.  Along with back
+end verification, you can create custom business logic.
+And talking about real time database,
+we use real time database for live
+data syncing, chatting applications, live
+dashboard or notifications.
+We also get to see this free of cost on Superb.
+And the remaining features are
+for documentation and external service database management.  Now let us know
+how we can connect the back end of Superb to the front end project.  So
+here you will find the option on the header Connect.   If you
+come here then you have to come here App
+Framework.  So you will get to
+see all the frameworks here.  Whoever
+you want to connect with.  If you
+want to connect to Vacant for mobile applications,
+then here you will get to
+see all the mobile frameworks.
+Whether it is native or cross
+and if we want the API of this project
+then we can also see it here
+and if we want to connect it with MCP then
+MCP is also available here and
+we will setup our back end only by using MCP.   There
+is also manual method but I would recommend
+that you go with MCP because
+in MCP our back end is automatically
+generated.  Now let us
+understand a lot about the back end.  Now let's come to the
+front end and create our front end project.  Then
+after this we will understand
+how we can connect our front end project with the back end of Superbase.  So
+for the front end you
+can create any project to test.  If you
+want to go into web application then you can
+create project on React or if you want then you can create project on Next GS.  Or if you
+want to go into mobile application then you can
+create it in React or Flutter whichever you like.  So
+I would like to move to Flutter.   Let
+me show you how to create a new project with Flutter.
+So here
+we will select Flutter New Project.
+After this, select the empty application.
+Also, we will select the folder that we have
+created for our project
+here.  Now after this
+we will enter the name of our project here.
+We want to build an expansion tracker application.
+So I have
+entered his name here.  If we click on enter then
+our project will be created.
+Now we will just wait a little.
+While our project is being created.
+Until we understand
+what features our applications will have.
+So we are going to create an expansion tracker application
+which will be
+supported for both web and mobile applications and will be
+responsive design.  If I
+talk directly about the features here, then we are going to have a
+super clean user interface on our application
+in which we will use iOS native Material to
+build the application.  And
+talking about screen by features, our
+application will have splash screen along with
+login and authentication system
+screen.  When the user completes authentication
+through email and password.
+To sign up, the user will have to enter his/her details.
+Such as full name, email,
+password, confirm password.  After this, if the
+user clicks on the sign up button, he can
+create his account on our application.
+After that he will have to do email verification.
+After this he can login.
+After logging in, the user will
+see a screen with a bottom navigation
+bar.  Basically there will be a home screen and
+below it there will be a bottom navigation bar.
+Talking about the features of the home screen, there will be
+some features of the expansion tracker like
+text for welcome.  The Quick
+Actions and Previews feature will be an expansion list.  There will
+also be analytics cards and a feature to add new expansions.  There will be a
+tab to track expansions
+in our application on the bottom navigation bar and there will
+also be a profile section which will have basic features.
+Like all the details of the user will be
+visible.  Along with this, there will be
+some
+basic features for UR customization to customize the application.  Features like font size
+and dark light mode color theme and
+this is the database structure that is to be present
+in our application.  Now let's
+learn to create this application
+with a superb package.  Our project has been
+successfully created here.  Now
+we will connect our code editor through SuperBase's MCP.
+I'm
+using anti-gravity here.  If you want,
+whatever you use like cursor windows or VS Code,
+MCP is supported on all of them.  We are
+using anti-gravity here.  So we'll
+come to the three dots here.  We
+will go to MCP servers and here we will simply search for
+Super Base and if such feature is not
+available on any code editor then you
+also get the option of configuration.
+I have explained it in many videos.  You
+can watch previous videos in which
+I have explained proper NCP installation.
+Now after this we will install the MCP of Super Base.
+Here we have to
+enter the access token.  So we'll click here.
+Now from here we have to generate a new token.
+You can name it anything.  And after this you also have to select the expiry date as to
+when your token will
+expire.  So we select 30 days.
+And make sure you do
+n't have to share this token with anyone.  Otherwise, your
+entire Super Base account access will
+fall into someone else's hands.  So you do
+n't have to share this.
+Consider this access token as access to your entire account.
+Now
+we will paste the access token here and click on save.
+After clicking on Save, we may have to
+wait a little here.  Okay, so
+our token has been applied.  Now we will
+restart AntiGravity once
+so that our MCP gets
+connected properly.  Now let's check if
+our MCP is connected or not.  So
+we'll come back here.  Here we will
+click on Manage MCP Servers.  So you
+can see here that our MCP has been
+enabled.  Now you have to come back to
+PRD.  After coming to PRD,
+wherever you have created your structure, you have to
+come there in your PRD.  So
+this is our date structure which
+we had generated in PRD.  If
+you do not know how to make PRD then you
+can watch previous videos.
+I will also give you the link in the description so that
+you will learn to make professional and detailed PRD.
+After this,
+we will write this here in PRD so that our
+code editor can understand that we have already
+connected the MCP of Superb.  You have to
+call our backend using the MCP on
+which we have already created our
+Expansion Tracker application project
+and within that you have to
+setup the backend and prepare the SQL queries.
+Authentication
+system also has to be used.  When the back end is
+complete then you have to start the front end.
+Whatever I told you, I have
+typed it here in English.  Now
+we will just copy this completely PRD.
+After copying the PRD, we will
+come here to main dot dot.  I'll
+tag my main dot dot on composer.  Along with
+our dependency file and after this we
+will paste the PRD and here we will
+select the mode fast.  You
+can select the model you want.  I will
+select Cloudic 4.5 Thinking here, you
+can select whatever you like.  After this we will
+send it and just wait.  So you
+can see here that our code editor has
+called our MCP and has detected our
+project that was created in the back end.
+Now if
+we come back here, we will see
+that our database is
+starting to get setup.  So we wait a little bit
+until our data waits
+okay.  So our back end setup
+is ready in just a few seconds which would have taken us hours to do.
+Now here we
+will refresh the page once and check whether
+our structure is ready or not.  So
+you can see that our
+structure has been successfully prepared.  Now if we
+come to the tables here, our tables would also have been
+created.  You can see on the side bar that
+all our tables are ready.  If
+we click on Users here,
+you can see here that the User table has opened.
+Now, similarly, the data of all the users
+who will use our application will be stored here
+and if we come back here and
+see, our front end has started getting created here.
+So first of all our
+models are created.  After this, the
+expansion model is being created.  Now let
+us just wait a little.
+OK, our expansion tracker application
+is ready in just a few seconds.  Let's
+first try running it on the web.  So
+I selected Chrome here.
+Now let's run it and see.
+Okay, our application has been successfully run
+and I had asked to create a responsive design
+in PID.  So, it will be
+responsive for both desktop and mobile.
+Now let me show you on mobile.  So,
+here we go on mobile.  So, you
+can see that there is responsive design for mobile as well.
+Now let us first sign up
+and check whether we are
+able to see the same data on our back end as is
+visible on the front end or not.  So, let me
+quickly fill in my details here.
+Okay, I have filled in the details here.
+Now let's click on Sign Up.  Sign
+up is not happening because now we have to do email
+verification which would have come on our email.
+So let's refresh the email once.
+So you can see here that a recent
+message has come.  Now let us confirm here.
+After this we will login and see.
+Ok.  So, this is what the interface looks like.  This
+means that our email verification has been done
+because currently we are running on local host, that is why it
+is showing like this.  Now
+we login here.  Ok.  So our
+Expansion Trackon application is working and
+we are now logged in.  Now let us
+check on the back end.  Here we
+refresh once.  Let's see if we get to
+see that email or not.  We have
+authenticated through this email.  Now
+let's see if this data is visible here
+or not.  So you can see that
+this is what we had given in full name and this is the email.  Along with this,
+time date is also available to see everything.
+Now let's try adding some expansions as well.
+Now here we type the category.
+So let me type home here
+and budget it to 1000.
+Ok.  After this we will keep the date as today.
+Description nothing.  We create.
+Ok.  So our expansion has been successfully
+created.  Now let's check in the back end
+whether it has been created or not.
+So let's come to the back end.  Here we go to the
+expansion tables.  No, I have to come here.
+So you can see here that the
+expansion that we have added is visible in our back end.
+From here we
+can track all the expansions and
+from Profile we can manage our profile.
+And
+we have not used any real time database to create this application.
+Only normal database has been
+used.  And just like this is a normal database
+, similarly ours is a real time database.
+But now we can use the storage here.
+So we will also learn to use storage.
+We have also taken care of authentication.
+Now let's refresh once and see what
+we get to see here.
+We did the authentication through that email.
+email we used is
+available here in authentication.  Along with this, we
+can also see the status whether the email for which authentication has been done is
+verified or not.  So it
+is verified, enabled and from here we
+can also reset its password.
+If the user does not want to reset the
+password of the user, we can reset it ourselves.
+Along with this, there are other features like deleting the user, banning them etc.
+Now let us
+learn how to use storage in our application and
+how we can use storage
+in our application.  If your
+application has any media type content
+and want to store it or
+want to create an uploading system then how will it be done.   I
+understood the use of database and authentication.
+But if you have an application
+that needs to display media type content
+or create an uploading system,
+how can you create it?  So for that
+we will need storage.  So
+now I am going to teach you how to do that.
+As you know we have an
+expansion tracking application where
+we click on add expansion.  So
+we should have an option to upload an image here.
+So I will simply
+come here to composer and enter this prompt here
+and tell it to
+create a bucket in the back end
+for storage using MCP.  Along with this, there should
+also be an option to upload images in place of add expansion so that
+storage usage will be reduced in our application.  This is just
+for example, I am explaining to
+you how to use it.  Ok?  So now we will
+tag all the files here and
+drop them on the composer and send them.
+Now our MCP tool and our AI
+code editor will take care of everything.  So you
+called MCB so that our storage will be
+created.  A bucket will be created
+in our back end.  Let's check now.
+So let's come to storage.  Once we refresh the
+page.  I think it must have been created.
+No, it hasn't happened yet.  We will have to
+wait a bit.  Now let's check by
+refreshing once.  Whether our storage create
+bucket has been created or not.  So you
+can see here that our bucket has been successfully
+created.  On which media files with this type of
+extension can be uploaded.  The
+minimum size will be 5 MB.  Now it
+depends on your application that
+what type of extension media
+file or any other type of file the user uploads.  You
+can also get it done as PDF.  You
+can also get MP4 done.
+Ok.  So all the changes have been applied.
+Now let's do the testing.  So I've
+run it on a virtual device.  Here it is.
+Now let's log in.  After this we
+upload and check whether the uploading system is working
+or not.
+OK, we have successfully logged in.  Now let's
+add a new one.  From here we
+select our image.  I had already
+downloaded one.  I'll show you on the browser.
+I had downloaded this image.  Let me
+select it to show you.  The
+email has been uploaded successfully.
+Now let me quickly go over the details here.
+Ok.  So I have
+filled all the details here.  Now let's
+create the expansion.  I have clicked on create.
+Image has also been uploaded along with it.
+So the image is visible here but it is
+not of that size.  Rest we can make it of size.
+Now let us check in the back end
+whether the image we have uploaded has been
+stored or not.  So, we'll
+come to the back end.  Here we
+select the storage.  After this, we simply open this
+folder that has been created, this bucket that has been created.
+Okay,
+here the bucket is open.  Let's open the folder.
+I think our image should be inside it.  Let's
+click
+on this image here.  So, you can see that the same image which
+we uploaded to our application
+from the front end has successfully reached the back end.
+I will also let you check the second expansion that has been added.  So, we'll
+come to the tables here and from here we'll check.
+So you can see that the
+expansion that we had added is
+also available to be seen successfully here.   This
+means that our back end is
+working perfectly and you have also understood
+how the authentication storage database works.
+Now as far as real time database is concerned,
+I don't need to explain it much.  It is similar to the
+database we just used.  The
+only difference is that the
+database we have just used does
+not provide real time updates.  For that we have to
+refresh the application or our website.
+Whatever project you are
+creating, be it a website or an application,
+we will have to refresh it.  But it
+gives updates in real time database without refreshing.  That's the only
+difference.  But there was
+no such use in our application.  So
+I haven't.  Rest of the integration is almost the same
+for both.  And here in the
+database, we only get to
+see the structure.
+Here we get to see the proper structure of our back end database.
+And here in the table editor
+we can see our structure in detail tables
+wise.  Like we
+see sections on Firebase.  You can understand those collections as these
+and the data inside the sections as these
+tables.  Just a little
+different here.  The rest is the same thing.  And
+here if we talk about functions, you can
+create your own function.  Which
+you can deploy.  You can create your own back-end
+generating system like AI
+or integrate it into the payment process.
+Whatever your heavy back end is, you
+can deploy it in the function.  So that
+you will not have to write external code in the application.
+You can also deploy the back end of
+your entire application here.
+Now let me show you how to become an admin of this application.
+So first of all,
+wherever our project is, we will
+open the folder there.  After that we will
+create a new folder of admin.  So I have
+created a new folder here.
+After this, we will import the
+same folder which we have created for admin on our Anti Gravity
+and also
+we will create a new project of Flutter inside it.
+So here we type admin as the
+name of this application.  Ok.  So
+our project has been created and
+I have added both our admin and user side applications in the same workspace.
+Now from here we will
+delete the unnecessary folders which are
+not needed and for which platforms we are
+not creating the application.  So
+we will remove it from both admin and user side.
+Now after this we will select the main dot dot of adminman here
+and after tagging it on the composer, we will
+paste this prop and
+tell it to
+give us full control of our back end to the admin
+so that we can manage our application completely.
+So I
+typed in 'pt' here.  He has
+also asked to take full control.  And
+if there is a need for back end in our admin, then
+I have also said
+in the prompt that you can verify the back end by calling MCP.
+Now now
+we will just send it here.  But before that we will
+tag some more files here.
+Like we will tag the model files here
+so that our back end can understand it better
+and now let's send it.  Now our admin
+dashboard will start getting created.  Now let
+OK, our admin is ready.  Now let's
+run Android Dot on our virtual
+Android.
+OK our APK has been successfully built.
+Our OK.  So here you can see that
+our admin is running successfully.
+Our expansions are available to see here.
+Along with this, users, we had
+logged in through email ID which can be
+seen here.   It is
+properly working.
+Check other things as well.  Here you can
+see the complete analytics dashboard.  If we
+go to expansions,
+we have added these expansions on the user side, then the
+admin can also see them here and
+can also delete them.  From here we
+can refresh.  If you look in storage, you
+can see the images here.  It is loaded
+on our back end, you will get to see it properly here
+and if I show the user side application, then
+this is our user side
+application which is working properly.
+No one has any issue with this either.  Now you
+can see here that the expansion was not
+visible earlier.  Now here we can
+track properly.  So it is so easy to create
+your project using the back end of Substus.
+So there was a lot of demand from you guys to
+make a video on Super Base in which
+you teach how to make the entire back end setup, front
+end, everything from scratch.  So
+in this video I taught you everything from creating a complete full
+stack application to setting up the back end.
+If you
+still have any doubts, you
+can tell me by commenting or if you have a big problem,
+you can DM me on Instagram.
+I will help you completely
+and I will give the link of the source code of this application in the
+description of the video.  So
+you can go and download it.  You can try it yourself also.
+So I hope you
+found this video inspiring.  If you found it inspiring,
+please don't forget to press the like button and
+for more such videos, please subscribe to the channel
+because at this time I really
+need your support.  It takes
+me a lot of time to make such videos.
+So please make sure like and
+subscribe.  See you in the next video.
+Thanks for watching.  And
+what will be the next topic?  Please let me know by commenting.

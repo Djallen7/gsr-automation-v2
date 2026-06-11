@@ -1,0 +1,284 @@
+All right.  So, in this particular video, we do
+one thing.  We set up our
+cloud account.  Ok?  So, inside that we have to
+add some credits.  We
+will create our API key.  And let's have a hello world
+program running.  So, with that let's
+start with the video.  So, here you have to go to
+platform.com.
+So, this is the platform.  You can see that is
+platform.com
+and above all you have to sign up for free.
+And then you have to add some credits.  Look
+friend, nothing is free in the world of AI.
+Even your first API call is
+going to be paid.  So you have to get some
+credits and you can see that I have $5 worth of
+credits.  So you can also just
+add $5 and $10 and there is no limit above this.
+It's not something like you know
+it will be over in just a month.   It's not like that.
+This is based on your usage.
+So, the more you use it, the more it will be
+used.  And I feel that through this course
+$5 is more than enough.  So make sure that you
+click here to add funds and you
+can just add $5 to your account.  And
+for this particular series, I also
+added $5 here.  So this is my balance
+here.  Ok?  Then once you have added your
+balance once you have some credits here.  Then what
+you have to do is if we go down here.
+So what you're going to see is
+you're going to see this manage.  Ok?  So let
+me just show you here.  So here I have
+manage.  And inside Manage, I have
+API Keys here.  Because I have to
+create an API key here.  And this API key
+will be used to interact with my account.
+Ok?  Now here if you look at Agent SDK
+and you scroll down and you go into this
+quick start.  So here you
+will see how to do a quick start.  So
+here we will use a TypeScript.
+But you can use all the knowledge inside Python also.
+Because all these code
+snippets and these Agent SD ones are
+also available for Python.  So let's go
+inside Quick Start.  And if I just
+scroll down scroll down and I
+will use TypeScript here.  So this is the
+package that we need to install.  Ok?
+So let's do one thing here.  Let's copy this command.
+So I've
+created a very empty project here.  So
+you can see this is empty code.  So here the
+first command that we will run is
+npm in of course.  Ok?  npm in
+enter enter enter.  So we enter all these things.
+I could have done a lot of things but that's
+okay.  A type here we will do the
+module.  Ok?  Because I
+want to use module js.  And once this all
+setup is done.  And then we paste the command here.
+That is npm install
+@anthropic huffn ai klud agent sdk
+Pretty big name right?  So you can see that our
+particular agent SDK has also been
+installed.  Now maybe when you are
+installing this your version might be different because
+these things update very quickly.
+But make sure you are on something like
+0.3 and something like that.  But that's okay,
+meaning the concepts are always
+transferable.  Ok?  So this is what we have done.
+What do we have to do with it?  We need to
+create an environment variable.  Ok?
+So, let's just create a dot env file
+and inside of it you have to create an
+environment name, an environment variable
+anthropoic underscore API underscore key.
+You have to make it with this name.  This is the
+exact name that you have to copy and paste.
+And how do we set its value
+?  We'll generate one of our API keys here
+from the platform.com.
+So, let's make one.  Let's Just Call
+It As You Know Learning Series.  So you
+can name it anything.  I will just call it as
+learning series and we will
+add it.  Now you don't use my key because while
+you are watching this particular video
+I will revoke this key.  So I'll
+just copy this and I'll just paste it.
+So what has happened to us?  This is our
+secret key.  And
+we can close this environment variable file.  Ok?
+So what did we just do?  Now we have
+set our ANB variables.
+So we are all good.  And let's move ahead.
+Now you can see what you can basically do is
+you ah you can just you know
+ignore these things.  So here's what I can do if I just go into
+the overview and
+write a simple hello world program.
+Ok?  So we have to
+import a function here.  That is a question.
+Ok?  We need to import a query function here.
+So let me go
+with a little folder structure here.  So for
+example this is our first class.  So let's
+call this 001 Hello World.
+And inside this I'm just going to
+create a file that is known as main dots
+file.  Ok?  So here you have to import
+something from @anthropic SDK and
+inside it you have a function known as query.  So this
+query function is kind of your entry
+point from which you start your agent SDK.
+So what you can basically do is if
+you see that you
+can run the query function here simply.  And
+inside the query you have to send a parameter
+prompt.  What is PREP?  Whatever
+user says that's a prop.  Ok?  So I can
+send a prompt here.  For
+example, let's say hey, how are you?  Ok my
+name is Piyush Garg very simple.  So you see that's
+what I did?  I
+gave it a very simple print.
+Gave a question.  Now this query is an
+amazing thing.  What does she do?  It
+sends a query to return these.
+Sends a payload.  That is basically what I don't know if you know or
+not.  In
+JavaScript and in TypeScript you have something known as an
+iterator pattern.
+Ok?  What can you do in it?  You can
+yield the output.  So it basically does the same thing.
+So you can see what you
+can do on top of this?  You can actually do an
+iteration on the output.  So
+what can I do on top of this?  I can loop over it.
+So what will it give me?  She is
+giving me a response from Lets.
+Ok?  We put this on a response variable.
+So this is a response.
+What I can basically do is I can create
+a main function.  async from let's.  Ok?
+Because we should sync pay as here.
+async function main and what I can
+basically do is I can say for a wait okay a
+wait
+cost message a message will come of this
+particular response what you are doing is you are
+iterating whatever response you are getting
+from the back end you are iterating on it
+so this is a message and then
+what you can do is you can just put a console.log as
+saying response and then you
+can put console.log here message.log so if
+you want to have a type type you id
+or then session id I can just print
+message here.  So this is basically what we are doing here.
+Ok?  And finally the main
+function is called.  So this is my
+very simple code that I got a response.
+What did I do above the response?
+I iterated over it and I
+printed it out.  Let's run it once and
+see.  What is the output?  So node.
+What is the name of my file?  A folder
+is named Zero One.  And inside that main and
+enter.  Now you
+cannot run TypeScript directly like this.  If you don't have
+a newer version but you see I got an object.
+Ok.  Let's do one thing.
+We do not take this message outside.
+Ok?  So let's take this message out here.
+So that I can see clearly
+what is basically happening and now run it.
+So you can see this is basically what you get as an
+output.  So a very big
+response.  Ok?  So what have you got
+?  Here's a response.  So, let's just
+quickly expand it.  You
+got the type.  You got the current working directory.
+A session ID is received from the back end.  You
+can see a lot of things are going on.  Ok
+?  What is your response to this?  A lot of
+things are going on.  If we scroll this further
+, scroll.  So
+you can see it loaded some plugins and so on.
+Finally you have some type of rate limit
+event.  While doing this, a typing
+assistant came.  Ok?  And let's move ahead.  Ok
+?  The assistant came again.  Then you have the
+message.  Then you have some content.  So
+what basically happened?  A complete loop was run.  You
+might be thinking that Piyush, we just sent
+him a simple message.  How are you?
+But it is actually doing a lot of things.
+And if you see carefully, this is basically
+what you have as a final answer.  Can you see that
+?  Hey Piyush, I am doing great.  Thanks
+for asking a new line.  It's nice to
+meet you.  I'm Klud.  Your AI assistant.
+I am here to help you with coding,
+answering questions, building stuff and all
+that.  So, what happens here?  This is
+actually an agent loop which we will
+talk about in a video.  But, for now,
+if you want to tidy it up,
+what you can basically do is, you
+can put that on top of a message.  If message
+dot type equals to equals to
+if that's basically an end.  Ok?  Ok.  So
+you can see if it is a result.  So
+what am I to do?  I just want to do a console
+dot log of the final bot output.  So
+what can I do here?  I can just say
+message dot and what field can we pick above this
+?  A, ours came here in the
+result.  Right?  So most
+probably I should have the result.  So, I can just say
+message dot result.  Now you
+might be thinking there is an error here because
+it's a TypeScript thing.  You have to
+put one more condition that is message dot a
+you no stop reason.  A message dot stop a
+sorry sub reason ah the sub type should be equals
+to the success.  So if that is successful then only
+you will get the result.  So now what you can
+basically do is you can just remove this.  So
+what are we doing now?  I
+will print the result only when the
+result is available to me.  Now if you run this
+, you're going to actually see a
+pretty good message now on the screen.  So
+if I run this, you can see. Hey Piyush, I am
+doing great.  Thanks for asking.  It's
+nice to meet you.  I am your cloud AI
+assistant build by Anthropic and all that
+stuff.  You can see that.  So let me give you a
+revision once.  That's basically
+what happened here?  You imported the query.
+Ok?  We fired the query.  Then
+what did I do?  Look, when you run a query
+, there's something called an agent loop,
+which we'll talk about.  So
+what this agent does is he analyzes a lot of things.
+What is your intent?
+What should I do?  What is the plan?  Because there was
+no such intention in this case.  It was a very
+simple prat.  So you could see that
+he loaded a lot of things.  He was
+loading some of Figma's MCB servers.  He was
+loading some tools which you can
+completely ignore.  So I said, friend, if
+your message type is result and it is
+a success, then just give me the final output.
+Ignore everything else.  This is
+basically what we have done and we got the
+output.  So this is basically your hello
+world in the AI ​​Agent SDK.  Ok?  So,
+we have written a very simple hello world.
+Now in the next video I will
+explain to you what is the difference between an AI and an agent.
+So that you come to know that
+basically what is happening.  And
+now let's see how much of that we used.
+We ran this program twice.
+So let's see 5.13 is also 5.13.
+But let me just see my usage.  So if you will see
+this usage, it will be updated in a while.
+Ok?  So it is not updated in real time.  It will
+update in a while.
+So today it's May 29th.  So look now it has
+not come in the update here.  Butt will come in a while.
+So you have to wait for a little
+while.  And if I try this again, I think if I will try it in
+like four or five
+minutes, then you will see today's usage also.
+So let's just wait for a while.  Whenever it comes
+I will show you the screenshot but it's not much.

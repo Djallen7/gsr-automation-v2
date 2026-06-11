@@ -1,0 +1,517 @@
+And there we go. Now I have a custom
+dashboard where I don't have to look at
+this because this is not pretty. Shout
+out to the creator, but for me, I'm not
+a terminal guy, so this is a little
+ooly. But it's informative. That's the
+key thing. It's informative. All right.
+What up y'all? My name is Maestro
+Stevens with Iconic Templates. And in
+this video, I want to share with you all
+a free open-source tool that allows you
+to look at the usage from your AI
+platforms, more specifically your idees
+and tools like Claw Code or Codeex or
+even OpenClaw and Hermes if you are
+working with those kind of agents. Okay,
+but we're going to take it to another
+level and I'm going to show you here in
+one sec. Let's get to it. All right. So,
+what you see here is a free open-source
+tool called CC Usage. Now, I saw this.
+It came across my feed when I was
+watching a YouTube video and I saw it
+and I was like, "Okay, let me check it
+out. Let me see what's going on here
+with this tool cuz I was looking for a
+solution just like this. I didn't know
+there was an open- source version." And
+what this allows you to do, as I
+mentioned before, is it lets you look at
+the token usage from your different AI
+tools. And it even shows you an
+estimated cost if you are paying for the
+API. It shows you an estimated cost of
+that API. But here's the key thing here.
+You are using the subscription. So for
+those who are power users or just
+getting into the AI game, this AI space,
+you want to monitor your usage and see
+how you're using things just to get an
+idea sometimes, but also it helps you
+make some informed decisions. And I'm
+going to skip past this part right here.
+This is a GitHub repo. So for those for
+those of you all who don't know about
+GitHub, it's basically a code
+repository. Okay, I won't get too deep
+into it. There are so many YouTube
+channels that teach you about GitHub.
+I'm not a coder, so find another video
+for more explanation on that. But it's
+free. GitHub is free and so is this
+particular tool. And the creator of this
+tool was being interviewed by somebody
+else on YouTube. So I watched the
+interview and I saw how he used the tool
+and what his idea behind the tool was.
+Here's some supported sources. So you
+can use clawed code, codeex, open code,
+like I said before, Hermes, OpenClaw,
+GitHub Copilot, Gemini CLI, the list
+goes on. But the key thing is that you
+can use codecs and claude code and I
+know those are very popular right now.
+Not saying that they're the best, but
+they are very popular and what most
+people are going to be using. Co a
+cursor is not on here and a few other
+tools are not on here, but as you can
+see, they do have a big list, right? And
+so what I did was I started thinking,
+how can I use this in my day-to-day AI
+workflow? Okay. And so I'm going to open
+up terminal here because the cool part
+is is that all you have to do is copy
+this and I gave the link of the repo to
+Claude Code. Okay, so we're going to
+leave the terminal open here and we're
+going to come back to it here in a
+second. I asked Claude Code, can we use
+this? And I added the GitHub repo right
+here. Claude said yes. It went through
+the motion. Now, I'm not going to go
+detail by detail of everything it said.
+You can always slow this down or pause
+it if you want to. I didn't want to
+restart this process because I ain't got
+time for that. What? Hold on. Where my
+where my old girl at?
+>> Ain't nobody got time for that.
+>> I ain't got time for it. Right. So I
+said, "Well, I'm gonna just show them my
+process and they can duplicate it
+because this is all about templating."
+So when it comes to my process, I went
+back and forth with Claude. It said, "Do
+does it want me to run the MPX CC
+usage?" So this is a way to activate it.
+Um I said yes. And then I started to see
+it pull the information from Claude Code
+into the tool to be able to give back to
+me. Okay. and it let me know this
+information here. Um, again, you can
+pause the video if you want to, but the
+cool part about it is it lets you the
+month tokens, the cost, the claw cost,
+codeex tokens, codex cost. Now, I told
+it I use both codeex and claw. So, you
+can see it's giving me both codeex and
+claw token usage and token cost. And
+then it shows it combined, which is
+really cool. Now, remember I said that
+you can leverage this when it comes to
+getting an estimation. And so if you're
+using the subscription model, if you're
+using the $20 a month model, I mean $20
+a month plan, the $100 a month plan, or
+the free plan, you can get an estimation
+of what it would have cost you if you
+were going through the API, if you were
+paying per token because when you're
+using the plans, you're not paying per
+token. That's how they're subsidizing
+things for you, right? And basically
+what I believe and what a lot of people
+also say and this is just how do I say
+business 101 economics when it comes to
+SAS models especially when it comes to
+these AI models but you are hoping
+you're betting as the the um the
+stakeholders of the company you're
+betting that people who are using the
+tool are not going to use it often.
+They're not going to maximize the usage.
+So what they don't use they lose. Okay?
+What they don't use they lose. And
+that's how we get into what they're
+betting on, which is the
+>> the money. They make more money the less
+you use the subscription. And that's
+what I mean by subsidizing. Because you
+get so much API usage out of it. I'm not
+saying when I say when I say you get so
+much API usage, if you were to use the
+$100 plan, the equivalent of the API
+could be $1,000, $4,000, $2,000, who
+knows? But this lets you what that looks
+like, right? If you were using it
+through the API. So that's the reason
+why it's really important for you to
+understand this because if you don't,
+you may not really take advantage of it.
+Now I went back and forth with Claude
+here and then I asked it how do I use it
+in the terminal and then it let me know.
+You type this in the terminal, right?
+And once you type this in the terminal,
+it's going to pull up your usage. Now
+you might have to install something. I
+didn't have to install anything because
+I already had everything installed, but
+you might have to install something like
+npx or some type of other technology.
+But the AI will tell you. You don't have
+to be a coder for this. just ask the AI
+in plain language how to do the thing
+you're trying to do. Now, at first I use
+the NPX way, and I'll show you what I
+mean by that here in a second. I use
+this, but as you can see here on the
+repo itself, the founder of this app,
+the creator of the app recommends or
+said, "Hey, use bun." So, you can use
+bun as well, too. It does not matter.
+You can use bun x or you can use npx.
+And all you do is open up your terminal,
+whether you're in Mac or you're in
+Microsoft. Okay? And then you add that
+there. Press enter and then look at it
+go. So now it's showing me the same
+information that Claude was showing me
+here. It's just showing me a lot more
+information. Now, as much as this does
+not look sexy at all, at least it's
+useful. That's the cool part. It's
+useful. How accurate is it at this
+moment? I don't know. I don't know
+because I didn't create the tool. I
+don't know all the numbers. Heck, I
+don't even believe the usage limits that
+I see directly inside the tools
+themselves because Claude has a usage a
+usage limit view and so does Codeex, but
+they also be acting a little wonky. So,
+I would say trusted with a a fine tooth
+comb as they say. Okay. Now, for me,
+this this I didn't like the way this
+looked. I wanted something that was a
+little bit more, how do I say,
+friendlier to the eye. And so that's
+where I told Claude I wanted it to make
+me a custom dashboard. This is after I
+went to the terminal part. This is after
+I was getting some knowledge on, okay,
+do I use NPX? Do I use BunX? I'm not a
+coder, so I just want to know which one
+was better. Basically, Claude said it
+don't matter which one. One may be a
+little faster than the other, but it
+really don't matter which one. Okay.
+Then I asked it, could I have a a
+dashboard? So I told it I'm not a
+terminal guy and I wanted to vibe code
+me. That way I can click buttons and be
+able to see what I wanted to see. Then
+it asked me what should the colors be?
+Blah blah. And we went through that
+motion. All right, I'm just skipping
+past this. You can always pause it if
+you want to. So then it began to develop
+this dashboard for me and it gave me a
+local host link. So when it says local,
+that means it's not online. Nobody can
+access this unless they hack into my
+computer. But it's not online. It's
+locally on my computer. And I thought
+that that was really cool that it did
+that. So I can just press this button
+and open it up. But I'm not going to do
+that just yet. I'm going to show you how
+another way you can do it. So I went
+through that and then I said, second
+question, would we be able to create a
+native app for the Mac? And then I gave
+it an example. So this was a paid
+version of the same concept of being
+able to see your claw code or codeex
+usage. And I basically gave it an
+example. AI loves it when you give it
+examples. That way it doesn't have to
+guess too much. Okay. So we went through
+this. It asked me how I wanted to create
+the app. What architecture did I want to
+use? I just said let's go with the
+recommendation. And then I also asked it
+can we add anti-gravity. Now this is
+something that I had to learn that
+anti-gravity wasn't supported. I assumed
+that because it had the Google what is
+it? Where is it at? Um right here the
+Gemini CLI that was the same thing as
+anti-gravity and it wasn't. My
+assumption was wrong. So I had to learn
+nope. No anti-gravity. Okay. We went
+back and forth and then I basically
+asked it to make a make the app and then
+make the icon for me or make something
+so that way again I can install it on my
+computer and click it like an
+application and we went through that
+process. All right, so let me show you
+real quick what the I'm going to exit
+out of this one because I already had
+the dashboard. I'm going to exit out of
+it and I'm going to show you if I go
+down here and I click this usage
+dashboard. Now, this is the dashboard
+app that I made, and it's custom custom
+made for me, and it's using this free
+open-source repo. This free open- source
+tool is using the tool and putting a
+skin over it so that way I can see it
+better. So, I'm going to click it real
+quick, and boom, look, it opens up in my
+browser. Locost 37 37 37 45 55 78
+4547. Some of y'all don't know nothing
+about that. That's all about the
+Benjamins. I messed up the numbers, but
+if you ever watch that movie, that's how
+it go. Okay. Uh, so when it comes to the
+dashboard, which is really cool, is it
+separated Claude and Codeex by color
+usage, right? I could have told it any
+colors, but I told it to pick my use my
+agency brand colors. We see we have
+monthly here. Let me make it bigger real
+quick. We have monthly, weekly, daily,
+and session. Um, when it comes to the
+breakdown, we have period, we have the
+claw tokens, clawed cost, codeex tokens,
+and codeex costs. And then the combined
+I custom added a few things when we
+first built this app. When I say we, I
+mean me and the AI. It did not look as
+polished as it looked now, but then I
+gave it a couple more prompts and we got
+a little better based on how I wanted my
+user experience to be. And so that way I
+can click this button here and I can see
+things in the order that I wanted to. I
+really wanted to be able to see things
+in a certain order, whether it was most
+recent or I wanted to see something
+based on the past, right? And that was
+pretty cool that Claude was able to do
+that. I could have did it with a codeex,
+but I chose to use clawed code to do it.
+So, we have monthly here. We have weekly
+here. So, it takes us a second to load.
+Now, here's the thing I had to learn
+when it comes to the weekly. As of right
+now, Codeex is not giving its weekly
+usage, right? So, remember this
+open-source app has to pull from the
+other AI apps themselves. It has to pull
+the data out of them. And for some
+reason, Codeex aka OpenAI does not give
+that information on a weekly basis, but
+Claude Code does. So that's why I used
+this the way that I used it. And as you
+can see, same thing. We can see what is
+this a weekly here. And so every week we
+can see here's a week of 524, week of
+517, week of 510. I can see if I were to
+pay this with the API. If I was using
+the API to call these models, I'd be
+paying this much. But because I'm not
+using the API, this is just giving me
+estimation. And I'm using either the $20
+a month subscription or I'm using the
+$100 a month subscription. Uh, I'm not
+really using the $200 a month
+subscription anymore because I get what
+I need out of the $ 20 and the $100 a
+month depending on who's being more
+gracious, graceful, cuz they always go
+back and forth uh between things. One
+minute you think it's claw, next minute
+you think it's Codex. It is what it is.
+Let me go to daily real quick. So, we
+have daily right here. So, I can see
+cost by period for my daily usage.
+Again, here goes every single day right
+here. And this is based on the month,
+the period based on my calendar picker.
+So I can change the picker and change
+the period right here. And then down
+here we have the breakdown where I can
+again go by least to greatest or
+greatest to least or as I say recent to
+past or past to recent when it comes to
+that. So we have 525, 524, 523. This is
+March 23rd to be specific if you're May,
+excuse me, I said March. May 23rd, May
+24th, May 25th, 2026. And we can see the
+combined usage right here. All right.
+And then we have session. Now, to me,
+this was the really cool part by
+session. And now you can see some of my
+some of my projects. I know for some
+reason often times we don't want to show
+too much because we don't want people to
+judge us. So, that's why that's why
+we're less transparent. I know a lot of
+creators that don't put a lot of their
+information out there. They they'll
+create a dummy account or they'll create
+a mockup for something just because they
+don't want to show their stuff. I'm
+telling y'all right now, I really don't
+care. As they say, I don't care at all
+right now because I want you all to
+learn. So, as they say, haters going to
+hate. People going to judge no matter
+what. You got to keep it moving. When it
+comes to sessions, I thought the cool
+part was now it didn't have this. That's
+why I'm making it a big deal right now
+because it didn't have by the project. I
+had to add that. And it was cool that it
+did. And when it did add, it was weird.
+It added numbers like ID number this and
+ID number that. I'm like, listen, that
+ain't going to help me. I need to be
+able to see what I, you know, see what
+the project is called. And so, as you
+can see, it's doing the session
+breakdown, not just daily breakdown, but
+you can see the different projects. Now,
+projects are those folders that you
+would have in Claude Code or Codeex that
+you host your information in, right? And
+you can create different projects.
+That's how you segment your ideas,
+segment different um ways that you're
+using the AI. And as you can see, it has
+it does it by projects, which is really
+cool. I love that. So, I know, okay,
+this is the session, but how do I know
+which project that session was in? And
+again, this is just something that you
+just have to ask the AI to do. So, if I
+wanted to refresh it, I can refresh it
+here. Boom. And you can see it will
+refresh if there were background uh task
+running. We would see new projects and
+then sometimes it refreshes on its own.
+I noticed that I could see if that is
+something that is a glitch or it's
+supposed to work like that. But I said I
+like the way this looks. This is pretty
+cool. And I thought that based on this I
+have the information that I need in
+order to make more informed decisions.
+So I can see what I need to do. Now, one
+thing I I did notice that if it in
+codeex because Codex has it broken down
+to projects and chats, which is kind of
+cool. If you're not using a project and
+you're using the chat, it's going to
+take the name of the chat. So, notice
+here, it doesn't take the name of the
+session, right? Like, because every
+session gets named too in your project.
+Nope, it just takes the name of the
+project. But when it's not inside a
+project, it's going to take the name of
+the chat. Hopefully, that makes sense.
+And so let's do a real quick test and we
+going to wrap it up. Man, hopefully
+everybody out there feel good real
+quick. If you are watching this video
+and you got this far, please like the
+video, subscribe to the channel. If you
+got any questions, let me know. Throw it
+in the comments. Let me give you all Don
+DeMarco.
+>> Darco.
+>> Oh yeah, as the Kool-Aid man says. Now,
+let me create a new session here. And
+we're going to do a test. And I'm just
+going to say hello Moto. Some of y'all
+have no idea about that. You may be a
+little too young. And I'm gonna press
+enter. And we're going to see does this
+refresh. Does this create a new session?
+Right. And I'm going to click the button
+here. I'm not going to wait for the auto
+refresh. I'm going to click the button
+here. Boom. We there. Now, here's
+another thing, too. Everybody doesn't
+like to do AI videos. And I I respect if
+you are a content creator and you're
+doing AI videos and you're doing live
+demos of the AI. Mad respect. Um,
+especially if you're not doing any
+editing because the AI could be so
+unpredictable. I've done so many
+presentations where the night before,
+the week before, many times before AI is
+working perfectly, then the presentation
+happens and the AI messes up. But I
+digress. I just wanted to show you that
+it does work and it works on the spot.
+So remember, I said I used this GitHub
+repo right here, a free open source
+repo. Shout outs to the creator. Give
+him a star if you can. I don't really
+know his name. I might butcher it. It
+reminds me of Ryu or Rayu. Shout outs to
+Street Fighter coming out this year. I
+cannot wait that commercial. The trailer
+looked awesome. It looked awesome. All
+right. I know y'all probably like, "This
+dude is geeking out on some Street
+Fighter." Yes, I am. Yes, I am. Shout
+outs to R Yo PPI. But shout outs to this
+person right here. Use this tool. Then
+go to Claude or Codeex or whatever you
+prefer and have it make you a Where is
+it at? Where's it at? Where is it at?
+have it make you a custom dashboard,
+right? And after you make a custom
+dashboard locally, have it then create
+you an app. Okay? Have it create you an
+app, once you create an app, then ask
+the AI to make sure that the app will
+work after you restart your computer or
+you close the local. That was the key
+thing I did. I said, I don't want a
+one-time one-off situation. When I close
+this, please make me and let's see if I
+have it real quick. Let's see if I have
+it real quick. Mention bunx home
+directory. Boom. session, I'll be able
+native app skip past here. Yes. After I
+restart my Okay, now how do I use it
+after I restart my computer? For
+example, will it just pop back up? I
+need to be able to open this like an
+app. And we went back and forth with
+that. And that's how I created the app
+on my computer. And then I put it down
+here. It's in my applications folder as
+well. And there we go. Now I have a
+custom dashboard where I don't have to
+look at this because this is not pretty.
+Shout out to the creator. But for me,
+I'm not a terminal guy, so this is a
+little ooly, but it's informative.
+That's the key thing. It's informative.
+All right, so if you have any questions,
+let me know. I appreciate y'all for
+watching the video. My name is Maestro
+Stevens with Iconic Templates, and I'm
+out.
+Peace.

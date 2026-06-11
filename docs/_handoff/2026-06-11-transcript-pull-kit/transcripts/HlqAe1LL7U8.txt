@@ -1,0 +1,355 @@
+Today, I'm going to show you exactly how
+to set up agent teams in Claude code
+using Opus 4.6. What else would I do?
+Let's build. Yeah, the first thing we
+want to do is make sure Claude code is
+updated. So, you want to run this
+command. You can find it in Claude
+code's documentations. All right, great.
+Claude code's updated. Now, let's spin
+up Claude.
+And make sure you select model and let's
+make sure that currently I want to do
+high effort on Opus 4.6.
+Wonderful. Now,
+here's the next one here. You need to
+set up a
+Let's just go full screen with this
+really quickly.
+So, if you check out the docs, you can
+find this link in the YouTube
+description below, but essentially you
+have to create and edit this file,
+right? But, we're not going to do this
+manually. We are going to ask Claude to
+do it for us. It's the easiest way to do
+it. So, what you want to do
+is grab the link to that docs. I'd like
+to configure agent teams.
+Please reference
+and then I'm going to paste in the
+release from
+you know, the documentation there
+to set up properly.
+Yeah, I'm just going to get I love that
+it's asking display mode. Do you want
+split panes for each teammate? I'm going
+to use in process.
+And I'm going to say only enable project
+teams for this project. Submit answers.
+Now, you could say system-wide, but for
+the sake of this demo, I really want to
+set up a project level settings here.
+And look at that, it detected there's no
+settings.json.
+Wonderful. It's going to create the file
+for us. And we're just going to accept.
+Now, alternatively, you can do this
+manually if you'd like. This is going to
+burn through some credits when you ask
+Claude to do it for you, but this
+video's for beginners. If you're, you
+know, somewhat of an expert or, you
+know, fluent in working out of the
+terminal in Claude code, this video's
+probably not for you, right? So, this is
+why I'm taking this route. All right,
+perfect.
+And it gives us just a quick TLDR of how
+to use it. Describe the work and ask
+Claude to create a team. This is
+critical here. So, we're going to do a
+quick demo, but now that we know we have
+it set up, the first thing you want to
+do is you do have to restart this Claude
+code session. So, let's say you're
+working out of your preferred IDE
+instead of the terminal, all you got to
+do is close out the terminal or just
+open a new terminal and you can keep the
+original one open and it'll spin up a
+new session essentially. So, what I'm
+going to do, since I'm in the terminal,
+I'm going to hit control Z to get out of
+this and we're going to spin up Claude
+again.
+All right, we're good to go. So, now the
+prompt.
+I'm going to show you on screen really
+quickly what the demo's going to be. Now
+that we have it set up, we know it's
+working, here's the demo prompt. I'd
+like to build an automation tool that
+simplifies the YouTube scripting
+process. I'd like it to first ask topic,
+then have the tool do the research, then
+feed me three strategies to choose from,
+then generate the following output:
+hook, story with an intro, talking
+points and outro, production notes and
+recommendations for B-roll, copy-paste
+of meta fields,
+copy-paste of metadata fields for
+YouTube description, YouTube tags, and
+YouTube title variations. This is
+critical. Create an agent team to build
+this out. If you don't say this in your
+prompt, it will not spin up a team of
+agents for you.
+And I'm going to give it the
+Anthropic
+default front-end design skill. So, let
+me grab that link.
+And
+we'll get started here momentarily. Love
+it. It's fetching the skill for us.
+We're going to hit one. I want to auto
+accepts on.
+Now, normally, if this is something
+you're building for yourself or possibly
+customer-facing,
+start off in plan mode, please. Be
+thorough in plan mode. Today's
+demonstration is simply a demonstration.
+It's a test, so I'm skipping plan mode
+altogether. But, I always recommend if
+you're building something meaningful,
+something you're actually going to use,
+plan mode is the most critical step and
+go back and forth as many times as you
+need to until you're happy with the plan
+and then proceed. Oh, one thing I want
+to do to speed up the process is set up
+preview on port 9005
+when it's ready, please.
+And I'm just going to queue that prompt
+in there. All right. Looks like it's
+scaffolding out this to-do list here.
+It's going to first initialize with bun,
+install dependencies, then it's going to
+work on the back end, the front end, and
+then the styling.
+And now it's going to build out the back
+end and front end in parallel. I was
+wondering when this was going to happen.
+It's going to build out the back end and
+front end in parallel using agent teams.
+Wonderful. So, one thing I do want to
+note, right? Going back to that very
+important prompt here, create an agent
+team to build this out, right? This part
+here,
+it's very critical to understand that
+that's the bare minimum and then it will
+create its suggested approach, right? To
+how many team members, how many parallel
+agents it needs to run. You could be a
+little more specific out of the gate.
+For example, create an agent team to
+build this out. I want a front-end
+agent. I want a back-end agent. I want a
+security and debugging or a security and
+audit agent to analyze the code base.
+At the very end, I want a devops agent
+for deployment.
+You get the picture here. If you're
+creative enough and you have the vision
+for your project of what kind of a team
+you want built, you can specify that and
+it will follow your commands to the T
+and it will make minor adjustments, but
+we wanted to do the bare minimum for the
+sake of showing it from the perspective
+of a beginner who may not know what
+agents they want to spin up, right? So,
+you just want Claude code to do it for
+you.
+All right, looks like the front end is
+done.
+And now it just needs to make sure the
+styling is complete as well. And it's
+going to launch the server for us.
+So, what's beautiful about this is that
+essentially cut the development time
+almost in half, right? The fact they
+were both working in parallel is a
+beautiful thing.
+That's the power in agent teams.
+And now it's going above and beyond
+because I have Claude in Chrome set up
+and configured, it will automatically go
+into my browser, spin up a new tab, and
+test the functionality for me rather
+than having me discover a bug or
+vulnerability out of the gate. So, let's
+go take a look. Everything's up and
+running. Here's what was built. YouTube
+Script Studio. Here's the architecture.
+Here's the flow.
+Everything looks good to me. Broadcast
+control room aesthetic. Ooh, I didn't
+ask for that, but I love that. To use
+it, make sure Gemini API key is set in
+your .env.
+And then open localhost. Okay. So, one
+thing I want to do here is I'm going to
+and this is why I love using Ghosty so
+much is I can spin up another
+essentially tab without having to tab
+over. So, I want to change directory,
+desktop, dev, demos,
+agent
+teams
+demo.
+List.
+where is the .env?
+Please create .env for me. Right? And
+I'm taking the approach as if it's a
+beginner. I could manually create that
+file, right? But, I'd rather have it do
+it for us. So, what is your Oh, look at
+that. Awesome. It's making our lives
+that much easier. So, I can actually go
+ahead, close this out here. Wonderful.
+So, I'm going to paste it below.
+Let me go grab an API. It looks like it
+pulled another API from another project
+of mine. So, instead, I'm going to paste
+in the API I want it to use. Voilà.
+And it made its additions. Wonderful.
+And I want to make sure I delete both of
+these after this recording so that so
+that nobody can use these keys.
+>> [laughter]
+>> Server restarted. So, let's now go
+preview what
+Opus 4.6 with agent teams has built us
+here. So, as you can see here on the
+screen, wonderful.
+Huh, I like it. Suggested topics: AI in
+2025, personal branding, day trading
+basics. Interesting. Interesting. I
+didn't even ask for that and it built
+that out. That's That's really cool.
+Now, I want to do something on brand
+with what we've built here. So,
+Opus or Claude code Opus of 4.6
+key takeaways.
+And let's see how it does. Signal lost
+API error invalid argument.
+Please renew the
+Oh, you know what? That's an issue on my
+end.
+That is entirely an issue on my end. Let
+me check billing. Yeah, I reached my max
+usage because I've been going crazy with
+demos this week. So, let me
+let me fix this. Let me mark that there.
+Save.
+Limit has been saved. Okay.
+>> [clears throat]
+>> So, let's go ahead and test this, shall
+we? Let's do Claude code Opus 4.6.
+All right, I got to say I'm loving this
+interface.
+It did a phenomenal job. I mean, it's a
+little busy,
+but I'm I'm I'm loving it so far. Wow.
+Okay, choose your approach. Claude code
+4.6 the ultimate deep dive. The ugly
+truth about your dev job, are you
+obsolete? I use Cloudcode to fix my
+nightmare legacy project, the 200k token
+secret. I like the middle one.
+Ooh, I love this breakdown. I would have
+loved it in a a more maybe a tabbed view
+so that it goes
+full width here, so it's not so
+narrow, but it's okay.
+Suggested length, who it's targeting,
+the tone.
+Title uses strong emotionally charged
+language, ugly truth, obsolete. Let's
+generate script and see how it looks,
+shall we?
+Ooh, and we have a runtime error. No.
+Okay, we're almost there. Flow worked
+until YouTube script generation.
+And this is where you vibe, right? This
+is where you just feed an error. It was
+almost flawless.
+Dang.
+So close to being flawless. Wow. So,
+found the mismatch, back end returned a
+nested structure, but the front end
+expects a flat structure. Let me fix the
+script output to match the back end
+shape. Okay, not bad.
+Slight debugging.
+But honestly, that's expected with vibe
+coding, right? That's expected with
+creating these ideas off of the simplest
+of prompts.
+Because if if you think about it, we
+didn't prep a PRD for this. The right
+way to do things is to take the time in
+planning, prep that product requirements
+doc, and you know, one fun little
+workaround is you can technically do
+that in Cloudcode. You'll burn through
+tokens, but you can do that through
+Cloudcode, but it's like the preparation
+really gets you to that final output a
+lot quicker, even though it takes a
+little bit more time up front.
+You spend less time debugging. So. All
+references updated. Wonderful. Let's try
+the full flow again. So, this time I'm
+going to type in open claw. All right,
+testing with the subject open claw.
+Okay, look at this.
+Open claw, you're using open claw wrong
+and why it's holding back the warrior
+cats fandom.
+Truth about open claw.
+You can find
+interesting.
+I should have been more specific. I was
+referencing the open claw AI agent, but
+since we're burning through API credits
+to generate this, I'm just going to
+select one and generate just to see what
+the output looks like.
+All right, and it looks like it has the
+script ready. So, it has our hook.
+Interesting. Right, it skipped the beep
+because I wasn't specific enough in the
+original title. I thought it would know
+because of how popular open claw has
+been, but no, it did not know I was
+talking about the open claw AI agent,
+but that's okay. We're looking at the
+output. Look at this. Talking points. I
+love the way this is structured. Outro.
+Wonderful production notes.
+YouTube metadata, title variations,
+description, timestamps. Wonderful. And
+then copy all tags. I mean, I hope you
+found some value in today's video. Today
+we showed you how to set up your agent
+teams from scratch. And then we did this
+fun demo with YouTube script generation.
+So,
+I'm not an AI expert. I'm building in
+public and sharing what actually works.
+If you'd like to see me make a
+particular video around a specific
+topic, drop a comment below, let me know
+who you are, what you do, who your
+target audience is, and what your
+question is, and I will add a video to
+my queue custom tailored just for you.
+Thank you so much for tuning in to
+today's video. My name is Marcelo. This
+is Clear Mud, and clarity matters.
+>> [music]

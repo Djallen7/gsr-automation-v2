@@ -1,0 +1,267 @@
+What if I told you I make long- form
+YouTube videos, including five to six
+shorts in less than an hour? Not because
+I cut corners, but because I built an AI
+system that does 80% of the work for me.
+It researches competitors, generates
+scripts, and I've combined it with a
+stack of AI tools that handle everything
+from audio enhancements to automatic
+short creation. And today, I'm going to
+show you exactly how to build it
+yourself. And most of it is free. I'm
+Sylvio and I've been obsessed with
+automating my YouTube workflow. But
+here's the problem. Making good YouTube
+videos takes forever. Research,
+scripting, recording, editing, metadata,
+shorts. Most [music] creators burn out
+because the process is exhausting. Look
+at this. 10 competitor videos to watch,
+2 hours taking notes, 3 hours writing a
+script, and that's before you even touch
+a camera. But what if AI could tackle
+the tedious parts while you focus on
+being creative? That's exactly what I
+built. So, watch until the end because
+by the end of this video, you will have
+the same system. A quick heads up, if
+you're into AI and productivity
+workflows, hit subscribe. I draw
+practical tutorials like this every
+[music] week. And now, let's dive in.
+Most YouTubers do everything manually.
+They watch 10 competitor videos taking
+notes and that's already 2 hours. They
+write a script from scratch, that's
+another 3 hours. And then they spend
+hours and hours removing arms, fixing
+audio, cutting dead air, and then they
+manually create shorts and post to every
+social media platform one by one. But
+here's the thing nobody talks about. The
+YouTubers who post consistently, they
+are not working harder. They're working
+smarter. They have systems. I tried
+[music] spreadsheets. I tried notion
+templates. I know of people that even
+try hiring a VA. Nothing worked until I
+discovered the right combination of AI
+tools and created myself a workflow. Let
+me show you the complete stack. This is
+the combination that changed everything.
+Cloud [music] code, the brain. It
+researches competitors, writes scripts,
+manages projects, Vid IQ optimization,
+keywords, titles, descriptions, idea
+validation before I even start. Adobe
+podcast audio enhancement fix my raw
+audio to studio quality literally in
+seconds. The script AI editing removes
+silences, filler words, [music] and even
+makes my eyes look at the camera
+automatically. Da Vinci Resolve, that's
+just for the final polish. But now it
+takes way less time because the heavy
+lifting is already done by Descript.
+Opus Clip Pro automatic shorts, creates
+four to six clips, and posts them
+everywhere. Canva thumbnails literally
+in minutes. Here's the key insight. None
+of these tools alone would have saved me
+that much time. It's the combination.
+Each one removes a bottleneck and
+together they compressed what used to
+take hours into under an hour. Let me
+show you how they work together. I typed
+/vide research, pasted three YouTube
+URLs, and look what it did for me.
+Claude just analyzed all three videos,
+extracted their [music] transcripts,
+identified what makes sense, what makes
+them viral, and generated five script
+ideas in 30 seconds. The brain of this
+system is a single file, claude.md. This
+file tells Claude everything about my
+channel. My format, my style, my goals.
+You how specific this is? Claude doesn't
+just know I make videos. It knows my
+exact formats. Long form scripted,
+[music] face cams, intros and outros,
+screen recording for the main content.
+The skills, I have custom slash
+commands. The video research skill
+analyzes competitor videos, extracts
+transcripts, and generates ideas. The
+new YouTube video creates project
+folders, generates scripts, and tracks
+progress. And these these are just
+markdown files with instructions. You
+can build your own. But here's the
+thing. I don't just create videos. I
+validate them first. And that's [music]
+that's where Vid IQ comes in. Vid IQ
+does three critical things for me.
+Keywords. I check volume and competition
+before committing to a topic. If the
+numbers don't work, I just pivot.
+Titles. Their AI suggests title
+variations and even scores them. And me,
+I usually pick the highest scoring
+option. And then comes description and
+tags optimized based on what's actually
+ranking on YouTube. And lastly, script
+validation. I paste my script into their
+AI and get feedback on retention, hooks,
+and even SEO. Watch. I search cloth code
+tutorial and boom, score of 66. Volume
+is good. Competition is medium. That's a
+green light for me. If that was under
+30, I try a different angle. And this
+this saves me from making videos nobody
+will find. And now here's where [music]
+most people waste time, recording and
+editing. Let me show you how AI tools
+compress this entire face. First, audio.
+I record in my home office. No
+soundproofing, no expensive mic setup.
+Then I drop my audio into Adobe Podcast.
+Echo, background noise, inconsistent
+levels, gone. Studio quality in
+literally seconds. And the best part,
+it's for free. As you can see here, I
+uploaded the raw audio of a video clip.
+This is how the original sounds. I
+automated [music] my entire YouTube
+workflow with AI. Research, scripts,
+presentations. And this is how it sounds
+when I click enhance. I automated my
+entire YouTube workflow with AI.
+Research, scripts, presentations. Done.
+That's it. What used to require
+expensive plugins and manual EQ work
+happens automatically in seconds. Next,
+the script. This is the game changer for
+editing. Remove silences where it
+automatically cuts the air. I usually
+set it to 0.3 seconds max. Removes
+filler words every um uh like gone with
+one click. Eye contact correction. Even
+when I'm reading my script, it makes my
+eyes look like I'm looking at the
+camera. And here I do my entire rough
+cut by editing the transcript. Delete
+text, delete video. It's that simple.
+Watch. Here's my raw recording in the
+script. I click remove retakes. [music]
+Submit. And boom. 88 parts removed. I
+can remove filler words and even remove
+the silences by clicking shorten word
+gaps. And this is how I make my videos
+tight. And here's the magic. Eye
+contact. Even though I was looking at my
+script, [music] it looks like I'm
+looking at you. And like this, my rough
+cut is done in 20 minutes instead of 2
+hours. Now then, I export to Da Vinci
+Resolve. But here's the thing, [music]
+the heavy lifting is already done.
+Dcript handled all the rough cutting and
+Adobe podcast handled all the audio
+improvements. In Da Vinci, I just add
+intro and outro from my template, B-roll
+and graphics, music and sound effects,
+color presets, one click. What used to
+be a 4-hour edit now are 20 to 30
+minutes of polish. Now, here's where it
+gets really good. I used to spend an
+hour manually creating shorts, [music]
+finding the right clips, reformatting
+for vertical, and then posting to each
+social media platform. Not anymore. Opus
+Clip Pro analyzes my finished video and
+automatically creates four to six
+shorts. It finds the most engaging
+moments based on AI analysis of hooks
+and retention and adds captions,
+reformats to vertical, and even picks
+the best thumbnail for each clip. And
+here's the killer feature, auto posts.
+All scheduled and posted automatically.
+I review the clips, approve them, and
+then I'm done. Here's an example of a
+video I uploaded. Opus Clip found nine
+potential shorts and these are their
+variety scores. From here I approve the
+top four to six. I click auto posts.
+Select all platforms schedule. That's
+it. Four to six shorts created and
+distributed within 5 minutes. Last piece
+thumbnails. Canva with a good template
+face showing emotion. Bold text [music]
+high contrast. Me personally I have
+three to four templates I rotate. Plop
+the face change the text. Export 5
+minutes and the thumbnail is done. So,
+let me put this all together. Here's my
+actual workflow. Idea plus research 5
+minutes. Cloud code analyzes
+competitors. [music]
+Vid IQ validates keywords. And then
+comes the scripts 5 minutes. Cloud code
+generates. I tweak. Vid IQ validates.
+After that comes recording, 20 minutes.
+Follow the script markers, face cam, and
+screen recording. Then comes editing
+another 15 minutes. Adobe Podcast
+enhances the audio. The script does the
+rough cut and Dainci for polish.
+Metadata plus the thumbnail five
+minutes. Vid IQ optimizes [music] and
+Canva does the thumbnail. Lastly, shorts
+5 minutes. Opus Clip creates them and
+auto posts them for me. Total under an
+hour for a long form video plus five to
+six shorts. The entire process that used
+to take hours now takes under one. Let
+that sink in for a second. By the way,
+I'm open sourcing the cloud code part of
+this setup. You can find the links in
+the description. You'll get the Claude
+MD context file, all the skills, MCP
+server setup for browser automation, and
+setup instructions. You just have to
+fork it, customize it to your niche, and
+make it yours. And here's all the tools
+I mentioned. Vid IQ, free tier
+available. Adobe Podcast also has a free
+tier available. The script has a free
+tier as well, but the paid version
+unlocks full AI features like the eye
+contact correction. Opus Clip has a free
+tier as well, but comes with a
+watermark. The paid version removes it.
+You can find links to all these tools in
+the description as well. And one more
+[music] thing, this system gets smarter
+over time. The more context you add to
+your Claw Code MD configuration, the
+better Claw Code understands your style.
+After a few videos, it writes scripts
+that sound just like you. So, the bottom
+line, AI isn't replacing creators, but
+it's removing the friction so you can
+focus on what really matters, being
+creative. Look, I spent months figuring
+this out so you don't have to grab the
+GitHub link below. Set it up tonight and
+you'll have your first AI assisted video
+done by the weekend. And if you run into
+issues [music] or figure out something
+cool that I didn't cover, please drop it
+in the comments. I actually read all of
+them and reply to all of them as well.
+Don't forget to like and subscribe and
+I'll see you in the next one.
+[music]
+>> [music]

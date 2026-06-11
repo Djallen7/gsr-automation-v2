@@ -1,0 +1,165 @@
+Hey guys, welcome back to another new
+exciting video. Finally, Cloud Code also
+released another new command, which is
+the {slash} goal. You know that some
+days ago, I discussed about this {slash}
+goal inside the Codex. This was the
+video. And after that, Cloud Code also
+released it. And if you go to your Cloud
+Code and type {slash} goal, and then you
+will find this command, this {slash}
+command, that set a goal, keep working
+until the condition is met. The purpose
+is same inside Cloud Code or Codex. And
+here you see that one person from Codex,
+he has written, "The master becomes the
+mentee. At last, Cloud is now copying
+Codex." And you cannot out-accelerate
+GPT 5.5. So, they are saying actually
+that first, the feature {slash} goal got
+published inside Codex. Now, Cloud Code
+is copying the Codex. And the master
+becomes the mentee. So, this is a funny
+uh line he has written. Okay, now let's
+uh discuss about this uh {slash} goal in
+details, how it actually works. And you
+know that some days ago, um they also
+released another new command, which was
+the {slash} loop. Okay. So, don't be
+confused between this {slash} loop and
+{slash} goal. So, {slash} goal is
+basically for uh finishing the task.
+Means, until your task is getting
+finished, it will continue its work. And
+what about {slash} loop? So, slap
+{slash} loop is basically like a cron
+expression. So, if you go to their
+detail blog post, and uh here you see uh
+this is the table.
+If you just write {slash} loop, then by
+default, it will uh use one built-in um
+time interval, and it will execute the
+job. And if you just write {slash} loop
+and 5 m, means 5 minute, every 5 minute,
+it will check the status, or it will
+execute the job. Let's say, if you're
+writing {slash} loop check the deploy,
+then every 5 minutes, it will check that
+if the deployment got completed or not.
+Now, so that's why this {slash} goal is
+totally different from the {slash} loop.
+Now, let's see that how it actually
+works inside Cloud Code. So, for that,
+make sure you have updated your Cloud
+Code to the latest using that Cloud
+Update command.
+Now, let's start it. So, I'm currently
+inside my one of the project repository
+and just write {slash} goal. Now, what I
+can do that I can give any conditions
+here, okay?
+So, let's see that what they have
+written inside their blog post.
+So, you see run {slash} goal followed by
+a condition you want satisfied. If a
+goal goal is already active, then the
+new one
+replaces it. {slash} goal all tests in
+test auth pass and the lean setup is
+lean step is clean. So, this is a kind
+of goal you can give.
+And after that, here you see if you just
+write {slash} goal, then
+you can see the current goal state.
+Means it is completed or how long it has
+been running and how many turns have
+been evaluated. As I told you that until
+your goal is achieved, then it will
+continuously work. So, how many turns it
+has taken till now, you can see that.
+And also the number of tokens it has
+spent and all of that things. And you
+can actually clear your goal using the
+{slash} goal clear.
+Now, let's see how it actually works.
+So, inside my project repository, I can
+give a goal. Let's say
+make the
+footer section
+animated, okay?
+Let's say this is one of the goal that
+I'm giving. Animate it.
+Let's press enter.
+And goal set, make the footer section
+animated. Now, it will work. So, it will
+search for the the
+And uh
+the index.html it has found. Now, inside
+that, here you see
+footer currently static, and it is
+adding that GSAP entrance animations.
+So, it is continuing its uh work. And
+the work is completed. So,
+it is telling me to accept the edit.
+Yes, I am accepting this.
+And yes, here you see the this command
+requires approval again.
+Proceed.
+So, it has opened that file.
+And here you see, task complete. Footer
+now has trigger
+scroll trigger animations. So, in case
+of Codex also, we have seen that when
+the task will be completed, you will get
+this kind of task complete message from
+the Codex. And the same thing from the
+Cloud Code, you will find this task
+complete message and all of the things
+that is performed by them. And at the
+end, here you see, goal achieved. And
+this is the main thing that we have seen
+in case of Codex also, and the same
+thing inside Cloud Code. Means goal
+achieved. Means the task that you have
+given,
+it is now achieved. Now, if I just
+simply write {slash} goal without any um
+without any text, if I just write
+{slash} goal, and here you see,
+goal achieved. Means the last goal that
+you have given, it is achieved. And how
+many time it took, and how many turn.
+Means in one turn it it has completed
+that goal. And it uh consumes 92 tokens.
+And the goal name, make the footer
+section animated. It was my goal. Okay.
+So, this was the feature, guys, that
+Cloud Code introduced today, {slash}
+goal. I hope it will be very helpful for
+you, because in case of Codex, it was
+actually helpful. Means autonomously, it
+will do all of the work until your uh
+work or until the task that you have
+given, it is completed.
+It will automatically uh continue to to
+do that, automatically fix the bug, and
+automatically uh implement the feature.
+And also, if there is any issue, then it
+will take multiple turns to fix that,
+okay?
+So, please use it, and please let me
+know how this last goal is actually
+helping you within Cloud Code or inside
+CodeX. And if you are reading this
+channel for the first time, don't forget
+to subscribe this channel. Don't forget
+to follow me on Twitter, and please join
+the WhatsApp link that I have given
+given in the description, WhatsApp
+channel link. And also, if you have not
+watched these other videos that I
+published, please watch that. You will
+get daily AI latest notification from
+this channel. See you guys in the next
+video. Thanks for watching. Bye-bye.
+Take care.

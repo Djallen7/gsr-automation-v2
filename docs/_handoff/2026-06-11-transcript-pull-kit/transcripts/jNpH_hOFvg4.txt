@@ -1,0 +1,847 @@
+Today I'm going to talk all about the
+Claude agent SDK. And if you're
+unfamiliar, it's just Claude Code as a
+library. So if you've used Claude Code
+before, you know that it's a human
+giving commands to an agent to take some
+action. And you might find yourself
+taking the same actions frequently.
+Maybe you connect some skills or MCP
+servers. We'll talk about what those
+are. Um, and then you perform the same
+routine tasks each day or every week.
+The Cloud Agent SDK allows us to
+programmatically create agents, the same
+agents that Cloud Code uses, and then
+execute those as code. So basically, you
+could create, think about it kind of
+like a workflow if you're familiar with
+like Zapier or Replet agent workflows
+and automations. Um, you can define
+these workflows as code programmatically
+and execute them. And as it would turn
+out, Rubble's really good at creating
+these workflows and then deploying them.
+So today I'm going to talk about how the
+agent SDK works and then we're going to
+walk through an example how I can build
+uh an automation that's really useful in
+my life. So the example will be taking
+the tasks in my to-doist inbox, cleaning
+them up, organizing them, renaming them,
+um and handling all of that for me every
+day at a certain time. And we'll walk
+through that end to end. So how does it
+all work? Well, an agent is really just
+a loop. You send a prompt. the agent
+picks tools perhaps to execute um and
+then it observes the result or maybe it
+just responds with text and then it
+repeats that loop until some stop
+condition is met and then you the user
+provide your next input. So you provide
+the prompt the SDK is handling the loop
+here really and you can think about it
+like that but the SDK is actually more
+than that. It allows us to build multi-
+aents or hierarchies of agents that can
+perform different tasks. Now, without
+getting too in the weeds, this is built
+on top of some straightforward
+primitives. So, I'm going to talk to you
+about the primitives uh more than tying
+it all together and I think it might
+make sense, but these multi-agents are
+important because it's really the way
+that cloud code works, right? If you
+give cloud code a big ta t task um or if
+you give a big task to really any coding
+agent these days there's going to be an
+orchestrator agent something that kind
+of sits up top and then delegates to
+lower powered models. So the high power
+models are always doing like the deep
+thinking and then sometimes the lower
+power models are either faster or less
+expensive and can handle those small
+menial tasks. And so the um agent SDK
+allows us to access these multi-agent
+architectures uh and delegate tasks to
+less powerful full agents but it also
+provides access to open standards like
+skills, MCP servers, permissions and
+other tools. Um and so as an example
+here you can think about like a writing
+agent right where there's an
+orchestrator agent maybe like a
+supervisor agent and the agent says hey
+I have this task from the user that's
+communicated to me via a prompt. So the
+user passes a prompt, the orchestrator
+agent says, I'm going to delegate this
+um this you know task to the brainstorm
+agent to come up with topics and then
+the brainstorm agent returns those to
+the orchestrator. It goes down the line
+to the author agent with the topics. The
+author writes those topics, hands it off
+to the reviewer in a similar fashion. So
+that's just kind of a a toy example
+there of how an orchestrator would um
+pass off tasks to sub agents, receive
+those tasks, and then process them and
+then hand them off to accomplish some a
+goal. More tangibly, this diagram here
+represents how an orchestrator can have
+multiple sub aents that then are
+assigned specific tasks to that sub
+agent. And those um sub aents then
+accomplish those tasks by executing
+tools and maybe using skills or maybe
+using MCP servers. And an MCP server is
+really just kind of a customized set of
+tools. So there's a lot of stuff going
+on here. I'll walk through the core
+primitives in one second. And so, you
+know, in a nutshell, any of the coding
+tools, Replet agent included, clawed
+code, they work just like this. And the
+amazing thing is that all these tools
+were designed to write code, but as it
+turns out, they're really good at all
+sorts of things from writing to uh
+executing tasks to managing workflows.
+It's really outstanding. And so, the
+reason I'm explaining all of this to you
+is because this is how coding agents,
+this is how pretty much every agent
+works. and you can build agents that
+work exactly the same way as this. So
+all of the latest tech that you have
+access to um is just available out there
+and that's just really outstanding. So
+let's talk a little bit about the core
+primitives here. So what's going on? I
+mentioned the query loop. That's just
+kind of a foundational component. Agents
+aren't that complicated. Um it's just
+taking a prompt using tools, executing
+those tools, observing the results, and
+then repeating them uh and returning the
+outputs to you. And so agents use the
+query loops, but more than that, agents
+are actually specialized configurations
+with their own tools and instructions.
+Now, I keep saying tools, like what is a
+tool? Well, some people would call me a
+tool. You know, I can't disagree with
+them too much. Um, folks, that's the
+type of humor you're getting in these
+videos, but tools are just things agents
+can use. The same way I might have
+access to a hammer to hit a nail and
+accomplish a goal, agents often use
+tools like command line tools of all
+things. You might see an agent call bash
+um or you might see an agent maybe make
+a commit to GitHub or do some other
+different types of things. But we can
+build tools to give to agents to
+accomplish specific tasks. So in the
+example I show you shortly, I'm going to
+build some tools to give to our agent
+that help it manage my to-doist inbox.
+Now you've probably heard of MCP
+servers. they were kind of like a big
+deal. Um, I feel like they're less of a
+big deal these days, but they're still
+really cool and they're really
+important. MCP servers are kind of like
+customized sets of tools that you can
+give to agents. They follow open
+standards, so they're defined in the
+same way. They're signific
+benefits there, but you can think about
+them as customized collections of tools.
+Skills, which are newer than MCP
+servers, are more like instructions.
+There are sets of markdown files that
+teach your agents how to do things. So
+your agents can actually learn and we
+recently shipped skill support for
+replet agent. This is can be a point of
+confusion. So I want to pause here. The
+coding agents that we interact with that
+write the code right can have access to
+all of these things as well. So replet
+agent can use tools, use MCP servers,
+use skills. Cloud code can use these
+things. We can also build agents that
+use these things. So there are multiple
+definitions going on here. It's
+important to understand when we're
+defining tools for coding agents or when
+we're building an agent that has access
+to those tools. So just pause to clear
+that up. Then finally, permissions. So
+when we run the cloud agent SDK, a lot
+of times we're just saying, hey, just go
+out and get it done, right? This is an
+unsupervised agent that's going and
+doing stuff for us. But we can ensure
+things uh operate safely by giving
+customized granular permissions to the
+sub aents. So if we go back up to our
+diagram right here, we might say, hey,
+this sub agent only has the ability to
+execute this tool, right? And so we can
+then coersse that agent to accomplishing
+the task in a certain way and ensure it
+doesn't go out and do anything like
+start searching the web for like crazy
+stuff and get get off track. So we can
+kind of impose these these guardrails
+through permissions. Um the guardrails
+might be a separate term. It might refer
+to other things. Uh but here permissions
+can kind of be a forcing function to
+help us uh accomplish our goal. Now the
+next thing I want to talk about are
+skills versus MCP servers because I feel
+like um this terminology can get
+confusing. These are the two main ways
+that you're going to extend agents that
+give them uh basically new features um
+or knowledge. Skills are just markdown
+files. So really simple. You can think
+about them like instruction booklets.
+The same way I would say, "Oh, hey, how
+do I repair, I don't know, my bicycle.
+There's an instruction manual. I go find
+the instruction manual. I read it. And
+now I have the knowledge. I have the
+skill to do that thing. I can give um
+Claude agent SDK an instruction manual."
+And the great thing about an instruction
+manual is that I don't have to remember
+all the contents of that instruction
+manual, right? It doesn't live in my
+head. The same is true for an agent,
+right? Because as we know, as I talk
+about a lot in my videos, agents have
+context windows, right? So agents can
+only remember a certain amount of
+information and as that uh context
+window fills up they sort of lose their
+efficacy. They become a little bit
+dumber right? If I cram a bunch of
+information in my head I'm studying for
+a physics test and then you start asking
+me questions about English or like Monae
+or something. I'm probably not going to
+be able to remember that. So agent have
+agents have context windows. It's
+actually a best practice to keep that
+context window only filled with the
+things we want uh to accomplish. And
+that's why these specialized sub agents
+are so important. So basically skills
+are like instruction manuals. The agent
+doesn't have to have all the
+instructions in it memory all the time.
+It can say, "Oh, hey, I know that I have
+this instruction manual. I'm going to
+read it and then execute this task." So
+they're contexts efficient because only
+the description loads until you invoke
+one. So we can use skills for workflows
+and conventions. How do I accomplish
+XYZ? Here's a code review checklist you
+should always follow when you're doing
+this thing. Reference materials exactly
+like what I just talked about or re
+reusable prompts that you kind of just
+want to trigger with the skill name. So
+these things uh the highlighted fact
+here is what I talked about earlier.
+They exist for both coding agents and
+the agents you build. MCP servers are
+processes that expose tools, right? I
+kind of got at this. They're collections
+of tools, but they're very contextheavy.
+When you define MCP to servers, all the
+tool descriptions, all the tool calls
+get loaded up front, which means that if
+you just throw a bunch of MCP servers at
+an agent, it's going to get really dumb
+very quickly and it's not going to
+perform efficiently. And that's one of
+the reasons we use these sub aents
+because you can take the context window
+for a sub aent and specifically give it
+access to a tool and a skill or an MCP
+server. And that way we don't overload
+the context. We don't poison the context
+with irrelevant information. Now if
+you're getting confused about this
+skills you can just think of as a simple
+way to define how claude should work or
+a simple way to define how replet agent
+should work whereas MCP defines the
+tools that these things have access to.
+So, when do we use the cloud agent SDK?
+Well, we use it when we're automating
+cloud code tasks or multi- aent
+workflows. Now, there's also an API,
+right? You're watching this video. You
+might be saying, "Hey, Matt, why don't I
+just use the anthropic API?" Well, the
+API is really just for simple apps or
+single turn tasks. So, not agents,
+specifically not agents. Um, now you can
+build agents from scratch without the
+SDK, just using the API. I've done that
+before. It's a fun project if you want
+to learn about how agents work. Uh but I
+would say just use the API for simple
+apps and single turn tasks or tasks
+where I'm just saying, "Hey, do this
+thing." Uh and you get back a result. Um
+now we're going to talk about building
+on Replet. I have a template. The link
+will be in the description of this
+video. All we really have to do is remix
+the template, prompt agent to create our
+agent, and publish it. Now, when we're
+publishing, we'd either publish on a
+schedule or on a reserve VM. Schedule if
+you just want the thing to run every
+Friday at 5:00 p.m. Reserve VM if you
+want it to be like listening for like a
+web hook or like, hey, I send an email
+to my agent and then it does something,
+you can build those on Replet. So, uh,
+what we're going to be doing in this
+demo is we're going to use Replet
+integrations to build agents with access
+to our favorite services, which is
+pretty cool. So, we're going to use to-d
+doist specifically. I'm going to code
+over to replet. We're going to build
+some cool stuff. This has been a quick
+intro to the claw agent SDK. So, this is
+my Claude agent SDK template and
+clicking remix uh is going to create an
+exact copy of this template in our own
+environment. I'm going to call this
+Matt's to-d doist agent. We're going to
+be building with to-doist today and
+click use framework. Now what's
+happening is under the hood, Replet is
+spinning up our own kind of code
+environment here and uh it has all the
+same files and features that the earlier
+version I had um was built with. And we
+can actually open a sidebar here and see
+all of those files. Now if you don't see
+the dot files here, you might have to
+click um show hidden files in the drop
+down. But then you should see a few
+files. We're going to walk through
+exactly what's going on in all of these
+because there's some interesting
+configurations kind of that power users
+can use on Replet to make the most of
+these tools. So, first the agents
+directory contains a skills folder. And
+this skills folder actually contains
+skills for Replet agent to use when it's
+building. And this is important because
+I've added a couple skills. First, the
+Claude agent SDK skill which teaches
+Replet agent how to build cloud agent
+SDK apps. So basically we're enhancing
+replet agent to be able to do cooler
+stuff to build with this library and the
+ability to find new skills um using the
+skills.sh framework. So if you go to
+skills.sh uh it's a website you'll see
+um everything there and replet supports
+that framework as well. But if I look at
+the cloud agent SDK skills just a
+markdown file get some uh kind of ugly
+rendering on the YAML here. But this is
+the markdown file uh that says cloud
+agent SDK. It gives a description.
+Again, we talked about that description
+being loaded into the context so ripple
+agent can trigger it and it talks about
+cloud agent SDK development and
+documents are structure. So this is
+basically documentation for this project
+for this set of files. So that's
+important because you need to know what
+resources agent has access to. The
+source file src is where we define all
+of these components. Now I built this
+out. This is the format I like to use.
+You don't have to use this format if
+you're building with the Cloud Agent
+SDK, but I find it's usually good to
+impose some sort of structure on your
+projects. Now, if you're watching this
+video and you're saying, "Matt, I don't
+care. I'm going to be chatting with
+Replet agent. I'm not writing the code."
+It's all good. I hear you. I'm going to
+be doing the exact same thing. But hear
+me out. When we're building projects
+with AI, it can be really useful to
+first understand the frameworks that
+we're using and second create structure
+for AI to build upon so that we get
+structured clean projects. So I stepped
+back and thought about the primitives. I
+thought about agents, MCP servers,
+permissions, skills, and maybe utilities
+and that is reflected in this directory.
+So if we look at an example agent in the
+agents SDK folder, you can see that
+there's a very nice clean definition and
+it almost reads like English. Like this
+doesn't really feel like code. This is
+just simply defining an example agent
+for exploring code bases. The same is
+true of an example MCP server. This one
+loading a dummy MCP. But you can look
+through these folders and start to
+understand exactly what's going on. Most
+notably, the skills folder just contains
+markdown documentation. So the same way
+that replet agent can use skills or
+agent can use skills and we can add
+skills to our project to give it access
+to these tools and services. Now that's
+going to tie into our first prompt uh
+which is why I'm explaining all of this.
+So thinking about you know the steps of
+building this agent here I remix my
+replet project. So now I have an
+environment with all the nice
+scaffolding. Um I noted that replet
+agent is prepared to build on this
+framework. Uh, and now I'm going to send
+a prompt through to agent that uses the
+skills it has access to, uh, uses some
+of the integrations that we have access
+to, um, to build a really cool app. So,
+I'm going to grab my prompt over here
+and we're going to talk through it
+together. I'm actually going to switch
+into plan mode. So, best practice
+usually if we're sending things through,
+use the claw agent SDK skill. We talked
+about that to build an agent that looks
+at my to-doist inbox and organizes my
+tasks by applying relevant labels or
+supporting information. You should
+create tools that allow our agent to
+interact with to-doist using the SDK.
+This is important. I'll talk about why.
+The result should be an agent that when
+triggered loads all tasks and available
+projects, polishes them, then organizes
+them appropriately. There's one other
+thing I want to add to this, which is um
+be sure to use the replet, and then I
+can do a slash command to-doist
+um integration
+for uh all authentication.
+So I'm going to send this plan through
+and then while agent's working I'm going
+to explain exactly what is going on. So
+we'll send the plan in and now I'm going
+to go over the integrations pane. This
+is worth mentioning. Replet connectors
+allow us to authorize services to replet
+that agent can then build with. So this
+is at replet.com/integrations.
+I connected my to-doist account and now
+we can assume that agent has the ability
+to create things that can access my
+to-doist account. Note that there's also
+a to-doist MCP server that is authorized
+another way that can be a bit confusing.
+So, we're going to stay away from that
+and we're simply going to focus on
+building our own tools with the to-doist
+integration that will allow our agent to
+build exactly what we want to organize
+our to-doist tasks. Some other things to
+call out. Um well agent already came up
+with uh our plan. So we'll talk through
+the plan and we'll we can review some
+other things. I reviewed the project.
+You already have a claude agent SDK
+project set up with the project proper
+structure. Awesome. We can even look up
+here and see that agent loaded the cloud
+agent SDK skill. So I know that it now
+has the context to build this project
+appropriately. Um and then we can see
+some other things. This is important
+because these are all the concepts that
+I talked about kind of fundamentals of
+building agent executed find source type
+name. It's actually finding the files in
+our project and that's by using tools
+via the command line. Um these are all
+tool calls. Uh so the same actions that
+ripple agent is taking we're actually
+building with this agent SDK. So now I
+need to create a to-doist organizing
+agent that fetches tasks, gets available
+labels and projects, analyzes each task,
+moves and organizes the tasks. That's
+exactly what I want. So the approach is
+going to be to create a to-doist MCP
+configuration to create the to-doist
+organizer agent to set up proper
+permissions. That's cool. And to update
+the config and entry point to run the
+organizer, and finally add a workflow to
+trigger the event. This is important
+when we're in plan mode. It's important
+that we check that agent is is telling
+us it's going to do what we'd expect it
+to do. Nothing here seems radically
+different from what I have in my brain.
+And this actually lines up exactly with
+the framework. Um, and I I see this more
+and more often as people are getting
+into building with AI as um, you know,
+we're learning about these tools.
+They're really quick to just hit start
+without reviewing the outputs first. But
+it's it's actually a crucial step. So,
+I'm going to make sure we got high
+autonomy here. Toggle. I'm going to
+start building this. While agent's
+working on that, I'm going to show you
+what my to-doist inbox looks like so we
+can verify that this is actually working
+as I'd expect. So, this in front of me
+is my to-doist inbox. The way the to-d
+doist works is that you have an inbox,
+and you're supposed to organize these,
+add categories to them to clear them
+from your inbox. They need a category,
+they need a date, and that's just kind
+of a task management framework. It helps
+me make sure I have everything organized
+and I'm on top of everything. So, you
+can see I actually am supposed to be
+making this video today. So, we're going
+to be able to tick that one off uh in a
+few minutes. Um but then I have a bunch
+of other stuff to do. I got to email
+Matt. I got another Matt, not email
+myself. And I don't speak in the third
+person that often, but uh we also have a
+personal review that we need to do. I
+need to schedule dinner with uh my
+friend Philip. Uh there's a University
+of San Francisco guest speaker here. I
+need to work with our team uh on some
+partnerships opportunities with the
+University of San Francisco. I need to
+cancel a video service, you know, get
+some dry cleaning stuff done and then
+schedule a haircut. Um, these are not
+organized. None of them have categories.
+They were very quickly typed. This is a
+link to an email. We need to clean some
+of this stuff up. Right? So, this is the
+before state. The after state would be
+that this inbox is completely empty. And
+these tasks have better metadata. So,
+that's what we're trying to accomplish.
+Now, we can keep building uh with agent
+and see if we can get there. So again, I
+like to kind of follow along with what's
+going on here. A good way to check
+things is, you know, we can see what's
+uh been edited and uh revised via the
+colors here. Um these actually reflect
+git statuses. If you don't know what git
+is, that's all right. Um but you can
+think about the colors here um as green
+uh are newly added files, yellow are
+modified files. Um and if there's any
+red, those would be deleted files. But
+you can see we actually have an MCP
+server being defined in the MCP folder.
+Um we have some uh permissions being
+modified. Um we have some agents being
+create created. So if I look at the
+to-doist agent, uh it's actually pretty
+complicated uh description here. Um we
+have a agent for organizing to-d doist
+tasks. um
+big long prompt with some priorities,
+some guidelines,
+and some tools. It's referencing an MCP
+server. So, we look at the MCP server to
+do a server. This is actually a custom
+MCP server. Looks like we're defining.
+So, we're importing from this
+path and these are just our types to do
+a server.
+and we're defining some tools.
+It looks like we're plugging these in to
+the API. So, we defined a custom MCP
+server. We're connecting that to the API
+agent did that. One other thing we'll
+need to do is add our anthropic ai API
+key. I have one in my replet account
+vault. So, in replet, you can save
+secrets and reuse them across your apps.
+I can just continue because agent's
+going to take care of that for me. We
+might also be able to see further up um
+if we actually use the to-doist
+integration
+um integrating with to-doist. So agent
+did integrate with um our to-doist
+account. So it should be working now.
+It's going to run the agent and let's
+see what happens. We're going to make
+to-d doist inbox. Looks like to-doist is
+not connected yet.
+So the cool thing is that agent's going
+to see this output uh and it's going to
+try to debug it. So ideally, you know,
+I'm off doing whatever while agent's
+building. We're walking through this to
+show how the process works and how agent
+thinks through fixing these issues. My
+guess would be that the integration
+isn't properly wired up into the agent.
+So, take a break. We'll come back. We'll
+see um if this gets resolved or if we
+need to do any manual intervening.
+So, we got some more errors, but we
+learned a few things. I'm going to walk
+through what we learned. What I noticed
+was that uh agent actually wasn't
+building out the tools. It was trying to
+use the to-d doist MCP server that I
+found on the internet. The problem with
+the to-doist MCP server is that it uses
+something called OOTH to log in to the
+MCP server. And ooth is like what you
+see when you go onto the replet
+integrations pane. So if I go to like
+the replet integrations um and I clicked
+like sign in to this uh agent mail
+connector actually that uses an API key.
+Let's try a sauna. This would be a
+secure OOTH screen. Everybody's seen
+them. We've all used them. problem is
+you can't really use OOTH with like a
+command line interface or code, right?
+You have to be human and click this
+thing and authorize on to-d doist. So,
+how do we work around that? Well, to-d
+doist also has an API and our
+integration allows agent to access the
+to-doist API. I knew that. So, I said
+you should still use our agent structure
+and file system, but use custom tools
+with to-doist rather than the MCP server
+to connect to the API with our
+integrations. And that prompt actually
+set agent down the right path because I
+noticed it was starting to do stuff that
+differed from what I wanted. So we had
+to had to kind of steer it um in the
+right direction. And that's what working
+with AI is all about, especially if
+we're using more complex or custom
+libraries. So the reason I'm showing you
+this is because failures happen and
+sometimes agents don't do exactly what
+we want. But what I would take from this
+is I'd say, "Oh, this is actually really
+important piece of context. In the
+future, that should actually be in my
+original prompt, right? I would if I was
+going to send this prompt through again,
+I would uh paste this down at the
+bottom. So, um that's really important.
+And now it looks like our uh our our
+agent got triggered. Loaded one skill
+starting to-doist organizer agent prompt
+organizer my to-doist inbox gives
+instructions. The agent uh is saying the
+inbox is empty, which is not correct. Uh
+so we're going to need to figure out
+what happened there. It's possible that
+um Asian already organized my inbox. Uh
+all tasks are already organized. So I
+think it might have triggered once and
+organized the inbox. Uh let's let's take
+a look. Um
+we'll reload to-doist. It is not empty.
+So there's something up with the API
+calls. We're going to debug this. We're
+going to walk through it. Let's see
+what's going on. Uh tasks in inbox zero.
+That's crazy. And so I was actually
+about to start debugging this, but uh
+the architect which is one of our uh you
+know kind of orchestrator agents found a
+bug that inbox detection was actually
+using the prong property. It's a fun
+part about replet. It's always nice when
+you see kind of AI course correct and
+start to fix itself. So it's going to um
+restart the workflow with the proper uh
+API response format and let's see what
+we get now. Um, so we see our prompt
+going through that orchestrator agent.
+Um, and then I would expect a response
+um from the to-d doist server. But let's
+see. Okay, so our agent ran and now what
+I'm seeing is okay, I've successfully
+organized your to-doist inbox. Um,
+create cloud agent SDK tutorial video.
+Uh, it uh made a change to the title. It
+added labels, computer, and next, which
+actually um is in line with uh my system
+for organizing tasks. It also edited
+these other tasks um which is great. So,
+it looks like our agent is working. And
+if I go over to our tasks here, we can
+see that these were updated. Next
+computer, next computer, made some other
+changes. The thing that I wanted though
+was I wanted agent to apply projects to
+these. So, if you like go into a task,
+um, if I click into this, I can add a
+project and move it out of my inbox. So,
+I really want agent or I want this agent
+to access a list of my projects and then
+move these tasks to the the right
+project. I just have to be more clear
+with my prompts. That's what we're
+learning here. So, the way we fix this
+is we go back to our to-doist
+integration. I actually want my agent to
+also fetch a list of projects and assign
+a relevant relevant project to each item
+in my inbox, thus clearing the inbox.
+Feel like when I'm building with AI, I
+start saying things like thus, which I
+would never say in real life, but here
+we are. Um, so again, as I'm building
+these things, I'm making mental notes
+about the
+prompts that I had to send through to
+the agent. Hey, actually, you know, like
+I wasn't descriptive enough because um,
+Replet didn't understand that the agent
+should do this thing. You know, I wasn't
+descriptive enough because um, Replet
+didn't understand we needed to use the
+API instead of the MCP server and I kind
+of knew that honestly. And so, you know,
+I think this is taking the perspective
+of ownership. If the agent doesn't do
+what I wanted it to do, it's actually my
+problem. Like, what should I have done
+better to get the agent to do the things
+I want it to do? As it would turn out,
+the answer is being more descriptive um
+and supplying more context, more
+information about exactly what I want to
+achieve. And so, we got there in the
+end. Eventually, we got to this thing
+that we wanted. But what I learned along
+the way is that next time I have to
+include details like this upfront for
+the next project that I build and I have
+to understand what I'm doing maybe a
+little bit more. I have to be a bit more
+granular on the tools that we're using.
+So that's that's how I kind of grow as a
+a prompt engineer or someone building
+apps with AI and teaching you all to
+build apps with AI. So you can take
+those lessons away as well. So agent
+actually wrapped up all of that work and
+the workflow ran. It actually got
+triggered twice. So surely look here uh
+where it says final result. This is a
+duplicate run and there are no tasks in
+the inbox. Now if I go over to-d doist
+um I would expect that there are no
+tasks in the inbox. So agent organized
+those things um and if I wanted to look
+for say the claw agent SDK um tutorial
+video we can see now it is in content
+production. So it's correctly organized
+in the right board. Um, and that would
+be surfaced at the relevant date as a
+reminder. So, we built the app. We
+verified it worked, which is important.
+Now, what we'd want to do is deploy
+this, and we'd want it to run every day.
+So, we can come over to the publish tab,
+and you'll see Reb's recommending we
+just deploy this as a scheduled
+deployment. Um, I typed in 5:00 p.m. PST
+for the schedule description. That's
+just going to make sure that the app
+runs on that schedule. We have a run
+command. It's just going to run um the
+main entry point file that's already
+configured for you. Uh and the
+deployment secrets will use our API key
+that we defined earlier. So we can just
+say publish and just like that app's
+going to be live, right? Which is pretty
+awesome. So every day this would run. It
+would organize my tasks. Now I just
+don't have to worry about it. What were
+the patterns that we used? Well, we used
+the cloud agent SDK. We used ripplets
+integrations uh for easier
+authentication. Um some things we didn't
+do that you could do um use databases
+for persistent data storage. So if you
+want an agent with memory, it like ran
+so often and updated a database. If you
+want an agent, uh that could store data
+in object storage, similar type of
+thing. It could store files, it could
+store all of these things. Replet has
+all the primitives to be able to build
+these tools and you can take advantage
+of them with replet agent because replet
+agent knows how to integrate these
+things. So, that was end to end how to
+build a to-doist integration and along
+the way we did some debugging and we
+bumped into some rough edges and we
+figured stuff out. That's part of vibe
+coding. Um, but hopefully in this video
+you learned about what the cloud agent
+SDK is and you got a very simple way to
+deploy that agent. Um, so yeah, I'm
+Matt. This has been an intro to the
+cloud agent SDK and how you can build
+and deploy cloud agent SDK apps using
+Replet in maybe 20 or 30 minutes uh for
+some pretty cool automations. But until
+next time, peace.

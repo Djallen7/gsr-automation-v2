@@ -1,0 +1,202 @@
+[music]
+>> In this video, we're going to walk
+through how to set up the Stream Deck
+plugin for ProPresenter, what it is, how
+to get it configured, and how teams are
+using it to simplify their production
+workflow. The Stream Deck is a control
+surface from Elgato, a programmable deck
+of buttons you can customize to trigger
+actions on your computer with a single
+press. As you can see on Elgato's
+website, there is a wide variety of
+physical controllers as well as an app
+version for mobile devices. The
+ProPresenter Stream Deck plugin connects
+those buttons directly to ProPresenter,
+giving you one-touch control over
+slides, clear actions, macros, [music]
+props, camera inputs, and more, all
+without touching your keyboard or
+clicking inside the software. This is
+especially useful in volunteer
+environments where you want to give
+someone a simple physical interface for
+specific tasks without requiring them to
+navigate ProPresenter directly. Before
+getting started, there are a few
+requirements. You'll need an Elgato
+Stream Deck device, the Stream Deck
+desktop software installed on your
+computer, and the ProPresenter Stream
+Deck plugin. On the ProPresenter side,
+this feature requires ProPresenter 7.9
+or later with an active ProPresenter
+subscription. I also wanted to note that
+while there are third-party solutions
+for controlling ProPresenter via Stream
+Deck, like Bitfocus' Companion, we're
+only covering the official ProPresenter
+plugin for this tutorial. Let's start
+with getting everything installed.
+First, [music]
+download and install the Stream Deck
+software from elgato.com.
+>> [music]
+>> Once installed, open the application.
+Each square in the interface represents
+one physical button on your Stream Deck.
+>> What you see on screen is exactly what
+will appear on your device. You can also
+add multiple pages to your deck, which
+lets you organize different sets of
+buttons and navigate between them as
+needed. Next, install the ProPresenter
+plugin. Click the Elgato Marketplace
+button in the top right corner of the
+Stream Deck window.
+>> This will open a web browser.
+In the search field, type ProPresenter.
+Select the ProPresenter plugin, then
+click on get to download and install it.
+Now, let's create a profile from
+scratch. Click profiles at the top of
+the Stream Deck software and choose
+>> edit profiles. Click the plus button to
+create a new profile. Give it a name,
+ProPresenter works well, and link it to
+the ProPresenter application. Linking a
+profile to an application means your
+Stream Deck will automatically switch to
+this profile whenever ProPresenter is
+the active window on your computer. Once
+that's set up, close the profile editor.
+Before adding buttons, it's worth taking
+a moment to clean up the action list on
+the right side of the screen. By
+default, the Stream Deck software shows
+every available action category. If
+[music] you're primarily using this for
+ProPresenter, you can simplify the view
+by clicking the manage actions icon and
+unchecking the categories you don't
+need.
+This keeps the list focused and makes it
+much easier to find what you're looking
+for.
+If you ever need something you removed,
+just go back and re-enable [music] it.
+Now, let's add some buttons. To add a
+button, find the action you want in the
+panel on the right and [music] drag it
+onto one of the empty squares on the
+left. When you drop an action onto a
+button, it automatically populates with
+an icon and is ready to configure. Let's
+walk through the customization options.
+You can change the button's icon by
+clicking [music] the arrow next to the
+image field.
+From there, you can upload a custom
+image,
+>> use the Stream Deck icon creator online,
+or browse the built-in icon library,
+which includes a wide range of
+ready-to-use icons.
+You can give the button a title,
+something like next [music] or clear,
+and adjust the text size, position,
+color, and font to match whatever layout
+works best for your setup.
+You can also set the background color of
+the button itself. Color-coding is a
+simple, but effective way to make your
+deck more intuitive at a glance. For
+example, using green for navigation
+buttons and red for for functions, so
+they stand out and don't get pressed
+accidentally.
+For slide navigation buttons, the action
+itself determines the direction.
+Selecting next advances to the next
+slide, and selecting previous goes back.
+The icon will update automatically to
+reflect your choice.
+Once your buttons are configured, you
+need to connect the Stream Deck to
+ProPresenter. Click on any button and
+look at the connection field in the
+configuration panel below.
+You'll see a message that says it's
+unable to communicate with ProPresenter.
+Click add new connection. You'll be
+prompted to enter ProPresenter's IP
+address and port number.
+To find these, open ProPresenter and go
+to settings, then navigate to the
+network page.
+Your IP address and port numbers are
+listed there.
+Copy both values into the Stream Deck
+connection fields and click continue.
+Once connected, you'll see a
+confirmation message on each button,
+indicating it's now linked to
+ProPresenter. [music]
+This connection persists across
+sessions, so you typically only need to
+set it up once per machine. Now, let's
+talk about what you can actually do with
+this setup. The most common buttons
+teams configure are next slide, previous
+slide, and clear. The core navigation
+controls you'd reach for most often
+during service, but the plugin goes well
+beyond basic navigation.
+>> You can set up buttons for slide groups,
+which lets you jump directly to a
+specific section of a song, a verse, a
+chorus, [music]
+a bridge without having to scroll
+through the presentation manually.
+You can create buttons for macros, which
+means [music] any automated sequence
+you've built inside ProPresenter can be
+triggered with a single physical button.
+You can also trigger props directly from
+the deck, making [music] it easy to
+bring a lower third or overlay on and
+off screen without interacting with
+ProPresenter at all.
+You can even control camera inputs. If
+you have video inputs configured in
+ProPresenter, you can switch between
+them from the Stream Deck. [music] You
+can also manage your live stream capture
+directly, starting and stopping your
+stream from a physical button, rather
+than navigating through the software
+menus. Beyond ProPresenter specific
+actions, the Stream Deck also supports
+system level controls. Adding volume up,
+volume down, [music]
+and mute buttons give your operator
+quick audio controls during rehearsals
+and transitions directly from the same
+device they're using to run the
+presentation. When thinking about how to
+set up your Stream Deck, the most useful
+question to ask is, what actions does
+your operator reach for most often, and
+what would benefit from a dedicated
+physical button? Whether that's a clear
+for a first-time volunteer, a set of
+song group buttons for a worship leader,
+or a full production panel for an
+experienced operator, the Stream Deck is
+flexible enough to support all of those
+different workflows. [music] For more
+ProPresenter training, check out the
+other tutorials in this series. Thanks
+for watching, and we'll see you in the
+[music] next video.

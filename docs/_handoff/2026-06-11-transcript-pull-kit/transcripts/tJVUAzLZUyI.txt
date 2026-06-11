@@ -1,0 +1,410 @@
+Claude Code just got a new
+update called Agent View.
+At first glance, this
+might seem very simple,
+but it can actually change the way that
+you use Claude Code going forward.
+You see, up until now,
+if you wanted to run multiple Claude Code
+agents at the same time,
+you would actually have to open up
+multiple terminal sessions.
+But with Agent View, we can actually
+dispatch multiple Claude Code sessions,
+and I can see all of my currently running
+sessions at first glance.
+It is a very cool stuff that
+we can do with this as well.
+So in this session, I asked
+Claude just to create a new logo
+for my application,
+and it's even asking
+me terrifying questions.
+So I'll just say yes to all of those.
+Then I can simply press the back arrow to
+go back to all of my sessions,
+and I can even run
+skills in those sessions.
+So in this specific session,
+I'm running a complete security audit and
+fixing any security vulnerabilities.
+Again, if I press the back arrow,
+I can see all my
+sessions again at first glance.
+And in this specific session, I'm
+actually running the loop command.
+So this command will
+run every five minutes,
+identify one meaningful
+improvement to make the app,
+make the change, create a commit,
+and it will keep doing
+that every five minutes.
+So we can do some really cool and fun
+stuff with Agent View,
+and in this video, I'll show
+you how you can use it too.
+Now stick around until the end,
+and I'll show you a really cool workflow
+for using Agent View with work trees.
+Agent View work on
+all operating systems.
+All you need to do is update your Cloud
+Code instance to the latest version.
+So simply grab this command if you are
+running Mac or Linux,
+or running WSL in Windows.
+Since I'm running Windows, I'm simply
+going to grab this command,
+and in the terminal,
+I'll simply run that command
+to update Claude Code
+to the latest version.
+Usually, we start Cloud
+with the Cloud command, right?
+Or you might even tag
+"Dangerlessly skip permissions",
+but in order to use the Agent View,
+what you need to do is run
+the command "Cloud agents".
+This will open this dispatcher window.
+Now if you've ever used
+Cloud Desktop with CodeWork,
+or even Claude Code via the desktop app,
+you will be familiar with dispatcher.
+You can give your agent any instruction,
+and it will kick off a sub-agent or a
+background agent to perform that task.
+So we could say something like, "Please
+update the logo with a suitable emoji".
+You know, just
+something very simple like that.
+This agent, so the
+station that we're in here,
+is not going to try and
+implement this change itself.
+Instead, it's creating a new Claude Code
+station behind the scenes,
+and that station is making the change.
+Now, how do we view what's going on in
+that background station?
+It's very easy.
+We can use our mouse to
+simply click on the station,
+and to go back to the dispatcher, we can
+press the back arrow.
+Now if you don't want
+to use your mouse button,
+all you have to do is
+press the up and down arrows,
+and you can navigate
+these sessions as well.
+So again, we just press Enter to go into
+that specific station,
+or press back to go
+back to the dispatcher.
+Now getting the dispatcher to kick off
+these background agents
+is one way to use Agent View.
+Another way to create
+a background station
+is to simply open up
+a new terminal window,
+and then to run "Claud Bg",
+and let's just give any prompt, like,
+"Update the readme file".
+And this time, "Claud" didn't open in
+this terminal window, right?
+All it did was actually
+create a new background station.
+We can close the terminal window and go
+back to our dispatcher,
+and now we can see this new
+station in the dispatcher.
+So we can simply
+navigate to that station,
+and this is asking us
+clarifying questions.
+So that's perfectly fine.
+Let's just select all of
+these options and press Submit.
+Now just press the back arrow
+to go back to the dispatcher.
+How convenient is that?
+And by the way, one of
+these sessions just completed,
+so it's moved that station
+to the completed section.
+Now we can actually show
+and hide these sections,
+so be by clicking on
+these little headlines.
+So if you've got way too many, you know,
+sessions in the completed
+state and it's feeling cluttered,
+you can definitely
+collapse those as well.
+You can also run these background
+sessions in YOLO mode.
+So at the moment, when you start a new
+station using the dispatcher,
+it actually uses the
+default permissions mode
+that you've got in this project.
+So that's most likely a permission mode
+that's going to keep
+asking your permission
+to make file changes or run commands.
+Now what we could also do if we wanted to
+set the permissions mode
+is we could run Claude.
+We could set our
+permissions mode like so,
+like dangerous is key permissions,
+followed by the background flag.
+And let's just say something like add the
+legal and privacy pages.
+All right, let's send this.
+We can now actually close the session and
+again back in the dispatcher,
+we can now view this new session.
+This is indeed running in
+bypass permissions mode.
+Let's just go back to the update read me.
+And because we didn't set the permissions
+mode on this session,
+this is asking our permission.
+So let's just say yes.
+And you can see at the bottom, there's
+actually no permission mode sent.
+So this is always going
+to ask our permissions.
+Now we can change the permission mode at
+any time by pressing shift and tab.
+And that's now
+switched to accept all edits.
+So Claude's not going to ask our
+permission all the time.
+But let's say we've
+got very specific skills
+for performing things
+like security audits.
+Like in this project, I've actually got
+this security scanner skill.
+So what I can simply do is run the skill
+security scanner in agent view.
+And this is going to kick
+off our background agent
+and it's going to run
+the security scanner skill.
+Now, of course, I don't want this to ask
+my permission every single time.
+So we can change the mode to something
+like auto mode or auto accept edits.
+We can even run things
+like the loop or goal command.
+So a very funny use case that I like to
+use is the loop command
+where I can say like every 10 minutes,
+I want you to identify one meaningful
+improvement that you
+can make to this app,
+whether that's a bug fix, a new feature,
+a UI improvement, whatever else.
+Identify change, make
+it and create a commit.
+This is a very fun command.
+So we can run this.
+And what this is going to do
+is actually create a crown job
+that will run every 10
+minutes on a schedule
+and will automatically
+improve our app for us.
+So there we go.
+It's created this crown job and now it's
+working through these changes.
+You can also run
+something like the goal command.
+So goal is a brand new
+command in Claude code.
+This is kind of like the Ralph command.
+So you can give it a very complex task
+and Claude is going to keep running
+through the task until it's done,
+even if it takes hours
+or days to get there.
+So we could add
+something complicated like
+add a built in issue tracking feature
+into this application.
+So if users running into
+any bugs in the system,
+whether image generation failed or
+there's some kind of UI bug,
+users should be able to
+easily log those issues
+and attach things like screenshots.
+Beautiful.
+Now, this is a stupidly complex task.
+There's really no way that we can just
+implement this in a single session.
+This is going to run until this complex
+change has been completed.
+Right now we know how to
+create sessions using agent view.
+But how do we stop sessions?
+Because I do want to point out that even
+if we kill this terminal window,
+like I've got nothing open at the moment,
+those sessions are actually
+still running in the background.
+If I open up agents view again, those
+sessions are still cooking.
+So the way that you stop these sessions
+is to just go back to the agent view,
+then hold control and press X and that
+will stop these sessions.
+In fact, they will all move to the
+completed tab with the status stopped.
+Now, if you ever want to
+resume one of these sessions,
+so maybe you stopped them by accident,
+you can do that as well.
+So we can actually
+just open up one of these
+and we can just tell the agent to resume.
+That session was moved
+back into the working tab.
+Another thing you need to know about
+agent view is that you can view
+all of the different projects and
+sessions in the single view.
+Let me show you. I've
+had two projects here.
+I've had get images and I just created a
+new blank project called AI to do.
+So let me show you this.
+In get images, let's just do something
+like change the
+default mode to dark mode.
+Then in the to do app,
+let's run cloud agents as well.
+And look at that, we can
+actually view the session
+that's currently
+running in the get images app.
+So this means you do not have to open
+agent view within the
+project folder itself.
+You can run it anywhere on your machine
+and easily jump between all your
+different Claude Code sessions
+across all of your
+different work spaces and projects.
+But let me show you how you can use agent
+view with Git worktrees.
+This is a really cool feature.
+For this, let's actually
+start with a blank project.
+So then I'll run cloud with
+dangerous skip permissions,
+dash dash BG, and it's a,
+"Please scaffold a very simple to do app
+using react and Vite.
+I will be the only user and you can store
+the to dos in local storage.
+Keep the app as simple as possible."
+Right, let's send this.
+Right now we can actually
+just open up cloud agents.
+And of course now we can see our agent
+working away on scaffolding
+our very simple react app.
+While cloud is cooking away, if you are
+enjoying this video,
+please hit the like button
+and subscribe to my channel.
+We're almost at a hundred thousand
+subscribers, which feels unreal to me.
+I'm so grateful for
+each and every one of you.
+Even if you're not subscribed, I
+appreciate you
+spending this time with me.
+Thank you.
+Let's just run the dev server to see what
+this actually looks like.
+And sure, this is a really simple to do
+app, nothing fancy whatsoever.
+So what we can do now is use work trees
+to create different
+variations of the same app.
+Then we can choose one that we like and
+use that going forward.
+And using agent view
+makes that really easy.
+So to assist with this experiment, I
+asked strategy PD to create three
+different variations of a design.
+So let's actually grab this problem.
+So each of these are just simply
+describing a different design,
+but it is also providing an instruction
+to create an isolated work tree.
+So let's copy this prompt
+and let's paste in that prompt.
+Then I'm going to grab the second one,
+paste that in there as well.
+Just grab the third prompt
+and pass it to Claude as well.
+And look how easy that was.
+We now have three Claude guide sessions
+that we can easily
+access from this dashboard.
+I'm going to add one more
+command to each of these.
+I'm just going to say, please run the dev
+server after you're done.
+Use a unique port and
+it's just copy this command.
+I'll send it.
+Let's do the same for this one.
+And I'll do the same thing for this guy.
+All right, the first one just completed.
+So what we can do now
+is let's open its URL.
+All right, so that is what
+that design would look like.
+So yes, these designs
+went all that great, right?
+We didn't really install any like
+component libraries or
+any front end design skills.
+But the real use case for this would be
+just do something like,
+you know, maybe you've
+got one work tree that uses a stitch
+design and something else
+that uses the Claude code
+design tool.
+Maybe another one that uses
+the front end design skill.
+You know, you can install different tools
+to try out different ideas.
+So all three of these just completed.
+So let's actually open this URL as well.
+All right, this gives us
+the scan band type of design.
+And for the third one, we've got this
+mobile style design.
+So again, I would probably use skills and
+different like
+frameworks to test this out
+for real.
+But I think you do get the idea.
+I hope you found this video informative.
+If you did, hit that like button and
+leave me a comment down below.
+I read all comments.
+Now go and build something lekker.

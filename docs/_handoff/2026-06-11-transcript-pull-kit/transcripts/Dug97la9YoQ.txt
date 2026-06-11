@@ -1,0 +1,557 @@
+In the last few weeks, I received over
+and over the same question, which was
+should I use n8n or cloud code, or
+should I ditch both tools and directly
+use open claw, and in general, is it
+still worth learning n8n in 2026? And I
+can completely understand that question
+because there's a lot of content like
+n8n versus cloud code, you should ditch
+n8n, stop learning it. So, a lot of
+videos that tell you that you shouldn't
+use it anymore or replace it directly
+with open claw, cloud code, or vibe
+code, something with anti-gravity
+together with cloud code. But, the
+problem is that most of them don't
+understand that these tools are used for
+different use cases. So, first of all,
+n8n is an orchestration tool, and cloud
+code is an agent coding assistant. They
+do both completely different things, and
+I highly recommend to take your time
+when you do the decision between n8n or
+cloud code for specific use case,
+because if you do it wrongly, then most
+likely you will either end up
+over-engineering something that could be
+a simple trigger with maybe like five
+nodes, or you're trying to create a
+really, really complex workflow directly
+in n8n, which will become definitely a
+nightmare as soon as you have to
+maintain it. And during this video, I
+will exactly show you where I use n8n
+and where I also use cloud code, and I
+will also give you kind of a guideline
+which will help you to decide which tool
+might be the best fit for your use case.
+And before we have a look into the
+framework, let's quickly talk about what
+n8n actually is and also cloud code. And
+for that, let's have a look first into
+n8n workflow. The most important concept
+is that n8n is an orchestration tool, so
+an automation platform where you can
+build things by using drag and drop. So,
+you can add a trigger, schedule trigger,
+you can also add a webhook. So, it's
+first of all a visual tool, and
+primarily built for building
+automations. Of course, you can also use
+AI, but the core capabilities of n8n are
+definitely that you have a lot of nodes.
+As an example, let's say you want to
+work with Google Sheets or for instance
+slides, let's say BigQuery. There are
+like a lot of different nodes that
+already do kind of the complex work for
+you because you can simply use them,
+authenticate once and then you have
+directly access to them. So, it's
+definitely a really convenient and nice
+way to use different nodes from
+different services and build an
+automation really fast without getting
+comfortable with all the different REST
+APIs, authentication concepts. And apart
+from that, there are a lot of nodes that
+also make it easy for beginners. So,
+first of all, there's a code node in
+case you want to do something complex,
+but we have nodes for retrieving data,
+we can use variables, we have the Google
+Sheet nodes, we can trigger other
+workflows, so we can chain different
+workflows in a complete system. And in
+case there's not a specific node for
+your service, then you can still use an
+HTTP node and then use for instance
+header off or off two or whatever. So,
+you're like really really flexible. And
+next to all the nodes here, it's also
+really important to mention that first
+of all, you can self-host n8n. So, in
+case you're working with confidential
+data, then you can make sure that the
+data stays on your server, which is
+definitely a plus point for n8n. Apart
+from that, you have also features such
+as the executions, evaluations, you have
+the history, you can easily share your
+workflow with someone else and it's also
+easy to understand because you're not
+looking at code and instead you have
+like a really easy interface where it is
+even for a beginner easy to understand
+what happens even if you don't know what
+exactly is happening in each node. By
+just looking at the workflow, you have
+kind of the idea what it is doing. And
+if you use only code, then for the next
+person it will be quite hard to
+understand what is happening. The last
+thing I would like to mention is also
+really important, that is the fact that
+you can schedule every single workflow
+by using a schedule trigger in a really
+nice and also intuitive way. So, you can
+simply schedule something by using a
+drop down. Let's say you want to run a
+workflow every midnight or every hour,
+every week. So, like really flexible and
+you don't have to take care of setting
+the cron job directly in a server
+because n8n takes already care of that.
+And now let's have a look into Cloud
+Code and for that I have opened Visual
+Studio Code because on the left we have
+the explorer so you can also see some
+folders and files. And of course, we
+have to open up the terminal because
+Cloud Code is a CLI and for that I can
+simply type in cloud and now I have
+already a cloud code session where I
+could use it for instance for generating
+Python code, booking a specific skill.
+As an example, I have the plugins like
+superpowers, I have user skills, but I
+have also based on the domain. So, as
+you can see, I have a domain like
+infographics, lead magnets, newsletter,
+school, social media, thumbnails and so
+forth. And if I want to execute a
+specific skill, let's say I go directly
+into the folder. Let's say I want to
+write a newsletter. Then I can open
+Cloud Code directly in that specific
+domain and again check for the skills
+and here we can see I have also project
+skills which would be draft newsletter.
+So, as you can see, it's not a chatbot,
+it's more kind of an agentic coding and
+also in general assistant that can help
+you really really good and daily tasks.
+And of course, also if you want to
+generate code, but as you can see, it's
+not an automation tool. I don't have
+anything set up for logging, deploying
+it, allocating resource for instance
+somewhere on the cloud or on my home
+server. You really start from scratch
+when developing something. Before we
+have a look into a few n8n workflows,
+but also Cloud Code skills that I am
+using regularly, let's have a quick look
+into the decision framework which will
+help you to decide on when you should
+use n8n or where it might make more
+sense to use Cloud Code. And for that,
+we will start with the left side, so
+when should you use n8n? First of all,
+if we need something that needs to be
+deterministic, so let's say you have a
+automation that needs to run on a daily
+schedule, let's say 7:00 a.m. and you
+want to analyze emails or summarize it,
+then most likely it is better to just do
+it in n8n because this could be a really
+simple automation and you can bring that
+to production quite fast because you
+don't have to take care of the
+deployment, you don't have to secure
+safely the credentials, you don't have
+to write the code, you don't have to
+figure out the rest API from, let's say,
+OpenAI or Profit. So, in this case,
+using Cloud Code for generating the code
+will be definitely over-engineering.
+Another case where I think it is
+definitely better to use n8n is that if
+you just use, for instance, a simple
+call to a large language model because
+you want to summarize something, extract
+specific information from a specific
+content piece, and you also want to use
+it for an automation because it helps
+you to get rid of repetitive tasks, then
+n8n will be definitely the better tool
+because there are a lot of nodes that
+help you to get the job done quickly.
+And also in this case, using Cloud Code
+for generating the complete system might
+be an overkill. The next point is
+regarding schedules and also external
+triggers, so let's say you want to
+trigger a workflow with a webhook, then
+you could do that also easily in n8n and
+the complete infrastructure is already
+available. The same for schedules, so
+you don't have to get familiar with
+setting up a cron job, you can simply
+use the schedule trigger, configure it
+in a drop-down, and then publish the
+workflow. Next to that, there are also
+workflows that are purely data-driven,
+so you don't need any AI at all. I will
+also show you in a bit a workflow where
+exactly that is happening. And n8n is
+actually quite good in working with
+data, so you have a lot of nodes for
+parsing data, filtering data, getting
+data from other services, for instance,
+from Superbase, BigQuery, or any other
+database, and building such an
+automation makes most of the time more
+sense in n8n because you can already
+benefit from the existing
+infrastructure. If you do that with
+Cloud Code, then you have to take care
+of creating the database, deploying it
+somewhere, making sure that the
+performance is good enough, and of
+course, you have to maintain all of
+these things. The next point is
+regarding high-volume execution. So,
+let's say you know that an automation
+needs to run a few thousand times per
+month, then I would highly recommend to
+use n8n because they have already the
+infrastructure, and you can also deploy
+it once for yourself if you decide to
+the self-hosting way. There are also a
+lot of open-source templates in case you
+want to use Redis or in general more
+workers to increase the performance. And
+if you self-host it, then you can also
+execute it quite often without paying
+per execution. And the last point is
+also really important. So, data
+compliance. Let's say you're working
+with confi- dential data, then it is
+really important that you don't take the
+data and then send it, for instance, to
+OpenAI or the servers from Anthropic.
+So, in this case, the solution would be
+to use n8n and then also self-host the
+complete infrastructure, which you could
+theoretically also do by using Cloud
+Code, and then you generate all the
+code. But if you're not familiar with it
+and you don't have the coding
+background, then I wouldn't recommend to
+do it. So, let's come to the part when
+you should use Cloud Code, and I just
+picked three points because for Cloud
+Code, there are a lot of use cases from
+building your own application, creating
+your own skills with your domain
+knowledge, creating custom integrations.
+So, there are a lot of things you can
+do. And in my opinion, the biggest
+strength of Cloud Code is that, first of
+all, you can always add your contact, so
+you have the cloud MD file. You can also
+add the memory files, skills, and so on,
+so you can really customize it, and you
+can use it in a conversational way. So,
+if you have a n8n workflow, then it will
+be executed and then you will have a
+result, but you cannot ask any follow-up
+questions. So, in this case, Cloud Code
+is definitely better. And apart from
+that, I'm also using Cloud Code a lot
+for content creation, research, writing
+content for my websites, and I have to
+say that I also did a lot of workflows
+for content creation, also content
+optimization end-to-end, but Cloud Code
+is way better in doing that because you
+can always ask a follow-up question. You
+can iterate really quickly on your skill
+file, which brings me also to the next
+point. So, if you know that you will
+work frequently on the system and you
+want to extend it, remove something,
+customize it, then I would highly
+recommend to go with Cloud Code. And of
+course, it's also worth mentioning that
+you can also use Cloud Code for a
+generating JSON files, which will be
+then end-to-end workflows. There are
+also a lot of Cloud Code skills in MCP
+servers, and I've tried them. They are,
+I would say, okayish. So, for really
+simple things, it works well, but as
+soon as you want to create a complex
+system, then you burn through all your
+tokens, and all of these workflows are
+usually really buggy, which means if
+you're not comfortable with end-to-end,
+then debugging the workflow that was
+generated by Cloud Code can be So, let's
+have a look into a few end-to-end
+workflows. And for instance, right now
+we are looking at a workflow that I am
+using for indexing sites from my
+website. So, it's really deterministic.
+I have the requirement that I need to
+call an API, so I can simply use an HTTP
+node. And apart from that, it's really
+important that this workflow runs on a
+schedule. And in this example, it does
+not involve any AI. It's pure
+data-driven and also driven by the APIs
+that I used. And in this case, I could
+also use Cloud Code and generate a few
+Python files for sending data to the
+Google Search Console API. But once I
+have the files, then I still have to
+take care of setting up the cron jobs,
+deploying it, making sure that the
+credentials are securely stored, and all
+of that would be in my opinion an
+overkill. So, n8n does the job here,
+it's fine. No reason to migrate it. So,
+I just leave it as it is so it can run
+in the background and I don't have to
+deal with it anymore. Another workflow
+that's also completely data-driven is
+the SEO performance audit workflow. So,
+it gets triggered by a webhook, then it
+gets some data from my websites.
+Eventually, it will take care of
+executing SQL queries for retrieving
+data from BigQuery. And afterwards,
+these code nodes here take care of
+generating dynamic HTML code, which will
+be then sent back. And as an example,
+this is how it looks like. So, it's just
+an HTML file where I have data that is
+directly coming from BigQuery. So, the
+performance data from my website. And of
+course, I could also go ahead and use
+Cloud Code and then create the backend
+for retrieving the data, create the
+frontend, use React, deploy it on a
+server, maybe add some authentication,
+firewall, security infrastructure. So,
+there are a lot of things I have to do
+if I want to do the same with Cloud
+Code. So, in this case, I also don't
+migrate anything. I just leave it as it
+is because it does the job and it is
+also really cost-effective. Another
+great use case for n8n is the rank
+tracker. So, in this case, the
+requirement is to call an API, save the
+data somewhere, and it also needs to be
+run on a schedule. And all of that is
+given by n8n itself. And as you can see,
+it's really easy, just a few nodes. And
+of course, I could also use Cloud Code
+and then for instance, generate a Python
+file, call the API to retrieve the
+search results, and save it somewhere.
+But, I would definitely lose some time
+when it comes to deploying it and also
+maintaining it. So, really similar to
+the other workflows. The last workflow I
+want to share is the AI overview
+backlink scraper. So, it's really
+simple. It just takes data from a Google
+spreadsheet, checks for specific prompts
+the AI overviews, parses the data, and
+then eventually saves all the AI answers
+including all the sites that were used
+for generating the answer. And such a
+workflow is created in like 10-15
+minutes if you know how to do it. And
+publishing it is quite easy, so just
+click on publish and then it's already
+done and it will run on the schedule
+that you configured here. And this also
+a great example where Cloud Code would
+be definitely an overkill because you
+might be able to create really fast this
+logic here, but again, if you have to
+deploy it somewhere, maintain it, or
+maybe do a handover for a colleague,
+then N at N will be the better choice.
+And now let me show you when I use Cloud
+Code. And let's start really simple with
+all the skills that I have so I can show
+you first of all the skills and the
+different domains. So I have like a
+skill for generating infographics. That
+is also the skill that was used for
+generating these images here. Then I
+have also a skill for writing
+newsletters, generating thumbnails, or
+also for instance for publishing content
+directly to my social media accounts for
+instance for Instagram. So as an
+example, the skills that are available
+in the social media domain, so you can
+also have a look into them. And for that
+I have to open Cloud Code and then list
+the skills. So as you can see, we have
+here Instagram carousel, post to
+Instagram, post to TikTok, and also
+start auto DM. And this is how it would
+look like. So this carousel was
+completely generated by AI and also
+published. And of course, if someone
+will comment it, then they will retrieve
+the auto DM. And all of that was
+generated in a conversational way with
+Cloud Code. So I invoked a specific
+skill or just told it to generate a
+carousel for a specific topic, generate
+the images by using Nano Banana 2, and
+eventually also use a third-party tool
+for making sure that we can also publish
+the content and creating all these
+skills with Claude code was quite easy.
+It took me just a few hours, but if I
+have to build something like that in N
+at N, it would be definitely possible,
+but it would be really complex. And as I
+said, if something does not look good,
+then I cannot ask a simple follow-up
+question compared to doing it in Claude
+code. So, I can simply go ahead into the
+session and then let's say invoke the
+skill for creating the carousel and then
+it will ask me for topic. Then I will
+talk about the topic. Then there will be
+some back and forth until we agree on
+something that is good enough for
+posting. Afterwards, I instruct Claude
+code to generate the images. So, this is
+kind of a workflow where a human in the
+loop is required. So, I have to check
+always what did Claude do? Is it good
+enough? And then proceed with the next
+step. To give you another example where
+I use Claude code quite heavily, it is
+in my agentic SEO system. So, as an
+example, here I do have skills for
+analyzing data from the Google Search
+Console, crawling a site, getting data
+from Google Analytics, merging the data
+to get more insights in general,
+creating new content including featured
+images, internal linking, proper
+infographics, plots, and so forth. And
+all of that is done in a conversational
+way with Claude code because if I have
+to create such a system with N at N,
+then it would most likely take weeks or
+even months. And maintaining it would be
+also quite hard. And apart from that, I
+don't have to schedule anything here. Of
+course, I could do that, but most likely
+for the majority of the users it is fine
+enough to use it in a conversational way
+without the requirement of deploying the
+code somewhere in order to run it in
+automated way. The last thing I want to
+show you where I use heavily Claude code
+is for building custom applications. So,
+as an example, I've created my own
+application for analyzing my
+competitors. So, I see exactly what kind
+of content are they publishing. I can
+analyze the comments. If I want to, I
+can also set a bookmark. I have an
+overview of all my competitors and if
+they are performing really well, and if
+they have any content that might be
+viral, I can use that system for
+planning content. I have also a creation
+setup. So, if I want to create a new
+thumbnail, then I have also some systems
+here. I have a thumbnail collection and
+I have also monitoring parts. So, for
+analyzing the channel growth of my own
+YouTube account, but also for my
+competitors. I am monitoring different
+school communities, subreddits, GitHub
+repositories, specific pages,
+newsletters. So, all of that here is
+completely generated by Cloud Code. And
+this would be also a use case where it
+makes only sense to use Cloud Code for
+generating something because N8N would
+not be the right tool since it is an
+automation tool. And I would also not
+recommend to use N8N as a backend for
+your application. Which brings me also
+to the last part of this video, which is
+the basic question such as should I
+still learn N8N? And in my opinion, yes,
+it is still worth learning N8N because
+even if there's at some point another
+automation tool, they will be quite
+similar. And if you are comfortable with
+N8N, then it will be easier for you to
+also learn working with another
+automation tool. Apart from that, I also
+showed you workflows that are really
+simple and where Cloud Code would be an
+overkill first of all because you have
+to pay for the tokens and also take care
+of deploying everything. So, you don't
+have to become a pro in using N8N, but
+if you know the basics, then of course
+you can also use Cloud Code for instance
+for generating JavaScript code. I also
+do the same. Then you can still build
+really valuable automations. And if you
+self-host N8N, then it is also a really
+cost-effective solution. The next
+question was, does it still make sense
+to build workflows in N8N when cloud
+code exists. Definitely so, you should
+still leverage automation tools such as
+N8N or any other orchestration tool that
+does a job for you. And I also received
+quite often the question, is it still
+possible to sell N8N workflows? And yes,
+if you sell an N8N workflow, so the
+business does not care if you have
+Python code, JavaScript code, if you use
+make, Zapier or N8N. Most of the time,
+the only thing that matters is the
+result. So, do they save time? Are they
+able to get rid of an expensive
+subscription for a specific tool? Will
+they be able to maintain it at some
+point by themselves? So, in a nutshell,
+building and also selling workflows
+doesn't matter, as I said, if it is N8N
+or any other tool, is still possible.
+But, don't expect to sell like for 10K
+any workflow where you just put five
+nodes together and you just called for
+instance a large language model from
+OpenAI, that is not realistic. But, the
+business model creating automations for
+businesses is still working. And also,
+if N8N is not that hyped anymore. That's
+it already regarding this video. In case
+you do have any questions or you want to
+have a deep dive into specific topic,
+then let me know and we will hear each
+other in the next video.

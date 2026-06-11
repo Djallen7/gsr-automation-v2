@@ -1,0 +1,673 @@
+Today we're connecting Cloud Code and
+N8n in two completely different ways.
+First, we're going to connect Cloud Code
+to N8n such that Cloud Code is able to
+generate N8n automations from scratch.
+Just imagine you tell it what you want
+to automate and it generates the
+automation for you on the go. Then we're
+going to reverse the roles and we will
+make N8n run Cloud Code within our N8n
+automation. And this is going to take
+your N8n automations to the next level,
+making Cloud Code build work flows for
+you on your behalf is going to help you
+save hours and hours of your time. And
+running Cloud Code inside of N8n is
+going to help you do a lot more with
+Cloud Code and it's going to help you
+take that functionality out of your
+terminal. So here's how we're going to
+achieve it. We're going to make N8n and
+Cloud Code run within the same server.
+As you all know, N8n can be self-hosted,
+meaning most of you might be already
+running it on a server. And hence Cloud
+Code is just going to be an addition to
+it. Now it's not mandatory that you have
+to host them on the same server to make
+this work. It could work otherwise as
+well. But we're going to do this so that
+we can make the N8n to Cloud Code
+connection much simpler. And we're going
+to see both the processes, firstly how
+we can self-host N8n and then how we can
+add Cloud Code to the same server. And
+just to see how both of these are going
+to work, Cloud Code is basically going
+to connect to N8n using its MCP. And
+we're also going to use skills to get
+the best possible output. And the way
+we're going to get Cloud Code inside our
+N8n automation is through SSH, which is
+going to look something like this. Don't
+worry in case you don't understand what
+an MCP is, what is an SSH, how do you
+self-host, what is a server, don't
+worry. I will be explaining everything.
+Just watch this video till the very end.
+Before we move forward, I would like to
+take a quick minute to introduce myself.
+So my name is Yashika Jain and I am an
+AI automation specialist. My goal is to
+use no code as well as low code tools to
+help businesses automate their manual
+tasks and convert them into automated
+systems. I run Automate's AI where in we
+help businesses achieve the same. So, if
+you're looking for a service like that,
+you can check out the link to our
+website in the description. Apart from
+that, I consult one-on-one. So, if you
+want to get on a one-on-one call with
+me, you can check out the link to my
+consultation calendar in the
+description. That's all I had to say
+about myself and thanks to Hostinger for
+sponsoring this video. All right, so
+let's start with the first angle, which
+is using Cloud Code to create N8N
+automations for us. So, to achieve that
+functionality, we're basically going to
+connect Cloud Code with N8N's MCP.
+[music] MCP stands for Model Context
+Protocol. And this MCP is basically for
+Cloud Desktop, Cloud Code, Wind Sharp,
+Cursor, Anti-gravity, etc. to help them
+build N8N workflows for you. So, it
+provides AI assistance like Cloud Code
+comprehensive access to N8N's node
+documentation, properties, operations,
+etc. So, let's begin. We're going to
+start by setting up our server where
+we're going to have our N8N self-hosted
+and we're also going to install Cloud
+Code within that server. So, I'm going
+to be using Hostinger's VPS, which
+basically lets you self-host N8N in one
+click. They don't have a cap on the
+number of workflows you can set up and
+how many times you can run it. It's
+basically unlimited and it has all the
+features that a normal cloud plan
+provides you with. And the main feature
+that we're looking for is N8N's MCP,
+which is readily available in any
+self-hosted N8N instance. So, you'll
+find the link to this page in the
+description and if you scroll down, you
+will be able to see that they provide
+very affordable plans when it comes to
+VPS. So, I'll recommend going with the
+KVM 2 plan. It's not only going to help
+us self-host N8N, it will also help us
+access Cloud Code. And you can also
+access other platforms and applications
+on the same VPS. So, this one is coming
+with two CPU cores, 8GB RAM and 100GB
+NVMe disk space. So, here you can select
+for how long you would like to get the
+VPS for. You can choose if you'd like to
+get daily auto backup for your data and
+then furthermore choose a server
+location which is the closest to you.
+For the operating system, make sure Any
+Ten is selected so that we're easily
+able to deploy it, and you can use the
+coupon code Yashica20 to get a flat 20%
+off on your cart value if you're going
+either with the 12-months plan or the
+24-months plan. This coupon code is
+going to be valid till the end of March
+2026. So, now you can continue with the
+purchase, and let me first show you how
+you can set up Any Ten on this VPS. So,
+once the purchase is completed, you will
+land right here. All you have to do is
+go to the VPS section. There you will
+see the KVM 2 VPS we just now bought,
+and all you have to do is click on the
+setup button. Then select the server
+location which is the closest to you,
+and click on next. Then we have to
+choose an operating system, so I'm just
+going to search for Any Ten, and I will
+select the first option. Let's click on
+select. Then you have to create a root
+password which you will use to log in
+into your VPS. So, just create a
+password, and make sure to store it
+somewhere. Make sure this [music] is
+checked, and click on finish.
+Okay, so it has been completed, and now
+let's click on manage VPS.
+And as you can see, our server is live.
+Let's click on manage app now, and there
+you go. We can set up our account and
+get started. So, create an account, and
+then you will land directly onto your
+Any Ten dashboard. Basically, your
+self-hosted Any Ten dashboard. All
+right, so that was our Any Ten setup.
+Now, let's set up Cloud Code on the same
+VPS. So, I want you to go back to your
+VPS, and click on manage, which is going
+to take you to this particular page, and
+now I want you to click on terminal. So,
+Cloud Code is basically a CLI. It's a
+command line interface which can be only
+accessed through terminals. All right,
+so I don't want you to get scared by
+seeing this. I'm going to show you
+everything in a very easy manner, and
+any commands that I use will be
+available for you to copy-paste. You can
+just look for them in the description.
+So, I want you to search for Cloud Code,
+and go to this particular link, which is
+going to take you to Claude Code's
+official website. Here, you will spot
+this particular command. You just have
+to copy it, come back to the terminal,
+and paste it. And this is going to
+install Claude Code for you. Just give
+it a few minutes, [music] and Claude
+Code has been successfully installed.
+Then, just copy this particular command
+that it would show on your screen, and
+run that right here. Now, if you simply
+type Claude, it is going to start Claude
+Code for you. All right. So, let's
+choose the dark mode here. Now, here you
+have an option to either continue with
+your Claude account with subscription,
+or you can go with your API account. I'm
+going to go with the subscription one.
+And by the way, you can use Claude Code
+at multiple places. For example, if you
+have already used it within VS Code,
+that is fine. You can still use it here.
+All right. So, let's copy this URL.
+Let's paste it in a new tab, and let's
+authorize it. It's going to give you a
+token. Just copy it, and then paste it
+back here, and hit enter. All right.
+We're all good. So, just [music] do
+enter, enter, and now you can send
+Claude Code a message, and it should be
+able to reply. So, n8n setup, Claude
+Code setup. Now, it's time to connect
+the n8n MCP with our Claude Code. As I
+said, it is going to help Claude Code
+build n8n workflows on our behalf. So,
+for this one, just exit out of Claude
+Code. Now, we have to basically download
+Node.js, so that we are able to access
+the MCP server. So, just paste this
+command. And any command I use will be
+available for copy pasting, as I said.
+Look for them in the description,
+>> [music]
+>> and that should install Node.js for us.
+That is done. Now, we're going to
+connect the n8n MCP. So, for that, we
+have this particular command, which is
+Claude MCP add n8n-mcp. [music] Then,
+we're giving the MCP mode, the log
+level. Then, we have disable console
+output, which is set as true. Then, we
+have the n8n API URL. So, for that, you
+will have to go back to n8n, and just
+copy the URL that you are seeing at the
+top. Just make sure you're not copying
+{slash} home {slash} workflows. Just
+copy the base URL. For me, it is https
+n8n.srv then this number {dot} hstgr
+which is hosting {dot} cloud. Next up,
+we have to add our n8n API key. So, just
+go to n8n API and then create a new API
+key. So, let's call it Claude code. Then
+make sure it doesn't expire, otherwise
+it will stop working. And we are going
+to select all the scopes and click on
+save. That should give you an API key.
+Then we're going to come here. We're
+going to get rid of the placeholder and
+replace it with the API. All right, once
+you're all set, just hit enter. And as
+you can see, we have successfully added
+the n8n MCP. So, now if you go back to
+Claude by typing Claude, enter, and you
+just type in MCP with a forward slash,
+it will show the local MCP which is
+n8n-mcp.
+All right, so let's escape this. So, so
+far what we've done is we have given
+Claude code access to our n8n account.
+Meaning it can now look into our n8n
+account, it can create workflows, update
+workflows, etc. But we're not going to
+stop there. We are going to add n8n
+skills to our Claude code so that it can
+create exceptionally good n8n workflows.
+So, I did a small experiment. I tried
+creating a workflow without a skill and
+then using a skill. And the results were
+quite different. This is the one that I
+created without using the skill. By the
+way, what are skills? Skills are
+extended instructions that improve
+Claude code. This is the one that I
+generated without using the skill and as
+you can see the perplexity node is
+missing. And again, this one also
+doesn't make sense to me. I mean, why do
+you even need that? And I mean, okay, it
+was mediocre. But after I did the skill,
+it generated the same workflow and this
+is exactly how I would have set up that
+particular workflow. So, it has
+everything properly configured. In the
+Perplexity one, it has done the
+prompting as well on our behalf. And the
+Telegram one also looks fine. So, this
+one contains seven complimentary Claude
+Code skills that will teach our AI
+assistant how to build production-ready
+n8n workflow. So, you can go through the
+skills if you want to. These are the two
+skills that I find the most helpful and
+the ones that we will be using most of
+the time. So, to give Claude Code access
+to that skill access to that extra
+capability, we are going to run this
+particular command but within Claude
+Code. Okay, not outside of it. So, it's
+basically {slash} plugin. And it's going
+to add this particular skill for us. So,
+let's hit enter. And that is done. And
+lastly, we are going to do plugin
+install. And that is going to show all
+the different skills that we have. Now,
+I want you to go to the very bottom of
+this list and you will spot n8n MCP
+skills and then [music] hit enter. You
+can choose if you want to install it for
+yourself, for all the collaborators,
+etc. I'm going to go with the first one.
+And that skill has been installed for
+us. Now, if you search for it right now,
+you won't find it. So, just do an exit
+out of this. Okay, now type Claude
+again. It's basically like a refresh.
+And now, if you do forward {slash} and
+you type n8n, you will see all the
+different skills. So, I'm going to go
+with the n8n workflow patterns skill.
+And here, I'm going to describe the n8n
+workflow or the n8n automation that I
+want to create. And then, it's going to
+go ahead and create it for us and it
+would be directly accessible through our
+n8n instance. So, let's start with a
+very basic one. So, I simply told it
+that create an n8n automation that runs
+every Monday, meaning it runs every
+week, uses Perplexity to search for the
+top AI headlines and gives me a summary
+on Telegram. Now, I know it's very, very
+simple and it's the same example I
+showed you. But we're doing this to make
+sure everything is working fine, the MCP
+connection, the skills and all. And you
+don't have to stress a lot on your
+prompt. Just think of Claude code as
+your best friend. Just tell it whatever
+and don't worry about the grammar, etc.
+Okay? So, let's hit send. Now, during
+this process, it's going to ask you for
+a couple of permissions. So, make sure
+you give it the permissions as you go.
+And that is because we're not using the
+dangerously skip permissions mode as of
+now. So, as you can see, it is searching
+for the nodes. It is, you know, getting
+the node information. And, you know,
+getting all the pieces of the puzzle so
+that we have the final automation
+correctly set up. All right, so this is
+the final command, which is going to
+actually create the workflow. And then,
+here are some details. So, let's
+proceed. So, the workflow has been
+created. It is validating it. All right,
+so the workflow has been created. Here's
+the ID of the workflow as well. And
+then, it is also giving you the steps to
+connect your Perplexity, you know, API
+keys, your Telegram credentials, and
+setting up the time zone, etc. And once
+you have connected your accounts, you
+can just activate it and make it go
+live. So, [music] let's go back to n8n.
+Let us refresh our n8n instance. And
+this is the one it has created just now.
+These were the ones I did previously.
+So, this is the latest one. Let's click
+on it. And yeah, looks good. So, every
+Monday at 9:00 a.m. Yes. Okay. It
+searches the AI headlines. By the way,
+it also renamed the nodes so that it's
+easier to understand. And here we have
+the prompt for the same, meaning we
+don't have to prompt it ourselves. And
+then, it sends it over on Telegram. All
+good. So, now all we have to do is
+connect our Perplexity and Telegram
+accounts, and it should be good to go.
+All right, so this was a basic one. Now,
+let's generate a fairly complex
+automation that would take someone, you
+know, about 1 hour to 2 hours to, you
+know, build manually. So, let's go ahead
+and do that. So, just to give you an
+example, this is one of the n8n
+workflows that I had set up about a few
+months ago. I also have a video on this
+one. So, this basically helps you
+generate blog posts as well as
+newsletters, and these are not generic
+ones. It does the research. It, you
+know, organizes everything, polishes
+everything, and then generates it, and
+emails them to you. So, let's try and
+generate this one from scratch using
+Cloud Code. All right, so here's my
+prompt where we're basically just
+telling it what we want. We're not
+telling it that you use this JSON
+node, you use that node. No. We're just
+telling it what I would like to get at
+the end of the day. I don't care what
+nodes you use, what functionality you
+use. So, I've told it, "Build me an n8n
+workflow called Ever Your AI Writer." It
+starts with a form where I would like to
+fill out these these details. Once I
+submit, it should run two things at the
+same time. One that creates a blog post,
+and another that creates a newsletter.
+For the blog, I want three AI agents
+working one after the other. The first
+one for research, which is going to use
+the Serp API to basically search the
+web, and it's going to get these many
+details. Then, it should go section by
+section to the content generation agent,
+and there I'm telling it a little bit
+about my tone that I don't want robotic
+AI fluff. I want it to, you know, use
+contractions, tell stories, throw in
+analogies, etc. Once all the sections
+are done, they're combined, and they're
+sent to the final agent, the polish and
+finalization agent, which basically
+removes all the AI cheesy words, and it
+also handles SEO, making it, you know,
+sound natural. Then, the newsletter
+pipeline also follows the same pattern.
+And I'm telling it a little bit about,
+you know, the subject line of the
+newsletter, the preview text, etc. And
+lastly, once everything is done, convert
+the content to HTML, wrap it in a clean
+styled template, and upload it to Google
+Drive as a Google Doc, and and send me
+an email with the same. So, based on
+this, let's see what it comes up with.
+So, again, we're going to invoke the
+same skill, which is Enaden workflow
+patterns, and I'm going to paste the
+prompt here. And I will give you access
+to the prompt so that you can also test
+the same prompt and see the output. And
+by the way, if you have any idea in
+mind, you can also drop it inside Claude
+or ChatGPT, and it can help you write
+the [music] end prompt in case you don't
+want to write the whole thing. All
+right, so we're all good here. So, let's
+send it, and let's see what it comes up
+with. All right, so it's done, and
+here's the workflow URL. So, let's copy
+this, let's paste it in the new tab, and
+this is what it came up with. So, agent
+number one, two, and three, [music]
+agent number one, two, and three here as
+well. And then this is the HTML building
+part, which is nice. And finally, the
+Google Drive and the Gmail. Let's have a
+look at the form. So, oh, wow, we have
+all the questions in there with the
+placeholders. That is impressive. So, if
+I click on execute, this is the form.
+Oh, I love this. Okay, so 10 on 10 for
+the efforts. So, let's have a look at
+the blog research and planning one.
+Okay, so it put the entire prompt in the
+user message, which is fine, not a deal
+breaker. So, this is more about, you
+know, what all things were given in the
+form, and then do four web searches.
+Okay. And it has also set up an HTTP
+request to basically, you know, connect
+to Serp API. Again, impressive. And then
+here's the blog post content generation.
+We have the writing rules. This is the
+polishing one. So, humanization, SEO.
+Cool. So, very nice. So, comparing it to
+my original Enaden workflow that I had
+set up, the only feature which is
+missing is this one,
+which is splitting it into sections and
+then writing each section, then
+consolidating the entire blog post and
+moving forward, which it did not set up.
+Not a deal breaker. Now, also a few
+things it did were a little different
+from how I do them, but they serve the
+same purpose at the end of the day. So,
+that is also completely fine. So, yeah,
+it did a pretty good job. Now,
+obviously, you need to go in and add in
+your credentials, maybe change a little
+bit of it, do a little testing,
+um and update the prompts, but I would
+still say that instead of you spending 2
+hours on building that N8n automation
+and writing all the prompts and
+everything, you know, doing all of this
+work, you would, I guess, just spend
+about 20 minutes [music]
+um fine-tuning this, and I think it's uh
+it's a very good thing. And 20 minutes
+for a complex one which has multiple
+nodes and logic in it. Um for a fairly
+simpler one, you might just spend about
+7 to 8 minutes fine-tuning it, and it
+should be good to go. So, let me know in
+the comments which automation you tried
+to create with this, and how was your
+experience with it. All right, so that
+was the first angle where we used Claude
+Code to generate N8n automations for us
+on our behalf. Now, let's head over to
+the second angle wherein we are going to
+run Claude Code within our N8n
+automation. So, let's go ahead and
+create a new workflow. So, as of today's
+date, we don't have a functionality
+where we can schedule it. So, for
+example, if I want Claude Code to run
+every single day at, let's say, um
+9:00 a.m. and maybe, you know, run a
+particular skill, do a particular task,
+and give me the output. So, we don't
+have that functionality as of now. I
+don't know if I wake up tomorrow and
+they have that or by the time you're
+watching this video they have it, but
+for now they don't. So, in that case,
+what I could do is I can set up a simple
+N8n automation, and I could do a
+schedule here, which is run every single
+day at 9:00 a.m. And after that, I can
+simply SSH into my Claude Code terminal,
+which is execute a command, and I should
+be able to get an output from it. Now,
+since we have our Claude Code on a VPS,
+it is on 24/7, we can easily access it
+through here. And that is why I have set
+up Cloud Code on a server. Firstly, it
+runs 24/7 and it is fairly simple to
+connect it to Any time as compared to
+you running it somewhere else. It's
+still possible, but I think it's a
+little bit more of headache because you
+want to make sure it is able to run
+every single day at 9:00 a.m. All right,
+so to begin with, we just have to click
+on create new credential. We have to
+connect it to our Cloud Code terminal
+basically. So, I want you to come back
+here and here you will be able to find
+your IP right here. So, just copy that
+and that is your host. So, the IP that
+is associated with your VPS where you
+are running Cloud Code is your host. The
+port is 22. The username is root and the
+password is the root password that you
+had set up while setting up your VPS.
+Now, in case you don't remember your
+password, you can always change it. So,
+right here as you can see root password
+change. So, in case you don't remember
+the root password you had set up while
+setting up the VPS, you can change it.
+Then, add your password right here and
+save it. If you see connection tested
+successfully, it means Cloud Code has
+been successfully connected to Any time.
+Now, you have to write a command. So,
+this is the format that we are going to
+use. So, this is going to basically
+access Cloud Code and the prompt that
+you want to send to Cloud Code would be
+within these quotation marks. For
+example, here I have said say hello. And
+if I execute this,
+>> I got the output. Hello, how can I help
+you today? And similarly, you can
+continue with your automation. For
+example, you want to send yourself a
+message with Cloud Code's output. So,
+you can set up send a message module
+here, which is send a text message and
+you can send it to yourself. Now, this
+has a lot of applications. You can also
+get rid of this one and what you can do
+is you can set up a Telegram trigger,
+which is every time you get a message,
+which is this one, on message, it
+basically sends that over to Cloud Code,
+right? So, you type a message in
+Telegram, it sends it to Cloud Code, and
+then Cloud Code gives you the reply,
+which is then sent back to Telegram.
+Now, do you understand what we created
+right here? So, if you look closely,
+what we have done is that we have
+brought Cloud Code inside Telegram. So,
+now you can basically access Cloud Code
+from Telegram. You could do the same for
+WhatsApp, you can do it for Discord, and
+you can access it from there instead of
+your terminal. The other thing is you
+can also build other workflows. Again,
+you can use Cloud Code to build those
+workflows, and then within those
+workflows, if you need extended
+capabilities, you can put in this
+particular module, this particular node,
+and access Cloud Code within Anytime.
+And just in case you're not able to
+visualize what we're doing here, so what
+we're doing here is that basically, if
+you come back to Cloud Code here and you
+ask it to say hello, and gives you this
+response. So, instead of doing this
+process in the terminal, we are doing
+this inside of Anytime, meaning taking
+Cloud Code out of the terminal. And this
+opens a wide variety of applications. If
+you want to learn Cloud Code, I would
+recommend you check out my other video
+on Cloud Code, which is going to help
+you go from beginners to a productive
+state. And I also have another video
+which can help you create agents within
+Cloud Code, which I'm going to link
+again up here. So, in that case, what
+you can do is you can use Cloud Code to
+set up an entire team of AI agents, and
+you can access them, let's say, from
+Telegram, from WhatsApp, etc. So, just
+giving a few examples that are coming to
+my mind when I think about having Cloud
+Code inside of Anytime. [music] And that
+is how we used Cloud Code and Anytime's
+connection in completely two different
+ways. Firstly, we saw how we can build
+workflows with Cloud Code inside
+Anytime, and then we saw how we can run
+Cloud Code within Anytime automations.
+Connecting Anytime's MCP inside Cloud
+Code opens so many more possibilities,
+and so does using Cloud Code inside
+Anytime. So, if you have some very cool
+ideas of how you're going to utilize
+this particular functionality, do let me
+know in the comments below. We also saw
+how we can self-host Any done and use
+Cloud Code within the same server. While
+there are other ways to do the same
+thing, I would still recommend this one
+as this is straightforward when it comes
+to SSH, etc. So, you'll find the link to
+Hostinger in the description. Don't
+forget to use that particular link and
+use the coupon codes for some extra
+discounts. So, I hope the concept of
+using an LCP to connect Cloud Code to
+Any done is clear to you. I hope skills
+are clear to you how they basically
+enhance Cloud Code's capabilities. And I
+hope you also understood how we used SSH
+to use our Cloud Code terminal inside of
+Any done basically. So, yeah, that is
+pretty much it for this video. If you're
+looking to get your business automated
+with AI, I would highly recommend you
+check out the link to our website in the
+description. If you found this video was
+valuable, then don't forget to subscribe
+to the channel and please like the
+video. And if you have anything, let me
+know in the comments below. If you have
+any questions, let me know. If you have
+any ideas for future videos, let me
+know. And I would be going through the
+comments. Don't forget to follow me on
+LinkedIn as well as ads for some more
+solo content. I will meet you in the
+next one. Till then, bye.

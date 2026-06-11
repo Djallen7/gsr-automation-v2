@@ -1,0 +1,316 @@
+All right, I'm in my Cloud Code and it
+says listening for channel messages from
+the plugin iMessage. And on my phone
+right here, I've got iMessage pulled up
+and I'm going to shoot off this text
+that says, "Scrape the YouTube comments
+from my recent video and give me a
+breakdown." And what you'll see right
+here on my terminal is that we have
+iMessage and it says, "Scrape the
+YouTube comments blah blah blah." So,
+this is the exact text that I just sent
+off. And now, Cloud Code is acting as if
+I just typed this message right here
+locally on my machine. So, it's able to
+use all of the skills that I've got in
+here. It's able to look through all of
+these different folders and files. It's
+able to use my API keys and things like
+that. And we're able to on our terminal
+watch all of this happening. And as you
+can see what it did is it used my
+YouTube analyzer skill in order to
+achieve this for us.
+So, that skill finished up and it sent
+the reply back to myself in iMessage.
+You can see that it was able to scrape
+511 comments across six recent videos
+with some biggest themes and some top
+video requests. And so, right here in my
+iMessage, you can see here it is. We
+have the top themes, feature access
+frustration, token usage limit anxiety,
+and then pivot backlash, open cloud
+versus Cloud Code, all of this kind of
+stuff. We have strongest video requests
+like Manas AI, Cloud Code plus APIs,
+blah blah blah. And then we have
+standout comments. It also ends the
+message with sent by Claude, which is
+pretty nice. But, what you will notice
+is that because I'm texting myself in
+iMessage, it's basically going to
+duplicate every single one of my
+messages, whether Claude sent it or
+whether I sent it. There are obviously
+some fixes here. So, the purpose of this
+video is to show you guys how this
+works, how to set it up, and what you
+need to know. So, let's get into it. All
+right, so Cloud Code released channels,
+which you probably already knew about.
+This came out about a week ago, but this
+basically allowed you to start talking
+to your Cloud Code session through
+select MCPs. And this started with
+Telegram and Discord. But, it seemed
+like it was just today that they
+announced that iMessage is now also
+available as a channel, which is super
+exciting. So, just to start off real
+quick, what is a channel? Basically,
+it's like giving Cloud Code a phone
+number. It basically allows us to talk
+to Cloud Code through some sort of
+third-party app like Telegram, Discord,
+or iMessage, and it basically sends that
+through like a tunnel or, you know, a
+bridge or a channel, and it can send and
+reply. So, as you saw in the demo, it
+basically just takes my message from
+iMessage and then inserts it into the
+conversation inside of Cloud Code. And
+by the way, this mark, I burnt myself on
+my oven the other day. Anyways, that's
+cool because then, locally on your
+computer, Cloud Code acts as if you were
+sitting there talking to it. So, we're
+getting more and more to the place where
+you're able to use your sessions as you
+want wherever you are. Now, one of the
+biggest downsides to this feature right
+now is that if that session closes out,
+so if I go back into my VS Code and I
+basically go control C, see? Now, if I
+text in my iMessage, nothing would
+happen. It would not actually access
+Cloud Code. And so, that can be
+frustrating if, you know, you want to be
+gone for a couple days and you're
+worried about your laptop turning off or
+an update restarting or whatever it is.
+You would have to go back locally, open
+up a new session, and then you could use
+that channel again.
+There are obviously some fixes here, you
+could host your Cloud Code on a VPS and
+keep it running all the time with
+something like a tmux. But, one of the
+catches here with the iMessage channel
+is that it's iMessage, meaning wherever
+you're running Cloud Code has to be on
+Mac OS. So, that is why you can probably
+tell today I am on my laptop, which is a
+MacBook. The good news though is that
+there are some ways that you can have
+like sort of a Mac OS VPS. And if you
+wanted to host Cloud Code there or on a
+Mac Mini, then you'd be all set and you
+could use this channel 24/7. Now, the
+coolest part about this is it might seem
+like you need to know how to set up like
+some sort of weird bridge or a tunnel,
+but it actually couldn't be simpler. You
+basically just run a few commands, run
+the plugin, and you're all set. So, let
+me talk about how this works and maybe a
+few things that you might run into as
+far as issues. So, as we know, a channel
+is an MCP server that pushes events into
+your running Cloud Code session so that
+Claude can react to things that happen
+while you're not at the terminal, which
+is great. I'm not going to dive into all
+the technical details right here, but if
+you want to go to the documentation,
+just go to cloudcode.docs and then
+search for channels or push events into
+a running session with channels. So, as
+we know, we have three supported
+channels right now and it does require
+you to install bun. So, I didn't know
+what that was before looking at all this
+stuff. All you have to do is, you know,
+take this link up here, give it to Cloud
+Code and say, "Hey, I want to set up a
+channel for Discord or for iMessage.
+Read this documentation and then help me
+set up everything." And it will
+basically install everything that you
+need. So, we've got different steps here
+for Telegram, Discord, and iMessage, but
+they basically follow the same pattern
+of making sure you have the right
+access, installing the plugin, and then
+launching Claude with that channel
+enabled. So, the first thing you're
+going to want to do is you're going to
+want to grant full disk access on your
+local Mac settings. So, basically what
+that means is you're going to open up
+your settings, you're going to go to
+privacy and security, you're going to go
+to full disk access, and then add
+whatever you need as far as where you're
+using Cloud Code. So, this does have to
+be used in the terminal, but the good
+news is you can use this in Visual
+Studio Code like I've shown in basically
+all my other YouTube videos. So, all I
+had to do was enable full disk access
+for Visual Studio Code. Now, the next
+thing you're going to have to do is
+you're going to have to install the
+plugin, which once again could not be
+simpler. You're just going to copy this
+command right here. You're going to go
+into your Cloud Code and for here I'm
+just going to launch a default version
+of Cloud Code, copy in that plugin, and
+then when I send it off, it will
+basically give you the option to install
+it. You can see right here, I've already
+installed this globally. And if I go to
+/plugin, I could basically see all these
+plugins. And you can even see here, if I
+searched for the Discord one, I could
+install the Discord one right there. And
+if I went to Telegram, I could grab the
+Telegram one right there. But, if I go
+over to the ones that I've actually
+already installed, you could see right
+here I have the iMessage plugin, which
+is already connected and enabled. Now,
+once you've done that, all you have to
+do is copy this next command, which
+launches a fresh session of Claude, but
+it does it in this channel mode. So, if
+I exit out of this Cloud Code and I
+paste in that way where I'm running
+Cloud Code like this, it basically says
+right away listening for channel
+messages at iMessage. So, then what I
+could do is I could open up my iMessage,
+I could just say, "Hey, can you hear
+me?" And when I shoot that off, we
+should see that in just a second pop up
+right here in our Cloud Code session.
+And here's a quick example. I didn't
+launch this one in bypass permissions,
+so it says, "Hey, I need to do this. Do
+you want to let me proceed?" And here is
+where I would in my local session say
+yes or no. But, it does tell us right
+here that we could reply on our
+iMessage, so I can go yes, m w u p y.
+And if I shoot that off, then let's see
+if Claude's able to get that and
+actually take action. There we go. So,
+that's how you're able to approve things
+from your phone so you're not completely
+blocked off in case you forgot about
+some sort of permission. And you can
+also see here that Cloud Code is able to
+send emojis, which is cool. So, right
+now I'm texting myself on iMessage and
+that's basically how this thing works.
+If you want to be able to text yourself
+from a different number or have other
+people be able to text your Cloud Code,
+then all you have to do is allow
+different numbers to. But, the very
+first time when you text yourself after
+this channel set up, it may pop up right
+here and say like, "Hey, I'm getting a
+text from this number. Is this you?
+Should I allow it? Blah blah blah." And
+that's where you just say yes. But, if
+you wanted to allow other members to be
+able to text your Cloud Code, then all
+you have to do is /iMessage access
+allow, and then you can either do a
+phone number or you could also do an
+Apple ID. And then, that Apple ID or
+that phone number could also text your
+Cloud Code session. So, if you really
+wanted to get rid of these double texts,
+then you would just want to text this
+number. So, right here is, you know, my
+Nate Herc um Apple ID, and I would just
+want to text that number or that Apple
+ID from a different account or from a
+different number. And then I could just
+have like basically a one-way
+conversation that feels more like a
+human or, you know, an AI agent. Now,
+Pro and Max users, that's basically all
+you have to do is install the plugin and
+then run Cloud Code in that way. But,
+for enterprise users or if you're on a
+team plan, then you're going to have to
+make sure the admin allows channel use
+because by default it will be turned
+off. But, all of the plans should be
+able to use this once everything's
+configured correctly. So, if that is
+you, you would basically just go to your
+admin settings, Cloud Code, and then
+channels. So, here I am in my
+organization settings. You can see that
+I've got a lot of options here that I
+can turn on like fast mode, remote
+control. A lot of these are because
+they're in research preview. Right here
+at the bottom we have channels and this
+is where we could actually enable that.
+And one final thing that I wanted to
+cover, which I think is a very valid
+question, is the difference because
+there's lots of ways now that we can
+control our local sessions from our
+phone or from, you know, the go. And we
+have dispatch, we have channels, and we
+have remote control. So, I basically
+came to the docs and I said, "Hey,
+what's the difference?" And here's what
+it pulled. Dispatch is message a task
+from your mobile app. Claude runs on
+your machine. It's best for delegating
+work while you're away with minimal
+setup.
+Channels means you push events from chat
+apps like Telegram, Discord, iMessage,
+or your own servers into a running
+session, which is best for reacting to
+external events like CI failures or chat
+messages. And remote control, drive a
+running session from claude.ai/code or
+the mobile app, which is best for
+steering in-progress work from another
+device. And so, that still might to you
+sound like it's all basically the same
+thing. The key difference here is the
+trigger. Dispatch is message-based,
+channels are event-based, and remote
+control is for direct control of an
+active session. So, hopefully that
+should clear things up a little bit.
+They're all very different, they're all
+kind of similar, but they're all
+steering us in the direction of
+Anthropic wanting us to be able to use
+Cloud Code from anywhere, which I think
+is obviously great. And I know that this
+is an iMessage plugin or channel, but
+even if you're doing your green SMSs, if
+they're being sent to that number, then
+Cloud Code should also be able to read
+those and respond to those as well. So,
+that is going to do it for this video.
+If you enjoyed it and learned something
+new, please give it a like. It helps me
+out a ton. And as always, I appreciate
+you guys made it to the end of the
+video. I'll see you on the next one.
+Thanks, everyone.

@@ -1,0 +1,305 @@
+Claude Code is as powerful as it is
+daunting to start using. But recently
+Anthropic published a guide showing how
+their non-engineering teams actually use
+it to get real work done. And the way
+they use Claude Code is very different
+from most of the advice you've seen
+online. So in this video I want to break
+down the four patterns that kept showing
+up across every team and why I think
+they change how any business owner
+should be using Claude Code. Now the
+guide talks through 10 internal teams
+and the ones I cared about weren't the
+engineers. They were legal, marketing,
+design, and finance. People with no
+coding background getting real usage out
+of Claude Code. And four patterns showed
+up again and again. How they prompt it
+to get better results, how they turned
+repeated work into skills, the clear and
+narrow use cases they actually use it
+for, and how they actually run a session
+across their team. So let's start
+[music] with how they prompt it.
+Now most people think getting good at
+Claude Code is about writing the perfect
+prompt. And this was bred into us from
+earlier models and ChatGPT where the
+right prompt had an outsized effect on
+the quality of what you got back. You'd
+sit there crafting this huge clever
+instruction set, you'd hit enter, and it
+would sometimes do well and other times
+not. But Claude Code isn't that and none
+of these teams prompt it that way at
+all. So here's what they actually do.
+The legal team plans the whole task or
+session in claude.ai first in the
+browser, then they move over to Claude
+Code only once they know what they're
+building. And importantly, they tell it
+to slow down and go one step at a time.
+So they're not expecting everything to
+work out of the box from a single
+instruction. The product design team
+keeps a custom memory file that
+practically says, "I'm a designer with
+little coding experience. Give me
+smaller, incremental changes." Then
+growth marketing brainstorms the entire
+workflow up front before writing even a
+single prompt. And the data team has
+their finance people write a plain text
+file describing their workflow. Then
+they just drop it into Claude Code to
+run it. So if you take the common
+threads here, nobody's actually writing
+clever prompts. They're doing three
+things. They're creating a context
+memory file that tells Claude who they
+are and how they work. And then finally
+they're going after a task step-by-step,
+not expecting one giant ask to return an
+exact result. And that contextual or
+file is the bit that most people skip.
+The stuff Claude knows about you before
+you've typed anything is absolutely
+critical to getting good results. So, if
+we translate it back to your setup, it's
+all about being specific in your
+Claude.md file and any other shared
+context field that you load in, like how
+you sound in your brand voice files or
+who you target in your positioning file.
+So, this all feels closer to organizing
+something like a Notion page rather than
+actually coding or prompt engineering.
+So, it goes back to highlight the
+importance of getting the context right
+and then prompting becomes actually the
+trivial part.
+Now, once they've nailed how to inject
+the right context, they also worked out
+how to do that on a repeatable,
+consistent basis by creating skills for
+anything they do more than once. But,
+how they built them was very intentional
+and specific. And that's to get the most
+out of them. And at its core, a skill is
+just your good prompt with a set of
+step-by-step instructions saved in a
+folder so that Claude can reach for it
+whenever it's needed. And then add in
+the additional context for each step,
+like the planning stages we mentioned
+before. So, there's a right way to build
+a skill. And if you're doing these three
+things, you'll absolutely nail it. So,
+number one is starting with the name and
+the description. This is the part that
+Claude reads every single time into its
+memory and it's how Claude decides
+whether to load that skill at all. So,
+it sits in memory permanently. So, if
+the description's vague, Claude won't
+know when to use it. And if it's
+specific, it will grab it exactly the
+right moment without you even having to
+ask it to. So, there's a couple of
+things that you need to make sure you do
+in that description. Firstly, you tell
+it when it should be called, like use
+when a user wants marketing copy
+reviewed. You should say when it
+shouldn't be called, like does not
+trigger for blog posts. And then of
+course what it actually does. So, it
+analyzes copy against proven frameworks
+and rewrites to match brand voice and
+ICP. So, a specific name and description
+there. Now, number two, the skill.md is
+just your step-by-step instructions. So,
+these are the actual instructions, but
+try not to bloat these. Keep them under
+200 lines because the biggest mistake is
+cramming everything into one file. The
+top tip here is to keep it short and
+focus just on the steps, which brings us
+to number three. Put your detailed
+examples, the examples that you want to
+show as good practice, in separate
+reference files and point to them from
+the skill.md. So, instead of stuffing
+everything into memory at once, Claude
+only loads the deeper details when a
+task actually needs it. So, think a
+short file at the top in the skill.md,
+and the heavy detail tucked away in the
+reference folder until it's called for.
+So, now you know how they prompt it and
+how they get consistent results with
+skills. But, that still leaves the
+bigger question. What are Anthropic's
+non-engineering teams actually using it
+for? Because this is where most advice
+online gets it quite wrong, actually.
+So, let me show you some real tasks
+these teams are running day-to-day.
+Now, most so-called experts online
+consistently reference the holy grail,
+replacing yourself with something like
+low code. So, why are they still
+involved in their own businesses if
+these agents are just running their
+business in the background? And as you'd
+expect, Anthropic's own non-technical
+teams don't do that at all and don't
+advocate for doing that. Not one of them
+talks about autonomous tasks as a huge
+contributor to the value and results
+they get from Claude Code. But, what
+they actually do is much narrower. So,
+growth marketing is literally just the
+team of one person at Anthropic. That's
+right, literally just one person. So,
+they built a workflow that takes a
+spreadsheet of hundreds of existing ads
+and spins out hundreds of new variations
+from those existing ads in minutes. But,
+they, as the human in the loop, still
+pick out which ones go live. They also
+built a Figma plugin that turns one
+mockup into a hundred ad variations for
+them to review. Now, the legal team
+built tools to route reviews to the
+right lawyer. So, it's effectively
+augmenting the admin work they'd usually
+do. Now, product design shipped a copy
+change across an entire code base in two
+30-minute calls. So, instead of a week
+back and forth, they were able to
+actually make those changes across what
+I can imagine is a huge code base in
+30-minute calls. But, if you reflect
+again on the shape of every one of those
+tasks, Claude is doing the heavy,
+repetitive lifting, the generating, the
+finding, the drafting, and the human is
+staying at the decision point. So, the
+marketer doesn't ask Claude to run the
+ad account, they ask it for the
+time-consuming, repeatable steps, the
+hundred variations of ads for an
+existing ad. Then, they choose. That's
+the difference between augmenting your
+work and trying to go completely
+autonomous. And there's a detail in the
+marketing example there worth pulling
+out. They didn't write one giant prompt
+to make all those ads. They actually
+split it into two specialized
+sub-agents. So, one that only writes
+headlines and is specialist at that, and
+one that only writes descriptions. And
+the reason that works so well is each
+one runs with its own clean context
+focused on a single job. So, it's the
+same principle again as the skills,
+small, focused, composable. We can use
+them together with other skills or
+agents too. But, you can see they all
+use them as a narrow worker that does
+one thing instead of a giant prompt that
+tries to get it to do absolutely
+everything. And this is what I mean when
+I say humans in the loop used as a
+design choice. So, every one of these
+workflows we've seen is the same shape.
+They have an input, they're doing some
+sort of data transformation in the
+middle, and they have an output with a
+person sitting at that output checkpoint
+to do the review. So, the system's doing
+the grind on the repetitive work, and
+then it stops and actually waits for
+you. And that checkpoint is the thing
+that makes the output good enough to
+actually ship, preventing AI slop, so to
+speak. So, pattern three then is don't
+automate yourself out of it. Automate
+the repetitive part and keep yourself at
+the decision points, the bit where you
+add value. Use human in the loops as a
+design principle. And quickly, if you're
+getting value from this, do me a favor
+and hit the subscribe button below
+because YouTube tells me the
+overwhelming majority of you watching
+this right now aren't subscribed, and it
+genuinely helps me reach more people.
+So, back to it. You know how to prompt,
+how to create repeatable skills, and
+what kind of things to use it for. But,
+the next one is a mindset shift that
+I've not seen before anywhere else. It
+could change the way you think about
+using Claude Code going forwards.
+So, let's imagine a scenario. You start
+a session, you've exchanged 10 messages
+back and forth, and Claude starts to
+drift off course. It's time to start
+correcting it, re-explaining, getting it
+to work back some of the mistakes it's
+made. That's probably sounding quite
+familiar. It's pretty much ChatGPT 101
+right there. But, believe it or not,
+Anthropic's team do the complete
+opposite of this. They treat Claude Code
+like a slot machine. And this This data
+science team's actual phrase. "Save your
+state, let Claude run for 30 minutes,
+then either accept the result or start
+completely fresh." And the engineering
+team backs this up. They save
+checkpoints constantly, so they can roll
+back in seconds. And they're honest that
+Claude nails it on the first go only
+about a third of the time. The product
+team starts every session from a clean
+slate for the same reason. And across
+all three of those examples, nobody
+tries to correct the mistakes if they
+get a bad output. They actually reset it
+and rewind it. And you can literally do
+this with a rewind flag in Cycle code.
+And I know that I'm guilty, too, of
+trying to get it to correct itself
+because the instinct here is that
+actually starting over wastes the work
+and takes longer. But apparently,
+restarting fresh actually has a higher
+success rate than trying to rescue a
+session that's actually starting to
+drift off course. So, always pull the
+lever on the slot machine again, so to
+speak, if the result you're getting is
+starting to drift off course, which is a
+complete mindset shift not to try and
+just rework it. So, across every
+non-technical team in Anthropic's own
+guide, legal, design, marketing,
+finance, data, the unlock is the same
+four plans. Get your context right, save
+repeated work as skills, point it at
+narrow jobs with you at the decision
+points, and treat it like a slot
+machine. And none of it, if you've
+noticed, requires being technical. The
+people getting the most out of Claude
+code aren't the engineers. Now, if you
+want to jump deeper into building out
+repeatable processes through good
+skills, then check out the next video.
+Thanks for watching.

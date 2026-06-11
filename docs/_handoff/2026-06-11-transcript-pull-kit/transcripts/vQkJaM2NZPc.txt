@@ -1,0 +1,210 @@
+I wanted to throw a quick video together
+that showcases the difference in
+orchestrating swarms or teams of agents
+using Claude Code's native teams
+functionality that was just added this
+month to comparing a tool like Ghast
+Town uh orchestrating multiple agents. I
+was having a hard time finding or
+getting a flavor for what these tools
+looked like on the web or on YouTube
+without having to listen to a whole hour
+worth of some lad's life story. So, here
+is hopefully 10 minutes or less
+comparing the two. If there's anything
+else you're interested in seeing in the
+world of multi- aent orchestration, uh,
+let me know. I am open to suggestions.
+Within Cloud Code, it's really easy to
+swarm multiple agents. There's a flag
+within their settings which allows you
+to enable experimental agent teams and
+also the ability to set the team mode to
+T-Mox. I'm running in T-Mox here, so I'm
+going to launch Claude with dangerously
+skip permissions enabled because yolo.
+And so I'm going to give Claude a
+prompt.
+In that prompt, I'm asking Claude to
+make use of an agentic team to create
+the game as quickly as possible going
+parallel with work cues where possible.
+I'm also asking it to use spectriven
+development to read the requirements
+docs in requirements. ND, which will
+help it with its task. And now we see
+Claude developing the list of tasks that
+it needs to complete.
+Now it's figuring out the dependency
+graph. And so which tasks need to block
+which and which tasks can be run in
+parallel. Now it's beginning working on
+the backlog and we can see everything is
+blocked by task one. So no parallelism
+yet.
+Now the task one is complete. Cloud code
+is spawning a team to work on some
+things in parallel. We can now see this
+happening in T-Mox where I have multiple
+agents. I've got a modeler agent, an
+arena builder agent and a core
+orchestration agent as well. On the
+left, we can see the progress through
+the tasks. On the right, we see our
+various agents. They keep on spawning.
+Now, we've got a team lead as well. I
+can also use Teamox to navigate between
+all the different windows. And I can
+navigate between these different panes
+using commandB and the arrow keys. Let's
+see what the outputs of Cloud Code look
+like. And so, go to mpm install
+and npm rundev. Let's see what we get. I
+assume we're going to want a browser
+window
+for 3000. Okay. Uh, pretty good. Can
+charge.
+Charge. Oh, the collision detection is
+really good. Except looks like people
+are getting stuck in the sky. But look,
+there's actual collision detection. I
+don't just run through the unicorns. The
+uh the other system didn't have this
+the Gas Town build. Yeah, I'd say this
+is this is pretty good.
+Don't think there's actually a
+meaningful comparison or anything to be
+derived from whether one orchestration
+system versus the other built a better
+Unicorn game. Just fun.
+Once we've got Gastown installed and all
+of its dependencies, we can now add a
+rig. GT rig adds
+let's call it Unicorn
+Swarm Zero. And I'm going to give it a
+Git repository. In this case, it's an
+empty repository.
+Since we're working in the green field,
+then I can add some crew to my rig. To
+do that, we run GT crew. Add unicorn
+swarm
+crew.
+And I need to specify the rig,
+which is unit swarm zero. And last but
+not least, D2 mayor attach attaches the
+mayor, which is essentially just a cloud
+code session where I can instruct and
+ask questions of Gast Town.
+There we go. Here's what working in
+parallel looks like in Gast Town. I have
+the mayor open. Uh, I'm able to talk to
+the mayor. I'm able to sling work to the
+mayor like I did up at the very
+beginning. Um, I gave it a simple base
+prompt asking it that asking it to
+design a browserbased game involving
+unicorns rendered in 3D in the browser.
+It went ahead and created my team. It
+created a backlog of tasks here with
+different phases and dependencies.
+And I can ask it questions like who's
+running the merge Q or what's going on
+uh with my with my backlog.
+I can run the dashboard by running GT
+dashboard and that then gives me a web
+interface. This is actually pretty
+userfriendly way uh you know saves you
+from having to learn the inards of T-Mox
+which is pretty nice. And we can see
+right now that there are two pole cats.
+Those are the the actual worker bees
+doing the work within clog code within
+cloud code sessions. Um working away in
+parallel. And so I can see looks like
+this one's actually done. Um so there's
+probably a merge going on. But you can
+see the work that it's submitted what
+it's implemented. And actually if we
+navigate to the project on GitHub,
+we'll see a bunch of things getting
+merged. If we jump back to the dashboard
+and I leave the individual worker and
+now take a look at the refinery, you can
+see what it's been doing. The refinery
+is the thing invol the thing responsible
+for merging work. Uh and honestly, I'm
+getting stressed out even looking at
+what the refinery is doing. uh it's
+merging work at such a high degree of
+parallelism that I can't even imagine a
+human doing this. Um but it is somehow
+able to figure out the context that oh
+well this line of code was implemented
+by a previous stub. Um and actually the
+you know in this case the HUD overlay
+replaces what it had done. So okay you
+know the HUD overlay code wins. That's
+how we merge. Um the pace with which
+this is happening is is is pretty
+unreal. Uh we can also access
+we can also take a look at the feed view
+within the terminal and we can navigate
+between the different screens using tab
+and use jnk to scroll last event being
+1627 a session start. We can see the
+convoys running and also the uh the
+different workers up the top in this
+case furiosa and nu.
+Um we can look at problems as they
+occur. None so far. And if we're unsure
+of what to do, we can also ask the
+mayor, give me a status report, for
+example. It will go off, examine what
+the different pole cats are doing, how
+far through the backlog they've gotten,
+and what work is remaining as well.
+And now you see it's reverted back with
+a status update. After a minute and 52
+seconds, it has given me a status
+update. Four of nine tasks complete. So
+pretty powerful system. Um much more
+difficult to get used to than using
+cloud code teams since it um you know
+involves learning a whole bunch of new
+primitives. Um it helps to be a bit of a
+T-Mox power user although there is also
+the dashboard. I'm finding myself having
+to occasionally refresh the dashboard
+since it loses state. Okay, let's see
+what gas actually created.
+I assume we npm rundev.
+Yep. Looks like that's right,
+huh?
+WD. Whoa. Okay. Graphics look pretty
+decent. Uh, how do I restart?
+Let's just refresh. I keep dying in the
+first second. That's not great. Oh, I
+can charge with shift. Okay, that's
+cool.
+Attack.
+All right, this is pretty decent.
+So that's it. Pretty easy to get started
+with Claude code, but a lot harder to
+figure out what the workers have done
+once you've quit the session. You know,
+there's no native persistence of a work
+log. Uh in Gast Town feels like it's
+much better built for greater scale
+parallelism. Um the worker's ability to
+interrogate what the previous worker has
+done even after the session dies. That
+persistence is a bit more mature, but a
+steeper learning curve. Um both well
+worth checking out. If you're looking
+for some place to get started, I would
+recommend just enabling the experimental
+feature in Cloud Code and seeing if it
+can decompose a task and go parallel for
+you. Uh if there's anything else you'd
+like to see in this world, by all means
+do let me

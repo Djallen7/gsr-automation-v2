@@ -1,0 +1,454 @@
+Code just released a skill called slash
+goal and we can have our AI agent here
+do things autonomously until a certain
+condition has met. And essentially what
+you can do here is that you can do the
+slash goal inside of terminal and
+provide a condition and it's going to
+have your AI agent here to keep working
+on it until that condition has met. But
+the problem here is that the slash goal
+here is typically stays in the same
+active conversation context window
+meaning that it will absolutely going to
+hit the context wall as the conversation
+progress. So essentially what context
+wall means is the longer you have
+conversation with the same context
+window in your large language model, the
+lower the accuracy you get. So let's say
+we're going to use a slash goal and
+what's going to happen here is that it's
+going to use the same context window for
+example and it's going to do the
+planning, executions, evaluations, loop
+back to the planning here and it's going
+to cycle through all over again until a
+certain condition has met. But what if
+what if you were going to use the same
+like same context window and let's say
+the context wall start kicks in, right?
+And maybe it start to hallucinate, maybe
+at a stage of the executions or maybe
+even worse at the stage of uh the
+evaluation, then it thinks that it
+completes it but it's actually not,
+right? So that's where the actual
+problem comes in and in this video I'm
+going to show you exactly how I solved
+this using the skills and method I'm
+going to show you in this video. So with
+that being said, if that sounds
+interesting, let's get into the video.
+Now, before we continue, I recently
+launched our school community where I
+help you to master AI agents,
+automations, and so much more. And
+that's all coming from someone who used
+to work as a senior AI software engineer
+at companies like Amazon and Microsoft.
+And in this community, you're going to
+get over 100 plus video materials like
+templates and workflows that I
+personally built and sold over 100 plus
+times. On top of that, you're also going
+to get access to our weekly live calls
+and just give you an idea, this week
+we're actually running a Claude Claude
+master class where we're going to dive
+into how to improve Claude Claude's
+accuracy and we're going to use it to
+building applications. Plus you're also
+going to get full community supports
+where you're going to get chance to ask
+questions and get direct answers back.
+So if you're ready to level up, make
+sure you jump right in and I'll see you
+in
+All right, so now you know exactly why
+we should not use {slash} goal, let's
+then look at what is the solution to
+this. So, the solution to this is very
+simple. We're using a pattern called the
+orchestrator to Claude Halas pattern.
+And essentially the way how it works is
+we're going to have a orchestrator that
+will delegate a task to different
+iterations and for each iterations we're
+going to trigger a Claude Halas here to
+execute it. And the reason why we do
+this is you can see here that we have
+our orchestrator and the orchestrator
+here is going to delegate each iteration
+here to the Claude Halas. And this way
+we're going to have the orchestrator
+here to stay under a certain percentage
+of the context window because the main
+execution here is not being done by the
+orchestrator, it's actually being done
+by Claude Halas. And Claude Halas, just
+like how we interacting with Claude,
+it's just going to be typing in the
+terminal like Claude {hyphen} P. We can
+simply having Claude Halas here to be
+triggered by using the {slash} P command
+and providing the prompts. And what we
+can do here is that we can do the Claude
+dangerous skill that's going to be our
+main orchestrator. And let's say we're
+going to package everything to a skill
+and the skill itself is going to trigger
+the iteration here using the Claude
+{hyphen} P. And simply just going to
+provide the iteration prompt. For
+example, in this iteration what's going
+to achieve maybe triggering certain
+skills, maybe triggering certain
+iterations by workflows, it's going to
+basically try to provide that everything
+into that prompt. And what's happening
+in this conversation here is that we're
+going to have the orchestrator here to
+evaluate after each iteration has
+complete. And what's happening here is
+that we're going to keep the current
+Claude Halas session for the context
+window here to be clean and I'm
+delegating the task for the execution to
+the Claude Halas here to basically try
+to execute it. So, then you might be
+wondering why can we use sub agents?
+Well, sub agent here you can see it
+still reports the findings back to the
+parent window. That means that it's
+going to still communicate to the
+orchestrator and the orchestrator is
+still going to consume those contexts.
+But most importantly, we can have Claude
+Halas here to be triggering those sub
+agents by itself without having to
+report back to the orchestrator to keep
+the context window clean. Because we're
+talking about hours and days for having
+Claude here to run or having AI agent
+here to run autonomously to building
+features or fixing things, you can see
+this is going to be very, very critical
+to have the context window for
+orchestrator here to be clean. And
+that's exactly why we should use it and
+how it works. Let me show you a
+practical use case and example on how I
+use it to building applications
+completely autonomous. So here you can
+see I basically package it two different
+skills. So imagine that we have a super
+orchestrator skill that does the
+orchestration. And then for the
+orchestrator here, each iteration is
+going to trigger the related skill. For
+example, for a first iteration is going
+to trigger the super QA skill, which
+will go out there and try to find bugs
+and try to report if there's any issues.
+After this iteration is done, then it's
+going to trigger the next next
+iteration, which is super build here to
+fix the issue. And after that's done,
+then we're going to have the super power
+or in this case the super orchestrator
+here to basically try to trigger this
+skill again, right? Based on the
+condition that we have, right? So the
+condition is just the most important
+part is how we're going to iterate each
+and every single iteration continuously
+until we have a condition met. So the
+condition it could be building the
+application fully complete based on your
+checklist or it could be something like
+this, where I have a application already
+built and I want you to test it. So one
+is due to find bugs and one due to fix
+things and until there's no more bugs to
+fix and there's no more features to
+test, right? That's the condition that I
+set for the orchestrator to basically
+try to cycle through. And that's the
+most important part is you need a
+condition and you also need an
+orchestrator that will delegate the
+right task to the right skill.
+And essentially once you have the
+orchestrator to do that, you also need
+something called a state, which if we
+were to dive into like what each of
+those workflow does, like the super QA,
+which will go out there and find bugs,
+report issues, you can see that for
+super QA, we need a state. And the state
+is basically like the current projects,
+right? So how do we know that there's
+more no more bugs to fix? How do we know
+that there's no more features to test?
+Well, we have a state, and everyone has
+a different state. Well, you could be
+tracking your state in MD file, but for
+my case here, I really like to keep
+track of my state in GitHub projects
+because, first of all, it's free, and
+second of all, your Clockwork here, your
+coding agent, already have GitHub CLI
+built in. So, you don't really need to
+install anything more. You can just tell
+it to pull the issues that we have in
+our queue column, or testing column, or
+done column, and try to know exactly
+what current state they are, right? For
+example, the bug column, you can also do
+that as well. So, here you can see I
+have the queue column, testing column,
+done, bug, flaky, and also skip. Each
+column here has its own definition. So,
+queue is what we're going to iterate for
+each and every single iteration. So,
+this is going to be first iteration,
+second iteration, and for each
+iterations, it's going to find its own
+subpages, or find its own sub com- uh
+components or features, and basically
+just going to add it back to the queue,
+right? So, if you don't know what queue
+is, it's basically just going to be
+adding tickets one by one. So, the first
+one is going to be the first ticket. And
+whenever we adding tickets to the queue,
+it's going to be adding last. And when
+we try to take elements out of out of
+the queue, it's going to be the first
+ticket. So, we're going to take the
+first ticket, which in this case is the
+orders page, we're going to try to
+explore that, try to see if there's any
+bugs that we can find, and for these
+children components, or the children
+features for that page, we're just going
+to add it into the queue, so that this
+way we're guaranteed to traverse
+everywhere. Every iteration, we're
+actually going a layer deep. And once we
+are currently in testing, we're going to
+put it in the testing column. So, for
+example, I'm currently working on the
+orders new page. Okay, well, I'm going
+to test that right now. I'm going to put
+that in the testing column. And once the
+testing is done, either we can be able
+to put this in the done column, which
+means that the spec is passing, or we're
+going to put it in the bug column if
+this currently is an issue, right? If
+the pass is not passing. And if it only
+works on a retry, then we won't want to
+put it in a flaky. And if there's
+something that's not really out of
+scope, then we can also put it in the
+skip, right? So, you can see that we
+have different column here to keep track
+of the status for each issues. So, for
+example, the way how this super QA works
+is we're using a breadth-first search
+pattern to basically try to traverse
+every features that we have in
+application. So, for example, your
+application here might be having a root
+route, right? The root is basically like
+your home page, maybe your dashboard
+page, and the way how it works is we're
+going to traverse this level by level.
+So, initially, how it works is we're
+going to have empty queue, right? And we
+also have our visited, which will keep
+track of like the pages that we have
+visited, so that we don't have to, you
+know, visit this iteration again because
+we already have visited this page. And
+we also have our bugs, which is inside
+of our GitHub project for the column,
+right? So, imagine but initially, we
+have everything empty. And essentially,
+what it does here is that it's going to
+basically look through the spec on
+exactly how your application behave.
+Then it's going to write the end-to-end
+testing using Playwright here and try to
+see if it passed. If it passed, great.
+It's going to add the sub features from
+this page and try to add into the queue.
+Maybe in the root here, there is the
+order page, right? So, the orders page,
+and there's maybe also the customers
+page, there's also maybe the admin page,
+right? So, there's a bunch of pages. And
+what we can do here is that we can add
+it into the queue. For so that in the
+next iterations, we can be able to take
+the top one, which is the first one
+here, and try to start executing it,
+right? So, you can see here that we have
+our green, which is basically adding the
+sub feature here onto the queue, and
+then we can be able to add the current
+page here, which is our home page, to
+be, you know, added into our visited,
+right? So, our root page here in into
+our visited, so that we're not going to
+traverse that page again because we
+already have done that. And let's say if
+there's any features inside of this page
+that failed. For example, okay, well,
+maybe the contact page here is actually
+not working. So, I can be able to add
+this into the bugs tickets inside of the
+bug column here here inside of our
+GitHub project, so that in the next
+iterations, it can be able to fix that
+and try to, you know, do a regression
+test again, right? So, you can see
+that's exactly how the super QA works is
+taking the tickets for the sub features
+here into queue so they can traverse in
+the next iterations. And if there's
+anything failed, it's going to report it
+in the bugs column and eventually it's
+going to terminate the current
+high-level session. And after it's going
+to terminate it, it's going to be
+circling back to the super orchestrator
+and the super orchestrator here is going
+to be triggering the super build here
+and try to fix the issue. Now,
+obviously, if there's any issue to fix,
+right? no issue, obviously, it's going
+to cycle through and continue to go with
+the super QA and try to find more bugs,
+try to report it if there's any, right?
+So, the way how super build works, I'm
+just going to go over this quickly, is
+essentially we're going to see if
+there's any issues that we have, right?
+If there is, then we're going to try to
+basically try to fix it. And
+essentially, the way how we fix it is
+using the most popular spectral
+frameworks, which is super power. And
+the way how it works is it's going to
+basically do the planning first before
+it's going to do the implementation. And
+most importantly, what separates this
+framework apart from other framework, it
+has a development methodology that it
+follow called the test driven
+development. So, essentially, what it
+works is it's going to do the planning
+first, dispatching different agents, and
+for each agent here, it's going to
+following test driven development. So,
+it's going to writing test first before
+it's going to do implementation and then
+it's going to do refactorings and circle
+back until that there's no more bugs
+that needs to be fixed, right? So,
+that's exactly the power of test driven
+development with super power. And what
+we can do here is that after it's done,
+to go through a review and verification
+process so making sure that this code
+here is actually reusable and is also
+very scalable. And furthermore, if
+there's any decision that needs to be
+made along the way, we can also trigger
+a skill called G stack, which G stack is
+really good at helping you to make
+decisions when building applications.
+So, essentially, G stack is built by
+Gary Tan, who is the CEO of Y
+Combinator. And for G stack, there's a
+skill called the auto plan, which is
+essentially having different role here
+to take a look at an issue and vote for
+the decision. So, what we can do here is
+that if there's any design patterns, any
+decisions that you want to go completely
+autonomous and having different AI
+agents here to make decision on your
+behalf, you can trigger this way. And
+that's exactly what I did for my super
+build is that I have a G stack here to
+make decisions having different roles
+like CEO, engineer managers here,
+security manager, designers, QA,
+different roles here to vote on a
+particular issue. And once we vote them,
+it's going to take the most popular
+votes and try to send it back to
+superpower here and continue on. And of
+course, if you're looking to see a full
+tutorial on how to use G stack or how to
+use superpower, make sure to check out
+the spectrum domain playlist on my
+channel where I did a full breakdown on
+how you can be able to use these two
+world frameworks and how you can be able
+to use it to build your applications
+with highest accuracy. I'll make sure to
+put this playlist in the link
+description below so that you can check
+it out. And here you can see that's
+exactly what the super build skill here
+is trying to solve is that while there's
+more GitHub issues, then it's going to
+fix it using superpower here for test
+driven developments and also using G
+stack here to make decisions along the
+way. And you can see with these two
+combos here, you can see that's going to
+be come up with the super build, which
+will help us to fixing tickets along the
+way. So then once the super build here
+is done, then it's going to report back
+to the orchestrator on exactly what are
+the tickets that has fixed and the super
+orchestrator here is going to
+confidently doing the next iterations by
+calling the super QA skill with a new
+cloth head session here to find more
+bugs. So that's exactly how we looping
+back iteration after iterations using
+the super orchestrator here to do this.
+And you can see this is a really
+practical approach where you can be able
+to have an application built using AI
+and have this approach here to basically
+try to orchestrate and test the
+application that you write using AI or
+using human, right? So this is
+essentially very helpful. And of course,
+if you're looking for me to make a full
+video, a dive deep onto this entire
+workflow, as well as what are some other
+super families that I have built along
+the way, I'll make sure to make a video
+if you guys like this video and make
+sure to comment down below. Okay? So, if
+you're interested, if that sounds
+something that you're interested, make
+sure to comment down below and I'll make
+sure to plan that in upcoming future for
+this kind of video. So, with that being
+said, that's pretty much it for this
+video and if you do find value in this
+video, please make sure to like this
+video. Consider subscribing for more
+content like this. But, with that being
+said, I'll see you in the next video.

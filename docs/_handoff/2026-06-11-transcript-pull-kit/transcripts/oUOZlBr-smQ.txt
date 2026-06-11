@@ -1,0 +1,53 @@
+For a long time, I struggled with how to
+handle heavy tasks in my apps. Things
+like generating AI content, processing
+PDFs, stitching videos, or sending a
+large batch of emails. At the beginning,
+I did what most people do. I just ran
+everything inside an API route, hit
+submit, and waited. The browser kept
+spinning, and most of the time, the
+request just timed out. Then I tried
+things like set timeout hacks. After
+that, I looked into tools like Reddis or
+Rabbit MQ. But honestly, for most apps,
+that felt like overkill. I wanted
+something simple, reliable, and easy to
+reason about. What worked for me was
+using a superbase table as a job cue and
+an edge function as a worker. The way I
+think about it is like a kitchen ticket
+system. The user is the customer. Your
+API is the waiter. The background job is
+the ticket. And the edge function is the
+chef. So the first thing is the table. I
+usually create a table called background
+jobs. This table is basically my queue.
+When a user clicks something like
+generate PDF or run AI task, I don't do
+the heavy work. I just insert a rov into
+this table with status set to pending
+and the payload data. I'll show the
+insert code here. That's it. The user
+gets an instant response and the request
+is done. Now comes the worker. This is a
+superbase edge function. Inside the
+function, I fetch one pending job from
+the table immediately update its status
+to processing so nothing else picks it
+up and then run the heavy logic. This
+could be an AI call, video processing,
+or anything slow. After it's done, I
+update the same row to completed or
+failed. To trigger this worker, I use
+polling with PG cron. Every minute, the
+database calls the edge function. The
+function wakes up, checks the table,
+processes one job if it exists, and
+exits. If there are no jobs, nothing
+happens. This pattern keeps your UI fast
+and your heavy logic safe. And for most
+projects, a simple table and a cron job
+is more than enough. If you want to see
+more content like this, check out my
+blogs.

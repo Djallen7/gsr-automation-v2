@@ -1,0 +1,134 @@
+Transcribing audio offline without
+sending your private stuff to some cloud
+service can be a mess. Or maybe you've
+paid for this and it takes forever when
+actually your own computer can handle it
+way faster. This is Buzz. It's an open-
+source desktop app powered by Whisper.
+It might just save you hours or it might
+just clog up your hard drive. That's
+what we're going to look at here. We
+have videos coming out all the time. Be
+sure to subscribe. [music]
+Buzz is a free desktop app that works on
+any computer using OpenAI's Whisper
+model to transcribe and translate audio
+right on your machine with no internet
+required. You might think that this is
+just for files, but no. It handles MP3s,
+MP4s, YouTube links, and even live mic
+recordings. Outputs come as plain text,
+SRT subtitles, or VTT files. Great for
+notes or editing videos. It also lets
+you search, edit, and replay parts in an
+interactive viewer, which is really
+nice. Plus, there's a command line tool
+for automating stuff that we're going to
+check out here in this video. This
+Python project is MIT licensed and
+blowing up on GitHub, which means devs
+are loving it, and they're actually
+putting it to real work. You can
+download it on your system via DMG file,
+or you can use it in your CLI, which is
+what I'm going to do here. Since I
+already have it ready to go here, I made
+a shell file that's going to run through
+some of these scenarios for us. It's
+going to do some basic transcription,
+multi-level outputs with text and BTT
+files, word level timestamps, and JSON
+outputs.
+I'm going to give it a Theo von podcast,
+which is just shy of 1 hour in length.
+Okay, let me run it.
+This did take a few minutes, but to go
+through them all, but this output here
+is still quite good. Here you can see
+the basic translation file that shows
+all the spoken text. Next, we have these
+timestamps for sentences, which is super
+cool. But not only do we have the
+sentence timestamps, I also generated a
+wordbyword timestamp. That is really
+nice. At least for me, this is really
+useful as this was rather quick for
+audio length. And not to mention, it was
+free. The last one I'm going to run via
+CLI for you guys is a French audio file.
+We can run this here and get an English
+translation of the file. I could specify
+my input and output languages. So, it's
+not just for English and vice versa. And
+look at this clean output of the French
+audio for us in English. There is no UI
+as I did all this via my terminal. But
+if you did want an alternative option,
+then you could use the UI that's going
+to look a little something like this.
+Here you can see all the files that I've
+ran in my CLI in this interface. And I
+can also upload directly to this and get
+an output with transcription. When I
+click the file, it shows the
+transcription and the timestamps for us
+right in this UI. All in all, both of
+these are super nice features, and it's
+made it a lot easier for transcription
+and translation. All right. Now, besides
+that, why does this even matter? Well,
+if you're tired of slow, pricey tools,
+or you're worried about data leaks,
+bugs, solves a lot of these pain points.
+It may just cut costs and keep your info
+private, giving you that win that you've
+been looking for. It's free. No more
+payments for this. I'll start with the
+good because there is a lot of good
+here. Privacy with Buzz seems to be
+pretty huge. Everything stays local. No
+uploads, no API keys needed. You expect
+to pay for fees on this, but no, not
+here. It's absolutely free after you
+download these models. If you got a GPU,
+then it has files making multil-
+language transcriptions quick. And that
+CLI tool, you can drop right into your
+Python scripts. These are nice. So,
+you're probably thinking it'll be
+lightweight, but that is actually a core
+drawback here. It's not. Those models
+are massive, eating gigabytes of space.
+If you don't have a GPU, then it falls
+back to your CPU. So, you can expect
+some slowness here. The setup can be
+somewhat tedious with drivers and
+things. If you've tinkered with local ML
+projects before, you get this hassle.
+Now, how does Buzz actually pull this
+off? Well, since Whisper is the core of
+all this, Buzz wraps it with faster
+backends to speed all this up. audio
+gets cleaned and normalized first, then
+it runs through the model, spits it out
+in the format you want. Why care? Well,
+if you're frustrated with all these
+tools, this saves you time and some
+money by also allowing you to customize
+some things. For example, your shell
+files or even your Python integrations.
+You could integrate this with Python and
+use this transcription. Now, is Buzz for
+you? It might be. If privacy headaches
+or setup fees bug you and you want fast
+offline transcription with customization
+options, it's awesome, right? But if you
+want those cloud perfected tools or you
+don't have enough space on your system
+with that GPU, it might not be the right
+tool, right? That's going to be huge on
+your system. It's going to slow things
+down. So check out the repo, give it a
+shot if you're into transcription and
+audio, and let us know what you think.
+We'll see you in another

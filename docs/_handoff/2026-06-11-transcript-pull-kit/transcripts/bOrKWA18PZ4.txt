@@ -1,0 +1,261 @@
+Cool guys, welcome to another video. In
+today's tutorial, we're going to talk
+about a very very cool project.
+It is called Oh My Clock Code. In short,
+it's OMC. So, this project is a team
+first multi-agent orchestration for
+Clock Code. So, we talked about the
+paper clip and also multi-cop in the
+past, but those are UI based multi-agent
+mission control and orchestration
+framework. So, this one OMC is CLI
+based. So, it's very convenient. You can
+just install in Clock Code and try it
+right away. So, that being said, let's
+get started. So, you can see that this
+community really [snorts] loves this
+product.
+And you already have like 31K stars.
+It's awesome. And to set up this is very
+easy. Follow their command
+in the readme section. So, it's plug-in.
+So, it's installed as plug-in. So, you
+can do plug-in marketplace and also
+plug-in install. So, that's it.
+And there's other ways to install it,
+which is to use the NPM CLI.
+So, after that, you can run a slash,
+which is a skill. So, OMC setup. Then
+you can set up following the prompt. So,
+what they didn't document here is the
+team feature, which is the orchestration
+feature, will be done in the tmux.
+So, this is a basic setup. You can try
+out a few skills, but if you want to try
+out the teams to orchestrate or
+collaboration together, then you need a
+tmux. We'll demo that in a little bit in
+this video. But, this is a basic setup.
+So, it's very straight forward. So,
+they also [snorts] provide the CLI
+version, but we're going to only cover
+the
+Clock Code version in this video. So,
+feel free to check out the CLI if you're
+interested, but let's continue. So, they
+also demoed some of the samples
+in here, which is using a autopilot
+skill. So, if you want to just try it
+out as quick as possible, you can do a
+slash autopilot or other skills
+documented in the readme. They just try,
+for example, autopilot build a recipe
+for managing tasks.
+So,
+this is very straight forward if you
+want to try a multi-agent orchestration
+framework.
+And you do not want to create agent, you
+do not want to
+go through this complicated
+configuration and setups and also like
+managing those agents over time. So,
+this is a very straight forward way to
+do that. So, just CLI, there's really
+nothing you have to config very
+complicated way. So,
+and they provided a feature list. So,
+for example, there's a setup, which is
+what we just talked about. It's a OMC
+setup. And also there's ask providers,
+which is
+let's for example, ask Code X or ask
+Cloud, ask Gemini, which they support
+these three
+providers. And also you can just run a
+team, which is we're going to talk about
+later in this video, which is slash
+team.
+The number of the agent and also the
+executor. We'll go through this in very
+detail later in this video. But, this
+one is just tells you that how the team
+orchestration works. It's very simple,
+very straight forward and very
+effective. And it's very very cool. You
+should see that in a little bit.
+let's continue. So, all the documented
+here is just go through the very basics
+of this OMC framework. They provided
+other skills like deep interview
+and team mode. And this is something
+that's very important. So, this is
+probably the most important
+skill
+in this
+project. And [clears throat] so,
+it's a team. Basically, this is a
+collaboration.
+And
+so, if you
+look at this
+mode section, which is the orchestration
+mode. So, this OMC framework supports
+quite few modes. So, the team mode, OMC
+team CLI,
+CCG mode, and autopilot mode, and also
+ultra work, rough, pipeline, autopilot,
+which is legacy mode. So, this is
+recommended for the team. So,
+if you want to see how the team actually
+works,
+so, just go to the
+Visual Studio Code and also just install
+the skill or install this plug-in and
+try it out. So, for example, we want to
+install this in the Visual Studio, then
+you can see that it's actually installed
+in the Cloud.
+In the plug-ins, there's a marketplace,
+there's OMC. So, that's where this is
+installed. You can see there are agents.
+So, these are all the agents it
+supports.
+There's executor, there's a designer,
+debugger, there's code reviewer, and
+also there are skills that we just
+talked about. Skills, which is like the
+ask as a skill, autopilot as a skill,
+auto research, CCG, and also the team as
+a skill.
+>> [clears throat]
+>> there are a lot of skills you can try
+them out. But, the most important one,
+as I mentioned earlier, is the team. So,
+how the team works is that so, you can
+specify the skill as a team.
+And then you can put in how many
+agents you want and also the agent type
+and
+basically and put your project
+description in here. So, the cool part
+is that you do not need to actually
+figure out what agents to create.
+You do not need to figure out
+if we need a like analysis, you need a
+researcher or you need a marketer or you
+need an engineer.
+if you just want to get a project done,
+you can just say, "Okay, I want this
+five of this agent." Right? I just want
+to five people. And then let's put a
+project here
+and put a description, it will start
+working automatically. So, this really
+reduces a lot of the
+process during the configuration and
+maintenance and also learning. So, this
+is very good and very short straight
+forward. It's very easy for people to
+try this out.
+So, if you want to really see how this
+works, you have to install the tmux. And
+this runs only tmux
+new session. So, you just do tmux new.
+If you have not installed tmux, feel
+free to just figure out in the Google
+or just the other documentation. It's
+very short. You can just do a brew
+install tmux or in any other ways.
+So, [snorts] after you install it, you
+can just try tmux new and test.js and
+also the demo. Demo is the session name.
+So, when you hit enter, you will give
+you a
+tmux session. Then you can run Clock
+Code inside a tmux session. Then when
+you start running the OMC, it will
+actually give you a different windows,
+which is like a panes, right? Different
+panels to show different work of
+different agents, which is in parallel
+is running at the same time. You can see
+everything in one window. It's very
+cool. We'll show you that in a little
+bit. So,
+let's get started. So, if you want to
+actually try out the team,
+just do, for example, we have a few
+examples here. The easiest way to
+spin up a maybe two agents, not three
+agents, because it depends on the
+capacity of your hard or your device.
+So, the two is probably the minimum to
+build a team, right? Let's Let's run a
+two executor. So, it's very straight
+forward.
+There's no lot complicated like
+configurations. I just go ahead and run
+it. Two executor.
+Run this command. Just create a new file
+called hello.txt with the text "Hello
+from agent one" and "Hello from agent
+two." Two agents.
+Each agent will add a text to a file.
+let's see how that works.
+So, after
+you see how this works, you can see that
+the first it will start a
+task and then the task basically
+will be divided between these two agents
+based on the design. And after that, it
+will start executing. The each agent
+will start executing their task. And
+after that, they will report to the lead
+agent it's done. And after the lead
+agent receives all the different
+feedbacks from different agents,
+it will close different agents.
+And after that, we'll merge the results
+and output. So, the process strictly
+follows the plan and design and execute
+and verify. And also, if there's some
+problems, they will fix it and loop the
+process.
+So, it's [snorts] very nice. As you can
+see,
+the result is very cool and clear. So,
+that's how you run
+team
+as a orchestration
+system so in the super easy CLI way.
+Also I want to configure your customized
+alarm
+for OMC you can look at the
+configuration on the
+settings JSON that I put in here so that
+I can configure your own alarm if you do
+not use the cloud
+models so.
+If you want to integrate with open claw
+OMC supports it as well so go to the
+readme open claw integration section you
+can use the scale to configure the open
+claw so as a gateway so that you can
+forward claw session events to open claw
+gateway to enable
+automated responses and workflows so.
+So if you want to know more about it you
+can just also go to the official website
+which is the
+open my claw code.dev
+so they also provided that in their
+GitHub repo you can see there's a
+official link right here
+so.
+Hopefully this is helpful and
+if you do like this video please
+subscribe like or comment if you have
+any questions
+thank you so much for supporting channel
+and see you in the next one.

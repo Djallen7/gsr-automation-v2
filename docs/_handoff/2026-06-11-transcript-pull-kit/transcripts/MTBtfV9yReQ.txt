@@ -1,0 +1,1288 @@
+This episode is brought to you by Ross
+Video.
+From video switchers, graphics, and
+[music] routing, whether SDI, IP, or
+even in the cloud, Ross makes live
+production easy. Trusted everywhere from
+the biggest sports stadiums to city
+council meetings, newsrooms, and more.
+Are you ready to upgrade your workflow?
+Keycode Media offers the best Ross Video
+pricing and a free consultation, so you
+get the right products [music] the first
+time.
+Trust the experts at Keycode Media and
+book today at keycodemedia.com.
+Have you ever watched a production and
+thought, "Wow, that lighting is
+perfect." But then the host stares into
+the void like they forgot how to read?
+Yeah, that's because they didn't use
+Ikan. See, Ikan makes top-tier studio
+lighting, prompters, and gear that keep
+productions looking and running smooth.
+So, whether you need buttery soft LED
+lights or rock-solid teleprompters so
+you don't forget your lines, or just
+pro-level gear that won't let you down,
+Ikan has you covered.
+>> [music]
+>> So, if you want your production to look
+like a million bucks without spending a
+million bucks, check out Ikan. Because
+great lighting and a good prompter
+[music] can make anyone look like a pro.
+2 1
+Start.
+Welcome everyone to Broadcast to Post.
+And today, we're diving into one of the
+most important areas of transformation
+happening in our industry right now. The
+modern broadcast newsroom. See,
+newsrooms are under even more pressure
+than ever. Stations are producing more
+hours of live programming, delivering
+content across broadcast, streaming, and
+social platforms, and doing it all with
+leaner production teams. And at the same
+time, the technology powering those
+newsrooms is evolving rapidly. We're
+seeing major shifts towards IP-based
+infrastructure, increased use of
+production automation, and new studio
+designs built around LED displays, and
+more flexible production environments.
+So, the big question that many engineers
+and operations teams are asking is, "How
+do we increase production capability
+without increasing complexity?"
+So, to help break that down, we're going
+to start with a look at some of the key
+considerations shaping modern newsroom
+design.
+I'm going to hand things over to Steve
+Dupay from Keycode Media, who walk us
+through a few of the biggest technology
+trends that we're seeing across
+broadcast facilities today.
+Steve will also be joined by Jim Bean,
+VP of engineering and operation at Fox's
+WTTG and WDCA stations, to talk about
+how these ideas are playing out in a
+real-world newsroom environment. Then,
+I'll see you later for Q&A. So, Steve,
+take it away.
+As newsrooms continue to evolve, the
+pressure to produce more content across
+more platforms is only increasing.
+Stations today are delivering not only
+to traditional broadcast, but also to
+streaming platforms, social media, and
+mobile devices, often all at the same
+And they're doing it with smaller teams
+and tighter production schedules and
+budgets.
+That raises an important question many
+broadcast engineers and newsroom
+operations leaders are asking right now.
+How do we increase production capability
+without increasing complexity?
+When stations begin planning newsroom
+upgrades today, a few key considerations
+consistently come up. Let's look at some
+of the biggest trends shaping how modern
+newsrooms are being designed.
+Number one, the shift toward IP-based
+infrastructure.
+One of the biggest architectural changes
+happening in newsrooms today is the
+transition from traditional SDI
+infrastructure to IP-based media
+transport.
+Standards like SMPTE ST 2110 and NMOS,
+along with technologies like NDI, Dante,
+and others, allow video, audio,
+ancillary data, and metadata to move
+across standard IT networks rather than
+dedicated baseband cabling.
+We actually have a number of past
+Broadcast to Post episodes that dive
+deeper into this topic, and we'll
+include a few of those in the
+description.
+At a high level, IP-based infrastructure
+enables far more flexible production
+environments. Signals can be routed
+anywhere across the network. Production
+resources can be shared between studios
+or control rooms, and systems can scale
+more easily as facilities expand. At
+least on paper, that's the pitch.
+But the transition to IP also introduces
+a new set of engineering challenges.
+Network design becomes critically
+important. Engineers need to consider
+bandwidth allocation, multicast traffic
+management, redundancy strategies, and
+especially precision timing systems like
+PTP, which synchronize IP-based media
+environments.
+One of the things we consistently see
+when helping customers to make this
+transition is that IP systems behave
+very differently than traditional
+baseband infrastructure. In the SDI
+world, the signals are highly
+deterministic. You run a cable, and the
+signal either works or it doesn't.
+IP systems are a completely different
+animal.
+They operate inside a shared network
+ecosystem where timing, traffic
+prioritization, and device
+interoperability all matter.
+Even something as simple as an IP to SDI
+gateway can vary significantly between
+vendors in terms of buffering behavior,
+latency, and standards compliance.
+Industry from SMPTE and organizations
+like the Video Services Forum also
+highlights the importance of monitoring
+and orchestration tools in IP
+facilities.
+Engineers increasingly rely on network
+analytics platforms to track timing
+domains, multicast flows, and device
+behavior across the facility.
+For many engineering teams, the shift to
+IP isn't just a technological change. It
+is also an operational shift that
+requires stronger calibration between
+broadcast engineers and IT network
+specialists. Number two, automated
+production control is becoming the
+backbone of production.
+A major shift in newsroom operations
+today is the growing role of automated
+production control, often referred to as
+APC.
+Automation platforms coordinate many of
+the elements required to produce a live
+show. That includes switching cameras,
+triggering graphics, rolling video
+clips, advancing prompters, and
+controlling camera robotics.
+Platforms like Ross OverDrive, Viz
+Mozart, Sony ELC, and Grass Valley
+Ignite allow newsrooms to run complex
+productions with fewer operators while
+maintaining consistent production
+quality.
+These systems also integrate directly
+with NRCSs, short for newsroom computer
+systems, by using MOS protocols, which
+allow editorial rundowns to drive
+production events in the control room.
+Automation also enables repeatable
+workflows. Camera movements, graphic
+timing, and segment transitions can all
+be executed consistently from a rundown.
+In many facilities today, automation has
+effectively become the central nervous
+system of the control room.
+But successful automation deployment
+depends heavily on design and
+integration quality.
+When problems occur during a live
+production, the root cause often isn't
+the automation system itself. It's
+usually a configuration issue somewhere
+else in the chain.
+For example, tally might not trigger
+properly because of telemetry
+configurations between robotics and the
+automation system. Or graphics timing
+issues can arise from mismatch MOS
+configurations between newsroom systems
+and graphics engines. That's why systems
+architecture, device drivers, and
+integration testing are critical parts
+of newsroom automation projects.
+Automation works best when the entire
+production ecosystem, including
+switchers, graphics, servers, robotics,
+and newsroom systems, is designed to
+operate together from the start. Number
+three, LED walls are transforming studio
+Another major trend we're shaping
+newsrooms is the growing use of LED
+walls and display-driven set design.
+Traditionally, new sets relied on
+physical scenery and fixed backdrops.
+But LED display technology is allowing
+studios to become much more flexible and
+dynamic production environments. With
+large LED walls integrated into the set,
+broadcasters can quickly change the
+visual environment without physically
+rebuilding the studio. The same stage
+might support a morning show, a
+financial segment, weather alerts,
+election coverage, or even an entirely
+different program later in the day
+simply by changing the graphics and
+content on the displays.
+What's interesting is that the set
+itself is becoming part of the
+production technology stack, introducing
+new engineering considerations.
+Engineers now need to account for
+factors like pixel pitch and camera
+distance, camera sensor interaction and
+moire,
+color calibration and HDR workflows,
+LED processor latency and refresh rates,
+and synchronization between LED
+processors and the graphic systems
+driving them.
+These aren't trivial design and
+operational decisions, and working with
+an experienced system integrator can
+make a big difference.
+We're also seeing tighter integration
+between LED walls, graphics engines, and
+automation systems, so that display
+content can change dynamically as part
+of the production rundown.
+As a result, engineers, graphics teams,
+and set designers are increasingly
+collaborating much earlier in the design
+process to make sure the studio works
+seamlessly on air. Number four,
+metadata-driven workflow and
+multi-platform publishing.
+In today's platform content world,
+modern newsrooms are no longer producing
+content for a single output channel.
+Instead, content must be distributed
+across linear broadcast, streaming
+platforms, website, mobile apps, and
+social media.
+To support that kind of workflow,
+production systems increasingly rely on
+metadata-driven operations.
+Metadata allows newsroom systems, media
+asset management platforms, graphics
+engines, and automation systems to
+exchange structured information about
+stories, clips, and show segments.
+Industry analysts and standards
+organizations like SMPTE frequently
+describe the future newsroom as a
+data-driven production environment where
+metadata enables automation across the
+content life cycle.
+For example, metadata can help automate
+tasks like clip creation and highlight
+generation, graphics population and
+templating, captioning and transcription
+generation, and digital publishing
+workflows.
+Many vendors are also integrating
+AI-assisted tools that analyze media
+content, generate metadata, assist with
+story preparation, or accelerate
+clipping and publishing.
+These capabilities are still evolving,
+but they're becoming an increasingly
+important part of the newsroom
+technology strategies. Number five,
+cloud and hybrid production workflows.
+Finally, one of the fastest-growing
+trends in broadcast operations is the
+move toward cloud and hybrid production
+Rather than keeping all infrastructure
+inside a single facility, broadcasters
+are increasingly distributing workflows
+across on-prem systems and cloud-based
+platforms.
+Hybrid architectures allow organizations
+to scale compute resources for tasks,
+including graphics, rendering, media
+processing, archive storage, remote
+editing, and disaster recovery.
+Cloud-based production tools also enable
+new collaboration models, allowing
+journalists, editors, and producers to
+work remotely when needed. Major
+broadcast vendors, including Sony, Grass
+Valley, Viz RT, and Ross, are all
+investing heavily in cloud-capable
+production platforms that support both
+on-prem and cloud-based workflows. That
+said, industry experts consistently
+emphasize that most broadcast operations
+will remain hybrid environments for the
+foreseeable future. Latency-sensitive
+processes like switching and live studio
+production often stay on premises, while
+compute-heavy tasks such as media
+processing, archive management, and
+distribution move into the cloud.
+Designing these hybrid workflows
+carefully is essential to avoid
+introducing unnecessary complexity,
+operational risk, and additional cost.
+When you step back and look at these
+trends together, a common theme emerges.
+Newsrooms are becoming more flexible,
+more automated, and more visually
+dynamic. But that flexibility also
+increases the importance of thoughtful
+system design, infrastructure,
+automation systems, graphic engines, and
+display technologies all need to work
+together reliably.
+And honestly, we've just scratched the
+surface.
+Technologies like bonded cellular
+encoders from companies like LiveU are
+reducing the need for traditional
+satellite trucks and making live field
+contributions far more flexible.
+At the same time, advancements in camera
+robotics from companies like MRMC,
+real-time graphic systems from companies
+like Brainstorm, and of course, the big
+buzzword right now, AI-assisted
+production tools, are continuing to
+transform how news stories are produced
+and presented. If your organization is
+evaluating a newsroom upgrade, exploring
+IP infrastructure, or looking to
+modernize your studio design, the team
+at Key Code Media works with
+broadcasters across the industry to
+design, integrate, and support these
+systems.
+Hi Jim, welcome back to Broadcast to
+Post. You've been leading the
+engineering and operations at Fox's WTTG
+and WDCA stations for nearly two
+decades, and your team is producing an
+enormous amount of live programming
+every week.
+We're also joined by Nick Kumar, vice
+president of broadcast engineering at
+Key Code Media.
+Nick has worked with many broadcasters
+on major infrastructure transitions and
+actually partnered with Jim's team
+during their move to a new facility and
+transition to SMPTE ST 2110. Great to
+have both of you here.
+Hi Steve, thank you. Hello, Nick.
+Hi Jim. Hi Steve, glad to be back.
+Thanks.
+Jim, before we dive into the technology,
+can you give us a quick overview of the
+type of programming your newsroom is
+producing today?
+Well,
+it's it's ever-expanding. Uh currently,
+we're on from uh
+4:00 a.m. to midnight with some sort of
+uh live programming.
+Uh much of it traditional newscast or
+traditional morning newscast.
+Uh but we've expanded into
+um
+uh things that are a little bit more uh
+topical, maybe a little bit more
+controversial, opinion.
+Um
+and uh then on the streaming side, uh
+we're doing uh sports,
+uh entertainment, and uh just a lot of
+uh
+a lot of live, you know, uh you might
+say what's happening now on the
+streaming side. So, we've
+it it's we've really expanded in the
+last uh uh
+in my time here.
+Wow. Yeah, you'd mentioned on a previous
+call that you're producing about 100
+hours of programming every week, much of
+it live. Um how has the scale of
+production changed over the past 10 to
+15 years, and what pressure does that
+put put on you, on engineering, and your
+production teams today? And maybe give
+us a sense of the types of shows you
+were producing years ago versus what
+you're supporting now.
+I mean, years ago, when I started, most
+of the newscasts were your traditional
+newscast, one or two anchors,
+big desk.
+Uh you know,
+you've seen them, and we still do those
+newscasts.
+But um the audience has uh
+is really driven us to um
+uh to produce
+other programming. Um and
+much of it adjacent to
+a traditional newscast, but in a
+different way. Uh you might be familiar
+with uh the national show uh uh TMZ.
+Um we do a show uh very similar to that
+in our newsroom where we focus on the
+District, Maryland, and Virginia, the
+DMV zone.
+It's a little bit different pace, little
+bit faster pace, higher story count. Um
+and uh and and we maybe cover stories in
+a little bit different way sometimes.
+Terms of the the pressures and the scale
+of production in the last, you know, 10
+or 15 years,
+I'll tell you one thing, our maintenance
+window has really shrunk. I mean, it's
+almost down to nothing. Um we did a uh
+we had to update some network switches
+just this afternoon, and uh
+we have maybe a 2-hour window to work
+with work in when we're not uh on the
+air. And um
+and even in that window, we we're live
+streaming to uh to our digital
+platforms. And uh
+you know, we struggle to uh to get
+maintenance done anymore. Yeah, that's a
+that that that 4:00 a.m. to to midnight
+time frame doesn't leave you a whole lot
+of
+of time, and those are those got to be
+awful overnighters as well.
+Yeah. Yeah, I mean, you know, we wrap up
+at midnight, and we're back on live at
+4:00 a.m.
+Wow. So, you know, even that window, you
+say, "Well, you got a 4-hour window
+there," but uh
+you know, it's it's it's hard to do
+maintenance in the middle of the night.
+there's just the support's not there.
+Yeah. Um
+Yeah.
+You know, one thing that uh stood out
+from our conversation was how flexible
+your studio environment is.
+You essentially have one studio with two
+sections, and you're able to quickly
+transition between very different types
+of programming throughout the day. For
+example, in the morning, the anchor desk
+can be moved out of the way for dance or
+exercise segments, while other shows
+might use couches or a completely
+different set configuration.
+And then you have an LED wall and three
+monitors that can operate independently
+or combine into a larger display
+backdrop.
+Can you walk us through how the studio
+was designed and how your team is able
+to transform this space so quickly
+between shows?
+So,
+and I'll I'll talk new building and old
+building because 5 years ago, we were in
+our old building. Uh and that building
+was 60 years old, but we had two studios
+in the old building.
+And we would sometimes drag cameras from
+one to the other,
+and we would have people running from
+one to the other, you know, quickly. Um
+Uh floor directors move around. We
+decided, "Look, we're going to do it all
+in one big studio." We still have
+separate areas, so it's almost a a
+studio with three or four corners.
+we've got,
+you know, a mix of traditional set
+pieces.
+You know, we've still got the the
+couches for people to sit on, the
+chairs. We still have risers on wheels.
+We still push the desks around on
+wheels.
+Um but then the backgrounds
+>> [snorts]
+>> um and the background monitors and the
+foreground monitors
+are all under uh graphic automation
+control. Hm. So, this studio, we can
+change the look of any of these corners
+at one point during the week, it it
+would look like a uh a courtroom because
+we produce a court show.
+Um late at night, we do a show called
+the Final Five. It looks like a a
+ratskeller. All this is
+uh handled and controlled by our
+graphics automation, which are under the
+the production control room automation
+control. So, uh the same system that
+controls the the playout and the robotic
+cameras and the switcher
+um also drives the uh the graphics and
+with a template-based graphic system,
+our producers can
+they obviously they call up the same
+graphics that they use every day for
+most of their shows in the background,
+but then when they want a different
+graphic, uh they can uh call it up from
+something that's built or they can even
+drop in a a JPEG into a template and uh
+allow it to build a new graphic.
+Um so uh
+we have monitors that uh are on uh rails
+uh that hang on rails and there four of
+them pushed together and you can operate
+them as one or you can split them into
+two monitors or you can split them into
+four monitors. And it all depends on the
+look that you want and it all really
+allows us to get
+many many different looks uh with a very
+short turnaround time between uh
+programs.
+That's a that's amazing.
+Nick, from uh the the systems
+integration side, we're seeing more
+studios designed this way. What does
+that take technically to build a studio
+that has that kind of flexibility?
+Yeah, so from the integration side,
+flexibility uh really uh comes down to
+uh designing the studio as a um uh
+technology platform rather than a fixed
+set. So, at WTTG Fox 5, we built the
+infrastructure around uh an IP-based
+video routing uh um
+system, uh centralized and flexible
+control, and uh modular set elements so
+the space could um
+essentially adapt to different shows
+throughout the day. Uh the LED wall,
+monitors, and graphic systems are all
+tied into the same production backbone
+so operators can quickly change layouts,
+um sources, and backgrounds without
+physically rebuilding the set. So, when
+you combine uh that with the newsroom
+automation and programmable control
+systems, the studio team can then shift
+from a traditional anchor set show to
+something more lifestyle or
+interview-driven in just a few minutes.
+Um another big piece was the whole
+routing and control layer. Um we
+designed the system so two different
+production control rooms could
+essentially take ownership of the same
+studio with essentially the push of a
+single button. And behind the scenes, uh
+what that does is it um it triggers
+automation presets, switcher profiles,
+um routing changes, and monitor layouts
+so the entire signal flow
+uh basically reconfigures automatically
+depending on which control room is
+driving the show.
+Um and that's really where the industry
+is headed. You know, studios that are
+multi-purpose production
+uh multi-purpose production environments
+where technology and automation give
+producers the flexibility to tell
+different kinds of stories in the same
+physical space.
+Wow. So,
+so Jim, this this transition that uh
+Nick helped you to uh go through
+occurred about 5 years ago. Um that was
+had to have been a major facility
+transition when you moved into the
+building and you know, had all this new
+SMPTE ST 2110 infrastructure.
+Um at the time that was still relatively
+early in the industry adoption curve and
+I you know, Nick was actually part of
+that integration as he just mentioned
+here and helped to design and deploy the
+systems. Um
+from a broadcaster's perspective, what
+was the transition like and what were
+some of the the biggest lessons you and
+your team learned during that
+deployment?
+You know, from from my standpoint, it
+wasn't as hard as you might think um and
+I'm going to say that's uh
+in in uh part due to Nick and his team.
+You know, Nick will give you a different
+answer on that, I guarantee [laughter]
+you, but uh
+but under the hood,
+you know, look, we were struggling.
+uh it was a uh a greenfield uh facility.
+We took almost nothing from the old
+building into the new building. So, in
+you know, in that respect, we had the
+the luxury uh most
+most companies doing a 2110 transition
+won't have this luxury, but we had the
+luxury of building a new facility,
+testing it, and then moving into it. And
+uh you know, that was that was a luxury.
+Um you know,
+we were
+we were making these decisions really
+now 6 years ago, right? Cuz we were
+having to decide ahead of time what the
+equipment was going to be and
+we were we were an early adopter. We
+were still a few years
+after the 2110 standard was released.
+So, there was equipment out there.
+I'd say the difference, you know, 5 6
+years ago from today is we had the
+choice between, you know, maybe one
+maybe one and a half different brands of
+switcher.
+Uh you know, maybe two different brands
+of cameras. Um
+uh you know, one maybe one and a half
+types of graphic systems.
+Uh of the equipment that a station, you
+know, that our size would normally
+uh procure
+um from from vendors,
+you know, our choices were were pretty
+limited, but we did have a
+a um workable choice in each category.
+And so, that was good for us. So, we
+weren't really, you know, all the way
+out there on the on the bleeding edge.
+If we were designing it right now, we we
+might make different choices.
+Uh we would certainly have many more
+choices than we did, you know, 5 or 6
+years ago, which which is a great thing.
+You know, if you're if you're
+transitioning now, there's just there's
+so much more out there
+uh that that wasn't there 5 or 6 years
+ago.
+Right. Well, and and I think you were
+very fortunate um
+Nick is one of the
+one of the top design and integration
+engineers in 2110 and uh and NMOS in the
+industry. And uh I I've I think you're
+pretty fortunate to have him helping you
+with uh both your design and your
+integration. Mhm. Nick,
+with with without uh
+without showering too much on you,
+what were some of the technical
+challenges and considerations when
+helping Fox move to a full ST 2110
+environment at that time?
+Appreciate the kind words, Steve. Thank
+you. Um so, you know, from the
+integrator side, you know, one of the
+one of the big realities at the time was
+that uh the ST 2110 set of standards
+were still very new, as Jim mentioned.
+The standards had only been ratified uh
+really a couple years ago before uh
+we actually started doing the design
+itself. So, while the industry was um um
+excited, right, about the IP and
+ecosystem
+about the IP adoption, the ecosystem was
+still very much maturing at the time.
+So, one of the first things we did uh
+was spend a lot of time understanding
+Jim's operational pain points at the old
+facility and then look at how a
+greenfield design
+uh could essentially solve those issues.
+And given the scale of Fox's operation
+and
+uh at the time, moving to a native 2110
+IP architecture just made sense. But it
+also meant that we had to be very
+uh cognizant and deliberate about vendor
+um interoperability and vendor
+selections at the time. And at that
+stage, you couldn't just take a vendor's
+word that a device was 2110 compliant.
+Uh we relied heavily at the time on the
+JTNM interoperability test results and
+worked very closely with manufacturers
+to understand um how their equipment
+actually implemented the standards and
+what level of NMOS support existed uh
+with those manufacturers. Uh in a few
+cases, we found gaps, which meant we had
+to engineer some, you know, some some
+some pretty innovative uh you know, um
+uh solutions.
+but um
+another big shift was in the design
+methodology itself. Uh with SDI-based
+systems, a line drawing, for example,
+can tell um
+it can tell you most of what you need to
+know about the signal flow, right? With
+IP systems, the physical network, the
+logical network architecture, and uh the
+multicast design all become critical
+parts of the system design. So, we were
+thinking about things like topology,
+multicast management, routing protocols,
+and control orchestration very early in
+the design process. So, it really forced
+us to design the facility from the
+endpoints perspective, outside in,
+understanding what each device could do,
+um then building the network
+architectural uh the architecture and
+the broadcast control system around
+that. Um so, looking back, it was
+definitely early days for 2110
+deployments, but projects like Fox, uh
+WTTG 5, helped prove that a full IP
+broadcast facility could be built and
+operate successfully at scale. And in
+many ways, the industry it sort of
+learned together through projects like
+this. Broadcasters, integrators, and
+vendors all working through together to
+really make uh you know, uh this project
+successful as well as build a
+standards-based IP facility.
+And and uh Jim, that kind of goes to the
+whole point of uh you were coming out of
+a traditional SDI plant and you were
+dealing with point-to-point connections
+and fixed signal paths that were easy to
+to interrupt and test and all that kind
+of stuff. Um
+how has moving to the IP-based
+environment changed the way your team
+routes and manages signals or
+reconfigures your production resources
+across the facility? Has it has it made
+it more complicated? Has it solved some
+problems? Has it given you some new
+flexibility?
+It's certainly
+it's certainly a different way of
+looking at it. In some ways, it's much
+more complex,
+but in other ways, it's you know, once
+you you immerse yourself in it, um you
+get to understand that it's actually
+easier.
+you know,
+changing signal flow in a 2110 facility,
+you don't have to touch the cable. You
+know, it's you're you're sitting at your
+desk, you know, on your PC,
+whatever the control software you're
+using to to manage your uh
+your network in your facility and uh and
+you're making the changes and then
+saving them. And then if you don't like
+it, you can just load the previous
+config. Or in our case,
+if uh if it's Wednesday afternoon and
+we're switching from production control
+room one to to production control two,
+we we do that one
+one week out of a month, we switch the
+alternate control room. It's two
+buttons. It's one for video, one for
+audio.
+And all of those routes are changed.
+You know, think about it. They they the
+teleprompter monitor that's on the front
+of the camera,
+that needs to be fed from the control
+room. Well, which control room were you
+in today? And you have all those little
+decisions have to be made. All that can
+be done from you know, with a push of a
+button.
+The engineers
+who are used to troubleshooting and
+working with SDI based systems,
+if the station all of a sudden goes to
+black, the engineers get get up from
+their bench and they run into master
+control and they run into the rack into
+the room with the equipment racks and
+they start troubleshooting it.
+Not the case with 2110. We see black on
+the air and there's a problem.
+The engineers actually sit down at their
+desks
+and they're they start logging into the
+different computer systems that are
+monitoring the network.
+And and and they see the whole signal
+flow out on a
+you know, on a multi-viewer
+from end to end and or on a
+on any of a number of different tools
+that we use for network analysis that
+can that can see the multicast flow
+from from one end to the other.
+And it's a different way of
+working.
+Surprisingly
+or maybe not surprisingly, I think our
+staff picked it up very well.
+That's fantastic. And and kudos to Nick
+for such an excellent design. Um that
+kind of begs the question Nick. Um
+you you obviously delivered a powerful
+solution to Jim
+and have helped him be more successful.
+What were the biggest hurdles that you
+faced in in trying to design a solution
+that would have that kind of
+of added capability and flexibility of
+operation and what were some of the
+biggest successes you had in in
+deploying that IP infrastructure for
+him?
+Yeah, so you know, one of the biggest
+engineering shifts if you would when
+moving from baseband to IP is that
+you're no longer just um
+um connecting devices. You're building
+and operating a network system.
+And in the early days of 2110, that
+meant we had to spend a lot of time
+validating how different devices
+actually behaved in a live environment.
+And you know, like I've emphasized
+before the standards were relatively new
+and while vendors would say their
+equipment was 2110 compliant, the
+reality was that implementation details
+they varied from vendor to vendor. So
+some devices for example, they supported
+parts of NMOS like ISO4 discovery but
+didn't fully implement ISO5 connection
+management yet. So integration sometimes
+required some pretty innovative
+solutions which I'm sure Jim can attest
+to. And because of that stress testing
+at the time became really important.
+We would test systems not just for
+signal flow but for operational behavior
+under real production conditions, you
+know, for example, routing changes,
+traffic bursts,
+failure scenarios, PTP failures and so
+on and so forth. For example, in one
+particular case, we discovered a
+receiver an IP receiver in a production
+switcher that was sensitive to bursting
+multicast traffic and it ended up
+causing artifacts across adjacent
+inputs. And diagnosing something like
+that requires
+being able to analyze packet behavior,
+understanding the devices IP receiver
+implementation and then working closely
+with the vendor to develop a fix but
+first being able to properly communicate
+the problem.
+And these kinds of challenges were
+pretty common in the early days of IP
+but through careful testing,
+collaboration with vendors and really
+understanding both
+broadcast workflows and network
+behavior, we were able to deliver a
+stable system and get WTTG successfully
+on air.
+That's fantastic. Let's shift gears now
+for just a a minute and talk about
+another big trend that we've been
+discussing discussing today. That is and
+that is automation in the control room.
+Jim, your facility uses systems like
+Ross OverDrive and Grass Valley Ignite.
+How much of the production process today
+is automated and how has that changed
+the role of the technical director in
+the control room? You mentioned earlier
+that sometimes the switcher is executing
+the show automatically while the TD is
+focused more on managing robotic
+cameras. How does that workflow work in
+practice? There are
+there are I think three or four you
+know, big players out there in in uh
+production automation. I think they're
+all good.
+But
+yeah, you're right. The TD
+is not necessarily so focused on the
+switcher anymore.
+All of the effects and everything and
+all are built in.
+And so the the punching that the TD
+would do is now they're spending more of
+their time
+you know, watching the newscast um
+touching up the cameras, framing
+shots, maybe looking ahead, routing live
+shots that are coming in, maybe just
+checking the quality of a live shot,
+advancing graphics.
+You know, there's there's a lot of other
+work
+to be done in there.
+That's interesting. I it it feels kind
+of like it's giving you the opportunity
+to have a more immersive and more
+enhanced production value
+rather than just doing the rote stuff
+that
+that that that tied down engineering
+stuff. You're able to help the creatives
+be maybe a little bit more creative.
+Yeah, I think so. I think that these
+these production automated automation
+systems and and they're pretty mature
+now.
+they've you know, they allow us to
+to
+produce a very repeatable
+fast-paced
+interesting show that maybe in some
+cases has more
+production value than you could do
+you know, if you were having to manually
+punch the buttons. You've only got so
+many
+fingers and so many buttons you can
+press at once but the the computer makes
+it all happen
+and you know, keeps it on time.
+That's cool. Nick, you know, in order to
+integrate all that cool automation stuff
+together, it it takes a lot of
+configuration, a lot of scripting, a lot
+of stuff to to to make that that that
+work well together and not have glitches
+on air. What were some of the challenges
+you ran to in with the automation
+systems and orchestrating
+all these different devices to work
+together seamlessly?
+From an architecture standpoint,
+one of the biggest challenges with
+automation is that the system is no
+longer just controlling one device. It's
+orchestrating an entire ecosystem of uh
+equipment
+in in in real time. And newsroom
+automation systems for example, like
+OverDrive or Ignite or others, they're
+they're they're simultaneously talking
+to for example, your production
+switcher,
+your graphics engines, clip servers,
+robotic cameras,
+audio mixers, routing systems and often
+lighting or video wall processors. So
+you know, for that to work reliably,
+every device has to expose a stable
+control interfaces and
+respond predictably when the automation
+systems sends commands. So a big part of
+the integration effort is making sure
+that all those control layers are
+aligned whether that's through
+MOS workflows with the newsroom control
+system, device control protocols,
+NMOS connections and IP environments or
+even traditional APIs and serial
+control. Another challenge is making
+sure that the system still allows
+operators to intervene when needed.
+Automation is great for consistency and
+predictable outcomes and efficiency but
+live television may be unpredictable at
+times. So the architecture has to
+support both automated workflows and
+manual control at the same time. And
+when when when it's designed properly,
+automation doesn't remove operators per
+se. It essentially
+allows them to focus on higher value
+tasks like camera framing, storytelling
+and managing live production rather than
+just executing button presses.
+Interesting. Um
+from an operation standpoint, what are
+some of the the biggest challenges that
+you're facing today in running a modern
+newsroom and I I think you know, you
+mentioned earlier that more people
+involved in the production today may not
+come from traditional broadcast
+backgrounds. How is that how is that
+changing the way say your engineering
+team support production?
+We need to lay the the groundwork for
+our um
+our staff that uh
+maybe doesn't come from a production
+background.
+Maybe they're a
+maybe they've come from a journalist
+background and we've tasked them with
+doing a uh hour-long
+streaming
+newscast or
+from our
+our streaming control room area.
+Um and uh
+they need a little bit more help, a
+little bit more instruction on
+you know, how to make it work.
+And so our you know, our engineers have
+spent an awful lot of time in the
+newsroom
+working
+with people that don't have the
+traditional production
+You know, 20 years ago in this business,
+if you were going to be operating
+a switcher, you know, in a top 10
+market, you probably had 10 years
+experience to start with.
+Now you might be
+a
+a producer and you still may have have
+the experience as a producer but you
+have not spent a whole lot of your
+career
+punching a switcher. And um
+and if you find yourself in doing a
+newscast where you know, you need to be
+operating a switcher,
+that's a challenge for you and and we've
+spent a lot of time now with our our
+engineering staff
+um helping these folks get up to speed
+and then helping them when they
+when they when they bump into problems
+that uh
+that maybe a uh
+uh you know
+a TD with more experience maybe wouldn't
+have.
+Makes makes sense.
+we have a lot of vendors I'm sure
+watching the show today. Uh so Jim from
+your perspective running a high-volume
+newsroom, what's on your technology
+wishlist? Wishlist. What is it that
+might be missing today that would be
+great to have and you know, what
+problems could vendors uh really engage
+in solving to help your facility operate
+better right now?
+Lighter, less expensive, easier to
+control, right? Yep. [laughter] More
+bang for the buck. And more bang for the
+buck, you know, it it it is remarkable
+the uh the state of the industry right
+now and um
+20-30 years ago we did things a certain
+way
+and uh
+you know
+bought the same equipment as the other
+top 10 markets and uh
+operated the same way and and now
+you know, our
+the way that we the equipment that we
+purchase maybe is is is lighter and uh
+and easier and more automated and the uh
+and the the people that are operating it
+have you know, different backgrounds and
+so
+we'll be we'll be out there at NAB
+looking for um
+for all of that.
+>> [laughter]
+>> Good to know.
+Nick, um are you hearing similar kinds
+of requests and and status from other
+broadcasters that you're dealing with on
+designs and integration?
+Oh yeah, absolutely. I mean we're we're
+definitely hearing some of the same
+themes from um other customers, other
+broadcasters across the industry. And
+one of the biggest requests that we hear
+is around simplifying interoperability.
+Um and over the last couple years the
+industry has made a made a huge um
+progress right with standards like 2110
+and NMOS, but in real-life deployments
+there's still a lot of effort uh to make
+multi-vendor systems behave like a
+single um cohesive environment. Uh
+broadcasters really want systems that
+integrate more seamlessly
+out of the box. Uh where discovery,
+connection management, monitoring, and
+control uh they all essentially work
+together without requiring as much
+custom engineering. Um another area we
+hear a lot about is um
+operational visibility. In an IP-based
+facility, there's a tremendous amount of
+data flowing through the network and
+operators want better tools. Engineers,
+they want better tools to um quickly
+understand the system health,
+troubleshoot issues, and visualize
+what's happening across the entire uh
+production infrastructure. So if there's
+one common theme in the feedback we
+hear, it's that broadcasters are looking
+for um
+solutions that make these complex
+systems easier to operate, of course
+easier to monitor, and
+uh easier to integrate uh as facilities
+continue to scale and evolve.
+Yep.
+I absolutely agree with that one.
+One final topic before we wrap up. Um
+with technologies like IP
+infrastructure, automation, robotics,
+etc. becoming more common, the skill set
+for engineering is evolving pretty
+rapidly. Um what training resources or
+learning paths do you think are most
+valuable and applicable right now for
+engineers who want to stay relevant in
+the industry? And um
+both Jim and Nick, I want you to provide
+us an answer on those.
+Uh
+networking, of course.
+>> Uh certainly know uh different
+protocols, multicasting
+or multicast protocol. Just being
+nimble. Um you know, we've
+we've had
+interesting, we've had success in uh
+with our engineering staff in hiring
+people from a number of different
+backgrounds.
+some networking, some traditional
+broadcast engineering
+um some audio engineering
+some former military
+uh you know, we've had just a great
+success with um
+with hiring people uh lately and so uh
+yeah,
+I don't know if you're seeing the same
+thing, Nick.
+Yeah, and I think this is this is a you
+know, it's a great question and you
+know, the role of a
+a broadcast engineer as Jim mentioned is
+is is is definitely evolving. It has
+been evolving over the last
+6 to 7 years.
+Um in the past a lot of the focus was um
+for a broadcast engineer, the focus was
+uh uh
+baseband video systems and signal flows
+uh but today with technologies like you
+know, IP, 2110, automation, and even
+cloud-based workflows, uh engineers
+really benefit from having a strong
+foundation in areas like networking um
+uh understanding IP infrastructures and
+um you know, software-defined systems.
+So learning the fundamentals of things
+like network architectures, multicast,
+PTP timing, and maybe even basic Linux
+or scripting tools for example, they can
+go a long way.
+Um and these skills help engineers
+understand not just how the equipment
+works, but how the entire uh system
+behaves. So at the same time, I'd also
+encourage people not to lose sight of
+the broadcast fundamentals, right? So
+understanding production workflows,
+signal integrity, and how um live
+television actually operates. The
+engineers who are most effective today
+um are the ones who can bridge both
+worlds. And uh there are some great
+resources out there uh whether it's
+organizations like SMPTE or VSF, um
+industry training from groups like AVIXA
+or even online networking courses, but
+probably the most important thing as Jim
+mentioned is just staying curious and
+continuing to learn because the
+technology in our industry continues to
+evolve pretty quickly. And the engineers
+who will thrive in the future of
+broadcast are the ones who understand
+both media and workflows and modern IT
+infrastructures and bring those two
+worlds together.
+I love that. Be curious, engaged, and
+always learning. That's fantastic.
+Well Jim and Nick, this has been a
+fantastic insight into what it really
+takes to operate a modern newsroom.
+Thanks for joining us and sharing your
+experience.
+Thank you, Steve.
+Uh we're now going to transition into
+our live audience Q&A, so stay tuned and
+let's let's get some questions in here.
+Thanks for watching Broadcast to Post.
+Don't forget to follow Keycode Media on
+social and contact us about your
+projects at keycodemedia.com.

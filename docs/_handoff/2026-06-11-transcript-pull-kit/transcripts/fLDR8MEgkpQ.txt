@@ -1,0 +1,453 @@
+Hi, I'm Nathan from Crazy Amazing
+Designs. I'm excited to show you this
+conference room style control system
+that I built. This system provides easy
+control of the audio and video systems
+for these three multi-purpose rooms at
+First Friends Church. When I started
+this project, each of these three rooms
+already had a projector, screen, and
+speakers, but the control systems were a
+big problem. Everything was old VGA
+analog gear, so connecting a simple
+laptop to the projector through the
+system via like an HDMI was actually not
+possible. My new system provides an HDMI
+input at the front of each room. This
+can be selected as a source to the
+projector from the
+Each room has a Stream Deck controller
+to control the video and audio for that
+room. There is an audio page to turn up
+and down the volume of microphones and
+the computer source, then a video page
+so that users can choose between several
+video sources going to the room's
+projector. We do still power the
+projector on and off with the remote and
+use a button on the wall to move the
+screen up and down, but all audio and
+video sources and volume are managed
+from the Stream Deck controller located
+in each room. What I've been talking
+about so far is single room mode, the
+mode where each room operates
+independently. To select this mode, walk
+into any of the three rooms and you're
+going to see the same menu page on the
+controller. Select the room number L41,
+L42, or L43. If you go to all three
+rooms and select that room, you're going
+to notice that some video sources, like
+the Apple TV, are available to all three
+rooms. Then other sources, like the HDMI
+input labeled HDMI L41, is only
+available to room L41. Same with HDMI
+L42 and HDMI L43. At the front of each
+room, there is a wall-mounted HDMI input
+intended to be used by only that room.
+As a side note, if you would like to
+purchase this system, the 3D printed
+files are included and don't let people
+question if this box is for inputs or
+outputs cuz I've got identifiers that
+show you very clearly it's an input or
+an output. There are two wireless
+microphones connected to the system that
+can be selected and the volume turned up
+and down from the audio page in single
+room mode. When the volume is turned up,
+the microphone only comes through the
+speakers in the specific room. Same when
+there is audio coming into the system
+from the front of room HDMI input,
+you're only going to hear it in this
+room. Each week, there are many types of
+groups that meet in these individual
+rooms. When a single room is too small
+for a group, our facilities team opens
+the soundproof walls to make these three
+rooms two rooms or even one large room.
+When this happens, we put the system
+into full room mode. Now, there is a
+different set of audio and video pages
+that give the user access to every
+single source from all three rooms. Now,
+when a video source is selected, it's
+not just sent to the projector in that
+room, but it's sent to all three rooms'
+projectors. When a microphone is used or
+music is played, it's now sent to the
+ceiling speakers in all three rooms.
+This full room mode page can be selected
+from all three Stream Deck controllers.
+This solution allows for a lot of
+flexibility in this space. You might be
+wondering, can these rooms be set up to
+group rooms one and two and then use
+room three in a single room mode for a
+class? The answer for us is no. We
+decided that that use case was not
+relevant for this implementation, but if
+you are interested in this system for
+your space, then yes, we definitely can
+implement that for you. The beauty of
+this system is that it's super flexible
+and user configurable. Well, I've talked
+about how this system uses Stream Deck
+controllers to control everything.
+Stream Decks are basically fancy
+keyboards, they also have screens, and
+they require software that runs on a
+computer. For this system, that software
+that I'm using Companion. Companion
+connects to the ATEM Constellation video
+switcher and the Behringer X32 Rack.
+These devices are managing all video and
+audio inputs and outputs. Companion is
+simply providing the user interface to
+make it super easy for users to control
+the system from those Stream Deck
+controllers. On Wednesday mornings, the
+church hosts women's Bible study in
+these rooms. I've built them a custom
+page that only shows exactly what they
+need, one microphone and the DVD player
+video source, as well as audio. More
+recently, I added the computer with a
+button that automatically opens Safari
+and takes them to the website page where
+they're watching their video series
+content from. Then there is a second
+button I've given them that runs a
+script on macOS to move Safari to the
+extended screen and makes the website
+video full screen. Now, they just have
+to play or pause the video and part is I
+don't have to provide tech support
+usually when they can't get their video
+to play. How they access this is simple.
+On the main screen of the Stream Deck,
+I've got a button called Women Bible,
+which they click and it takes them to
+their dedicated page. I've also hidden
+some push actions in this button. When
+they click on this button, it selects
+the DVD player as the source to the
+three projectors, as well as for the TV
+on the back wall. When the page opens,
+they can of course change the source
+manually, but why would they when the
+video is already set to what they want?
+If they are using the computer, then
+they will push this button I mentioned
+before. I've hidden a push action in the
+button to force quit ProPresenter and a
+second action to set the source for all
+three projectors to be the computer. I
+think this is super cool. The fact I can
+even do this, a part of me does worry
+that I've basically created a custom
+solution for these ladies to use. As a
+result, they might walk in for another
+event one day and not know how the
+system actually works. They could easily
+use the system normally without the
+dedicated page, but this just takes
+something simple and makes it even
+simpler. I think it's great that I can
+customize a solution for the needs of
+the individual groups. Because the next
+use case puts the system in full control
+mode. On Tuesday nights, our young
+adults gather in these rooms each week.
+We have a semi-permanently set up stage
+in the farthest room, L43, where we have
+a projector screen and for the band and
+sermon, we have a dedicated Behringer
+Wing mixer and speakers. We only use the
+ceiling speakers to play pre- and
+post-gathering music. We use the
+computer that runs Companion in L42 to
+run ProPresenter with a second stage
+display output. We also run playback for
+multi-tracks and Spotify from there. We
+do have a dedicated page and as you can
+tell, we are very integrated with these
+room systems. I've got Stream Deck
+buttons set up to control our stage
+lighting on and off, as well as to
+change the color of our LED sticks and
+logo stage design. If you want to learn
+more about the young adult ministry at
+my church, The Well, and our tech setup,
+and how we got to this point, please
+check out that fantastic story video
+right here. I know that I've been
+throwing a lot at you in this video, but
+I've been told on several occasions by
+non-technical users who have used this
+system that they don't see how the
+system could be any easier to operate.
+This is true because users never see the
+routing, they never touch the ATEM or
+the X32, they only choose room, source,
+and volume. And often, I've hidden or
+disabled non-relevant options. Now that
+we have explained what this system is,
+the rest of this video, I'm going to
+talk about the hardware behind this
+system and how Companion is used to
+control this system. Starting out, there
+are three pieces of core equipment that
+make this system possible. We have video
+inputs and outputs, then audio inputs
+and outputs, and finally the control
+system that users interact with to
+control the rooms. The video side of
+this system is controlled by a
+Blackmagic ATEM 1 M/E Constellation
+video switcher. That is a device usually
+used to receive and display multiple
+cameras on a multiview that users switch
+between for a live stream, you know, the
+program output. I'm using this here
+because an ATEM solves the multiple
+input, multiple output video routing
+problem. I'm not doing cameras, but I'm
+connecting computer inputs and sending
+those sources to projectors in the
+different rooms. This switcher can
+manage up to 10 SDI video inputs and six
+SDI video outputs. I chose the ATEM
+Constellation because it can be easily
+controlled over the network. Each
+auxiliary output can be assigned,
+changed in the software. It has scalers
+on each input and it is reasonably
+priced. The audio side of this system is
+controlled by a Behringer X32 Rack. This
+audio mixer has 16 XLR inputs and eight
+XLR outputs, as well as quarter-inch
+inputs and outputs. It offers 16 mix bus
+plus the main left and right mix. And it
+can also easily be controlled over the
+network. To control these systems, we're
+using the Stream Deck controllers in
+each room. This is how we control the
+software Bitfocus Companion and that
+runs on the Mac M4 in the center room
+tech closet. The center room's Stream
+Deck is connected via USB to the Mac
+Mini. For this one, I designed an
+enclosure to mount it in the rack. The
+other two rooms have a Stream Deck
+enclosure that I designed has a
+Raspberry Pi inside of it. They're
+connected to the network and run
+Companion Satellite to control the
+system. When I started this project,
+each room was already equipped with a
+projector and screen, as well as four
+ceiling speakers each room. I replaced
+the existing VGA cable running from the
+control room to the projectors with SDI
+cable and I added bidirectional SDI
+converters to convert the SDI to HDMI
+for the projectors. I connected the
+first three outputs on the ATEM switcher
+to the projectors in the three rooms.
+This gives me a video output being sent
+to each room that most importantly I can
+change the source in software. I also
+ran SDI cables to the front of each room
+so that I could provide an HDMI input
+from each room. These get converted to
+SDI and become inputs one, two, and
+three in the ATEM. Now that we have
+three inputs and three outputs,
+Companion can control the ATEM to either
+show the input from each room in that
+room on the projector or one input can
+be shown across all three rooms in full
+room mode. In the equipment rack in the
+tech closet in the middle room, first I
+removed a lot of old gear. I added two
+rack mounted field monitors, one for the
+new Mac mini computer and a second for
+the ATEM multi view screen so we can put
+that above it. The rack already had this
+cool drawer that pulls out and turn
+sideways so that the keyboard and mouse
+can be operated but also hidden when not
+needed. The new multi view is a feed
+from the ATEM switcher. Even though we
+are not cutting cameras for a live
+stream, I'm using it as an engineering
+screen so that I can monitor inputs and
+output sources. Here you can see the
+inputs from each of the three rooms.
+Then we have a DVD player. We have two
+inputs from this Mac mini. There is also
+an Apple TV input and our logo on the
+ATEM media player. In the top right we
+are monitoring the three room outputs as
+well as the output going to the
+projector in the far room. These ATEM
+Constellation video switchers have
+built-in video scalers on each input. So
+no matter what resolution or frame rate
+you connect, the system will detect the
+device and bring it up on the
+appropriate input. Let's move on to the
+audio side of things. I said the audio
+is managed by the Behringer X32 in this
+system. The four ceiling speakers, four
+ceiling speakers in each room are wired
+in stereo so two wires are sent to each
+room from the amplifier. I pulled the
+six wires from the old controller and
+soldered XLR connectors onto each of
+them. Then I connected them to the X32
+rack, the local XLR output connectors.
+Now I can use three mix buses to
+individually send unique content to each
+room or I can change the routing and
+send the main left and right mix to all
+three rooms for all room mode. We have
+an old patch panel on the wall in the
+front of the middle room that has XLR
+inputs so I did connect these inputs to
+the X32. These ports do not get used
+often but it's nice for setting up a few
+simple instruments. This would require
+me to connect an iPad to the X32 rack
+and adjust these channels up and down in
+the mix. I could make buttons on the
+controller but this is not something we
+use regularly.
+The HDMI inputs at the front of each
+room as well as the Apple TV that are
+coming into the system, these are going
+through an SDI to audio converter to
+remove the audio from the SDI before it
+goes into the ATEM. These converters
+have quarter inch to XLR cables
+connecting them to the X32 mixer. This
+is how we get audio from these HDMI
+sources into the X32. Then it's a simple
+matter of turning the channels up and
+down from the Stream Deck audio pages.
+Wireless microphones could be done a few
+different ways in this system. We have a
+two channel Shure ULXD receiver that
+lives in the middle room and the output
+of the receivers and the mics go into
+the X32. That way it can be utilized in
+any room. Each room in single room mode
+has both mics on their audio pages. This
+means that any room can use either two
+mics or one mic. Obviously this requires
+some coordination but this was decided
+to be the best solution for us based on
+actual use cases. The system could
+easily expand to have dedicated mics in
+each room with all those mics available
+in full room mode. If you're familiar
+with Dante or maybe not, that's okay. We
+actually used the Dante audio network
+pretty heavily in these rooms to connect
+audio devices to the computer and X32.
+The Mac mini sends multiple channels of
+audio to the X32 via Dante. The two
+channels of mics are connected via
+Dante. I'd be happy to get more into
+this in another video but I just wanted
+to mention this right here. Now that
+we've talked about the hardware, let's
+go into Bitfocus Companion and discuss
+the control aspect a bit more. Companion
+is really what makes this system
+possible. Here on the connections tab
+I've got my connections to the X32 and
+ATEM Constellation and if you're not
+quite familiar with this yet, go watch
+my introduction video to Bitfocus
+Companion and I'll get you started on
+that first.
+Over on the buttons tab, we're going to
+start with the home page that allows us
+to select a specific room mode or all
+room mode. When we click on these pages,
+you can see a set of actions that are
+happening in the background before the
+Stream Deck goes to that page. From
+there we have a video page and an audio
+page to control the room elements. A
+simple surface set to page change action
+is happening here to take us from the
+main page to these specific pages.
+Here I'm going to go into the video page
+for L41. I'll click on the front HDMI
+source and take a look at the push
+actions that are happening when the
+button is pushed. We see the ATEM aux
+output set source action is here and
+this is setting input one to output one.
+Now if I go over to the full room mode
+video page, I'll see that selecting HDMI
+41 sets multiple outputs to input one.
+Let's go back to the main home page and
+let's click on full room mode. And on
+this button you can see these actions
+that I've got set up. Here [snorts] I've
+got the press action set up to make sure
+the X32 XLR outputs going to the amp are
+coming from the main left and right mix.
+Then for any selection to single room
+mode, the X32 changes the XLR outputs to
+make sure mix bus one, two, three, four,
+five, six are going to the XLR outputs.
+For a while I had the system changing
+X32 show file scenes but I realized that
+it was easier to stay inside of one
+scene and change the routing instead. In
+the middle room we have a TV mounted on
+the back wall that we use as a stage
+display screen for ProPresenter. This TV
+is only available to L42 in single room
+mode or to all three rooms in full room
+mode. Naturally this TV is not available
+for the other two rooms since it does
+not exist there. Presenters in this
+middle room love to have whatever is
+happening behind them on this screen or
+to also show speaker notes. As you can
+imagine this system has been a ton of
+fun to design, deploy, and now utilize
+in this environment. If you're
+interested in purchasing the full
+package that makes this system operate,
+check out crazyamazingdesigns.com/shop.
+This purchase includes the Bitfocus
+Companion files, inputs and output
+wiring diagrams for both video and
+audio, the ATEM config files, X32 show
+files, other operating documents and
+notes, basically all of the secret sauce
+that makes this system possible. I'm
+also including the 3D printing files to
+print your own wall mount SDI converters
+as well as the remote Stream Deck
+controller enclosures or you can
+purchase those as a built unit. We will
+ship you the ready to install product.
+Thank you for watching this video.
+Subscribe to my YouTube channel for more
+videos on these topics, X32,
+ProPresenter, live streaming systems,
+Companion. Sign up for training sessions
+via Zoom or leave your questions in the
+comments and I'll see you in the next
+video. See you.
+>> [music]

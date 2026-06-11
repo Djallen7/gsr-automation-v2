@@ -1,0 +1,273 @@
+Open any feed right now and someone is
+selling you the dream. AI that works
+while you sleep. You go to bed and a
+swarm of agents builds your company by
+morning. Here's the part they leave out.
+Most of those overnight demos either
+fake the result or quietly fall apart
+around 2:00 in the morning when the
+agent runs out of money or confidently
+does the wrong thing for 6 hours
+straight. So I built the honest version.
+I gave Claude Code a night shift. a
+single agent I call Hermes.
+And I figured out exactly which prompts
+make it actually finish real work by
+sunrise and which ones just burn tokens
+in the dark. In this video, I'll hand
+you all 11 prompts, the exact setup that
+makes them safe to leave running, and
+the three places this still breaks. No
+hype. Let's wire up Hermes. First, the
+thing nobody explains. There isn't one
+way to run clawed code while you sleep.
+There are two. And picking the wrong one
+is how people get a surprise bill. Path
+one is routines. This runs Hermes on
+Anthropic's own servers on a schedule
+even with your laptop closed. The big
+advantage, it stays on your normal
+subscription, so a nightly run won't
+blow up your bill. The catch, the
+shortest schedule is once an hour. Path
+two is the classic one. You write a tiny
+script with the claud-b command, the
+headless mode, and you let your
+computer's built-inuler chron wake it up
+at night. More control runs locally. But
+starting June 15th, 2026,
+that headless path moves to a separate
+metered credit pool. Your interactive
+sessions are untouched. So the rule is
+simple scheduled and gentle on the
+wallet use routines heavy and custom use
+cla and watch the meter. Now the prompts
+every prompt from here lives inside one
+of those two runners. Prompt one is the
+most important one in the whole video
+because it's the difference between an
+agent that helps and an agent that
+wanders off. I call it the mission
+brief. You do not say go improve my
+project.
+An unsupervised agent told to improve
+things will refactor your entire
+codebase by dawn.
+Instead, you write something like this.
+You are Hermes, my overnight agent.
+Tonight, your only mission is this one
+task. Work only inside these folders. If
+anything is ambiguous or risky, stop and
+write me a question instead of guessing.
+Never claim you did something you can't
+prove. And critically, you put this in
+your project's claude MD file, not just
+the chat.
+Here's why that matters. Over a long
+run, the conversation gets compressed
+and early instructions can get
+forgotten. The clawude MD file survives
+that. Your guardrails have to live
+somewhere permanent. Prompt
+two builds the fence. Before you ever
+leave Hermes alone, you run this once.
+Read my project and propose a settings
+file with two lists. A deny list for
+anything destructive. deleting files,
+force pushing to gate, touching secrets
+or production, and a narrow allow list
+for only the commands tonight's job
+actually needs. Show me before you write
+it. Those deny rules are the real seat
+belt because they win over everything
+else. You can even add a hook, a little
+gate that physically blocks a dangerous
+command before it runs, no matter what
+the model decides. Prompt three is the
+one that separates a useful agent from
+an expensive liar. The selfch check. The
+agent that wrote the code is the worst
+judge of whether it works. So you tell
+Hermes before you mark anything done,
+reread the original request, run the
+actual test and quote the proof. If you
+can't show evidence, mark it blocked.
+Not done. Without that one line, your
+loop just generates confident mistakes
+faster. Now the night shift itself, the
+jobs prompt four, inbox triage. Go
+through the last day of unread mail.
+Draft replies, but never send them.
+Anything that needs a real decision,
+drop into a decisions file with your
+recommended answer. Newsletters, ignore.
+You wake up to a stack of drafts. Not a
+mess. Prompt five, the codebase janitor.
+This is where overnight agents genuinely
+shine. Fix only the boring low-risk
+stuff. Failing tests, lint errors, dead
+imports, missing test coverage on the
+files I touched today. One small commit
+each on a separate branch. And if any
+test goes red, stop. Prompt six, the
+pull request reviewer. For every open
+request, write a structured review to
+its own file, a summary, the risky
+changes, the missing tests, and three
+sharp questions, but it never approves
+and never merges. A human still pulls
+the trigger. Three jobs, all framed the
+same way, narrow, reversible, and they
+hand the final call back to you. Three
+more and these are the ones that feel
+like having a research team on staff.
+Prompt seven, the morning digest. Search
+the web for anything new in the last day
+on the topics I care about. 10 bullets
+ranked each with a source link and one
+line on why it matters to me. And
+anything unverified gets labeled, not
+stated as fact. Prompt eight, the
+competitor scan.
+Check these specific pages, change logs,
+pricing, landing pages for anything that
+changed since yesterday.
+Show me the actual before and after. And
+if nothing changed, just say no change.
+Do not pad it to look busy. That one
+honest instruction saves you from a
+daily wall of fake updates. Prompt nine,
+the content drafts. From my notes this
+week, draft the post match the voice in
+these examples and tag anything you're
+not certain is factually mine so I can
+check it before it goes out. Notice the
+pattern.
+Every single one of these has a built-in
+honesty valve. Prompt 10 ties the whole
+night together, and it's my favorite.
+Tomorrow's first move. Look at my
+calendar, my open tasks, and everything
+you did tonight. Then tell me the single
+highest leverage thing to do first in
+the morning and why. Plus the three
+things I can safely ignore today. Think
+about what that actually does. You don't
+wake up to a pile of raw output you now
+have to sort through. You wake up to a
+decision already made with the reasoning
+attached. That's the real dream. Not a
+thousand agents. One agent that did the
+boring work and then pointed at the one
+thing that matters. But, and this is
+where I have to be honest with you,
+everything I just described assumes
+Hermes behaves all night. It won't, not
+perfectly. So before you go set this up,
+you need to know the three places this
+breaks because they will cost you real
+money and real trust if you ignore them.
+Break number one, cost. This is the plot
+twist nobody puts in the tutorial. The
+expensive part of running an agent
+overnight is not writing the code, it's
+the running.
+A loop left alone can rack up a serious
+bill while you're asleep. And the
+failure everyone in production fears is
+the agent that never stops. Real teams
+hit this. When big companies rolled
+these tools out, some blew through their
+entire annual AI budget in just a few
+months and had to cap each engineer with
+a hard monthly limit per tool. And
+remember that June 15th change,
+if you're using the headless claw-p
+path, those overnight runs draw on a
+separate metered credit pool with no
+automatic overflow. When it's gone, the
+job just fails. So you never leave
+Hermes uncapped. You set a maximum
+number of turns so it physically cannot
+loop forever. You watch your usage and
+honestly this is the single best reason
+to start on routines where you stay on
+your flat subscription. Break number
+two, trust. An agent will with total
+confidence tell you it fixed something
+it never touched. It can read a file,
+assume what's inside, and build on top
+of a thing that isn't even there. This
+is exactly why prompt three, the selfch
+check, is not optional. The rule is
+permanent.
+The agent that did the work is never the
+only one allowed to grade it. You verify
+against reality or you don't trust the
+result. Break number three, scope drift.
+The longer an agent runs unattended, the
+more it wanders.
+A small fix at midnight becomes a
+sprawling refactor by 3 in the morning.
+And here's the subtle part. Over a long
+run, the context gets compressed and the
+polite instruction you typed into the
+chat can quietly vanish. The narrow
+mission and the deny rules survive only
+because you put them in permanent files.
+So the pattern is the whole game. Scope
+it tight, cap it hard, and make it prove
+its work. Do that and the night shift is
+real. Which brings us to the morning and
+the 11th prompt, the standup report.
+When you wake up, you don't want a
+transcript of everything Hermes thought
+about for 8 hours. You want one screen
+in three buckets, done with the evidence
+attached, blocked with the exact
+question it needs you to answer, and
+skipped with the reason why. and you
+tell it plainly, "I would rather see I
+wasn't sure than a confident wrong
+answer."
+That one sentence changes the agent's
+whole personality overnight. It stops
+performing progress and starts reporting
+reality. That's the report that makes
+this trustworthy. You sip your coffee,
+you read 11 lines, and in 2 minutes, you
+know exactly what got done, what needs
+you, and what to ignore.
+The agent worked the night shift. You
+just approved the morning. That's the
+entire system. 11 prompts. One that
+scopes it, two that fence it, seven that
+work, and one that reports back. So,
+should you actually build this? Here's
+the honest decision tree. If you just
+want scheduled, hands off tasks and a
+calm bill, use routines on your
+subscription. If you need heavy custom
+local control, use claude-b with
+youruler and respect the meter. And
+whatever you do, start with one job, not
+11. Run the codebased janitor for a
+week. Build the trust, then add the next
+prompt. Here's the part nobody says out
+loud. Two people can set up the exact
+same night shift and get opposite
+results. One uses it to move faster on
+work. They deeply understand. The other
+uses it to avoid understanding their
+work at all. Hermes cannot tell the
+difference. You can. So build the night
+shift, but stay the engineer who reads
+the morning report. I put all 11 prompts
+ready to copy and paste into one free
+pack. Just comment the word night shift
+and I'll send it straight to you. I drop
+by bite-size AI breakdowns every day on
+Instagram and the full deep dives right
+here on YouTube. Subscribe and I'll keep
+building the systems everyone talks
+about but nobody actually ships.

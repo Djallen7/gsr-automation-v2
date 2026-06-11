@@ -1,0 +1,388 @@
+So, Claude Code now has two ways to run
+multiple agents, sub-agents, and agent
+teams. They look similar, but they work
+very differently. And most people are
+confused about when to use which. In
+this video, we're breaking down what
+Claude Code agent teams does, what it
+is, how it works, and when you should
+use it over the Claude Code sub-agents
+feature.
+And towards the end, we've got a Q&A
+section where I go through the top
+comments from Reddit and other YouTube
+videos, including the spicy one, are
+agent teams just expensive sub-agents
+with better marketing?
+We're answering all of it. Let's get
+into it.
+So, as of now, Claude Code has three
+modes. The default, which is the single
+agent, sub-agents, you fire and forget
+little helpers that
+do work for you,
+and agent teams, which is the feature
+that we're talking about in this video.
+So, I ran the demo for
+sub-agents
+um already. I'll just walk you through
+it so that you don't have to wait
+through all the research and all the
+um steps. But, what happens is I'll just
+type a prompt like, "I'm looking for a
+CMS system for my blog. Can you research
+using sub-agents for
+um at least like 10 blogs and report
+back which is the best for AWS
+serverless hosting?"
+And Claude says, "I'll launch sub-agents
+in parallel to research the top CMS
+options for AWS serverless." And it
+spins up seven agents.
+And
+each of them uh get their own context
+window.
+And one by one,
+um each agent is completing its work.
+And after all the seven agents are done,
+this took about 4 or 5 minutes. Um uh I
+have top 11 CMS options for AWS
+serverless blog hosting.
+You can see some of the agents are
+researching more than one.
+Like, these are researching more than
+one. So, Claude uh somehow tasked a few
+agents to uh research more than one CMS
+at a time. So, after everything, I have
+a report. And this is because all the
+sub-agents sent back the report to the
+main agent, and the main agent
+synthesized the report. So, this is how
+sub-agents work.
+And now, let's look at agent teams.
+So, I'll open up Claude. So, for the use
+case of agent teams,
+what we'll do is uh we'll we'll come up
+with a use case, right? So, I'm trying
+to
+create
+an app.
+And it should look like TikTok, but
+instead
+of
+videos, there should be games
+uh generated using GenAI.
+To
+discuss the idea,
+can you use
+agent
+teams
+um let's say PM,
+STM,
+marketing,
+um
+finance,
+uh etc.
+um to come up with an agreement
+on
+what to build,
+why to
+build,
+why not to build X, or even
+pivot to X. And just for my use case,
+I'll say
+use agent
+uh Claude
+feature, not Council.
+So, I say this because Council of LLMs
+is my skill
+that
+um that uses multiple people LLMs like
+uh Gemini and ChatGPT um along with
+Claude to come up with a consensus.
+But, I'm not using that skill. I'm just
+trying to use the native feature.
+Okay.
+So, let me set up a agent team to
+discuss your TikTok for AI games idea.
+Okay. Now, you can see that it's
+creating the task and spawning a team.
+It says it'll launch five. The main
+agent is launching five agents in
+parallel.
+And you can see
+um three agents have been launched,
+right? A PM for product vision,
+uh an STM for
+or software development manager for
+technical feasibility, marketing for
+market analysis, finance for business
+model analysis. And as this is
+happening, we'll go to the dot Claude
+folder in my machine. You should have
+uh similar folder if you're on Mac. Uh
+I'm not sure how it works on Windows,
+but it should be something similar uh to
+access your teams.
+So, how teams work is for uh each Claude
+Code session, when you invoke
+agent teams, it will create a folder in
+here, and it will create this folder
+called inboxes, right? Where these
+uh agents can talk to each other.
+So, what's happening here is each of
+these agents, they're getting messages
+from a certain agent, right? So, from
+marketing, I get this. The team lead
+um has all these messages from PM and
+um the devil's advocate and the software
+manager or the software engineer and
+devil's advocate and finance and
+marketing, right? And now, all of them,
+they have messages. They're they're
+they're talking this through, right?
+But, we can also see uh what's happening
+on this window, right?
+Claude spun up PM, product manager, STM,
+software development manager, marketing,
+marketing lead, finance. So, and they're
+all doing these uh they're all
+thinking about these
+uh focus areas right here. So, PM is
+thinking about value proposition, MVP
+features, retention. Um the software
+manager is thinking about feasibility,
+right? Is this even possible? Like, can
+I
+even do this, right? How expe- like, how
+uh
+how is the latency and all those things,
+right? Like, if there's latency, I need
+to tell this to the product manager so
+that they can decide like, will this
+even be
+uh you know, worth building, right?
+Finance will look things like, you know,
+to do this, I need to use like really
+powerful models, and it might get too
+expensive. Devil's advocate will be
+like, this
+uh you know, this won't work. You know,
+this is already there. I did some
+research and this already exist. Um it
+will also say like, we should rather do
+this. And hard truths, right? Like, this
+sucks, right? This is like way beyond
+what we can do now and things like that.
+So,
+what happens now is we have a report,
+right?
+So, I can say
+"How was
+the agent team used here?
+Did they even talk to each other?"
+So, looks like they never
+talked to each other. You know, I asked
+this question, "How How was the agent
+team used here? Did they even talk to
+each other?"
+looks like they didn't talk to each
+other. So, looks like what's missing is
+no cross-team debate, right? And this is
+not what we want. We wanted a cross-team
+debate. You know, the lead agent or the
+main agent now says, "I could have
+structured it as round one, each
+sub-agent produces their initial
+analysis. Round two, share the agents'
+report with each other. And three,
+they revise their position based on the
+pushback, right? So, the
+uh the task definition also needs to be
+uh set up so that there will be
+messaging, right? So, that's something
+um we can learn from this uh demo.
+So, now I can say, "Yes, do
+round two."
+All right. Round two is live. This time,
+the agent is
+sending direct challenges to
+three to four specific
+teammates via send message, waiting for
+incoming challenges from others,
+responding to pushback, and sending a
+revised position to me after the debate,
+right? So, this is the cross-talk map.
+And if we look at the inbox for each of
+the agent, now the devil's advocate is
+getting
+messages from the team lead,
+uh the PM, STM, marketing.
+Right? So, they're having cross-talks
+now, right? They're like sharing their
+opinions. So, marketing is challenging
+the financial model. Marketing is like,
+"Your kill criteria is too aggressive
+for a new category. You're benchmarking
+against
+uh established hyper-casual games."
+Da da da da da, right?
+And the software
+engineer or the software manager is
+like, "No, no, no. Timeline is like 4 to
+6 months, not three, not 12, right?" Um
+So, it's like pushing back against like
+how long this is going to take,
+So, you know, all all sorts of
+um cross-team talk is now happening. So,
+a lesson is you need to structure the
+prompt in a way that will facilitate or
+that will enable cross-team discussion,
+right? And that's what we want.
+Otherwise, this is the same as
+parallel agents, right? I do a task, I
+report back to the main agent, and a
+report is synthesized. So, um it's
+interesting to see this happen um now.
+So, debates are heating up, right? STM
+and PM just agreed on eight templates as
+a compromise. PM is also conceding to
+marketing on viral features and finance
+on timeline. So, they're conceding to
+each other. Finance is pressing the STM
+on a
+fine-tuned model reality check, right?
+Because fine-tuning is not going to be
+cheap.
+Big move from finance. The PM's push on
+the shared pool model just dropped the
+break-even estimate from
+10 million users to 700,000 users,
+right? So, when PM changed certain
+things, you know, suddenly their
+break-even
+point is changing from 10 million users
+to 700,000 users. So, maybe this is
+becoming more realistic.
+When I asked
+cross-team communication, you know, this
+debate is just taking longer than it was
+before.
+And after all the talking,
+the PM sent a new position, right? The
+PM's revised position is in.
+It has made significant concessions on
+timeline, pool size, and viral
+mechanics.
+The STM or the software development
+manager or even the software engineer,
+right? Maybe this is startup changed
+something.
+The budget is like $450,000.
+He asked for a game designer
+based on the devil's advocate influence,
+right? Kind of makes sense, right? I
+don't want to be like designing a game
+if I've never designed a game, right? I
+want a consultant game designer in my
+team.
+The viral mechanics
+added zero timeline cost, right? So,
+software engineers and managers, they
+can also say like, yeah, this should be
+easy to do, right? This should be vibe
+coded in like 2 minutes. Like that sort
+of stuff.
+Uh so, the cross talk is wrapping up and
+the marketing
+has revised, finance has revised,
+and the devil's advocate has revised the
+verdict.
+It says, "You can go ahead based on
+these five conditions." Right? So, all
+five revised positions are in.
+And now the agents are being shut down,
+and the final synthesis is in.
+Now, let's look at the
+final report, the final synthesis. So,
+on round one, the break-even was 10
+million monthly active users. Round two,
+after this discussion among each other,
+they think the break-even is like
+700,000 users, right? Who moved whom,
+right? The PM convinced finance that
+shared pool, meaning
+I think it's like shared resources pool,
+um equals fixed cost, right? Finance was
+like, if we have 10 million people using
+uh our servers, we have like 10 million
+servers going on, right? So, the PM
+convinced that no, they'll be using a
+shared pool, right? The timeline, PM
+thought it would take 6 weeks. STM or
+the software engineer thought it would
+take 12 weeks, and they landed on 10
+weeks. Uh both conceded. And this is
+what happens in real world. Uh the
+budget, initially they thought would
+take like $300 to $500,000.
+Uh after round two, the budget is at
+$450 to $550,000.
+Devil's advocate convinced everyone or
+forced adding a game designer.
+Um so, they need a salary for the game
+designer. Um and so on and so on, right?
+So, I don't want to go through the
+the detail, but you see the pattern,
+right? Um so, the final thing is, you
+know, the devil's advocate verdict was
+uh kill,
+right? Don't do it. After round one,
+after round two of discussions, they
+decided with a conditional go um on
+certain conditions.
+The core insight that emerged from the
+debate is round one treated this as a
+uh AI product. Round two, we framed it
+as a distribution product. The product
+is not the AI-generated games, the
+product is a feed of instantly playable
+games.
+Now, this is a interesting insight,
+right? You don't want to like generate
+AI games.
+That's not the angle they should be
+taking, right? They should be creating
+like instantly playable games, and it
+should just be a feed of
+feed of it.
+And dot dot dot dot, you know, they
+agree on something. The final verdict is
+conditional go, build it, call it
+PlayShift, hire the game designer, ship
+in 10 weeks, kill at 6 weeks uh
+post-launch if
+uh D7 equals 6%. So, this is framing the
+the problem that I put in a like you
+have to have a certain budget, you have
+to have certain people to even like
+consider an idea big as this, cuz this
+is a novel idea
+uh with people raising money. And maybe
+if you take this idea, if you take this
+plan,
+maybe if you synthesize this plan even
+further, you can maybe go raise some
+money.
+So, yeah, that was agent teams. I hope
+you
+uh got a sense of what you can do with
+agent teams. Once again, it's an
+experimental feature, so it may not
+stick around, but at least for now,
+you can try out agent teams and see what
+you can do with it. Share in the
+comments what you're planning to do with
+agent teams or what you
+are already doing with agent teams. I'd
+love to learn more.

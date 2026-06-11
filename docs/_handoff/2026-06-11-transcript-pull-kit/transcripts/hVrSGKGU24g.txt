@@ -1,0 +1,888 @@
+What if you could build a full back-end
+in minutes without dealing with servers,
+database setups, or complicated
+authentication systems? Because for a
+lot of developers, that part is still a
+pain. Setting up infrastructure,
+navigating cloud dashboards, figuring
+out how everything connects. It takes
+time, and it can get confusing fast.
+That's exactly [music] where Supabase
+comes in. Supabase is often called the
+open-source alternative to Firebase, but
+it's more than that. It gives you a
+complete back-end setup [music] right
+out of the box. PostgreSQL database,
+real-time APIs, authentication, and
+storage, all in one place.
+>> [music]
+>> And the best part, you don't need to be
+a back-end expert to use it. If you have
+some basic JavaScript or web development
+knowledge, you can start building real
+applications pretty quickly. In this
+[music] video, I'll walk you through
+everything step-by-step. If you've never
+built a back-end before, this will make
+it simple. And if you tried tools like
+Firebase or traditional [music] setups
+and found it confusing, this should feel
+a lot more straightforward. [music] By
+the end, you'll know how Supabase works,
+how to set up your own project, and how
+to connect it to a front-end. [music]
+We're also going to build a real project
+together, a simple app with a database,
+authentication, and real-time features.
+And once you understand how these pieces
+fit together, you'll start to see how
+fast you can actually build full
+applications. Before we dive in, if you
+want to master Supabase in just 2 hours
+[music] instead of spending weeks
+figuring out in your own, I've got a
+complete Supabase Pro program and
+community with everything [music] you
+need. Links in the description. But
+first, let's get you started with the
+basics. Building a back-end usually
+means dealing with a lot of moving
+parts. [music] You need a database, a
+way to handle users, a storage for
+files, and a server to connect
+everything together. For many beginners,
+[music]
+that's where things start to feel
+overwhelming. Supabase simplifies that
+entire process. It's what developers
+call a back-end as a [music] service or
+BAAS. In simple terms, Superbase gives
+you all the back-end tools [music] an
+application needs, already set up and
+ready to use. Instead of building your
+own server, configuring a database,
+setting up authentication, and managing
+storage separately, Superbase brings
+everything [music] into one platform.
+You focus on building your app, not the
+infrastructure behind it. At the center
+of Superbase is PostgreSQL.
+This is a powerful and widely used
+open-source database trusted by both
+startups and large companies. Because
+Superbase is built on PostgreSQL,
+you're working with a real relational
+database, not a simplified or restricted
+system. But Superbase goes beyond just
+data storage. [music] It includes
+built-in authentication, so users can
+sign up, log in, and manage accounts
+without you writing that logic from
+scratch. It also provides a file
+storage, allowing your app to handle
+images, [music] videos, and other files
+securely. On top of that, there are edge
+functions. These let you run server-side
+code closer to your users, which
+improves performance and makes your
+[music] app feel faster. All of these
+features work together as a complete
+back-end platform. Now, this brings up
+an important question. If tools like
+Firebase already exist, why are
+developers choosing Superbase? Firebase,
+owned by Google, has been a popular
+option for years. It offers
+authentication, data bases, [music] and
+hosting. But it uses a proprietary
+system called Firestore, which doesn't
+follow a traditional SQL structure. For
+many developers, that becomes limiting.
+Superbase takes a different approach by
+giving you direct access to PostgreSQL.
+You can write SQL queries, create
+relationships within [music] tables, and
+maintain full control over your data.
+Another key difference is that Superbase
+is open-source. [music]
+Developers can inspect the code,
+contribute to it, and even host their
+own version if needed. This reduces
+reliance on a single provider and gives
+more flexibility long-term. Because of
+this, Superbase has been growing quickly
+in popularity, especially among
+developers who want more control and
+transparency. But one of the biggest
+reasons people choose it is speed.
+>> Tasks that used to take days or weeks
+can now be done in minutes. You create a
+database table, enable authentication,
+[music] connect your front end, and your
+app is already taking shape. And once
+you start using the dashboard, the
+workflow [music] becomes much clearer.
+So now, let's move on and create your
+first Superbase project. That's where
+everything starts to come together. Now,
+it's time to create your first [music]
+Superbase project. This part is simple,
+but it's what unlocks everything else
+you're going to build later. So it's
+worth going through it properly. [music]
+Start by going to the Superbase website
+and clicking the start your project
+button. Superbase offers a free tier,
+[music] which is more than enough for
+learning and building small projects.
+You can sign up using GitHub, Google, or
+your email. But most developers prefer
+GitHub since it connects easily with
+development workflows. Once you're
+signed in, you can move on to creating
+your first project. [music]
+Click the new project button, and
+Superbase will guide you through a few
+quick steps. [music] You'll be asked to
+select an organization, which is
+automatically created for you [music] if
+you're new, and then you'll choose a
+name for your project. After that,
+you'll need to set a database password.
+This is important because it protects
+your PostgreSQL [music] database. So
+make sure to store it somewhere safe.
+You'll also be asked to choose a region.
+It's best to select the one closest to
+your users, [music] since this helps
+reduce latency and improves performance.
+Once you click create project, Superbase
+takes over and starts setting everything
+up for you. Behind the scenes, it's
+creating your PostgreSQL database,
+generating API endpoints, and preparing
+[music] authentication services
+automatically. This is one of the
+biggest advantages [music] of using a
+platform like this. You don't have to
+configure servers or connect multiple
+services manually. Everything [music] is
+handled for you. Once the setup is
+complete, you'll be taken to the project
+dashboard. This is where all your work
+will happen moving forward. First
+glance, the dashboard might look a bit
+busy, but the structure is actually very
+straightforward. On the left side,
+you'll find the main navigation menu,
+which gives you access [music] to
+everything. Your database,
+authentication, storage, edge functions,
+and [music] project settings. In the
+center, you'll see your projects. If
+this is your first time, it will be
+empty, but this is where all your apps
+will appear as you build [music] them.
+At the top, you'll also notice important
+project details like your API keys and
+connection information. These will be
+used later when you connect your front
+end to Superbase, [music]
+so it's good to know where they are
+early on. As you look through the menu,
+you'll start to recognize the core parts
+of Superbase. The [music] database
+section is where your tables and data
+live. Authentication handles user
+accounts and login systems. Storage is
+used for managing files like images or
+documents. Edge functions allow you to
+run back-end logic closer to users
+around the world. There's also a
+settings area where you can control
+things like API access and [music]
+security policies. Take a moment to get
+familiar with this interface because
+you'll be coming to it constantly as you
+build your applications. [music]
+But for now, the most important part to
+focus on is the database. [music]
+Every application needs a place to store
+data, and this is where that happens. So
+next, we're going to create your first
+database table and [music] start working
+with real data. At the core of Superbase
+is PostgreSQL, one of the most powerful
+and widely used open-source databases
+available today. [music]
+It's trusted by both startups and large
+companies because it's reliable,
+flexible, and designed to handle complex
+data relationships. Since [music]
+Superbase is built directly on top of
+PostgreSQL, you're not working with a
+simplified system. You're using [music]
+a full SQL database with real
+capabilities. To start working with your
+database, open the database section in
+the sidebar and go into the table
+editor. This is where you'll create and
+manage your tables. One of the nice
+things here is that you don't need to
+write SQL unless [music] you want to.
+The interface allows you to build
+everything visually, which makes it
+[music] much easier when you're just
+getting started. Let's go ahead and
+create your first [music] table. Click
+the create table button and you'll see a
+form asking for basic details. [music]
+For this example, we'll create a table
+called tasks, which you can think of as
+part of a simple to-do list app. All
+right below the table name, you'll
+notice options for row-level security.
+We'll cover that later when we talk
+about security. So, for now, you can
+leave everything as it is [music] and
+continue. Next, you'll define your
+columns. Columns represent the structure
+of your data. So, this [music] is where
+you decide what kind of information your
+table will store. The first column is
+usually an ID. [music]
+Set the column name to ID, choose the
+data type UUID, and enable [music]
+automatic generation. This ensures that
+every row in your table has a unique
+identifier,
+>> which is important for keeping your data
+organized. After that, add another
+column called title and set its data
+type [music] to text. This will store
+the name of each task. Then, create a
+third column called completed with a
+boolean data type, which will store
+whether it has is [music] finished or
+not. Once everything is set up, click
+save and Superbase will instantly create
+[music] the table inside your PostgreSQL
+database. Now, let's add some sample
+data so you can see how it works.
+>> Inside the table editor, click insert
+row. You'll see input fields for each
+column you
+For example, you can enter something
+like learn Superbase basics as the title
+and set the completed field to false.
+Once you save it, the row appears
+immediately in your table. Behind the
+scenes, Superbase [music] is executing
+an SQL insert command, which is exactly
+how real applications store data from
+[music] users. The difference here is
+that you didn't have to write that
+command yourself. There are a couple of
+important concepts worth understanding
+at this point. One of them is the
+primary [music] key. A primary key is
+what uniquely identifies each row in
+your table. And in this case, the UUID
+ID column handles [music] that for us.
+Another key concept is relationships. In
+a real application, tables don't exist
+in isolation. For example, [music] a
+tasks table could be connected to a
+users table using something called a
+foreign key. This allows data across
+different tables [music] to stay linked
+together, which is what makes relational
+databases so powerful. At this point,
+you already have the foundation of a
+real back-end database. You can create
+tables, store data, and structure how
+everything connects. But a database on
+its own isn't enough for a modern
+application. Users still need a way to
+create accounts and log in. So [music]
+next, we're going to set up
+authentication and make your app
+accessible in a secure way. Right now,
+nothing [music] is stopping anyone from
+accessing that data. Without
+authentication, your app has no way of
+knowing who a user is or what they're
+allowed to do. Authentication controls
+who can access your application and how
+they interact with it. Instead of
+leaving your data open, you define who
+can sign up, log in, and access specific
+parts of your app. The good part is that
+Superbase already has this built in, so
+you [music] don't need to create your
+own login system or install extra
+services. To get started, open the
+authentication section in the sidebar.
+Inside, [music] you'll see different
+tabs like users, providers, and
+policies. This is where all
+authentication related settings are
+managed. The first [music] thing you
+need to do is enable authentication
+providers. Superbase supports several
+login options, but the most common ones
+are email,
+>> Google, and GitHub. Email authentication
+is usually turned on by default, which
+means users can already sign up using
+their email and password. If you want to
+enable other options like Google or
+GitHub login, go to the [music]
+providers tab. You'll see a list of
+available providers, and you can simply
+toggle on the ones you want to use.
+However, there's an extra step here.
+Each provider requires credentials from
+its own platform. Uh for example, Google
+login needs [music] a Google Cloud OAuth
+setup, and GitHub login requires
+creating an OAuth app inside GitHub.
+Once those credentials are added, users
+can sign in using those accounts, which
+makes the login process much easier for
+them. Now, let's talk about one the most
+important parts of security in
+Superbase, which is row level security
+or RLS. RLS controls exactly which data
+each user can access. Without it, users
+might be able to see or modify data that
+doesn't belong to them. With RLS
+enabled, the database checks every
+request and only returns data that the
+user is allowed to see. For example,
+imagine you're building a to-do app with
+a task table. Each user should only see
+their own tasks, not everyone else's.
+>> With RLS, you can create a rule that
+only allows users to access rows where
+the user ID matches [music] their
+account. This ensures that every user
+only interacts with their own data.
+To set this up, go back to your database
+table and enable row level security.
+>> After that, you'll create a policy that
+defines the rules. A simple policy might
+allow authenticated [music] users to
+read only the rows that belong to them.
+Superbase handles this through
+PostgreSQL policies, but you can manage
+everything through the interface without
+needing to write complex logic [music]
+from scratch. It might sound a bit
+technical at first, but once you see it
+in action, it becomes much easier to
+understand. [music]
+With authentication and security
+policies in place, your back end is now
+much [music] safer. Users can create
+accounts, log in, and interact with your
+application without [music] exposing
+data that shouldn't be accessible. So
+far, everything we've done has been
+inside the Supabase dashboard. We've
+created a database, added data, and set
+up authentication. But, none of that is
+visible to users yet. To actually use
+your back end, you need a front end
+application. This is what people will
+interact with, and it acts as the bridge
+between your users and your Supabase
+[music] project. You can build this
+using any framework you're comfortable
+with, whether that's React, Vue,
+Next.js, or something else.
+>> But, if you're just getting started,
+it's much easier to keep things simple
+and use plain [music] HTML and
+JavaScript. Start by creating a new
+project folder on your computer.
+>> Inside that folder, create two files,
+one called index.html
+and another called app.js. [music]
+The HTML file will handle what the user
+sees in the browser, while the
+JavaScript file will handle the logic
+and connect your app to Supabase. To
+make that connection, you'll need the
+Supabase JavaScript client. This is the
+library that allows your front end to
+communicate with your back end. Open
+your terminal, create a new session, and
+run the following command. npm install
+@supabase/supabase-js
+This installs the official Supabase
+client library into your project.
+Once it's installed, you can import it
+into your JavaScript file and start
+using it. Inside your app.js file, the
+next [music] step is to create a
+Supabase client instance. To do that,
+you'll need two important values from
+your Supabase [music] project. The first
+is your project URL, and the second is
+your public API key, often called the
+anon key. You can find both of these in
+your Supabase dashboard under [music]
+the API settings. Once you've copied
+those values, you can use them to
+initialize the Supabase client in your
+code. At this point, you now have a
+simple front-end application running in
+the browser. It might look [music]
+basic, but this is where things start to
+connect. When you interact with the
+page, your JavaScript code runs and uses
+the Supabase client you just configured.
+That client contains your project URL
+and API key, which means your app can
+now communicate directly with your
+[music] Supabase backend. With that
+connection in place, your application is
+no longer just a static page. It can now
+perform real actions like creating
+users, reading data from your database,
+updating records, or even uploading
+files. All of this happens through the
+Supabase API without you needing to
+build [music] a backend from scratch.
+Now that authentication is enabled in
+Supabase, the next step is connecting it
+to your front-end so [music] users can
+actually sign up and log in. Up to this
+point, everything has been configured in
+the backend, but now we're going to
+bring that functionality into the
+[music] interface. Start by opening your
+index.html file. This file controls what
+users see in the browser, and we're
+going to replace [music] the simple test
+page with a basic authentication
+interface. The goal here is to create a
+layout that includes a sign-up form, a
+login form, and a small dashboard
+section that appears once a user is
+logged [music] in. Delete the existing
+content and replace it with a new
+structure that includes input fields
+[music] for email and password, along
+with buttons for signing up and logging
+in. You'll also add a small section that
+can display a message after the user
+successfully logs in. Before moving on,
+make sure both the Supabase script and
+your app.js file are properly linked at
+the bottom of the page. Once everything
+is in place, save the file. Next, open
+your app.js file. This is where all the
+logic of your application lives. [music]
+Just like before, remove the old test
+code and replace it with a new script.
+The first part of the script initializes
+the Superbase client using your [music]
+project URL and public API key. These
+values allow your front end to
+communicate directly [music] with your
+Superbase back end. After that, the
+script sets up event listeners for the
+main actions, signing up, logging in,
+and logging out. When a user clicks the
+sign up button, the app sends their
+email and password [music] to Superbase
+using the sign up function, which
+automatically creates a new [music]
+account. When the login button is
+clicked, the sign in with password
+function checks the credentials and
+returns a session if they are correct.
+The logout button uses the sign out
+function to clear the session and log
+the user out.
+>> Once everything is added, save the file.
+Now, it's time to test the full
+authentication flow. Go back to your
+browser and refresh the page. You should
+now see a simple interface [music] with
+sections for signing up, logging in, and
+a dashboard area. This is your first
+real user-facing [music]
+system. Try creating a new account by
+entering an email and password in the
+design up form, then [music] clicking
+the sign up button. When you do this,
+your front end sends the data to
+Superbase, and the account is created in
+the authentication system. [music] To
+confirm that everything worked, you can
+open your Superbase dashboard and go to
+the authentication, then users section.
+You should see the new user listed
+there, which means the sign up process
+is working correctly. Now, go back to
+your app and test the login feature.
+>> Enter the same credentials and click
+login. If everything is set up properly,
+Superbase will return a session, and
+your app will update to show a welcome
+message inside the dashboard. Finally,
+click the logout button. This clears the
+session and signs the user out of the
+application. At this point, you now have
+a complete authentication system. Users
+can register, log in, [music] access
+their account, and log out safely. This
+is a huge step because your app is no
+longer just connected, it's now handling
+real users. Now that authentication is
+working, your application can finally
+start doing something meaningful with
+data.
+>> This is where things begin to feel like
+a real app. Most interactions between
+your app and the database follow a
+simple pattern called CRUD, which stands
+for create, read, [music] update, and
+delete. These four actions represent the
+core of how applications handle data.
+>> Let's start with creating data. In this
+example, imagine your app is a simple
+to-do list where users can add tasks.
+When a user submits a new task, your
+[music] front end sends a request to
+Supabase to store that information.
+Behind the scenes, this is an insert
+operation, which creates a new row
+inside your task table. Supabase handles
+the request instantly [music] and stores
+the data inside your PostgreSQL
+database. Next is reading data. This
+usually happens when your app loads or
+when you need to display information
+to the user. Your application sends a
+request to Supabase
+>> asking for data from a specific table,
+and Supabase responds with the results.
+For example, your dashboard might
+request all tasks that belong to the
+currently logged [music] in user and
+then display them on the screen.
+Updating data works in a similar way.
+[music] Whenever a user changes
+something, like marking a task as
+completed, your app sends an update
+request to Supabase. This modifies the
+specific row in a database, [music] and
+the change is reflected in your app
+almost immediately. Deleting data
+follows the same pattern.
+>> If a user removes a task, your app sends
+a delete request, and Supabase removes
+that row from the database. These four
+operations, creating, [music] reading,
+updating, and deleting, are what power
+most modern applications.
+But Superbase doesn't stop there. One of
+its most powerful features is real-time
+updates. Instead of refreshing the page
+every time something [music] changes,
+your application can listen for updates
+directly from the database. This means
+that if data changes, whether it's a new
+task being added or an existing one
+being updated, your app can reflect the
+change instantly. This works through
+real-time subscriptions. [music]
+Your app subscribes to changes in a
+specific table, and whenever something
+updates, Superbase pushes that [music]
+change directly to your front end. This
+is what makes features like live
+dashboards, chat systems, and
+collaborative apps possible.
+>> Right now, your application is fully
+interactive. Users can log in, create
+data, update it, delete it, and see
+changes in real time. Everything is
+connected and working together [music]
+as a complete system. Your application
+can already store and manage data inside
+a database, but most real applications
+go beyond just text. Users upload
+profile photos, share images, store
+documents, or even work [music] with
+videos. Adding files like these is a big
+part of modern apps, and this is where
+Superbase storage comes in. Superbase
+storage allows your application to store
+and manage files securely in the cloud.
+Instead of building your own file
+storage system, you can use a structure
+called buckets. A bucket is simply a
+container where your files are stored
+and [music] organized. To get started,
+open the stored section in your
+Superbase dashboard and click [music]
+create bucket. You'll be asked to give
+the bucket a name, such as images or
+uploads. You'll also choose whether the
+bucket is public or private. Public
+buckets allow anyone with a link to
+access the files, while private buckets
+require authentication. In most cases,
+especially when working with user data,
+private buckets are the safer option.
+Once your bucket is created, your
+applications [music] can begin uploading
+files. Uploading files works through the
+Supabase JavaScript client, just like
+the other features you've used so far.
+Your front end sends the file along with
+a path that defines where it should be
+stored inside the bucket.
+>> For example, if a user uploads a profile
+picture, you might store it in a folder
+specific to that user.
+>> Supabase handles the upload
+automatically and stores the file in
+your bucket. After that, you can
+generate a URL that allows the file to
+be accessed or displayed in your
+application. Depending on your setup,
+this could be a public URL or a signed
+URL that only works for authenticated
+users. Just like with your [music]
+database, Supabase also gives you
+control over who can access these files.
+You can define policies that determine
+who can upload, view, or delete files.
+For example, you can allow only
+authenticated users to upload files and
+restrict access so users [music] can
+only see their own uploads. These rules
+help protect your application and
+prevent users from accessing files they
+shouldn't have access to. Once your
+storage policies are set up, your app
+can safely handle [music] user-generated
+content, whether that's images,
+documents, or other types of files. And
+with that in place, your application is
+becoming more complete. As your app
+becomes more functional, security
+becomes just as important as the
+features you're building. It's easy to
+focus on getting everything to work, but
+without proper safeguards, users could
+end up accessing data they shouldn't see
+or modifying information that isn't
+theirs.
+That's where Supabase's built-in
+security tools [music] come in. One of
+the most important features you'll use
+is row-level security or RLS. Row-level
+security controls exactly which rows in
+your database each [music] user can
+access. Without it, users might be able
+to read or change data that belongs to
+someone else. When RLS is enabled, every
+request is checked directly inside a
+database before any data is returned.
+Because this happens at the PostgreSQL
+level, it's both reliable and secure.
+Instead of relying only on front-end
+logic, the database itself enforces the
+rules, which makes it much harder for
+unauthorized access to happen. Another
+important part of your security is
+understanding how API keys work. Every
+Supabase project provides two types of
+keys. The first is the public anon key,
+which is safe to use in front-end
+applications. This key works together
+with your security rules and doesn't
+bypass them. The second is the service
+role key. This key [music] has full
+access to your database and ignores all
+security policies. Because of that, it
+should never be exposed in front-end
+code. It should only be used in secure
+environments like back-end servers where
+you can control access properly. A
+common mistake developers make is
+forgetting to enable role-level security
+altogether. When RLS is disabled, your
+database may allow unrestricted access,
+which can expose sensitive data. That's
+why Supabase strongly recommends
+enabling it for any production
+application. It's also important to
+avoid placing sensitive information
+directly in your source code. Things
+like API keys and configuration values
+should be stored in environment
+variables instead. This keeps them
+secure and prevents accidental exposure.
+>> If you follow these practices, your
+application stays protected as it grows
+and handles more users. And once your
+security is in place, that means you're
+ready for the next step, which is
+deploying your application and making it
+available to real users. There comes a
+point where your project stops being
+just a test [music] and starts feeling
+like something real. Once your app is
+working the way you expect, [music] the
+next step is getting it ready for actual
+users. That means moving from a
+development setup to a proper production
+environment. The first step is choosing
+where to host your front end. Popular
+options include platforms like Vercel,
+Netlify, or other cloud providers. These
+services make deployment straightforward
+by connecting [music]
+directly to your Git repository. Once
+your project is deployed, your
+application becomes accessible online
+and anyone with the link can use it.
+Before deploying, it's important to
+review your environment configuration.
+Development setups often include task
+keys, temporary settings, or debug
+features that shouldn't be exposed in
+production. Instead of placing these
+values directly in your code, you should
+use environment variables. For example,
+your Supabase project URL and public API
+[music] key should be stored securely
+outside your source code. This helps
+protect sensitive information and keeps
+your project more secure. Performance is
+another key area to consider. As your
+application grows, inefficient database
+queries can slow things down. One way to
+improve this is by only requesting the
+data your app actually needs instead of
+pulling entire tables. PostgreSQL also
+allows you to create indexes, which can
+significantly speed up queries,
+especially with larger data sets.
+Caching is another technique that can
+make a noticeable difference. If your
+app frequently requests the same data,
+caching allows you to store that data
+temporarily, so it doesn't have to be
+fetched from the database every time.
+This reduces load on your back end and
+makes your app feel faster for users.
+Monitoring and analytics also play an
+important role once your app is live.
+Supabase provides built-in [music] tools
+like logs, database insights, and usage
+metrics directly in the dashboard. These
+help you track performance, identify
+errors, and understand how your database
+is being used. [music]
+You can also connect third-party tools
+to monitor front-end performance and
+user behavior more closely. As you start
+using these tools, you gain better
+visibility into how your application
+performs in real-world conditions. This
+makes it easier to catch issues early
+[music] and continuously improve your
+app over time. By now, you've already
+built a solid foundation. You've created
+a database, set up authentication,
+connected a front end, handled file
+storage, and even work with real-time
+updates. That alone is enough to build
+fully functional applications, but
+Supabase doesn't stop there. As your
+projects grow, you'll start running into
+situations where you need more
+flexibility. That's where some of
+Supabase's more advanced features come
+in. One of the most useful tools is Edge
+Functions. These allow you to run
+server-side logic outside of your front
+[music] end, but still close to your
+users. In simple terms, they let you
+handle things that shouldn't run
+directly in the browser. For example,
+you might use an Edge Function to
+process payments, validate incoming
+requests, or connect to third-party
+APIs. Because these functions run on
+distributed infrastructure, they respond
+quickly no matter where your users are
+located. [music] Another powerful area
+is integration. Supabase works with a
+wide range of external services.
+Developers often connect with tools like
+Stripe for payments, SendGrid [music]
+for emails, or Zapier for automation.
+These integrations allow your
+application to go beyond basic
+functionality and start handling
+real-world use cases [music] like
+subscriptions, notifications, and
+automated workflows. Scaling is also
+something to keep in mind as your app
+grows. [music] As The users join and
+more data flows to your system,
+performance becomes more important.
+Supabase handles much of the
+infrastructure scaling for you, but
+there are still things you [music] can
+optimize on your end. For example, you
+can improve performance by writing
+efficient queries, creating indexes in
+your database, and structuring your data
+properly. These decisions help your app
+stay fast and reliable even as usage
+[music] increases. Another advantage of
+working with Supabase is the community
+around it. [music] There's a large
+collection of documentation, tutorials,
+and open-source examples that you can
+learn from. Developers regularly share
+templates, solutions, and workflows,
+which makes it easier to solve problems
+and improve your projects. If you ever
+feel stuck, the documentation and
+community forums are some of the best
+places to look. [music]
+Often, someone has already solved the
+exact issue you're dealing with. As you
+continue building, these resources and
+features help you to move from simple
+projects to more advanced
+production-ready applications. Earlier,
+back-end development might have seemed
+complicated. Servers, databases,
+authentication, all of it feeling like a
+lot to handle. But now, you've seen how
+Supabase simplifies that entire process.
+You've set up a project, worked with the
+database,
+>> handled authentication, connected a
+front-end, and explored storage and
+real-time features. That means you now
+have a solid foundation to start
+building your own full-stack apps. If
+this helped, check out the resources in
+the description and consider subscribing
+for more tutorials like this.
+>> Thanks for watching, and see you in the
+next one.

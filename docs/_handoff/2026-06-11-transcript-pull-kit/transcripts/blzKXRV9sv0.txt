@@ -1,0 +1,162 @@
+One way to help scale AI from activity
+to impact is to actually specify
+the impact that you want to see. I just
+received an email from Claude that
+that includes a couple of new feature
+updates. One thing that caught my eye
+was
+keep cla working towards a goal which is
+a new relatively a new capability I
+guess in claude which basically means
+that you can
+guide claude in running a Ralph loop an
+automation loop by setting a completion
+condition using a goal. So essentially
+the way it works is you set a completion
+condition with /goal and claude or
+codeex has the same thing keeps working
+across turns until the condition is met.
+One of the interesting things to think
+about is what would that completion
+condition be. So if we think about the
+fact that claude would keep working
+towards that goal without prompting
+after each turn what it does is it
+checks and here it uses a small fast
+model to check whether the condition
+holds is met.
+If not it will start another turn
+instead of returning control to you.
+That's a higher level of agency. It's
+sort of a mini uh Ralph's loop, a mini
+loop of running the uh the model
+continuously until you get to a certain
+point. The the examples here
+are more of uh an example of what can be
+done. It's more interesting to actually
+look at what don't we see here. So for
+example, migrating a model to a new API
+until every call site compiles and test
+pass rate. Implementing a design dock
+until all acceptance criteria hold.
+Splitting a large file into focus
+models. some sort of tech debt
+improvement, refactoring, working
+through a label issue backlog until the
+queue is empty,
+which is kind of a meta loop because for
+each one of these issues, there would
+probably need to be a goal in achieving
+that goal.
+If you look at this list,
+one of the things that I see here is all
+of these are technical activities. It
+doesn't really show here examples of,
+you know, a web page is working well,
+that feature is desirable, people use
+the feature, people use the
+functionality. We created a presentation
+that people actually understand. We
+created an image that is useful for us.
+We've done something that achieves the
+change that we want to see for the
+people that would use it.
+And those are the sort of goals that we
+should be aiming at. That's the intent
+of the work that we're doing with AI.
+All of the examples that we have here,
+yeah, they're serving us, but they're
+examples of output. They're not examples
+of outcome. Output doesn't create
+impact. It's only if that output if what
+we are doing here, the tactical goals,
+if you want to call it that, turn into
+outcome, turn into something that moves
+the needle, changes how people work
+that it has a chance to achieve impact.
+So, I really like this approach, but I'm
+curious to see how many people are going
+to use it for
+mechanical output oriented goals.
+What will need to be true in order for
+us to use this for more outcome oriented
+goals?
+First of all, we need to learn how to
+frame outcome oriented goals
+effectively. But the other piece of this
+is how would
+this loop run? So how would this model
+be able to actually close the loop on
+did we achieve the target condition? How
+would we observe and that's where I
+think a lot of the work uh will need to
+take place. How do we
+move tackle the bottleneck the new
+bottleneck which is validating that
+we've delivered value
+through new observability
+new ways to close the feedback loop.
+Only when we do that will we be able to
+give Agentic AI real outcome oriented
+goals and unleash agents on real
+problems not just doing technical tasks
+along the way.
+Curious how you're using
+Goal. Meanwhile, I'm
+starting to to play with it in my world.
+So, just as um an example, this is a
+blog post that I'm working on. I think
+it's in reasonable shape. It's about my
+AI bottleneck was in tokens. It was
+finishing my AI threads board. But what
+I've done here and is
+set a goal to claude that my blog post
+should be well aligned with my eye
+activity to impact bottleneck point of
+view and an effective blog post that
+will show up in answer engines and work
+well as a LinkedIn
+substack newsletter. And then
+essentially I see here that claude
+started to work on this. It's done some
+work. It made some changes to the flow
+of the language that I came up with
+changed. It changed the closing line.
+It explains why it thinks it serves the
+goals, how it connects to the bottleneck
+point of view.
+It's not surprising that it's already
+aligned. That's how I wrote this uh
+article.
+It explains what has it done for answer
+engine optimization. It added some
+headers that are uh question oriented
+the first uh TLDDR uh at the top which
+provides a quick quotable liftable
+answer block um and also thinks it's a
+newsletter uh fit.
+It does have an open item which is the
+image. Claude cannot generate an image.
+I didn't teach it to open a sub agent
+with chat with codeex to to generate
+images yet.
+And then let's see what has it done. It
+continued in the loop.
+Continues in the loop. I think what it's
+doing is committing this even without
+the cover image. Found a way, I guess,
+to to render something.
+We'll be curious to see how it works. So
+anyhow, I'll continue to work and
+explore with using goal on my uh AI
+threads
+and let me know what uh you're doing
+with it and how and are your goals
+outcome oriented, output oriented,
+what are you doing in order to enable
+outcome oriented goals in your AI
+sessions. This is scaling AI from
+activity to impact with a quick update
+on
+orienting AI harnesses around goals. Um,
+see you

@@ -1,0 +1,554 @@
+So, you're paying Anthropic $200 a month
+for Claude, and you have no idea what
+it's actually doing under the hood. In
+this video, I'll show you what a Claude
+command center looks like, why you don't
+need most of the mission controls you
+see on YouTube, and I'll drop you a
+prompt to build your own in the
+description below. Let's get into it.
+So, mission control is a really
+interesting concept to me, mostly
+because I think it's just completely
+unnecessary for what people out there on
+YouTube are currently building it for.
+While they're technically super
+impressive from the business use case
+perspective, all they're doing is adding
+to the context load problem. They're
+introducing a seven-layer microservice
+that absolutely doesn't need to exist.
+You do not need named agents to go out
+there and do work for you, especially if
+you are using Anthropic's ecosystem.
+It's way more efficient just to use
+skills and have them running on demand,
+on schedules and things like that. More
+importantly, if you want to have this
+front layer where you can communicate
+back and forth with an agent, that's why
+they built co-work. It is literally the
+sole purpose of this thing, and it can
+do 98% if not more of what you can do
+with your AI operating system in an IDE
+inside this little graphical user
+interface that's much better for
+business people out there. You can check
+out the video on the screen right now if
+you want to know how to build your own
+AI operating system inside co-work
+itself. For this video, I want to focus
+on the contrarian approach that for me,
+my command center is observability
+first, because that's where I think most
+of the value in actually having this
+thing comes into play. And then of
+course, inside here we have got some
+kind of task functionality, because
+there are a few edge cases where we
+would actually want to launch agents
+from inside this panel, and we'll get
+there in just a second. But please,
+everybody take a step back. The goal of
+whatever you're doing in life and
+business is to execute on your tasks
+with AI, not introduce all of these
+other systems that just complicate it.
+Skills exist for a reason, and we're
+going to exploit them as much as we can
+inside our environment. Great. And now
+that all the boring practicality stuff
+is out of the way, we can get into this
+video. So, our command center is to
+handle in-flight sessions, our task
+queue, and our schedules all in one
+place over here, and we can go through
+it layer by layer. More importantly,
+this thing is a persistent daemon, so it
+is always running locally on my system.
+It will go out there and find things
+that it needs to do, and make sure all
+my schedules are running as they should
+be, and finally it will report on
+literally anything that we can get our
+hands on. When we're looking at what
+Anthropic gives us, it gives us JSONL
+logs, which is just tracking everything
+that Claude and Claude co-work use. And
+then also, we have open telemetry now,
+which they finally released to people on
+the Max and Pro plans. Previously, it
+was only for enterprise people, and
+that's how you see this shiny little
+mediocre dashboard inside Claude code in
+the GUI. This dashboard over here is fed
+partially from OTEL, but that's what we
+can exploit massively over here because
+there is a ton of documentation. So, we
+can build out a lot of real-time info.
+As you can see, our dispatcher is
+running, and everything is working as it
+should be. We have no live sessions
+running currently. We'll kick one off in
+just a second. But posture is a really
+important thing to have on our
+observability dashboard, because it
+tells us two of the biggest problems
+that you will have in your business. One
+of them being security. Now, I have
+another video on this and exactly what
+the skill does, but essentially it's a
+skill that lives in our environment, and
+it runs out there doing an audit finding
+things like opportunities for MCP
+poisoning, various other MCP attacks,
+skill problems, various settings that we
+have in our environment that we might
+want to change because it can be
+exploited. So, we could run that task
+from this dashboard, and you should be
+running it regularly, probably on a
+schedule.
+But then if it found anything, you would
+be able to see the entire report over
+here so that you could act on it. Now,
+me having worked in cybersecurity for 12
+years, you can see that I always keep my
+environment completely not up to date
+and in the worst possible practice. But
+that's because it's my dev environment,
+and I don't really care. On the
+right-hand side over here, we have
+context, and this is solving the context
+load problem that everybody has been
+facing. Again, I have another video on
+this as well. Anything that I mention
+here will be in the description below.
+But what this skill is doing is it's
+running through everything in your
+environment where you're being
+drastically inefficient with the way
+that you're handling context, with the
+goal being to turn all of that around by
+looking at this report to figure out
+what you can do to be better at using
+context within your environment. So,
+these two things are never static.
+You're not going to run the skill once
+and yes, we're set for the rest of our
+lives now, because AI evolves, the
+entire landscape evolves constantly,
+these two things will need to be run on
+regular intervals to make sure that you
+are doing the best practice at the time
+of whatever it is that is happening. So,
+for me, these are the two most important
+things that we are currently trying to
+solve now. Then next up, we have a quick
+panel on token usage, and that's just to
+give us an overview of the number of
+tokens that we've used by model over the
+last X number of days. This ties in with
+another panel that we're going to look
+in just a little bit. As we scroll down,
+we see the cache hit rate. This is super
+important. You want to make sure that
+you're hitting Anthropic's cache service
+as much as possible, because obviously
+that will save you some of your usage
+limit. These panels over here, they are
+important, but I'm not going to go into
+them because they're not important to
+this video. What I do want to focus on
+next is this mission control, and this
+is what a lot of people are doing now
+because they're trying to piggyback off
+of what paperclip and Hermes and
+whatever those things are that go out
+there and work autonomously for you. So,
+you can build that functionality, for
+sure, but you have to think about why
+you're building that functionality. For
+me, if I'm looking at doing something
+like researching leads or things that I
+know are predictable, I don't need
+mission control to that. I don't need a
+task board. I can just set up a
+scheduled task. There is no need to have
+this little agent window running away
+and doing things. If you're in co-work,
+it's easier than ever. You can just set
+up a scheduled task right over here. If
+you're in here, you could just set up a
+cron schedule, which you could do
+straight from your IDE. Or in this case,
+we obviously built in the capability to
+do that down here.
+So, before I'm about to come into my
+mission control and do anything, I'm
+going to be planning my business life
+out and figure out what needs to run on
+a schedule and what I might want to do
+on an ad hoc basis, and make sure I have
+concrete reasons behind both of those
+things. Then once I figured that out,
+I'm going to go into my environment,
+wherever that may be, and I'm going to
+start with the stuff that I can schedule
+so that everything is in place and
+running on autopilot already. Now, if I
+wasn't using co-work and for whatever
+reason I wanted to use this mission
+control, I would be able to click over
+here, and it's pretty much exactly what
+co-work has. We put in a name, so we
+could say morning brief and spell it
+like a weirdo. And then down here, we
+can just set the time I want this to run
+at 9:00 every single day of the week.
+Then it sets up our cron schedule. We
+can give it a task title and any
+details. This is obviously where we need
+to give it the name of the skill. In
+this case, it would be the morning brief
+skill, because this is going to be the
+command that gets sent to Claude. If
+that wasn't clear enough, you can
+obviously come down to your list of
+skills that we have mapped from our
+environment, and you could select it to
+go and run the thing based on there, and
+it could be enabled by default. Then we
+would just hit run, and we would have it
+as a list inside our scheduled tasks
+over here, running away on its cron
+schedule and doing whatever it needs to
+do. Then once I've done that, it brings
+us onto the case of okay, cool. Now I
+have some ad hoc tasks that I need to
+run. So, we might then come up to our
+queue task, and again, very similar
+window. We have separate options over
+here, so we can either have an
+interactive session where we can have a
+back and forth with the agent inside
+this little panel over here, or we do a
+one-shot, which is basically just firing
+a skill that we know works, making it
+happen once. Make me a gamma deck on
+Claude computer use. The MD file is in
+my deliverables folder. Something that
+also is important to note here is that
+by default, it's going to be selecting
+it from the skill. If you are creating
+skills, one of the most efficient things
+that you can do is obviously assign the
+model. This again helps you with all of
+that context load. You don't want
+everything running with Opus just
+because Opus is the best. Many tasks
+don't actually need this. For a complex
+task like creating a gamma deck, it
+might sound like you need Opus, but you
+don't. Unless this thing is going to be
+writing and doing a bunch of other
+things, you can easily get away with
+Sonnet, because most of the AI work is
+done by the gamma agent itself,
+obviously. So, we can get away with
+Sonnet for this, and that's exactly what
+we're going to do. If I had many tasks
+running at the same time, I could set a
+priority to make sure which one goes
+next after the other, based on that
+little setting over there. And also, you
+can have requires approval. This is
+important if you're doing things ad hoc
+where you need a human in the loop
+before we do that, and I've built a
+panel just for that. So, what I'm going
+to do is I'm going to hit requires
+approval, and I'm going to queue this
+task. Now, what this thing does is it's
+also linked to my cell phone via
+Telegram. So, while this thing is
+waiting for approval, say something
+kicked off while I had to suddenly nip
+out for something, I could then come on
+over to my Telegram agent over here,
+and guess you can't see it on camera,
+but there you go. It's asking for
+approval. All I need to do is hit
+approve. That then changes on screen, as
+you can see, and the agent is now going
+to start running through this thing and
+do the task that I asked it to do.
+That's when we scroll back up here just
+to make sure everything's working as it
+should, and very, very soon this thing's
+going to populate a live session based
+on the agent task that it's got ahead of
+it. So, it's moved into running, and you
+can see over here that we've got two
+live sessions. One is the router from
+the IQ agent that routes tasks between
+everything, and then this one is just an
+interactive session of what's actually
+happening from the Sonnet agent over
+there. So, it's going out and searching
+in real time. This is just a live tail
+with grep, so it's nothing really crazy
+over here. But it's finding the relevant
+files, reading them, and then it's going
+to write the PSP, or in this case, it's
+going to use what I've already got
+there, which is the framework that I
+wrote for that video. So, I'm going to
+send it off to Gamma and do what it
+needs to do. And you can see over here
+that this thing went and found my PSP
+framework that I wrote for the video, so
+it's going to use this, and it's going
+to send it off to our Gamma agent. And
+you can see that's why it's much better
+to use something like this. There is no
+crazy agentic layer with Pikachu
+pictures drawn and Tamagotchi figures
+and stuff like that. You don't need that
+as a business. You just need to make
+money or execute on your goals. That's
+the whole point of this. Everything else
+is just a mess that you are one day
+going to have to manage or troubleshoot
+or deal with. You don't need that crap.
+Just use co-work. And with that micro
+rant out of the way, we're going to get
+into some of the more valuable things in
+here, which is understanding what's
+actually happening in depth in our
+environment, because this is how we
+refine, save money, and make the work
+that we do way more efficient. So, this
+dashboard is all about activity that's
+been going on in your environment. My
+favorite part of this is understanding
+the latency and error rate of all the
+tools that Claude is actually running
+into in my environment, specifically
+with MCP and APIs as well. It's going to
+help you understand where things could
+be going wrong as a part of your skills.
+For instance, in web fetch, if we
+constantly have a massive error rate,
+that could mean that one of our skills
+is constantly trying to access something
+that it can't. One of the most popular
+things is where it gets an access denied
+problem, in which case we could go and
+address that. But obviously we would
+want to make sure with more information
+first, and that's where we get into
+skills over here and understanding how
+often they run and how much they cost
+and things like that.
+So activations is really important
+because it shows us how many times over
+the last 24 hours our skills have been
+activated. So we get to see what we use
+most often, which obviously forms part
+of this picture. But then as we dive
+down further, we can see the frequency
+associated with the consumption. So our
+AI news monitor over here, we ran it
+over 23 sessions. You can see it used 32
+million tokens. So this was something I
+addressed earlier because as soon as I
+saw that I was like, why the hell is my
+news monitor using so many tokens?
+So understanding things like this help
+you become more efficient as a business
+and mostly as how much you're spending
+with AI. Because if this stuff was
+actually going out through the API and
+not on my subscription, it would be such
+a waste of money. This process ended up
+being so massively simplified with the
+exact same result. I'm going to see a
+massive change in this. Next up, I
+obviously have to do Excalidraw. That's
+generally hungry because it draws lots
+and lots of slides. But the idea here is
+that you would be able to go through
+this and audit your environment to
+understand how to make it more
+efficient. We can then obviously see if
+there were any failures. Thankfully for
+me, I had absolutely none. And then we
+can also come and have a look at any
+previous sessions that were run. So this
+is the one that we just ran in the other
+window over here. You can see that this
+one has now completed, so it left that
+queue and it's come across into here
+where the recent sessions that have run
+over the last I don't know how many
+days, but we've got 19 here displaying
+just 10 of them. So this was the task
+that ran. We got our session ID, the
+model that was used, and how long this
+thing ran for. Pretty straightforward.
+It wasn't doing most of the work again,
+it was set up by Gamma. But the idea
+here is that you would be able to come
+down here and filter down to see if any
+of yours have failed. Something you
+could then do based off of this is
+obviously have event-driven decisions.
+So if something failed, you could get
+alerted either on your phone if it was
+that important, or you could get alerted
+by something else anywhere that goes
+into another system, so that system can
+then respond to it, maybe even redo the
+workflow. Whatever it is that you needed
+to respond to could happen as a result
+of this. That's again why observability
+is so important. Making event-driven
+decisions proactively and in some cases
+reactively, but at least without the
+human having to sit there and worry
+about it in an anxious state. This is
+very important if you're setting up an
+AI operating system for your clients.
+You want to know that their things are
+working. So if something does go down or
+something fails, they're not going to
+know about it unless you have set up
+something like this for you to monitor
+them, or they have someone on site,
+obviously. Then last but not least, we
+go over the skills and MCP in detail. So
+for me, I don't mind using MCP that
+much, but it is really hungry at certain
+times, depending on the task that you're
+doing. If you were doing this as part of
+a larger system where there are constant
+back and forths, it can really pollute
+whatever it is that your AI is working
+on. So this kind of helps with that. It
+helps us understand how much our tool
+runs are costing us with MCP. It tells
+us how slow everything is and the
+slowest parts of these tools. So for me
+working in Notion, update pages really
+slow, create databases slow, search is
+slow. There are ways around using MCP
+directly. We can use code execution,
+which is a another layer that I will
+discuss in another video because it
+deserves its own deep dive. Point is,
+there's lots of ways around these
+problems that we find, but unless we
+know about them, we can't solve them. So
+if you're using Notion heavily and you
+don't really need the visual there, you
+just only know it as a place to store
+documents, you might want to switch to
+Obsidian because then everything's local
+and all of the other benefits that you
+get with it. For me, I prefer a visual
+layer when I'm working, which is why I
+use Notion. And this helps me understand
+how my system is. For me, this kind of
+latency is minimal and even the token
+usage here is completely minimal, so I
+don't care. There's no way you can
+convince me to change that based on
+this. But it is all valuable
+information. Obviously we want to
+understand our skill cost per run as
+well, so we've got that included in
+here. This morning brief is more than
+the AI news monitor because this is
+something that I'm currently working on
+in three environments, running through
+multiple systems. So these metrics are a
+bit skewed, but the idea here is that
+this will obviously tell you what your
+most expensive skill is per run, not the
+accumulated one like we had in the other
+view. The idea being that you can assess
+all of this and then figure out how you
+can make these skills more performant
+because you wouldn't want them wasting
+as much tokens as they do. And then last
+but not least, we have the context
+health over here, which just tells you,
+again, based on the video that I had on
+context engineering and such things, how
+you could be better inside your
+environment using context overall in
+various places. And on the right, we
+just have a skills registry that shows
+us every single skill in all of our
+environments with a breakdown of what
+they do. This is just for a user
+perspective, so you have an audit of
+whatever's going on in your environment.
+Good to keep track of these so you can
+get rid of them whenever you don't need
+them, obviously. So from this
+perspective of the video, I think this
+is where the value of AI mission control
+comes in. Realistically, Cowerk again is
+just there for people who don't want to
+use an IDE. So using any of that other
+stuff is just fluff, guys. It is a
+distraction. It's pretty, it looks
+great, and sure, the people who put the
+time and effort into that, it is
+amazing, really smart, doing crazy
+things.
+But what does it actually do from a
+business perspective?
+Exactly. Just my maid vacuuming the
+lounge. That's the only sound we hear
+resonating when that answer comes up.
+But I do want to give you guys the
+capability to go and build this thing
+for yourself, so I've written you a
+prompt based off of what I built, and
+this thing will go out there for your
+environment, read all the latest docs
+that it needs to, and then pull down the
+same information. You can obviously
+tailor this to the way that you want it,
+specifically taking out things or
+including things. Again, if you don't
+need that mission control functionality,
+just completely get rid of it. All you
+have to do is copy this prompt, paste it
+in there, flip it over to plan mode. Of
+course, you don't just want to yolo your
+way through this. I have told this thing
+to do some of the latest research for
+the hotel logs and JSON L just so that
+it understands what it needs to do. Then
+you would hit enter and this thing will
+go out there and do that and probably
+ask you a few questions along the way.
+And that's really it in a nutshell. You
+can add or subtract as much
+functionality as you want. I don't think
+most of you are going to need that
+mission control there. But if you do,
+you can obviously just ask this thing to
+go and add that. Other than that, that
+pretty much wraps it up for this video.
+So thanks very much for watching, guys.
+Leave some comments below and I'll get
+back to you as soon as possible.
+Otherwise, check out the videos on the
+screen now, they'll definitely help you
+on your journey. I'll see you in the
+next one.

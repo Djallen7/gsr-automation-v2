@@ -1,0 +1,360 @@
+if you have ever walked into a
+conference room and interacted with the
+control panel on the wall you might have
+been amazed like I was the realization
+that pushing the on button raises the
+curtains lowers the projector screens
+and the projectors while also turning on
+the projectors I mean if enough money is
+spent an insane amount of automation can
+happen just by turning on the system my
+church is in desperate need of a system
+like this to manage the sound and video
+in our multi-purpose rooms a little over
+one year ago I joined the staff team at
+this church and these rooms have been a
+huge pain because of the Antiquated VGA
+based system that is currently installed
+VGA it had its day but is now a thing of
+the past the VGA infrastructure we have
+is not compatible with HD screens and
+it's just time to get rid of it if it
+worked I really wouldn't complain like
+honest like if it worked I would just be
+happy and wouldn't even make this video
+but every time we use it we have to
+follow this printed sheet and rescan the
+inputs like just imagine trying to get
+an older person to do that this brings
+me to the worst of all statement about
+our system that as it currently exists
+it's not a system that young people can
+intuitively use think about that the
+problems behind that if a young person
+can't intuitively use it it must not be
+easy and then how is an older person
+that doesn't understand technology
+supposed to use it I want a young person
+to be able to figure it out but with a
+minute of training be able to use it and
+for an older person with 5 minutes of
+training be able to use it and operate
+it without calling me for example I have
+been doing research into these
+conference style systems and Crestron
+and cusis are the two systems that stand
+out but after several months of getting
+quotes for a cus system I want I like
+cus because it's userfriendly
+and people can actually manage it like
+me versus having to be a programmer with
+crant I think that's what it's called to
+actually be able to make changes and
+things technically we wouldn't own the
+software for the cres system just the
+hardware unless we so if we stop pay you
+know it's a whole thing anyways CIS
+seems like a fantastic system I've
+gotten some demos I've gotten some
+quotes but if we spend
+$334,000 on a CIS system we're not going
+to be able to spend that money in other
+areas of the church such as I don't know
+upgrading or live stream
+cameras Oh Boy okay that's a topic for a
+different day the ca system would be
+great but the more I learned the more I
+wondered could I design a similar system
+hi everybody my name is Nathan from
+crazy amazing designs my focus on
+YouTube and in the one-on-one training
+that I do with church is as simple I
+train and educate leaders to do church
+and event production with excellence
+propresenter 32 M32 live streaming all
+that kind of fun stuff I love to build
+systems like this one here so subscribe
+to follow along and to see my future
+content because a word of warning this
+system is not complete but I really
+think there's a good chance that it will
+happen so follow for part two with all
+the spoilers out of the way I have
+designed a new system for our space and
+here are the parts I'm going to be using
+do you recognize some of the pieces I'm
+going to be using stream deck
+controllers with bit Focus companion to
+be the backbone of the new system I'm
+going to use an ATM switcher and I'm
+going to use an X32 rack things that I
+can control from the stream deck so
+we're going to dive into that in a
+minute I'm confident that these tools
+are going to allow us to create a
+fantastic system that allows us to
+control every aspect of these rooms
+starting with the easy to use stream
+deck wall panels so let's take a look if
+you are not familiar this is a stream
+deck XL each unit has 32 buttons
+arranged in a 4x8 configuration it
+connects to a computer via USBC and is
+basically a glorified keyboard glorified
+because each key each button can be
+programmed to do virtually any
+imaginable task and each button has a
+display that is 72x 72 pixels so text
+images can be displayed on the buttons
+making streamex a Fant fantastic tool as
+a part of this new system I propose that
+we mount a stream deck in each of our
+multi-purpose rooms l41 42 and 43 this
+way when a user walks in they can turn
+to the controller and make all the
+changes they're going to need to
+configure the room to do what they want
+it to do configuration one is when we
+open up the two walls and it turns the
+three rooms into one large room in this
+configuration we need to send content
+from the central room to the projectors
+in all three rooms we also want the
+audio from the center room to be mixed
+into all three rooms there's ceiling
+speakers currently installed and I'm not
+planning on getting rid of those they're
+not good but for speaking they're fine
+and when we do things like the well our
+College Ministry in there we bring in
+speakers and if we're going to do a
+worship night we'll bring in speakers
+configuration two or B turns each of the
+three rooms into a conference style
+classroom where teachers might need
+anything from the projector connected
+from the laptop a DVD player a connected
+computer audio input and a microphone
+the stream deck controllers would be
+mounted on the wall at the entrance of
+each room like I said a 3D printed case
+would house the stream deck as well as
+the Raspberry Pi computer that allows
+the stream deck to operate without a
+traditional computer to run the Control
+software the enclosure would also need
+access to power and then it would
+connect to the building's Wi-Fi for
+control of the system so this is the
+Master homepage of the system each
+stream deck will show this and from here
+we can first Power the system on and off
+with the buttons I plan to power the
+whole system on and off using a
+firman this device is a relay that can
+be triggered on and off with an Arduino
+microcontroller via the stream deck
+there are several ways to do this the on
+andof buttons on the master homepage
+could be used to turn the system on and
+off but then if someone leaves one of
+the rooms and turns the system off while
+there's still people in one of the other
+rooms well we need to prevent that so it
+could be that you need to turn off all
+three panels for the system to turn off
+then turning one panel off would not
+turn the whole system off the whole
+system could also be set to turn off by
+default at a certain time every day if
+it gets left on such as midnight the
+next question for a user walking into
+this space is going to be well what
+rooms are you going to be using I've
+learned that the cus system has the
+option for a laser module that tells the
+system if the wall is open or not I
+could probably build a laser connected
+to a microcontroller and point it at the
+walls you know the walls that we open
+and close turning the three rooms into
+one big room if the laser beam stops at
+a specific distance then the system
+knows that it should be in individual
+mode and if the beam goes further than
+the programmed distance then it would
+tell the computer hey the wall is open I
+think this is super cool I don't think
+the system would say that last part but
+it would probably think it with the
+laser checking to see if the wall is
+open or closed or not we could actually
+skip the master home screen which allows
+you to walk into a room and then see the
+controls for that room immediately the
+controller in each room would be default
+to show you the room home screen instead
+of the master home screen unless the
+laser says the wall is open which means
+each control p panel will show the all
+home screen meaning the walls are open
+and the rooms become one this brings us
+let's say we're walking into l41 the
+first room because we're going to be
+leading a Bible study we're going to go
+ahead and push any button on the system
+to wake it up we either need to click
+l41 or if we do the laser then the l41
+home screen might show by default the
+panel wakes up and the l41 home screen
+comes to life showing us the system has
+been turned on on the first column on
+the left we have several settings we can
+switch between the audio and video Pages
+we can go back to the master homepage to
+change the system mode with another
+button we can even reset this current
+page back to its defaults this way if
+there is an issue with a change that we
+made we can just set the whole page back
+to its default settings the middle two
+buttons on the settings column are going
+to take us to the video page and back to
+the audio page for this room I've
+removed the current page so that we can
+only go to the other page the video or
+audio page these settings are the same
+across the audio and video pages for all
+three rooms on the audio page which is
+where we are at now we can control the
+audio inputs and audio sources that are
+available we can turn the volumes up the
+volumes down on any source as well as
+mute the input of the source pushing the
+video button takes us to the video page
+where we can see and select what source
+goes to the projector for each room I'm
+going to push back home and go over to
+l42 then click on the video page this
+room is special I said that all three
+rooms were the same but the middle room
+is special because there is a TV mounted
+on the wall in the back that we use as a
+stage display screen from proper that is
+why this page also has the TV which we
+can use the stream deck to choose any
+source that we're sending to it which
+makes it perfect for a presentation
+because now whatever's on the front
+screen is now on the back screen which
+is actually the default setup for this
+configuration in this room so as much as
+possible rooms will have default
+settings when the initial mode is
+selected or when the room is turned on
+for example l42 by default is going to
+be set up so that the Mac Mini computer
+in l42 goes to the projector and the TV
+because that computer lives in this room
+that just makes sense to be the default
+setting people most frequently use this
+computer as a source in this room and
+that's the way it should be all three
+rooms will basically act the same way so
+no matter what room you go in it's all
+going to look very familiar one good
+example of flexibility in this system is
+the reality that sometimes we want to
+live stream from these rooms but we just
+don't really have the capacity to do
+that in the future Once We have replaced
+and removed our PTZ optic cameras from
+our gym where we do church on Sundays I
+would like to bring those cameras into
+this room Mount them on the walls and
+then wire them into the system to make
+them available to record and live stream
+events from in here so I already set
+this up on the all video page I will add
+a third row called live stream page this
+is a button that takes you to a more
+advanced camera control page this camera
+control page is great but it's more
+advanced so just like the other buttons
+that allow you to select what source
+goes to the projector and TV the four
+cameras can be selected as the source to
+feed the output to the streaming encoder
+or recorders the final button is
+projector feed and the goal here is that
+whatever Source has been selected and is
+going to the projector output that same
+Source can be shown on the stream output
+now instead of having all those buttons
+displayed again for the stream the
+graphics can be selected from one button
+all from this page that makes it super
+easy to cut between the four cameras and
+Graphics making a nice live stream I
+will set up a default preset set
+position for each camera so when full
+room mode is activated each camera will
+go to those preset positions the focus
+will be set and locked so that the
+camera is usable because focus and
+motion is one of the big issues we have
+with them in our main service when a
+user like myself wants more control I
+can go ahead and click on the live
+stream page this opens the page that
+gives us more functionality of the
+cameras the First Column is our settings
+but on the second column of buttons I
+can select any of the cameras and I can
+push them to cut at any point we can use
+the network connected joystick
+controller to control the cameras but on
+this page we have three preset positions
+for each of these cameras then on the
+last column we have some graphic sources
+that we can cut to this integration will
+be fantastic in allowing us to live
+stream an event in these rooms such as
+funerals a class or some of the other
+things that we do here such as our a
+Wednesday service adding a hyperdeck
+studio recorder to this system we could
+set up an auto sync to autosync the
+files to Google Drive and then users
+could have access to the event once the
+recording is over the more I thought
+about this project the more interested
+the more excited I am so if this project
+interests you then leave a comment I'm
+hoping to get approval and then Present
+part two of this video to document the
+challenges of implementing this system
+maybe leave a comment if you want to see
+a a live stream of the building process
+if you have like a bunch of hours to
+watch me tinkering and moving things
+around I don't know if you have a
+similar space and would like a system
+like this for your church then send me
+an email maybe we can get this approved
+at your church and I can build it for
+you before I actually get it approved in
+my church as always my email address is
+in the description if you'd like to sign
+up for a training session book that on
+my website also Link in the description
+subscribe because I'm sure part three
+would come just a few months after part
+two that would allow us to have another
+update of how we've deployed the system
+how it's going maybe I'll train some
+people that were previously struggling
+on the system for the video anyways have
+a wonderful day thanks so much for
+watching this video see you next time
+bye

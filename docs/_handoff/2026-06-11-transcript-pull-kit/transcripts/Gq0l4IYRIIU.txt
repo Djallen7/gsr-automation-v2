@@ -1,0 +1,292 @@
+It wasn't so long ago when n8n was
+everybody's favorite no-code AI
+automation tool. Well, that was until
+other tools like Claude Code and Codex
+began to completely overshadow it. But
+just this week n8n released a brand new
+tool, which may give you a reason to
+bring it back into the fold. So, today
+we're going to dive into it and I'm
+going to let you know if n8n is worth
+your time again. Now, the tool I'm
+talking about is the brand new n8n MCP
+server, which was built with agentic
+coding tools like Claude Code and Codex
+in mind. Now, I think this is a big deal
+for a few reasons. The first is we
+haven't had a tool like this before.
+Well, sort of. We've had some band-aid
+fixes like Lonkowski's n8n MCP server
+and some other hacky things, but they
+were just that. They were hacky. They
+operated under the assumption that we
+could just load up the context window of
+something like Claude Code or Codex
+with, you know, a billion lines of
+documentation explaining here's what you
+should do, here's what you shouldn't,
+and hoping that because we shoved all
+that context in there, we could get JSON
+that actually worked. The other solution
+was just giant skill files that were
+just lines and lines and lines of
+markdown again trying to force Claude
+Code to create JSON in a way that worked
+inside of n8n. But this official MCP is
+a little bit different and a little more
+sophisticated because it's operating on
+TypeScript, not necessarily JSON. And
+what that means is we are able to
+validate the workflow and actually
+compile the code we're creating before
+it gets turned into a JSON file and
+populates inside of n8n. AKA, when I
+give Claude Code a prompt using this new
+n8n MCP server, we have some guardrails
+in place to make sure what we're
+creating actually works. So, for
+example, if I give Claude Code a prompt
+saying, "Create me this simple weather
+automation that emails me every
+morning." First thing it's going to do
+is it's going to parse the intent and
+realize, "Okay, we're creating this very
+simple automation. I need three nodes."
+Well, it's then going to hit up that MCP
+server and get the node types.
+From there, it's then going to write
+code in TypeScript. That code is going
+to get sent to the MCP server and
+validated and parsed. This is a big
+difference. This is a huge difference
+between what we've done in previous MCP
+iterations. After that, it is then
+converted into JSON, where it then
+automatically is populated inside of
+your n8n instance. One of the members of
+n8n's team broke this down in a little
+bit more detail in this LinkedIn post
+talking about this TypeScript thing to
+represent your workflow, not JSON, and
+saying, "When you ask the LLM to produce
+raw JSON for a workflow, it's guessing
+at the structure with no guardrails."
+That's what we've been doing up until
+now. But with this new server,
+TypeScript gives you type checking and
+compilation before anything touches your
+instance. The model has to produce
+something that actually compiles, which
+filters out a ton of errors. So, you
+take all of that together and this new
+n8n MCP server is the single best way to
+create n8n automations via coding agents
+like Claude Code, and nothing's ever
+really been close. Now, the second
+reason this MCP server matters is
+because I think n8n should still be part
+of your stack. This isn't 2024, this
+isn't 2025. I don't think n8n has as big
+of a part to play anymore. It's more
+niche, but if you're someone who works
+in the AI agency space, for example, you
+know the value of being able to create
+these sort of automations that are
+visual and that you can hand off to a
+client who isn't particularly technical,
+but for whatever reason still needs to
+get hands-on with this. And telling
+them, "Oh, it's in a GitHub repo
+somewhere. Just spin up your own Claude
+Code instance." is a bridge too far.
+In those cases,
+n8n does have real value and it is kind
+of a pain in the butt to use Claude Code
+to gen up the JSON for you. It's kind of
+janky. But now, it's kind of not. And
+because that is the niche that I think
+n8n operates in, the sort of automations
+you need to build with n8n don't have to
+be these wildly complicated things. If
+something's wildly complicated, well,
+I'm just going to use normal code,
+{quote} {unquote}, inside of Claude Code
+and go down that route. But if it needs
+to be pretty simple, someone who's
+non-technical needs to have like eyes on
+and hands-on, well, shoot, I can knock
+these out so fast now. It's so easy.
+Now, in terms of actually installing
+this thing, again, very simple. You need
+to make sure your n8n instance is up to
+date first and foremost. Then you're
+going to go down here. You're going to
+go to settings.
+And you're going to go to instance level
+MCP. You can do this self-hosted or on
+the cloud. Once you get to instance
+level MCP, what you're going to do is
+you're going to make sure this is set to
+enabled.
+You have the option here to enable
+workflows. If you enable a workflow,
+that's for workflows that already exist.
+So, if you want to use this on workflows
+that you've already created, you have to
+go in here and enable them. But if
+you're just creating something new from
+scratch, you don't really have to do
+anything.
+The other thing you need to do is hit
+connection details. You're going to want
+to do access token if you're working in
+something like Claude Code. Then you
+just need to connect Claude Code in this
+MCP server. So, you're going to feed it
+the URL, the access token, and the
+configuration JSON. If you want to test
+this out quickly, you can just drop the
+raw access token into the chat window,
+but understand that isn't best for
+security. You'll want to rotate it, set
+it as an environment variable. I'm not
+going to go through that step by step
+here for time. Just understand you need
+to do that and Claude Code will walk you
+through exactly the steps needed to
+complete that. But to get it up and
+running, make sure it actually works,
+just copy-paste all the stuff in there
+and you'll be good to go. Now, once
+you've copied and pasted up the server
+URL, your access token, and the JSON
+config into Claude Code and said, "Hey,
+set up this MCP server for me." you're
+going to have to exit Claude Code, start
+it back up, and then just do {forward
+slash} MCP, and you will see n8n MCP now
+connected. If you don't see that,
+you either didn't reset it or you did
+something wrong. So, just try it again.
+And now to use it, all you have to do is
+just talk in natural language inside of
+Claude Code because once you set up that
+MCP, it now has a connection to n8n
+itself. It will not only generate the
+code, it like actually builds it inside
+of your instance. There's no
+copy-pasting back and forth. So, if I
+say something like, "Use the n8n MCP to
+build me a workflow that fires daily at
+9:00 a.m., fetches Toronto weather, and
+emails me the forecast."
+It's just going to go ahead and do it.
+So, you can see here it's got the SDK
+and the node list, so it's figured out
+which nodes it actually needs to use.
+It's written the workflow,
+make sure it's valid. Now it's creating
+it.
+And then it's calling on the n8n MCP to
+actually populate the workflow inside of
+my instance. Says it's complete, and we
+can see right here Toronto daily weather
+email.
+And there we go.
+All right. If I click in here,
+cool, has my email, has the message.
+Everything is already mapped. If I hit
+execute workflow,
+and I check my email, there it is. Now,
+obviously extremely simple automation
+example, but that's how it works. Very,
+very simple. Now, let's ask for
+something slightly more complicated. So,
+I sit on a new canvas.
+I want us to create a newsletter
+automation that runs every morning at
+10:00 a.m. I want it to grab trending AI
+news across various RSS feeds. I'm
+letting it figure out what RSS feeds
+those should be
+um cuz I don't want to use an API key. I
+want it to then pull into an AI system.
+I want it to use GPT-5 to summarize it
+and then email it off to me. So, this
+time I'm asking for it to create a
+newsletter automation. Not extremely
+complicated, but
+I have had people pay for that in for
+client work, for example. Again, I think
+n8n's niche these days is not the ultra
+complicated stuff.
+I could have it do examples of super
+ultra complicated stuff, but at that
+point it's like, "Okay, why are we using
+n8n for that?"
+Again, niche. We don't need to use n8n
+for everything, but if we are going to
+use it, I think this MCP's great. All
+right, so it finished up the newsletter
+automation, so let's take a look.
+See the new one right here.
+And there we go. It even looks pretty.
+So, got the trigger. It's pulling three
+different RSS feeds, merges them,
+filters them over the last 24 hours,
+aggregates them,
+throws them in here.
+Here's sort of the system prompt it
+created.
+It's using GPT-5
+and sends the newsletter. So, let's see
+if it works on the first shot. Hopefully
+it doesn't so we can kind of show off
+some of the
+uh troubleshooting back and forth. Okay.
+So, right here we got an error. What is
+the error?
+Uh bad request, unsupported parameter
+temperature.
+Okay.
+We'll bring this up. Okay, so we
+shouldn't be passing temp- temperature,
+but let's say I didn't even know how to
+just stop that. All as I would have to
+do,
+um let's copy the output.
+Got this error.
+Paste it in.
+All right, so it said it fixed it, so
+let's try rerunning it. Obviously
+overkill to put this sort of error
+message into Claude Code to fix a simple
+thing like temperature, but just wanted
+to demonstrate it. And now we get a
+successful output. The email also sends
+off just fine. And here's our little
+newsletter.
+Super easy. So, like you saw there,
+that's like what, 5 minutes to create
+this whole thing and get it working,
+even with a little bit of
+troubleshooting. Not bad. So, to wrap
+this up, I think this is a great
+addition for anybody who is still trying
+to implement n8n workflows into their
+coding stack. I don't think n8n should
+be the thing you're using most often,
+especially for more complicated things.
+Just writing straight-up code inside of
+Claude Code or Codex is going to be
+better, but there are situations where
+n8n is great. And up until now, there
+hasn't been such a streamlined solution
+as this one. And it's so easy to set up
+and use, like you just saw. So, as
+always, let me know what you thought in
+the comments. And speaking of comments,
+in the pinned comment, there's a link to
+Chase AI Plus if you want to get your
+hands on my Claude code masterclass. But
+besides that, I will see you around.

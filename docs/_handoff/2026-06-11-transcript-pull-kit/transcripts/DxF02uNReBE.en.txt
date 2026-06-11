@@ -1,0 +1,4969 @@
+Hello guys welcome. In this video, the guys
+Creating a job management project
+I am using Nexis 16 and Super Bass. So
+Guys having his own front end in the Nexis 16
+Going to do. And for the back end we use
+We will make our super base where all our
+There are data stores. where all of
+There may be jobs, all applications may be
+Can. All users can be. Now
+Here this will be our simple home page.
+This is simple static data. Right now we have on this
+Nothing has been done on the home page. But
+When he logs in, for example, I
+I say I'm getting started here.
+If he clicks on sign in then here
+Pay aayega and he can sign in here
+Is. If suppose he could be a recruiter or
+So he may be a job seeker. if he
+If there is a recruiter then he can post the job.
+If he is a job seeker then he will look at all the jobs.
+Can. Can filter. Also apply
+Can. So these are all the guys we have here
+There are people who make pay. So if I were to tell someone right now
+I log in with an email and if I say
+Job Seeker and I sign here
+Am. So here if I sign with Job Seeker
+If I do this, I can see it here.
+What is the status of my application?
+I can filter here according to
+To date. I'm here at My Jobs
+I can go. I see all the jobs here
+I can. I can tell from the title.
+I can check the location. And then I
+Here if I look at the job details further
+I can see more details of the job if I want.
+Am. I can close it. Also apply
+I can. Upload your resume from here
+I will do it. Whatever I put in my cover letter,
+I will send a message. I will apply then. So
+I can do all this. and then our
+When we applied for the application here
+If that has happened, you can submit your application here also.
+You can see. You can also check its status.
+And you can see all the details. and then you
+Your profile is simple here.
+It is ours. So you can see that now
+The data we have in our profile
+We can see the date. If here already
+All this would have been uploaded. Here you
+The check is not visible here. So you have some
+It looks like this. So these guys we are
+There are makers. And this is a job seeker. If
+If this were a recruiter, you would have a little
+I could see some different things. Ok? So this
+Guys we are going to make it. And if any
+I was a recruiter, so if I were to log in with the recruiter
+I log out from here.
+And I log in with the recruiter.
+Let's sign in. And if we
+If you log in here with the recruiter
+Here you will see how many applications there are.
+Its. How many jobs have they posted?
+If you haven't posted a job, you can do so here.
+You can post jobs on this. post a job
+You can. All these fields will be chosen which
+That you can post jobs here. End
+Please post all your posts here.
+You can see all that here. own
+You can see the profile and then you can see it here
+You can log out. So when you log out
+So you will come to the home page here. End
+Then you will see a view like this. So
+These guys, we are going to make one. End
+For this we are going to use here
+These are Nex 16 and Super Bass. so guys please
+Like the video, subscribe to the channel
+to do. So let's go guys and get this started
+We do. So here come the guys and
+One of yours here on the next one first
+Let's create a project. So one job
+We do. Let's go to the terminal and end here
+But let's clear this up.
+And here mx create next app at
+latest and because I need to have it in this folder
+Have to create. So what will we do
+Here? Simple Dot So what will it do? This
+In the folder where our terminal point
+It is right there. And it is saying that we
+Accepting all the defaults
+Is. So I say yes. So whatever this
+It will take the default settings. End
+Whatever packages there are, there is a tail wind in it.
+Everything here: Install TypeScript
+All the installation will be done in this. Ok?
+Then what will we do here? set your own
+We will also add CN here.
+Ok? So let's come here. till then
+They say we have set CN here. set
+CN is U. Ok? So set CN to us
+People add here. so from him
+Our UI will be much better and we will
+In making people. Ok? So here you are
+You can see the components etc. And here
+Let's go to the docks. Docs Pe Hum
+What are people going to do? In the next Jas.
+So let's come here. So what is this saying?
+that if you have this set in next js
+If you want to add them, you should run this command.
+Will have to. So if you are doing PA from PNPM
+Then you can run this command. Taxes from NPM
+If you are living then you can do this with your friend.
+So accordingly. So what am I here for?
+Will I do it? Copy your command with npm
+I will do it. And if it has happened here then
+I will paste it here. so what is this
+Will he? Here's our set CNB here, this
+Asking what kind of theme do you want to keep?
+So I am calling it natural. If I
+If you want to change the theme, we will do that too.
+People will do it. Ok? So I did this
+Took. Ok? And come here. End
+Here you can see whatever component you
+You have to use this for example
+That button add here let's go to the component.
+Whichever component of this you now
+If you want to use it, what can you do for it?
+Simply click on it here. and this
+He will tell you and will also give you commands. Look here
+This command has been given. Just what you have to do
+Is? For example, I have to do a task
+Are. Let's take the simple one with buttons. So here
+button. Ok? So here's the button. So this
+He is telling. You can either copy this and make your own
+Create the component and place it there. Or else
+Here you simply run this command and
+Let's do this on the new tunnel. oh this is the one
+We already have it. So I'm here with this
+I will add it. So what will he do?
+here here you will see it sorry here
+But where did our component go here?
+It was made because now they have made this SRC
+Removed because now app routing is also here
+It works right here in the app.
+Here at the level here it has the component
+Created a folder and here it created a UI
+Created a folder inside it and inside it
+You will find all the components added here.
+We will now focus on this component.
+You will have complete control here.
+Okay, so in the same way, if you assume that I
+Input has to be added here. So if I
+Where is the input here? a form
+The input is like this. So if I were to
+There is input. So if I simply add this
+I will give
+So if you look here, the input is also here
+It will be added and come here, whatever it takes
+Related: Look here, our input guy has come.
+Near. And all these components which have
+I have styles if I want to change them.
+If I want to add any class then we will do that also.
+People can do it here now. Ok? So
+So what can we do here?
+Are? Add the Sets Chain to your project
+Can. And how can I use it?
+We already saw it. Ok? So use it now
+How to do it? Because this is a component.
+So what can you do simply? So here
+Come and see, they have exported it.
+to the button. So what can you do simply?
+Wherever you want to use it, walk into the app
+Are. Let's go to the page here. And here
+Pay simple remove it. Now Maine is here
+But let's remove this also. And simple you
+What is the plan? This component import
+Have to do it. And where from? So from here to here
+This is our UI end within the component itself.
+Button end is self close. Self-conscious. Correct
+Is? And sorry, let's remove it from here.
+And if you look here, we will run it.
+We do it. So let's go here on our
+And here we call it
+Clear and PM run devp. Ok? So this
+Our project will also run. And this
+Our project is running here.
+Is. So let's copy this. And here
+Let's paste this. So here
+If you see, our project is also running here.
+Will be done. The end is perfect. Ok? So
+We make it dark mode. So
+Here is our ah, look here this button ah
+Went. So now let's do one thing, we have pressed the button.
+But what do we do here?
+Will it have to? So we also need some text in the button.
+So you have to give it. For example, here I am
+Let me tell him click me. Ok? This
+So now inside this you can tell which
+Type variant. Like look at this, come now
+Went. Now I have to change its theme. So
+How can they do that? So let's do one thing.
+Let's go here. So if you come here
+You have the option of customization here
+will get. Let's go to our A section here.
+Pay. So if you look here, you will see here
+You will get the theme. Ok? Like it's natural
+Is. So which one should you do? Keeping Orange
+Is it, should I keep it red or keep it everyday? So everyday
+The one looks right. So we have it here
+Now let's copy this. so what is this
+Are you saying? We need to specify the global dot CSS in the app
+Go and keep it. So I copy this
+Am. And let's go to our place. And I
+Here it goes into global dot CSS
+Am. And I will paste it here.
+Give. I will remove this and then remove the root one.
+I don't want the root one. So I simply
+I will put this in the root one. Ok? So
+We don't want the dark one either because it
+We already have it. So we have this theme
+Have to use it. So I'm going to use this one.
+Ok? So I think now being perfect
+Needed So look at this theme of ours.
+The application has been done. And Hum Log Yeh Wala Theme
+are going to use through out their
+Application. Ok? perfect. We people make this
+Let's do it, Claus. And this is how we saw it
+We can use it here. Correct
+Is? Let's close this too. So what do we
+Have to do it? So I'm going to use a component here.
+Let me create a shared folder here.
+Ok? A either do one thing like this
+I make a component here, we
+Pay your header.
+Ok? So I'm saying header here.
+dot psx. Ok? So what are we here for?
+Are you going to do it? We're going to create our header.
+So here I say cost header. Correct
+Is? And here we will tell our
+Whatever the return we need to keep the header. of now
+That's why I am saying here D. And I
+I am saying header here. Welcome to my
+Website like this. Ok? And I'm here
+What will I do with it? export default own
+Header. So now we can put it here wherever
+We have to use this header, we can use
+Are. Correct? Similarly, we are here
+You can also create your own footer. Correct? so one
+Work: So here first we do one thing.
+Are. This is what I call use client. This
+I create the client component.
+Because what happens in Nex is the default
+Are there? All servers are components.
+So what did I do here? This is the client
+Made the component. What do I do now?
+Here we will do one more thing.
+Will keep the logo and sign up. Ok? here
+What do we do? We first do this
+We will make it a header. Ok? We are here
+Let's use the header tag. In this
+I say class. So here we are
+This will be the class name. Correct Class
+Name. Ok? Sorry. o a class name
+Class name. Ok? So here we are
+You can use the class name of Telbin.
+Correct. I say sticky here. Correct
+Is? And I call it zero from the top.
+I call it width, full border.
+I call it bottom border rose because we
+What themes are people using there?
+Rose theme correct. So here I am saying
+Yes, I say 200 every day. BG White Cahn
+Let's give it and give it some kind of opacity.
+Let me make it 95. back drop blur
+We do it. Let's call it support.
+back
+Drop flutter and I call it BG
+White and 60 make it opacity
+In. Ok? So
+It is saying something like error. So it is saying
+Can be written. Ok? Ok. So let's do one thing
+Yes, let us keep it like this. So I
+I will remove this. And I simply like this
+I will keep it. Ok? So this will be mine
+What are you saying to me? Children element.
+Ok? We will see to that. A here
+I What do we say? to this one
+Let us take the div. Ok? So I
+Here I say class name container
+We give a little bit from Max Auto Px x
+sa padding x from left right so we guys
+Here it is said that in four and when small
+If it goes then I will tell it to be px a six
+I will give him a six like this, I will fix him.
+When a little bit goes into a large one then
+What can we do in large px
+I can increase it a little bit, I can increase it
+okay so this is kind of like this
+What is the end point
+Normally what do you do in CSS?
+You write to the media. But here you are here
+Pe isi samaj se SM, MD, LG us pe jaake
+You can set your own class. Ok? So this
+I did it. And here we say
+Here is the link, from here we will go to the next link
+The link will be imported. Ok? And here
+Pe hum log a HRF denge usko. Firstly
+Let's give HRF. HRF I say
+Blank for now. Here I say
+This is due. So I'll make it quickly
+I am a leader because right now we are not in this
+In a way, back etc. do not work here.
+Are going to do it. Simple HTML is quick
+I make it from scratch, otherwise it will take more time.
+It will work. Ok? Sign in. Ok? So we
+People here, should I sign this up? Now look
+This is the button. Ok? So if this button is
+How do we route to any page on this?
+do? So what can you do here simply?
+yes? You can use the link component. Correct
+Is? So I'm saying here's the link.
+Inside the component button itself. Ok? And I
+I am wrapping it up. Ok? And here
+But what will we say? HRF. So HR
+In the app, we log here wherever we have to log in
+Whether to send it to these or wherever it is to be sent
+You can send it. Ok? So I again
+class here quickly I can use this
+I take classes etc. Ok? So like this
+What will happen to me here? Header. Correct
+Is? So now we will use it. A
+Let's copy this. We are going people
+Let's use it in the layout for now. So
+I'm using the header here. Ok?
+This will have to be imported. So import it
+Let's take it. It was imported from here. End
+If you look at it now, it looks something like this.
+Will be visible. Because we paint here every day
+The theme is using set CN. So we
+It is visible here in this color right now.
+Sign in and whatever you want to use.
+So now we can make a banner here also.
+Yes, quickly. So I quickly coded it.
+I also write it because it is simple
+html will remain. So I quickly code it.
+I'll write it down and then show it to you.
+Explore. Ok? So these guys, we have our
+Hero banner has also been made. And whom that
+I have used Simple Home here.
+On the page. Ok? So what's simple inside it?
+Is? Look here. So if I make this
+Should I refresh? So you can see that
+Inside, there's a simple image here and here.
+There is text that is animating the image
+Is. Ok? What is this simple thing here? One
+This is how we have used HTML here.
+We have used 'and' here. Here
+I will show you. Here we have used
+is the framer motion. Ok? New Seat React
+For the library icon. Ok? All this
+Code Guys I'll put on my gib. There
+You can see from it. Normal HTML use in it
+Already done. Tailored CSS used
+Is. End frame motion is used. Correct
+Is? perfect. So we used it here.
+Took. And now we have a header like this here
+Pay sign in and here we have it like this
+This is some of the content. It looks like this right now
+Used to be. Ok? perfect. Ok? End
+What have we done here?
+Have everything you need here in Constant
+Static and Hero Slider here 1 2 3
+The image has been taken. We have made the image public.
+It is placed here in the folder. 1 2 3
+Which we are using here.
+And then we use it here.
+Here we are rotating it.
+Ok? perfect. So these guys we did
+Gave. And now let us do one thing.
+I am closing this. Ok? Ok.
+Now let's do one thing. We are logged in here
+And we also make a sign up. Ok?
+So I make a route here. I say
+new folder and inside it I say
+because log in and sign up that anyone
+can access. So I'm saying here
+I am creating a route group. Public. Correct
+Is? Or do one thing. Auth says
+This. Ok? Auth will remain. And here I am
+Inside this I am saying a login end pagex
+Ok? This is how we are making logs
+In End Page. So this will be our route. Correct
+Is? So I will quickly convert this into simple html
+I will define it. also of end register
+Let me quickly define simple. Correct
+Is? Ok? So these guys, we registered
+And login using simple HTML.
+Made the tail wind and set CN
+It has happened. Ok? We have just had a lot more
+Nothing has been added to it. So if
+Let me show you. So let's come here. So
+This is our view of Create Account here
+You can see here which is name, email, phone,
+password and then he can select that
+He is a job seeker or a recruiter. Ok?
+And then he will create an account. If
+If the user already has an account then click
+Here to sign up. The sign will go here
+On these. Ok? Again here he name and
+Will give email. Name &amp; Email &amp; Password
+Will give. And then log in as a what is it?
+Is it a recruiter or a job seeker then that sign
+These will do it. Ok? So these are our two already
+We have created a page here. Ok?
+So now let us do one thing with this. Go
+First, we are on super base. Ok?
+Superb. So let's come here. and log it
+Do this from your email. Ok? So I
+Here I say sign in and I am here
+I will have to log in with Ghub. So one
+Let's work. Let's do it quickly. So
+We will log in here. Ok?
+As soon as you login, you will see in Super Base
+what needs to be done? First you have to organize
+Will have to make it. Inside the End Organization
+You can create your own project. So here
+But we say let's give it a name
+I say Next JS 16
+This is called a job board. Ok? Similarly
+We write it down. Ok?
+Job and make this bigger too.
+Next This is personal. Ok? and then
+We say it here. Ok? personal
+It is and will remain free. And here we are
+This is called creating an organization. So we
+People create their own organization here.
+Are doing. Ok? Now that it is created
+If he goes, he will say here that one of his
+Create a project. Create New
+project. We give ours here
+Give the name of the project
+Job
+Board. Ok? This is how we give
+Are. Ok? Job boards do it
+Simple. So this will remain. and then password
+Password of the database. So I give it
+Anything right now.
+Ok? I gave this. I copy this
+I will do it. Here we say that we
+Create new project. Ok? So, say this
+The need has been strong. Ok? So, a job
+Let's do job boards.
+Ok? So let's copy this. End
+Here we call it create new
+project. So this is our super base here.
+A project will be created. Correct
+Is? So look, it has been created here. So
+What do we do now? Now we have here
+You have to connect this to your necklace. Correct
+Is? So if you come down here. So here
+But look, we have it visible right now here.
+Connect to your project. Ok? So one
+Let's work. First, okay, then
+We will see to that. Ok? So basically we
+What was to be done? We will look into this later.
+Ok? So let us connect it first.
+Let's take it. And then we will deal with that later.
+We will see. So here is the project
+URL end you will see our here.
+I'll delete this later Guys A. So you
+Create your own and then use it.
+Ok? So here we create a file.
+Is it okay? So, we would have made it here.
+There are A here. Ok? So I am saying
+New FileNB.
+Ok? So I'm saying it here
+Super
+Base
+Project URL. Ok? So Super Bass
+The project URL and our key will be. So
+I would give it this in the project URL.
+Am. And it is ours. So that's already here
+But if you look at it, it is also there. So I this
+I am telling you about it here also. Ok?
+Where did we put the project URL and key?
+Did? Our
+Defined in the file. Ok? His
+After you come here a little bit, then here
+Let's do one thing. Let's come here. This
+I am closing. Ok? Now we
+What is the plan? Let's come here. Connect
+We have to do it with nexj. So here you are
+Connects to so many applications
+You can. So here we say
+Connect. So now let's go here to the app
+On the framework. And yes, look here
+The framework we have to do for Negjust.
+Our app is the router. The app is using the router.
+Is. And then this then we have this one here
+So I added mine to it. Ok? Now
+He is telling us that first of all we are here
+But we will have to make this. Ok? Utils
+superb end server dot es end inside
+Client and then these middle ware. Ok?
+So let's do one thing.
+Let's come here. And here we are here
+Let's create a folder Utils. Ok?
+Let's make another one inside this one. Superb its
+Inside there will be the file client there will be another file
+server.ts ok? So what do we have here?
+have to do it? When here in the client area
+If you come to the client section, you can copy this one.
+Do this and paste it here. Correct
+Is? So, we have to install this.
+Now. So and then copy this to the server
+do it. And we have to put this in the server.
+Ok? So here we set it up. End
+A This is saying that middleware also gives us super
+We also need to create middleware within the base.
+Have to do it. So here comes the super bass end.
+Let's make it middle ware dots. This
+I'm copying Pay Again here. again
+I am pasting it here.
+Ok? So we pasted this also. So
+This is my end here. Ok? So
+Ours is perfect. Ok? Ok. So one job
+We do. Let's install it now.
+Ok? So here we say
+Let's go to the terminal. And I say
+NPM this and this one. Ok? So
+Super Base SSR End Server Client Super
+Base SSR. Ok? So this is our ad.
+Went. So our error also went away. here
+There is no error. There is an error with cookies.
+No problem. So this is a next public
+Super ok, we know what to do here.
+Will it have to? A here we have the next public
+A super base URL will have to be given. and that
+So we have to pay here a next
+Public Super Base Public Default Key. So
+What will we do to him here? This one
+I will give it. Ok? So I did this.
+And now how to access it?
+It is being said that here you can add your page.js
+You will come here to TSX. So you are here at your
+Import it like this to Superbuzz
+Hookies ko and thon aap apne yahan pe table ko
+Select it. Then you can get your date here.
+You can. Ok? It is easy. It is very easy.
+Ok? So, but now we have connected here.
+Have taken it. And now let's see that this
+Is everything going perfectly or is there something else going on?
+There is no error. And let's look at this, right?
+Is it working or not? So here we see
+Let's run our app once. So
+I think everything is going perfectly. Ok? So this
+We don't need headers everywhere. Or
+If we need it, we'll see later.
+Will remove it. Ok? Now we come here
+Are. And we come to our place.
+Let us close this. And this
+Let's make it a little bigger. oh sorry yes here
+Come on. So here we have a table.
+Editors here let's go to the table editor.
+And here we say new table.
+Ok? So we have a new table here.
+Let's create it. So now the user table
+In a way, first we create the user table.
+Let's create it. So what am I here for?
+I am saying this
+User profile. Ok? User profile.
+Ok? And then we have our own here.
+It will remain created. Add column does. I
+I call this name a name, we say okay
+Is? Here we call it an integer.
+Gotta text. Ok? We are here at
+Let's text this to the name. and then
+We have Add an Email
+Add
+On
+Ad here, we say ah here
+What will happen? Password
+Roll
+Profile
+We will have the picture and here.
+Resume URL and then we will have
+The bio here is fine, so this will be and this
+What will remain is our text again and
+We could have texted this here as well.
+Yes, you should have just texted this as well.
+You could have texted the password roll as well.
+We also have password text.
+Right now we just text everyone. Correct
+Is? A. Okay. I'm texting for now
+Am. We will change it later. Ok?
+So I'm saying text this and here
+But we will call it text. Ok? So this
+I selected it. And this is the email
+What will remain of us? unique in a way
+Will remain. Correct? So we will come here. And we
+I will say this is unique. Email It Means That Her
+The email address of a user will be unique.
+Ok? So we did this. And here
+Let's save this. Ok? So this is our
+A table will be created here. than we
+What will people do here? RLS Policy
+Will add. And if you don't know this
+Guys how does Super Bass work?
+What is RLS policy? Its Guys
+I have made a separate video. Please
+Go and see him. Made in detail.
+And from that you get complete knowledge of Super Base.
+Will go. Here we say add R. So
+Look here, this has been created by us.
+Table. And here we will say add.
+RLS Policy. Ok? So here we are
+I will say that if you come here then I will say
+Create policy and then we are here now
+what are you saying a permission for all okay
+So I'm saying all and all here.
+What all will we give him now, true, okay?
+Yes, and because we have this now,
+Okay, so we are making it true.
+And here we'll call this save policy.
+Okay, so because this is permission for everyone.
+So we have added RLS policy here.
+Gave. Ok? For this particular table
+This is our table that we made. Ok?
+So now let's go to the table here. So
+If you find a table here, table and table
+If you want to see the data, if you want to see the columns then you
+Here you can go to the table editor. Correct
+Is? Then if you want to see the relation here
+Are. So you can go to the database here.
+yes. So I'm going to go to the table editor here.
+So here you can see this is yours here
+Pay table is for user profile. All this
+It is his table. Ok? And this is what we people
+What do you do now? Turn on dark mode
+Let's give it to him. Ok? It would be okay to see
+In. And in the same way if you have here
+Show the schema and relation in a database
+So here you can see that you
+In the database you will find here
+It will be visualized. Ok? So perfect.
+So let's go here to the table editor.
+Pay. So now let's do one thing. a I call this
+I have been close to others. Ok? And I
+Create a folder here on this one here
+I am doing it. New folder. I am telling
+Type it here. Ok? and inside it
+I am filing a new one. Index
+Okay, and here's the export.
+Interface
+User okay so user will be my and its
+Inside, we can define it here.
+The ID will remain a string and the same way I do.
+The name will remain the same, the email will remain the same.
+The password will also remain at the pass created.
+If it remains in this then it will remain updated and created.
+I forgot that there will be an end password as well, so I
+I am saying here that if the string roll remains
+In the roll we can have here ah
+job here here
+Recruiters. Ok? So be the recruiters
+Can. We hire recruiters, not admins.
+We are the people. I am keeping only two right now. Correct
+Is? So we have job seekers either
+Recruiter can be either of these roles
+It is in it. Ok? then here
+Picture. Ok? will remain in the string. So
+We will see this now. End
+The resume URL string will remain. and then
+What was ours? It was bio.
+Ok? This will also be a string. So, this
+I will have an interface that we created.
+And from here we exported. This we
+People what is this now? one way type
+We created an interface for the script.
+If I assign a variable to this
+If I give it to any function then this is acceptable.
+will do that if a function is returning
+So all these things should happen. in that
+If someone is using a variable, someone
+If you are assigning data, it should be of this type
+There must be data. It means that it means this
+It happens. Consider it like this for now. Ok?
+So what do we do now? So look now
+First thing when we register here
+If we do this, we will have all these things.
+Will not happen. Created at Updated at
+Profile Picture Resume URL All of these
+It will not be there at that time. So we have some
+There will be traditional name, email, password, role.
+It will be like this. Correct OK. So now we are
+Let's do one thing. Create your own actions
+Are. So let me create a folder here.
+a new folder
+Actions. So here I am saying new
+File user dot action. Ok? We are here
+I'm creating user actions, right? I'm saying actions.
+Let's give it action, okay, so our
+Brother, user actions will be dots, this is fine.
+what can we say here use server ok
+So what are we doing here?
+We're creating server actions in a way, so we
+Here use server a defined top
+Pay okay what do we need to import here
+But now you will see here, so here we
+I showed you how to use it.
+There you will have to import what we have
+I have defined this one here.
+Which we had defined here, right?
+Went? In routers, in clients, in servers
+We had defined this in . Ok?
+Created CreateClient. Ok? So now
+What do we have to do here? So here I am
+What will I say on this? So here we will say
+Create
+Client. Ok? Super Base Server. Ok?
+Here we are creating the server action.
+So, we have created the client here.
+Imported it. Ok? what do we give
+do? Our user that we created,
+Interface. The user interface we created
+A, we will import that also. User A was
+User A was this user, you could have imported it.
+import user from type index sorry
+If the type is empty then this will not happen
+Okay, so I've done that, now what do we have to do?
+Now suppose a user would need us
+If he is giving me the password then I will use the same password.
+I will not store the beans in the database.
+what needs to be done is it needs to be hashed
+For that we use Bcrypt here.
+Let's do one thing, terminal
+Let me go and here's what I'm saying.
+clear npm
+IEC PT GS Okay so here we are
+Installing Paycrypt GS
+Yes, our installation is complete, okay?
+Here we import
+From Bcrypt Gs so we have this also here
+Pay beep o bcrypt a bcrypt hoga na
+So here we have adopted BCrypt as well.
+Import tax ok perfect what did you do it for
+We already know that because
+we need to hash the password okay so
+Now I say here export com
+This is called user register registration.
+Let's remove it here. End
+This sink will be here here. Ok?
+Here the data will come to us. Ok? So
+Now we will see what kind of date it is.
+He will not come. So here we are
+What are you saying? See registration now
+Will take. Ok? Let's register it
+Simple registration.
+So this is our form data, the data will come here.
+And this data that will come to us, guys, this
+What data did we tell you that this type
+We have defined when it will register
+So what will the user give us all these things?
+He will not give it to us nor will we have his name or email.
+If the password is there then the roll will be correct.
+What we have to do here is this data
+It will come to us, so I will say it here.
+It will require some partial data.
+Meaning that not all the data, some partial data
+All the data will come to us, if I
+Should I give it to you? Suppose if I give it to you
+So now whatever I will use this, action with this
+Inside this I have this type of data
+Will have to provide it. Ok? which I
+Can't do it for every user at that time.
+Correct? Because the ID is updated inside it
+Ad created at Suppose that's okay? All this
+We don't have some fields there yet.
+So what will we do here? what am I
+I would call it partial
+Whose will it be partial and partial, friend? These
+The user we have created. Ok? Now look
+Now what will happen is that this partial data is his
+It will accept whatever data you give it.
+If you want to give, you can give from this, but only this
+Of the users, it's okay, which we have
+defined okay perfect now we
+What will people say? Cost Superb and Create
+We would have imported it at the client end.
+If cookies are not allowed with the next header then it is ok
+We have given this here and superb
+We have a client here and this
+What will we do here, wait, okay?
+So we will put an alert here, our superb
+It will come closer, okay, so now let's do one thing.
+Let's do it here, here I say
+Cost A here in the first step, let's say
+What should we do if a user registers?
+For that, believe me, what have we done?
+email is done, we gave unique so we
+You will also check that yes, this is the user.
+whether we have it or not if I already have it
+what should I do if the user is from that email
+I will give him an error from here so this user
+Exists so what am I saying here
+Look, okay, so what can I say now?
+I am superb okay from from user
+Select all, select this in the email
+data dot email came his end single if
+I already got the email so I am here
+But what will I do if I get it here?
+I will simply throw this away so that the user already
+Exist Okay user we got it here
+We threw an error, it's fixed now.
+Suppose I do one thing here.
+I say user
+Data
+dot
+Let's make it greater than 0. Ok? So
+This will happen. Now assume that he got it all right.
+Gave it. The email is also correct. all of his
+Correct. So what do we have to do now? Who
+Hashing the password provided by the user
+Will have to. So what can we do here simply?
+Are you? We use crypto in password.
+I am using it. These data dots in the hash
+Password and isko salt me ​​10 de de rhe r
+He has it. Ok? So what is this for us?
+Will he? It will also hash the password. Correct
+Is? Data Dot Password. Ok? Look, now give
+Look, he is there.
+dot password look at all this it question
+It is marked that it contains partial
+Maybe we already have it defined here
+If it has been done then now there is a question mark on everything.
+Whereas we have put a question mark somewhere here
+It is not given that this is optional.
+I could have given the optional here because
+I've used partial here, so now
+what will I do here dot password end
+I have given this hash password to him now.
+What we have to do is assume he has the password.
+If you have done it then what should we do? Insert
+We also have to do what we have with this data.
+We have taken the user's. So here I am
+what am I doing simple look here here
+But I am telling him that he waited super
+Base from user insert what to do
+data that we have received from
+What do we have to do here? Insert
+If you want to give it to him, then accept that now something
+An error occurs, so here we have done a simple aap kya
+You can do this by throwing an error dot message in case of error.
+Okay, if there's an error, let us know right away.
+Try catch block will also have to be done here
+So let's do one thing here first.
+People say try this within try
+We keep everything, if you suppose an error occurs
+If it is inside then close it here
+He will have to. Ok? So try and catch
+Sorry, we will have a catch here. In the catch
+What will we do here simply? a catch
+will be. So we didn't do anything wrong
+Guys. Ah yes, put this in. So here we are
+A throw like this make the registration fail.
+And when you assume there is no error then simply
+What can you return from here? Simple
+Return an object. make a status
+Success and message the user here
+Register successfully. just the same way beans
+You can pay here. And this is what we people
+Let's make the status true. And here we are
+People in this case
+What will we say here? here we
+People, please accept this message that is coming.
+I will give the same message with this one. So here
+But we will give it to him like this. Correct
+Is? We will remove this. So this case
+What will happen here? Status falls.
+So what will happen to me? In a way, the user
+Register action. Ok? action
+U Register Register Action Yes Okay. So
+So look what we just did? One
+Here, A is its sink. Ok? So
+This is what we did here, create client end
+Then we showed it here. saw that
+If we already have the user, then we
+Here date dot email already given to him
+that if there is already a user with this email
+It exists. So throw it here.
+Make this error. Ok? User Already
+Exists with this email can say you are a V
+Email because we can treat the same email as a unique
+It is made. Ok? saved the password
+We assigned a password to the data and
+Then we came to Superbas's place. insert
+You have submitted your data. Now suppose that insert
+Some error occurred while doing it. So here I
+But it threw an error. Otherwise, simple
+Returned Success True End User
+Register successfully.
+Simple status false end whatever error in catch
+Is. Ok? What do we do now? Us
+Let's go to the register page here.
+Pay. Ok?
+What do we have to do with this? from a bird
+Will have to validate. Ok? So one job
+We do. You will have to install it first
+Us. Let's hit enter. So here we are
+Using React Hook Form. Jord
+I am using it. end hook form resolver.
+Ok? So let us close it.
+And here we can use it now.
+So what will I do with it here?
+Import.
+import useFormHook from here this
+We just installed all three here.
+We imported all three here. Correct
+Is? We have to do the same for logging in as well.
+Will have to. So I'll do it quickly
+Because this is a small thing. hopes
+Yes, you must know. Still don't know if
+I did this using React Fook Form
+It has happened. A special video has also been made of this
+Is. You can see that. Ok? So I
+What should I say to him here? Name to Z Dot
+I will say string because it is of string type.
+What will happen? And then whatever you have here
+The message is Max, he can provide it.
+yes. Ok? So this will be my Z here.
+Dot string minimum must be minimum two
+Otherwise it will give error. Max be so
+Otherwise it will give an error. end rejects
+That's why I added a little bit that if
+Suppose someone gives a letter or something else
+gives off. So this is what we have said that name
+Yahan pe name can only contain letters and
+Space. Ok? So here in the name
+Can only be a space and a letter. useless
+There is no number etc. here. Correct
+Is? perfect. So we did this to whom?
+For? So we did this for the name. This
+A little bit below, we will say it here.
+This is Z dot email. Ok? End okay? This
+This way. So please enter Z dot email
+Valid email. Max should be five.
+This should be the minimum. Max be so
+Needed Ok? So now this email validation
+He will do it himself here. In the same way, we
+People will say Z dot Z dot. Ok? So this
+What will remain of me here? The one with F. Ok?
+So what did I give here? Minimize this
+10 should be the maximum. Add Rajks
+Gave. Please enter valid F number. it means
+That a little bit of validation was also added. F
+Same for the number. Ok? So a little bit here
+Let's do this. Now for passwords too
+Let us add a little bit. Z Dot
+String. Ok? So this will be mine
+Whose? Ah, this will be mine, yes, this will be mine
+for the password. Ok? So here we have
+First, add the minimum and maximum passwords.
+For that there can be a minimum age. Maximum
+This much can happen. Ok? In registration
+Must be A to Z. There should be a capital
+It should be small, there should be a number. End
+Whatever you get from that, you can download this ad here.
+You can do what you want to do. Ok? Meaning
+They would have removed it for a special character.
+Are. And then in the same way for us to roll.
+So what will we do here? Now look
+There can be two types of rolls. Correct
+Job Seeker &amp; Recruiter. So here we are
+What to do? h dot reward. Ok? reward
+It is in this. Ok? and in the same way
+see here job dot ah this is job
+Seeker and Recruiter. Ok? Im and Ye
+It will remain mine. Ok? So okay? I did this
+Gave. And okay, we're done here.
+Is. So we will have to create a schema for this. So
+Let's do one thing. I am removing this
+From here. So I'm saying cost and z
+The dot object will remain. Inside this is my
+The entire schema will remain. And here we are
+What will people do with this? Close and close.
+So this is my schema. This is what we have schema
+It is made. Ok? Now the schema we
+People will use it. How will you use it? See
+Let us first type it. Type
+register
+Form data and here we are here
+Kind of okay z dot info type of user
+Register Schema Its this type of schema
+We have defined it here.
+Its type is okay cost here we have
+Register: Yes, it will be the perfect same.
+okay so what did we do here
+Register Handle Submit We are here now
+We will make it so let's do one thing, let's do this also
+We will see and then we will form a state
+In the form state we will get this error
+Use form we used hook which we
+Imported from here
+And we will tell him this type of
+Will remain. And in resolver resolver we have
+passed this Jord Resolver which we have
+It was imported from here. Ok? Now
+Jord Resolver will have to tell us
+Schema his. So we already have the schema here
+This is defined on it. So here
+We passed the same schema to it. Correct
+Is? So now with its help we can do our
+There is a form, you can tell me that. Register Tax
+We can do this in our field. Ok? End
+We call this submit.
+Let's call it a submit handler. And we
+I used this here, somewhere else in the form
+In.
+So here
+We have the form here in the form
+You used it, right? So we have it here
+Let's use it. Ok? So this is what we used
+Done it. We will see how this looks now.
+We have to do it from. I am removing this.
+Ok? perfect. So it came to us.
+register. So how do you register first? So
+Look how simple this is already. what did we
+Did? Schema defined. type created
+Because we will have to tell it the type. Use
+form hook because we type
+Using the script. Type here
+We took it out. And then we here
+But did you use this? Your use form
+The book that we have installed here
+Did react book form. Ok? End
+Then what did we do here? He has a here
+I told you about it. And then resolver has its own
+Passed the schema. It will give three things
+To you. Register, Handle, Submit and Then You
+Error. So you can use this. register
+Why? that I just registered my field
+I will do it. How will I do it? Look, he will come here.
+We will have this input. So here yes
+This will be here is the input. So here I am
+What should I do? here for now here
+I will call this this sorry this register
+Hai register dot name. So it means that I
+I am telling you that this is registered in the name field.
+I am doing it with the name ones. Ok? and now
+What will we do here? value it
+And we will remove it like this. Correct
+Is? So that's how we do it here.
+Will come here.
+What do we have here? Email this
+Will remove it.
+Will come here in the same way. Here at our
+The phone is nearby.
+It's our phone. We will remove this. in the same way
+My password is here. So here
+Will come. My password will appear here.
+We will remove this. And similarly, mine is here.
+Will it come to me? Our radio is here.
+We do one thing here for this.
+When the change happens, then here we will be together.
+Let's take the state, basically it is better.
+Will remain. So here I am saying cost
+Role and this is how my role will be. So
+What should I say to this here? Roll Set
+This is called set role. Ok? set
+This is called a roll. And then we are here
+What will you do? So where did this thing of mine go?
+These? A roll group here it is. Ok? So I
+I am saying here that we end this
+Will remove it. So what do I come here for?
+roll it
+Value as a job sticker and job recruiter.
+Ok? So a roll a value. Ok? So one
+Let's do the work simply, I value it.
+I will pass it. I will pass the value
+I think it will be perfect because we
+already there okay okay ah okay this
+We accept it because what does it say?
+is assign string assign type this
+This this recruitment yes ah yes is perfect
+Okay, so kind of tell us how to type this.
+It means that we are telling him that
+It can be either a job seeker or a recruiter.
+This could be only one of two things.
+This is fine, so we have defined it here.
+Done whenever the on value changes it
+I mean, we can find radio here.
+Will go get that this ah a roll mill
+Will go. Ok? So form data we now
+I am not going to use it. So we make this
+We will see. I will remove it later. Ok?
+perfect. And we come here. Now
+Look, when the user is here. so it
+Meaning that here the user can be considered registered.
+Let's go. So when the user is on the register
+So the user can also make changes there. If
+Guess he felt it all and
+This changed it. So I'll watch it
+I want to know what he changed. It
+I mean, because it's important
+For us. So I'm going to put it here in a way
+I want to check it every time. So I this
+I can put a pay watch on it. How to put on a watch
+Am? What we have here, here we
+I will say who
+Roll End
+I will watch the role. Ok? To the roll.
+Ok? I will watch the role. So it
+Meaning that whenever there is a change, this will happen.
+The value will be updated with us. Ok?
+Now look, we don't need to take a state.
+Is. I will watch this with this and change it.
+I can see. what value update in this
+Happened? What changes have happened? Ok? And here
+We also provide default values.
+Can. Which is whatever I have here.
+So what values ​​do we have here?
+Is? We would have blanked out the name.
+Are. We give this in the same way.
+By default we do jobs.
+If you have to give whatever you want, according to
+You can see. Ok?
+And we can also set its mode here.
+You can know which type of work and when. So
+I'm saying here mode A and mode I
+I am saying that it should run on blur or on blur.
+Whenever there is blur, this should work. and its data
+Update and check validation. Correct
+Is? So this is what I am saying. And now I
+What do we have here now? Handle
+Submit handle. Ok? So what should I give this a
+I work. a handle change it
+We don't need it. Ok? So I this
+I am removing it because we already have it.
+Data will be available whenever we have changes
+will be. Ok? So I am removing this. it
+We don't have to use it. So I am saying
+cost on
+Submit. Ok? So I'm saying cost.
+On submit. Now watch on Submit What It Means
+What type of data will it be? This is what we
+This type of data is defined here
+will be. Ok? This type of data will be there. So
+I have already typed this here, that is why I
+I took it out from there. So on submit and
+Now we can do our work here.
+Whatever has to be done. Man lo it means that try
+Kiya can do it in the block today. Now sleep one
+Let's work. Here we are one here
+cost
+Let's load this set. Yes, set
+The loading fails. So whenever I
+If it clicks, what should I put it here?
+Will I do it? I will make it true. It means that whenever
+There will be a click and whenever this click changes
+So I will make it true. it means that at that time
+We can disable the button. Loading
+You can show me whatever you want to do. Ok? End
+Then I can try saying it here.
+And then we are here to catch and then our
+You can write whatever code you want. End
+You can also do finaly and finally. finally
+Let's tell him. And finally, my
+What can be done? by failing the loading
+Can. Ok? So this is how we did it
+Did. And then what will we do now? it
+I will use our handle which is submitted.
+Where will I do it? This is our jo
+The form will be here, we will have the form here.
+So
+Form on submit. This is my handle submit. End
+What do we have inside it? On submit. A
+Submit is this one. clear? So I did this
+Gave. And I think now is perfect. A if
+If we come here, what is coming?
+We got Watch F OK this import which
+This should not have happened from here to here.
+wala fi is okay ah yes this one is okay
+So ok sorry, we will remove this also.
+People, what do we have to do here now?
+This watch that we got here, we watch it here.
+We are using this, copy it here.
+Will we be able to find ourselves from here?
+Here we will find this watch, okay?
+The watcher will keep watching this and value it.
+You will get the update and let's do one thing
+And ah, this is what we have taken.
+Let's remove this. Ok? to the set value
+A set roll to. So I am removing it.
+Ok? So I am removing it. And I
+Simple, I am taking it here and setting the value.
+And I am using it. instead
+That I should take a separate statement instead.
+I will use it here. And here
+But this is the set that we used.
+I use this to set the value in the role.
+I will take it. And I Think Now to Be Perfect
+Needed Let's use this. Yes.
+Role Role Value as Job Seeker and Job
+Recruiter. So this is our perfect one.
+Satisfied this is JavaScript which is yes ok
+Is? Then it will be ours. Ok? Now we
+People should come here and refresh it.
+Let us see if there is any error anywhere.
+Perfect submit so look at this if I
+I can fill it with anything here. Ok? End
+If I fill it with anything here, it
+It will tell you to please enter this. a job
+We do. So let's come here.
+Here we might have an error here. So
+Here we are like this is the full name, right?
+Suppose there is an error here, then we
+How to show the error here? So I am a
+I work here and I say if
+Suppose I have an error already, we have
+Hai error dot name. Ok? so error dot name
+If it is already there then the error we have seen here
+I have already taken out this one, this one, this one
+Wala to errors dot name. So if inside it
+Suppose there is an error in the name, then we have
+It will come here. So what am I here for?
+Will I do it? here pe mo sorry here pe me
+I will say this
+motion.p and here inside it here
+error dot name dot message whatever the message is error
+Show me that. And here is the class, yes, this
+correct class name text sm end margin
+We gave this. And this is perfect. End
+We call it then initial. End
+I'll say it here in the initials.
+Let's set the opacity to zero. and animate a
+And we also call it here in y
+Let's give it -10, okay? And then when animated
+It will happen so let's do one thing. a little below
+Let's do this.
+And when it comes here in animation,
+What will I do with it? Make Y zero
+Give. Ok? So this is perfect. like this
+With this we can make our own everywhere. error
+I will copy this. and in the same way
+Here I will do this for email.
+If the email is
+There is email. Sorry Email Email Email Yes Email
+And similarly here we have the password.
+will be.
+Password here. same way here
+We have the password. So here I am
+I will tell you the password.
+And in the same way, here also we have the password
+I will do it. Ok? So whichever has an error
+That message will be visible here. have a password
+Went. I became a job seeker. come here
+We have. Similarly, yes radio here
+There is a group. Here we have motion
+It will come here. So if we have here
+The role is in the payroll, right? Roll and here
+I will pay the roll. So whatever error there is
+It will be visible on it. So let's come here.
+Let's refresh it. And now I
+Think is perfect. If I submit
+This is if I press enter here. Correct
+Is? 1 2 3 so look at this name contain only
+These letters also have to be entered. If I remove
+If I give it then it has to happen like this here. See
+How is that error coming like this.
+It became animated. So this is how you do things
+You can animate here and create
+yes. Ok? So I'm just refreshing it
+Am. And I think now is perfect. Correct
+Is? Our recruiter and this fana to this now
+Ours is perfect. and likewise
+We will also have to do this for A login. So
+Let's take a quick look at that. Before that we
+People do one thing. So here when he
+If he submits then we will do one thing.
+Quickly here, here. So here I am
+What will I do with it? Cost Rest Is Equal To
+Await Register
+A, what action did we create here? So
+This is our action. So what am I here for?
+Will I do it? I will use this action for it.
+What will I do with this? I will import it.
+And what data will I provide to it?
+I will provide this data. And say this
+Let us make this question.
+So what is he saying now? Yes. Ok. So
+What is he saying Guys? a name string
+Phone this this this this this. So it is saying
+Job seekers. Okay, we missed SS somewhere.
+Done it guys. Ok, let's do this. S
+It will remain everywhere. So job seekers recruiters.
+Ok? Sorry S. So this I think now job
+There will be seekers and recruiters. So here
+what we used
+A Job Seekers and Recruiters Job Seekers
+And recruiters and this is what we created here.
+Yes, this is perfect. Ok? So that's why
+It was giving error. Now I think this
+Satisfied as you can see. A
+I am satisfied, the guys are correct. A yes. So
+Here we have it. Ok? to this
+They just remove it. its own ok so be it
+Went. And we did it. And here
+I'll get a response if I say race.
+Dot success a yes status if true
+What should I do? So you are here
+You can show a twist or anything.
+yes. Or what can you do from here? So
+Suppose to show register success to stick
+So let's do one thing, first a plugin
+If you install a plugin, go here.
+Let's come here and write XGS toast
+So here, okay, let's take the first one.
+So let's copy this and come here.
+Let's go to the terminal here, we'll do this
+Let's install TasteFi Perfect
+Done install and come here. So
+We will have it here. Ok? So one
+Let's work. Let's copy this. and a
+Let's come here. We have the layout. A
+Let's move on to the layout. paste it here
+We do it. What will we need? Toast
+Container. And toast container we have here
+Pay, let's call it quits for now. Ok?
+Simple. Let's see. If this doesn't work then
+We will have to call there. Now we the people
+Let's come here. A This was ours. So here
+But let us copy this again.
+And come here. Here we are, this
+Let's paste it. a paste it here
+We give.
+We don't need this. We need this
+Is. So what will we do here? As
+We will have the success status as true. So
+Here at Toast Dot Success and Response
+dot message and here we have also
+Let's comment. We will see this later.
+Ok? And here's what we did.
+Is? A from users. Ok? We have here
+What is the name of the table, Guys? user
+We have a Pro user profile. So the user
+Underscore profile autocomplete
+No guys sometimes create problems. So this
+We will have a user profile and now if we
+People will see that we are walking in the right direction.
+Needed So let's do one thing. We are one
+Let's refresh it once. And here
+We enter our name. I say
+I am Tarun Kumar and
+Here we enter the email. Here
+Pay dummy number anything end I say. Correct
+Is? Entered it. And now you are a job seeker
+Whatever the recruiter wants to do, I am the job seeker.
+I will let you keep it. And I say here
+Let's do one thing. Works on the network as well
+Are. We will also see there that if we have
+Whatever is coming, success or failure, it is coming to us.
+It will be visible there also. So I say
+Create and look here API call made
+We have and here, here, look at the user.
+Register successfully then our user here
+It's registered. So if this user registers
+So we have it here in the database.
+It should also be visible on the So if I make this
+If I refresh, here we have a
+There must be data, look, it's here.
+But. So guys, this is how we are here.
+What are you able to do? your users to your
+Register in the Super Base database
+Have been. Ok? perfect. So this is our
+His work is done. Ok? Now what do we
+Have to do it? Login also needs to be worked on. So
+I do one thing. I to this, yes to this
+I remove the close. All this. Ok? These
+We remove everything. And we have
+There is no login page here. So in this
+We'll have to use this chord first.
+Guys. All this that we have like schema etc.
+It is made. So I'm copying this
+I am right now. And one more thing here that we have
+Loading is taken. So from this here
+We have given this, look at this one. Ah
+Create account here
+What can I say? So here if ah
+If loading remains true then what should I do here?
+Will I do it? Ah here simple creating
+Account Else Create Account. Ok? So this
+So if loading is true then I will
+Here I will show you how to create an account.
+It means that the text changes in the button itself.
+Will go. The text in Else will remain the same.
+Ok? So we did this too. And I
+Think this one is perfect. Now we are here
+What do you do? Our ego, this is our ego
+It is the login one. So let's do one thing. This
+We can copy the schema here.
+Are. They copy this too. everything
+Let's copy it. Ok? here I am
+I am copying. I am going to login.
+And here we will remove it.
+Ok? We don't have to use this form.
+To the data guy. Because we are here
+I am using Jord. So why should we
+I have to use it. And we have it here
+I will copy it from.
+We will paste it here.
+And what rules do we need here?
+should would? You will need a password. no phone
+We need it. Phone at the time of login
+What would be needed? I don't even need a name
+will be. Ok?
+So we will need this at the time of login.
+Three things. Ok?
+And we call it user.
+Login schema.
+Ok? The user will be logged in.
+Here also, here also. Ok?
+And we remove the name from here. Phone
+Let's remove the . It's perfect. And this too
+We will see. We will definitely remove this. Correct
+Is? We don't need this. End on Change Key
+We don't need it either. So that's us too
+Will remove it. So we don't even need a watch.
+Is. Where do we need the set value?
+Will it be necessary? Whatever we have here will be ours.
+No, this button group will be this. So here
+But what will we do? Simple
+Value okay so here value as a
+here pay log info data dot roll a if
+I took it, yes, okay, then it will be like this, okay
+If yes, then according to what you can give, so we
+What we've done here is basically
+Direct type defined there
+static, you already tell its type here
+You can do it simply here, which we have here
+I had given this to you, see, according to you
+As you like it, the way you like it
+You can do whatever feels right. Ok? Ez Ye
+isn't it here you can see this one
+This is also perfect. This is also satisfied
+For this. Don't you have it? Not logged in.
+Register here. Ok?
+Register form data and perfect hai ye. So
+This is ours. And we have value pay
+There is nothing required for change in this. beans
+We don't even need a name here. Here
+But name may not be required here also. And this
+So ours is already perfect. here
+What will happen to us? Handle Submit Already
+We have. So handle submit will be this. End
+What do we need to do to handle submit?
+Let's do an on const here
+On submit. Ok? On Submit Pay On Submit
+We will have to provide it. So one
+Let's work. Come here when on
+The handle will be submitted. So this handle which you submit
+Who is this? This is his. Ok? A and Also
+We will see auto complete here later.
+If I want to turn it off then this is ours
+Handle Submit Where is this coming from?
+Where do you get this use form hook from?
+Alright and this one from React Hook Form
+We will now create a new action in this.
+And then we will use that for login, okay
+Now we have to register the field.
+We already have this register.
+This is what we get and I get it here.
+What do you have to do? First, send an email here.
+So what do we have to do here?
+End email. Ok? So this will be our one
+Email Second Password This will be the password. Correct
+Is? The end password is both. And here
+We have already set the value here.
+from its set value. Ok? So this is what we
+Did it. And I think it's perfect. M Error
+We will have to do it for this also. So this is a job
+We do. Let's copy this here
+Than this one. So let's come here. here
+Where did you go? Here it is. So what are we here for?
+will do their
+What will we do with him here? What
+Do we have it? Email. That means email here too
+We will have it. then be here
+What will happen to us? Password. So password.
+Password. And it will happen here too
+Password. is it done. What about us after that?
+Is? Here we will have it here
+This is the radio group, right? Of the radio group.
+I take it here and sorry
+It is not copied completely, yes, it is okay.
+what will happen here and here now roll
+If there is an error in the roll then roll here
+He will go and whatever his message is will be visible.
+If it goes then we have done this also and I think
+Now is perfect and let's do one thing here
+But we would have taken another loading.
+Ok?
+const loading set loading false end now
+What can we do here on our submission?
+Can you? TRAI
+Here, there will be a catch and error in the final
+Finally. Ok? So here it would be like
+I will set loading to true here.
+Ok? And here finally fall kar
+I give. Now let us write our code here.
+Is. What do we have to do before that?
+Its action will have to be defined. So here
+Come on.
+Here we have export cost
+User login so we will have this. Correct
+Is? So right now, let's do one thing here.
+Are. The beans themselves tell this. it means
+That is partial from this. So from this
+What will come to us from here, log in
+Email, password and password will be sent at the time of login.
+Roll and we have here because partial
+It has been used. So therefore out of this
+Will find partial. If I look here
+Na so if you do data dot here. So
+As I showed you earlier
+Data dot to you here on all
+A question mark will appear because what is this now?
+Understanding that we need partial values
+You will get something from it. You won't get everything. It
+Meaning that you won't get everything. If I were here
+Should I remove the partial and give you this simple one?
+Now if you look, I do it here.
+Dot. Now look, where do you see the question mark?
+Will not be visible. It means that now he is saying
+That all values ​​are accepted in it. It
+Meaning that if you put this data here in a
+You will give the object and all this data inside it
+You will not stay. All this data is for you
+Errors will be seen. So here we
+Did you use it? Partial. Ok? Here
+But we used partial. it means that
+Some data will remain from it. perfect.
+Let's remove it.
+And what did we do here? A Super Pace
+We have connected it. Ok? Now we
+What will people do here? Now suppose that
+What do we have here for the user?
+Will you come? Will you come to us here? This
+Let's remove it. Let's remove this as well now. Our
+You will get email, password and role here.
+Now suppose a user tries to login
+He tries. And that email is yours
+It is not in the database. So what will you do?
+You? You will tell him that brother, this is just an email.
+It is not there or it is just a password.
+Not there. Then you will do something like this. Ok? So
+What do I say here? cost is user
+Exist. So I'll find it here again.
+I am taking it and throwing it away.
+The error here is simple. Went to my table.
+Found them all. Email, which is this data
+The email arrived. Yahan pe single ko agar here
+If I got it on pay, I didn't get it. So here I am
+What am I doing? No User Found With This
+Email. I am telling you one thing that this user
+From here any user can contact us through this email.
+Not there. Ok? perfect. what do we have now
+Do you want to do it here? Now watch when the user logs in
+If he does, we will also give him a token here.
+Will have to give. json web token jw
+Tea. So let us do one thing. him this
+Let's install it quickly. already
+Here we come first and then I
+I say here clear and npm
+json web token and install
+This has been added here and here we are
+What will people do import from json web
+We have done the token from here and I am here
+Well, let's assume that this is correct.
+Email: Now we should check our password also.
+If so, what am I doing here?
+I am checking the password, it is fine like this
+Basically what we did here is brpot
+Use the compare function to find the password.
+Dia and Iz User Exist Already Our
+Will come closer. The password we stored
+I will compare both of them here.
+This will tell whether it is correct or not. Correct
+Is? Now suppose it is not correct then here we
+Pay told invalid password. Ok? But
+There is a catch here. Ok? So here you are
+What can you do? See if you
+Specific information will indicate that your email address is incorrect.
+Is. Your password is incorrect. So that user
+Will he understand that yes, this is an email. Value
+If someone tries to hack it,
+What will make you think that a good email is?
+Not there. password, okay, this means email
+Correct. There is no password. I mean good ma'am
+Entered wrong password, entered correct but email is correct
+Not there. He will understand it this way. So what are you
+Can you do it? You are here simply
+Do more here here. If either of the two
+There is no one here, so you are simple
+invalid please enter
+Valid credentials ok like this please
+Enter valid credentials as specified to you
+Why don't you have to send a message to the user?
+If you don't give it, then that thing is not right.
+So we have done this here, okay now.
+Let us create a token here also.
+What will we have to do to create a token?
+Cost token is = JWT and here
+We will take the default secret key and
+We created a token here. Use of JWT
+Did. We put a dot sign here. We
+The user who already exists with us.
+The ID will appear here. His email will come. These
+We gave in to it. From this data, one
+Token will be signed. We need this in our ENV
+You will also have to keep your secret that whatever
+You can keep whatever you want to keep. in default
+Whatever you want to keep. When does it end?
+So let me say this for now. Two
+Will expire in 2020. Ok? End
+Let me copy this over here. And here
+Pay comes to your ENB. And I'm okay
+Sorry, what can we say here? I
+Here I say JWT Secret
+and Next JS 16
+And 1 2 3 4 keep yours like this
+JWT Secret. Ok? So this is what we
+Kept it. And here, okay? A, this we
+Place it here, our token has been generated.
+Now if this token is generated then we have to give it to the user
+You will have to give it too. So what am I here for?
+Will I do it? Return
+I will return it. And I will tell you the status here
+I will say he will cry. And then we are here
+What will you pass? message whatever message
+do you have
+Login
+Successful login says success. End
+Token here. Ok? These three of us here
+Pay a message will return from here. Correct
+Is? Returning an object in a way
+Are. When everything is in our try here
+Everything is going well. Well then? Now suppose that
+Let's bring this here, this is another one of ours.
+The close will be perfect here. will come here
+Catch block. So in the catch block we simply
+What to do? Catch any error that comes here
+And what will we do here? Return
+And here we will make the status false.
+End
+Message message. Ok? So the message that came
+Gave it. And let's do one thing. What is this
+Am I saying that? to tell him to type
+If he is talking about it then we will take care of it.
+Ok? And what do we do here?
+Are? In plus
+And let's also get it gated. Ok?
+Whatever message is coming, we are sending it.
+Sorry here, ok ok not here
+This is okay. I think I will do it right now
+Am. Even if I give a new one, the error will still occur.
+I will tell you. But okay, okay. disappear from here
+Went. So here we have created our action.
+Took. User is logged in action. Ok? So
+We call this a closet. come here
+Are. And what will we do here?
+And I would say rest is equal to a wait
+And this will be our action. copying this
+Are. You will have to import it here.
+Ok? And we pass this data to it.
+Will give. So this data will be passed. Now I am here
+I will check on it. If rest dot status. What
+Does it have a status? what if it is true
+Will you do it here? Toast
+We will have to import toast. So here
+But let's come to us here and import it.
+Let's have some quick toast.
+Toast from Toastify Yes React
+Tastify will come here. So here we are
+What will people do?
+Dot success and rest dot message here.
+Ok? We showed the message. Ok?
+Else
+toast dot error end
+Whatever the message is here
+I tell him login failed.
+and then plus concatenate whatever message
+Is. Ok? And when it logs in, it will give a
+Let's work and install a library.
+We do. Firstly a package so I am here
+I come to the terminal and I say
+clear this
+And I say npm i js cookie
+This is called this. Ok? and install it
+Let's take it for a cookie. And I think it
+You will also have to install the type. so basically
+Here we would have imported it first.
+Are. import cookie from
+JS cookie. Ok? And this will tell us that
+He wants this type. So, this too
+Let's install it quickly. install this
+Done. Ok? Are. It's perfect. So now
+What do we do here? This is what we
+When we login here, then here
+But let's come down a little bit. Yes. Ok?
+What will we do here? Cookie Dot Set
+I will do it. What to do? Pay token end here
+We will have rest dot token a token.
+Ok? And that's how we are here
+What to do? Roll and here we go
+do? This data dot roll is also
+People are setting it in cookies right now. Correct
+Is? And it's looking for type. So basically
+We can do one thing. Simple Cost
+Token End
+Let's make it a string. And if we
+People are now watching. Let's see what
+He speaks. Yes. Ok? So understand this basically
+That's why he was not her type. so this is
+happens in typescript when you type
+If you make anything in the script, it
+Finds the exact type. of the same type
+He should get the data. Otherwise, that error
+Starts giving. Ok? So here we have
+Now we will tell you why the rules are set.
+Already done. But we just set up the token.
+Lia in her two piece. Ok? And here
+But what do we do? Simple Catch
+I am returning from here
+Here at Pay to Dot Error and Error we have
+Log in
+Pay and
+error dot
+Sorry Message
+Ok. So we have to give it an end type.
+Will have to. So let's do one thing.
+I did this. And here we have our error here.
+Also defined. Ok?
+So this one which is loading
+Let's come here.
+We had this sign in here.
+Yes.
+Ok? And what can I say here?
+This? Sorry Else in Signing In and Else
+What are we going to do here, which is
+Sign in will be visible here, simple like this
+If it is okay then we can also use loading
+Ours is perfect, okay and now we
+People see what we have used it for here.
+Did
+A show login action is our yes perfect
+Okay, so let's come here and give it a try.
+Let's refresh and see if everything is okay.
+So we have registered a user, correct?
+Look here from this email. So I this
+I'll copy it now. And come here.
+I call it sign in here.
+Let's go. And we came here. So I
+I am refreshing. There is no error
+In it now. So here I am sending this email
+We had taken it, I entered it. End
+Here we enter the password. I
+I say I'll give you anything right now, dummy.
+Password. And first let's check this
+Is the email one working or not? I am here
+I enter any email that our
+Not in the database. Ok? I say
+I am signed in and it says password ok
+We have also added a password field here.
+is end validation so here it says sign
+It's saying and give us some error.
+should login fail read property o i think
+Something went wrong reading password so I
+I think we missed something, so they would have noticed.
+Let's come here reading passwords
+Yes and here okay so we say here
+are super ok let's do one thing
+May be single because they put a limit.
+Ok? Let's limit it to one. It
+Meaning that if more than one email, let's say
+If there is data then it will cause problem at that time.
+First of all we will have to solve this. End
+Then what will we do here? Is
+User Acist? What is he saying? This one
+Let's work.
+A ok ok let's do one thing. May Be Single
+We do it. Ok? So it is better that
+Type this here, he will understand it automatically.
+Ok? And we have to do one more thing.
+here first
+Here first of all, here we give it a
+Let's work. Same error both the times
+We will do it. So it will be much better.
+Ok? A Please enter. Yes. Ok? Yes.
+Same for email and same for both passwords
+The same error will remain. Ok?
+I think now is perfect. So I think
+It should run perfectly. So let's take a look
+Refresh it once.
+So let's take a look at it here.
+Let's keep this email in email here. End
+I'll give you any password here.
+For now. Ok? who do 1 2 3
+That we don't have email there.
+Ok? And now if we look here
+Are there any errors in the network?
+So it is not. Let's go into the network
+And I'm calling it signing here.
+Let's see what Abhi says in here.
+hai yeh login failed with invalid yes look
+Invalid credentials have come up, so because
+We don't have that email right now. I am not
+I want him to tell me something specific.
+whether the email is correct or the password is incorrect
+or the email is incorrect. Ok? So now here
+We put it correctly. Let's see that
+I don't remember my password, friend. See
+Let's take what is there. But I'm signing in
+Am. Am. The email is correct. I sign in
+I have been. And here login is successful.
+Went. Ok? So if our login is successful
+So what did we do, guys? here
+When our login is successful then we
+Here the token was set in cookies. So
+If we come here to the application,
+If we come to cookies, we will get both roll and token.
+Guys are available to watch. which is our
+Here login again has been successful. Correct
+Is? That's what it means. Ok? Because
+Our cookies and rolls are both set.
+In your cookies. Ok? Browser cookies
+In. So our login here is also perfect.
+I started walking. Ok? Now guys here when
+What should we do if the user logs in?
+Will it have to? Suppose the user selected the rule
+I did a job seeker recruiter so he
+Sending to a different page via a different route
+Will have to. So how will you do that? So first of all
+Let's do one thing. I did a route here
+A group was formed. Let's make another one. I
+I say here, oh here it is called private
+He has it. Ok? Private. Ok? So
+Here we created a route group here
+In private name. Ok? create a folder
+Are. I make it inside here. I
+I say another one in the name of job seekers
+Let's create a folder. Inside this, I am here
+I will say
+We have created two folders in the name of recruiters.
+Make. Inside this I will click on New File here.
+I do. And I say here
+Dashboard end page dots. Ok? and that
+Similarly, let us create a file here also.
+People Dashboard End page.tsx This is the dashboard
+No?
+Dashboard Pagex Okay so here we have
+But basically a separate dashboard for job seekers
+And here we have recruiters for
+There is a separate dashboard. So I say here
+cost a
+Job Seekers Dashboard And Again We're Here
+What will you say on this? Return
+And in return we are here
+What will you do? H2 for now
+Job Seekers
+Let's make it a dashboard. Ok? This
+Let's copy. paste it here
+Are. Oh sorry, I will have to export it.
+The default end is export it.
+Let's come here. Let's paste it here.
+What will happen to us here? Job Seekers
+Of
+Why did it become a dud here? back to this
+here
+R C R U Y T S
+This will become the recruiters dashboard.
+Recruiters dashboard is called here
+Recruiters
+Let's call it dashboard. Ok? So this
+We have created job seekers end here
+Two different routes of recruiters. From one side
+This will be a private route. End for now
+I would also create my own layout here.
+Am. New File
+Make layouts. Ok? So now again
+We can create multiple layouts here.
+Are. Can create nested layouts. So Again
+I hope you know. Ok?
+So what will the code be like in it, you can keep it simple
+yes. Ok? Like I'm copying this
+Am. And I am putting it here as well.
+Because I don't see all this inside me.
+should would. So you simply stay here for now.
+Keep the Pay Div. And inside this our children
+Get it rendered. And tell him this. This is it
+What about me? A private
+Private layout like this. Ok? Now
+What could be the benefit here? Advantage ahead
+I will show you. Ok? So for now
+Let us close this. So we
+I have just made a route here and my
+These. Now suppose when the user comes here then
+He will log in. When there is success
+It will come here. And his cookies are ours
+It will be set here. So what am I
+Will I do it? We would make one here, one here.
+Are. Pay cost here
+End use router from next navigation.
+And we call this route a router.
+And what can we do here?
+When the router comes, how to push it on whom?
+Will you do it? It means that he selected the rule
+The obstacles he selected
+Recruiters. How can we do it in both cases?
+Are? So look here, let's do one thing.
+Post a path ah let's do one thing. Ah
+This is called URL. And I am here
+What do I do? I take a back tick. End
+What will I do inside it? This data which
+There is a dot roll, I will keep it there. This is the same
+Isn't it? Job Seekers &amp; Recruiters. so this is
+He will come to us here. end slash
+Dashboard Go to its dashboard. And this
+Here is my router dot here what is our
+The URL with dot push and this. Ok? So
+Now if we log in here,
+Where will we go? Here. Ok?
+Again. So let us see now. A here
+Let's come. So now you know the problem with this.
+He must have already gone. If you would know
+What is the problem in this? So if I'm here
+Come and I'll try to log in.
+I will send you this email and I will say
+And I say here like job seekers
+Or recruiters, whichever one you want to go to. So
+I am also saying here that job seekers and
+Sign in. So where will I go? Now!
+Look As soon as it signs in here
+It was successful. And we are nowhere right now
+Have you gone? Job seekers are here
+On the dashboard. Ok? So here we are
+We will run on Job Seekers because we have Job
+Only Seekers were selected. Correct? Here
+But we have arrived at his dashboard. So it
+Means everything is going perfectly guys.
+Ok? So what would we do here?
+Are? This was our layout.
+This layout was a private layout.
+So here I say class
+Container. Ok? Basically in which centre
+Where is he? Look, what would be the problem with that?
+I will show you now. So basically we have to auto
+have to do it. So I'll write it here
+Simple Recruiters And when I hit enter
+So where will I go? Recruiters
+On the dashboard. it means that ah yes look here
+Recruiter Dashboard. So this is not right
+I should go there directly. So
+What do we have to do here? check
+Will have to. How can I apply for a cheque? That's us
+We will see further. But this error is like this
+There is a problem. We have to remember this. Correct
+Is? So basically, our problem right now
+What we had to do was solve our problem first.
+It was that when we logged in, we
+When there are recruiters, go there.
+If we go to the recruiter here
+If someone is a job seeker then he can go to the job seeker route.
+Go to So this is what we achieved here.
+Done it. Ok? perfect. We did this
+Took. Now what we have to do is that when I
+When I am logging in, I need to know the login user
+Data is needed. So how will you take it? So here
+We have already created a user action.
+Ok? I have created two actions here.
+So here I say export cost
+Gate
+User data and again async data will remain
+And sorry will remain async. And I am here
+I say it this way. Ok? So we
+Data has to be gated. So how do we get it
+Can you? We already have super here.
+Is a client of. We will try to catch
+Here.
+Try and catch us here
+Whatever error occurs in the catch, it will be taken here.
+Then it's okay here, if the catch happens then it's ours
+We got super bass here so we
+what will you do here superb dot from that
+Let's do one thing first, so here we are
+People first come here and wait.
+Cookie OK where Next headers OK
+I'm taking a cookie from here, wait.
+who is taking it out
+Token and Equi data do this
+Ok
+Dot Gate, what name did we give there?
+We will get the token and here
+But here we will get the dot value so one
+Let's work, I would say it simply here.
+am dot value okay value in us
+You will get the token here, okay now accept it.
+that I say here if a not
+Not Token
+Then what will we do here? throw
+New Error
+No Token
+Found. Ok? It says no token found
+If we don't get the token. Ok?
+What will we do now? The one who gives the token
+How can we verify that? So
+ZT Dot can verify it. So here
+But what do we have to do? Firstly
+We already have import. So here I am
+I say this data is user data. So I
+What will I say to this? JWT dot verify now
+The token will come from there and we will verify it from here.
+Can do. How do we have these tokens?
+Here this token and what else do we have
+You will have to give it here JWT
+The secret is your process here.
+ENB dot what we had we already here
+I had kept it in ENB. So I say
+ENB Here we kept the JWT secret. So
+You have to give it here, whatever you have
+is putting. Ok? So here I have it
+Gave user data and processes b saying ok
+Let's do one thing like this
+Let us assume that it will remain, it means that
+It will remain available, so we have collected this user data.
+will come to us okay and if I
+I'll say if not user if user data and a
+Let's do the work and tie a knot, a simple knot
+Let's put and not to user data dot
+Email if you don't get any of this.
+Again Pro New Error in What I Say
+Invalid token. Suppose in this case, if my
+If the token that I have is verified
+It doesn't happen that way, he has an error here.
+I will give it again. Ok?
+Let's do it this way now.
+So again I will give error. So this is perfect
+It is ours. Ok? And now again here
+We already did it here, right?
+Somewhere. Yes, this superb cost a race is
+Equal to a wet superb
+dot from user profile dot select it
+Means that everyone has to select the star dot
+Equal end here what we have to do is email
+The end of the name field has to be provided here
+We will have email user data on this.
+Email Guys, we already set it up.
+I will show it here in the token. Look at this
+We have set up our ID and email address here.
+So what we did here is the same as here
+We decoded and took out that email. same
+What I did with the email was to keep my database
+I took that data out of it. here
+Will come to us. Quiet, this date, this table
+I went. And from this email we have the data
+Here we filtered it out. One
+Understand this kind of query. So super bass
+We can collect data from a particular email.
+If we want to remove it, we can do it like this
+Can be removed. Ok? perfect. So
+We will get a response if I suppose
+I would say rest dot error and this rest dot
+Data dot length if I have equal end
+If it is equal to zero then what am I here
+Will I do it? throw new error and what should I do
+Will I tell this? User not found.
+Ok? So this is it. And suppose that all
+What will you do if something goes right? here
+We have all the objects
+Will go. And what will be there in it? This
+In response we will have our
+All user data, email, password, phone number etc.
+Some. And what are we all doing here?
+Will you give? Will return it to the user. whoever
+Anyone will make this request. So what is this
+Correct? No. So what will we do?
+What's not right about that? that we the people
+You cannot give your password to anyone. So we the people
+What to do? We will remove the password from here.
+How to remove it? Look, I'm saying it here
+I am a cost user and what am I doing with it?
+I am the rest of the response dot data of zero
+Okay, we'll get it at zero first.
+Item and then what will we do here
+user user dot password and I here
+What should I say to this, delete it means that I
+Password field Password field
+If I am deleting it from the object then this
+So we can use this normal JavaScript
+If I do it then we do the same thing
+I gave it here and now what will I do in return?
+Just make the status true. End User
+Here we are going to use this user of ours.
+The user sends it. So it became ours
+Guys perfect. Ok? end throw new error
+Do it from here. Make an error from here. Something
+Vent Wrong.
+We did something wrong. When the catch
+I will come. So this is our gate of user data.
+I am ready. Ok? Now we have a job
+We do. Let's come here. And our
+Here we had created a route dashboard.
+Job seeker. So here you have your
+You can show it accordingly. how can you show
+yes? So here I call it async.
+We can make it. to the correct component
+cost and I say data and our
+What action did we just create? it
+The action was Get User Data. So here I am
+I say get user data. import tax
+Let's take this. We don't have to pass anything
+So I will await this. Data is our
+The pass will be available here. You will get the data
+According to you, whatever you want to show here
+You can show whatever you want here.
+Correct. Here I will say data and here
+Pay will come to you. So I say here
+I am data dot you already have it there
+Data dot user is dot here will be the name.
+So you can show it accordingly. Name Joe
+Whatever the name, whatever the role, whatever the type,
+You can show all that. So this is me
+I am copying it here. again from here
+Sorry, I am not copying it completely. This
+Let's copy. Walk into the recruiter's
+Are. Simply paste it here.
+And let's import this data.
+Let's make it a sink. So I think
+Guys is perfect. Ok? So both cases
+Now when you login, you will see there
+His name will be visible. Any user who logs in
+If it is there then I think it is perfect now. So
+Let's do one thing and see. So here
+If we come now, look at this.
+Obviously you can see it because
+We already have the token in our cookies.
+He is showing us his name here.
+Is. So I think it's going perfectly.
+Our. Ok? what do we do now
+To protect the route of the guys we
+People work on it a little bit. So
+Now any user can access any route.
+Can. Correct what we told you
+Was. So now let's do one thing. I do this
+I have been close. Ok? Close
+We created a user action. Ok. So one
+Let's work. I make one here
+Here I say new file. End
+Proxy dots ok? So here we are
+What to do? Will take help of proxy. So
+If you come here and write here
+Next JS proxy
+So let's move on to getting started.
+So is it okay here? This one, I
+I am copying. And I'm here to put this
+I will paste it. Ok? So this will remain
+My. And now we will make a little change in it.
+Are going to do it. Ok? So this is a kind of
+Let's do one thing. So better
+We will pick it up from here.
+clerk
+A
+Middleware is written here. So here
+Let's go to Clerk Middle Wear. And here
+Let's go. Where will it be? One second.
+Here, let me take a protected route.
+For. For private routes, we need
+will be. So clerk middle ware protect all
+Route a so I think clerk
+Yahan pe hoga protect all route and hum
+Guys this one is kind of config us guys
+We keep ours in it. Ok? So this is better
+It will remain that at that time we will need this configuration.
+Here. Ok? So here we are
+Let's keep the config. Ok? So what is this
+Will he? This is the same for all these routes.
+From will execute the middle. So now a task
+Let's do it, we come here. So now
+Look here, if you assume that route private
+What should we do if we don't have an end token?
+Will it have to? He is kind of on the login page
+Will have to send it. Correct? So we have a job to do
+Let's do the cost route here.
+request dot
+Next URL dot path name. so we have
+You will find the route here. and cost is
+Is protected.
+So what will we do here? It's
+Protected If it will be protected. Correct
+Is? So it is protected. So if
+There will be a protected route. So how do we
+Will you take it out? So here I will say route
+Dot start with what will it start with? Who
+So in this we have protected route.
+So what do we have here that we created?
+If you go inside the app then it will be private.
+We created Job Seekers and Recruiters.
+So what do I say to him here?
+Job seekers and
+Route dot start with what? Recruiters.
+Ok? So here we have Itch Protected
+Will get it. It means that if both of them
+If any route is starting from it then it
+Means he is protected. So what am I
+Will I do it here? If
+protected and here we will say
+We will also need a token. So let's do one thing
+Are. cost
+token
+request.cookie.get what would it say
+Are we here? Token end dot value. So
+What will we get here? Token. i.e
+Here I will say that it is protected.
+But we don't have a token. If the token
+If it is not there then what will happen here? We people
+What to do? Return from here and pay here
+We simply copy this.
+And let's paste it here. and where
+Will you return it? Go to the login
+You. Ok? Because that is a protected route
+Is. And without token he has no access
+Can do it. So where did we send you here?
+Pay? He went here. Ok? And what's one more
+Maybe here? that I say if
+And not private. Route is not private
+Can. He cannot be protected.
+Ok? And here we have the token.
+What would you do? Meaning that the route is public and
+If we have the token then where will the user go?
+Look at cost roll request dot cookie dot
+Gate what to gate we have to rule dot value
+Okay, let's put a question mark here.
+then we get the value rule
+Pay and cost URL here so now URL
+Ours will be made perfect here.
+I'm going to use Vectic here.
+I will give him whatever role he gets.
+Giving Dashboard. Now what are we here for?
+do? Same thing we did with this one
+We will copy and paste it here.
+What will Simple do here? give the URL
+I will give it to him. So I Think Now Is Perfect
+They. Ok? Now whatever role he is in, if he
+Try different ways to access it too
+Will do. Let's say his role is something else.
+If you want to access someone else then
+He can't do that either. Ok? Next. So
+We need to call this here pay dot next.
+Ok? At the end I think now a sub
+It's perfect. And if we are here
+See. So look, we have already arrived.
+People here. If we do one thing here
+We do. So if I put a token here
+Let me remove it, we will have it here, look.
+These tokens. I will delete this. So
+See what will happen? If I were here
+If I refresh, where will I go?
+On the sign in page. And when I sign in
+I will do it here. So again we have a token.
+Will go. So I'll sign in here.
+Am.
+Yes. Ok? And then I sign in
+Am. And look here comes login success.
+Our end happened, we are here for that
+I reached the dashboard and the role that was there
+This is going perfectly here again.
+Ok? So these are our guys here.
+It went perfectly. And I think this is right.
+Now let's do one thing. Oh, I will close this
+I do others. And now we have a task
+We do. What did we do here? Now!
+We have a private here. and one
+Let's work. I'm going to take another route here.
+I create a group. And I say new
+Folder and I call it public. Correct
+Is?
+Basically I can move it inside the public
+I have been. A
+to the page
+Layout to end this. Ok? So I move
+I am giving it to the public here. and a
+I think now we should do this. A
+Update. I will say yes. End
+Here, okay, what did we do? of the public
+Okay, let's keep it right here inside.
+This is global CSS within the app itself. So this
+It will remain mine. Ok? So this in public
+Our route here will be that no one can
+can access. Ours is private. Now
+Here is my layout. Ok? Private
+Of the one. Ok? So now watch me do one thing
+We are the people. When its layout comes here
+I can put my header here.
+Am. Ok? So let's do one thing. Our
+There will be a header in the component here.
+So now look at what we have here.
+The public layout has a header. So I
+If I wanted, I could have removed it here.
+Are. Ok? We have the header here.
+Not needed in this case. So I'm from here
+I am removing it. And I want it in the layout
+Header here. Ok? in private
+Header needed here. So I keep it here
+I give. And let's import it
+From here. Ok? Now if you look at this
+What will it look like? So if I say this to
+I'm getting the global CSS from here.
+I'm importing but can't find it
+I tell him that it is not okay
+If you are getting it then come here and
+If you look up a little, you will find it
+Okay, so from here we go, a public
+If we go out, I think we should meet a
+Let's see, so if we look at it now
+It says body tag was not root layout
+Hey, what is he saying? Ok, let's do one thing.
+So so because now this is our layout
+If the private one is there then he will say that brother
+You can provide this thing to me also.
+Two. It won't work like this without HTML body
+I will render everything to you.
+Yes, this won't work, right guys?
+So let's remove it. would import this
+It is from Tastify. And this thing gives us all this
+We don't need that thing. Ok? So
+Basically we remove this also so it is perfect
+Is. And I think here if we look at
+So our run is doing but our little
+The CSS is corrupted. So because CSS
+It got worse because who do we have?
+If this is private then let's go privately.
+Are. Here we do one thing, our own
+Global CSS is what it is called
+This is my global end, look everything is fine
+It's gone. So if we did one thing right now
+Are. We have not created the logo. Butt one
+Let's work. To test, we
+Let's go here. Delete your A token
+We do it. Let's refresh. So we the people
+Where will the guys go? We will go away
+Here. A token body OK login OK us
+What will I have to do again? A
+Here it would be better if we
+Let's create our own custom layout. Butt one
+Let's work. Creating a layout here in Auth
+Guys will have to. So what would be better?
+What would be better is that we do one thing
+Next means separate layout, we do it like this
+Can be made from. Ok? But one of these
+The problem will be that the more you create groups
+He will have to give you his layout. So
+What can we do better than that?
+We we so do one thing. I am here a
+I create a new folder of custom layout.
+Ok? And here I say
+privatesx
+And here I say export cost
+Private layout and will come here to me.
+Children whose type will be Children
+gotta react dot
+React node okay so this will be and we
+You will return your debt from here.
+We will render here and our children
+For now, we are adding it here.
+He has it. Ok? So the private layout
+Let's do one thing. Create a file here
+We do. Index
+And here we say export
+Default Function
+And give it a name
+Custom layout. Ok? We are now in return
+People give a div here.
+And I say this here
+Custom layout and let's come here.
+Ok? So let's come here here. End
+We have a private layout here.
+A sorry, let's come here. And here
+Will come to us. Let's do one thing here.
+I will come here to you
+Children and its
+Children and React dot React node. Correct
+Is? And here we can
+Access and here we do one thing
+Are.
+cost path name use path name next
+Navigation to End Path Name
+Dot start with seekers and path name dot
+Start with recruiters. Ok?
+Recruiters. Ok? So we did this
+Is. So here we have True Falls Mill
+This will go. And what are we here for?
+do? If not, can access returns. We people
+What will you do simply? This one which is our
+He has children, we will take him from here.
+Will return it. What are we in Else?
+do? We have our own private
+You had made the layout, right? What will I do with this?
+I will return it with this. Ok? Simple
+I will give it to him here. Private
+We will import this layout.
+Private layout sorry private layout and
+What will we do here?
+Our children will come here like this. Correct
+Is? So what will we do with this end?
+I call this a use client. Ok?
+So we did this. And I think now
+It's perfect. what do we do here
+Are? Now let's do one of our things. I am here
+I create one inside the Pay component.
+I say new file. And I say auth
+Or do one thing. A header header
+Let's create dotsx. Ok? already
+It is defined. So we can do one thing. Header
+So we will need it. So let's do one thing
+No, basically. So we live here.
+So here we do this one thing.
+No, we use it there. And then we
+What will people do? So here I say
+header. Ok? Simple header this
+Use the one. But what will we do?
+We will handle things conditionally. a job
+We do. I'm closing this now
+Am. So now we can use it here.
+Yes, let's do some work. while closing
+Are. So now we are going to use guys here.
+The ones are JT's. So in a way, the state
+Management Library. We are Rux too
+Could have used it. But we are going to use it now
+The ones are JT's. So you have no problem with that
+Will not done. Even if you don't know, you
+You will understand this easily. So let's do one thing.
+First, let us install it. End
+Then we will use it. in the terminal
+Let's go. And I say npm clear
+Let's do this. npm I just. Ok?
+So here we press enter.
+So this will be added to our package. End
+Then we can use it. So one
+Let's work. Here we have a new
+Let's create a folder. end of the store
+Here I say new file. I say
+user dot store dots okay cost user
+Store is equal create karenge hum log and
+We will be here and whoever comes to us
+And then we here our this
+We will provide whatever is ours, it is fine.
+So here we say it like this
+User which can also be null and here
+set user
+okay and here it will come to us
+Let's import it first. So I
+I say import create from where?
+Just and Say. Ok? The set will come here
+function and I use this and here it is
+The function will be set up to the user. Here
+Payload will come. And we will type it
+I had already made it here, type it here.
+So let's do one thing. I say
+Export
+Interface I User and inside this there will be User
+Its type can be user or a sorry
+User can be either null or null. This is why
+I exported it from here.
+And now let's save it here.
+We will also import it. So look what we
+Made here? Ah, did we miss something?
+Here? Okay, yes, one second and here.
+What we'll do is call this a set.
+What are we going to pass in the end set?
+If we want to set this user then we
+What will people do, they will give it to him here
+set user s and yeh data kahan pe aayega is
+When someone sets the user in the payload
+The data will come here in the payload.
+If you call this, it will send data to it.
+In the function, I will say payload here.
+What will we do now to export it?
+Default User Store We have created it from here
+Exported okay and here we are
+What do people do here?
+Interface I User Store. Ok? here
+We will make it. be inside it
+The user can either have the user type of I user
+It will be of type or it can also be null.
+And the second one will be set user and inside it
+Will he come? Payload. What will be its type?
+I user and this return
+Void tax ok? Payload
+Okay, and this is our perfect. So this
+Look what we made simple here.
+We used just and. what made
+Create used the create method's just
+The set of a set function from end to its end
+A function will appear which you have to set for
+For example, this user now has a data set here.
+It will be the user's. So I have a set here.
+Understand the user in a way, created a function.
+Ok? So what will come here? set whenever
+If someone calls him, then when I call him
+If I do, how will I call? so me
+If I want to call a set user, I can call him.
+I will pass the data as object data like this.
+Ok? So when this data comes to it then
+It will say that it may be of this type. either
+Can be of type user or null
+Is. It means that it can either be of this type
+The data can be either null here. So
+I have told two. And then we
+What did you do? Called it to the set. End
+To set this up, we have the user
+passed to. And whatever data comes to it
+I set it up. It's just simple
+In this. Ok? We need no action in this
+No need to create a reducer. so much
+It's simple, just that. Ok? So here's a
+I created a user store. Simple as that
+The code is written now. Ok? Now we are one
+Let's work. Come here here.
+And we had made one here, right here.
+A component sorry here inside the app
+Private in a custom layout. Correct
+Is? So if we want to fetch the data here now
+If so, what can we do? So we
+I had already done it somewhere here. A
+Let's go privately. Here at Job Seeker
+You did this on it, right? So basically we just did this
+Did it in the server component. So we the people
+What do you do here? This is the client
+Makes the component. Firstly
+Clients use it and cost
+And here I say set user
+Because we can set the user from here.
+Can. What type of this will we have?
+I User Store which we already have here
+It was defined. Is equal. doing a job
+Are. Here we use OK to do one thing.
+Are. Let's create a user store using this.
+And let's import it. and put it here
+Pay simple, we are importing in a way
+Are. Here S
+This was our iUser Store, we
+Imported the set user here. End
+Cost Router Use Router. Ok? so
+I've called it the client component here.
+created. Here we will say use
+Effect. Ok? And here it is blank
+I will do it. And here I make a
+Cost Fetch User Data
+end cost
+They say race is equal, we made it so.
+It was here, here, we saw it somewhere.
+Yes, let me copy this and I will put it here.
+Let me paste it on here, so we have this here
+I had made this server action my own, so this
+Let's import it here, it's called
+We are sinks
+Ok? And we will get a date. So I
+What should I say to this here? If not data
+Let's call this access risk race. Correct
+Is? Response
+dot a sorry response dot what do we have
+Is? dot state if i don't have true
+What should I do if I find it? What should I do with this?
+Let's do one thing here. would have tried
+He has it. And it will be better to try it.
+We will keep it in try catch.
+And here we throw new error
+It is better to say sorry than throw new error.
+Use toast. Ok? Toast Dot Error
+In error we will have whatever errors dot
+Message. Ok? A message we have
+Are you returning from there? Now!
+Look well so oh so
+If any error occurs. ok yes i think
+Will come. So let's do one thing. For now I
+I will tell him that yes brother, he will come.
+Ok? message if a is false then message
+It will come to us because only if it is true, we
+People are sending it here. and look throw
+We are throwing messages from here.
+Are. So we have it here automatically.
+Should come. Ok? It will definitely come. Look at this
+We did it here. end everything if
+If it's coming out well, we'll call him.
+And what will you do with it? This which our
+Pass race is dot data, we use it here
+This is the data, we sent it from here, yes
+Sorry user we have rest dot user
+I'll give it to him, okay, so let's see.
+Let's do rest dot here okay because
+We gave him Annie, so if you rest
+If you do user then you will get user there.
+Because we have sent the user here.
+We have done this and now look here
+But what is he saying, did we miss something?
+ok yes what are we doing in try and catch
+We will make an error, an error will come to us and an error will come
+I will copy and paste it again.
+Again he will say tell me ERR then ERR
+Let us give it to him and again
+Let's do it for now. Ok? So
+We will call it here. Correct
+Is? We called here. what is this saying
+Are you with us? is an async function. So better
+It will remain that we are ok. Sorry. So one job
+We do.
+Let's call him. And I think now this
+What is the use of a router? See. So here
+If we assume that its status is false
+Went. As soon as it fails here, we will
+We will use cookies here.
+Cookie. Ok? So first we have to import
+have to do it. So you can import it here.
+Are. Import
+from js cookie. Ok? So from here we
+Let's remove the cookie dot. End
+Here we will remove the token. And here
+What will we do? like token is removed
+What should we do if it goes away? So I
+I will tell you here where to go router dot push
+You go? On the login page. I this
+I will send you here to the login page.
+Ok? And from here instead you can go down
+Go. Return from here. So this is more
+It will be better. Ok? So I think it's perfect
+This is it. Ok? And let's do one thing at a time
+We people. One component here
+Where is the folder here? Ok? So here
+Then I create a new file and I
+I say loading dots a main loading
+Are. Ok? Main Loadings Export
+default function main
+Loading. Ok? So this will be my main
+of loading. And what can I do simply?
+I am, right? Look at what we just made.
+Here, I take a state here.
+Cost a one-time loading set
+Loading and using state faults do this
+It is in default and I will do it here
+Set loading to true and as soon as
+will finally
+Finally, I will do it here.
+Falls and what can I do with this here?
+Now if loading is true then here
+Return it from what our main
+loading tha main loading component uske i
+I am returning it here, keep it simple.
+Okay, so the main loading here we created that.
+Now we can use it anywhere.
+I shared it here and kept it
+ok perfect we will see if we change
+I want to do it, we will change it but ah
+For now, let's leave it at that.
+what people can do so we have here
+I had already used the header. Correct. So
+We come here. Let's do one thing.
+You will have to log in. So from here
+And want to end I say sign in. So
+Let's see if there is any problem. This much
+We wrote all the code. Log in to our
+It was successful. And here we have
+I have already arrived. So now we have the header here.
+You can change the . what are they saying
+We? A is saying something about what you did
+Yes, this is a mismatch. Language also
+You have used this here. So,
+There is a hydration error. So, let's do one thing
+Are. Hydration error, right? a job
+We do. So let's come here here.
+What did we have? Ah, here we have
+This is a layout error, right? So, for now
+I am removing this. first and sorry
+Let's end this and see if there are any more errors.
+What about this? I think now it's fine guys.
+Correct is fine. Ok? So now we are
+Login here. So I'm going to put this in my header.
+Let's go. Oh, let's remove this, right?
+We don't need all this. right now everyone's
+There is no need. There is no need for this either.
+There is no need for this either. Roast container then
+We will need it. Ok? So this happened.
+And now let's move on to our header. Ok?
+So where do we have it? Here is the header. So here
+But what can we do now? that user
+You can access the . So first access
+Let's do it here. So I say cost
+What will I get here, where will the user come from?
+It will come now, see, so I will call it i user
+What type will be stored here? Use user
+store this is what we built use a okay
+We made it wrong, gave the name wrong, guys
+Sorry sorry sorry sorry use was this use
+Because we missed you here too
+will have to pay the beans
+This will be the use user store and not the user user
+Store
+Okay, so we've done that and we have
+what will come here what will the user type
+will be
+s again save ok type very
+This is important when you are using TypeScript.
+so now we have here
+Pay user will either be there or not when not
+What will happen if it happens? It means that the user will login.
+If not, what can I do here?
+Here we are showing the sign right now.
+in. Now if we are signed in then what should we do?
+Is? And if it is not there then what to do? So
+What can I do here? conditionally
+If I say, first of all, here I
+I say if the user is. Ok? If the user
+So here I have a different component
+I can show you what I make
+Now. Ok? And then I came here
+I will import it. So what are we here for?
+Can you do it? Now a different component is shown
+Can. What's ours in Else
+Will remain. Ok? So here's a different
+Component We do one thing. made
+Let's take it. So I say yes here.
+account
+A header A
+header a menu
+A user menu dotsx okay? User Menu
+dots so now when the user goes to the menu
+So if he is a recruiter then different
+The menu will appear. If he is a job seeker then he
+A different menu will appear. So that's us too
+We will do it here also. Ok? So here I am
+But I am telling you, I will do it right now. Ok?
+export default
+Function. Ok? So here I have a
+The user will come. Ok? So I would say user
+Menu
+The end will come here. Ok? So right now we
+You can also pass it here as a props.
+Are. And I can also use it directly here.
+I can access it.
+So it would be better to watch it here.
+Are. You can access it directly here
+Are. And I say here. Ok?
+We imported it here. And I
+What am I going to do here?
+Look, if we keep it simple like this. if not
+User a sorry yes if user then here so
+We will definitely have users. Ok? So this
+Wala it means will render only when we have
+Here is the user. So if there is a user, then we need a user
+Data of will also be required. So that is what we
+Took it out. So let's return here
+What to do? Let's take a div here. So
+Let me quickly define this.
+Log out. Ok? So this is what we just did with a user
+Created a menu component. Ok?
+In which we have used set CN
+Is. And we already imported it.
+It has happened. If the user is not there then from here
+I am returning it. And if the user is
+Will come down. We have found the rule. If the job
+Is it Sikar or are there recruiters here? Correct
+Is? Is job seeker is recruiter. here
+We capitalized the first letter like this
+Used the dropdown. Where from again? set
+Ours that we used which set cai
+From there it's okay and evertarget set from there
+ok from cn you can install from there
+You can use it by adding it, so we did the same
+Installed it and then used it.
+Okay, what is LasX for? This is our
+For icons, so all these icons are a kind
+So now understand it, okay, then some more.
+It is not right, we have made a rule in this
+Dropdown Again Sets Used End Here
+But we capitalized the first letter.
+Gave
+And then if you come here, we will show you your name.
+Diya and showed his email. if you
+If you want to show it, you can remove it.
+yes. We can just delete the email. Correct
+Is? Let me see how it is here first.
+Seems like Then we will remove him. Correct
+Is? If you are a job seeker then this menu will be visible.
+Now again what can you do with this? a one
+You can configure the menu in any way you like.
+And then import it from there and use it.
+You can. If there is a recruiter, this will be visible.
+Enter Down and Then Here Pay Profile
+The setting is common for everyone. And if you get this
+If you want to remove it, you can do so. Correct
+Is? So what will I use here? Now
+We quickly created this menu.
+Let us use it here, user
+to the menu.
+Here comes the user menu and click on it.
+Let's import the menu here. So
+I think let's go here and see.
+There is no problem. So what does this say
+This is our use store use client okay
+Okay, okay, I think what we created here is this.
+What do we have to do here?
+This will have to be made a client component.
+Ok? So I did this. So look at me
+So it would have been better if we had stayed here together.
+I would have made a component and put it in, which would have been ah
+In a way, the client component instance that this
+Make the whole. Ok? So that's much better
+There will be an approach. So here I am, making another one.
+I take it. A component I don't make this
+Am. I don't know all the components
+I will make it. Let's do one thing. A yes. Correct
+Is. I don't make all the components.
+I am going to. A client component instanced that
+Let me create a component here. A
+New file I say account.sx
+Am. Ok? I'm saying account dots
+Ok. Header yes ok. And I am
+No, this is all our code here.
+This is all our code.
+I am calling it copy here. End
+I export here
+default function
+Private menu is called like this. Private
+Menu. Ok? Yes.
+And accordingly. Ok? Whatever remains. So
+Let me import it here. A
+And then what will I do with this? this here
+Pay use client first
+The client will use it. And take it from here
+We will remove it.
+We will import it here. because now
+We need to call this same part as the client component.
+Had to make it, not the whole thing. Ok?
+We will import everything and use it.
+It will become simple. Ok? end this too
+Our button as well. Ok? So we have all
+Some were imported here. I Think Now
+It's perfect. And we have to return that
+We made a mistake here. This is how to do it
+Us. And here it is like this, sorry
+Down here. Ok? Here. Ok?
+So let's come here. So what is he saying
+Is? Ok. Ok. If I have this user
+So if I have a user, I'll do this.
+Otherwise they remove it and the link.
+We will import it. Ok? so sorry here
+Let's do it from.
+And import the next link from here.
+Let's take it. And this is much better. Ok
+Guys? Because now we have to understand the whole
+The component has a private menu called
+Let's make it. Simple will be better.
+Ok? And now what should we use here?
+do? Instead, we don't need this
+Is. So let's remove this. This is the client
+We will not make the components. And this
+Shall we use simple here? which this
+Our component is private menu. Correct
+Is? This one. Ok? So I think now
+It's perfect. You can see it is much better
+that I can transfer all the components to the client
+Create a component. What was better that
+I create a component that I
+I will create a client component. and inside it
+I will write my logic like this. And that
+It is much better. Ok? Now here when
+If you come here, this is ours. like this
+It is defined. Ok? So if we now
+Let's see if it is giving any error. If
+Let us refresh it once, it is still there
+Showing sign in. Do we have users?
+Not logged in? And what if I am logged in?
+Not set? So this could be that. Correct
+Is? Where did A go to us? doing a job
+Are. Here we go to our jobs.
+On the Seekers one. Ok. Job seekers.
+[music]
+And we had this layout here.
+Fetch Data
+And what do you have to see guys that this is fake
+It is not happening. Ok. A I think I think we
+I have missed something. which is our
+This is the layout, we do one thing with it.
+Are. I say it here
+The custom layout we created included wrap
+We do it. This will be much better, right?
+So we have one right here. Now if
+If we come here, then if I
+refresh now
+This compiling end
+Let's see if our API is called.
+Is it happening or not? So that one second here.
+But let's move on. Oh yes, look, this one is here.
+No. So if we click here
+So look, this is how it will look to us. This one
+The name was. This was an email. If the email is like this
+If you want to keep it, you can remove it. So here
+Let's do one thing, instead I'll send you an email.
+Should I show you? So let's come here. I am simple
+What can I show you now? Ah, because this
+Our menu is the user menu here.
+I can show instead of email its role. So
+I will show you the role here. Ok? A so
+If you look now, what do you see here?
+Will you see? Whoever he is, he will be a job seeker. So one
+Can work. A
+So instead of showing Job Seeker like this, you
+What can you do? You can map this
+A instead that show it that way. So you are a
+Write the function util function and there
+Show him A. A as you want to show.
+So let's do one thing. Ah, he is here, right?
+Util function. So I'm going to create a function here.
+I make it. Export Function
+And change get role.
+Let's roll it up. And here
+The role will come to me. And I am here
+Will I return it? Ah Switch Switch Switch
+Let's file a case. switches it on
+This. The roll will come to us. Ok?
+If the role is equal and equal I will say
+Seekers what to do if this is the return that
+You also have to do
+Job Seekers and if in case we have
+Roll Sorry Roll
+Equal and Equal
+Recruiters, so what can you do simply?
+return this return this
+Capital
+There will be a recruiter, then there will be a job seeker.
+Okay, so either he will be a job seeker or
+The recruiter will be able to do it here.
+Ise Recruiter and Default
+End return to default two rolls
+Okay, so the type of this is string end.
+Now what is he saying, I am ok ok equal
+Let's make it equal, okay. what is he saying
+Do we have it? A Bullion Is Not OK
+equal to sorry
+So the gate will roll. And what are we here for?
+do? You can call it now. A us
+So I will call here. where did you go
+My? Here it is. So if I put this here
+Let me call it like this by user dot roll
+In this way, by rolling user dot, then user and
+The roll will come here and if you look now then
+You will see the job seeker here like this
+Okay, look guys, as much as you can
+Accordingly you think you will make it much better.
+It will be fine, so this is how we did it.
+Now our name is visible here and this
+It looks like this to us, so let's do one thing.
+Look, the highlights are not visible yet.
+So you can highlight it a little bit.
+How can our atar be seen here?
+If I consider this a variant ghost. So
+See what variant it has guys. GOST
+is, default, destructive, outline
+Yes, what if we do an outline?
+Will it remain?
+So it will look like this which is not correct
+Guys. It must have looked absolutely awful. So
+We can change that. A your
+Accordingly, as now we have to do it, then atar
+You can do this by conducting classes etc. But
+Let's leave it for now. Ok? So now
+That's enough for this. When we have to change
+If it happens, we will change it later. But
+If we are logging in now, we
+See if I log in from Job Seeker
+If I do it, it will look different. If I am a
+If I do it through a recruiter, it will look different. So
+This way we have these things here
+I achieved it. We haven't got the logo yet.
+has made. We will see that. Ok?
+perfect. So let's come here. Right now we are
+Let's close this. Ok? And here
+Let's come. Let's come here. We people make this
+Let's close it. Ok? So this is ours now
+There is a folder structure. Ok? So here
+When we come, it looks like this to us.
+Ok? So here we are getting some error.
+Is. Ok. Ok. So if we log in from here
+If they get us out then we will come here.
+If I go to the home page, we will see
+The header is visible. When we are here at home
+Let's go to the page and see how it looks.
+Is. When you go to the home page, it looks perfect.
+Used to be. But our guys don't have headers here.
+It looks like it doesn't seem right. Correct
+Is? How can I show the header? So we
+What simple thing do I have to do? If we people
+We have to show the header because the header is visible
+It is important there. So we our
+What can I do here in the layout? Header
+Can show. Ok? Your header. Correct
+Is? Which we already made because here
+We handled things conditionally.
+It has happened. So we will see the header here.
+But what will be the problem now? look like
+If I log in then we will have a problem.
+Will happen.
+Ok? And now when I log in
+It might be a problem to see us here.
+That double header was visible. So why is this visible now?
+Used to be? Because in the private layout
+Maybe we did it here, not here
+Used here in custom layout here
+But we have ah this header here is okay
+And the second one is our private layout.
+There was a private layout here.
+We do not use multiple nested HTML.
+You can do it, it will also give you error.
+what to do put in simple dib because
+Our root layout here in the parent.
+It is there, it is ours. Ok? So now
+If we look at it, look at it right now.
+Rendering is taking place. If we log out
+Even if we do it, he is still watching us.
+Now even if we go to the home page, our
+It's going well, which is perfect. Correct
+Is? So we had logged out this.
+A I think so why are we seeing this
+Guys from this? ok i think what should we do
+Will it have to? So he will have to do that once. Correct
+Is? We will refresh it and see. him we
+People will fix it. Ok? So that one
+It will be ours to fix it later.
+do. So for now, our folder
+The structure is something like this guys. Ok?
+Now what should we do guys that we should get jobs
+Have to show. So what do we do for that?
+Will it have to? For that, first we need to create a table.
+Will fall. So here comes our super
+In the base. And right now I have a user here.
+There is a table of. So I'm going to do something here.
+Am. I'll make a new table. And I say
+I am all
+Jobs. Ok? So, I'm saying all
+Jobs. And you define your columns here.
+You can do it. So by default here
+Created at. So I say here
+Add and here I say recruiter
+The underscore will be the ID. Ok? So we
+People give intent because it will happen
+What? The reference ID will be one way. So
+And let's add a column here. And here
+What will happen on it? Title. what is the job title
+will be? Ok? So here and what about it
+Will we give it? Text. Ok?
+And what will happen here in the same way?
+Description.
+Job description. We will text this too
+We do it. Let's add it. saying here
+There are locations. What will be the location of the job? So
+Let's text this here as well. End
+Similarly, job type. So here it says
+job type and this is what we call it
+There will be text. After that float at. His
+Max salary will be later.
+We will float it also. float
+At. Ok? And after that it will be ours
+Experience. Ok? So the experience is
+We will keep it. Experience
+They say it is required. And we also
+What do people say? In float et. Correct
+Is? Let's add the last
+Date. Ok? Last date a ok? Last
+date to
+Let's apply this. Will this happen?
+There will be a date. So this date type will be this. End
+And here we are, skills are fine.
+There will be skills. So what will this be? text
+So there can be skills or there can be multiple
+Can. So what can we do here?
+Are? Sorry, I will come here. And this
+will be define as array array. Ok? So this
+Will remain and add. We the people say
+Status. Ok? What will be the status? again
+Text. So what will remain of me? of the job
+column of the table. Ok? Created at Job Cub
+Was it created? Recruiter ID will be that of
+Did the recruiter create this? From one side
+There will be a reference. This title is a job title,
+What is the description, job location? What
+What type of job is it? Minimum Salary, Maximum
+What is the salary and experience required?
+What is the last date to apply for this job?
+What skills are required for this?
+What is the end status of the job? enable disable
+Or whatever we have to do now? here
+Have to come down. Add for key relation. So we
+Relationships will also have to be set here. So
+What if this table of ours is created?
+The job that will be created within this will be any
+If the recruiter himself creates it, then we will
+You will have to build relationships here. So I
+What do I say here? This is our user
+There is a profile. And come here. So
+Public call job. So what will happen here?
+My recruiter ID will be there. and its relation
+Who will it be with? This will be our ID.
+Ok? This will be our ID. So this
+Our relation will be of the user profile which
+User profile it means that recruiter to
+His relationship will remain with this one. So now this
+It will keep you in sync which recruiter has applied for this job.
+has been created. Ok? So this is a
+So what did we do here? From one side
+Relation created this table as User Profile
+With a table of. Ok? Now we are here
+What will you do? Let's save this. End
+Create your table here.
+Are. So here we have an all jobs
+Our table has been created here again.
+And we have also defined its relation.
+Correct. Who is it related to? own
+This is the user profile table. Ok? So
+What do we have to do here? RLS Policy
+Let's add this too. A says here
+We are the ones who create policies. So here all
+A Permissions
+All permissions with all permission and here
+True. And we do this too.
+True. So all permission with ah I mean all
+Permission with all users. Ok? So here
+What will we do with it? Save policy. So
+For this our RLS policy is available here.
+We added pay here for the table. Correct
+Is? I did it all. Ok? So let's go
+We are here, sorry, where did our job go?
+Our job table? Go to your table editor
+Are. So here is our job table.
+Let's come here. Now we are about our jobs.
+We also define the type of the table we created.
+Can do. Correct? So, come here
+Are. So, what can I say here?
+Export Interface
+And I will say I job job okay job say
+Let us give it and what will happen here
+Our ID will be of string type end
+The recruiter will have a recruiter ID, this will also be
+string apna end title hoga string
+Description
+This will also be a string
+The end location will also be our string job
+What will be our type?
+This will also be my string minimum salary
+What will be the number
+What will be our maximum salary?
+Experience
+What will be our string required?
+What have we defined here?
+Here we have
+Experience Required Last Date To
+Apply Correct Last Date to Apply Our
+what will this be my string this will be
+Skill will also be a string. And here
+What will be our status? String. Correct
+Is? String Sorry
+Created underscore at what will this even be?
+What will the string updated at be? This too
+will be the string. Ok? saving this
+Are. Now take your action here too.
+Let's create it. what we have here
+You made an action, right? So here we are
+What to do? new file j dot
+Jobs.actions.
+Ok? So here job related action
+All of us will be there. So what am I here for?
+Will I say? This was our what? This is what will happen
+User related actions will be done here. Correct
+Is? And what will happen here? from the job
+There will be related actions. Ok? So therefore this
+You can separate it here in a way
+to things. Ok? So to find things
+It will be easy for me. If anyone comes
+He will know that this user is good here.
+If there is an action, then from as many users as
+There will be related actions and functions.
+It will be inside it. Ah and here is the job
+Those related to this will be inside it. Correct
+Is? So like this. So what are we here for?
+We do? Export cost create job.
+Ok? So what am I saying here?
+Create job. What will happen to me here?
+will be an infinite function. What will come here
+We have? Payload. Look, the payload will come. So
+Look again at what we just defined.
+Type so many when someone will create a job
+So will you give me all these things? For him
+Created at is updated. This will definitely happen
+No. You have Updated at Created at
+Correct. At that time, we were here
+What to do? Here we are partial
+What will we do here in partial?
+What will we tell him? I
+The iJob that we just created
+This type. Ok? So what is this now?
+He will understand that something is coming from inside this
+Things will come. It means that not everyone will come
+This type. Not all will be there. But out of this
+There may be some things. Nothing can happen.
+So now he will consider everyone as optional.
+Ok? So we have partially defined it here.
+Used it. And we have the payload here.
+Will come. And here we will say try
+Here we will say catch.
+And here we will have an error. Ok?
+And here we cost race
+Await
+Hey, what did we have here? Here we are
+Let's create it. First of all, super bass.
+Ok? Sorry. Yes. First we have super bass
+You will have to create it. import it
+Will have to. Ok? We import from here
+Let's do what we made. and then
+Cost Race and what will we say here?
+Two Pabes
+Dot from what is our all
+Jobs
+aha what is he saying
+Okay Superbot All Jobs dot insert
+What to do in insert this one in it
+The entire payload is one, whatever comes
+From there we'll insert it here.
+We will get a response here, whatever
+It must be his. Ok? And here we are
+What to do? If I say race dot sorry
+Dot E error. Ok? what are we here
+Will you say? throw
+New error and rest dot error dot message.
+Ok? So let us throw this from here.
+Will give. What if there is an error?
+do? What will we do in return?
+We will make its status true here. End
+What will we say in the message? Jobs
+Created. Ok? Like this. So here
+We will give it this way. And again we
+If there is an error in some catch then people
+We can give it in this way. Ok? These
+It will be RR. Ok? Either we do a job
+Let's do it, let's send him here.
+In a way they make a false statement. And here
+We just give a simple dot message.
+Ok? So this is perfect. This is our action
+One is ready here. Ok? Now here
+But what do we do? export cost
+Get Job
+Bye ID is fine and what will this also be sync
+The function will be end here like this okay
+What will come here, we have job ID
+what will be its type number ok job id
+what will be the type of number here and I
+I will say try again, we are the same here.
+Tell your superbase to create a client
+Will end cost
+Race this super base dot from here
+what will you say all jobs okay all jobs
+dot select what will we say here
+Star it means that Sahara dot equal equal
+Whose ID should this be?
+This should be equal to the job ID, so what?
+He will find a job from there and take it.
+I will come and then if I check here
+I will take if response dot error a sorry error and
+response dot data dot sorry data dot use
+We will have to wait there.
+length equal and equal if zero then we
+What will people do here, will they cry?
+New
+Error will say job
+no job job found ok and isko kya
+have to do it
+Now we have to wait, okay then Sara
+Our end is perfect, assume everything went well
+So what will we return here?
+Will return here status to be
+What do we have in the data in this case?
+This will be the job data, sorry, this one.
+The response is okay so this is our perfect
+okay what will we do in try and catch
+We will get an error here, simply copy it.
+And here we are, this falls
+Will go. And what will we say here?
+An error message will appear. Ok? So this
+Our gate is done. So this was our what?
+Create job. What has happened to me? Get Job
+By ID. Ok? And here we are, a
+And to create Export Cost Edit Job.
+Ok? We will do editing jobs here.
+So will this also happen? There will be a sync function
+Our.
+Ok? What will we give him here? Async.
+Now if someone edits the job, he will tell
+Not which job is editing, so that
+What do we have to give? The ID of that job.
+So here I will call it job ID.
+Whose type will be number. And now in that job
+What do you want to edit? so it means
+That he will edit something inside it. So his
+The data will be of this type. I take this
+I will take it. from this, from this job, from this
+There will be something from the field in it. Correct?
+That's why we have partial load here in Pei Load
+I told him about my type. Ok?
+Interface. Now he will understand that from within
+Something or the other will happen. something different from the outside
+Cannot be done. Ok? If he is from outside
+If something happens it will give an error. So here we have it
+Created it. And then we are here
+Will say try again. And here we are again
+People will call this their own. Ok?
+End Cost Res Await
+to base dot from here what will happen to me
+All
+unders jobs hai alljobs dot update ok
+What the update will do is this payload which
+It will come but update it and give the full payload
+If you give it then whom will you update, that too
+So if he asks, we will tell him who we consider equal.
+If it should be equal then it has to be updated.
+I will tell you this, this ID
+Must be equal to the corresponding job ID
+So what will this do to this job ID?
+Whatever happens, its payload will be updated.
+If you respond to us here then we will come again
+People will check here if response dot
+Suppose there is an error, if there is any error then new error sorry
+error res dot sorry
+rash dot error dot what will be the message
+So whatever message will be here, return it from here.
+If it is not done then what will we do with the return?
+From here we will make the status true and here
+If we have a message then we will say message
+Updated
+Ok job updated successfully
+Simple Isi Ko in Successfully and Else
+copy it and paste it here
+So here our error will be dot
+Message and status will be false in this case
+In. So here we have these three actions also
+We have made it so far. Ok? So create
+He can do it, he can edit it. Create now
+Can do. Can get that job. That
+Can edit the job. Delete it too
+He can do that job at any time.
+Ok? So we make that too. So
+Let's do one thing here. Export
+Delete job. Ok?
+This will be the sync function.
+And what will we do here? again this
+Let's all copy this. Ok? A
+Should I copy this completely?
+It will remain the same. But just make a small change
+We will give it here. So inside all jobs
+Will go. What will he do here? delete that
+will delete it here and it will be equal
+of this job ID. So here we have
+Job ID will come which will have number. this error
+If it does, an error will be returned. Jobs
+It will be deleted. It will be done successfully.
+Your Job
+Your job.
+Ok? Deleted successfully and thus
+The message will be sent. Ok? So, here we are
+What did you say? That go to this table. delete it
+Two jobs. Which job whose ID is this
+Whatever happens, we will pass from here. Correct
+Is? So here we created the delete job.
+of, edit job of and get by id job of,
+of create job. Now we get all here.
+Jobs. You can get all the jobs too.
+User. So what will we do here?
+Export Cost Get Jobs. So Joe Get Job
+If it will happen then
+Gate Recruiter Jobs.
+recruiters recruiter jobs ok get
+There will be a recruiter job because I will tell you now.
+Ok? Meaning a recruiter who creates jobs
+If he has done it, he can also get his job.
+Is. So that's why we have a like this here
+Created the function. Ok? A sink and here
+Simply what do we do? This is what we
+People copy the ID.
+Ok? Because what will happen here? Here
+Pay aayega humaine pass recruiter ID. Ok?
+Its type will be number and this is us here
+But we will pass this and its here
+What ID do we have there recruiter
+The underscore ID is probably what we've given it.
+So let's take a look here.
+What have we given, so we have written here
+Here is the ID description
+Yes, what is this given, we have seen it here.
+If we take it, this is what is given to us, so we have
+It will come here, what did we say, select it.
+Do whatever jobs he has here and we
+Give it to get the job here, I will send you my ID.
+And he will give it to him, if not then the job
+If there is no data then I will give it, otherwise
+This error and here is perfect dot data o
+Sorry, I think we missed it here.
+Not here, not even here, this one
+Dot data will be here
+Okay, so we did it and it's perfect.
+Ours is fine, so the delete one also became a gate.
+Dot job has also become ours, now what are we
+Guys, we do this on the front end.
+Let's also make this excerpt.
+I have defined it. Correct. Now we are here
+Come on. Here in the end components
+Come to the app. And come to private
+Are. So recruiter. Ok? So here we are
+People file a new file here. I
+I say jobs and page dots. So this is our
+A rout ensued. So job a yahan pe user
+Can see. Ok? perfect. Now when the job
+If he can see, he can also create a job.
+So here again, within this, I say
+am add and
+A says create job
+Create page dots so here we job
+You can also create it. Correct Perfect
+He can create jobs and also view jobs.
+what can he do to the job
+He can also edit it, so here we are.
+Let's do one thing. am so job hai and new
+Let's file it. I say edit and
+It will come to us here ID and here
+what will happen my page dotsx okay what is this
+This will be our ID, sorry, this will be here.
+ID our dynamic pagex so if we guys
+Look here, so like this inside the edit
+This one will be dynamic end page dotsx okay
+So this is how we can make it here.
+Are there any edit, create and delete
+We can already do it there.
+Okay, so we showed you the toaster.
+Defined. So perfect. Here we are
+Let us define it also. remove this this
+Are. Ok? So here I say
+export default function
+Create job. Ok? And return in hum
+People keep simple divs for now. End
+I say create job. and in the same way
+Edit
+Let's come here. Edit job.
+Ok? Edit here as well
+And I'm done editing my creation, what is this?
+My Job All Jobs
+All jobs okay so we made this an all
+I have got a job, this is ours already.
+It has a dashboard which is perfect. Correct
+Is? So we have defined it here. So
+If we come here, how will we
+Will I get to see it? So let's do one thing.
+First, we would log in with the recruiter.
+Are. First of all, we need the recruiter to help us
+There is no user nearby. So let's sign up
+From a user. So I'll quickly sign here.
+I click on up. And I say
+here a
+Let's name him Mohit. Mohit.com
+We do it. And here too we are one
+I will give you the number. And I call it that.
+So what will it do here? Our account
+This will also be created which will be the user here.
+Register successfully as our user here
+It has been registered. So basically what do we
+Should have done it? When the user registered
+By email, send it to us on the login page
+should give. That will be much better. So one
+Let's work. Is it registered? So when this
+Success is happening here. So here we
+The one with success is shown on it. So I
+I use the router here. Ok?
+Use router from next navigation and we
+What will people do here, where will he be?
+We will send it when it is successful, push the dot
+Where will I give it to him on login, okay, so this
+Where will it go when it is registered?
+This will take you to the login page.
+So we did it now it's perfect so now we
+People also log in and see here.
+Let's go to your sign in then I say
+am at a b cd.com was. And here I am
+What will I do? And I am a recruiter.
+Sign in Okay. Ok. Am I think we here
+I missed something on the login page.
+We will come down a little here. So here
+here here here here here here here
+We will have to do yes. So let's come here.
+And here
+ABCD.com
+End recruiter signs in. And we
+People should sign in here. log
+These became successful. So where are we here?
+Are you gone? There are recruiters. So the recruiter
+Went to the dashboard. Correct. here
+What do we see? Recruiter Dashboard.
+It's perfect. Now look at us here, we have this
+Route was created. Inside Recruiter
+Job. So if we go here, recruiter
+Inside I say job here. Job
+Is. Isn't it? Do we have jobs? If I
+If I press enter, what do we see here?
+Needed? a ok sorry job jobs jobs
+Recruiters and Jobs Recruiters Jobs a
+The base of jobs is here. here
+What is ours? Okay, now, I think we
+Guys this is here inside the recruiter
+Needed It is created inside the dashboard.
+Went. That is the problem with it. Ok? oh yes
+Set set set sh that was the problem. I Think Now
+We have come to Perfect on All Jobs. same
+Like us here, what were our jobs?
+Here? Create. So if I'm here
+Write Jobs and with this was here
+Create. So here we are on create job
+Will come. We are here to create a job.
+Pay. We edit in the same way. So here we are
+People will write edit. Suppose I edit it
+Will give. Edit Sorry and I am here 1 2 3
+I will give anything. So here it is
+Will you go? Edit job. Ok? So edit
+We have come to the job. So Route So
+We are doing perfectly right now. Ok? End
+What do we have to do now? Now we here
+But it will have to be defined. Firstly
+Create edit is ours. So let's do one thing
+Are. A let's create a component here.
+Let's take it. I file a new one.
+Job form dots do this. Export
+Job Form. Ok? So, here we are
+What are you making? Job Forms and Returns.
+So, here we are going to basically use
+Which one is it? Component Ah Set CN of Set CN
+section of UI with many components and
+Then we're going to use some editor.
+I will use a simple editor. Ok? So
+Make it quickly. And Jord also we people
+Are going to use it. So let's do one thing
+Let's quickly define open. Ok? So
+This will be my look schema title is like this
+Will remain. We are using the joint.
+and then description, location, job type,
+Minimum salary, maximum salary,
+How much experience should one have? last date
+How much is the application? What is skill? Status
+And this and we put dot refine here.
+It has happened. Look, now we planted it because
+What will be the minimum salary and what will be the maximum salary
+If it is less than the minimum then it cannot be greater than the minimum.
+It cannot be small, so we have put it here.
+It is installed in this way. If that accident
+If it does, we get an error like this here
+Will be seen. Ok? So here it
+We will see the error. So this
+It's perfect. What do we give here?
+Yes, Mensley. Ok? And then we here
+I have defined my type with this. on Z.in
+From here I defined the type. and then
+We have entered all this in the default values
+Is. Ok? What could the job be? Full
+It could be full time, it could be part time.
+Could be remote. All this cut and then this
+It's all there. The status is open. will see this
+If we want to close it or pause it
+All that remains. Ok? perfect. So
+We have defined all of this here.
+Schema and this one. Ok? class name
+What do you give? turn the container over
+Are. Ok? So this will be my container.
+Here we use card header.
+Where from again? Our set of CN
+Is a component. Ok? Sorry. Ok? So this
+My card will remain and then we here
+Pay card title used inside which
+There will be a create job. and the paragraph inside it
+Inside which its description is simple
+Like. Ok? So this is what we have from Again Set CN
+Guys, it has been used. Ok? set cn
+What can you do with it from there? A
+When you install the card from here,
+If you add them, you will have all these components.
+Will also come. And simply you are inside her
+Whatever you have to write after setting up your class
+Whatever you want to add, you can do it.
+yes. Ok? Here we are
+We also use our separator.
+Already. Again, where did we get this separator from?
+Have you taken it guys? Again you can see
+We have taken the separator from our UI. Ok?
+So set from CN. Ok? So set in CN
+You can find everything. install it
+You can use it and simply
+Is a component. Ok? Card Contents. Correct
+Is? The content of the card will appear here.
+And then we'll say padding here.
+Let's write the class. We will give this a little bit
+Padding is given from the top. Six. Ok?
+So this is how the end is, I think it's perfect.
+Ok? So if we look at it now, we
+It should look something like this. See what they say
+If he is still here, what does he say to us?
+Used to be. So I think we missed something
+What? Now look guys. Ok? So like this
+From here we will see Create Job Post
+And this will be our detail. And this is our
+There will be a separator. Ok? And now we are here
+Pay defines your card content.
+Let's use the form here. Again we
+Which again, where do you get this form from?
+will get? From Sets Chain UI. Again we
+Look, it is used from here. Ok?
+And let us define it here.
+First of all, change the form. Ok? So this
+My form will remain. We have defined it.
+Where to use the form? Look here again
+Used from React Form. And I took this
+I told you that we have already defined this type.
+Already done. We have typed this out.
+Have taken it. And here in resolver your
+This one passed the schema. end default
+In value we have already set the default value
+It is defined here. default
+This will be our value of the form. And this
+When will it work? On Change Pay. whenever something changes
+If it happens, then it has a kind of form
+There will be a validation check. In a way, understand it like this.
+Ok? So this has been defined. And this
+What do we have to do? here here we
+What will people do? We will pass it this way.
+We gave him our form.
+Form. Ok?
+Here we will use HTML form.
+Use on submit end class here
+I will do space here, I will make it six.
+Okay, and we'll see to it.
+We will do this, we use it here.
+We will fill the form field and quickly I will fill it
+I'll define it, okay, so this will be it.
+My form field inside this we have control
+Passed did you pass the form dot control
+given inside it and in the name of this
+The field name will be Title what will render
+Inside it? This field item. of field items
+Inside we rendered the form level.
+The level of the form will be the job title. End
+Inside this we have entered input in form control
+rendered inside which like this our
+The input will appear. So how will you see it?
+It should look something like this. what is this saying
+Are you with us? Ok. A ok he is saying
+We will have to provide this. So one
+Let's do the work, right? I'll just move on.
+I will give it to him. Let's come here. End
+Okay, what do we need to do here first?
+Guys? So
+UseClim. Ok? Now I Think Perfect
+Must be rendered. If I refresh
+So let's see what he says. Look at this here
+What will the job title be? provide in this way
+Have to get it done. Ok? Software in the example
+Engineer. Ok? Let's come here. End
+What do we have here? This one
+Field. Again we have multiple fields like this
+We will define it from. So I will say it here
+Form fields. Again because multi-second
+We have to take the field. This is how I define
+I will do it quickly. control here
+Form dot what will we do? control
+Benefits. Ok? So this is what we have said here
+What we did here was create a form.
+Created form fields. Inside this we have not
+Will take the description. So in the description
+What can he do? to any text
+Can highlight. to any text
+Can add to heading. someone over there
+Can add to the list. So for that we
+Here's a text editor component
+has made. Ok? So here if I
+Let me show you. So this is our Rich here.
+The text editor in which we have
+I have used Quick's library. Correct
+Is? So basically when you go inside it
+You will get the code there easily. So we
+I used the same here. And here
+In a way, we took the reference of dip
+Returned it. Ok? So here we have
+Its passed text area. And when you
+You will see here, so we have kept it simple here.
+What have you done? Input here here
+Rich text editor is used. Value On
+What will happen to the change? What's in the place holder?
+Want to show? And that's everything. Ok?
+What is the level of the form, what is the control of the form
+Want to keep it? He is here. and then form
+Item. Ok? Control in End Control
+And description is its name. Ok? So
+If you look at it, it will look something like this.
+Ok? Something a bit like this.
+I mean, look at this, it's a little bit cut off here.
+It is visible. So what do we do for this?
+Can you? Wait a moment, inspect this
+Let's see what class it has? QL
+There is a container. So if we take a little bit of this
+If we give margin top minus here then
+margin-top - 8 pixels
+Apx so I think is perfect. Correct.
+Yes. So let's come here. And we are our
+Let's add it to global. here
+Should we add it? If I make this
+If I go to margin top - 8 pixels. Ok?
+So if we refresh our eyes here,
+So that should go on. Are you not taking it? A
+Let's see what he says.
+So this is it, this will remain mine. And this is mine
+I am not taking classes. Ok? So he will take it. So
+Basically, we just need to do something simple.
+This is important here.
+Ok? So now is perfect. And look at this
+Ours is going well. Ok. So our
+Here the title and description are also done.
+It also happened. What do we do now guys?
+What else will we have? The title is done,
+The description is done. Here we have
+What all have been defined? The title is done,
+Description, location. Ok? So, this
+So let's close it. And here is your
+Let's take the form fields quickly. I say
+am form field.
+What is in control of this here?
+will be? Form dot controls give gaps
+Six it a little bit. Ok? So here
+We will keep this control.
+here and here
+Okay, so if you look at it now, it looks like this.
+What we'll see is the location right here.
+So the location will be visible here and here
+what can we do second one here
+Let's take it again, I'll say form field
+And again, will we give him control?
+Form dot control end here in control
+But what do we have to give in name only?
+What will you give him? Job Underscore Type
+Remote. Ok? So this will be my job type.
+Control form control end here
+Let's see. So this is how my job will be.
+Type. So Full Time Contract Internship
+What kind of remote job type is that? Ok?
+perfect. Let's come here. Here we are
+Let's take another div inside which
+In grade class. Ok? give a gap again
+Let's give him a little. How much? Six Tax
+Let's give it a gap. Ok? again we are
+We will use the form field here.
+end control form dot control value s
+Number so if you see so this is our minimum
+Our form field will be for salary, so here
+If you look at it, you will see something like this.
+So if I refresh, there's some problem.
+No Guys
+A let's see I think it's perfect so here
+But we come here in the same way.
+What will you do by defining the maximum salary also?
+I will take it here quickly, so I am here.
+What can I say, Max?
+And here will be Max
+And here it is perfect. Ok?
+Our maximum salary control is perfect.
+remains. In this way the minimum salary and
+Maximum salary can be added here. They
+Correct, perfect. So let's come here. again
+Here we take a due. Correct
+Is? Here they say class grade gap de
+We give. Let's give a gap six here.
+So let's keep it common. Again here we are
+People their form field years. Ok? So
+This will be my year. Ok? So it will remain
+What about me? Of experience. Experience
+How much is required for this job? So
+If you look at it, it will look something like this
+You will see a dropdown of experience level. So
+Whatever remains, you can select it from here.
+yes. As much experience as he needs
+For job. And then here we are again
+Let's take another form field. New Date Tax
+Let's give it to him. So we will make a new date. So
+Here we need to disable if
+So if it is a date from today then here
+But if you look at it, you will see the past from today.
+Date disabled will appear. So Application Deadline
+And here is the name we have given
+Last Date to Apply because we have
+The table in your database is named
+In that. Ok? So this happened. come here
+Here we are and here we take it.
+Form field again because for skills.
+We will need skills. Sorry Self
+There will be a clue. what will happen here
+My? control on dot control dot on change
+It will remain mine. Ok? So what is this for us?
+Will it remain? Of skill. Ok? Field of skill
+Will remain. So basically what did we do inside this?
+Already done? Created a separate component
+There has been skill input in which when you
+If you put comma separate then chips inside it
+Will be visible. It means that when you put a comma, it
+The skill will be visible as a chip. It
+Means that in bandages. So here we have the same
+It has been done and bandage has been used. One
+Then here comes a set scene. Correct
+Is? And then when you're on enter
+When you are turning it on, here
+The value is being set. Ok? end key
+It's like it's going down. So here you are
+You will see. So, we're checking that enter
+has happened or the comma is suppressed. So we him
+What are people doing here trimming?
+Set it inside your ad screen.
+Are giving. And that's what we saw here.
+are also giving. Ok? So here it is
+We have also shown that comma separate
+You can add it. And that's what we are here for
+The value has been looped and shown.
+It's a simple component guys. Nothing!
+Is. I will enter all this code again in the gate.
+Pay. You can take it from there. Ok? So
+I close this. And you will come here
+So if you look here, how do we
+Is it visible from? look at it this way
+In Required Skills, if you do this
+If I put HTML here, it looks like this.
+from JavaScript
+Like this. Ok? So you see it here
+You can also remove it from here.
+So we just added this. If you remove it then
+You will be told here Required Skill
+You will have to put it in. Ok? Mandatory
+That's it. So let's come here. End Form
+Field. Ok? I will quickly do this too
+I will define it. control
+Form Dot Control Powder. Ok? So this
+Whose status will remain mine? Now if here
+But look. So here the status is open and
+This will be my close. Ok? in the last
+We could have added a button here.
+Are. div leke yahan pe kahan hai div end
+We give top to the class border
+This. Ok? So a little border from the top
+Will be visible. Create job. So this will be mine
+button. Ok? So clear that first.
+Can. Let's say we don't want to create it.
+If so, he can clear it. So we
+The simple form that we have there pay form
+This form has been taken. So here
+Let me show you. This one that we
+I have taken the form, what should I do with it?
+Gave? Inside that you have the reset function
+will be. With that you can do a simple reset.
+And the default value is what you provide.
+I am doing it. So the form is your reset.
+Will go. Ok? If submitted, this is one of our
+State in which a false is taken
+Is. If I show you. To. So here
+Look, right now we have taken a state whose
+Inside the default value we have given is false
+Is. And when you agree, you will submit it on
+If you call the function on submit, then at that time you
+What can you do about it? True False Can
+yes. So that's what we've done here. If
+If it is disabled, as if it is submitted, then I will disable it.
+I will do it. And I will show you at that time
+Creating. Ok? Job here you say like this
+You can find it here at Creating and Then Else
+Create job. Ok? So loader we have here
+Where did you show it from? Simple Ye Luciter
+React which is the normal library of React.
+Ok? So this is what we used here.
+Is. And if I show you here
+You will see something like this: Clear End
+Create job. So this will be my form job.
+For creation. Ok? And all these
+We have already defined the fields here.
+It happened guys. Correct and same same we
+It is used here. what do we have now
+Do you want to do it here? We come here.
+And here we will have the form. So
+Here I say on submit and f dot
+Handle submit. So what do we have inside it?
+Have to do it? Let's create an onSubmit function
+Here pay cost on submit a submit handler called
+or whatever name you want to give, submit it
+The handler says it.
+submit handler ok? And quickly I
+Let me define this also. default
+Value. Ok? So, will this be ours?
+Guys? onSubmit handler function. When submit
+The handler function will be called on click,
+So we made it true. which we state
+It has been taken, we had taken this state,
+We had marked it as false by default.
+Correct this state and then we
+What did I do here? I simply checked which
+The last date is less than our new date is
+So what we did was we simplified it to manual.
+Having a deadline future by setting an error
+I should have set the error from here
+Manual error if I am setting this
+In this way we can do it in any field
+for end assume if this is not an error
+So below will come you accessing the form data
+You can end the form when your form is here
+Pay data created and APS accessed
+Go and you can reset this form
+or wherever you want to send it to
+You can send it there. So let's do one thing
+Let's get the data quickly. Ok? So we
+What did you do here? Simple, nothing right now
+Kiya hua guys on submit and layer pe ye jo
+We had taken this falls upstairs.
+So we made it true here.
+And finally we have it faked.
+Is. And here we checked a condition.
+It has happened that our last date to apply
+If you believe me, it is less than current date
+So what have we done here? For him
+Set manual error for that field.
+For this field. Ok? last date
+For applying. That is, I told here
+given that
+Deadline Must Be Feature. Ok? end return
+I did it from here. Ok? don't come in
+He will get it. And suppose everything is correct then
+What did we do here? Simple form data
+We have just stored the data in it. him you
+You can use it and insert it into the API.
+Yes, in your database. Ok? and then when
+If it is successful then you can save your form.
+Reset it. And Elsewhere, whatever catches you
+I have to do it. Finally, we did it
+It has happened. Ok? So now let's do one thing.
+Guys, let's save this in the database.
+Let's take it. So we do one thing for that.
+Are. So we already have job action here
+I had created my own server action. So the server
+For action, first I use pay here
+The server will have to use this directive.
+Correct. Then this will become our server action.
+Otherwise, you will get this error when you use it.
+This in the client component. Well then? So
+We imported it here. End
+We can call it here. So
+What should I say here? cost
+Response
+Await and Create Job and Create Job
+What will people do? will import it here
+But. We will make it unsinkable.
+Ok? A sink and what do we have to give it
+Is? Job data. So I say cost
+Job data is equal to this data. Because
+We have all the job data right here.
+Will come. When we submit our forms
+because where did we call this
+Has it happened? In your own. Correct. so we have
+Job data will come here and what will we do?
+It has to be passed to the Recruiter ID that who is
+If he is creating jobs then how does he help us?
+You will get the relationship we have built here.
+Tha Guys what about this table with this
+we had made it, we had made it, that its
+The recruiter ID, this ID will be its
+This will be its Recruiter ID correct
+So if you see here, we have a relation
+Created ID and Recruiter ID Correct
+So if we take his ID here
+So that's what the recruiter ID will be correct so we
+People pay here
+I would say user
+Is equal and I would say you user store
+Correct, we made this and we are here
+What can I do on S
+I user store correct and here we go
+What can we say about this, what do we have?
+Here we have entered the recruiter ID, so here we
+People will say recruiter ID and user dot
+dot ID this okay so this
+It's perfect. We will do it here
+It is like this. Ok? So we made this
+Gave. And we will pass it on.
+Ok? So look what we have here
+The data will be of type . So here's something like this
+The data will be of type . Status, Skill, Last
+Dates, experiences, all of that. Ok? So
+If we look here, here you
+You will see if we edit this, edit
+Table. So you can see it here. Ok?
+Did we miss a status here? it
+Gotta text.
+And here and ours which is required
+We have experience with this too, we will text it.
+They say here. Ok? because we are people
+We are taking it in text there only.
+To the experience. Correct. So if you're here
+You will see what we have here.
+Ok? Experience Required
+Text here string here. So here
+But we did it. And now we are going to
+Let's test it. So before that, we are here.
+Let me do one thing. So here we have
+It will come to pay. So what should I say here? If
+Response dot status Assume if true
+It means that true, it means that he created
+will be. So what will we do here? I
+I will say toast to this, they should import it again
+Are. Reactify is what we've added as our plugin.
+This is called dot success. Success
+What will we say here? Job
+created
+Successfully. Ok? Create a job here
+Done. Now suppose when the job is created then
+What will you do? First, what should you do that
+This is a form, reset it. How to reset
+do? Simple form of this which we have
+The wrap is taken
+End Reset and Default Value Already
+Look, we have made this above.
+Default value here so here when
+If you come, this is our default value.
+Meaning that the default we have set inside it
+It is the same as it was done and we reset it.
+I called Reset and we gave him this pass.
+default value it means that our
+The form that we have filled up should be reset.
+If he goes then what will we do in the end
+One more thing we should do here is that when
+If create is created then where does it go?
+Should I go? ps router use router from
+Next navigation when the job is created
+So where should this go? those with jobs
+If I go there on the page, what am I doing here?
+Will I do it? Where is router.push? Job
+Space. Ok? So shall we see that?
+Ours will be here. We can also see the path
+Will take. And what else will happen here?
+Ah here toes dot error and rest dot
+Message. Ok? Whatever the message is, it will be visible
+Will go. And we will remove this here.
+From. And ours is ready here.
+Is. Ok?
+So now let us test it. So I came
+Think everything is right. Our job creator
+We did. And then I think all this
+Guys is perfect. Ok? So once upon a time
+Let's test it once. will see that
+If there is any problem. Ok? So
+Here we have kept it open.
+If we need dummy text, I
+I say
+software Engineer. Now I'm here for this
+I copy it from. dummy text here
+So we paid here. and if assume
+That you should use all this, headings etc.
+So I say here's something for
+For example, I say heading and I
+I select this. And I am here
+I say H3 we will need. So like this
+You can take it from. And I say here
+Creating List One and so on in the list
+If yes, then we will do it here and this will happen.
+will it go to list two
+List three is like this okay then I would say
+I am going to give it Delhi and full time minimum.
+If you want a salary, I would have said this much.
+I say this much at most
+It will happen and the deadline will be extended.
+Let's do 31 of the application, okay and end
+Skill so I say simple here.
+html css ss
+JavaScript End
+Super base status will remain open and I think
+We have filled everything. So if we people
+Create here also. So I say
+Create Job Let's see what happens. Job
+Our creation has been done. And we are here
+Where did you go? Right now we are
+went to the dashboard because we found its path
+Did not give. But it redirects from there.
+Went. And we also send you a toast message here.
+Got to see it. So we did this here.
+Diya and Hamara Yahan Pe Perfect. Now we
+What can people do about it? Job pages
+To go to pay. So what do we have here?
+Pay? See.
+So whatever happens here. So first we
+What do I have to do here? Now I am here
+What will I say to this? Recruiters. Ok? So
+I say here recruiters and
+Jobs. So where will it go? Recruiter
+On the page with the list of jobs. So
+Now I think this is perfect for us.
+Create job is able to do this from here. End
+This is our right. Ok? So here you go
+Where was it needed? Recruiters Job A Job Yes.
+So there are jobs, right? Ok? So here
+Came to All Jobs. So here we are
+List of all your jobs
+We can show it here. Correct? So
+This is our job creator.
+Ours is ready. It's fine now? job's hum
+People also show the data. The job we
+We have created that list here.
+Let's get it done too. So let's do one thing. I
+I say close others. Ok? close tax
+Let's take this. So what is he saying? Ok
+Don't save. Ah, so we have removed this from ours.
+We give. Ok? So where do we have
+Is? Here we have it inside the app,
+It is private, there is a recruiter, there is a job. And this
+This is our page. Ok? where we are from
+People will list all their jobs. Ok?
+So let's do one thing. Ah here I am a
+I make components. Ok? So here
+Ok? I say new file. Job
+Listingsx ok? So I say cost
+A: Let's do one thing, yes, cost job.
+The listing is fine, so this will be my job.
+Component of listing okay so a this now
+We'll see what date comes, okay, near it.
+What date will come, but for now we are here.
+Let's do one thing here, simple return
+And here we take our div.
+Class
+Space
+And let's do this and do a little work.
+Yes, let's make it four. Ok? Here
+Pay div take end class
+Let's put it between the flax. Ok?
+Here we dive into new jobs.
+Ok? So what will remain of me? a kind of
+Heading from. So I say export.
+Default end this is our job listing. This
+What are we doing here simply for now?
+We do? Let's import it. Ok?
+End the job listing like this. Ok?
+So if we look here. So here
+We should see job listings. And here
+What do we see? Post new job.
+So what do we do with this? A
+MX auto tax. And this is what we will see
+Something like this. And I say drink
+Y
+something like this is fine
+And this is how we will see it, so I think
+perfect that's okay so job listing
+Manage and monitor all the job postings and
+Post New Job If you want to post a job
+So if you click here, where will it go?
+On our job post page, we have posted a job
+Creation wala already made, okay so this
+So we did it and here we are.
+Due, we take classes here.
+Rounded MD end is called border.
+We give a little bit in it. here
+We take our own tables. Table
+Where do we get A from? sets here
+That means we take the table from the UI. More
+It will be better there. Ok? So here I am
+I say on
+Table. So here is the table. Ok? Here
+We can add it simply.
+Where did you go? Ah, here's the table.
+And come here and go to the terminal. Add
+We will do it here. So here we are
+Pay table will also be added. So here we are
+If people import then we have it here
+Here comes the table and here. Ok? Here
+Let us take the table header. Ok?
+You will get all these components when you use a table.
+If you install the component, you will see it here
+You will find everything. and you install
+do it. Took the table header. And I am here
+I say table lights. Ok? So this will remain
+What about me? A our table header. So if
+You will see that we remove it here.
+Like this. Ok? This is how our
+The table header will appear. Ok? Header. End
+Our column inside this will be Job Title,
+Location, Type, Salary Range, When Posted,
+What is the status of the job? And what is inside it
+The actions that will be taken for example for the job
+You can edit, view,
+You can also delete it. Correct? So, all of that
+There will be actions in it. So this will be my table.
+Header end here will be my table body.
+Ok? This is where my table body will be. So
+Let us do one thing. Here we are
+You can fetch your data. So I am a
+I work. Use effect. So here we are
+Sorry use effect from.
+We take the use effect. And sorry.
+Yes. So, this is my use effect. Import
+This will have to be done from here with React.
+Use Effect is Guys Use Effect
+Okay, tell him that's why we're here.
+What will have to be done? You will have to use the client.
+That's why he's causing problems, okay?
+We did it here and here we are
+It is said that cost
+Fetch Jobs
+And what will we do from here, wait?
+I will give it an end here sorry ah yes ok
+Is. After waiting, we will tell you the cost here.
+Or let us do one thing first. here
+We write try catch. Ok?
+So I say try
+There will be an error in the crash. Ok? And finally.
+So finally. So let's do one thing here.
+I say cost
+Set loading
+Use State
+End Falls. Ok? So here as soon as we
+If people call this, then our here
+What will happen? This will be true. and finally
+What should be in it? These falls. Ok?
+Like this. Ok? what is this saying
+Us? Here we have to write async and not
+Await. Ok? So this will be mine. And here
+But what will we do? Now Cost Response
+Is equal to a wet patch jo we have here
+I had made it here in job action so
+Created this was our sorry here and
+This was Get Job By ID Edit Delete And
+Get Recruiter Jobs so here we are
+what will you do oh sorry I was here right yes
+Here we will call it S here.
+We will import it, why should we pass it?
+Will it be necessary? We have to pass this
+Recruitment Recruiter ID. So that
+What will be the Recruiter ID? We are already
+I know. So what will I do here?
+Here I call it user is = you
+User Store. Ok? End as I User
+Store. Ok? So this is what we said and I
+What should I pass him here? user dot
+ID. Ok? I passed this. End
+If
+Response dot status assume status will be
+So what will happen? Success. So here we are
+What can be done? Find your job here
+You can get all the jobs. So here I am
+Pay kahta hoon cost
+jobs set jobs is equal use state and
+I will give him a blank. Right now array
+I will come here. It means it's a success
+Has gone. So here I will say rest dot
+data because we are here to date data
+I am giving it to you, see here.
+In the data, we have response dot here.
+What date did you give? It means that data is our feature
+Done. Ok? We here at Else
+What to do? toast toast again we have here
+Imported from . This is what we have in the library
+Installed Click Package and Dot
+Success Sorry Error Something Went Wrong Say
+Let's give it to him. Ok? So here we are
+As soon as the data comes, we will do it here.
+We'll take it and then we'll have a toast here again
+We will come here and copy this.
+There is an error dot here.
+I will message him, he will not do it.
+Later, okay, so we did it and
+What will we do to simplify it here?
+We will fetch the job, okay it is ours
+The job will be fetched and what can we do?
+I will give this job to
+We will pass the jobs here. Ok?
+So, he will say that we did not get any job.
+remained. So, I would say here that jobs will come.
+We have. Again we need to type define this
+Will have to do it. So, I say here
+Interface and I would say interface jobs
+Props and what do we have here?
+Will you come? So, will Jobs. So, its type will be
+I
+Job. Ok? Ok? We already have this
+It was made there. Ok? Ok? This much
+We will give it right now. But this will be mine
+Array of object correct. So that's why I
+Gave the array here. And I will tell this
+I hope brother, this will be of this type. So
+Now he will accept things. than we
+What can people do here? in loop
+You can show it by running it. So here we are
+What will people say? Job dot length a greater
+If the day is zero, then what are we here for?
+Can you do it? A
+Yes. So here we can show our A
+There is what we have to show. Ok? Or else
+We'll show you what we have to show you in Else.
+We are here. Ok? So here the diff
+We will see what they will show us now. No Job Count
+Let's write it here also. Ok? End
+What do we have to do here? So here
+But we have our own again, I say here
+Table Job This one is our job dot map
+Let's do this and then we'll have it here.
+jobs sorry this job is fine and here we
+People can write down what they will do.
+Our so here what should I say on the table row
+which this is my table row table row this was
+Our table row is okay and what's in it
+I will say that I, so what what
+Let's give my job dot ID. Unique
+Will have to give. So we have job dot ID
+It is already there. So we provide that to him
+I will get it done. Let's take the table cell. here
+We already have it
+Div dot dot dot here. Ok? So this
+We have shown the table cell here. Whose
+For? For your job title. Ok? So
+It means that the job title will look like this.
+And so this will be mine, which one? of job title
+Cell of your table. Ok? So this will be the job
+Title this one. Ok? In the same way I
+Let me take another one here. table cell ok
+Is. What do we have to show here?
+Location. So here on Div
+Dot location. So what will remain of me?
+The one with the location. So we have this here on job.com
+Location shown location. Ok? So we
+What did you do here? Your location here
+I showed it. So here we have this one
+Took icon from Lustful Act. So here
+But what you will see is this one from the Lustful Act.
+Icon and then your job location. So if
+Save us guys. So here it is something like this
+Will be visible from. Software Engineer These Skills
+Is. I mean showing three skills. His
+Later we are showing dot dot. End
+Where is the location? Whoever is here
+The location will be. And then we are here right now.
+And let's show it first. So I say
+Hoon here table cell than dev job type.
+Ok? So here we have shown the job type.
+Gave. Here we have to show
+Variant. So variants do one thing.
+Variant Normal, we do one thing
+Let us define this. so we have
+It is useful here, isn't it? So do it here
+Are. Ok? So I say export.
+an export function
+And what is this? A what is this? a job
+Type. Ok? So here it comes to us
+Type. This will be a string. Here we are
+Will install switch case. The switch will come here
+Type. Will come here. Here I will be
+Secondary. Ok? So this one is secondary.
+We just keep the beans here. So this
+There will be job type variant. In a way what
+will be? Suppose that when it is full time then some
+This way the default return will occur. Part
+If there is time, something like this secondary here
+There will be payback. So we have a job here.
+We do. Let's copy this. here
+Paste and import it
+First. And we will pass it here.
+We give. This job dot job type. So like this
+From. Ok? So if you look, so here
+Pay will show something like this full time. Some?
+Like this. So kind of fancy type
+To show. So we showed it here
+Like this. And then we give it another thing
+You can do that which is just shown in full half time.
+Used to be. If you assume that this is constant
+Put it in and put the switch case in this way and end
+Assume that when it is full time then the icon
+Remove it and show it like that full time. Correct
+Is? So we can do this. But right now
+We keep it with us. So here I am again
+I take the table cell. Ok? D here we are
+What will people do? I will show you my A. What
+Is it ours? After this salary range it means that
+Mean and Max we have to show both.
+So let's do one thing. a function for that
+Let's make it. Ok?
+Export function so dot to local screen
+Let's tell him this. Ok? So we got this gate
+Made of salary range. And do one thing
+Are. I say here, get sorry here.
+PayGate imports salary ranges. End
+What do we have to pass here? Who
+We made it here on Mean and Max so
+What do we have? Jobs.meansSaleJobs
+If we pass this dot max sale then our
+What should be seen near there, here in this
+In such a way that the salary is between so much and so much
+Salary will be available in the range. Ok? like this
+And again, we take the table here.
+Sale status. We are here to do our job
+Will show the status. And again we have here
+What do I have to show? Variant. So Again
+For this we do one thing. Ah one
+Let's create the function. Ok? So here
+function get job
+Variant. Ok? It will come to us here
+There will be status. The string will come to us and
+Here switch secondary. Ok? So this
+Same ah so here we have the same now which this
+It was made in the same way that we are here
+They are also taking status. and get a job
+Variant here we call it end
+Job dot status. Ok? So here we are
+Passed it. And if we come here
+So what we see is that it's open like this.
+From. Ok? And this is perfect right now. So
+Let's refresh it once. So who is this
+Is there any error guys? Which one is this? Ok. say this
+You can't use divs instead of tables
+Inside. So people will see that. Later
+Will remove this div. Here we have some more
+Will have to use it. So we have to work on that
+I will have to. We have shown the status. Now
+What do we have to show? here a
+Status a posted date we had to show. Ok
+We made a mistake. One more to show us
+It will fall here. So let's do one thing. This
+Let's copy. Let's paste it. And this
+We remove it. Looks simple here
+We give. I say job dot dot
+Created at we show it. End
+Here it is. And here it says
+Function
+Get date and here we go
+We will get a date string which will be
+This string type. Ok? And is it okay? So
+This will be my formatted
+Date. Ok? So now we have it here
+Let's use it. Simple, no more problems
+Should not happen. I use it here
+I have been. Dot created a created at okay.
+I think we typed it here.
+What's nearby? Created at not created
+It will be et. So created at will be here.
+Ok? So I think this is perfect. If we
+If people look now, we have a view here.
+Needed Yes, this is what it looks like. Now we the people
+Let's create our action here. Table
+Cell End Here Div W Here
+We also increase its width to four. So
+Will this remain mine? Actions button. Correct
+Is? It's simple. button now anything we have in this
+It is not written. So here we have
+There is view, edit, and delete. these three
+We have action. So what we have now
+Does it look like this? So let's do one thing
+Are. I will add a class here.
+Am. We will have class here.
+Class name then I say cursor
+Pointer. Ok? Simply add it to everything
+Are. So basically the hand will be visible in it when someone
+If he overdoes it. Ok? So do it here too
+Are
+Pointer. Ok? Now if you look at it like this
+Will be visible from. Ok? Which better to do here also
+We will give it. Here we have a button
+I will make this the last of all jobs, sorry.
+debtor
+Pointer. Ok? This is how we here
+It will appear that this is a better way. Ok? So
+Now we have so many jobs here.
+If yes, they will be listed here. Ok?
+And here I say on
+Where to click, what will you do on click?
+Here on Const
+What should I do here? ok one thing
+Basically what do we do here?
+We will send you here
+a create job
+handler which will be a function okay end
+We will call you here when it happens.
+This is on click
+Okay here, so here we are near here.
+We will do it and we will tell you about it here.
+We will tell you that brother, this will also come to us as the
+Props. So we passed this. So now
+What is there here? It's perfect. Ok? So
+We can define it here.
+Where to create job handler? So here
+Pay. Ok? So what will I do here?
+Let's turn this off.
+const create job handler end here pay end
+Simple, what will we do here?
+Basically we do one thing here.
+End Use Router from Next Navigation End
+The router will push it. Where?
+Where will this go? Where do we need to send it?
+So where are we here? already
+I am on the job. So I'll tell you to go for it
+Where to go? Create Pay. Ok? Job
+Create and I will pass this here.
+Give.
+Ok? And what will happen here? Here
+But what will we have? It will be here
+Recruiters.
+Ok? Create here. So what about here
+will be? When you click on this, it will go somewhere
+Will this get pushed on? On this. So here when
+Let us refresh once. So now when I
+If I click here, where do I go?
+Will I go? On the job creation page. Ok?
+And when someone is created from here, then where will it be?
+Will he go away? On your list page.
+Ok? And here he dates her
+It will be visible after refreshing. So it is ours
+We will remove the action for now.
+Are. Ok? Let's remove it. So this is our
+The listing is done. So we have a
+Let's work. We will close this as well.
+Are. And here we have all this action.
+It is there now. Ok? So we have a task to edit.
+We do. Let's work on this first. So
+So let's come here. Ok? A here
+This is how we create it, isn't it?
+I will create a handler here. Ok?
+Edit Job Handler. Ok? Edit Job Handler
+It will be mine. And where will the job go here?
+Edit is here, inside the job, edit and
+Here we have to pass its ID
+Okay, so here it will come to me ID and
+Which will be string type and I here
+Let's do one simple thing, use back tick.
+Let's take it here and here and I
+What will I do here, pass this ID to him?
+Give. okay so the job that he edit
+He will use that data there.
+Will go. So let's do one thing, let's do it a little bit
+Let's format it. here and I
+Here I say edit job handler. Here
+But let's pass it. Ok? So here
+But let's move on. Again, we would say here
+Yes, this will also be a function.
+And this is a type defined basically
+We assumed that the function would be of type . Butt returns
+Will not do anything. It will remain void. Ok? So
+Edit will be the job handler. And simply we are the people
+What will you do here? where is it here now
+Is my action gone? Here it is. On click, we
+People here. Ok? Yes. On click we
+People will pass it by. Ok? So here
+But when we come, we will refresh and see.
+what if we do it on edit
+Is he going to edit or do we have to do something else?
+Will have to. Let's see. So this is ok ok ok. Now
+We were not allowed to pass here. Basically we
+What to do guys? Here here here we
+This has to be called. And here we get a job
+Dot ID has to be passed. And what is he saying
+Do we have it? Expected zero.
+Expected zero not a
+One second. Yes. So he will come here. So here
+What will happen when it comes to me? ID
+String.
+And here if we back it up
+Refresh it once. And I'm here
+Should I edit it? So where did it go?
+JobsEdit. ok I forgot to put the slash which is
+It's the right thing. We did not give a slash here.
+These. Ok? So if you put a slash here
+So where will you go? Let's see where
+Let's go? Edit job wala pe. Ok? Now
+Edit the job that we created here.
+A edit sorry this one edit page this one. So
+What do I do here, that job?
+I'll call the listing guy right away.
+For
+No job a create what is our a sorry
+Let's take a second and look here.
+Did we create this job here?
+I'm calling the form, I'm doing a job.
+Sorry for the form
+We would have called the job form here.
+Yes and here it is okay so we have job form
+and if we just
+If you look at it, we have something like this
+Will go. But we have this URL and this
+It is visible. So, from this data we have
+People can patch any job.
+Correct. So we will do that now. So this
+I am going to edit now, so I will do this after doing it.
+Diya here. Ok? This is the one who creates
+Was. Ok? But this edit of ours
+It will be a second. This is our edit.
+will be. So send a type to us here
+We will type it. Ok? so type this
+What will happen in the case? If going from edit then
+It will be edited. End
+What do we have to do here? Data also
+Let's do one thing. They just send the data.
+Ok? So let's do one thing. I am here
+I say you should make the export default limitless.
+Ok? End Cost Data Get Job By ID.
+We had already created our own job action. End
+Will he come to us here? Params. Correct
+Is? Because we are sending people here.
+This is the parameter we are sending here, ID.
+So it will come to us here. So here
+I will send it. But first we wait for this
+We do it. Ok? End
+Here we say if the data
+Dot status assume that is not true. So
+What will we do? Simple and
+data dot ah data dot data sorry rush kar
+Let's give it to him. Ok?
+And let's put rest here rest dot
+Data Dot
+What will we do if the length becomes zero?
+People return from here, simple one
+Let's take the div and I'll say no to it.
+No job found okay and import this
+Let's take it, this is imported ID for us.
+You will have to pass it which we have here
+will fairs come
+And let us do one thing, I define it here.
+I do it
+A edit props. Ok?
+What will we say here? In this
+What will come to us? whose ID will be
+The type will be params here.
+Whoever has a promise will end here
+What? The ID will be of string type. End
+I will tell it that its type will be
+These. Ok? Ok? It means that this
+There will be a promise.
+So here we call it cost ID.
+and await
+Payms. So I removed my ID from Param.
+I have been. I am passing the ID to him. Correct
+Is? ID. So it will say that you string
+Is. You are sending the number. You are doing this.
+So I did this. Get Job ID Tax
+Gave. I don't have a job. So I
+Sent this here. And then we are here
+What will you say on this?
+What do we have here in the default value?
+Will you give? Job. Ok? So we passed it
+Given the job form. So if we have both of these
+I passed it here. So come here in this
+Let's go once. And here we have
+Will come. So basically here is the interface
+The job props will come to us of type string
+will be. And what else do we have here?
+Pay? A second one we have this default one
+This is called value values. And here
+If it happens on this then it will be okay. But this will happen
+A of this type. Ok? This will be an I job
+Type of. Ok?
+And I will tell you that whoever comes here
+Type
+The default value will be its type
+Basically what this will be is a sorry for us here
+I will have to do job data, sorry for this.
+Let us say here that we have the job data right.
+Because it is already defined. So
+Here I send it this way. And this
+What is he telling us? The gate is saying
+Job Buy It. What is he saying? A Cannot
+Find Job. If you can't find it, OK.
+I will send him a reply saying sorry. Ok?
+And now he must be telling us what all
+saying status ok response dot
+Sorry, we have to send the data here.
+Will have to. Then he will go and accept everything. So
+Now we also have type coming here.
+End job data is also coming. So now we are
+You can work here. Ok? a job o
+[ __ ]
+Guys this is what happens so let's name it
+We call this A-form data.
+No, is there any form data here?
+The form data is already there, it is not here.
+So here we call it
+Form data OK We will send the form data
+People from there could have said this much here.
+is this form data form data okay so
+Now it is perfect, we will have the type.
+What type and where is it coming from? From Create
+It can come here or from edit.
+So, this is our end form data.
+Near. Ok? Let's come here. So, a job
+We do. What do we have to do? This
+Will have to update. So, what are we here for?
+Can you do it? So, let's do one thing. I
+I say use effect here.
+And it will come to us here. Ok?
+So, what will I do? If Type Equal Edit
+End of data. Ok? If I have it then
+What am I going to do? Form dot reset.
+Ok? So you can reset the form.
+We people. And in reset we are here
+What to do? This is the form data
+We will give him this form data.
+Ok? Sorry. This is how we will do it
+That like this. Ok?
+And what is this telling us? This is saying
+That's ok. So let's do one thing. here we
+People also give default values. So
+And this will tell us that it could be of this type
+is string assignable to type date and somewhere
+There is a string somewhere and there is a date, that is the problem.
+Must have been. Ok? So basically if we
+If you look here, this is the date. We people make this
+Let's string it now. Ok? And this
+He will call us again. So we see all that
+Will take. A so perfect for now. So
+If I give it to you this way, then take it.
+I will take it now. Ok? But give it to us here
+You will have to specify that the type of form data when this
+Change Ho and Form. So when these three changes
+If so, it should update automatically.
+Ok? So this is ours, if we now
+See. So if I refresh this now
+So let's see if the data is fetched now.
+No.
+Ok. So come here once. here
+Let's see if we have received the data.
+No. First, the data is our API call.
+Gone is the guise. Let's do one thing we have
+Here on A here on we have job response
+The dot must have come in the data. I hope then here
+He has come here. And here we will have
+Form data. So let's do one thing. see
+What is there here?
+End Form Data in Form Data once
+Let us refresh it. Ok?
+So here in the job form we have this
+Has come. Ok? Ok. OK OK OK OK.
+Because this is an array of objects. So now
+For this we do one thing. I this
+I am giving the object with zero. Ok?
+So he will not accept it now. A here
+We basically do one thing. Let's go now
+If I change it here, then that is for type
+It will create trouble. So I'm going to do something here.
+I will give it to him. Here we are for now
+Send zero. Data with zeros. Correct
+Is? I am sending it for now. But
+We will see now. Look, he has come, right? So Sarah
+Something came to us. here we have
+Look at all the data we filled in.
+He came here and felt it with us. End
+What can he do from here? Create
+Can update. We will change this too now
+Can do. Because we have the type
+Already. And I can change this too.
+Am. I can change this also. Correct?
+So we will do that.
+Ok. So we did this. This is what we have
+The date is coming, so here we are
+I am doing the get edit job. So
+Here we call it dot single.
+That will be much better. And we have here
+We won't need to pass this
+Have to give zero. And here we also need length
+Will not get it. Now you will get simple data. So
+Let's not mark this one too. Ok? So I came
+Think now if we look here then this
+It's perfect. And then what are we here for?
+Can you do it? Now we have here we
+Where did you come from? A job form, right? yes here
+Pay. So here's the submit handler. and this
+Look, this is the title we have.
+A here A so here we have. So I
+What can I do here? Type. Ok?
+I call this type.
+Equal equal, suppose it is edited, then what?
+do you
+Else show this here or else this
+show okay okay like this here we
+what will you show
+job is ok edit job and same here also
+can you show it okay show it here
+You can fill the details here.
+to edit
+So in this case you can show it simply
+This is what I call different text.
+from end I will say type if equal end
+Equally, suppose it's an edit, what do you do?
+Show me something else here, otherwise what is there
+Let it be like this, okay, say it like this
+Let's give this what I call an update here.
+The details for the job posting look exactly like this:
+Let's tell him that this will happen and it will come.
+My perfect. And in the same way we have
+There is also a Pay button here. Ok? So here
+We have a button, where did the button go here?
+Our?
+This one. Ok? So here we are showing
+I'm creating jobs for now. Correct
+Is? So we can change this also.
+Here I say if type equal. Correct
+Is? I'm saying edit. Edit is here
+Show on
+Show me the submission. Ok? Show this in Else
+Sorry I think that's how we do it. Ok?
+So this will be mine. Ok? then it will be submitted
+So we can show it like this. Otherwise, we
+People can show it here. And then here
+Pay we have this creating. End
+Here, what can we do in that simple case?
+Will you give? What do we have here? creating
+If it is there then we will leave it as it is.
+Creation will continue here. here
+We will say updating.
+We will remove this. This is our perfect one.
+What is left for us now? Now it remains for us that when this
+If it is submitted then where will it be submitted
+Submit? The submission will happen here only, right? Here it is
+We have our submit handler here. right here
+He will come to pay. He will come here to do this.
+Job Date Our everything will remain here. here
+It is happening to us
+Which will be an add update. Correct. So right here
+We can do that thing too. So right here
+We already have the type. Here if
+Type is Equal and Equal Edit. So you are this
+Do what you have to do in Else
+Here. And let us do it like this. Correct
+Is? So what do we offer here?
+Here they do one thing. This is how
+We will have to write. Ah let race equal two
+Let's just tap it for now. Ok?
+And we will define it as any. But
+Let us give this here right now. A
+Sorry and we will throw this out as well.
+Are. Let's simply keep it out here.
+Ok? This will be common for everyone. That too us
+People will change. And we will have this
+Here. Ok?
+Let's put it this way. And here at this
+Kind of because we already have race defined.
+Already done. If there is an edit, edit it here.
+When the job is edited then what will we have?
+Will I have to do it here? Look here we
+This was our editing job, where did it go? These
+remained. So we also have to pass the job ID here.
+Will have to do it. So how do we pass here?
+Can I get a job ID? So where did it go here?
+Sorry, this is not it. A, where did this go? Sorry
+A is this it? This is an edit job, so the job data
+So we are already giving it. So we have a job
+You will have to pass ID. How do we get Job ID?
+can give? We have user dot ID
+It is already there. So that's our a sorry no
+You will have to provide your job ID. So
+Job data and a do one thing. These
+Job Date: Here we have a job.
+There will be no data, no job data. So here
+What will we have that we have now?
+The form will be data. form data this one
+We have the form data here. So
+Form data ID. Ok? So this will happen. End
+Whatever we have here in edit job
+This data will be gone. And but we have here
+But what do we have to do here?
+Let's work. What data do we have
+Is he accepting this? Accept this
+What are you giving us? An edit.
+Payload in the job. In the payload we have this
+It should be of type . So
+We also have to pass the recruiter ID in it.
+It will be needed, which is ok, we have already done it.
+So we can pass the job data here.
+We give. It's simple. Yes, very simple
+Is. A job ID is done. A ok yes this is not
+have to do it because we are there
+Not destructuring. Ok?
+Yes, he is telling the string and number. They
+Ok. He will see the rest later. But
+When you come here, we will be here.
+If you are doing numbers then you will have to do strings
+us in the case of edit job because he
+what is it saying string is undefined also
+It is possible This is why it is said that
+It can also be undefined that it
+This will not be undefined. So let's leave it
+This will not be undefined because
+When it comes to us in an edit case,
+We will always have the data in this. So
+This will end here
+Let Message Is Equal to Type Equal End
+If it is an equal edit, then please show something here.
+like this
+Job is fine, this means we send this message
+I'll give it here okay perfect and then this
+Everything will be the same where the push is happening
+The update will go there after it is created.
+So if we refresh here,
+I will do it. Ok? This is our job
+Near. And from this I am removing a list
+I am this.
+It means that now we have only two. End
+From here I am removing the CSS. Ok?
+So look, we have two things here right now.
+We updated. Ek to skill and ek hi
+Is. So if I submit here. See
+We have a submit showing up. Edit job view
+Used to be. And now I say this from here
+Submit. Let's see what he says. Correct
+Is? So let's do one thing. Open this also
+Let's take it. somewhere in some network
+If there is any problem, we will take care of that too.
+Ok? So let's come here. I am saying
+I am submitting. So Updating and Job Updated
+Successfully our job has been updated.
+And if we edit this now,
+What will happen? Let's see here. went here
+Only two lists are visible. CSS not showing
+Used to be. So it means that our updated
+Guys, you are doing a perfect job. Ok?
+So our update job is also working correctly.
+Now and I think this is perfect. delete job
+We also make it quickly. So,
+We are closing this. Our edit
+So it worked. Job Delete Job Already
+We have an action created here.
+Whoever accepts it will have a job ID.
+So let's copy this. We have here
+Isn't it on? So let's make it here. So I
+I say cost and I am saying this
+that delete job handler. Ok?
+And I call this a sink.
+And here I say cost race end
+Sorry, I deleted it, not edited it.
+Delete this also, accept this job ID, right?
+Yes, sorry, I copied the edit and deleted it.
+job I am saying here and this
+We are importing it, what do we have?
+If you want to do job ID then it will come here.
+Pass ID
+Which will be any string or number.
+If there is only job ID number then I will pass it.
+what is this telling us that yes
+This will be the number. Ok?
+There will be a number. So I am passing this on. End
+Now look I'm saying if rest dot a
+Sorry, I will have to wait for this.
+Ok? So what will I say to this? Rest
+dot status if suppose it is true then what
+Will you do it? Suppose delete is true then that means
+That job got deleted. So what will you do now
+You will like the new job. So simple
+What should I do? Please call him. So what
+Our own job updated app will come
+Will go. We will pass it from here.
+Delete Job Handler and then click here
+Will come to your listing. We tell this to the people
+I will give you that sorry
+This will happen here. And again it has our
+will have job ID and return it provided

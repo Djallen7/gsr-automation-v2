@@ -1,0 +1,211 @@
+Robic just shipped a new feature for
+Cloud Code called agent view. It's
+supposed to let you run a bunch of AI
+sessions in one terminal tab and manage
+all your agents from a single dashboard.
+I tested it for 6 minutes and I'm never
+using it again. Not because the buttons
+look ugly, not because I had a bad day.
+I'm never using it because while I was
+testing it, I found a way for this thing
+to silently burn through your API
+credits or eat your max plan rate limit
+while you sit at your desk thinking
+Claude is turned off.
+Here's
+what Enthropic says agent view does.
+They published four things. One, you get
+one terminal tab that manages every
+parallel session with little status
+indicators. Yellow means the agent needs
+your input. Green means it's done. Two,
+you press the left arrow from any
+session and jump right back into the
+dashboard. Right arrow takes you back
+in. Three, you can drop the session
+you're already in into the dashboard by
+typing slashbg.
+And four, and this is the part everyone
+is excited about, you can type
+slashgoal, give it an objective, and
+cloud will run autonomously until it
+hits that goal. Think Carpathy's auto
+research loop, but baked right into
+cloud code. So, I ran a test. I gave it
+four tasks at the same time. a research
+task on captioning tools, a code audit
+on one of my repos, a vague request to
+draft a LinkedIn post, and a synthesis
+task to summarize a folder of
+documentation, four real tasks, four
+parallel agents, one window. The kind of
+thing this feature was built for. First
+problem, the four agents were all in the
+same folder. They shared the same disk,
+the same working directory, the same
+everything. One of them, the code audit
+task, came back and told me there was no
+source directory in the folder I gave
+it. And it was right because I'd given
+that prompt to the same folder as the
+other three. Four agents, one folder, no
+isolation. They were literally about to
+start writing on top of each other. This
+isn't a dashboard for parallel work.
+This is the illusion of parallel work.
+Second problem, every running session
+has a little colored asterisk next to
+it. And the asterisk flash constantly
+like a Christmas tree had a stroke.
+After 2 minutes, my eyes were exhausted
+and I was getting pretty annoyed. I
+cannot imagine looking at this screen
+for an 8 hour workday. Whoever designed
+these either forgot that humans have
+eyeballs or they were testing it on a
+phone they could put face down on the
+desk. There is no setting to turn the
+flashing off. It's just there forever
+looking at you. Third problem. The four
+tasks I gave it were the kind of tasks
+you would normally run one after
+another. Research a thing, then audit
+some code, then draft a post, then
+summarize a folder. Sequential work.
+Now, you could argue that parallel is
+faster. Sure, except they were all
+fighting for the same CPU, the same RAM,
+the same disc, and the same folder. So,
+they got slower, not faster. The whole
+point of running things in parallel is
+to take advantage of separate resources.
+There were no separate resources here.
+It was the illusion of parallelism.
+Quick reality check. This is the part
+where most people stop watching this
+video and go install this thing because
+Anthropic shipped it. Please don't. The
+actual worst problem isn't anything I
+just showed you. It's coming up next and
+it costs real money. Here's the one that
+should have stopped the launch. I ran
+one final task. I gave the agent view a
+very simple task. Count one number per
+second. Then I quit my terminal. Not
+closed the tab, not closed the session
+window. I quit the entire Ghosty
+application. Completely closed. Then I
+opened Ghosty back up in a completely
+different folder. Typg. and the counting
+agent was still running, still counting,
+still burning compute. Enthropic puts
+this right in the empty dashboard. They
+tell you, quote, "It keeps running even
+after you close this terminal." End
+quote. What they do not put on the
+screen is what this actually means. If
+you use the API, your wallet is now
+exposed. You can think you turned clawed
+code off when you close the terminal,
+but the agent is still running. It was
+running a /goal loop that didn't
+converge. That loop will iterate for
+hours. You are paying for every single
+token. And if you're on a max plan, your
+rate limit is being eaten invisibly.
+You will hit your cap at 3:00 in the
+afternoon and you'll have no idea why.
+There's no system tray icon. There's no
+menu bar indicator. There's no
+notification when you quit that says,
+"Hey, you have an agent still running."
+There is no are you sure you want to
+close this terminal while agents are
+alive warning? Nothing. The only way to
+find out the zombie agent exists is to
+remember hours or days later to open a
+new terminal and type clawed agents.
+Then you discover the corpse you forgot
+you started still happily eating up all
+your tokens. Now look, I want this
+feature to be good. The idea of one tab
+managing my agents is great. The idea of
+/goal running an autonomous loop
+overnight is great. The execution is the
+problem and the execution has a specific
+kind of problem. It's a research preview
+which is engineering speak for we
+haven't built the boring parts yet. So
+let's ask the question Anthropic should
+have asked before shipping this. Who is
+this feature actually for? It can't be a
+beginner. A beginner is not in the
+command line. A beginner is using the VS
+Code extension or the claw desktop app.
+Beginners are not running four parallel
+terminal sessions. They're trying to get
+one chat to work. So, agent view can't
+be for them, which means it must be for
+the advanced user. Except every advanced
+user already solved this problem. We
+already have terminal multipplexes. We
+already have parallel work tools. We
+already have desktop apps that wrap
+cloud code with real isolation, real
+notifications, and an actual menu bar
+icon that tells us when agents are
+running. The advanced user does not need
+this, especially not in a version that
+can leak tokens overnight. So, this
+lands in the worst possible middle
+ground. Too technical for the people who
+need it, too underdeveloped for the
+people who could use it. Now, here's the
+part that matters. If you are already in
+the anthropic ecosystem,
+none of these failures are fundamental.
+They're all fixable. Enthropic could
+ship a notification icon tomorrow. They
+could add a quit warning tomorrow. They
+could put each agent in its own
+subdirectory tomorrow. None of this is
+hard. They just did not do it before
+they shipped. And until they do, using
+this is a bet against your own wallet.
+So, here is the verdict. Skip this
+update. Don't turn it on. Don't slg
+anything. Don't sl anything. Wait until
+Enthropic adds at minimum a menu bar
+indicator, a still running warning when
+you close your terminal and folder
+isolation between parallel sessions.
+When all three of those exist, come back
+and try again. Until then, the four
+agent dashboard is the four agent zombie
+generator. And no productivity gain on
+Earth is worth a runaway agent burning
+your credits while you sleep.
+What's the worst feature an AI company
+has ever shipped to you? Let me know in
+the comments below. This is a small
+channel and that means I read and
+respond to every single comment
+personally. If you want to see more
+videos just like this one, videos that
+cut through the noise and get to the
+practical application of AI, hit the
+like button. And if you want to see more
+of my content in your feed, hit the
+subscribe button. The bell will notify
+you every time I release a new video. I
+hope you found this video useful,
+interesting, or at least entertaining.
+And from the bottom of my heart, thank
+you so much for making it all the way to
+the end. and I will see you in the next
+one. Thank you so much for watching one
+of my videos. Hit the like button and
+then I've got a couple of sweet videos
+that I think you're going to like. I've
+got one here and another one over here.
+You're going to love them.

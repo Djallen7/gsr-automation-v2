@@ -1,0 +1,712 @@
+I've always wanted my brand to have a
+strong visual presence when anyone comes
+across my content or my website or my
+products. You know, like the vibe that
+you get when you walk through the
+storefront of a shop in your
+neighborhood. But my writing and my
+videos can only do so much to set that
+tone. And so I've always tried to create
+strong visuals to complete the
+experience. The problem is I'm not an
+illustrator and I don't need just one
+great image. I need dozens and I want
+them all to follow the same visual
+aesthetic for every page, every piece of
+content that I publish. Well, it's 2026
+now so you would think that AI image
+generation would make this easy. And the
+models have gotten really good at
+creating one-off images. But what I need
+is a repeatable system. Something that
+can maintain my brand aesthetic without
+re-crafting these complex prompts every
+single time I need to generate a visual.
+So I spent the past week and some late
+nights trying to solve this. I created
+this complex automation workflow using
+N8N. You know, nodes connected to nodes,
+API conditional logic everywhere. And
+when I finally got it all hooked up, the
+output was
+garbage. I scrapped the whole thing.
+That whole week of work gone. But then I
+rebuilt it as a Claude Code skill and it
+only took 30 minutes. And I didn't just
+rebuild it, I made it better. Higher
+quality output and it's way easier to
+maintain. So today I'll tell you or I'll
+show you the story of how I
+over-engineered what seems like a simple
+problem and it's a reminder that Claude
+Code skills might be the most underrated
+feature in turning AI into repeatable
+business workflows. And hey, if you're
+new to the channel, I'm Brian Castle and
+I help professional builders stay ahead
+of the curve with AI. And every Friday I
+send my Builder Briefing. That's a free
+5-minute read where I give you my take
+on what's actually working right now.
+You can get yours by going to
+buildermethods.com.
+By the way, if you're serious about
+adopting Claude Code here in 2026, my
+new course Build with Claude Code is
+available now for Builder Methods Pro
+members. All right, now let me show you
+what happened. Okay, so I'll start by
+showing you the final output that I'm
+actually using now here on my Builder
+Methods site. So this is, you know, the
+homepage and I've got this visual of the
+computer and the coffee here on the desk
+and let's see if I look at a Builder
+Methods Pro, you know, now like the hero
+section has a similar vibe, you know,
+like a professional builder's studio.
+The desk, we've got the chair, the the
+plant in the background. If I take a
+look at the new Build with Claude Code
+course page, this too has, you know,
+some visuals, a a different plant there.
+And then as I scroll down, you know,
+we've got additional illustrations and
+objects that help to support or offer
+like metaphors or visuals that go along
+with the content that I'm showing on the
+page. Each of these illustrations
+follows a very, very similar
+illustration style. They all have a very
+consistent level of detail, the use of
+color. It's all the same, you know, and
+and it has the same look and feel. It's
+also feels like they're all pulled from
+the same visual world. And you know, it
+took me a really long time to develop
+and land on the exact style that I want
+and then how we can actually like
+describe the style and sort of codify it
+into a brand visual guideline. So what
+I'm going to show you here today is the
+entire process that I went through to
+get to the final output that got me
+here, right? So I'll show you the, you
+know, multiple days of conversations
+that I had with Claude just to develop
+the visual brand, the visual world, the
+guidelines. I'll show you some of the
+early prototypes that I that I went
+through with this stuff. I'll show you
+how I went about finding inspiration on
+Dribbble. Uh and then we will dig into
+the the highly complex N8N workflow that
+I put together and I'll show you my
+thinking behind the systems on all of
+this and how I intended for it to work.
+Uh most of it actually did work and I'll
+show you how I went about assembling
+something this complex in in N8N and I'm
+not even an
+a typical N8N user. You know, it
+interacts with the Slack account. Uh but
+then ultimately, you know, I landed on
+building it out as a Claude Code skill
+and I'll show you that as well. I'll
+walk through all of those pieces and
+sort of the creative decision-making
+process that I went through along the
+way to arrive at this. Now it wouldn't
+make sense for you to just lift the
+entire system that I created here
+because it is very specific to my brand
+and and my guidelines. But I hope that
+you'll be able to take away some of the
+ideas that went into the systems design.
+And if you're doing any sort of like
+brand visual exercise, maybe some of my
+process that went into that could help
+as well. Now before I get into, you
+know, like the technical workflow or the
+Claude Code skill, I do want to
+emphasize how much time I actually spent
+just creating the guidelines for for for
+what, you know, landed me on these final
+visuals. I did that using a basic
+conversations in my Claude account. This
+one here is extremely long. You can see
+how how long it is. I actually put it
+inside of a project called Builder
+Methods. So all of my projects, all of
+my creative writing or planning or stuff
+that I do for the Builder Methods
+business and brand, I do that inside of
+the Builder Methods project in my Claude
+account so that it has all the memory of
+of what the business is all about and it
+has the history of all of my
+decision-making that went into it. Um so
+my very first prompt was this, right?
+You know, I want to develop a visual
+brand identity for Builder Methods. I
+want to publish a lot of content
+including articles, workshops, courses,
+um and I want visuals. That was like the
+rough concept that I had in my mind,
+right? Of of I just want it all really
+well connected. So then I just went
+through a really long back and forth. Uh
+this is Claude being a thought partner
+for me. First I'm just saying like how
+should we even go about starting this
+whole process? That was my very first
+question to Claude, right? And then we
+just sort of like engaged in this back
+and forth where I I'm asking Claude to
+suggest some ideas and then I'm giving
+my reaction to those. Like I like this,
+I don't like that. It asked me questions
+for, you know, what what I like or and
+and how how things fit together. And you
+know, before we even get into the visual
+aesthetic part, this first one is really
+just about defining the brand, who I
+speak to like on my YouTube channel and
+and who I create things for, who I want
+to resonate with, who who what I'm all
+about. Ultimately what what we're
+creating is a visual identity system and
+we're sort of like building a a world.
+We're we're telling a story if if you
+will, you know, and we and we sort of
+landed on this concept of a day in the
+life of a builder, right? And sort of
+defining some constant things that you
+would see in this world like the home
+studio, the notebook, the mug. Um and
+ultimately these should show up as
+little pictures that that appear on the
+pages or on a thumbnail or or on a
+workshop. Let's see, these three the
+main artifacts that came out of of this
+part of the process, right? The first
+one that I want to highlight is kind of
+the Builder Methods visual world. So I I
+like this as a very first artifact to
+try to get to. We're not describing how
+things look. What we're defining here is
+like the subject matter, what the types
+of objects or scenes that you might see
+in this in this world. So that's the
+world definition and you know, just to
+show you sort of like the level of
+detail that that this goes into. Okay,
+so that's the the visual world. You
+know, an another key part of this system
+is the process by which we decide
+what to actually illustrate, right? So
+for each little piece of content, I not
+only want to have the AI generate the
+actual image, but I also don't want to
+be the one responsible for dictating,
+okay, we definitely need a mug sitting
+on a desk next to a pair of headphones.
+Like that's a lot of mental cycles that
+A, I don't want to spend the time doing
+that and B, I don't necessarily come up
+with the most creative ideas. So then we
+we arrived at this artifact which is
+called idea to illustration mapping
+guide, right? So we've already
+established the visual world and the
+concept the the day in the life of the
+builder, but this is the guide to take
+the piece of content that I'm giving it
+or the landing page or wherever I need
+an illustration, analyze what that
+content is all about and the topic and
+who it's for and what I'm trying to say
+and then use this guide to decide or
+suggest or pitch concepts to me back to
+me on what we should convey in the
+illustration. What what should the
+actual object or the scene be, right? So
+we've got like literally like decision
+process for like what is the core idea,
+how do we choose subject matter from our
+visual world, how do we choose specific
+objects and then some like example
+mapping. So like if I'm doing a thing
+about prompt engineering, then maybe
+there's going to be an image about chat
+interface. You know, I I talk a lot
+about spec-driven development. If the
+core concept is spec-driven development,
+then maybe the specific objects that we
+show are like an open notebook or or
+wire with wireframes or notes or
+planning before building is the concept.
+Uh so we need objects like a blueprint
+or an architectural drawing, you know,
+things like that. Okay, but then we come
+to the actual visual style. So this
+artifact is called illustration
+aesthetic guidelines and this sort of
+like locks in exactly how each
+illustration should actually end up
+looking. Now how do we come to this? And
+this this took the most time really. You
+know, I started this process by, you
+know, scrolling through Dribbble and
+getting some some ideas. Also through
+this through this long conversation, I
+started pasting in some images that I
+found on Dribbble, like things that I
+liked and then having Claude sort of
+send back to me like its description of
+of what these different styles are. So
+then I can use these descriptions that
+Claude helps me to to craft and I can
+use those to then sort of prototype what
+the actual AI-generated illustrations
+could end up looking like for Builder
+methods. So that's when I hopped into a
+Google Gemini, you know, just the
+straight like Gemini chat product here.
+And so it gave me like some some options
+for me to to sort of consider and then I
+asked it to all right, let's run with
+this option and see what that looks
+like. You know, and then we started
+playing with different colors and
+different levels of detail. This one was
+kind of cool and different, but then as
+we sort of move move along into the into
+the process, we're just exploring and
+trying different styles on to see how I
+feel about them. And the way that I'm
+I'm evaluating these is a like obviously
+do do I like it? Do I think that it fits
+the general feel? But also like is it a
+style that can expand out to many
+different images and you and be used in
+many different situations? Is it
+flexible? Another thing that I'm looking
+for is like is it distinctive? You know,
+does it look super AI-generated? Does it
+look very typical to things that we see
+all over the internet? Um
+you know, some of these were were
+interesting. Let's see if I move along.
+So this was another direction that I
+started to kind of like a little bit
+more like pixelated, the thickness of
+the lines. So we went through like
+different iterations like how thick and
+how consistent should the lines be? Just
+going deeper and deeper down the rabbit
+hole. You know, but ultimately we we
+start to land on something that looks
+good. Now, by the way, I tried to see if
+I can get Google Gemini to generate a
+truly transparent image and I couldn't
+actually. So
+it thinks that it's creating a
+transparent image here, but it's not.
+Like the checkerboard is actually in the
+image, which is not helpful.
+So AI generation will generally just
+create, you know, flat PNG images. So
+that's the guidelines piece. So once I
+was happy with that, then I moved into
+the next phase, which was to start to
+build this out as an N8N automation. My
+goal with this was to have a Slack
+channel called illustrations and you can
+see these were like all of my tests,
+where I could just put in a simple
+message like, "Hey, I need an
+illustration for a LinkedIn post about
+morning coffee rituals." I was just
+doing these like test examples. And then
+have the bot, you know, respond back to
+me and then pitch to me three
+illustration concepts
+and then I can reply back with A, B, or
+C and then it'll go ahead and and
+generate that. Behind the scenes, this
+whole chat is powered by this N8N
+automation. So my goal with this, number
+one, I want to only be able to use
+Slack. I don't want to have to like open
+up N8N every time I want an illustration
+or anything like that. I just want to be
+able to chat into into Slack and and
+then get some options back. I will sort
+of walk through how this all came
+together, but I just want to tell you
+that like I am not an N8N expert by any
+means. In fact, this was the first big
+project that I ever really worked on.
+How did I actually go about building
+this, you know, not being an N8N expert?
+Well, I used Claude, obviously. So this
+one, no, this one is my conversation
+that I had with Claude and the way that
+I set it up was I just put this, you
+know, on the side and I put N8N over
+here, you know, it looked like something
+like that. And and I would, you know,
+just be prompting and talking to Claude
+on the left side while I build out the
+the workflow on the right. So then we
+start to actually build out like node by
+node, you know, one node at a time, you
+know, for example, like if I just open
+up, let's say this node, which is a
+switch node, you know, I'm just I'm just
+pasting screenshots of what I see in in
+N8N into Claude and then it's it's
+telling me like, all right, fill fill
+out this configuration or we did that
+for every single node in this workflow.
+I'll walk through some of the logic for
+how we put this together. So we start
+with a webhook, which comes from Slack.
+So when I when I initiate this with a
+message in the Slack channel, it sends
+this webhook. Then we load in all of
+those prompts and guidelines. We put
+them into some code variables and then
+this switch is sort of handling if it's
+like a brand new request, then we're
+sort of processing that down here. If
+the request is already in process and
+now we're sort of like gathering
+information about what this illustration
+should be about, that interaction is
+happening up here.
+And this check says like do we now have
+all the information that we have that we
+need? Is that complete?
+Then those feed into, okay, now we are
+generating concepts, meaning like in
+text, giving me
+three concepts. Like it says, "Here are
+three illustration concepts." We That is
+happening here. So we have a prompt that
+says like how to generate a concept and
+then how to formulate your message, how
+to send it into Slack, and then based on
+the selection A, B, or C or if I ask it
+to like regenerate, then it can sort of
+loop back and give me another round of
+concepts.
+But once I select the concept, then we
+move into the actually create the image.
+Basically, I wanted to test out Google
+Gemini versus Open AI's image
+generation. So those are like the two
+models that offer image generation. I
+wanted to have a split where I can I can
+just tweak this to say like I want
+Gemini for this one or I want Open AI.
+I was also playing around with the idea
+of having it do multiple takes at the
+same time. So like generate
+basically giving it the same prompt and
+for the same illustration so that I can
+just choose like, all right, this
+version is a little bit better. This is
+the call to the to the actual model
+where we are like generating the image.
+Then it like sort of saves the image
+into a Google Drive folder. Then it
+sends me a message in Slack, which looks
+like this. Now here is the link to view
+the image, right?
+Now, let's see if I can view that one.
+Yeah, so here you go. So ultimately,
+>> [laughter]
+>> when you know, when it was all said and
+done, despite all of the all the effort
+that I that I put into this,
+I ended up with this and I tried it a
+few different times and you know, this
+looks kind of cool, but it is
+it's it's pretty far off from from what
+I actually want for my page here, right?
+You know, it has way too much detail. It
+doesn't even follow the illustration
+guidelines at all in terms of like what
+it should be illustrating. Like we were
+supposed to just make a picture of a mug
+on a table and I got a picture of an
+office with a with a weirdly shaded
+window, right? So you know, I thought
+incorrectly that I could build in the
+intelligence into this system. I thought
+I was doing that when I was loading
+when I was loading in all of these,
+you know, guidelines at the at the start
+of the system. And we do reference all
+this stuff in the prompts that we
+generate here.
+So, you know, I'm sure I'm sure one of
+the N8N wizards on on YouTube can
+probably figure out this problem,
+but I just, you know, yes, I got it all
+technically to work. Like it it
+technically did deliver images into a
+Google Drive folder for me, um but they
+were just way off from what I wanted,
+which doesn't solve the problem.
+So that's when I gave up on this and
+yeah, I I thought I was done with this
+whole project until I came up with the
+idea of using a Claude code skill, which
+duh, I should have done that from the
+very beginning. Now, you're about to see
+me build this out as a Claude code
+skill, but first let me quickly explain
+what a skill actually is. Think of it as
+a self-contained capability in a folder.
+So not just a prompt, but an entire mini
+system with its own files and templates
+and logic. And skills are super useful
+in application development, but in this
+case, the Claude code skill and Claude
+code itself is the actual tool for the
+job. I'm not actually building an app
+for this. Now, you might be wondering,
+how can I get Claude code to generate
+images when Claude doesn't offer an
+image generation model? Well, that's the
+beauty of a skill. I can build a simple
+script or Claude can build a simple
+script that uses Google's Gemini API or
+image gen
+or nano banana,
+whatever they're calling it this month.
+That's for the image generation piece.
+And then we can use Claude Opus for the
+interaction and the prompting. All
+right, let me show you how I set this
+up. So as I said, this N8N workflow
+turned out to be way over-engineered and
+it just fundamentally didn't solve the
+problem that I was trying to solve. And
+I was pretty discouraged by that. I I
+really thought I wasted a lot a lot of
+time on this. But then I remembered
+about Claude code skills. And so here is
+the Claude conversation where I kicked
+off that process to try this out as a
+Claude code skill. So again, I started
+by giving it my guidelines that I had
+established in the first part of this
+project. And then I gave it I would like
+to build a skill. And then Claude read
+everything and Claude used its its own
+skill creator skill that's built into
+Claude to essentially build out the
+skill, right? So you know, I
+course-corrected it a few times. Then,
+you know, Claude suggested this
+structure for for what will go into the
+actual skill itself and it laid out some
+of the key decisions that it made and
+then it gave me the files to actually
+just download the skill like what what
+makes up the skill. I wanted to see if I
+could actually just run this in regular
+Claude, but it turns out since we need
+since we do need to hit, you know, the
+API and I have to have like my my keys
+in there and everything,
+um we end up using it only in Claude
+code. Okay, so here we are in the
+project and as you can see here, the
+project or the code base, if you will,
+is not even a code base. It's it's not
+an actual application. All it consists
+of is a Claude folder and inside that a
+skills folder, and and then I have one
+skill, the the brand illustrator skill
+that I had created with the help of
+Claude. I dropped that in, and inside
+the brand illustrator skill, we have the
+skill MD, and I'll I'll walk through
+this a little bit. Then it has these
+references to, you know, my visual world
+document, the visual style, some of the
+the prompts that will go into the
+system, that idea to illustration
+mapping system for like how to choose
+what objects or what scenes to
+illustrate, and then I'm sort of
+defining the brand colors here. Those
+are all the references in assets, and I
+still actually need to build this out
+more. These are sample illustrations,
+right? So this helps to train the model
+on how I want my illustrations to look,
+and I I still intend to add more. I've
+been able to use the skill as is to
+achieve, you know, the the illustrations
+the way that I want them. And then
+finally, obviously, like the most
+important part is the script, and that
+is a Python script. I'm not even a
+developer in Python. I didn't write any
+of this. It was all written by Claude.
+This is what integrates with my API key,
+which is in the the .m file. You know,
+this
+generation script is pulling in all the
+references, and it's assembling the
+prompt that goes out to the Gemini API.
+Okay, and then of course the the actual
+skill.md,
+this is like the core
+skill file that that makes it a skill.
+This is the thing that is essentially
+read by Claude Opus. I'm using Claude
+Opus 4.5, which is fantastic. And this
+is sort of just going through like when
+we start, it needs to create a project
+folder. Oh, and then like this is the
+projects folder. So for every
+illustration, this skill is instructed
+to create a new folder for each
+illustration, and then, you know, save
+the the illustration takes inside that
+folder, right? It needs to generate
+three concept options, wait for my
+choice, where to find the color system,
+how to reference all of the like the
+visual world, the aesthetic style, the
+prompts, the idea mapping, all of that
+is linked or referenced from the skill
+here. Like how to name the folder, you
+know, name it by date, um sort of like
+the workflow for communicating with me,
+and and yeah, so then ultimately it will
+it will go to work. So let's Why don't
+we actually just test it out, and I'll
+show you finally how
+>> how this works, right? So I'm going to
+fire up Claude.
+And by the way, this is brand new uh
+today or yesterday. This is version
+2.1.2,
+and this is a an update that I've been
+waiting for. My previous video about
+Claude skills, when it first came out
+back in 2025, my main gripe was that we
+can't directly invoke. But now here in
+2026, we can just do this. Brand
+illustrator, and just just go for that.
+And then I'll say something like, I'm
+creating a video all about how to
+develop a systems mindset. I need a hero
+image to go with the accompanying blog
+post. So brand illustrator skill is
+running,
+and now it's going to gather the the
+information that it needs from me. Go,
+let's go with the red. Then it's asking
+me about the dimensions, and it
+recommends this one, and that works.
+Okay, so it has everything that it
+needs, so went ahead and it created a
+new folder in my project, and that's
+this one. Okay, so now it's presenting
+to me three concepts. So again, I didn't
+need to think through like what are some
+good concepts for this particular blog
+post. It's given me these ideas, and I
+can choose between them. Let's see. A
+workflow notebook, the blueprint stack,
+building blocks in sequence. I think the
+blueprint stack sounds kind of cool.
+Let's do that.
+So it says, let me read the prompt
+reference to craft the best prompt. All
+right, so now it it took everything that
+we just discussed, and it put that into
+a little markdown file. So now it's
+running that Python script, which hits
+Google Gemini's API to to generate the
+image. I think we're using the the image
+gen
+API, which I mean they just keep
+renaming these things. It's It's kind of
+It's kind of crazy. All right, so we
+have V1. Let's take a look. And okay,
+so, you know, as you can see, it it
+follows my guideline. You know, this
+looks like it's pretty similar or
+consistent at least with the aesthetic
+of the type of image that could appear
+on my site like this, right? It Again,
+like I didn't have to recreate all the
+nuanced detail for exactly how I want
+these lines to look. Now, in practice, I
+end up going back and and having it
+regenerate, you know, a couple different
+takes, because I get a little bit more
+creative or I get very picky about how I
+want different objects and and things to
+look. So I can just show you like some
+of the previous ones. Like this one I
+went through, you know, five different
+attempts to just get it just right. You
+know, let's see. This one This one
+actually has like two different images,
+one for the left side, and then one for
+the right side. So you can see like like
+this one was like almost perfect, but I
+didn't like how the how the shade was
+covering up the chair. So let's see. I
+think like the next one, yeah, we sort
+of fixed the chair issue, but the the
+rug is a little out of whack. So, you
+know, just like little details that like
+that, I would just go through and and
+re-prompt. But that's essentially how
+I'm doing this. You know, then I'll
+bring it into Photoshop and make it
+transparent, and and you know, I'm even
+inverting it so that I can get a like a
+light and a dark mode working on the
+site. So that's kind of cool, too. So
+what did I learn here? Well, the
+end-to-end workflow technically worked,
+but by breaking everything into discrete
+nodes and rigid logic, I stripped away
+the intelligence that makes AI actually
+useful. The model couldn't think. It
+could only execute my predefined steps.
+But when I moved to the Claude code
+skill, the model could actually reason
+about my brand guidelines. It could
+understand my intent and deliver what I
+need while still following my process
+and now the consistency that I'm going
+for. Now, what's interesting is we
+usually think of Claude code as a tool
+for building software, but what I built
+here is really a workflow. It's an
+interface for a business process that
+I'll use over and over. So Claude code
+itself became the application. And I
+took the same approach when I created
+design OS. That's a free open-source
+system that turns Claude code into a
+complete product design workflow. So
+after you hit subscribe here on the
+channel, head over there, and I'll show
+you my complete workflow for how I use
+Claude code to power design OS. Let's
+keep building.

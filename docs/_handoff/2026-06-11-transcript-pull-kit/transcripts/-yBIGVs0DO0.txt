@@ -1,0 +1,86 @@
+I think I just found the perfect
+solution to transcribe your audio or
+video locally uh completely safe uh for
+free and as I said locally runs on your
+PC so you can transcribe uh all your
+secret videos and so on. It's a little
+bit technical but nothing special
+because just follow the steps uh you
+have in the description all the copy
+paste commands and don't be afraid very
+easy very straightforward to do and if
+you find this helpful uh just drop a
+comment below so we can push some
+algorithm you know engagement for this
+video. So let me show you. First of all
+we need to go to the whisper.cpp CPP. Uh
+link is in the description as I said
+before. And over here, scroll a little
+bit down and download this one. After
+you download it, extract it to the
+release folder. You will have something
+like this. And if you open it up, you
+will see your folder structure. This is
+very important. But uh let's now
+download the model. Go to the hugging
+face. Uh also the link is in the
+description. And uh make sure to find
+this ggmlmedium.bin.
+Just click this uh download uh arrow.
+Now we go back to our release folder and
+make sure to create this folder named
+models and double click to open it up
+and put your downloaded uh model here.
+Make sure to follow follow exactly this
+uh structure. I had a problems before
+because I didn't download the ffmpeg
+exit. You can see it here. Uh to
+download it, we need to go to the FFmpeg
+uh website and make sure to download
+this one over here. After it's
+downloaded, make sure to open it up. I
+have a folder here. Uh go inside and go
+to bin and make sure to extract only
+this ffmpeg.exit
+because we only need this one and put
+your ffmpeg exit directly inside here.
+So you can see that my ffmpeg exit is
+here. And now the magic happens. Uh when
+you put your uh audio or video file
+inside this folder, make sure to put it
+exactly here. Uh if you don't have audio
+file only video file, uh you can use uh
+Audacity or Cap Cut to extract the audio
+file. It will be easier and faster for
+you to do. And put your final uh file
+here. Uh I named my audio file final.
+Make sure to uh remember how you name
+this because we will use this in a
+command. Uh right now I will delete this
+is the output of my previous file. You
+can see here I will delete it so you can
+see how this works. And now we need to
+go here up and type in cmd. And don't
+worry nothing spectacular. You can
+always copy paste this command all the
+time. And I will now just paste my
+command here. I will put the command in
+the description below so you can always
+copy paste it. You just save it
+somewhere in the notepad. It it is
+exactly like this. And make sure that
+you see this final the name is the same
+name of our file, our audio file and it
+will output it as a final uh as a txt
+file. So just hit enter and wait for a
+program to uh transcribe your uh audio.
+And when the process is done, you can
+just open your uh text file and see your
+uh audio transcribed uh over here. And
+this is it. Uh if you find this uh video
+helpful, let me know in the comments
+below. And if you run into any problems,
+drop in the comments. But try to use
+JGPT to fix those problems. Uh it works
+like a charm. So uh see you in the any
+other video. Bye-bye.

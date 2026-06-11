@@ -1,0 +1,676 @@
+Have you ever asked Cloud Code to do a
+big task like review a code, run your
+test, fix bugs,
+and only to watch the conversation get
+blocked like slow, confused halfway
+through?
+That's a context problem and the most
+developer heated every single day.
+What if instead of one AI trying to do
+everything, you had team of specialized
+AI?
+Each one laser focused on a single job.
+That's exactly what Cloud Code sub
+agents do.
+Uh by end of this video, you will know
+exactly how to build your own AI teams
+step-by-step from scratch.
+Stay until end of this video because I'm
+going to show you
+a demo in real world project
+with three custom agent working
+together. And then show you how to run
+multiple agents in parallel at the same
+time using agent teams.
+So, let's get started on the agenda.
+So, here is what we will cover in this
+video.
+So, what is sub agents and why that
+matter? And we also talk about building
+agents, explore, plan, general purpose,
+how to create your first agent in two
+different methods,
+and how to use front matter fields like
+tool, models, memory, hooks, different
+um
+of usage.
+And also like the agent scope where it
+can be on project level or on
+you know your top level which would be
+the personal
+uh
+level so that you know it can be applied
+for every project.
+Finally, live demo with three agents on
+real Python project and agent teams, uh
+which is like true parallel
+multi-session workflows. So, let's get
+started.
+So, what is exactly a sub agent is?
+So, sub agent is as a specialized AI
+system that runs inside Cloud Code.
+Think of it like hiring a specialist
+instead of asking your own general
+contractor
+what you know to do plumbing,
+electrician, or framing your
+bring you a No, rather than doing
+everything by same person, you're
+bringing expert for each job.
+Each sub agent has like a context window
+like completely separate from the main
+conversation.
+It have tool access, maybe it can only
+read files, only run safe queries. It
+can have a model choice. Maybe you want
+have like fast, cheap Haiku for some
+searches and more powerful for Sonnet
+code reviews.
+And you can also have like system
+prompts where it can be specialized
+instructions.
+And here is why it's really matters in
+because Cloud Code is evolving from a
+single chat assistant into a like a
+fully agentic platform.
+So, that's why Anthropic release sub
+agents as a core primitive and
+developers who learns this now are going
+to be super
+experienced and
+really high demand.
+Before we build any custom agents, let's
+talk about the Cloud Code already gives
+you out of the box. So, there are some
+existing sub agent or built-in agents in
+Cloud. The number one is like explore.
+This is fast read-only agent powered by
+Haiku. Cloud automatically uses it when
+it need to search or understand a code
+base without making changes.
+It has like three modes, quick, medium,
+and very thorough. Then you also have
+this plan. When you enter a plan mode,
+which you can do by pressing shift tab,
+Cloud delegate research to the plan
+agent. So, it gather context from your
+code then brings it back to your Cloud
+to form a plan. So, it can write or edit
+anything it it can't write or edit
+anything because it's in the plan mode.
+Then the general purpose, this is like
+the workhorse used for complete
+multi-step task that need to do reading
+and writing, and it has access to all
+tools.
+Before I get further, I just want to
+show you a quick glimpse of what we are
+will be building. You know, you can see
+we have too many agents. You can see we
+have code reviewer, debugger, test
+writer, and we'll also see how you can
+start using agents using different
+commands, and we will also see how you
+can run multiple agents at the same time
+in parallel.
+So, here's the key insight. Cloud
+automatically decides when to delegate
+to a sub agent. It reads your
+description you write on each sub agent
+and uses that to make the call.
+To be more specific and clear your
+description, the smarter the delegation.
+You can even also use
+like at mention so you can see if you
+use at and then you define your
+agent name so it can directly force call
+that agent. Or you can use slash slash
+agent flag you know, to it's just for
+the whole session as that an agent.
+So, that's the different ways how you
+can call agents
+by generally you know when you use
+the natural language like use code
+review, it will simply start using that
+agent.
+So, here's the example I was showing
+like you know you can call the agent
+using at the rate and the agent name
+which is code review here or simply when
+you ask
+you know Cloud that you know use code
+do the code review for my
+my code then it will automatically call
+the agent. The other option was using
+slash slash uh
+flag.
+There are two ways to create an agent so
+or create sub agents, right? And this is
+using slash agent command. And the other
+interactive which is like more
+interactive way you you open your Cloud
+session and use use slash agent and then
+you create um
+agents manually there. The second option
+is like you know you can
+create your own dot md file.
+So, it would be more like
+you have if you have seen like a skill,
+here also what you can do is you can
+create an empty file which would be
+inside a folder called agents and if you
+put that that will consider as an agent.
+Let's look at the first way like you
+know what you can do is go to your Cloud
+Code session,
+then use agents. You can see when you
+write
+you can see I have agents,
+then enter then it will ask you two
+options like you know you can see
+already there are some agents. You have
+the option to create a new agent.
+Then you can press the enter then you it
+will ask you whether it has to be on
+your project or personal. The project
+would be for the current folder. Uh
+for example, currently I'm in C users
+then
+it's not a project. But if you are
+inside a folder like proj- Cloud Code
+agents and demo, that's more of a
+project folder then you can create
+inside that one. But if you are going
+going for personal then it should be
+under your home directory. This is for
+Windows otherwise it should be under
+your
+normal home directory. So, if I
+press enter,
+then you can use that you know generate
+with Cloud or you can use with manual.
+If I use generate with Cloud, then you
+know you can describe what you want to
+give to the agent and it will start
+adding those informations.
+I'm not a big fan of that manually doing
+it. The simpler or the best option is to
+write the agent into a dot md file and
+then you can put it into your folder.
+So, as I said you know to write an
+agent, you create a dot md file with the
+agent name, and then it's almost like a
+skill. You give a name for the agent,
+you
+do the description, and then you define
+your tools, the prompt, and everything
+you can do it.
+So, I let me show you the example. I
+have created three agents for this.
+So, you can see like you know I have
+If you see this is in my personal
+folder, so
+it's under dot cloud and you have a
+folder called agents. So, if you have
+seen skills like you know you have a
+skill folder and you will have
+folder names which is for skill, right?
+But for agents, it will be just like
+there is no folder name. You just need
+to put a
+dot md file. So, you can see
+you give the name of the agent to be the
+name of the file and dot md and then you
+give a name, put a description, you
+define which tool it can use, which
+model you want use, then you give the
+context. This To create this context,
+you can even use Cloud and then it can
+help you to create this.
+But if you see I have created a few
+agents, right? So, it's pretty simple.
+You know, it just um
+ask Cloud itself to create an empty file
+for this agent. Now, if you look at you
+know I can create this agent also inside
+your project. So, if you see I have this
+folder
+to Cloud Cloud agents and I have a demo,
+right? And then I have created a dot
+cloud and agents folder inside this. And
+I can put these things
+same files over there. So, this is up
+This applies only to this project. So,
+if you don't want to put it under your
+home directory, you can create agents
+just specific for a project.
+So, what are the key
+front
+formatter fields which you need for
+creating an agent, right? When you
+create an empty file,
+uh the first one is name. Uh it should
+be a like a unique ID or lowercase with
+hyphens. This is how you This will be
+the name of your agent. So, you should
+when you call at the rate, this should
+be the name. Now, give a description,
+which is critical. This is what Cloud
+reads to decide when to delegate. So,
+you have to write the description. So,
+when you write the uh in Cloud command,
+it finds, okay, uh this agent has to be
+invoked.
+Uh there is an option for tools, which I
+showed. So, this is the word the tools.
+Uh you can define whether it can use uh
+these kind of tools, right? Like grep or
+bash or git.
+Then, you can also define the model. So,
+it should be like Hi Core or Sonnet or
+Opus.
+Also, define the permission mode, uh
+whether it's uh it can default accept or
+edit or always ask. Then, also put the
+memory, like it you can put some
+persistent memory. It's but it's be a
+project level or local. Then, you can
+also have like a background, um which is
+like set true for run concurrently while
+you keep working, right?
+So, you can uh
+run the agent on background and at the
+same time you can start another back
+another agent.
+Uh maximum turns, like, you know, the
+number of agent returns before the agent
+stop automatically. So, this keep uh
+working on the same work until it can
+find some solution or then it you can
+put how how long it can run before it
+stop.
+Quickly to show you like uh the tools.
+Uh you know,
+what we have shown, like, you can define
+tools, like, read grab bash write write
+edit. Uh you also have like disallowed
+tools because if you don't want to you
+don't you don't want these agents to do
+some actions, which uh you don't approve
+it. So, you can set allow list and you
+can also have like disallowed tools. And
+the principle here is like a least
+privilege. Uh give agents the tool it
+actually need. So, uh don't give
+everything like for a reviewer agent it
+doesn't need write, right? Or test
+runner doesn't need uh write. So, be
+careful on what um
+the
+permissions you allow for the agents.
+So, as I was showing you like, you know,
+the agent files you can store under uh
+different locations.
+The {hyphen} {hyphen} agent CLI is just
+session only. So, nothing saved to disk.
+So, it's for quick testing. Uh and I
+showed you like {dot} cloud agents. This
+is like a project level. So, you can
+create a folder and put under your
+project folder. Then, you have your home
+directory cloud agents. That's for
+applicable for all agents. You can also
+have like a plugin the agents
+distributed via plugin system. So, you
+can create those as well.
+Add your agents
+{dot} md files into git. So, you can you
+always have a version control on your
+agent md file. So, you can uh your team
+also can you can share it with your team
+and they can also use it.
+Okay. So, we are
+going to show you uh three agents, which
+uh we should develop, right? And it's
+like a demo time and I'm sure you've all
+been waiting for this. So, the agent one
+is for the code reviewer and agent two
+is like a debugger and agent three is
+like test writer, right? So, you can see
+code reviewer is like read only and we
+are using Sonnet. Debugger is again read
+plus edit and Sonnet. Test writer is
+again read write and Sonnet, right? So,
+what it does like this finds in uh
+the division by zero bugs, right? It
+will find any bugs. Uh it's review the
+code quality and uh this one will debug
+the bugs and uh this will write uh test
+automatically.
+And we are going to use a project called
+calculator {dot} py, which is a Python
+module uh which have some hidden bugs.
+So, these are the three um sample um
+agent files, which uh
+I will share it uh into the video
+description as well. So, if you can have
+a look. And uh the code reviewer, uh as
+I said, the description is like uh give
+a definition like you're an expert code
+reviewer and uh review the code, right?
+And the tools we are giving is uh read
+and model. And what it we are asking is
+like uh run uh
+git day, find quality issues, run the
+critical warning suggestions, right? And
+debugger, uh we are asking tool a read
+edit as well, so you can edit. And it
+can capture the error, find root cause,
+apply minimum fix, and verify it works.
+The test writer is like, you know, add a
+test coverage. So, it can read and uh
+write as well. So, you're test engineer
+and write Python test covering in a
+happy path. So,
+all those things, you know, uh
+how you to use. Uh we just use like
+um use we we just say simple
+uh natural language. We ask code
+reviewer agent review calculator {dot}
+py or we just uh call uh at uh you know,
+at the rate and we call for the agent,
+which will be uh reviewer code reviewer
+or debugger and then we give the file,
+right?
+Let's Let's try it out in it's in the
+uh real environment as a demo. So, I'm
+going to run like use code reviewer to
+review the calculator {dot} py.
+You can see it started
+working out.
+You can see, you know, it has called the
+agent code reviewer.
+And it's reviewing the py for quality
+issues, right?
+As you can see, it has um
+found uh issues, critical must fix,
+right? Division by
+uh zero in divisible. The bugs is
+explicitly
+noted. So, it has given like, you know,
+cannot divide by zero. So, there is a
+bug, right? And it have uh other uh
+warnings as well and overall rating,
+right? So, that has been given. Uh now,
+what we can do is we can uh fix this. We
+can call debugger agent to fix it uh you
+know, the crash zero. So, I'm just going
+to call
+the debugger agent to fix the divide
+number, right? So, now you can see it's
+you know, debugs that uh issue, which we
+have uh
+the problem and it's ask us to whether
+it can write. It will fix those problem.
+Now, you can see it's asking me to make
+those changes and it it will fix it.
+Okay.
+It's asking for the approval because I
+have not allowed it to edit
+automatically or it I didn't over
+provided the permission to have make
+changes without my approval, right?
+So, now you can see it has fixed it. So,
+let's uh try the
+code reviewer again and see what it
+does.
+So, you can see it's again uh running
+the code reviewer on the calculator
+{dot} py.
+Now, if you look at this time, uh the
+review is completed, but you don't have
+the previous error about the
+you know, division by zero, right?
+That's uh fixed.
+So, now we have some other problem,
+which we can ask it to fix as well. But
+meanwhile, what I want to show is like I
+will ask also that other agent test
+writer to create some Python test for
+the uh calculator {dot} py so that, you
+know,
+uh we see the all three different agents
+doing its work.
+Now, you can see it's um using test
+writer and the write Python test for
+calculator, right?
+If you look at it, it's it has started
+creating the whole uh Python scripts,
+right? And it's
+uh want to create the test calculator
+{dot} py. I give yes, then it will write
+the test case. So,
+super simple, right? You have uh three
+agents and actually you can uh run
+different sessions and they can even
+allow them to run on the background. So,
+you can just run it and the all three
+will do its job.
+So, you can see it has written the test
+{dot} cal py. It's all all 47 test case,
+all six functions, right? And how to run
+it, it has given also the
+uh Python test demo and uh
+py cal {dot} py file.
+So, that's how you create the agents and
+run it.
+Now, let's level up little bit, you
+know, because we see like
+uh how to create agents and run one by
+one. Um
+we we can make, you know,
+what we did is like we run these three
+agents like a sequence, right? And um
+how about like what if you make them all
+working at the same time?
+So, that's called an agents team, right?
+So, you can make them every everything
+working together and they one can
+interact with others and uh you know,
+you don't even have to run uh
+individually.
+This is called agents teams. And uh this
+is an experimental feature in Cloud. So,
+you need to enable that. So, you need to
+put this uh uh config file environment
+environment settings like Cloud Code
+experimental agents team one
+inside your settings {dot} json file.
+Then only you should be able to use
+this.
+So, uh this will spawn uh multiple fully
+independent uh Cloud sessions running in
+parallel. Uh in just one line comment
+and they can even uh message each other
+directly.
+They can interact, you know, each other
+and uh
+these are like background sub agents and
+uh it can report back to main chat. And
+uh you will have less token cost.
+Best for quick and independent task.
+And each team, you know, team teammate
+is like a full uh Cloud session, can
+manage, you know, can message each
+other. Best for coordinator parallel
+work. So,
+uh you know, the Cloud Code can uh
+interact with each other and um this can
+simply
+uh do all the work by itself.
+So, let me run this command like uh
+create an agent team, spawn three
+teammates, right? Team one, which is
+explore source file, team two config
+files, and check documentation. Now, you
+can see
+what it does is it's actually uh run
+three uh sessions, right? You know, all
+three agents are running at the same
+time. And you know, it's it's running
+actually on the background. You're not
+even uh asking it like previously.
+And this will run on the background, and
+it will give you the outputs as it
+finish. You can see like, you know,
+uh it's giving you all the output. So,
+agent explore source file completed. And
+you can see waiting for team uh two and
+three. So, you can see now agent two is
+finished, still waiting for team three.
+So, basically, you know, this is the
+another way you are making a team of
+agents working together. And here, you
+know, I I didn't even uh
+ask to interact with each other. Uh
+what, you know, you could do is like uh
+you can even say that, "Okay, if you
+find some problem with team two,
+uh some bugs, please have the team three
+fix it, and then review it again."
+Something like that.
+So, if you look at it, I have called all
+the three agents for code reviewer,
+debugger, and test writer. And I'm
+asking
+it to run until all the bugs are fixed
+and the tests are available, right? So,
+what it's doing is like uh you know, all
+the agents are running.
+You can see it has passed the test. Uh I
+don't know. The code base is set up for
+demo. Now, it's running all the three
+agents. It will review, debug, and write
+tests. So, and cross-check all of the
+works.
+So, you can see all the uh
+uh agents are running in parallel now,
+and I just need to wait.
+They are designed to check each other's
+output. Debugger reads what's broken.
+Test reads both code review and the
+debugs.
+So, I will notify when they finish. So,
+I don't have to do anything. You know,
+you can see all uh three agents
+are running now. I just wait.
+So, it's uh you know, you can see the
+debugger is completed.
+So, the debugger found five
+real bugs, and but was blocked by
+permission. So, it's it's relaunching to
+edit access.
+So, you can see it has found uh five
+bugs, and uh it's going to fix it. So,
+let's let's wait. So, this is the this
+is the
+super uh cool feature or super important
+thing, which you can try out. It's in
+experimental phase of agent teams.
+Uh you can run single agents, but I
+think um it doesn't make it makes uh you
+know, very important if you can run a
+team of agents.
+So, you can see that, you know, it's
+running all all uh agents one by one,
+right? And all existing test case
+passed. Now, debugger report will notify
+the test writer. So,
+it already fixed uh almost the bugs, I
+think. And now it's um checking the
+test, and uh yeah, it's writing a debug
+report.
+So, you see this loop, right? Um it's uh
+doing the code review. It gives it for
+bug. Then it's uh
+you know, uh ask the test to write the
+test. Then it keep checking back again.
+It's uh fixes those tests, you know,
+then it's write the
+uh you know, it's keep looping until it
+uh it fix everything, right? So, now you
+see it has caught one more bug, uh which
+the debugger missed. And it's going to
+fix that again. So, this is the
+uh cool feature of the team of agent.
+It's keep looping it and until you get a
+solid uh final solution, which is
+completely ready, right? So, you don't
+have to keep inputting something every
+time. Then uh okay, go and search again.
+So, I would really ask you to try out
+this um
+agent teams.
+Awesome. You know, everything is
+complete. Um the test writer plan tests
+were already applied. It just couldn't
+write the
+all three agents delivered their work.
+So, you can see 62 passed in 0.5 second,
+you know, six bugs fixed.
+You know, um 62 test case, full review
+of code reviews, all fixes document
+debugger.
+All test cases document.
+Isn't it really great? You know, it has
+done all the work just by itself, and we
+didn't have to give any input, just ask
+to loop it, you know, until you fix
+everything. So, I would really recommend
+you to enable the experiment and
+experimental agent teams, and try out
+this one in your cloud code. And what
+are the best practices? Write detailed
+description when you are creating your
+agents. Give limited tool access. Don't
+give every access. Use memory for
+recurring task, because it can save a
+lot of your context and the token usage.
+Uh you know, use uh you know, chaining
+of the agents, right? As I showed you,
+as a team of agents. So, it can be
+really powerful, where one agent does
+the job and passes the result to the
+next one.
+And running tests or processing logs uh
+generate huge uh huge output, right? So,
+delegate as sub agents, so only summary
+lands into the main context.
+And running in parallel like independent
+search task, so it ask cloud to run
+multiple sub agents simultaneously, not
+like a serial. And you can synthesize
+the result. So, let's recap and uh few
+things to remember, right? Sub agents
+are isolated cloud instance, own
+context, own uh
+tools, own models. Uh you can create by
+using {slash} agents, and you can create
+manually, but I will recommend you use
+{dot}md file. Put it under your projects
+or under your home directory, and put
+the description field where everything
+clear, and use agent teams, which is
+like a true uh parallelism, where you
+can use uh experimental features in
+cloud code.
+If you if you like this video,
+uh you know, let me know uh in the
+comment section. Put the thumbs up, and
+subscribe to my channel. Put a drop
+message into in the comment section what
+do you like to see more, and uh uh what
+is your feedback on uh this tutorial.
+Let me know if this helped you, and uh I
+hope uh we see you in the next one.
+Thank you for watching.

@@ -1,0 +1,120 @@
+You pay for a transcription subscription here,
+credits there, and then your data ends up
+on some server in the USA.  Then
+I have something better for
+you right here.  An app that runs completely free
+, locally open source on your
+computer, and that's what we're going to take a
+closer look at now.  Hello and
+welcome.  My name is Daniel, as always,
+and today I would like to introduce you to Open
+Whisper.  Open Whisper has
+2500 GitHubs.  Stars is a super cool
+open source app.  The whole thing is based on
+the models from OpenAI, that is,
+from the Chat GPT developers, who have
+extremely good language models.
+And if you're now wondering, wait a
+minute, why do I need a
+transcription app?  The Mac can do that
+natively.  Yes, he can, but not
+as well and not as quickly.  And as I
+said, it's free if you
+run it locally on your computer;
+the data stays with you, and I've
+always used Whisper Flow before.
+That's a different app, but it costs $12 a
+month.  So why not make the
+whole thing [music]
+free if it
+works well?  Of
+course, there is also an option if you
+work in the cloud, but then you have to pay for it
+.  But of course we don't want that,
+and
+I'll now show you how to install it locally on your Mac
+.  First, we
+download the entire program here, and once you
+have installed and opened it,
+it will look like this
+.  You'll probably land on the
+homepage; your
+transcripts will be here.  Of course, that won't be the case for you
+yet.  Then you go
+to Settings here, and now comes the
+whole hack.  You go to
+Transcription here, then to
+Local here, and there we have
+different models.  We are using
+the Whisper model from OpenAI here.  I
+took the turbo mode here.  The disadvantage
+I've noticed is that the turbo model
+is a bit slower on an M2, on my MacBook Air
+.  It's not
+much, but you can definitely notice it, and that's why
+I installed this Small
+or Medium version, I think, and
+it has really great performance
+and also really great quality. That's exactly what
+you download,
+then it's active, and then you just set
+the hotkey, i.e., the key
+you want to use to talk.
+Here you can set the activation mode
+, either by tapping or holding.
+And then he listens and
+transcribes the whole thing in real
+time.  Of course, I'll show you the whole thing
+in real life, how it
+works.  I'll just open
+an arrow here, then hold down the "uh"
+key here, and then I'll babble
+into the microphone and then
+we'll see how fast it
+all goes.  Okay, I'm releasing the button now
+.  He needs a moment, and
+then it's all here.  Okay, and
+hold the button down for a few seconds.  Give it a
+little bubble.  I'll put the microphone in here and then
+we'll see how quickly it all
+goes.  Okay, I'll leave the key here, right?
+And he transcribed it extremely well.
+Of course, you can also turn on
+things like intelligence here
+.  Then it simply filters
+out all the Ös.  Feel free to
+play around with this.  This is definitely a
+mode worth testing.  There's
+also an agent mode.
+I haven't
+tried that one yet.  You can take a
+look at it sometime.
+Um, exactly.  You also have
+other things here, namely
+an audio transcription function
+.  They also like to try it out,
+inserting audio files and then
+transcribing them.  I think that
+works quite well too.
+The OpenAI models will also be running in the background
+.  For example, I installed it in Cloud Code
+built my own transcription tool there, where
+the YouTube videos I
+make go directly into and are then
+automatically transcribed.  But
+as I said, this is also possible with
+the app.  You're just bringing something in here
+.  If you
+want to learn about more tools like these and how you can
+also make money with such AI tools,
+then
+definitely check out my free Print and
+Demand course.  I'll include the link
+here.  Or watch this video where
+I show you how to make
+money online with AI coloring books
+.  Have lots of fun!  Give the
+video a thumbs up and
+subscribe, because then
+we'll definitely see each other here again.  Until then,
+yours truly, Daniel.  Co?

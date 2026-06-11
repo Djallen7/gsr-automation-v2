@@ -184,9 +184,9 @@ verification sort them.
 **Transcript extraction — a 10-rung fallback ladder (Daniel's directive: never let one
 failure stop the batch).** All verified June 2026; run on Daniel's Mac (cloud/datacenter
 IPs are hard-blocked by YouTube). Try in this order, each video falling through to the next
-rung only on failure. **First, check ownership:** if these videos are on the David Rives /
-GSR-owned channel, jump to rung 9 (Data API v3 with owner OAuth) as the primary — it is
-fully sanctioned and sidesteps every bot-block.
+rung only on failure. **Ownership CONFIRMED (Daniel, 2026-06-11): these videos are NOT on
+a GSR-owned channel.** Rung 9 (Data API v3 owner OAuth) is therefore unavailable — do not
+ask again. Primary path is rungs 1-2; the caption-independent fallback is rung 8.
 
 1. **youtube-transcript-api, no proxy** — `pip install youtube-transcript-api`;
    `youtube_transcript_api VIDEO_ID --languages en`. Free, fast; works for many before the
@@ -217,14 +217,15 @@ fully sanctioned and sidesteps every bot-block.
    or faster-whisper. GSR videos are ~58 min, so use a turbo/base model or Apple-Silicon
    Metal build for speed. Output quality beats auto-captions.
 9. **YouTube Data API v3 captions** — `captions.list` then `captions.download` with OAuth.
-   Only works if you OWN the channel (403 otherwise). If owned, this is the cleanest, safest
-   primary — promote it to rung 1.
+   Only works if you OWN the channel (403 otherwise). **NOT AVAILABLE for this corpus
+   (Daniel confirmed 2026-06-11: not our channel).** Kept here only for future GSR-owned
+   video work, where it becomes the cleanest primary.
 10. **Browser / manual** — YouTube's "Show transcript" panel, or Tactiq/Kome/NoteGPT/Glasp.
     Last resort for the handful that beat every automated rung.
 
 If this session cannot reach YouTube at all, hand Daniel the rung-2 command block and mine
-whatever returns; mark the rest `pending`. **David-rule note:** confirm channel ownership
-before paying for proxies/APIs — rung 9 may make all the paid rungs unnecessary.
+whatever returns; mark the rest `pending`. Before any PAID rung (5-7), tell Daniel the
+expected cost and get his one-tap yes — free rungs 1-4 and 8 need no ask.
 
 **R2 — Official-source sweep (highest signal, run in parallel with R1).** Anthropic docs,
 the Claude Code changelog, engineering blog, Agent SDK docs, skills/plugins registry.

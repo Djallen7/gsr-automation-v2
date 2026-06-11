@@ -4,6 +4,10 @@
 **Authoritative source:** `CLAUDE.md` "Data-source access" + `scripts/basecamp_token.py`.
 
 ## Entries
+### 2026-06-11 — Sheets write helper committed (dormant)  [status: active]
+Decision: `scripts/sheets_helper.py` is committed — read/write via Sheets API v4, env-driven (`GOOGLE_SERVICE_ACCOUNT_JSON` or `_FILE`), mirrors `basecamp_token.py`, CLI writes gated behind `--confirm`, `--check` probes tracker tabs. It is dormant until Daniel injects a service-account credential + `pip install google-auth google-api-python-client` + shares the tracker folder with the service account's client_email. "Solve from both ends": my half (the helper) is done; his half is the one-time credential. Recommended over OAuth refresh tokens (those expire/revoke — the flakiness to avoid).
+Source: built this session (2026-06-11)
+
 ### 2026-06-11 — Connector health check (empirical, this session)  [status: active]
 Decision: tested the live MCP connectors read-only. **Healthy now:** GitHub (Djallen7), Supabase ("GSN Hub" `lafkbxypmciopebentxp`, ACTIVE_HEALTHY, pg17), **Google Drive (reads full Drive AND full tracker cell contents)**, Gmail (labels incl. dallen@davidrives.com). **Untested:** Vercel (needs teamId), Postman. **Flagged for removal:** a crypto-*trading* MCP with live order-execution/deposit tools is wired into this env — no place in a ministry environment; never called.
 Implication: "all my connectors are flaky" is NOT true for the four that matter today; Phase-2 footing is better than feared. The Drive read-only ceiling (no cell-write) is the only real tracker gap — see Sheets entry.

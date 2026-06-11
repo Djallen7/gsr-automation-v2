@@ -113,7 +113,7 @@ secret is in the environment config (that is why Basecamp/RDC persist and Sheets
 |--------|-----|-------|
 | Basecamp | `scripts/basecamp_token.py` + `BASECAMP_*` env (incl. Pings via `/search.json`) | ✅ wired |
 | Rundown Creator | `RUNDOWN_CREATOR_API_KEY`/`_TOKEN` env → `https://www.rundowncreator.com/davidrives/API.php` | ✅ wired |
-| **Google Sheets graphics trackers** | **Sheets API v4** (a committed `scripts/` helper + a Google credential in env) | ⚠️ **NOT WIRED HERE** — no Google credential is injected and no helper is committed, so it dies every session. **TO FIX (do once):** commit a Sheets helper mirroring `basecamp_token.py` and add a Google credential (service-account JSON, or OAuth client+refresh token) to the web-environment env config. Until then a session cannot read/write the tracker except via the read-only Drive MCP. |
+| **Google Sheets graphics trackers** | **Sheets API v4** via `scripts/sheets_helper.py` + a Google credential in env | ⚠️ **HELPER COMMITTED, CREDENTIAL MISSING** (2026-06-11). `scripts/sheets_helper.py` (read/write, mirrors `basecamp_token.py`) is committed and dormant. **TO ACTIVATE (Daniel, once):** create a Google Cloud service account, enable the Sheets API, share the Season 3 tracker folder with its `client_email`, and inject the key as `GOOGLE_SERVICE_ACCOUNT_JSON` (or `GOOGLE_SERVICE_ACCOUNT_FILE`) in the web-environment env config; then `pip install google-auth google-api-python-client`. Note: the **Google Drive MCP already reads tracker cell contents in full** today (verified 2026-06-11) — the credential only unlocks *writing*. |
 
 Tracker IDs (Drive folder `18RZ8UNF2nN67G6as-Uj5o5O3BbNFChoR`): May `1GmdVDOP4h0k6FmOdZLMJNroz7_x4xDcErBYmdGU0890`, June `13_PQdT3RKCodjA_FzRxwpQR6yA1Kn8E5sKxN9VWPAJs`.
 

@@ -63,6 +63,7 @@ patterns in parallel, and pre-stages everything the Mac run needs.
 - 10:30 UTC session start; Phase E audit.
 - 11:55 UTC checkpoint 1: R2/R3/R4/R5 agent swarm running; live-DB verification done (CL-007 VERIFIED, CL-009 skew window found). ~1.4h cumulative.
 - 13:20 UTC checkpoint 2: R2+R3+R4+R5 agents ALL returned and merged (ledger at 45 claims, 0 priority-1 ASSUMED left); architect skeleton + R6 candidate finder still running. ~2.8h cumulative.
+- 14:00 UTC checkpoint 3: architect plan v2 (citations filled, 47 claims); R6 finder returned 63 oEmbed-verified candidates, merged into the queue (162 videos total, Mac pull list rank-ordered). NOTE: the three critique agents (red team, gsr-health, editorial) all hit the session usage limit (resets 14:20 UTC) and produced nothing; critique rounds re-run after reset. ~3.5h cumulative.
 
 ## Mission-doc corrections found by verification (2026-06-11)
 

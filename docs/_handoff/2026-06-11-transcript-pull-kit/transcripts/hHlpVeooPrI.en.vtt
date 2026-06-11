@@ -1,0 +1,2528 @@
+WEBVTT
+Kind: captions
+Language: en
+
+00:00:00.000 --> 00:00:01.350 align:start position:0%
+ 
+All<00:00:00.200><c> right,</c><00:00:00.360><c> I'm</c><00:00:00.440><c> in</c><00:00:00.520><c> my</c><00:00:00.600><c> Cloud</c><00:00:00.800><c> Code</c><00:00:01.160><c> and</c><00:00:01.240><c> it</c>
+
+00:00:01.350 --> 00:00:01.360 align:start position:0%
+All right, I'm in my Cloud Code and it
+ 
+
+00:00:01.360 --> 00:00:03.430 align:start position:0%
+All right, I'm in my Cloud Code and it
+says<00:00:01.760><c> listening</c><00:00:02.240><c> for</c><00:00:02.440><c> channel</c><00:00:02.720><c> messages</c><00:00:03.200><c> from</c>
+
+00:00:03.430 --> 00:00:03.440 align:start position:0%
+says listening for channel messages from
+ 
+
+00:00:03.440 --> 00:00:05.630 align:start position:0%
+says listening for channel messages from
+the<00:00:03.520><c> plugin</c><00:00:04.280><c> iMessage.</c><00:00:05.120><c> And</c><00:00:05.200><c> on</c><00:00:05.280><c> my</c><00:00:05.400><c> phone</c>
+
+00:00:05.630 --> 00:00:05.640 align:start position:0%
+the plugin iMessage. And on my phone
+ 
+
+00:00:05.640 --> 00:00:07.230 align:start position:0%
+the plugin iMessage. And on my phone
+right<00:00:05.760><c> here,</c><00:00:06.000><c> I've</c><00:00:06.120><c> got</c><00:00:06.280><c> iMessage</c><00:00:06.640><c> pulled</c><00:00:06.840><c> up</c>
+
+00:00:07.230 --> 00:00:07.240 align:start position:0%
+right here, I've got iMessage pulled up
+ 
+
+00:00:07.240 --> 00:00:08.470 align:start position:0%
+right here, I've got iMessage pulled up
+and<00:00:07.360><c> I'm</c><00:00:07.440><c> going</c><00:00:07.560><c> to</c><00:00:07.640><c> shoot</c><00:00:07.840><c> off</c><00:00:07.960><c> this</c><00:00:08.160><c> text</c>
+
+00:00:08.470 --> 00:00:08.480 align:start position:0%
+and I'm going to shoot off this text
+ 
+
+00:00:08.480 --> 00:00:10.390 align:start position:0%
+and I'm going to shoot off this text
+that<00:00:08.680><c> says,</c><00:00:09.440><c> "Scrape</c><00:00:09.800><c> the</c><00:00:09.880><c> YouTube</c><00:00:10.120><c> comments</c>
+
+00:00:10.390 --> 00:00:10.400 align:start position:0%
+that says, "Scrape the YouTube comments
+ 
+
+00:00:10.400 --> 00:00:11.510 align:start position:0%
+that says, "Scrape the YouTube comments
+from<00:00:10.520><c> my</c><00:00:10.640><c> recent</c><00:00:10.880><c> video</c><00:00:11.120><c> and</c><00:00:11.240><c> give</c><00:00:11.360><c> me</c><00:00:11.440><c> a</c>
+
+00:00:11.510 --> 00:00:11.520 align:start position:0%
+from my recent video and give me a
+ 
+
+00:00:11.520 --> 00:00:12.990 align:start position:0%
+from my recent video and give me a
+breakdown."<00:00:12.320><c> And</c><00:00:12.440><c> what</c><00:00:12.560><c> you'll</c><00:00:12.680><c> see</c><00:00:12.800><c> right</c>
+
+00:00:12.990 --> 00:00:13.000 align:start position:0%
+breakdown." And what you'll see right
+ 
+
+00:00:13.000 --> 00:00:15.110 align:start position:0%
+breakdown." And what you'll see right
+here<00:00:13.280><c> on</c><00:00:13.480><c> my</c><00:00:13.960><c> terminal</c><00:00:14.400><c> is</c><00:00:14.520><c> that</c><00:00:14.640><c> we</c><00:00:14.720><c> have</c>
+
+00:00:15.110 --> 00:00:15.120 align:start position:0%
+here on my terminal is that we have
+ 
+
+00:00:15.120 --> 00:00:17.150 align:start position:0%
+here on my terminal is that we have
+iMessage<00:00:15.960><c> and</c><00:00:16.120><c> it</c><00:00:16.200><c> says,</c><00:00:16.800><c> "Scrape</c><00:00:17.080><c> the</c>
+
+00:00:17.150 --> 00:00:17.160 align:start position:0%
+iMessage and it says, "Scrape the
+ 
+
+00:00:17.160 --> 00:00:18.310 align:start position:0%
+iMessage and it says, "Scrape the
+YouTube<00:00:17.360><c> comments</c><00:00:17.640><c> blah</c><00:00:17.760><c> blah</c><00:00:17.880><c> blah."</c><00:00:18.160><c> So,</c>
+
+00:00:18.310 --> 00:00:18.320 align:start position:0%
+YouTube comments blah blah blah." So,
+ 
+
+00:00:18.320 --> 00:00:19.590 align:start position:0%
+YouTube comments blah blah blah." So,
+this<00:00:18.440><c> is</c><00:00:18.520><c> the</c><00:00:18.600><c> exact</c><00:00:18.920><c> text</c><00:00:19.120><c> that</c><00:00:19.240><c> I</c><00:00:19.280><c> just</c><00:00:19.400><c> sent</c>
+
+00:00:19.590 --> 00:00:19.600 align:start position:0%
+this is the exact text that I just sent
+ 
+
+00:00:19.600 --> 00:00:21.590 align:start position:0%
+this is the exact text that I just sent
+off.<00:00:20.120><c> And</c><00:00:20.240><c> now,</c><00:00:20.480><c> Cloud</c><00:00:20.760><c> Code</c><00:00:20.880><c> is</c><00:00:21.040><c> acting</c><00:00:21.320><c> as</c><00:00:21.440><c> if</c>
+
+00:00:21.590 --> 00:00:21.600 align:start position:0%
+off. And now, Cloud Code is acting as if
+ 
+
+00:00:21.600 --> 00:00:23.350 align:start position:0%
+off. And now, Cloud Code is acting as if
+I<00:00:21.680><c> just</c><00:00:21.880><c> typed</c><00:00:22.120><c> this</c><00:00:22.280><c> message</c><00:00:22.640><c> right</c><00:00:22.840><c> here</c>
+
+00:00:23.350 --> 00:00:23.360 align:start position:0%
+I just typed this message right here
+ 
+
+00:00:23.360 --> 00:00:25.510 align:start position:0%
+I just typed this message right here
+locally<00:00:23.880><c> on</c><00:00:24.040><c> my</c><00:00:24.160><c> machine.</c><00:00:24.880><c> So,</c><00:00:25.000><c> it's</c><00:00:25.120><c> able</c><00:00:25.360><c> to</c>
+
+00:00:25.510 --> 00:00:25.520 align:start position:0%
+locally on my machine. So, it's able to
+ 
+
+00:00:25.520 --> 00:00:27.030 align:start position:0%
+locally on my machine. So, it's able to
+use<00:00:25.840><c> all</c><00:00:26.040><c> of</c><00:00:26.120><c> the</c><00:00:26.200><c> skills</c><00:00:26.520><c> that</c><00:00:26.640><c> I've</c><00:00:26.760><c> got</c><00:00:26.920><c> in</c>
+
+00:00:27.030 --> 00:00:27.040 align:start position:0%
+use all of the skills that I've got in
+ 
+
+00:00:27.040 --> 00:00:28.310 align:start position:0%
+use all of the skills that I've got in
+here.<00:00:27.320><c> It's</c><00:00:27.480><c> able</c><00:00:27.640><c> to</c><00:00:27.760><c> look</c><00:00:27.880><c> through</c><00:00:28.040><c> all</c><00:00:28.240><c> of</c>
+
+00:00:28.310 --> 00:00:28.320 align:start position:0%
+here. It's able to look through all of
+ 
+
+00:00:28.320 --> 00:00:29.990 align:start position:0%
+here. It's able to look through all of
+these<00:00:28.480><c> different</c><00:00:28.720><c> folders</c><00:00:29.120><c> and</c><00:00:29.240><c> files.</c><00:00:29.800><c> It's</c>
+
+00:00:29.990 --> 00:00:30.000 align:start position:0%
+these different folders and files. It's
+ 
+
+00:00:30.000 --> 00:00:31.390 align:start position:0%
+these different folders and files. It's
+able<00:00:30.120><c> to</c><00:00:30.200><c> use</c><00:00:30.360><c> my</c><00:00:30.480><c> API</c><00:00:30.800><c> keys</c><00:00:31.000><c> and</c><00:00:31.080><c> things</c><00:00:31.280><c> like</c>
+
+00:00:31.390 --> 00:00:31.400 align:start position:0%
+able to use my API keys and things like
+ 
+
+00:00:31.400 --> 00:00:33.550 align:start position:0%
+able to use my API keys and things like
+that.<00:00:32.080><c> And</c><00:00:32.400><c> we're</c><00:00:32.520><c> able</c><00:00:32.720><c> to</c><00:00:32.840><c> on</c><00:00:32.960><c> our</c><00:00:33.040><c> terminal</c>
+
+00:00:33.550 --> 00:00:33.560 align:start position:0%
+that. And we're able to on our terminal
+ 
+
+00:00:33.560 --> 00:00:35.230 align:start position:0%
+that. And we're able to on our terminal
+watch<00:00:33.880><c> all</c><00:00:34.040><c> of</c><00:00:34.120><c> this</c><00:00:34.320><c> happening.</c><00:00:35.000><c> And</c><00:00:35.120><c> as</c><00:00:35.200><c> you</c>
+
+00:00:35.230 --> 00:00:35.240 align:start position:0%
+watch all of this happening. And as you
+ 
+
+00:00:35.240 --> 00:00:36.670 align:start position:0%
+watch all of this happening. And as you
+can<00:00:35.360><c> see</c><00:00:35.480><c> what</c><00:00:35.600><c> it</c><00:00:35.680><c> did</c><00:00:35.920><c> is</c><00:00:36.080><c> it</c><00:00:36.240><c> used</c><00:00:36.520><c> my</c>
+
+00:00:36.670 --> 00:00:36.680 align:start position:0%
+can see what it did is it used my
+ 
+
+00:00:36.680 --> 00:00:39.150 align:start position:0%
+can see what it did is it used my
+YouTube<00:00:37.040><c> analyzer</c><00:00:37.480><c> skill</c><00:00:38.040><c> in</c><00:00:38.200><c> order</c><00:00:38.440><c> to</c>
+
+00:00:39.150 --> 00:00:39.160 align:start position:0%
+YouTube analyzer skill in order to
+ 
+
+00:00:39.160 --> 00:00:40.630 align:start position:0%
+YouTube analyzer skill in order to
+achieve<00:00:39.400><c> this</c><00:00:39.560><c> for</c><00:00:39.720><c> us.</c>
+
+00:00:40.630 --> 00:00:40.640 align:start position:0%
+achieve this for us.
+ 
+
+00:00:40.640 --> 00:00:42.310 align:start position:0%
+achieve this for us.
+So,<00:00:40.960><c> that</c><00:00:41.160><c> skill</c><00:00:41.360><c> finished</c><00:00:41.680><c> up</c><00:00:41.880><c> and</c><00:00:41.960><c> it</c><00:00:42.080><c> sent</c>
+
+00:00:42.310 --> 00:00:42.320 align:start position:0%
+So, that skill finished up and it sent
+ 
+
+00:00:42.320 --> 00:00:44.550 align:start position:0%
+So, that skill finished up and it sent
+the<00:00:42.400><c> reply</c><00:00:42.800><c> back</c><00:00:43.160><c> to</c><00:00:43.280><c> myself</c><00:00:43.760><c> in</c><00:00:43.880><c> iMessage.</c>
+
+00:00:44.550 --> 00:00:44.560 align:start position:0%
+the reply back to myself in iMessage.
+ 
+
+00:00:44.560 --> 00:00:45.790 align:start position:0%
+the reply back to myself in iMessage.
+You<00:00:44.640><c> can</c><00:00:44.760><c> see</c><00:00:44.840><c> that</c><00:00:44.960><c> it</c><00:00:45.000><c> was</c><00:00:45.120><c> able</c><00:00:45.360><c> to</c><00:00:45.480><c> scrape</c>
+
+00:00:45.790 --> 00:00:45.800 align:start position:0%
+You can see that it was able to scrape
+ 
+
+00:00:45.800 --> 00:00:48.550 align:start position:0%
+You can see that it was able to scrape
+511<00:00:46.600><c> comments</c><00:00:47.000><c> across</c><00:00:47.400><c> six</c><00:00:47.760><c> recent</c><00:00:48.080><c> videos</c>
+
+00:00:48.550 --> 00:00:48.560 align:start position:0%
+511 comments across six recent videos
+ 
+
+00:00:48.560 --> 00:00:50.150 align:start position:0%
+511 comments across six recent videos
+with<00:00:48.680><c> some</c><00:00:48.800><c> biggest</c><00:00:49.080><c> themes</c><00:00:49.400><c> and</c><00:00:49.520><c> some</c><00:00:49.880><c> top</c>
+
+00:00:50.150 --> 00:00:50.160 align:start position:0%
+with some biggest themes and some top
+ 
+
+00:00:50.160 --> 00:00:52.070 align:start position:0%
+with some biggest themes and some top
+video<00:00:50.400><c> requests.</c><00:00:51.440><c> And</c><00:00:51.520><c> so,</c><00:00:51.600><c> right</c><00:00:51.720><c> here</c><00:00:51.840><c> in</c><00:00:51.960><c> my</c>
+
+00:00:52.070 --> 00:00:52.080 align:start position:0%
+video requests. And so, right here in my
+ 
+
+00:00:52.080 --> 00:00:53.550 align:start position:0%
+video requests. And so, right here in my
+iMessage,<00:00:52.480><c> you</c><00:00:52.560><c> can</c><00:00:52.680><c> see</c><00:00:52.880><c> here</c><00:00:53.000><c> it</c><00:00:53.120><c> is.</c><00:00:53.400><c> We</c>
+
+00:00:53.550 --> 00:00:53.560 align:start position:0%
+iMessage, you can see here it is. We
+ 
+
+00:00:53.560 --> 00:00:55.190 align:start position:0%
+iMessage, you can see here it is. We
+have<00:00:53.720><c> the</c><00:00:53.800><c> top</c><00:00:54.040><c> themes,</c><00:00:54.560><c> feature</c><00:00:54.880><c> access</c>
+
+00:00:55.190 --> 00:00:55.200 align:start position:0%
+have the top themes, feature access
+ 
+
+00:00:55.200 --> 00:00:57.950 align:start position:0%
+have the top themes, feature access
+frustration,<00:00:56.080><c> token</c><00:00:56.440><c> usage</c><00:00:56.840><c> limit</c><00:00:57.160><c> anxiety,</c>
+
+00:00:57.950 --> 00:00:57.960 align:start position:0%
+frustration, token usage limit anxiety,
+ 
+
+00:00:57.960 --> 00:00:59.950 align:start position:0%
+frustration, token usage limit anxiety,
+and<00:00:58.080><c> then</c><00:00:58.280><c> pivot</c><00:00:58.640><c> backlash,</c><00:00:59.480><c> open</c><00:00:59.720><c> cloud</c>
+
+00:00:59.950 --> 00:00:59.960 align:start position:0%
+and then pivot backlash, open cloud
+ 
+
+00:00:59.960 --> 00:01:01.510 align:start position:0%
+and then pivot backlash, open cloud
+versus<00:01:00.200><c> Cloud</c><00:01:00.440><c> Code,</c><00:01:01.000><c> all</c><00:01:01.120><c> of</c><00:01:01.200><c> this</c><00:01:01.320><c> kind</c><00:01:01.440><c> of</c>
+
+00:01:01.510 --> 00:01:01.520 align:start position:0%
+versus Cloud Code, all of this kind of
+ 
+
+00:01:01.520 --> 00:01:03.310 align:start position:0%
+versus Cloud Code, all of this kind of
+stuff.<00:01:01.880><c> We</c><00:01:02.000><c> have</c><00:01:02.160><c> strongest</c><00:01:02.560><c> video</c><00:01:02.840><c> requests</c>
+
+00:01:03.310 --> 00:01:03.320 align:start position:0%
+stuff. We have strongest video requests
+ 
+
+00:01:03.320 --> 00:01:05.150 align:start position:0%
+stuff. We have strongest video requests
+like<00:01:03.480><c> Manas</c><00:01:03.800><c> AI,</c><00:01:04.120><c> Cloud</c><00:01:04.400><c> Code</c><00:01:04.559><c> plus</c><00:01:04.720><c> APIs,</c>
+
+00:01:05.150 --> 00:01:05.160 align:start position:0%
+like Manas AI, Cloud Code plus APIs,
+ 
+
+00:01:05.160 --> 00:01:06.430 align:start position:0%
+like Manas AI, Cloud Code plus APIs,
+blah<00:01:05.280><c> blah</c><00:01:05.400><c> blah.</c><00:01:05.960><c> And</c><00:01:06.080><c> then</c><00:01:06.200><c> we</c><00:01:06.280><c> have</c>
+
+00:01:06.430 --> 00:01:06.440 align:start position:0%
+blah blah blah. And then we have
+ 
+
+00:01:06.440 --> 00:01:08.310 align:start position:0%
+blah blah blah. And then we have
+standout<00:01:06.920><c> comments.</c><00:01:07.760><c> It</c><00:01:07.880><c> also</c><00:01:08.080><c> ends</c><00:01:08.240><c> the</c>
+
+00:01:08.310 --> 00:01:08.320 align:start position:0%
+standout comments. It also ends the
+ 
+
+00:01:08.320 --> 00:01:09.710 align:start position:0%
+standout comments. It also ends the
+message<00:01:08.640><c> with</c><00:01:08.800><c> sent</c><00:01:09.000><c> by</c><00:01:09.120><c> Claude,</c><00:01:09.480><c> which</c><00:01:09.640><c> is</c>
+
+00:01:09.710 --> 00:01:09.720 align:start position:0%
+message with sent by Claude, which is
+ 
+
+00:01:09.720 --> 00:01:11.230 align:start position:0%
+message with sent by Claude, which is
+pretty<00:01:09.880><c> nice.</c><00:01:10.400><c> But,</c><00:01:10.520><c> what</c><00:01:10.640><c> you</c><00:01:10.760><c> will</c><00:01:10.920><c> notice</c>
+
+00:01:11.230 --> 00:01:11.240 align:start position:0%
+pretty nice. But, what you will notice
+ 
+
+00:01:11.240 --> 00:01:13.270 align:start position:0%
+pretty nice. But, what you will notice
+is<00:01:11.360><c> that</c><00:01:11.720><c> because</c><00:01:12.200><c> I'm</c><00:01:12.320><c> texting</c><00:01:12.720><c> myself</c><00:01:13.160><c> in</c>
+
+00:01:13.270 --> 00:01:13.280 align:start position:0%
+is that because I'm texting myself in
+ 
+
+00:01:13.280 --> 00:01:14.790 align:start position:0%
+is that because I'm texting myself in
+iMessage,<00:01:14.040><c> it's</c><00:01:14.160><c> basically</c><00:01:14.480><c> going</c><00:01:14.680><c> to</c>
+
+00:01:14.790 --> 00:01:14.800 align:start position:0%
+iMessage, it's basically going to
+ 
+
+00:01:14.800 --> 00:01:16.070 align:start position:0%
+iMessage, it's basically going to
+duplicate<00:01:15.320><c> every</c><00:01:15.560><c> single</c><00:01:15.800><c> one</c><00:01:15.920><c> of</c><00:01:15.960><c> my</c>
+
+00:01:16.070 --> 00:01:16.080 align:start position:0%
+duplicate every single one of my
+ 
+
+00:01:16.080 --> 00:01:17.750 align:start position:0%
+duplicate every single one of my
+messages,<00:01:16.560><c> whether</c><00:01:16.760><c> Claude</c><00:01:17.000><c> sent</c><00:01:17.200><c> it</c><00:01:17.360><c> or</c>
+
+00:01:17.750 --> 00:01:17.760 align:start position:0%
+messages, whether Claude sent it or
+ 
+
+00:01:17.760 --> 00:01:19.350 align:start position:0%
+messages, whether Claude sent it or
+whether<00:01:18.000><c> I</c><00:01:18.080><c> sent</c><00:01:18.320><c> it.</c><00:01:18.760><c> There</c><00:01:18.920><c> are</c><00:01:19.040><c> obviously</c>
+
+00:01:19.350 --> 00:01:19.360 align:start position:0%
+whether I sent it. There are obviously
+ 
+
+00:01:19.360 --> 00:01:20.910 align:start position:0%
+whether I sent it. There are obviously
+some<00:01:19.480><c> fixes</c><00:01:19.800><c> here.</c><00:01:20.160><c> So,</c><00:01:20.400><c> the</c><00:01:20.520><c> purpose</c><00:01:20.760><c> of</c><00:01:20.800><c> this</c>
+
+00:01:20.910 --> 00:01:20.920 align:start position:0%
+some fixes here. So, the purpose of this
+ 
+
+00:01:20.920 --> 00:01:22.110 align:start position:0%
+some fixes here. So, the purpose of this
+video<00:01:21.200><c> is</c><00:01:21.320><c> to</c><00:01:21.360><c> show</c><00:01:21.520><c> you</c><00:01:21.600><c> guys</c><00:01:21.840><c> how</c><00:01:21.960><c> this</c>
+
+00:01:22.110 --> 00:01:22.120 align:start position:0%
+video is to show you guys how this
+ 
+
+00:01:22.120 --> 00:01:23.870 align:start position:0%
+video is to show you guys how this
+works,<00:01:22.640><c> how</c><00:01:22.720><c> to</c><00:01:22.840><c> set</c><00:01:22.960><c> it</c><00:01:23.080><c> up,</c><00:01:23.480><c> and</c><00:01:23.640><c> what</c><00:01:23.800><c> you</c>
+
+00:01:23.870 --> 00:01:23.880 align:start position:0%
+works, how to set it up, and what you
+ 
+
+00:01:23.880 --> 00:01:25.910 align:start position:0%
+works, how to set it up, and what you
+need<00:01:24.000><c> to</c><00:01:24.080><c> know.</c><00:01:24.600><c> So,</c><00:01:24.960><c> let's</c><00:01:25.080><c> get</c><00:01:25.200><c> into</c><00:01:25.400><c> it.</c><00:01:25.840><c> All</c>
+
+00:01:25.910 --> 00:01:25.920 align:start position:0%
+need to know. So, let's get into it. All
+ 
+
+00:01:25.920 --> 00:01:27.830 align:start position:0%
+need to know. So, let's get into it. All
+right,<00:01:26.080><c> so</c><00:01:26.320><c> Cloud</c><00:01:26.600><c> Code</c><00:01:26.920><c> released</c><00:01:27.400><c> channels,</c>
+
+00:01:27.830 --> 00:01:27.840 align:start position:0%
+right, so Cloud Code released channels,
+ 
+
+00:01:27.840 --> 00:01:28.870 align:start position:0%
+right, so Cloud Code released channels,
+which<00:01:27.960><c> you</c><00:01:28.040><c> probably</c><00:01:28.280><c> already</c><00:01:28.480><c> knew</c><00:01:28.600><c> about.</c>
+
+00:01:28.870 --> 00:01:28.880 align:start position:0%
+which you probably already knew about.
+ 
+
+00:01:28.880 --> 00:01:30.670 align:start position:0%
+which you probably already knew about.
+This<00:01:29.000><c> came</c><00:01:29.200><c> out</c><00:01:29.360><c> about</c><00:01:29.560><c> a</c><00:01:29.600><c> week</c><00:01:29.760><c> ago,</c><00:01:30.320><c> but</c><00:01:30.480><c> this</c>
+
+00:01:30.670 --> 00:01:30.680 align:start position:0%
+This came out about a week ago, but this
+ 
+
+00:01:30.680 --> 00:01:32.150 align:start position:0%
+This came out about a week ago, but this
+basically<00:01:31.000><c> allowed</c><00:01:31.360><c> you</c><00:01:31.440><c> to</c><00:01:31.520><c> start</c><00:01:31.840><c> talking</c>
+
+00:01:32.150 --> 00:01:32.160 align:start position:0%
+basically allowed you to start talking
+ 
+
+00:01:32.160 --> 00:01:33.670 align:start position:0%
+basically allowed you to start talking
+to<00:01:32.240><c> your</c><00:01:32.360><c> Cloud</c><00:01:32.600><c> Code</c><00:01:32.760><c> session</c><00:01:33.240><c> through</c>
+
+00:01:33.670 --> 00:01:33.680 align:start position:0%
+to your Cloud Code session through
+ 
+
+00:01:33.680 --> 00:01:35.470 align:start position:0%
+to your Cloud Code session through
+select<00:01:34.000><c> MCPs.</c><00:01:34.800><c> And</c><00:01:34.920><c> this</c><00:01:35.040><c> started</c><00:01:35.320><c> with</c>
+
+00:01:35.470 --> 00:01:35.480 align:start position:0%
+select MCPs. And this started with
+ 
+
+00:01:35.480 --> 00:01:37.590 align:start position:0%
+select MCPs. And this started with
+Telegram<00:01:36.240><c> and</c><00:01:36.400><c> Discord.</c><00:01:37.120><c> But,</c><00:01:37.280><c> it</c><00:01:37.400><c> seemed</c>
+
+00:01:37.590 --> 00:01:37.600 align:start position:0%
+Telegram and Discord. But, it seemed
+ 
+
+00:01:37.600 --> 00:01:38.990 align:start position:0%
+Telegram and Discord. But, it seemed
+like<00:01:37.760><c> it</c><00:01:37.840><c> was</c><00:01:38.000><c> just</c><00:01:38.200><c> today</c><00:01:38.680><c> that</c><00:01:38.880><c> they</c>
+
+00:01:38.990 --> 00:01:39.000 align:start position:0%
+like it was just today that they
+ 
+
+00:01:39.000 --> 00:01:40.790 align:start position:0%
+like it was just today that they
+announced<00:01:39.360><c> that</c><00:01:39.560><c> iMessage</c><00:01:40.080><c> is</c><00:01:40.200><c> now</c><00:01:40.480><c> also</c>
+
+00:01:40.790 --> 00:01:40.800 align:start position:0%
+announced that iMessage is now also
+ 
+
+00:01:40.800 --> 00:01:42.630 align:start position:0%
+announced that iMessage is now also
+available<00:01:41.200><c> as</c><00:01:41.280><c> a</c><00:01:41.360><c> channel,</c><00:01:41.800><c> which</c><00:01:42.000><c> is</c><00:01:42.280><c> super</c>
+
+00:01:42.630 --> 00:01:42.640 align:start position:0%
+available as a channel, which is super
+ 
+
+00:01:42.640 --> 00:01:44.070 align:start position:0%
+available as a channel, which is super
+exciting.<00:01:43.320><c> So,</c><00:01:43.440><c> just</c><00:01:43.560><c> to</c><00:01:43.600><c> start</c><00:01:43.840><c> off</c><00:01:43.960><c> real</c>
+
+00:01:44.070 --> 00:01:44.080 align:start position:0%
+exciting. So, just to start off real
+ 
+
+00:01:44.080 --> 00:01:46.830 align:start position:0%
+exciting. So, just to start off real
+quick,<00:01:44.400><c> what</c><00:01:44.800><c> is</c><00:01:45.320><c> a</c><00:01:45.400><c> channel?</c><00:01:46.400><c> Basically,</c>
+
+00:01:46.830 --> 00:01:46.840 align:start position:0%
+quick, what is a channel? Basically,
+ 
+
+00:01:46.840 --> 00:01:48.630 align:start position:0%
+quick, what is a channel? Basically,
+it's<00:01:47.000><c> like</c><00:01:47.200><c> giving</c><00:01:47.520><c> Cloud</c><00:01:47.760><c> Code</c><00:01:48.320><c> a</c><00:01:48.400><c> phone</c>
+
+00:01:48.630 --> 00:01:48.640 align:start position:0%
+it's like giving Cloud Code a phone
+ 
+
+00:01:48.640 --> 00:01:50.830 align:start position:0%
+it's like giving Cloud Code a phone
+number.<00:01:49.120><c> It</c><00:01:49.320><c> basically</c><00:01:49.680><c> allows</c><00:01:50.000><c> us</c><00:01:50.200><c> to</c><00:01:50.640><c> talk</c>
+
+00:01:50.830 --> 00:01:50.840 align:start position:0%
+number. It basically allows us to talk
+ 
+
+00:01:50.840 --> 00:01:51.990 align:start position:0%
+number. It basically allows us to talk
+to<00:01:50.920><c> Cloud</c><00:01:51.160><c> Code</c><00:01:51.400><c> through</c><00:01:51.560><c> some</c><00:01:51.760><c> sort</c><00:01:51.920><c> of</c>
+
+00:01:51.990 --> 00:01:52.000 align:start position:0%
+to Cloud Code through some sort of
+ 
+
+00:01:52.000 --> 00:01:53.670 align:start position:0%
+to Cloud Code through some sort of
+third-party<00:01:52.480><c> app</c><00:01:52.720><c> like</c><00:01:52.880><c> Telegram,</c><00:01:53.280><c> Discord,</c>
+
+00:01:53.670 --> 00:01:53.680 align:start position:0%
+third-party app like Telegram, Discord,
+ 
+
+00:01:53.680 --> 00:01:55.750 align:start position:0%
+third-party app like Telegram, Discord,
+or<00:01:53.840><c> iMessage,</c><00:01:54.640><c> and</c><00:01:54.760><c> it</c><00:01:54.840><c> basically</c><00:01:55.200><c> sends</c><00:01:55.520><c> that</c>
+
+00:01:55.750 --> 00:01:55.760 align:start position:0%
+or iMessage, and it basically sends that
+ 
+
+00:01:55.760 --> 00:01:57.430 align:start position:0%
+or iMessage, and it basically sends that
+through<00:01:56.280><c> like</c><00:01:56.400><c> a</c><00:01:56.480><c> tunnel</c><00:01:56.960><c> or,</c><00:01:57.200><c> you</c><00:01:57.280><c> know,</c><00:01:57.400><c> a</c>
+
+00:01:57.430 --> 00:01:57.440 align:start position:0%
+through like a tunnel or, you know, a
+ 
+
+00:01:57.440 --> 00:02:00.870 align:start position:0%
+through like a tunnel or, you know, a
+bridge<00:01:57.880><c> or</c><00:01:58.000><c> a</c><00:01:58.040><c> channel,</c><00:01:58.800><c> and</c><00:01:59.240><c> it</c><00:01:59.360><c> can</c><00:02:00.080><c> send</c><00:02:00.760><c> and</c>
+
+00:02:00.870 --> 00:02:00.880 align:start position:0%
+bridge or a channel, and it can send and
+ 
+
+00:02:00.880 --> 00:02:02.670 align:start position:0%
+bridge or a channel, and it can send and
+reply.<00:02:01.680><c> So,</c><00:02:01.800><c> as</c><00:02:01.920><c> you</c><00:02:01.960><c> saw</c><00:02:02.080><c> in</c><00:02:02.160><c> the</c><00:02:02.200><c> demo,</c><00:02:02.560><c> it</c>
+
+00:02:02.670 --> 00:02:02.680 align:start position:0%
+reply. So, as you saw in the demo, it
+ 
+
+00:02:02.680 --> 00:02:04.070 align:start position:0%
+reply. So, as you saw in the demo, it
+basically<00:02:03.000><c> just</c><00:02:03.160><c> takes</c><00:02:03.400><c> my</c><00:02:03.520><c> message</c><00:02:03.880><c> from</c>
+
+00:02:04.070 --> 00:02:04.080 align:start position:0%
+basically just takes my message from
+ 
+
+00:02:04.080 --> 00:02:05.830 align:start position:0%
+basically just takes my message from
+iMessage<00:02:04.800><c> and</c><00:02:04.920><c> then</c><00:02:05.080><c> inserts</c><00:02:05.480><c> it</c><00:02:05.600><c> into</c><00:02:05.760><c> the</c>
+
+00:02:05.830 --> 00:02:05.840 align:start position:0%
+iMessage and then inserts it into the
+ 
+
+00:02:05.840 --> 00:02:08.469 align:start position:0%
+iMessage and then inserts it into the
+conversation<00:02:06.840><c> inside</c><00:02:07.360><c> of</c><00:02:07.600><c> Cloud</c><00:02:07.880><c> Code.</c><00:02:08.399><c> And</c>
+
+00:02:08.469 --> 00:02:08.479 align:start position:0%
+conversation inside of Cloud Code. And
+ 
+
+00:02:08.479 --> 00:02:10.310 align:start position:0%
+conversation inside of Cloud Code. And
+by<00:02:08.560><c> the</c><00:02:08.640><c> way,</c><00:02:08.840><c> this</c><00:02:09.039><c> mark,</c><00:02:09.600><c> I</c><00:02:09.679><c> burnt</c><00:02:09.880><c> myself</c><00:02:10.240><c> on</c>
+
+00:02:10.310 --> 00:02:10.320 align:start position:0%
+by the way, this mark, I burnt myself on
+ 
+
+00:02:10.320 --> 00:02:12.150 align:start position:0%
+by the way, this mark, I burnt myself on
+my<00:02:10.479><c> oven</c><00:02:10.679><c> the</c><00:02:10.759><c> other</c><00:02:10.880><c> day.</c><00:02:11.440><c> Anyways,</c><00:02:11.920><c> that's</c>
+
+00:02:12.150 --> 00:02:12.160 align:start position:0%
+my oven the other day. Anyways, that's
+ 
+
+00:02:12.160 --> 00:02:13.910 align:start position:0%
+my oven the other day. Anyways, that's
+cool<00:02:12.440><c> because</c><00:02:12.720><c> then,</c><00:02:13.160><c> locally</c><00:02:13.680><c> on</c><00:02:13.840><c> your</c>
+
+00:02:13.910 --> 00:02:13.920 align:start position:0%
+cool because then, locally on your
+ 
+
+00:02:13.920 --> 00:02:16.310 align:start position:0%
+cool because then, locally on your
+computer,<00:02:14.520><c> Cloud</c><00:02:14.800><c> Code</c><00:02:15.240><c> acts</c><00:02:15.640><c> as</c><00:02:15.840><c> if</c><00:02:16.160><c> you</c><00:02:16.240><c> were</c>
+
+00:02:16.310 --> 00:02:16.320 align:start position:0%
+computer, Cloud Code acts as if you were
+ 
+
+00:02:16.320 --> 00:02:17.950 align:start position:0%
+computer, Cloud Code acts as if you were
+sitting<00:02:16.600><c> there</c><00:02:17.040><c> talking</c><00:02:17.360><c> to</c><00:02:17.480><c> it.</c><00:02:17.760><c> So,</c><00:02:17.840><c> we're</c>
+
+00:02:17.950 --> 00:02:17.960 align:start position:0%
+sitting there talking to it. So, we're
+ 
+
+00:02:17.960 --> 00:02:19.230 align:start position:0%
+sitting there talking to it. So, we're
+getting<00:02:18.160><c> more</c><00:02:18.360><c> and</c><00:02:18.440><c> more</c><00:02:18.600><c> to</c><00:02:18.720><c> the</c><00:02:18.800><c> place</c><00:02:19.120><c> where</c>
+
+00:02:19.230 --> 00:02:19.240 align:start position:0%
+getting more and more to the place where
+ 
+
+00:02:19.240 --> 00:02:20.950 align:start position:0%
+getting more and more to the place where
+you're<00:02:19.440><c> able</c><00:02:19.640><c> to</c><00:02:19.800><c> use</c><00:02:20.000><c> your</c><00:02:20.120><c> sessions</c><00:02:20.680><c> as</c><00:02:20.840><c> you</c>
+
+00:02:20.950 --> 00:02:20.960 align:start position:0%
+you're able to use your sessions as you
+ 
+
+00:02:20.960 --> 00:02:22.870 align:start position:0%
+you're able to use your sessions as you
+want<00:02:21.600><c> wherever</c><00:02:21.920><c> you</c><00:02:22.040><c> are.</c><00:02:22.560><c> Now,</c><00:02:22.680><c> one</c><00:02:22.760><c> of</c><00:02:22.840><c> the</c>
+
+00:02:22.870 --> 00:02:22.880 align:start position:0%
+want wherever you are. Now, one of the
+ 
+
+00:02:22.880 --> 00:02:24.310 align:start position:0%
+want wherever you are. Now, one of the
+biggest<00:02:23.120><c> downsides</c><00:02:23.640><c> to</c><00:02:23.760><c> this</c><00:02:23.920><c> feature</c><00:02:24.160><c> right</c>
+
+00:02:24.310 --> 00:02:24.320 align:start position:0%
+biggest downsides to this feature right
+ 
+
+00:02:24.320 --> 00:02:26.270 align:start position:0%
+biggest downsides to this feature right
+now<00:02:24.600><c> is</c><00:02:24.760><c> that</c><00:02:24.880><c> if</c><00:02:25.000><c> that</c><00:02:25.240><c> session</c><00:02:25.560><c> closes</c><00:02:25.960><c> out,</c>
+
+00:02:26.270 --> 00:02:26.280 align:start position:0%
+now is that if that session closes out,
+ 
+
+00:02:26.280 --> 00:02:28.230 align:start position:0%
+now is that if that session closes out,
+so<00:02:26.400><c> if</c><00:02:26.520><c> I</c><00:02:26.560><c> go</c><00:02:26.720><c> back</c><00:02:26.880><c> into</c><00:02:27.000><c> my</c><00:02:27.080><c> VS</c><00:02:27.280><c> Code</c><00:02:27.640><c> and</c><00:02:27.800><c> I</c>
+
+00:02:28.230 --> 00:02:28.240 align:start position:0%
+so if I go back into my VS Code and I
+ 
+
+00:02:28.240 --> 00:02:31.150 align:start position:0%
+so if I go back into my VS Code and I
+basically<00:02:28.680><c> go</c><00:02:28.920><c> control</c><00:02:29.560><c> C,</c><00:02:30.040><c> see?</c><00:02:30.680><c> Now,</c><00:02:30.960><c> if</c><00:02:31.120><c> I</c>
+
+00:02:31.150 --> 00:02:31.160 align:start position:0%
+basically go control C, see? Now, if I
+ 
+
+00:02:31.160 --> 00:02:32.670 align:start position:0%
+basically go control C, see? Now, if I
+text<00:02:31.440><c> in</c><00:02:31.480><c> my</c><00:02:31.600><c> iMessage,</c><00:02:32.320><c> nothing</c><00:02:32.560><c> would</c>
+
+00:02:32.670 --> 00:02:32.680 align:start position:0%
+text in my iMessage, nothing would
+ 
+
+00:02:32.680 --> 00:02:34.630 align:start position:0%
+text in my iMessage, nothing would
+happen.<00:02:33.120><c> It</c><00:02:33.280><c> would</c><00:02:33.400><c> not</c><00:02:33.640><c> actually</c><00:02:34.000><c> access</c>
+
+00:02:34.630 --> 00:02:34.640 align:start position:0%
+happen. It would not actually access
+ 
+
+00:02:34.640 --> 00:02:35.950 align:start position:0%
+happen. It would not actually access
+Cloud<00:02:34.920><c> Code.</c><00:02:35.520><c> And</c><00:02:35.600><c> so,</c><00:02:35.680><c> that</c><00:02:35.800><c> can</c><00:02:35.880><c> be</c>
+
+00:02:35.950 --> 00:02:35.960 align:start position:0%
+Cloud Code. And so, that can be
+ 
+
+00:02:35.960 --> 00:02:37.430 align:start position:0%
+Cloud Code. And so, that can be
+frustrating<00:02:36.480><c> if,</c><00:02:36.720><c> you</c><00:02:36.800><c> know,</c><00:02:36.960><c> you</c><00:02:37.080><c> want</c><00:02:37.240><c> to</c><00:02:37.280><c> be</c>
+
+00:02:37.430 --> 00:02:37.440 align:start position:0%
+frustrating if, you know, you want to be
+ 
+
+00:02:37.440 --> 00:02:38.830 align:start position:0%
+frustrating if, you know, you want to be
+gone<00:02:37.760><c> for</c><00:02:37.960><c> a</c><00:02:38.000><c> couple</c><00:02:38.240><c> days</c><00:02:38.640><c> and</c><00:02:38.720><c> you're</c>
+
+00:02:38.830 --> 00:02:38.840 align:start position:0%
+gone for a couple days and you're
+ 
+
+00:02:38.840 --> 00:02:40.670 align:start position:0%
+gone for a couple days and you're
+worried<00:02:39.000><c> about</c><00:02:39.160><c> your</c><00:02:39.280><c> laptop</c><00:02:39.640><c> turning</c><00:02:39.920><c> off</c><00:02:40.200><c> or</c>
+
+00:02:40.670 --> 00:02:40.680 align:start position:0%
+worried about your laptop turning off or
+ 
+
+00:02:40.680 --> 00:02:42.550 align:start position:0%
+worried about your laptop turning off or
+an<00:02:40.800><c> update</c><00:02:41.120><c> restarting</c><00:02:41.560><c> or</c><00:02:41.640><c> whatever</c><00:02:41.880><c> it</c><00:02:42.000><c> is.</c>
+
+00:02:42.550 --> 00:02:42.560 align:start position:0%
+an update restarting or whatever it is.
+ 
+
+00:02:42.560 --> 00:02:45.110 align:start position:0%
+an update restarting or whatever it is.
+You<00:02:42.760><c> would</c><00:02:42.920><c> have</c><00:02:43.120><c> to</c><00:02:43.640><c> go</c><00:02:43.800><c> back</c><00:02:44.080><c> locally,</c><00:02:44.880><c> open</c>
+
+00:02:45.110 --> 00:02:45.120 align:start position:0%
+You would have to go back locally, open
+ 
+
+00:02:45.120 --> 00:02:46.670 align:start position:0%
+You would have to go back locally, open
+up<00:02:45.200><c> a</c><00:02:45.240><c> new</c><00:02:45.360><c> session,</c><00:02:45.800><c> and</c><00:02:45.920><c> then</c><00:02:46.280><c> you</c><00:02:46.400><c> could</c><00:02:46.520><c> use</c>
+
+00:02:46.670 --> 00:02:46.680 align:start position:0%
+up a new session, and then you could use
+ 
+
+00:02:46.680 --> 00:02:47.990 align:start position:0%
+up a new session, and then you could use
+that<00:02:46.800><c> channel</c><00:02:47.080><c> again.</c>
+
+00:02:47.990 --> 00:02:48.000 align:start position:0%
+that channel again.
+ 
+
+00:02:48.000 --> 00:02:49.990 align:start position:0%
+that channel again.
+There<00:02:48.200><c> are</c><00:02:48.360><c> obviously</c><00:02:48.720><c> some</c><00:02:48.880><c> fixes</c><00:02:49.160><c> here,</c><00:02:49.880><c> you</c>
+
+00:02:49.990 --> 00:02:50.000 align:start position:0%
+There are obviously some fixes here, you
+ 
+
+00:02:50.000 --> 00:02:51.630 align:start position:0%
+There are obviously some fixes here, you
+could<00:02:50.160><c> host</c><00:02:50.400><c> your</c><00:02:50.520><c> Cloud</c><00:02:50.760><c> Code</c><00:02:50.920><c> on</c><00:02:51.000><c> a</c><00:02:51.040><c> VPS</c><00:02:51.520><c> and</c>
+
+00:02:51.630 --> 00:02:51.640 align:start position:0%
+could host your Cloud Code on a VPS and
+ 
+
+00:02:51.640 --> 00:02:52.790 align:start position:0%
+could host your Cloud Code on a VPS and
+keep<00:02:51.800><c> it</c><00:02:51.920><c> running</c><00:02:52.240><c> all</c><00:02:52.360><c> the</c><00:02:52.480><c> time</c><00:02:52.680><c> with</c>
+
+00:02:52.790 --> 00:02:52.800 align:start position:0%
+keep it running all the time with
+ 
+
+00:02:52.800 --> 00:02:54.510 align:start position:0%
+keep it running all the time with
+something<00:02:53.040><c> like</c><00:02:53.200><c> a</c><00:02:53.240><c> tmux.</c><00:02:54.040><c> But,</c><00:02:54.280><c> one</c><00:02:54.400><c> of</c><00:02:54.480><c> the</c>
+
+00:02:54.510 --> 00:02:54.520 align:start position:0%
+something like a tmux. But, one of the
+ 
+
+00:02:54.520 --> 00:02:56.750 align:start position:0%
+something like a tmux. But, one of the
+catches<00:02:54.840><c> here</c><00:02:55.240><c> with</c><00:02:55.520><c> the</c><00:02:55.680><c> iMessage</c><00:02:56.160><c> channel</c>
+
+00:02:56.750 --> 00:02:56.760 align:start position:0%
+catches here with the iMessage channel
+ 
+
+00:02:56.760 --> 00:02:58.630 align:start position:0%
+catches here with the iMessage channel
+is<00:02:56.880><c> that</c><00:02:57.320><c> it's</c><00:02:57.440><c> iMessage,</c><00:02:57.920><c> meaning</c><00:02:58.360><c> wherever</c>
+
+00:02:58.630 --> 00:02:58.640 align:start position:0%
+is that it's iMessage, meaning wherever
+ 
+
+00:02:58.640 --> 00:03:00.350 align:start position:0%
+is that it's iMessage, meaning wherever
+you're<00:02:58.800><c> running</c><00:02:59.040><c> Cloud</c><00:02:59.280><c> Code</c><00:02:59.800><c> has</c><00:03:00.040><c> to</c><00:03:00.120><c> be</c><00:03:00.200><c> on</c>
+
+00:03:00.350 --> 00:03:00.360 align:start position:0%
+you're running Cloud Code has to be on
+ 
+
+00:03:00.360 --> 00:03:02.510 align:start position:0%
+you're running Cloud Code has to be on
+Mac<00:03:00.720><c> OS.</c><00:03:01.080><c> So,</c><00:03:01.200><c> that</c><00:03:01.360><c> is</c><00:03:01.480><c> why</c><00:03:01.840><c> you</c><00:03:01.960><c> can</c><00:03:02.200><c> probably</c>
+
+00:03:02.510 --> 00:03:02.520 align:start position:0%
+Mac OS. So, that is why you can probably
+ 
+
+00:03:02.520 --> 00:03:05.270 align:start position:0%
+Mac OS. So, that is why you can probably
+tell<00:03:03.040><c> today</c><00:03:03.480><c> I</c><00:03:03.600><c> am</c><00:03:03.800><c> on</c><00:03:04.240><c> my</c><00:03:04.400><c> laptop,</c><00:03:05.000><c> which</c><00:03:05.160><c> is</c><00:03:05.240><c> a</c>
+
+00:03:05.270 --> 00:03:05.280 align:start position:0%
+tell today I am on my laptop, which is a
+ 
+
+00:03:05.280 --> 00:03:07.110 align:start position:0%
+tell today I am on my laptop, which is a
+MacBook.<00:03:06.120><c> The</c><00:03:06.200><c> good</c><00:03:06.320><c> news</c><00:03:06.480><c> though</c><00:03:06.720><c> is</c><00:03:07.000><c> that</c>
+
+00:03:07.110 --> 00:03:07.120 align:start position:0%
+MacBook. The good news though is that
+ 
+
+00:03:07.120 --> 00:03:08.710 align:start position:0%
+MacBook. The good news though is that
+there<00:03:07.280><c> are</c><00:03:07.440><c> some</c><00:03:07.800><c> ways</c><00:03:08.040><c> that</c><00:03:08.160><c> you</c><00:03:08.240><c> can</c><00:03:08.400><c> have</c>
+
+00:03:08.710 --> 00:03:08.720 align:start position:0%
+there are some ways that you can have
+ 
+
+00:03:08.720 --> 00:03:11.470 align:start position:0%
+there are some ways that you can have
+like<00:03:08.840><c> sort</c><00:03:09.000><c> of</c><00:03:09.080><c> a</c><00:03:09.160><c> Mac</c><00:03:09.560><c> OS</c><00:03:10.280><c> VPS.</c><00:03:11.080><c> And</c><00:03:11.280><c> if</c><00:03:11.360><c> you</c>
+
+00:03:11.470 --> 00:03:11.480 align:start position:0%
+like sort of a Mac OS VPS. And if you
+ 
+
+00:03:11.480 --> 00:03:13.790 align:start position:0%
+like sort of a Mac OS VPS. And if you
+wanted<00:03:11.720><c> to</c><00:03:12.200><c> host</c><00:03:12.440><c> Cloud</c><00:03:12.600><c> Code</c><00:03:12.760><c> there</c><00:03:13.120><c> or</c><00:03:13.600><c> on</c><00:03:13.760><c> a</c>
+
+00:03:13.790 --> 00:03:13.800 align:start position:0%
+wanted to host Cloud Code there or on a
+ 
+
+00:03:13.800 --> 00:03:15.550 align:start position:0%
+wanted to host Cloud Code there or on a
+Mac<00:03:14.000><c> Mini,</c><00:03:14.520><c> then</c><00:03:14.760><c> you'd</c><00:03:14.880><c> be</c><00:03:14.960><c> all</c><00:03:15.080><c> set</c><00:03:15.360><c> and</c><00:03:15.480><c> you</c>
+
+00:03:15.550 --> 00:03:15.560 align:start position:0%
+Mac Mini, then you'd be all set and you
+ 
+
+00:03:15.560 --> 00:03:17.830 align:start position:0%
+Mac Mini, then you'd be all set and you
+could<00:03:15.760><c> use</c><00:03:16.080><c> this</c><00:03:16.240><c> channel</c><00:03:16.680><c> 24/7.</c><00:03:17.600><c> Now,</c><00:03:17.760><c> the</c>
+
+00:03:17.830 --> 00:03:17.840 align:start position:0%
+could use this channel 24/7. Now, the
+ 
+
+00:03:17.840 --> 00:03:19.750 align:start position:0%
+could use this channel 24/7. Now, the
+coolest<00:03:18.160><c> part</c><00:03:18.320><c> about</c><00:03:18.600><c> this</c><00:03:18.880><c> is</c><00:03:19.200><c> it</c><00:03:19.360><c> might</c><00:03:19.560><c> seem</c>
+
+00:03:19.750 --> 00:03:19.760 align:start position:0%
+coolest part about this is it might seem
+ 
+
+00:03:19.760 --> 00:03:21.190 align:start position:0%
+coolest part about this is it might seem
+like<00:03:19.920><c> you</c><00:03:20.000><c> need</c><00:03:20.160><c> to</c><00:03:20.240><c> know</c><00:03:20.560><c> how</c><00:03:20.720><c> to</c><00:03:20.800><c> set</c><00:03:20.960><c> up</c><00:03:21.080><c> like</c>
+
+00:03:21.190 --> 00:03:21.200 align:start position:0%
+like you need to know how to set up like
+ 
+
+00:03:21.200 --> 00:03:22.950 align:start position:0%
+like you need to know how to set up like
+some<00:03:21.320><c> sort</c><00:03:21.480><c> of</c><00:03:21.600><c> weird</c><00:03:21.800><c> bridge</c><00:03:22.120><c> or</c><00:03:22.200><c> a</c><00:03:22.240><c> tunnel,</c>
+
+00:03:22.950 --> 00:03:22.960 align:start position:0%
+some sort of weird bridge or a tunnel,
+ 
+
+00:03:22.960 --> 00:03:24.910 align:start position:0%
+some sort of weird bridge or a tunnel,
+but<00:03:23.080><c> it</c><00:03:23.200><c> actually</c><00:03:23.520><c> couldn't</c><00:03:23.840><c> be</c><00:03:24.040><c> simpler.</c><00:03:24.800><c> You</c>
+
+00:03:24.910 --> 00:03:24.920 align:start position:0%
+but it actually couldn't be simpler. You
+ 
+
+00:03:24.920 --> 00:03:27.070 align:start position:0%
+but it actually couldn't be simpler. You
+basically<00:03:25.320><c> just</c><00:03:25.960><c> run</c><00:03:26.200><c> a</c><00:03:26.240><c> few</c><00:03:26.400><c> commands,</c><00:03:26.920><c> run</c>
+
+00:03:27.070 --> 00:03:27.080 align:start position:0%
+basically just run a few commands, run
+ 
+
+00:03:27.080 --> 00:03:29.270 align:start position:0%
+basically just run a few commands, run
+the<00:03:27.160><c> plugin,</c><00:03:27.800><c> and</c><00:03:27.920><c> you're</c><00:03:28.040><c> all</c><00:03:28.160><c> set.</c><00:03:28.720><c> So,</c><00:03:29.120><c> let</c>
+
+00:03:29.270 --> 00:03:29.280 align:start position:0%
+the plugin, and you're all set. So, let
+ 
+
+00:03:29.280 --> 00:03:30.830 align:start position:0%
+the plugin, and you're all set. So, let
+me<00:03:29.400><c> talk</c><00:03:29.640><c> about</c><00:03:29.840><c> how</c><00:03:29.960><c> this</c><00:03:30.120><c> works</c><00:03:30.440><c> and</c><00:03:30.560><c> maybe</c><00:03:30.760><c> a</c>
+
+00:03:30.830 --> 00:03:30.840 align:start position:0%
+me talk about how this works and maybe a
+ 
+
+00:03:30.840 --> 00:03:32.110 align:start position:0%
+me talk about how this works and maybe a
+few<00:03:31.080><c> things</c><00:03:31.280><c> that</c><00:03:31.360><c> you</c><00:03:31.440><c> might</c><00:03:31.640><c> run</c><00:03:31.760><c> into</c><00:03:32.000><c> as</c>
+
+00:03:32.110 --> 00:03:32.120 align:start position:0%
+few things that you might run into as
+ 
+
+00:03:32.120 --> 00:03:34.030 align:start position:0%
+few things that you might run into as
+far<00:03:32.280><c> as</c><00:03:32.440><c> issues.</c><00:03:33.160><c> So,</c><00:03:33.280><c> as</c><00:03:33.400><c> we</c><00:03:33.480><c> know,</c><00:03:33.680><c> a</c><00:03:33.760><c> channel</c>
+
+00:03:34.030 --> 00:03:34.040 align:start position:0%
+far as issues. So, as we know, a channel
+ 
+
+00:03:34.040 --> 00:03:36.310 align:start position:0%
+far as issues. So, as we know, a channel
+is<00:03:34.120><c> an</c><00:03:34.240><c> MCP</c><00:03:34.600><c> server</c><00:03:34.920><c> that</c><00:03:35.080><c> pushes</c><00:03:35.400><c> events</c><00:03:35.800><c> into</c>
+
+00:03:36.310 --> 00:03:36.320 align:start position:0%
+is an MCP server that pushes events into
+ 
+
+00:03:36.320 --> 00:03:38.270 align:start position:0%
+is an MCP server that pushes events into
+your<00:03:36.520><c> running</c><00:03:36.960><c> Cloud</c><00:03:37.320><c> Code</c><00:03:37.600><c> session</c><00:03:38.000><c> so</c><00:03:38.120><c> that</c>
+
+00:03:38.270 --> 00:03:38.280 align:start position:0%
+your running Cloud Code session so that
+ 
+
+00:03:38.280 --> 00:03:39.910 align:start position:0%
+your running Cloud Code session so that
+Claude<00:03:38.560><c> can</c><00:03:38.680><c> react</c><00:03:38.920><c> to</c><00:03:39.000><c> things</c><00:03:39.320><c> that</c><00:03:39.480><c> happen</c>
+
+00:03:39.910 --> 00:03:39.920 align:start position:0%
+Claude can react to things that happen
+ 
+
+00:03:39.920 --> 00:03:41.070 align:start position:0%
+Claude can react to things that happen
+while<00:03:40.080><c> you're</c><00:03:40.160><c> not</c><00:03:40.360><c> at</c><00:03:40.400><c> the</c><00:03:40.480><c> terminal,</c><00:03:40.920><c> which</c>
+
+00:03:41.070 --> 00:03:41.080 align:start position:0%
+while you're not at the terminal, which
+ 
+
+00:03:41.080 --> 00:03:42.350 align:start position:0%
+while you're not at the terminal, which
+is<00:03:41.160><c> great.</c><00:03:41.680><c> I'm</c><00:03:41.760><c> not</c><00:03:41.880><c> going</c><00:03:42.000><c> to</c><00:03:42.040><c> dive</c><00:03:42.160><c> into</c><00:03:42.280><c> all</c>
+
+00:03:42.350 --> 00:03:42.360 align:start position:0%
+is great. I'm not going to dive into all
+ 
+
+00:03:42.360 --> 00:03:43.710 align:start position:0%
+is great. I'm not going to dive into all
+the<00:03:42.440><c> technical</c><00:03:42.760><c> details</c><00:03:43.120><c> right</c><00:03:43.240><c> here,</c><00:03:43.480><c> but</c><00:03:43.600><c> if</c>
+
+00:03:43.710 --> 00:03:43.720 align:start position:0%
+the technical details right here, but if
+ 
+
+00:03:43.720 --> 00:03:45.030 align:start position:0%
+the technical details right here, but if
+you<00:03:43.800><c> want</c><00:03:43.960><c> to</c><00:03:44.040><c> go</c><00:03:44.160><c> to</c><00:03:44.200><c> the</c><00:03:44.280><c> documentation,</c>
+
+00:03:45.030 --> 00:03:45.040 align:start position:0%
+you want to go to the documentation,
+ 
+
+00:03:45.040 --> 00:03:46.510 align:start position:0%
+you want to go to the documentation,
+just<00:03:45.160><c> go</c><00:03:45.280><c> to</c><00:03:45.360><c> cloudcode.docs</c><00:03:46.280><c> and</c><00:03:46.400><c> then</c>
+
+00:03:46.510 --> 00:03:46.520 align:start position:0%
+just go to cloudcode.docs and then
+ 
+
+00:03:46.520 --> 00:03:49.110 align:start position:0%
+just go to cloudcode.docs and then
+search<00:03:46.760><c> for</c><00:03:47.600><c> channels</c><00:03:48.120><c> or</c><00:03:48.280><c> push</c><00:03:48.480><c> events</c><00:03:48.840><c> into</c>
+
+00:03:49.110 --> 00:03:49.120 align:start position:0%
+search for channels or push events into
+ 
+
+00:03:49.120 --> 00:03:51.030 align:start position:0%
+search for channels or push events into
+a<00:03:49.160><c> running</c><00:03:49.600><c> session</c><00:03:49.920><c> with</c><00:03:50.040><c> channels.</c><00:03:50.800><c> So,</c><00:03:50.920><c> as</c>
+
+00:03:51.030 --> 00:03:51.040 align:start position:0%
+a running session with channels. So, as
+ 
+
+00:03:51.040 --> 00:03:52.470 align:start position:0%
+a running session with channels. So, as
+we<00:03:51.120><c> know,</c><00:03:51.360><c> we</c><00:03:51.520><c> have</c><00:03:52.040><c> three</c><00:03:52.200><c> supported</c>
+
+00:03:52.470 --> 00:03:52.480 align:start position:0%
+we know, we have three supported
+ 
+
+00:03:52.480 --> 00:03:54.550 align:start position:0%
+we know, we have three supported
+channels<00:03:52.760><c> right</c><00:03:52.920><c> now</c><00:03:53.440><c> and</c><00:03:53.760><c> it</c><00:03:53.880><c> does</c><00:03:54.120><c> require</c>
+
+00:03:54.550 --> 00:03:54.560 align:start position:0%
+channels right now and it does require
+ 
+
+00:03:54.560 --> 00:03:57.070 align:start position:0%
+channels right now and it does require
+you<00:03:54.720><c> to</c><00:03:54.840><c> install</c><00:03:55.520><c> bun.</c><00:03:56.040><c> So,</c><00:03:56.800><c> I</c><00:03:56.880><c> didn't</c><00:03:57.040><c> know</c>
+
+00:03:57.070 --> 00:03:57.080 align:start position:0%
+you to install bun. So, I didn't know
+ 
+
+00:03:57.080 --> 00:03:58.630 align:start position:0%
+you to install bun. So, I didn't know
+what<00:03:57.200><c> that</c><00:03:57.320><c> was</c><00:03:57.560><c> before</c><00:03:58.080><c> looking</c><00:03:58.320><c> at</c><00:03:58.440><c> all</c><00:03:58.520><c> this</c>
+
+00:03:58.630 --> 00:03:58.640 align:start position:0%
+what that was before looking at all this
+ 
+
+00:03:58.640 --> 00:04:00.510 align:start position:0%
+what that was before looking at all this
+stuff.<00:03:59.160><c> All</c><00:03:59.280><c> you</c><00:03:59.320><c> have</c><00:03:59.400><c> to</c><00:03:59.480><c> do</c><00:03:59.640><c> is,</c><00:04:00.000><c> you</c><00:04:00.080><c> know,</c>
+
+00:04:00.510 --> 00:04:00.520 align:start position:0%
+stuff. All you have to do is, you know,
+ 
+
+00:04:00.520 --> 00:04:02.390 align:start position:0%
+stuff. All you have to do is, you know,
+take<00:04:00.720><c> this</c><00:04:00.880><c> link</c><00:04:01.080><c> up</c><00:04:01.200><c> here,</c><00:04:01.800><c> give</c><00:04:01.960><c> it</c><00:04:02.040><c> to</c><00:04:02.120><c> Cloud</c>
+
+00:04:02.390 --> 00:04:02.400 align:start position:0%
+take this link up here, give it to Cloud
+ 
+
+00:04:02.400 --> 00:04:03.630 align:start position:0%
+take this link up here, give it to Cloud
+Code<00:04:02.560><c> and</c><00:04:02.640><c> say,</c><00:04:02.760><c> "Hey,</c><00:04:02.960><c> I</c><00:04:03.040><c> want</c><00:04:03.160><c> to</c><00:04:03.240><c> set</c><00:04:03.440><c> up</c><00:04:03.600><c> a</c>
+
+00:04:03.630 --> 00:04:03.640 align:start position:0%
+Code and say, "Hey, I want to set up a
+ 
+
+00:04:03.640 --> 00:04:06.270 align:start position:0%
+Code and say, "Hey, I want to set up a
+channel<00:04:04.040><c> for</c><00:04:04.720><c> Discord</c><00:04:05.160><c> or</c><00:04:05.240><c> for</c><00:04:05.400><c> iMessage.</c>
+
+00:04:06.270 --> 00:04:06.280 align:start position:0%
+channel for Discord or for iMessage.
+ 
+
+00:04:06.280 --> 00:04:07.990 align:start position:0%
+channel for Discord or for iMessage.
+Read<00:04:06.440><c> this</c><00:04:06.560><c> documentation</c><00:04:07.400><c> and</c><00:04:07.520><c> then</c><00:04:07.760><c> help</c><00:04:07.920><c> me</c>
+
+00:04:07.990 --> 00:04:08.000 align:start position:0%
+Read this documentation and then help me
+ 
+
+00:04:08.000 --> 00:04:09.070 align:start position:0%
+Read this documentation and then help me
+set<00:04:08.120><c> up</c><00:04:08.240><c> everything."</c><00:04:08.560><c> And</c><00:04:08.680><c> it</c><00:04:08.960><c> will</c>
+
+00:04:09.070 --> 00:04:09.080 align:start position:0%
+set up everything." And it will
+ 
+
+00:04:09.080 --> 00:04:10.150 align:start position:0%
+set up everything." And it will
+basically<00:04:09.400><c> install</c><00:04:09.720><c> everything</c><00:04:10.000><c> that</c><00:04:10.080><c> you</c>
+
+00:04:10.150 --> 00:04:10.160 align:start position:0%
+basically install everything that you
+ 
+
+00:04:10.160 --> 00:04:11.750 align:start position:0%
+basically install everything that you
+need.<00:04:10.680><c> So,</c><00:04:10.840><c> we've</c><00:04:10.960><c> got</c><00:04:11.120><c> different</c><00:04:11.360><c> steps</c><00:04:11.600><c> here</c>
+
+00:04:11.750 --> 00:04:11.760 align:start position:0%
+need. So, we've got different steps here
+ 
+
+00:04:11.760 --> 00:04:13.870 align:start position:0%
+need. So, we've got different steps here
+for<00:04:11.880><c> Telegram,</c><00:04:12.480><c> Discord,</c><00:04:12.920><c> and</c><00:04:13.040><c> iMessage,</c><00:04:13.760><c> but</c>
+
+00:04:13.870 --> 00:04:13.880 align:start position:0%
+for Telegram, Discord, and iMessage, but
+ 
+
+00:04:13.880 --> 00:04:15.310 align:start position:0%
+for Telegram, Discord, and iMessage, but
+they<00:04:13.960><c> basically</c><00:04:14.280><c> follow</c><00:04:14.520><c> the</c><00:04:14.640><c> same</c><00:04:14.880><c> pattern</c>
+
+00:04:15.310 --> 00:04:15.320 align:start position:0%
+they basically follow the same pattern
+ 
+
+00:04:15.320 --> 00:04:16.509 align:start position:0%
+they basically follow the same pattern
+of<00:04:15.600><c> making</c><00:04:15.840><c> sure</c><00:04:16.000><c> you</c><00:04:16.120><c> have</c><00:04:16.280><c> the</c><00:04:16.359><c> right</c>
+
+00:04:16.509 --> 00:04:16.519 align:start position:0%
+of making sure you have the right
+ 
+
+00:04:16.519 --> 00:04:18.630 align:start position:0%
+of making sure you have the right
+access,<00:04:17.160><c> installing</c><00:04:17.600><c> the</c><00:04:17.680><c> plugin,</c><00:04:18.120><c> and</c><00:04:18.280><c> then</c>
+
+00:04:18.630 --> 00:04:18.640 align:start position:0%
+access, installing the plugin, and then
+ 
+
+00:04:18.640 --> 00:04:20.470 align:start position:0%
+access, installing the plugin, and then
+launching<00:04:19.200><c> Claude</c><00:04:19.799><c> with</c><00:04:19.959><c> that</c><00:04:20.120><c> channel</c>
+
+00:04:20.470 --> 00:04:20.480 align:start position:0%
+launching Claude with that channel
+ 
+
+00:04:20.480 --> 00:04:21.789 align:start position:0%
+launching Claude with that channel
+enabled.<00:04:21.280><c> So,</c><00:04:21.359><c> the</c><00:04:21.440><c> first</c><00:04:21.600><c> thing</c><00:04:21.720><c> you're</c>
+
+00:04:21.789 --> 00:04:21.799 align:start position:0%
+enabled. So, the first thing you're
+ 
+
+00:04:21.799 --> 00:04:22.750 align:start position:0%
+enabled. So, the first thing you're
+going<00:04:21.920><c> to</c><00:04:21.959><c> want</c><00:04:22.079><c> to</c><00:04:22.120><c> do</c><00:04:22.320><c> is</c><00:04:22.480><c> you're</c><00:04:22.560><c> going</c><00:04:22.680><c> to</c>
+
+00:04:22.750 --> 00:04:22.760 align:start position:0%
+going to want to do is you're going to
+ 
+
+00:04:22.760 --> 00:04:25.870 align:start position:0%
+going to want to do is you're going to
+want<00:04:22.880><c> to</c><00:04:22.960><c> grant</c><00:04:23.280><c> full</c><00:04:23.640><c> disk</c><00:04:24.000><c> access</c><00:04:24.600><c> on</c><00:04:25.040><c> your</c>
+
+00:04:25.870 --> 00:04:25.880 align:start position:0%
+want to grant full disk access on your
+ 
+
+00:04:25.880 --> 00:04:28.030 align:start position:0%
+want to grant full disk access on your
+local<00:04:26.240><c> Mac</c><00:04:26.880><c> settings.</c><00:04:27.600><c> So,</c><00:04:27.680><c> basically</c><00:04:27.960><c> what</c>
+
+00:04:28.030 --> 00:04:28.040 align:start position:0%
+local Mac settings. So, basically what
+ 
+
+00:04:28.040 --> 00:04:29.110 align:start position:0%
+local Mac settings. So, basically what
+that<00:04:28.160><c> means</c><00:04:28.400><c> is</c><00:04:28.480><c> you're</c><00:04:28.600><c> going</c><00:04:28.720><c> to</c><00:04:28.800><c> open</c><00:04:29.000><c> up</c>
+
+00:04:29.110 --> 00:04:29.120 align:start position:0%
+that means is you're going to open up
+ 
+
+00:04:29.120 --> 00:04:30.350 align:start position:0%
+that means is you're going to open up
+your<00:04:29.200><c> settings,</c><00:04:29.640><c> you're</c><00:04:29.760><c> going</c><00:04:30.000><c> to</c><00:04:30.080><c> go</c><00:04:30.240><c> to</c>
+
+00:04:30.350 --> 00:04:30.360 align:start position:0%
+your settings, you're going to go to
+ 
+
+00:04:30.360 --> 00:04:31.750 align:start position:0%
+your settings, you're going to go to
+privacy<00:04:30.760><c> and</c><00:04:30.880><c> security,</c><00:04:31.360><c> you're</c><00:04:31.480><c> going</c><00:04:31.600><c> to</c><00:04:31.680><c> go</c>
+
+00:04:31.750 --> 00:04:31.760 align:start position:0%
+privacy and security, you're going to go
+ 
+
+00:04:31.760 --> 00:04:34.710 align:start position:0%
+privacy and security, you're going to go
+to<00:04:31.880><c> full</c><00:04:32.120><c> disk</c><00:04:32.440><c> access,</c><00:04:33.120><c> and</c><00:04:33.280><c> then</c><00:04:33.920><c> add</c>
+
+00:04:34.710 --> 00:04:34.720 align:start position:0%
+to full disk access, and then add
+ 
+
+00:04:34.720 --> 00:04:36.870 align:start position:0%
+to full disk access, and then add
+whatever<00:04:35.080><c> you</c><00:04:35.200><c> need</c><00:04:35.480><c> as</c><00:04:35.640><c> far</c><00:04:35.920><c> as</c><00:04:36.560><c> where</c><00:04:36.760><c> you're</c>
+
+00:04:36.870 --> 00:04:36.880 align:start position:0%
+whatever you need as far as where you're
+ 
+
+00:04:36.880 --> 00:04:38.310 align:start position:0%
+whatever you need as far as where you're
+using<00:04:37.120><c> Cloud</c><00:04:37.320><c> Code.</c><00:04:37.720><c> So,</c><00:04:37.840><c> this</c><00:04:37.960><c> does</c><00:04:38.120><c> have</c><00:04:38.240><c> to</c>
+
+00:04:38.310 --> 00:04:38.320 align:start position:0%
+using Cloud Code. So, this does have to
+ 
+
+00:04:38.320 --> 00:04:39.750 align:start position:0%
+using Cloud Code. So, this does have to
+be<00:04:38.400><c> used</c><00:04:38.560><c> in</c><00:04:38.640><c> the</c><00:04:38.720><c> terminal,</c><00:04:39.440><c> but</c><00:04:39.560><c> the</c><00:04:39.600><c> good</c>
+
+00:04:39.750 --> 00:04:39.760 align:start position:0%
+be used in the terminal, but the good
+ 
+
+00:04:39.760 --> 00:04:41.790 align:start position:0%
+be used in the terminal, but the good
+news<00:04:39.880><c> is</c><00:04:40.560><c> you</c><00:04:40.720><c> can</c><00:04:40.840><c> use</c><00:04:41.000><c> this</c><00:04:41.160><c> in</c><00:04:41.480><c> Visual</c>
+
+00:04:41.790 --> 00:04:41.800 align:start position:0%
+news is you can use this in Visual
+ 
+
+00:04:41.800 --> 00:04:43.590 align:start position:0%
+news is you can use this in Visual
+Studio<00:04:42.120><c> Code</c><00:04:42.520><c> like</c><00:04:42.720><c> I've</c><00:04:42.800><c> shown</c><00:04:43.080><c> in</c><00:04:43.240><c> basically</c>
+
+00:04:43.590 --> 00:04:43.600 align:start position:0%
+Studio Code like I've shown in basically
+ 
+
+00:04:43.600 --> 00:04:45.110 align:start position:0%
+Studio Code like I've shown in basically
+all<00:04:43.760><c> my</c><00:04:43.840><c> other</c><00:04:44.000><c> YouTube</c><00:04:44.280><c> videos.</c><00:04:44.840><c> So,</c><00:04:44.960><c> all</c><00:04:45.080><c> I</c>
+
+00:04:45.110 --> 00:04:45.120 align:start position:0%
+all my other YouTube videos. So, all I
+ 
+
+00:04:45.120 --> 00:04:47.470 align:start position:0%
+all my other YouTube videos. So, all I
+had<00:04:45.280><c> to</c><00:04:45.360><c> do</c><00:04:45.480><c> was</c><00:04:45.600><c> enable</c><00:04:46.280><c> full</c><00:04:46.480><c> disk</c><00:04:46.800><c> access</c>
+
+00:04:47.470 --> 00:04:47.480 align:start position:0%
+had to do was enable full disk access
+ 
+
+00:04:47.480 --> 00:04:49.550 align:start position:0%
+had to do was enable full disk access
+for<00:04:47.760><c> Visual</c><00:04:48.080><c> Studio</c><00:04:48.440><c> Code.</c><00:04:49.040><c> Now,</c><00:04:49.240><c> the</c><00:04:49.360><c> next</c>
+
+00:04:49.550 --> 00:04:49.560 align:start position:0%
+for Visual Studio Code. Now, the next
+ 
+
+00:04:49.560 --> 00:04:50.430 align:start position:0%
+for Visual Studio Code. Now, the next
+thing<00:04:49.640><c> you're</c><00:04:49.720><c> going</c><00:04:49.840><c> to</c><00:04:49.880><c> have</c><00:04:49.960><c> to</c><00:04:50.040><c> do</c><00:04:50.320><c> is</c>
+
+00:04:50.430 --> 00:04:50.440 align:start position:0%
+thing you're going to have to do is
+ 
+
+00:04:50.440 --> 00:04:51.350 align:start position:0%
+thing you're going to have to do is
+you're<00:04:50.520><c> going</c><00:04:50.640><c> to</c><00:04:50.720><c> have</c><00:04:50.840><c> to</c><00:04:50.920><c> install</c><00:04:51.280><c> the</c>
+
+00:04:51.350 --> 00:04:51.360 align:start position:0%
+you're going to have to install the
+ 
+
+00:04:51.360 --> 00:04:52.950 align:start position:0%
+you're going to have to install the
+plugin,<00:04:51.920><c> which</c><00:04:52.080><c> once</c><00:04:52.240><c> again</c><00:04:52.640><c> could</c><00:04:52.760><c> not</c><00:04:52.880><c> be</c>
+
+00:04:52.950 --> 00:04:52.960 align:start position:0%
+plugin, which once again could not be
+ 
+
+00:04:52.960 --> 00:04:54.790 align:start position:0%
+plugin, which once again could not be
+simpler.<00:04:53.600><c> You're</c><00:04:53.840><c> just</c><00:04:54.080><c> going</c><00:04:54.280><c> to</c><00:04:54.360><c> copy</c><00:04:54.640><c> this</c>
+
+00:04:54.790 --> 00:04:54.800 align:start position:0%
+simpler. You're just going to copy this
+ 
+
+00:04:54.800 --> 00:04:56.750 align:start position:0%
+simpler. You're just going to copy this
+command<00:04:55.240><c> right</c><00:04:55.440><c> here.</c><00:04:56.120><c> You're</c><00:04:56.240><c> going</c><00:04:56.400><c> to</c><00:04:56.480><c> go</c>
+
+00:04:56.750 --> 00:04:56.760 align:start position:0%
+command right here. You're going to go
+ 
+
+00:04:56.760 --> 00:04:58.510 align:start position:0%
+command right here. You're going to go
+into<00:04:57.040><c> your</c><00:04:57.160><c> Cloud</c><00:04:57.440><c> Code</c><00:04:57.760><c> and</c><00:04:57.920><c> for</c><00:04:58.280><c> here</c><00:04:58.440><c> I'm</c>
+
+00:04:58.510 --> 00:04:58.520 align:start position:0%
+into your Cloud Code and for here I'm
+ 
+
+00:04:58.520 --> 00:05:00.230 align:start position:0%
+into your Cloud Code and for here I'm
+just<00:04:58.640><c> going</c><00:04:58.760><c> to</c><00:04:58.840><c> launch</c><00:04:59.160><c> a</c><00:04:59.720><c> default</c><00:05:00.000><c> version</c>
+
+00:05:00.230 --> 00:05:00.240 align:start position:0%
+just going to launch a default version
+ 
+
+00:05:00.240 --> 00:05:02.750 align:start position:0%
+just going to launch a default version
+of<00:05:00.320><c> Cloud</c><00:05:00.560><c> Code,</c><00:05:01.400><c> copy</c><00:05:01.680><c> in</c><00:05:01.760><c> that</c><00:05:01.880><c> plugin,</c><00:05:02.600><c> and</c>
+
+00:05:02.750 --> 00:05:02.760 align:start position:0%
+of Cloud Code, copy in that plugin, and
+ 
+
+00:05:02.760 --> 00:05:04.550 align:start position:0%
+of Cloud Code, copy in that plugin, and
+then<00:05:03.000><c> when</c><00:05:03.200><c> I</c><00:05:03.640><c> send</c><00:05:03.840><c> it</c><00:05:03.960><c> off,</c><00:05:04.360><c> it</c><00:05:04.480><c> will</c>
+
+00:05:04.550 --> 00:05:04.560 align:start position:0%
+then when I send it off, it will
+ 
+
+00:05:04.560 --> 00:05:06.590 align:start position:0%
+then when I send it off, it will
+basically<00:05:05.520><c> give</c><00:05:05.720><c> you</c><00:05:05.800><c> the</c><00:05:05.880><c> option</c><00:05:06.120><c> to</c><00:05:06.240><c> install</c>
+
+00:05:06.590 --> 00:05:06.600 align:start position:0%
+basically give you the option to install
+ 
+
+00:05:06.600 --> 00:05:07.990 align:start position:0%
+basically give you the option to install
+it.<00:05:06.720><c> You</c><00:05:06.800><c> can</c><00:05:06.920><c> see</c><00:05:07.080><c> right</c><00:05:07.240><c> here,</c><00:05:07.720><c> I've</c><00:05:07.840><c> already</c>
+
+00:05:07.990 --> 00:05:08.000 align:start position:0%
+it. You can see right here, I've already
+ 
+
+00:05:08.000 --> 00:05:10.030 align:start position:0%
+it. You can see right here, I've already
+installed<00:05:08.360><c> this</c><00:05:08.520><c> globally.</c><00:05:09.400><c> And</c><00:05:09.520><c> if</c><00:05:09.600><c> I</c><00:05:09.680><c> go</c><00:05:09.880><c> to</c>
+
+00:05:10.030 --> 00:05:10.040 align:start position:0%
+installed this globally. And if I go to
+ 
+
+00:05:10.040 --> 00:05:11.990 align:start position:0%
+installed this globally. And if I go to
+/plugin,<00:05:10.840><c> I</c><00:05:10.920><c> could</c><00:05:11.080><c> basically</c><00:05:11.520><c> see</c><00:05:11.720><c> all</c><00:05:11.840><c> these</c>
+
+00:05:11.990 --> 00:05:12.000 align:start position:0%
+/plugin, I could basically see all these
+ 
+
+00:05:12.000 --> 00:05:13.710 align:start position:0%
+/plugin, I could basically see all these
+plugins.<00:05:12.760><c> And</c><00:05:12.840><c> you</c><00:05:12.880><c> can</c><00:05:13.000><c> even</c><00:05:13.200><c> see</c><00:05:13.360><c> here,</c><00:05:13.520><c> if</c><00:05:13.640><c> I</c>
+
+00:05:13.710 --> 00:05:13.720 align:start position:0%
+plugins. And you can even see here, if I
+ 
+
+00:05:13.720 --> 00:05:15.710 align:start position:0%
+plugins. And you can even see here, if I
+searched<00:05:14.080><c> for</c><00:05:14.680><c> the</c><00:05:14.760><c> Discord</c><00:05:15.160><c> one,</c><00:05:15.440><c> I</c><00:05:15.560><c> could</c>
+
+00:05:15.710 --> 00:05:15.720 align:start position:0%
+searched for the Discord one, I could
+ 
+
+00:05:15.720 --> 00:05:17.150 align:start position:0%
+searched for the Discord one, I could
+install<00:05:15.960><c> the</c><00:05:16.040><c> Discord</c><00:05:16.400><c> one</c><00:05:16.480><c> right</c><00:05:16.600><c> there.</c><00:05:17.040><c> And</c>
+
+00:05:17.150 --> 00:05:17.160 align:start position:0%
+install the Discord one right there. And
+ 
+
+00:05:17.160 --> 00:05:18.590 align:start position:0%
+install the Discord one right there. And
+if<00:05:17.240><c> I</c><00:05:17.320><c> went</c><00:05:17.520><c> to</c><00:05:17.680><c> Telegram,</c><00:05:18.160><c> I</c><00:05:18.240><c> could</c><00:05:18.360><c> grab</c><00:05:18.520><c> the</c>
+
+00:05:18.590 --> 00:05:18.600 align:start position:0%
+if I went to Telegram, I could grab the
+ 
+
+00:05:18.600 --> 00:05:20.150 align:start position:0%
+if I went to Telegram, I could grab the
+Telegram<00:05:18.960><c> one</c><00:05:19.080><c> right</c><00:05:19.200><c> there.</c><00:05:19.720><c> But,</c><00:05:19.880><c> if</c><00:05:20.000><c> I</c><00:05:20.040><c> go</c>
+
+00:05:20.150 --> 00:05:20.160 align:start position:0%
+Telegram one right there. But, if I go
+ 
+
+00:05:20.160 --> 00:05:21.190 align:start position:0%
+Telegram one right there. But, if I go
+over<00:05:20.320><c> to</c><00:05:20.440><c> the</c><00:05:20.520><c> ones</c><00:05:20.680><c> that</c><00:05:20.760><c> I've</c><00:05:20.880><c> actually</c>
+
+00:05:21.190 --> 00:05:21.200 align:start position:0%
+over to the ones that I've actually
+ 
+
+00:05:21.200 --> 00:05:22.830 align:start position:0%
+over to the ones that I've actually
+already<00:05:21.440><c> installed,</c><00:05:22.320><c> you</c><00:05:22.400><c> could</c><00:05:22.520><c> see</c><00:05:22.640><c> right</c>
+
+00:05:22.830 --> 00:05:22.840 align:start position:0%
+already installed, you could see right
+ 
+
+00:05:22.840 --> 00:05:25.030 align:start position:0%
+already installed, you could see right
+here<00:05:23.040><c> I</c><00:05:23.120><c> have</c><00:05:23.520><c> the</c><00:05:23.880><c> iMessage</c><00:05:24.360><c> plugin,</c><00:05:24.880><c> which</c>
+
+00:05:25.030 --> 00:05:25.040 align:start position:0%
+here I have the iMessage plugin, which
+ 
+
+00:05:25.040 --> 00:05:26.870 align:start position:0%
+here I have the iMessage plugin, which
+is<00:05:25.160><c> already</c><00:05:25.400><c> connected</c><00:05:25.880><c> and</c><00:05:26.040><c> enabled.</c><00:05:26.680><c> Now,</c>
+
+00:05:26.870 --> 00:05:26.880 align:start position:0%
+is already connected and enabled. Now,
+ 
+
+00:05:26.880 --> 00:05:28.270 align:start position:0%
+is already connected and enabled. Now,
+once<00:05:27.080><c> you've</c><00:05:27.240><c> done</c><00:05:27.440><c> that,</c><00:05:27.880><c> all</c><00:05:28.000><c> you</c><00:05:28.080><c> have</c><00:05:28.200><c> to</c>
+
+00:05:28.270 --> 00:05:28.280 align:start position:0%
+once you've done that, all you have to
+ 
+
+00:05:28.280 --> 00:05:29.950 align:start position:0%
+once you've done that, all you have to
+do<00:05:28.480><c> is</c><00:05:28.600><c> copy</c><00:05:28.840><c> this</c><00:05:29.000><c> next</c><00:05:29.240><c> command,</c><00:05:29.720><c> which</c>
+
+00:05:29.950 --> 00:05:29.960 align:start position:0%
+do is copy this next command, which
+ 
+
+00:05:29.960 --> 00:05:32.870 align:start position:0%
+do is copy this next command, which
+launches<00:05:30.560><c> a</c><00:05:30.640><c> fresh</c><00:05:31.120><c> session</c><00:05:31.560><c> of</c><00:05:31.800><c> Claude,</c><00:05:32.520><c> but</c>
+
+00:05:32.870 --> 00:05:32.880 align:start position:0%
+launches a fresh session of Claude, but
+ 
+
+00:05:32.880 --> 00:05:36.510 align:start position:0%
+launches a fresh session of Claude, but
+it<00:05:33.000><c> does</c><00:05:33.200><c> it</c><00:05:33.920><c> in</c><00:05:34.320><c> this</c><00:05:35.080><c> channel</c><00:05:35.520><c> mode.</c><00:05:36.040><c> So,</c><00:05:36.320><c> if</c>
+
+00:05:36.510 --> 00:05:36.520 align:start position:0%
+it does it in this channel mode. So, if
+ 
+
+00:05:36.520 --> 00:05:38.670 align:start position:0%
+it does it in this channel mode. So, if
+I<00:05:36.640><c> exit</c><00:05:36.960><c> out</c><00:05:37.040><c> of</c><00:05:37.120><c> this</c><00:05:37.240><c> Cloud</c><00:05:37.480><c> Code</c><00:05:38.000><c> and</c><00:05:38.200><c> I</c>
+
+00:05:38.670 --> 00:05:38.680 align:start position:0%
+I exit out of this Cloud Code and I
+ 
+
+00:05:38.680 --> 00:05:40.470 align:start position:0%
+I exit out of this Cloud Code and I
+paste<00:05:39.000><c> in</c><00:05:39.120><c> that</c><00:05:39.480><c> way</c><00:05:39.880><c> where</c><00:05:40.040><c> I'm</c><00:05:40.200><c> running</c>
+
+00:05:40.470 --> 00:05:40.480 align:start position:0%
+paste in that way where I'm running
+ 
+
+00:05:40.480 --> 00:05:42.350 align:start position:0%
+paste in that way where I'm running
+Cloud<00:05:40.720><c> Code</c><00:05:40.880><c> like</c><00:05:41.040><c> this,</c><00:05:41.680><c> it</c><00:05:41.800><c> basically</c><00:05:42.120><c> says</c>
+
+00:05:42.350 --> 00:05:42.360 align:start position:0%
+Cloud Code like this, it basically says
+ 
+
+00:05:42.360 --> 00:05:43.750 align:start position:0%
+Cloud Code like this, it basically says
+right<00:05:42.520><c> away</c><00:05:43.040><c> listening</c><00:05:43.360><c> for</c><00:05:43.480><c> channel</c>
+
+00:05:43.750 --> 00:05:43.760 align:start position:0%
+right away listening for channel
+ 
+
+00:05:43.760 --> 00:05:46.550 align:start position:0%
+right away listening for channel
+messages<00:05:44.480><c> at</c><00:05:45.200><c> iMessage.</c><00:05:46.160><c> So,</c><00:05:46.280><c> then</c><00:05:46.400><c> what</c><00:05:46.480><c> I</c>
+
+00:05:46.550 --> 00:05:46.560 align:start position:0%
+messages at iMessage. So, then what I
+ 
+
+00:05:46.560 --> 00:05:48.270 align:start position:0%
+messages at iMessage. So, then what I
+could<00:05:46.680><c> do</c><00:05:46.840><c> is</c><00:05:46.960><c> I</c><00:05:47.000><c> could</c><00:05:47.160><c> open</c><00:05:47.320><c> up</c><00:05:47.440><c> my</c><00:05:47.520><c> iMessage,</c>
+
+00:05:48.270 --> 00:05:48.280 align:start position:0%
+could do is I could open up my iMessage,
+ 
+
+00:05:48.280 --> 00:05:50.670 align:start position:0%
+could do is I could open up my iMessage,
+I<00:05:48.400><c> could</c><00:05:48.520><c> just</c><00:05:48.720><c> say,</c><00:05:49.440><c> "Hey,</c><00:05:49.760><c> can</c><00:05:50.160><c> you</c><00:05:50.440><c> hear</c>
+
+00:05:50.670 --> 00:05:50.680 align:start position:0%
+I could just say, "Hey, can you hear
+ 
+
+00:05:50.680 --> 00:05:52.310 align:start position:0%
+I could just say, "Hey, can you hear
+me?"<00:05:51.280><c> And</c><00:05:51.440><c> when</c><00:05:51.520><c> I</c><00:05:51.560><c> shoot</c><00:05:51.760><c> that</c><00:05:51.880><c> off,</c><00:05:52.200><c> we</c>
+
+00:05:52.310 --> 00:05:52.320 align:start position:0%
+me?" And when I shoot that off, we
+ 
+
+00:05:52.320 --> 00:05:54.230 align:start position:0%
+me?" And when I shoot that off, we
+should<00:05:52.560><c> see</c><00:05:52.680><c> that</c><00:05:52.920><c> in</c><00:05:53.000><c> just</c><00:05:53.200><c> a</c><00:05:53.240><c> second</c><00:05:53.880><c> pop</c><00:05:54.120><c> up</c>
+
+00:05:54.230 --> 00:05:54.240 align:start position:0%
+should see that in just a second pop up
+ 
+
+00:05:54.240 --> 00:05:56.470 align:start position:0%
+should see that in just a second pop up
+right<00:05:54.400><c> here</c><00:05:54.920><c> in</c><00:05:55.080><c> our</c><00:05:55.240><c> Cloud</c><00:05:55.560><c> Code</c><00:05:55.800><c> session.</c>
+
+00:05:56.470 --> 00:05:56.480 align:start position:0%
+right here in our Cloud Code session.
+ 
+
+00:05:56.480 --> 00:05:57.790 align:start position:0%
+right here in our Cloud Code session.
+And<00:05:56.560><c> here's</c><00:05:56.720><c> a</c><00:05:56.760><c> quick</c><00:05:56.920><c> example.</c><00:05:57.400><c> I</c><00:05:57.480><c> didn't</c>
+
+00:05:57.790 --> 00:05:57.800 align:start position:0%
+And here's a quick example. I didn't
+ 
+
+00:05:57.800 --> 00:05:59.630 align:start position:0%
+And here's a quick example. I didn't
+launch<00:05:58.000><c> this</c><00:05:58.160><c> one</c><00:05:58.320><c> in</c><00:05:58.480><c> bypass</c><00:05:58.840><c> permissions,</c>
+
+00:05:59.630 --> 00:05:59.640 align:start position:0%
+launch this one in bypass permissions,
+ 
+
+00:05:59.640 --> 00:06:01.910 align:start position:0%
+launch this one in bypass permissions,
+so<00:05:59.760><c> it</c><00:05:59.800><c> says,</c><00:05:59.960><c> "Hey,</c><00:06:00.600><c> I</c><00:06:00.760><c> need</c><00:06:01.000><c> to</c><00:06:01.240><c> do</c><00:06:01.400><c> this.</c><00:06:01.840><c> Do</c>
+
+00:06:01.910 --> 00:06:01.920 align:start position:0%
+so it says, "Hey, I need to do this. Do
+ 
+
+00:06:01.920 --> 00:06:03.550 align:start position:0%
+so it says, "Hey, I need to do this. Do
+you<00:06:01.960><c> want</c><00:06:02.120><c> to</c><00:06:02.200><c> let</c><00:06:02.320><c> me</c><00:06:02.400><c> proceed?"</c><00:06:03.120><c> And</c><00:06:03.240><c> here</c><00:06:03.440><c> is</c>
+
+00:06:03.550 --> 00:06:03.560 align:start position:0%
+you want to let me proceed?" And here is
+ 
+
+00:06:03.560 --> 00:06:05.030 align:start position:0%
+you want to let me proceed?" And here is
+where<00:06:03.720><c> I</c><00:06:03.760><c> would</c><00:06:03.960><c> in</c><00:06:04.080><c> my</c><00:06:04.200><c> local</c><00:06:04.520><c> session</c><00:06:04.880><c> say</c>
+
+00:06:05.030 --> 00:06:05.040 align:start position:0%
+where I would in my local session say
+ 
+
+00:06:05.040 --> 00:06:07.710 align:start position:0%
+where I would in my local session say
+yes<00:06:05.720><c> or</c><00:06:06.400><c> no.</c><00:06:06.920><c> But,</c><00:06:07.040><c> it</c><00:06:07.120><c> does</c><00:06:07.320><c> tell</c><00:06:07.480><c> us</c><00:06:07.600><c> right</c>
+
+00:06:07.710 --> 00:06:07.720 align:start position:0%
+yes or no. But, it does tell us right
+ 
+
+00:06:07.720 --> 00:06:09.270 align:start position:0%
+yes or no. But, it does tell us right
+here<00:06:07.880><c> that</c><00:06:08.000><c> we</c><00:06:08.120><c> could</c><00:06:08.280><c> reply</c><00:06:09.000><c> on</c><00:06:09.160><c> our</c>
+
+00:06:09.270 --> 00:06:09.280 align:start position:0%
+here that we could reply on our
+ 
+
+00:06:09.280 --> 00:06:13.550 align:start position:0%
+here that we could reply on our
+iMessage,<00:06:09.760><c> so</c><00:06:10.040><c> I</c><00:06:10.120><c> can</c><00:06:10.280><c> go</c><00:06:10.560><c> yes,</c><00:06:11.440><c> m</c><00:06:11.920><c> w</c><00:06:12.680><c> u</c><00:06:12.920><c> p</c><00:06:13.120><c> y.</c>
+
+00:06:13.550 --> 00:06:13.560 align:start position:0%
+iMessage, so I can go yes, m w u p y.
+ 
+
+00:06:13.560 --> 00:06:15.110 align:start position:0%
+iMessage, so I can go yes, m w u p y.
+And<00:06:13.680><c> if</c><00:06:13.800><c> I</c><00:06:13.840><c> shoot</c><00:06:14.080><c> that</c><00:06:14.200><c> off,</c><00:06:14.720><c> then</c><00:06:14.840><c> let's</c><00:06:15.000><c> see</c>
+
+00:06:15.110 --> 00:06:15.120 align:start position:0%
+And if I shoot that off, then let's see
+ 
+
+00:06:15.120 --> 00:06:16.430 align:start position:0%
+And if I shoot that off, then let's see
+if<00:06:15.240><c> Claude's</c><00:06:15.560><c> able</c><00:06:15.720><c> to</c><00:06:15.880><c> get</c><00:06:16.040><c> that</c><00:06:16.280><c> and</c>
+
+00:06:16.430 --> 00:06:16.440 align:start position:0%
+if Claude's able to get that and
+ 
+
+00:06:16.440 --> 00:06:18.510 align:start position:0%
+if Claude's able to get that and
+actually<00:06:16.760><c> take</c><00:06:17.000><c> action.</c><00:06:17.640><c> There</c><00:06:17.800><c> we</c><00:06:17.920><c> go.</c><00:06:18.400><c> So,</c>
+
+00:06:18.510 --> 00:06:18.520 align:start position:0%
+actually take action. There we go. So,
+ 
+
+00:06:18.520 --> 00:06:20.190 align:start position:0%
+actually take action. There we go. So,
+that's<00:06:18.720><c> how</c><00:06:18.840><c> you're</c><00:06:18.920><c> able</c><00:06:19.120><c> to</c><00:06:19.240><c> approve</c><00:06:19.600><c> things</c>
+
+00:06:20.190 --> 00:06:20.200 align:start position:0%
+that's how you're able to approve things
+ 
+
+00:06:20.200 --> 00:06:22.150 align:start position:0%
+that's how you're able to approve things
+from<00:06:20.680><c> your</c><00:06:20.800><c> phone</c><00:06:21.320><c> so</c><00:06:21.440><c> you're</c><00:06:21.520><c> not</c><00:06:21.720><c> completely</c>
+
+00:06:22.150 --> 00:06:22.160 align:start position:0%
+from your phone so you're not completely
+ 
+
+00:06:22.160 --> 00:06:23.590 align:start position:0%
+from your phone so you're not completely
+blocked<00:06:22.480><c> off</c><00:06:22.720><c> in</c><00:06:22.800><c> case</c><00:06:23.040><c> you</c><00:06:23.120><c> forgot</c><00:06:23.400><c> about</c>
+
+00:06:23.590 --> 00:06:23.600 align:start position:0%
+blocked off in case you forgot about
+ 
+
+00:06:23.600 --> 00:06:25.190 align:start position:0%
+blocked off in case you forgot about
+some<00:06:23.760><c> sort</c><00:06:23.880><c> of</c><00:06:23.960><c> permission.</c><00:06:24.760><c> And</c><00:06:25.000><c> you</c><00:06:25.080><c> can</c>
+
+00:06:25.190 --> 00:06:25.200 align:start position:0%
+some sort of permission. And you can
+ 
+
+00:06:25.200 --> 00:06:26.830 align:start position:0%
+some sort of permission. And you can
+also<00:06:25.440><c> see</c><00:06:25.600><c> here</c><00:06:25.760><c> that</c><00:06:25.920><c> Cloud</c><00:06:26.240><c> Code</c><00:06:26.400><c> is</c><00:06:26.520><c> able</c><00:06:26.720><c> to</c>
+
+00:06:26.830 --> 00:06:26.840 align:start position:0%
+also see here that Cloud Code is able to
+ 
+
+00:06:26.840 --> 00:06:28.990 align:start position:0%
+also see here that Cloud Code is able to
+send<00:06:27.080><c> emojis,</c><00:06:27.880><c> which</c><00:06:28.040><c> is</c><00:06:28.120><c> cool.</c><00:06:28.720><c> So,</c><00:06:28.840><c> right</c>
+
+00:06:28.990 --> 00:06:29.000 align:start position:0%
+send emojis, which is cool. So, right
+ 
+
+00:06:29.000 --> 00:06:30.830 align:start position:0%
+send emojis, which is cool. So, right
+now<00:06:29.160><c> I'm</c><00:06:29.320><c> texting</c><00:06:29.680><c> myself</c><00:06:30.120><c> on</c><00:06:30.280><c> iMessage</c><00:06:30.760><c> and</c>
+
+00:06:30.830 --> 00:06:30.840 align:start position:0%
+now I'm texting myself on iMessage and
+ 
+
+00:06:30.840 --> 00:06:33.110 align:start position:0%
+now I'm texting myself on iMessage and
+that's<00:06:31.040><c> basically</c><00:06:31.440><c> how</c><00:06:31.680><c> this</c><00:06:31.880><c> thing</c><00:06:32.200><c> works.</c>
+
+00:06:33.110 --> 00:06:33.120 align:start position:0%
+that's basically how this thing works.
+ 
+
+00:06:33.120 --> 00:06:35.430 align:start position:0%
+that's basically how this thing works.
+If<00:06:33.480><c> you</c><00:06:33.760><c> want</c><00:06:34.040><c> to</c><00:06:34.120><c> be</c><00:06:34.240><c> able</c><00:06:34.440><c> to</c><00:06:34.800><c> text</c><00:06:35.040><c> yourself</c>
+
+00:06:35.430 --> 00:06:35.440 align:start position:0%
+If you want to be able to text yourself
+ 
+
+00:06:35.440 --> 00:06:36.990 align:start position:0%
+If you want to be able to text yourself
+from<00:06:35.600><c> a</c><00:06:35.640><c> different</c><00:06:36.000><c> number</c><00:06:36.440><c> or</c><00:06:36.600><c> have</c><00:06:36.840><c> other</c>
+
+00:06:36.990 --> 00:06:37.000 align:start position:0%
+from a different number or have other
+ 
+
+00:06:37.000 --> 00:06:38.910 align:start position:0%
+from a different number or have other
+people<00:06:37.320><c> be</c><00:06:37.440><c> able</c><00:06:37.600><c> to</c><00:06:37.720><c> text</c><00:06:37.960><c> your</c><00:06:38.080><c> Cloud</c><00:06:38.320><c> Code,</c>
+
+00:06:38.910 --> 00:06:38.920 align:start position:0%
+people be able to text your Cloud Code,
+ 
+
+00:06:38.920 --> 00:06:40.230 align:start position:0%
+people be able to text your Cloud Code,
+then<00:06:39.240><c> all</c><00:06:39.400><c> you</c><00:06:39.440><c> have</c><00:06:39.560><c> to</c><00:06:39.640><c> do</c><00:06:39.760><c> is</c><00:06:39.840><c> allow</c>
+
+00:06:40.230 --> 00:06:40.240 align:start position:0%
+then all you have to do is allow
+ 
+
+00:06:40.240 --> 00:06:42.070 align:start position:0%
+then all you have to do is allow
+different<00:06:40.600><c> numbers</c><00:06:41.080><c> to.</c><00:06:41.680><c> But,</c><00:06:41.800><c> the</c><00:06:41.880><c> very</c>
+
+00:06:42.070 --> 00:06:42.080 align:start position:0%
+different numbers to. But, the very
+ 
+
+00:06:42.080 --> 00:06:43.630 align:start position:0%
+different numbers to. But, the very
+first<00:06:42.320><c> time</c><00:06:42.520><c> when</c><00:06:42.640><c> you</c><00:06:42.720><c> text</c><00:06:42.960><c> yourself</c><00:06:43.400><c> after</c>
+
+00:06:43.630 --> 00:06:43.640 align:start position:0%
+first time when you text yourself after
+ 
+
+00:06:43.640 --> 00:06:46.150 align:start position:0%
+first time when you text yourself after
+this<00:06:43.800><c> channel</c><00:06:44.080><c> set</c><00:06:44.280><c> up,</c><00:06:44.760><c> it</c><00:06:44.960><c> may</c><00:06:45.440><c> pop</c><00:06:45.680><c> up</c><00:06:45.960><c> right</c>
+
+00:06:46.150 --> 00:06:46.160 align:start position:0%
+this channel set up, it may pop up right
+ 
+
+00:06:46.160 --> 00:06:47.590 align:start position:0%
+this channel set up, it may pop up right
+here<00:06:46.400><c> and</c><00:06:46.520><c> say</c><00:06:46.640><c> like,</c><00:06:46.840><c> "Hey,</c><00:06:47.240><c> I'm</c><00:06:47.360><c> getting</c><00:06:47.560><c> a</c>
+
+00:06:47.590 --> 00:06:47.600 align:start position:0%
+here and say like, "Hey, I'm getting a
+ 
+
+00:06:47.600 --> 00:06:48.910 align:start position:0%
+here and say like, "Hey, I'm getting a
+text<00:06:47.760><c> from</c><00:06:47.880><c> this</c><00:06:48.000><c> number.</c><00:06:48.360><c> Is</c><00:06:48.480><c> this</c><00:06:48.640><c> you?</c>
+
+00:06:48.910 --> 00:06:48.920 align:start position:0%
+text from this number. Is this you?
+ 
+
+00:06:48.920 --> 00:06:50.550 align:start position:0%
+text from this number. Is this you?
+Should<00:06:49.080><c> I</c><00:06:49.120><c> allow</c><00:06:49.440><c> it?</c><00:06:49.760><c> Blah</c><00:06:49.880><c> blah</c><00:06:50.000><c> blah."</c><00:06:50.440><c> And</c>
+
+00:06:50.550 --> 00:06:50.560 align:start position:0%
+Should I allow it? Blah blah blah." And
+ 
+
+00:06:50.560 --> 00:06:52.230 align:start position:0%
+Should I allow it? Blah blah blah." And
+that's<00:06:50.760><c> where</c><00:06:50.880><c> you</c><00:06:51.000><c> just</c><00:06:51.160><c> say</c><00:06:51.320><c> yes.</c><00:06:52.000><c> But,</c><00:06:52.120><c> if</c>
+
+00:06:52.230 --> 00:06:52.240 align:start position:0%
+that's where you just say yes. But, if
+ 
+
+00:06:52.240 --> 00:06:53.750 align:start position:0%
+that's where you just say yes. But, if
+you<00:06:52.320><c> wanted</c><00:06:52.480><c> to</c><00:06:52.600><c> allow</c><00:06:52.960><c> other</c><00:06:53.200><c> members</c><00:06:53.560><c> to</c><00:06:53.680><c> be</c>
+
+00:06:53.750 --> 00:06:53.760 align:start position:0%
+you wanted to allow other members to be
+ 
+
+00:06:53.760 --> 00:06:55.870 align:start position:0%
+you wanted to allow other members to be
+able<00:06:53.880><c> to</c><00:06:54.000><c> text</c><00:06:54.600><c> your</c><00:06:54.880><c> Cloud</c><00:06:55.120><c> Code,</c><00:06:55.680><c> then</c><00:06:55.800><c> all</c>
+
+00:06:55.870 --> 00:06:55.880 align:start position:0%
+able to text your Cloud Code, then all
+ 
+
+00:06:55.880 --> 00:06:57.990 align:start position:0%
+able to text your Cloud Code, then all
+you<00:06:55.960><c> have</c><00:06:56.040><c> to</c><00:06:56.120><c> do</c><00:06:56.240><c> is</c><00:06:56.360><c> /iMessage</c><00:06:57.600><c> access</c>
+
+00:06:57.990 --> 00:06:58.000 align:start position:0%
+you have to do is /iMessage access
+ 
+
+00:06:58.000 --> 00:06:59.550 align:start position:0%
+you have to do is /iMessage access
+allow,<00:06:58.680><c> and</c><00:06:58.800><c> then</c><00:06:58.880><c> you</c><00:06:58.960><c> can</c><00:06:59.080><c> either</c><00:06:59.240><c> do</c><00:06:59.480><c> a</c>
+
+00:06:59.550 --> 00:06:59.560 align:start position:0%
+allow, and then you can either do a
+ 
+
+00:06:59.560 --> 00:07:01.550 align:start position:0%
+allow, and then you can either do a
+phone<00:06:59.800><c> number</c><00:07:00.440><c> or</c><00:07:00.760><c> you</c><00:07:00.880><c> could</c><00:07:01.040><c> also</c><00:07:01.280><c> do</c><00:07:01.440><c> an</c>
+
+00:07:01.550 --> 00:07:01.560 align:start position:0%
+phone number or you could also do an
+ 
+
+00:07:01.560 --> 00:07:04.230 align:start position:0%
+phone number or you could also do an
+Apple<00:07:01.800><c> ID.</c><00:07:02.400><c> And</c><00:07:02.520><c> then,</c><00:07:03.160><c> that</c><00:07:03.560><c> Apple</c><00:07:03.840><c> ID</c><00:07:04.120><c> or</c>
+
+00:07:04.230 --> 00:07:04.240 align:start position:0%
+Apple ID. And then, that Apple ID or
+ 
+
+00:07:04.240 --> 00:07:05.750 align:start position:0%
+Apple ID. And then, that Apple ID or
+that<00:07:04.400><c> phone</c><00:07:04.560><c> number</c><00:07:04.800><c> could</c><00:07:05.040><c> also</c><00:07:05.320><c> text</c><00:07:05.640><c> your</c>
+
+00:07:05.750 --> 00:07:05.760 align:start position:0%
+that phone number could also text your
+ 
+
+00:07:05.760 --> 00:07:07.550 align:start position:0%
+that phone number could also text your
+Cloud<00:07:05.960><c> Code</c><00:07:06.160><c> session.</c><00:07:06.800><c> So,</c><00:07:07.120><c> if</c><00:07:07.240><c> you</c><00:07:07.360><c> really</c>
+
+00:07:07.550 --> 00:07:07.560 align:start position:0%
+Cloud Code session. So, if you really
+ 
+
+00:07:07.560 --> 00:07:09.270 align:start position:0%
+Cloud Code session. So, if you really
+wanted<00:07:07.760><c> to</c><00:07:07.840><c> get</c><00:07:07.960><c> rid</c><00:07:08.120><c> of</c><00:07:08.200><c> these</c><00:07:08.400><c> double</c><00:07:08.640><c> texts,</c>
+
+00:07:09.270 --> 00:07:09.280 align:start position:0%
+wanted to get rid of these double texts,
+ 
+
+00:07:09.280 --> 00:07:10.950 align:start position:0%
+wanted to get rid of these double texts,
+then<00:07:09.440><c> you</c><00:07:09.560><c> would</c><00:07:09.680><c> just</c><00:07:09.840><c> want</c><00:07:09.960><c> to</c><00:07:10.040><c> text</c><00:07:10.720><c> this</c>
+
+00:07:10.950 --> 00:07:10.960 align:start position:0%
+then you would just want to text this
+ 
+
+00:07:10.960 --> 00:07:12.150 align:start position:0%
+then you would just want to text this
+number.<00:07:11.320><c> So,</c><00:07:11.440><c> right</c><00:07:11.600><c> here</c><00:07:11.760><c> is,</c><00:07:11.880><c> you</c><00:07:11.920><c> know,</c><00:07:12.040><c> my</c>
+
+00:07:12.150 --> 00:07:12.160 align:start position:0%
+number. So, right here is, you know, my
+ 
+
+00:07:12.160 --> 00:07:15.030 align:start position:0%
+number. So, right here is, you know, my
+Nate<00:07:12.400><c> Herc</c><00:07:13.400><c> um</c><00:07:13.680><c> Apple</c><00:07:13.960><c> ID,</c><00:07:14.600><c> and</c><00:07:14.760><c> I</c><00:07:14.800><c> would</c><00:07:14.920><c> just</c>
+
+00:07:15.030 --> 00:07:15.040 align:start position:0%
+Nate Herc um Apple ID, and I would just
+ 
+
+00:07:15.040 --> 00:07:16.510 align:start position:0%
+Nate Herc um Apple ID, and I would just
+want<00:07:15.160><c> to</c><00:07:15.200><c> text</c><00:07:15.520><c> that</c><00:07:15.680><c> number</c><00:07:15.960><c> or</c><00:07:16.120><c> that</c><00:07:16.320><c> Apple</c>
+
+00:07:16.510 --> 00:07:16.520 align:start position:0%
+want to text that number or that Apple
+ 
+
+00:07:16.520 --> 00:07:18.430 align:start position:0%
+want to text that number or that Apple
+ID<00:07:17.080><c> from</c><00:07:17.240><c> a</c><00:07:17.320><c> different</c><00:07:17.680><c> account</c><00:07:18.160><c> or</c><00:07:18.240><c> from</c><00:07:18.400><c> a</c>
+
+00:07:18.430 --> 00:07:18.440 align:start position:0%
+ID from a different account or from a
+ 
+
+00:07:18.440 --> 00:07:19.830 align:start position:0%
+ID from a different account or from a
+different<00:07:18.760><c> number.</c><00:07:19.280><c> And</c><00:07:19.400><c> then</c><00:07:19.520><c> I</c><00:07:19.600><c> could</c><00:07:19.720><c> just</c>
+
+00:07:19.830 --> 00:07:19.840 align:start position:0%
+different number. And then I could just
+ 
+
+00:07:19.840 --> 00:07:21.310 align:start position:0%
+different number. And then I could just
+have<00:07:20.040><c> like</c><00:07:20.520><c> basically</c><00:07:20.920><c> a</c><00:07:21.000><c> one-way</c>
+
+00:07:21.310 --> 00:07:21.320 align:start position:0%
+have like basically a one-way
+ 
+
+00:07:21.320 --> 00:07:22.990 align:start position:0%
+have like basically a one-way
+conversation<00:07:21.880><c> that</c><00:07:22.040><c> feels</c><00:07:22.280><c> more</c><00:07:22.440><c> like</c><00:07:22.920><c> a</c>
+
+00:07:22.990 --> 00:07:23.000 align:start position:0%
+conversation that feels more like a
+ 
+
+00:07:23.000 --> 00:07:25.590 align:start position:0%
+conversation that feels more like a
+human<00:07:23.440><c> or,</c><00:07:23.920><c> you</c><00:07:24.000><c> know,</c><00:07:24.160><c> an</c><00:07:24.280><c> AI</c><00:07:24.520><c> agent.</c><00:07:25.360><c> Now,</c>
+
+00:07:25.590 --> 00:07:25.600 align:start position:0%
+human or, you know, an AI agent. Now,
+ 
+
+00:07:25.600 --> 00:07:27.190 align:start position:0%
+human or, you know, an AI agent. Now,
+Pro<00:07:25.880><c> and</c><00:07:26.000><c> Max</c><00:07:26.280><c> users,</c><00:07:26.600><c> that's</c><00:07:26.800><c> basically</c><00:07:27.080><c> all</c>
+
+00:07:27.190 --> 00:07:27.200 align:start position:0%
+Pro and Max users, that's basically all
+ 
+
+00:07:27.200 --> 00:07:28.790 align:start position:0%
+Pro and Max users, that's basically all
+you<00:07:27.240><c> have</c><00:07:27.360><c> to</c><00:07:27.440><c> do</c><00:07:27.760><c> is</c><00:07:27.880><c> install</c><00:07:28.120><c> the</c><00:07:28.200><c> plugin</c><00:07:28.640><c> and</c>
+
+00:07:28.790 --> 00:07:28.800 align:start position:0%
+you have to do is install the plugin and
+ 
+
+00:07:28.800 --> 00:07:30.990 align:start position:0%
+you have to do is install the plugin and
+then<00:07:29.200><c> run</c><00:07:29.440><c> Cloud</c><00:07:29.720><c> Code</c><00:07:30.000><c> in</c><00:07:30.120><c> that</c><00:07:30.320><c> way.</c><00:07:30.840><c> But,</c>
+
+00:07:30.990 --> 00:07:31.000 align:start position:0%
+then run Cloud Code in that way. But,
+ 
+
+00:07:31.000 --> 00:07:32.590 align:start position:0%
+then run Cloud Code in that way. But,
+for<00:07:31.240><c> enterprise</c><00:07:31.720><c> users</c><00:07:32.080><c> or</c><00:07:32.240><c> if</c><00:07:32.360><c> you're</c><00:07:32.480><c> on</c><00:07:32.560><c> a</c>
+
+00:07:32.590 --> 00:07:32.600 align:start position:0%
+for enterprise users or if you're on a
+ 
+
+00:07:32.600 --> 00:07:34.470 align:start position:0%
+for enterprise users or if you're on a
+team<00:07:33.040><c> plan,</c><00:07:33.680><c> then</c><00:07:33.840><c> you're</c><00:07:33.920><c> going</c><00:07:34.160><c> to</c><00:07:34.240><c> have</c><00:07:34.400><c> to</c>
+
+00:07:34.470 --> 00:07:34.480 align:start position:0%
+team plan, then you're going to have to
+ 
+
+00:07:34.480 --> 00:07:37.510 align:start position:0%
+team plan, then you're going to have to
+make<00:07:34.600><c> sure</c><00:07:34.720><c> the</c><00:07:34.880><c> admin</c><00:07:35.920><c> allows</c><00:07:36.720><c> channel</c><00:07:37.240><c> use</c>
+
+00:07:37.510 --> 00:07:37.520 align:start position:0%
+make sure the admin allows channel use
+ 
+
+00:07:37.520 --> 00:07:38.990 align:start position:0%
+make sure the admin allows channel use
+because<00:07:37.880><c> by</c><00:07:38.040><c> default</c><00:07:38.440><c> it</c><00:07:38.520><c> will</c><00:07:38.640><c> be</c><00:07:38.760><c> turned</c>
+
+00:07:38.990 --> 00:07:39.000 align:start position:0%
+because by default it will be turned
+ 
+
+00:07:39.000 --> 00:07:41.550 align:start position:0%
+because by default it will be turned
+off.<00:07:39.600><c> But,</c><00:07:39.920><c> all</c><00:07:40.120><c> of</c><00:07:40.200><c> the</c><00:07:40.280><c> plans</c><00:07:41.160><c> should</c><00:07:41.480><c> be</c>
+
+00:07:41.550 --> 00:07:41.560 align:start position:0%
+off. But, all of the plans should be
+ 
+
+00:07:41.560 --> 00:07:43.390 align:start position:0%
+off. But, all of the plans should be
+able<00:07:41.800><c> to</c><00:07:41.920><c> use</c><00:07:42.120><c> this</c><00:07:42.720><c> once</c><00:07:43.000><c> everything's</c>
+
+00:07:43.390 --> 00:07:43.400 align:start position:0%
+able to use this once everything's
+ 
+
+00:07:43.400 --> 00:07:45.230 align:start position:0%
+able to use this once everything's
+configured<00:07:43.840><c> correctly.</c><00:07:44.600><c> So,</c><00:07:44.800><c> if</c><00:07:44.880><c> that</c><00:07:45.080><c> is</c>
+
+00:07:45.230 --> 00:07:45.240 align:start position:0%
+configured correctly. So, if that is
+ 
+
+00:07:45.240 --> 00:07:46.790 align:start position:0%
+configured correctly. So, if that is
+you,<00:07:45.480><c> you</c><00:07:45.600><c> would</c><00:07:45.680><c> basically</c><00:07:46.040><c> just</c><00:07:46.200><c> go</c><00:07:46.360><c> to</c><00:07:46.640><c> your</c>
+
+00:07:46.790 --> 00:07:46.800 align:start position:0%
+you, you would basically just go to your
+ 
+
+00:07:46.800 --> 00:07:48.670 align:start position:0%
+you, you would basically just go to your
+admin<00:07:47.040><c> settings,</c><00:07:47.640><c> Cloud</c><00:07:47.840><c> Code,</c><00:07:48.200><c> and</c><00:07:48.360><c> then</c>
+
+00:07:48.670 --> 00:07:48.680 align:start position:0%
+admin settings, Cloud Code, and then
+ 
+
+00:07:48.680 --> 00:07:50.670 align:start position:0%
+admin settings, Cloud Code, and then
+channels.<00:07:49.760><c> So,</c><00:07:49.920><c> here</c><00:07:50.120><c> I</c><00:07:50.200><c> am</c><00:07:50.400><c> in</c><00:07:50.560><c> my</c>
+
+00:07:50.670 --> 00:07:50.680 align:start position:0%
+channels. So, here I am in my
+ 
+
+00:07:50.680 --> 00:07:52.030 align:start position:0%
+channels. So, here I am in my
+organization<00:07:51.200><c> settings.</c><00:07:51.560><c> You</c><00:07:51.640><c> can</c><00:07:51.760><c> see</c><00:07:51.880><c> that</c>
+
+00:07:52.030 --> 00:07:52.040 align:start position:0%
+organization settings. You can see that
+ 
+
+00:07:52.040 --> 00:07:53.430 align:start position:0%
+organization settings. You can see that
+I've<00:07:52.160><c> got</c><00:07:52.280><c> a</c><00:07:52.320><c> lot</c><00:07:52.480><c> of</c><00:07:52.600><c> options</c><00:07:52.920><c> here</c><00:07:53.240><c> that</c><00:07:53.400><c> I</c>
+
+00:07:53.430 --> 00:07:53.440 align:start position:0%
+I've got a lot of options here that I
+ 
+
+00:07:53.440 --> 00:07:55.470 align:start position:0%
+I've got a lot of options here that I
+can<00:07:53.560><c> turn</c><00:07:53.800><c> on</c><00:07:54.160><c> like</c><00:07:54.360><c> fast</c><00:07:54.680><c> mode,</c><00:07:55.240><c> remote</c>
+
+00:07:55.470 --> 00:07:55.480 align:start position:0%
+can turn on like fast mode, remote
+ 
+
+00:07:55.480 --> 00:07:56.830 align:start position:0%
+can turn on like fast mode, remote
+control.<00:07:55.960><c> A</c><00:07:56.000><c> lot</c><00:07:56.120><c> of</c><00:07:56.200><c> these</c><00:07:56.440><c> are</c><00:07:56.520><c> because</c>
+
+00:07:56.830 --> 00:07:56.840 align:start position:0%
+control. A lot of these are because
+ 
+
+00:07:56.840 --> 00:07:58.670 align:start position:0%
+control. A lot of these are because
+they're<00:07:56.960><c> in</c><00:07:57.360><c> research</c><00:07:57.680><c> preview.</c><00:07:58.360><c> Right</c><00:07:58.520><c> here</c>
+
+00:07:58.670 --> 00:07:58.680 align:start position:0%
+they're in research preview. Right here
+ 
+
+00:07:58.680 --> 00:08:00.110 align:start position:0%
+they're in research preview. Right here
+at<00:07:58.760><c> the</c><00:07:58.840><c> bottom</c><00:07:59.120><c> we</c><00:07:59.160><c> have</c><00:07:59.280><c> channels</c><00:07:59.840><c> and</c><00:07:59.960><c> this</c>
+
+00:08:00.110 --> 00:08:00.120 align:start position:0%
+at the bottom we have channels and this
+ 
+
+00:08:00.120 --> 00:08:02.470 align:start position:0%
+at the bottom we have channels and this
+is<00:08:00.280><c> where</c><00:08:00.520><c> we</c><00:08:00.640><c> could</c><00:08:00.800><c> actually</c><00:08:01.440><c> enable</c><00:08:01.840><c> that.</c>
+
+00:08:02.470 --> 00:08:02.480 align:start position:0%
+is where we could actually enable that.
+ 
+
+00:08:02.480 --> 00:08:03.590 align:start position:0%
+is where we could actually enable that.
+And<00:08:02.640><c> one</c><00:08:02.760><c> final</c><00:08:03.000><c> thing</c><00:08:03.160><c> that</c><00:08:03.280><c> I</c><00:08:03.320><c> wanted</c><00:08:03.520><c> to</c>
+
+00:08:03.590 --> 00:08:03.600 align:start position:0%
+And one final thing that I wanted to
+ 
+
+00:08:03.600 --> 00:08:05.070 align:start position:0%
+And one final thing that I wanted to
+cover,<00:08:04.000><c> which</c><00:08:04.280><c> I</c><00:08:04.320><c> think</c><00:08:04.480><c> is</c><00:08:04.560><c> a</c><00:08:04.600><c> very</c><00:08:04.840><c> valid</c>
+
+00:08:05.070 --> 00:08:05.080 align:start position:0%
+cover, which I think is a very valid
+ 
+
+00:08:05.080 --> 00:08:06.830 align:start position:0%
+cover, which I think is a very valid
+question,<00:08:05.600><c> is</c><00:08:06.040><c> the</c><00:08:06.160><c> difference</c><00:08:06.600><c> because</c>
+
+00:08:06.830 --> 00:08:06.840 align:start position:0%
+question, is the difference because
+ 
+
+00:08:06.840 --> 00:08:08.070 align:start position:0%
+question, is the difference because
+there's<00:08:07.000><c> lots</c><00:08:07.240><c> of</c><00:08:07.360><c> ways</c><00:08:07.600><c> now</c><00:08:07.720><c> that</c><00:08:07.840><c> we</c><00:08:07.960><c> can</c>
+
+00:08:08.070 --> 00:08:08.080 align:start position:0%
+there's lots of ways now that we can
+ 
+
+00:08:08.080 --> 00:08:09.830 align:start position:0%
+there's lots of ways now that we can
+control<00:08:08.480><c> our</c><00:08:08.600><c> local</c><00:08:08.840><c> sessions</c><00:08:09.560><c> from</c><00:08:09.760><c> our</c>
+
+00:08:09.830 --> 00:08:09.840 align:start position:0%
+control our local sessions from our
+ 
+
+00:08:09.840 --> 00:08:12.190 align:start position:0%
+control our local sessions from our
+phone<00:08:10.160><c> or</c><00:08:10.240><c> from,</c><00:08:10.720><c> you</c><00:08:10.760><c> know,</c><00:08:10.920><c> the</c><00:08:11.080><c> go.</c><00:08:11.880><c> And</c><00:08:12.120><c> we</c>
+
+00:08:12.190 --> 00:08:12.200 align:start position:0%
+phone or from, you know, the go. And we
+ 
+
+00:08:12.200 --> 00:08:13.630 align:start position:0%
+phone or from, you know, the go. And we
+have<00:08:12.360><c> dispatch,</c><00:08:12.880><c> we</c><00:08:12.960><c> have</c><00:08:13.080><c> channels,</c><00:08:13.480><c> and</c><00:08:13.560><c> we</c>
+
+00:08:13.630 --> 00:08:13.640 align:start position:0%
+have dispatch, we have channels, and we
+ 
+
+00:08:13.640 --> 00:08:15.470 align:start position:0%
+have dispatch, we have channels, and we
+have<00:08:13.760><c> remote</c><00:08:14.040><c> control.</c><00:08:14.880><c> So,</c><00:08:15.080><c> I</c><00:08:15.120><c> basically</c>
+
+00:08:15.470 --> 00:08:15.480 align:start position:0%
+have remote control. So, I basically
+ 
+
+00:08:15.480 --> 00:08:16.470 align:start position:0%
+have remote control. So, I basically
+came<00:08:15.640><c> to</c><00:08:15.720><c> the</c><00:08:15.800><c> docs</c><00:08:16.080><c> and</c><00:08:16.160><c> I</c><00:08:16.200><c> said,</c><00:08:16.360><c> "Hey,</c>
+
+00:08:16.470 --> 00:08:16.480 align:start position:0%
+came to the docs and I said, "Hey,
+ 
+
+00:08:16.480 --> 00:08:17.710 align:start position:0%
+came to the docs and I said, "Hey,
+what's<00:08:16.640><c> the</c><00:08:16.720><c> difference?"</c><00:08:17.360><c> And</c><00:08:17.440><c> here's</c><00:08:17.640><c> what</c>
+
+00:08:17.710 --> 00:08:17.720 align:start position:0%
+what's the difference?" And here's what
+ 
+
+00:08:17.720 --> 00:08:20.510 align:start position:0%
+what's the difference?" And here's what
+it<00:08:17.800><c> pulled.</c><00:08:18.640><c> Dispatch</c><00:08:19.280><c> is</c><00:08:19.720><c> message</c><00:08:20.080><c> a</c><00:08:20.160><c> task</c>
+
+00:08:20.510 --> 00:08:20.520 align:start position:0%
+it pulled. Dispatch is message a task
+ 
+
+00:08:20.520 --> 00:08:22.590 align:start position:0%
+it pulled. Dispatch is message a task
+from<00:08:20.680><c> your</c><00:08:20.800><c> mobile</c><00:08:21.080><c> app.</c><00:08:21.560><c> Claude</c><00:08:21.920><c> runs</c><00:08:22.200><c> on</c>
+
+00:08:22.590 --> 00:08:22.600 align:start position:0%
+from your mobile app. Claude runs on
+ 
+
+00:08:22.600 --> 00:08:24.630 align:start position:0%
+from your mobile app. Claude runs on
+your<00:08:22.760><c> machine.</c><00:08:23.520><c> It's</c><00:08:23.680><c> best</c><00:08:23.920><c> for</c><00:08:24.040><c> delegating</c>
+
+00:08:24.630 --> 00:08:24.640 align:start position:0%
+your machine. It's best for delegating
+ 
+
+00:08:24.640 --> 00:08:26.110 align:start position:0%
+your machine. It's best for delegating
+work<00:08:25.000><c> while</c><00:08:25.200><c> you're</c><00:08:25.320><c> away</c><00:08:25.680><c> with</c><00:08:25.840><c> minimal</c>
+
+00:08:26.110 --> 00:08:26.120 align:start position:0%
+work while you're away with minimal
+ 
+
+00:08:26.120 --> 00:08:27.390 align:start position:0%
+work while you're away with minimal
+setup.
+
+00:08:27.390 --> 00:08:27.400 align:start position:0%
+setup.
+ 
+
+00:08:27.400 --> 00:08:29.630 align:start position:0%
+setup.
+Channels<00:08:28.000><c> means</c><00:08:28.240><c> you</c><00:08:28.400><c> push</c><00:08:28.640><c> events</c><00:08:29.040><c> from</c><00:08:29.320><c> chat</c>
+
+00:08:29.630 --> 00:08:29.640 align:start position:0%
+Channels means you push events from chat
+ 
+
+00:08:29.640 --> 00:08:31.870 align:start position:0%
+Channels means you push events from chat
+apps<00:08:30.080><c> like</c><00:08:30.200><c> Telegram,</c><00:08:30.640><c> Discord,</c><00:08:30.960><c> iMessage,</c>
+
+00:08:31.870 --> 00:08:31.880 align:start position:0%
+apps like Telegram, Discord, iMessage,
+ 
+
+00:08:31.880 --> 00:08:33.790 align:start position:0%
+apps like Telegram, Discord, iMessage,
+or<00:08:32.320><c> your</c><00:08:32.520><c> own</c><00:08:32.680><c> servers</c><00:08:33.120><c> into</c><00:08:33.479><c> a</c><00:08:33.520><c> running</c>
+
+00:08:33.790 --> 00:08:33.800 align:start position:0%
+or your own servers into a running
+ 
+
+00:08:33.800 --> 00:08:35.790 align:start position:0%
+or your own servers into a running
+session,<00:08:34.440><c> which</c><00:08:34.599><c> is</c><00:08:34.719><c> best</c><00:08:34.960><c> for</c><00:08:35.120><c> reacting</c><00:08:35.680><c> to</c>
+
+00:08:35.790 --> 00:08:35.800 align:start position:0%
+session, which is best for reacting to
+ 
+
+00:08:35.800 --> 00:08:38.390 align:start position:0%
+session, which is best for reacting to
+external<00:08:36.200><c> events</c><00:08:36.560><c> like</c><00:08:37.080><c> CI</c><00:08:37.400><c> failures</c><00:08:37.919><c> or</c><00:08:38.080><c> chat</c>
+
+00:08:38.390 --> 00:08:38.400 align:start position:0%
+external events like CI failures or chat
+ 
+
+00:08:38.400 --> 00:08:40.950 align:start position:0%
+external events like CI failures or chat
+messages.<00:08:39.400><c> And</c><00:08:39.520><c> remote</c><00:08:39.760><c> control,</c><00:08:40.560><c> drive</c><00:08:40.919><c> a</c>
+
+00:08:40.950 --> 00:08:40.960 align:start position:0%
+messages. And remote control, drive a
+ 
+
+00:08:40.960 --> 00:08:43.270 align:start position:0%
+messages. And remote control, drive a
+running<00:08:41.240><c> session</c><00:08:41.560><c> from</c><00:08:41.719><c> claude.ai/code</c><00:08:43.159><c> or</c>
+
+00:08:43.270 --> 00:08:43.280 align:start position:0%
+running session from claude.ai/code or
+ 
+
+00:08:43.280 --> 00:08:44.710 align:start position:0%
+running session from claude.ai/code or
+the<00:08:43.360><c> mobile</c><00:08:43.680><c> app,</c><00:08:44.080><c> which</c><00:08:44.240><c> is</c><00:08:44.360><c> best</c><00:08:44.600><c> for</c>
+
+00:08:44.710 --> 00:08:44.720 align:start position:0%
+the mobile app, which is best for
+ 
+
+00:08:44.720 --> 00:08:46.910 align:start position:0%
+the mobile app, which is best for
+steering<00:08:45.160><c> in-progress</c><00:08:45.920><c> work</c><00:08:46.480><c> from</c><00:08:46.640><c> another</c>
+
+00:08:46.910 --> 00:08:46.920 align:start position:0%
+steering in-progress work from another
+ 
+
+00:08:46.920 --> 00:08:49.030 align:start position:0%
+steering in-progress work from another
+device.<00:08:47.800><c> And</c><00:08:47.920><c> so,</c><00:08:48.120><c> that</c><00:08:48.320><c> still</c><00:08:48.520><c> might</c><00:08:48.760><c> to</c><00:08:48.880><c> you</c>
+
+00:08:49.030 --> 00:08:49.040 align:start position:0%
+device. And so, that still might to you
+ 
+
+00:08:49.040 --> 00:08:50.430 align:start position:0%
+device. And so, that still might to you
+sound<00:08:49.480><c> like</c><00:08:49.640><c> it's</c><00:08:49.760><c> all</c><00:08:49.880><c> basically</c><00:08:50.160><c> the</c><00:08:50.240><c> same</c>
+
+00:08:50.430 --> 00:08:50.440 align:start position:0%
+sound like it's all basically the same
+ 
+
+00:08:50.440 --> 00:08:51.910 align:start position:0%
+sound like it's all basically the same
+thing.<00:08:50.920><c> The</c><00:08:51.040><c> key</c><00:08:51.200><c> difference</c><00:08:51.480><c> here</c><00:08:51.680><c> is</c><00:08:51.800><c> the</c>
+
+00:08:51.910 --> 00:08:51.920 align:start position:0%
+thing. The key difference here is the
+ 
+
+00:08:51.920 --> 00:08:54.510 align:start position:0%
+thing. The key difference here is the
+trigger.<00:08:52.680><c> Dispatch</c><00:08:53.240><c> is</c><00:08:53.600><c> message-based,</c>
+
+00:08:54.510 --> 00:08:54.520 align:start position:0%
+trigger. Dispatch is message-based,
+ 
+
+00:08:54.520 --> 00:08:56.350 align:start position:0%
+trigger. Dispatch is message-based,
+channels<00:08:54.920><c> are</c><00:08:55.080><c> event-based,</c><00:08:55.960><c> and</c><00:08:56.080><c> remote</c>
+
+00:08:56.350 --> 00:08:56.360 align:start position:0%
+channels are event-based, and remote
+ 
+
+00:08:56.360 --> 00:08:58.230 align:start position:0%
+channels are event-based, and remote
+control<00:08:56.800><c> is</c><00:08:56.920><c> for</c><00:08:57.040><c> direct</c><00:08:57.440><c> control</c><00:08:57.920><c> of</c><00:08:58.040><c> an</c>
+
+00:08:58.230 --> 00:08:58.240 align:start position:0%
+control is for direct control of an
+ 
+
+00:08:58.240 --> 00:09:00.190 align:start position:0%
+control is for direct control of an
+active<00:08:58.600><c> session.</c><00:08:59.280><c> So,</c><00:08:59.800><c> hopefully</c><00:09:00.080><c> that</c>
+
+00:09:00.190 --> 00:09:00.200 align:start position:0%
+active session. So, hopefully that
+ 
+
+00:09:00.200 --> 00:09:01.270 align:start position:0%
+active session. So, hopefully that
+should<00:09:00.280><c> clear</c><00:09:00.440><c> things</c><00:09:00.600><c> up</c><00:09:00.680><c> a</c><00:09:00.720><c> little</c><00:09:00.880><c> bit.</c>
+
+00:09:01.270 --> 00:09:01.280 align:start position:0%
+should clear things up a little bit.
+ 
+
+00:09:01.280 --> 00:09:02.870 align:start position:0%
+should clear things up a little bit.
+They're<00:09:01.440><c> all</c><00:09:01.640><c> very</c><00:09:01.880><c> different,</c><00:09:02.480><c> they're</c><00:09:02.640><c> all</c>
+
+00:09:02.870 --> 00:09:02.880 align:start position:0%
+They're all very different, they're all
+ 
+
+00:09:02.880 --> 00:09:04.150 align:start position:0%
+They're all very different, they're all
+kind<00:09:03.040><c> of</c><00:09:03.120><c> similar,</c><00:09:03.760><c> but</c><00:09:03.880><c> they're</c><00:09:04.000><c> all</c>
+
+00:09:04.150 --> 00:09:04.160 align:start position:0%
+kind of similar, but they're all
+ 
+
+00:09:04.160 --> 00:09:06.030 align:start position:0%
+kind of similar, but they're all
+steering<00:09:04.600><c> us</c><00:09:04.720><c> in</c><00:09:04.840><c> the</c><00:09:04.920><c> direction</c><00:09:05.480><c> of</c>
+
+00:09:06.030 --> 00:09:06.040 align:start position:0%
+steering us in the direction of
+ 
+
+00:09:06.040 --> 00:09:07.590 align:start position:0%
+steering us in the direction of
+Anthropic<00:09:06.600><c> wanting</c><00:09:06.840><c> us</c><00:09:06.960><c> to</c><00:09:07.040><c> be</c><00:09:07.120><c> able</c><00:09:07.280><c> to</c><00:09:07.400><c> use</c>
+
+00:09:07.590 --> 00:09:07.600 align:start position:0%
+Anthropic wanting us to be able to use
+ 
+
+00:09:07.600 --> 00:09:09.030 align:start position:0%
+Anthropic wanting us to be able to use
+Cloud<00:09:07.840><c> Code</c><00:09:08.000><c> from</c><00:09:08.160><c> anywhere,</c><00:09:08.560><c> which</c><00:09:08.760><c> I</c><00:09:08.800><c> think</c>
+
+00:09:09.030 --> 00:09:09.040 align:start position:0%
+Cloud Code from anywhere, which I think
+ 
+
+00:09:09.040 --> 00:09:11.550 align:start position:0%
+Cloud Code from anywhere, which I think
+is<00:09:09.720><c> obviously</c><00:09:10.040><c> great.</c><00:09:10.800><c> And</c><00:09:11.120><c> I</c><00:09:11.200><c> know</c><00:09:11.320><c> that</c><00:09:11.440><c> this</c>
+
+00:09:11.550 --> 00:09:11.560 align:start position:0%
+is obviously great. And I know that this
+ 
+
+00:09:11.560 --> 00:09:14.190 align:start position:0%
+is obviously great. And I know that this
+is<00:09:11.680><c> an</c><00:09:11.880><c> iMessage</c><00:09:12.560><c> plugin</c><00:09:13.200><c> or</c><00:09:13.320><c> channel,</c><00:09:13.920><c> but</c>
+
+00:09:14.190 --> 00:09:14.200 align:start position:0%
+is an iMessage plugin or channel, but
+ 
+
+00:09:14.200 --> 00:09:16.190 align:start position:0%
+is an iMessage plugin or channel, but
+even<00:09:14.400><c> if</c><00:09:14.480><c> you're</c><00:09:14.600><c> doing</c><00:09:14.840><c> your</c><00:09:14.960><c> green</c><00:09:15.200><c> SMSs,</c><00:09:16.040><c> if</c>
+
+00:09:16.190 --> 00:09:16.200 align:start position:0%
+even if you're doing your green SMSs, if
+ 
+
+00:09:16.200 --> 00:09:17.510 align:start position:0%
+even if you're doing your green SMSs, if
+they're<00:09:16.320><c> being</c><00:09:16.520><c> sent</c><00:09:16.760><c> to</c><00:09:16.800><c> that</c><00:09:16.960><c> number,</c><00:09:17.320><c> then</c>
+
+00:09:17.510 --> 00:09:17.520 align:start position:0%
+they're being sent to that number, then
+ 
+
+00:09:17.520 --> 00:09:18.790 align:start position:0%
+they're being sent to that number, then
+Cloud<00:09:17.760><c> Code</c><00:09:17.960><c> should</c><00:09:18.080><c> also</c><00:09:18.320><c> be</c><00:09:18.400><c> able</c><00:09:18.520><c> to</c><00:09:18.640><c> read</c>
+
+00:09:18.790 --> 00:09:18.800 align:start position:0%
+Cloud Code should also be able to read
+ 
+
+00:09:18.800 --> 00:09:20.870 align:start position:0%
+Cloud Code should also be able to read
+those<00:09:19.200><c> and</c><00:09:19.440><c> respond</c><00:09:19.760><c> to</c><00:09:19.840><c> those</c><00:09:20.040><c> as</c><00:09:20.240><c> well.</c><00:09:20.720><c> So,</c>
+
+00:09:20.870 --> 00:09:20.880 align:start position:0%
+those and respond to those as well. So,
+ 
+
+00:09:20.880 --> 00:09:21.950 align:start position:0%
+those and respond to those as well. So,
+that<00:09:21.000><c> is</c><00:09:21.080><c> going</c><00:09:21.200><c> to</c><00:09:21.280><c> do</c><00:09:21.320><c> it</c><00:09:21.400><c> for</c><00:09:21.480><c> this</c><00:09:21.560><c> video.</c>
+
+00:09:21.950 --> 00:09:21.960 align:start position:0%
+that is going to do it for this video.
+ 
+
+00:09:21.960 --> 00:09:22.870 align:start position:0%
+that is going to do it for this video.
+If<00:09:22.040><c> you</c><00:09:22.120><c> enjoyed</c><00:09:22.440><c> it</c><00:09:22.480><c> and</c><00:09:22.560><c> learned</c><00:09:22.680><c> something</c>
+
+00:09:22.870 --> 00:09:22.880 align:start position:0%
+If you enjoyed it and learned something
+ 
+
+00:09:22.880 --> 00:09:23.990 align:start position:0%
+If you enjoyed it and learned something
+new,<00:09:23.080><c> please</c><00:09:23.320><c> give</c><00:09:23.400><c> it</c><00:09:23.480><c> a</c><00:09:23.520><c> like.</c><00:09:23.720><c> It</c><00:09:23.760><c> helps</c><00:09:23.960><c> me</c>
+
+00:09:23.990 --> 00:09:24.000 align:start position:0%
+new, please give it a like. It helps me
+ 
+
+00:09:24.000 --> 00:09:25.750 align:start position:0%
+new, please give it a like. It helps me
+out<00:09:24.080><c> a</c><00:09:24.120><c> ton.</c><00:09:24.720><c> And</c><00:09:25.040><c> as</c><00:09:25.160><c> always,</c><00:09:25.400><c> I</c><00:09:25.440><c> appreciate</c>
+
+00:09:25.750 --> 00:09:25.760 align:start position:0%
+out a ton. And as always, I appreciate
+ 
+
+00:09:25.760 --> 00:09:26.550 align:start position:0%
+out a ton. And as always, I appreciate
+you<00:09:25.800><c> guys</c><00:09:26.000><c> made</c><00:09:26.160><c> it</c><00:09:26.200><c> to</c><00:09:26.280><c> the</c><00:09:26.360><c> end</c><00:09:26.440><c> of</c><00:09:26.520><c> the</c>
+
+00:09:26.550 --> 00:09:26.560 align:start position:0%
+you guys made it to the end of the
+ 
+
+00:09:26.560 --> 00:09:28.630 align:start position:0%
+you guys made it to the end of the
+video.<00:09:27.240><c> I'll</c><00:09:27.360><c> see</c><00:09:27.480><c> you</c><00:09:27.520><c> on</c><00:09:27.600><c> the</c><00:09:27.640><c> next</c><00:09:27.840><c> one.</c>
+
+00:09:28.630 --> 00:09:28.640 align:start position:0%
+video. I'll see you on the next one.
+ 
+
+00:09:28.640 --> 00:09:31.240 align:start position:0%
+video. I'll see you on the next one.
+Thanks,<00:09:28.840><c> everyone.</c>
+

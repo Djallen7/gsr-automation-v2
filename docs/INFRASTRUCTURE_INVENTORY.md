@@ -1,6 +1,6 @@
 # Infrastructure Inventory
 
-> **SUPERSEDED (Era 1/2) — historical reference only.** This inventory presents Tailscale, QNAP admin, and self-hosted n8n as live infrastructure. They are OFF-LIMITS now: the 2026-05-20 security incident permanently barred Tailscale/SSH/local servers, and the QNAP is read-only SMB with no admin. The live system is Supabase + Next.js on Vercel. See `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md`.
+> **SUPERSEDED (Era 1/2) — historical reference only.** This inventory was written when QNAP admin access and self-hosted n8n were the plan. Both are now off the table: QNAP admin is off-limits (cause of the 2026-05-20 incident); n8n is superseded by ADR-0012. **Tailscale is NOT banned** — Tailscale is only restricted when writing to a server; read-only access via Tailscale is permitted (Daniel + David, 2026-06-11). The live system is Supabase + Next.js on Vercel. For authoritative infrastructure restrictions see `docs/_handoff/GSR-WORKFLOW-CANON.md` sections 13-14.
 
 **Last updated:** 2026-05-20
 **Owner:** Daniel
@@ -16,7 +16,7 @@ This file is the source of truth for hardware/network facts the automation depen
 | `DRM-QNAP3` | 10.2.2.3 | QNAP (QTS) | File storage — read-only SMB access for automation | ⚠️ Read-only SMB only. No admin. IT manages. | ❌ Not available — IT controlled |
 | `DRM-QNAP5` | 10.2.2.5 | QNAP (QTS) | Secondary file storage — read-only SMB access | ⚠️ Read-only SMB only. No admin. IT manages. | ❌ Not available — IT controlled |
 
-**IMPORTANT — 2026-05-20 security incident:** Admin credentials were exposed in a chat session and have been rotated by IT. Daniel no longer has or needs QNAP admin access. The automation system must not attempt to install software, configure settings, or write to the QNAP directly. The only permitted operation is reading finished episode files via the existing SMB share mounts. All automation software runs on a separate machine.
+**2026-05-20 security incident:** Admin credentials were exposed in a chat session and have been rotated by IT. The cause was accessing the QNAP admin dashboard (tweaking server settings). Tailscale itself was not the issue (confirmed by David and Daniel, 2026-06-11). The automation system must not access the QNAP admin dashboard or write to the QNAP under any circumstances. Reading finished episode files via SMB (including over Tailscale) is permitted.
 
 ---
 
@@ -35,7 +35,7 @@ Tailnet owner: `danielallen.tn@gmail.com`.
 
 | System | Account / Owner Email | Notes |
 |--------|----------------------|-------|
-| Tailscale tailnet | `danielallen.tn@gmail.com` (Daniel personal) | Owns the tailnet that the QNAPs will join |
+| Tailscale tailnet | `danielallen.tn@gmail.com` (Daniel personal) | Owns the tailnet used for remote SMB access to QNAP and ProPresenter mapping |
 | 1Password Teams | `dallen@davidrives.com` (ministry email) | Vault `GSR Automation` lives here; ministry-owned for bookkeeping/continuity |
 | GitHub repo | `Djallen7` | Owns `gsr-automation` repo |
 
@@ -53,18 +53,18 @@ These are intentionally separate. Do not migrate Tailscale to the ministry email
 | Alert contact | `dallen@davidrives.com` (email) — confirmation may still be pending |
 | Monitors live | 1: `dial-tone — github repo` (id 803080384) — health check on the repo URL |
 
-**Known limitation:** UptimeRobot free tier monitors public HTTP endpoints only. Self-hosted services on QNAP3 (n8n, dashboard) cannot be polled directly. When those come online (Phase 1 Week 5+), decide between (a) upgrade to UptimeRobot Pro for heartbeat / push monitoring (~$7/mo), (b) add Healthchecks.io for heartbeats only, or (c) self-host Uptime Kuma on QNAP3. Not blocking Week 1.
+**Known limitation:** UptimeRobot free tier monitors public HTTP endpoints only. For cloud-hosted services (Vercel + Supabase), upgrade to UptimeRobot Pro for heartbeat / push monitoring (~$7/mo) or use Healthchecks.io for heartbeats when needed.
 
 ---
 
 ## 1Password Vault Status
 
-Vault `GSR Automation` is set up on 1Password Teams (owner: `dallen@davidrives.com`). 15 credential items seeded as empty placeholders on 2026-05-15:
+Vault `GSR Automation` is set up on 1Password Teams (owner: `dallen@davidrives.com`). Items seeded as placeholders:
 
 | Phase 1 | Phase 2 | Phase 3 |
-|---------|---------|---------|
-| QNAP3 admin (server) | Rumble API (pending bd@rumble.com) | Fireside.fm login |
-| QNAP5 admin (server) | Signiant Media Shuttle login | StreamHoster FTP |
+|---------|---------|----------|
+| ~~QNAP3 admin~~ (obsolete — admin access not needed) | Rumble API (pending bd@rumble.com) | Fireside.fm login |
+| ~~QNAP5 admin~~ (obsolete — admin access not needed) | Signiant Media Shuttle login | StreamHoster FTP |
 | GitHub PAT | Google Form (Signiant submission) | |
 | Tailscale auth key | | |
 | YouTube OAuth | | |
@@ -72,25 +72,14 @@ Vault `GSR Automation` is set up on 1Password Teams (owner: `dallen@davidrives.c
 | Anthropic API | | |
 | ntfy | | |
 | UptimeRobot | | |
-| n8n admin | | |
 
-Tagging convention: every item has `gsr-automation`, one of `phase-1`/`phase-2`/`phase-3`, and one platform tag (`nas`, `youtube`, `dropbox`, `rumble`, `fireside`, `signiant`, `streamhoster`, `ai`, `github`, `tailscale`, `monitoring`).
-
-Items contain empty secret fields by design — they exist as labeled slots waiting for real credentials. Filling them is gated on issue #10 (QNAP) and Phase 1 Weeks 4–6 (API integrations).
+Tagging convention: every item has `gsr-automation`, one of `phase-1`/`phase-2`/`phase-3`, and one platform tag.
 
 ---
 
-## Open Blockers
-
-- **QNAP admin credentials** for both NAS units are not yet in our possession. Vault slot exists, but is empty. Required before Tailscale, n8n install, or any file-watcher work on the NAS side. Tracked as [issue #10](https://github.com/Djallen7/gsr-automation/issues/10) with `blocker` label.
-
----
-
-## Known Unknowns (to fill in once creds are available)
+## Known Unknowns (to fill in once SMB access is confirmed)
 
 - Exact QNAP model number for each unit (TS-xxx / TVS-xxx / HS-xxx)
 - QTS firmware version per unit
-- Installed RAM and free storage per unit
-- Whether Container Station is installed (required for Docker / n8n per ADR-0001)
 - SMB share names and paths where master video files land
-- Existing snapshot / replication configuration (relevant to backup ADR)
+- VideoEdit server hostname/IP and SMB share path (needed before linking off local testing)

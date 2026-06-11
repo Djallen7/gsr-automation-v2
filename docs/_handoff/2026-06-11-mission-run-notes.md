@@ -142,3 +142,43 @@ Pattern: Sonnet does the volume, one short heavy-model review per milestone.
 - Apply next cycle: launch critique agents with staggered starts to dodge shared limits;
   keep every merge script in dict-style with assert-counted replacements; record runtime
   by git timestamps from the start.
+
+## Mining summary — R6 transcript sweep (2026-06-11, Mac CLI session)
+
+**Final counts:** 107 mined · 53 rejected · 2 pending (no transcript) · 210 claims total (CL-001–CL-217)
+
+Wave 1: 62 mined / 31 rejected / 57 claims (parallel mine + parallel merge → race conditions; ~30 video statuses lost, recovered in wave 2)
+Wave 2: 45 mined / 22 rejected / 2 pending / 92 new claims (parallel mine + single atomic merge → clean)
+
+**10 highest-value claims by ID**
+
+| ID | Lane | Claim (condensed) |
+|---|---|---|
+| CL-145 | remote-execution | 4 official remote Claude Code modes: Cloud (Anthropic-hosted, GitHub-required), Dispatch (Cowork), Teleport (Mac→cloud bridge), SSH headless — each with distinct persistence model |
+| CL-150 | /goal | /goal is a new Claude Code command (similar to 'ralph') that activates an accountability loop: sets success conditions, checks them at every checkpoint, rejects "done" unless all pass |
+| CL-177 | hooks | Claude Code has 30 hook events vs Codex's ~6: PreToolUse, PostToolUse, SessionStart, task notifications — far richer guardrail surface for unattended GSR pipeline runs |
+| CL-182 | token-mgmt | AI models are stateless per session; they reload CLAUDE.md + global rules on every start — structured context files (not chat history) are the only reliable cross-session memory |
+| CL-188 | broadcast-tools | ProPresenter Stream Deck plugin triggers props (lower thirds, overlays) with a single button tap — Stream Deck as a live switcher for GSR lower thirds without ProPresenter keyboard shortcuts |
+| CL-195 | skills | Claude Code skill = self-contained folder with its own reference docs, templates, and slash-command entry — skills can carry GSR-specific context (RC API keys, episode schema) without polluting global CLAUDE.md |
+| CL-199 | whisper-pipeline | Buzz (MIT, free) wraps OpenAI Whisper with faster backends (Whisper.cpp, MLX), offline, GPU-accelerated — drop-in upgrade over the current ffmpeg+whisper CLI for guest transcript pulls |
+| CL-209 | token-mgmt | CLAUDE.md is injected at session start and shapes all behavior — it is the primary lever for making Claude Code behave consistently across Daniel's parallel sessions |
+| CL-215 | multi-session | Scheduled Tasks (desktop app) / Routines (cloud) run a fresh Claude Code agent on a cron schedule with no human present — direct GSR use case: nightly RC rundown prep, weekly guest research |
+| CL-216 | multi-session | Stateless continuity pattern: each scheduled run writes structured context (JSON/MD) to a known path; the next run reads it at startup — only way to carry state across cron sessions |
+
+**Which lead topics kept paying**
+
+- **remote-execution** (9 P1 / 13 total): richest vein. Every "how to run Claude unattended" video yielded concrete flags, mode names, or workflow patterns directly applicable to GSR overnight pipeline.
+- **multi-session** (6 P1 / 11 total): Scheduled Tasks / Routines / Agent View — all directly usable. The stateless-continuity pattern (CL-216) alone justifies the entire sweep.
+- **skills** (4 P1 / 11 total): skill folder structure + tab-completion + AI-reads-description-as-permanent-context is the right architecture for GSR's slash commands.
+- **token-mgmt** (6 P1 / 10 total): CLAUDE.md injection, context-as-primary-value, effort level changes — all shape how we structure sessions.
+- **hooks** (4 P1 / 7 total): 30 hook events vs Codex's 6 is a meaningful differentiator; the "guardrails must be in CLAUDE.md not the chat prompt" rule is a direct safety requirement for unattended GSR runs.
+
+**Which topics died**
+
+- **broadcast-tools** (1 P1 / 7 total): only ProPresenter Stream Deck was actionable. Bitfocus/Companion wiring and newsroom IP trend videos were too generic to yield P1 claims.
+- **mcp** (0 P1 / 6 total): MCP videos covered connection patterns already documented in project knowledge; no new P1 surface.
+- **n8n videos** (rank-2 batch A): most were beginner walkthroughs with no Claude Code SDK depth; rejected cleanly. The exception is the "replace n8n with a skill" video (Jo168H2m5lw) which yielded CL-192/195.
+
+**Recommendation for second R6 wave**
+
+Run a targeted 2-video deep-dive on lO5yNntbx7g (Supabase full-stack, 185KB transcript) and DxF02uNReBE (Next.js 16 + Supabase SaaS, 185KB transcript) — both were skimmed at 8KB head in wave 2; a full read will surface Supabase/Next.js 16 schema and RLS patterns directly applicable to gsr-automation-v2's current Feature 1 build.

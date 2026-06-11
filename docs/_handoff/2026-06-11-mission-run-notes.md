@@ -145,11 +145,14 @@ Pattern: Sonnet does the volume, one short heavy-model review per milestone.
 
 ## Mining summary — R6 transcript sweep (2026-06-11, Mac CLI session)
 
-**Final counts:** 109 mined · 53 rejected · 0 pending · 214 claims total (CL-001–CL-221) · 84 P1
+**FINAL counts:** 148 mined · 14 rejected · 0 pending · 321 claims total (CL-001–CL-328) · 117 P1 · 91% mine rate (148/162)
 
 Wave 1: 62 mined / 31 rejected / 57 claims (parallel mine + parallel merge → race conditions; ~30 video statuses lost, recovered in wave 2)
 Wave 2: 45 mined / 22 rejected / 2 pending / 92 new claims (parallel mine + single atomic merge → clean)
-Wave 3 cleanup: 4 remaining videos resolved (2 mined from description, 2 rejected as Hindi auto-captions); 4 new claims CL-218–CL-221; priority field normalized across all 214 claims (wave 1 used int 1/2/3, waves 2-3 used string "P1"/"P2"/"P3" — unified to string format)
+Wave 3 cleanup: 4 remaining videos resolved (2 mined from description, 2 rejected as Hindi auto-captions); 4 new claims CL-218–CL-221; priority field normalized (int 1/2/3 → P1/P2/P3)
+Wave 4 remine: all 53 previously-rejected videos re-evaluated with inclusive mining rules; 39 recovered as mined / 14 confirmed rejected; 107 new claims CL-222–CL-328
+
+14 confirmed rejections (all legitimate): 7 business/sales coaching (cold email, AI client acquisition, career advice), 2 Hindi auto-captions (lO5yNntbx7g, DxF02uNReBE), 4 no-Claude-Code content (n8n outbound calling, n8n migration, 500 AI workflows pure-n8n, pure Supabase tutorial), 1 Anthropic security analysis with no actionable Claude Code workflow content
 
 **10 highest-value claims by ID**
 

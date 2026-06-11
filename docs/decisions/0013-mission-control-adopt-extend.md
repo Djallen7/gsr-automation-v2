@@ -49,7 +49,7 @@ coverage falls under ~60%.
 
 - One tracker (lanes) stays the single shared brain; sessions appear next to lanes, not
   in a second app. No new always-on service, no new credentials.
-- The live layer depends on the backgrounding habit; if that fails in practice, claude-view
-  is the named fallback (with telemetry disabled) rather than a new build.
+- The live layer depends on the backgrounding habit; if that fails in practice, c9watch
+  is the named fallback (claude-view second, telemetry disabled) rather than a new build.
 - `cleanupPeriodDays: 90` must be set on the Mac so session history survives long enough
   to analyze (CL-008; applied by the Mac setup prompt).

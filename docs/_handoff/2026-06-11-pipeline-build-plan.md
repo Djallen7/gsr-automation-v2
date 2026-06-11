@@ -1,11 +1,13 @@
 # GSR Pipeline Build Plan - DRAFT (2026-06-11)
 
-**Status: v3, critiqued, awaiting Daniel.** Every citation points at a ledger claim
-(docs/_handoff/2026-06-11-claim-ledger.json, 47 claims; zero ASSUMED or REFUTED cited).
-Critique rounds applied 2026-06-11: red team (18 findings, both blockers fixed as items
-1.0 and 10.0), gsr-health repo audit (9 findings), editorial Daniel-fit (25 fixes,
-verdict ship-ready). Rubric check: see the run-notes. Phase B starts only after Daniel
-okays this plan; his section 7 answers land in canon, dated.
+**Status: v4 (mining folded in), awaiting Daniel's two open answers.** Every citation
+points at a ledger claim (docs/_handoff/2026-06-11-claim-ledger.json, 321 claims after
+the 162-video sweep: 85 VERIFIED, 15 PARTIAL, 3 REFUTED, 0 priority-1 ASSUMED; the
+remaining ASSUMED are P2/P3 notes barred from build steps). Critique rounds applied
+2026-06-11 (red team 18 findings incl. 2 blockers fixed as items 1.0 + 10.0; gsr-health
+9; editorial 25). Mining changes are in Addendum v2 at the bottom; the urgent one is A1
+(Jun 15 headless credit split). Decisions 2/3/4/6 are DECIDED under the lead-agent
+directive; open and Daniel's alone: decision 1 (merge) and decision 5 (calendar).
 
 Operating answers in force (starred defaults, run-notes 2026-06-11):
 1A 2A 3A 4A 5A 6A 7A 8B 9A 10A 11A 12B 13A 14A 15A 16A.

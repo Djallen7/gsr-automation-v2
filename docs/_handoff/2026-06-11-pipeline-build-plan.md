@@ -287,9 +287,12 @@ on-brand theme. No bake-off wait.
 
 **5.1 Today queue + Pipeline Matrix screens.**
 Ship Jun 22 · Lane 1 · Effort L · W2 F1 $0.
-Built with existing design tokens + shadcn components, desktop + mobile. Done when: both
-pages render real episode/guest data, screenshots rendered, tsc/eslint clean, draft PR open.
-Cite: answer 3A; ui-research briefs; Lane 1 resume prompt.
+Built with existing design tokens + shadcn components, desktop + mobile. Where a screen
+needs live status (import/extraction state changing while Daniel watches), use the
+broadcast-from-database realtime pattern Supabase now recommends, not polling. Done when:
+both pages render real episode/guest data, screenshots rendered, tsc/eslint clean, draft
+PR open.
+Cite: answer 3A; ui-research briefs; Lane 1 resume prompt; CL-018 (realtime pattern).
 
 **5.2 Production-urgency tracker (ui-daniel-homepage, part 1).**
 Ship Jun 22 · Lane 1 · Effort M · W2 F2 $0.
@@ -373,10 +376,13 @@ Cite: AUTOMATION_ROADMAP Phase 1A (schema ready).
 
 **7.1 Jobs table + Mac poller v1 (the control plane).**
 Ship Jun 26 · Lane 12 · Effort M · W2 F2 $0.
-Canon-locked design: dashboard writes a job row; the Mac polls every few seconds, runs, and
-writes status back. No inbound connection to the Mac. Done when: a no-op test job
-round-trips dashboard -> Mac -> status row; migration + RLS + types committed.
-Cite: canon s12 job-transport ruling.
+Canon-locked shape: dashboard writes a job; the Mac polls Supabase, runs, writes status back;
+no inbound connection to the Mac. Implementation refinement from verification: build it on
+Supabase Queues (pgmq, the official pull-queue) exposed through the Data API with a
+visibility timeout, instead of a hand-rolled table; same polling shape Daniel locked, but
+durability, retries, and archival come free. Done when: a no-op test job round-trips
+dashboard -> Mac -> status row; migration + RLS + types committed.
+Cite: canon s12 job-transport ruling; CL-019 (Supabase Queues verified, pull-only).
 
 **7.2 Diarized transcription (trans-diarization).**
 Ship Jun 29 · Lane 12 · Effort L · W3 F3 · $0 (local).

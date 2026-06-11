@@ -108,6 +108,18 @@ Use the corrected names in anything written to canon or the build plan.
   the youtube_scheduled_publish_at contract step.
 - 2026-06-11: Lane 9 claimed (autonomous research loop = this mission), status IN PROGRESS.
 
-## Retros (one per build cycle, mission §5)
+## Retros (one per build cycle, mission section 5)
 
-(appended as cycles complete)
+**2026-06-11, research cycle (Phase E + R cloud-side + S):**
+- What slowed us: a subagent usage limit killed all three critique agents mid-flight
+  (re-ran after the 14:20 UTC reset); the shell's working directory reset after several
+  notification boundaries (fix applied: absolute cd in every command); the permission
+  layer blocks settings.json edits in this environment (cleanupPeriodDays handed to the
+  Mac as a one-liner).
+- What worked: the parallel verification swarm (4 researchers + architect + R6 finder)
+  turned the mission's claims into a 47-entry evidence base in one sitting; the ledger
+  caught real divergences (ccusage live monitor removed, /goal show nonexistent, the
+  import route's live-write default).
+- Apply next cycle: launch critique agents with staggered starts to dodge shared limits;
+  keep every merge script in dict-style with assert-counted replacements; record runtime
+  by git timestamps from the start.

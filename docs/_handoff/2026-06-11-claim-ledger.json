@@ -76,7 +76,7 @@
     },
     {
       "id": "CL-007",
-      "claim": "The live DB already has production_lower_thirds / lower_thirds_variations (PR #50's migration applied) while main's deployed code still reads 'graphics' \u2014 the rename ships code-side only when PR #47 + #50 + #52 merge.",
+      "claim": "The live DB already has production_lower_thirds / lower_thirds_variations (PR #50's migration applied) while main's deployed code still reads 'graphics' — the rename ships code-side only when PR #47 + #50 + #52 merge.",
       "source": "PR #50 body ('Migration listed in Supabase list_migrations (verified applied)') + open-PR audit 2026-06-11",
       "date_heard": "2026-06-11",
       "status": "VERIFIED",
@@ -146,7 +146,7 @@
       "claim": "ccusage per-session usage works BUT the live monitor (blocks --live) was REMOVED in v18; burn rate only via blocks/blocks --active.",
       "source": "R4 / github.com/ryoppippi/ccusage + ccusage.com/guide/live-monitoring",
       "status": "PARTIAL",
-      "verifier_evidence": "v20.0.11 2026-06-10, MIT, 16k stars",
+      "verifier_evidence": "v20.0.11 2026-06-10, MIT, 16k stars; [video 9nb23iA8VGc] CC Usage (npx cc-usage or bunx cc-usage) confirmed working for Claude Code + Codex combined usage. Video shows both monthly/weekly/daily/session breakdowns. Confirms ccusage reads from local files; Codex does not expose weekly data but Claude Code does.",
       "gsr_application": "ADOPT as weekly cost lens, not a live monitor",
       "lane": "Mission Control",
       "priority": 2
@@ -267,7 +267,7 @@
       "claim": "n8n vs Claude Code 2026: complementary not substitutional; for a solo non-developer on Claude Code + cloud APIs, self-hosted n8n adds ops surface without capability; Cron/Queues + gated routes serve the guardrail role.",
       "source": "R5 / blog.n8n.io (Apr 2026)",
       "status": "VERIFIED",
-      "verifier_evidence": "Vendor-side evidence; revisit only if many always-on event integrations outgrow Cron/Queues/webhooks; [video ZeJXI2MAhj0] Confirms n8n and Claude Code are complementary: n8n for deterministic scheduled automations with existing infrastructure; Claude Code for conversational/iterative agentic workflows. Adds Trigger.dev as a third option for deployed agentic workflows.; [video Dug97la9YoQ] Confirms use-case split: n8n for scheduled, data-driven, high-volume, compliance-sensitive automations; Claude Code for iterative/conversational workflows, custom apps, and anything requiring human-in-the-loop back-and-forth.; [video Vc3I-8eQ7rA] Confirms complementary framing. Adds pattern: use Claude Code agentic workflow to prototype and explore, then rebuild the validated solution in n8n for production scheduling.; [video ZeJXI2MAhj0] Confirms n8n knowledge is complementary, not wasted \u2014 agentic workflows (Claude Code + trigger.dev) are additive to n8n skills, not a replacement.; [video uUEa6K-FLB8] Confirmed: n8n and Claude Code used together in production \u2014 n8n handles workflow orchestration and error detection; Claude Code (via MCP server + skills) handles diagnosis and repair. Video demonstrates a live working integration.; [video tDGiWn0flK8] Confirmed: video explicitly states traditional n8n automation remains ideal for deterministic/repetitive tasks while agentic Claude Code handles variable judgment-call tasks; the two are described as complementary, not competitive.",
+      "verifier_evidence": "Vendor-side evidence; revisit only if many always-on event integrations outgrow Cron/Queues/webhooks; [video ZeJXI2MAhj0] Confirms n8n and Claude Code are complementary: n8n for deterministic scheduled automations with existing infrastructure; Claude Code for conversational/iterative agentic workflows. Adds Trigger.dev as a third option for deployed agentic workflows.; [video Dug97la9YoQ] Confirms use-case split: n8n for scheduled, data-driven, high-volume, compliance-sensitive automations; Claude Code for iterative/conversational workflows, custom apps, and anything requiring human-in-the-loop back-and-forth.; [video Vc3I-8eQ7rA] Confirms complementary framing. Adds pattern: use Claude Code agentic workflow to prototype and explore, then rebuild the validated solution in n8n for production scheduling.; [video ZeJXI2MAhj0] Confirms n8n knowledge is complementary, not wasted — agentic workflows (Claude Code + trigger.dev) are additive to n8n skills, not a replacement.; [video uUEa6K-FLB8] Confirmed: n8n and Claude Code used together in production — n8n handles workflow orchestration and error detection; Claude Code (via MCP server + skills) handles diagnosis and repair. Video demonstrates a live working integration.; [video tDGiWn0flK8] Confirmed: video explicitly states traditional n8n automation remains ideal for deterministic/repetitive tasks while agentic Claude Code handles variable judgment-call tasks; the two are described as complementary, not competitive.",
       "gsr_application": "ADR-0012's n8n deferral HOLDS; seed-corpus n8n videos are technique sources only",
       "lane": "architecture",
       "priority": 2
@@ -289,7 +289,7 @@
       "claim": "/loop: s/m/h/d, dynamic 1m-1h; recurring tasks expire 7 days after creation; session-scoped, max 50/session; .claude/loop.md replaces only the bare-/loop maintenance prompt; restored on --resume if unexpired.",
       "source": "R2 / code.claude.com/docs/en/scheduled-tasks",
       "status": "VERIFIED",
-      "verifier_evidence": "Loops die with the session; [video fOpFgjH8IfQ] Confirms /loop is built-in; adds that /loop sessions expire after 3 days requiring renewal workaround, and that tmux is necessary for persistence across disconnects.; [video xJ5oz63mIec] Confirms /loop creates session-scoped crons. Clarifies: in terminal /clear preserves crons; in desktop app /clear kills crons. 7-day expiry confirmed in terminal; desktop app shows 3 days (possible UI bug or version difference).; [video jqoFP9QapXI] Confirms /loop for recurring tasks. Video states loops last 3 days (desktop app) vs 7 days (terminal/documentation). Adds: can set loops to auto-kill after N iterations.; [video jqoFP9QapXI] Video states /loop lasts \"3 days\" \u2014 CONFLICTS with CL-026 which says 7 days. This discrepancy is worth flagging; the 7-day figure may reflect a later update to the feature after this video was recorded.; [video OUyfxhFtGCo] Confirms /loop 3-day expiry and recurring task behavior; adds that default interval is 10 min if unspecified and that loops are strictly per-session (cron_list only sees loops from the current session)",
+      "verifier_evidence": "Loops die with the session; [video fOpFgjH8IfQ] Confirms /loop is built-in; adds that /loop sessions expire after 3 days requiring renewal workaround, and that tmux is necessary for persistence across disconnects.; [video xJ5oz63mIec] Confirms /loop creates session-scoped crons. Clarifies: in terminal /clear preserves crons; in desktop app /clear kills crons. 7-day expiry confirmed in terminal; desktop app shows 3 days (possible UI bug or version difference).; [video jqoFP9QapXI] Confirms /loop for recurring tasks. Video states loops last 3 days (desktop app) vs 7 days (terminal/documentation). Adds: can set loops to auto-kill after N iterations.; [video jqoFP9QapXI] Video states /loop lasts \"3 days\" — CONFLICTS with CL-026 which says 7 days. This discrepancy is worth flagging; the 7-day figure may reflect a later update to the feature after this video was recorded.; [video OUyfxhFtGCo] Confirms /loop 3-day expiry and recurring task behavior; adds that default interval is 10 min if unspecified and that loops are strictly per-session (cron_list only sees loops from the current session)",
       "gsr_application": "In-day babysitting only; standing schedules go to Routines or Supabase Cron",
       "lane": "Lane 9 + ops",
       "priority": 2
@@ -322,7 +322,7 @@
       "claim": "Hooks now span ~30 events and FIVE handler types: command, http, mcp_tool, prompt, agent (experimental). SessionStart/Setup: command+mcp_tool only.",
       "source": "R2 / code.claude.com/docs/en/hooks",
       "status": "VERIFIED",
-      "verifier_evidence": "Tutorial at /hooks-guide; [video BlNJFa3Btm8] Confirms hook support for scheduled tasks -- video demonstrates adding a hook so that every time a scheduled task session finishes a sound notification plays, invoked via natural language to Claude",
+      "verifier_evidence": "Tutorial at /hooks-guide; [video BlNJFa3Btm8] Confirms hook support for scheduled tasks -- video demonstrates adding a hook so that every time a scheduled task session finishes a sound notification plays, invoked via natural language to Claude; [video G9OBGn0h6LE] Hooks lifecycle confirmed: PreToolUse, PostToolUse, Stop (post-response) trigger points all demonstrated. Stop hook fires when Claude concludes its response. Settings.json hook entry matches on tool name array.",
       "gsr_application": "Mechanical rule enforcement: PreToolUse command hook hard-blocking Tailscale-IP/QNAP-write commands; prompt Stop hook as automated David-Rule check",
       "lane": "ops/safety",
       "priority": 1
@@ -333,7 +333,7 @@
       "claim": "Agent SDK: list_sessions()/listSessions() real and returns auto-generated per-session summary (SDKSessionInfo.summary); transcript reading is get_session_messages() NOT 'Session.History'; official cookbook 'Building a session browser' exists.",
       "source": "R2 / platform.claude.com/cookbook/claude-agent-sdk-05-building-a-session-browser",
       "status": "PARTIAL",
-      "verifier_evidence": "Mission doc's 'Session.History' is wrong - correction recorded",
+      "verifier_evidence": "Mission doc's 'Session.History' is wrong - correction recorded; [video TqC1qOfiVcQ] Agent SDK confirmed as Claude Code packaged as a library. Anthropic presenter (Thariq Shihipar) confirms list_sessions / agent loop primitives and sub-agent patterns. File system + bash are the primary tools.",
       "gsr_application": "Mission Control extend-lanes build: ~20-line script list_sessions() -> lanes.json sessions block -> lanes.html",
       "lane": "Mission Control",
       "priority": 1
@@ -388,7 +388,7 @@
       "claim": "Agent View shows NO token counts (spend lives in bare /goal status); background via /bg, /background, left-arrow, claude --bg (not '/agent'); Ctrl+B backgrounds running bash/agents.",
       "source": "R2 / code.claude.com/docs/en/agent-view + /interactive-mode",
       "status": "VERIFIED",
-      "verifier_evidence": "Mission doc table slightly off; corrected in run-notes; [video msiaY6wec90] Confirms Agent View shows no token counts. Reviewer notes token drain is invisible \u2014 reinforces that background agents provide zero cost visibility in the dashboard.",
+      "verifier_evidence": "Mission doc table slightly off; corrected in run-notes; [video msiaY6wec90] Confirms Agent View shows no token counts. Reviewer notes token drain is invisible — reinforces that background agents provide zero cost visibility in the dashboard.",
       "gsr_application": "Pair Agent View with ccusage as the cost lens (CL-013)",
       "lane": "Mission Control",
       "priority": 2
@@ -432,7 +432,7 @@
       "claim": "supabase/agent-skills (FIRST-PARTY): two instruction-only skills (supabase, postgres-best-practices); pure SKILL.md, no code execution; the Supabase MCP itself recommends it.",
       "source": "R3 / github.com/supabase/agent-skills",
       "status": "VERIFIED",
-      "verifier_evidence": "v0.1.5 2026-05-27, 2.2k stars; npx skills add supabase/agent-skills",
+      "verifier_evidence": "v0.1.5 2026-05-27, 2.2k stars; npx skills add supabase/agent-skills; [video jNpH_hOFvg4] Skills confirmed as markdown instruction files, context-efficient. Presenter from Replit confirms skill support added to Replit agent using same skills.sh framework, consistent with Anthropic's skills spec.",
       "gsr_application": "INSTALL candidate (near-zero risk): accuracy boost on every migration/RLS/edge-function task",
       "lane": "all DB lanes",
       "priority": 1
@@ -549,7 +549,7 @@
     },
     {
       "id": "CL-050",
-      "claim": "Agent teams: teammate sessions inherit ALL permissions from the main orchestrator session \u2014 bypass mode, allowed bash commands, MCP servers, and skills all carry over automatically. New teammates start with no conversation history but can read all project files.",
+      "claim": "Agent teams: teammate sessions inherit ALL permissions from the main orchestrator session — bypass mode, allowed bash commands, MCP servers, and skills all carry over automatically. New teammates start with no conversation history but can read all project files.",
       "source": "video vDVSGVpB2vc How to Build Claude Agent Teams Better Than 99% of People",
       "date_heard": "2026-06-11",
       "status": "VERIFIED",
@@ -582,7 +582,7 @@
     },
     {
       "id": "CL-053",
-      "claim": "Agent teams: to trigger team creation, the prompt must explicitly include a phrase like 'create an agent team to build this out' \u2014 Claude Code will not autonomously spin up a team without this instruction. The minimum syntax is natural language specifying team creation; more specific agent role definitions (front-end agent, back-end agent, devops agent) are optional but improve results.",
+      "claim": "Agent teams: to trigger team creation, the prompt must explicitly include a phrase like 'create an agent team to build this out' — Claude Code will not autonomously spin up a team without this instruction. The minimum syntax is natural language specifying team creation; more specific agent role definitions (front-end agent, back-end agent, devops agent) are optional but improve results.",
       "source": "video HlqAe1LL7U8 How to Build Claude Code for Free (API Costs Compared)",
       "date_heard": "2026-06-11",
       "status": "ASSUMED",
@@ -626,7 +626,7 @@
     },
     {
       "id": "CL-057",
-      "claim": "Agent View: parallel background sessions all share the same working directory by default \u2014 no folder isolation. Agents writing files can overwrite each other's work. The reviewer recommends each agent be given its own subdirectory as a workaround until Anthropic adds automatic isolation.",
+      "claim": "Agent View: parallel background sessions all share the same working directory by default — no folder isolation. Agents writing files can overwrite each other's work. The reviewer recommends each agent be given its own subdirectory as a workaround until Anthropic adds automatic isolation.",
       "source": "video msiaY6wec90 Claude Code Agent View Review | Skip This Until Anthropic Fixes It",
       "date_heard": "2026-06-11",
       "status": "ASSUMED",
@@ -689,6 +689,138 @@
       "date_heard": "2026-06-11",
       "status": "ASSUMED",
       "verifier_evidence": ""
+    },
+    {
+      "id": "CL-063",
+      "claim": "OpenTelemetry (OTEL) support in Claude Code is now available to Max and Pro plan subscribers, not just enterprise. The built-in Claude Code GUI dashboard is fed from OTEL data, and the full OTEL spec can be used to build custom observability dashboards reading both JSONL logs and OTEL streams.",
+      "source": "video dITtLiC9FzM Claude Code + OpenTelemetry = Claude Command Center",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Daniel can instrument gsr-automation-v2 session activity via OTEL on his Max plan without needing enterprise access, enabling real token/latency visibility across parallel sessions.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-064",
+      "claim": "CC Lens (npx cclens, github arindam200/cclens) is a local-only open-source dashboard that reads ~/.claude JSONL files and provides project/session/model/activity breakdowns, per-session token costs, tool call frequency by type (bash, read, MCP), memory contents viewer, and session export. No telemetry leaves the machine.",
+      "source": "video F01R99FeB5U I built an Open Source Analytics Dashboard for Claude Code (100% Free)",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "https://github.com/arindam200/cclens",
+      "gsr_application": "Alternative to ccusage for Daniel to audit which sessions are expensive and which MCP tools are called most; useful for diagnosing RC or Supabase MCP latency issues.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-065",
+      "claim": "Hooks that invoke an LLM add significant latency to every matched tool call. A creator who built many LLM-based hooks removed most of them because they made the workflow frustratingly slow. Best practice: keep hooks as deterministic code; only call an LLM inside a hook for genuinely subjective checks, and be selective.",
+      "source": "video G9OBGn0h6LE Claude Code Hooks: Get Notified When Tasks Finish",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR pipeline hooks (e.g., lower-thirds validation, RC write guards) should stay deterministic shell scripts; calling Claude inside a PreToolUse hook will slow every single tool call in a session.",
+      "lane": "hooks",
+      "priority": 1
+    },
+    {
+      "id": "CL-066",
+      "claim": "Hook trigger matching in settings.json can only match on tool type (Write, Edit, Bash), not on specific commands or file patterns. To filter further (e.g., only fire on mkdir, only on .md files), the hook script itself must inspect the incoming command/path and exit early if not relevant.",
+      "source": "video G9OBGn0h6LE Claude Code Hooks: Get Notified When Tasks Finish",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "When writing GSR pipeline hooks (e.g., guard against RC writes without dry-run), the settings.json entry must match Bash broadly; the script body must check the actual command pattern before acting.",
+      "lane": "hooks",
+      "priority": 1
+    },
+    {
+      "id": "CL-067",
+      "claim": "Claude Agent SDK query() options include permissionMode: 'bypassPermissions' and dangerouslySkipPermissions: true to run fully unattended without approval prompts. The response is an async iterable of message objects; the final message has type 'result'. allowedTools array controls which built-in tools the agent can use.",
+      "source": "video ChaQ_tZDBFg You Can Build The Craziest Things with Claude's Agent SDK",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "For unattended GSR automation (nightly RC sync, scheduled lower-thirds generation), set bypassPermissions so the agent doesn't stall waiting for human approval.",
+      "lane": "sdk",
+      "priority": 1
+    },
+    {
+      "id": "CL-068",
+      "claim": "Claude Agent SDK structured outputs were recently released (as of the workshop date). The presenter said 'we just released this — Google agent SDK structured outputs.' This enables typed/schema-constrained responses from agent runs, useful for workflow-style agents that need deterministic output shapes.",
+      "source": "video TqC1qOfiVcQ Claude Agent SDK [Full Workshop] - Thariq Shihipar, Anthropic",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR pipeline agents (extract lower thirds, score guests) can use structured outputs to guarantee JSON schema conformance without post-processing heuristics.",
+      "lane": "sdk",
+      "priority": 1
+    },
+    {
+      "id": "CL-069",
+      "claim": "Anthropic's internal recommendation: every agent needs a container or local file system because the Agent SDK is built on Claude Code and requires bash + file system to operate. Sub-agents protect the main agent's context window by doing work and returning only the summary result. The Agent SDK handles compaction, tool-use errors, and sub-agent orchestration so builders focus on domain logic.",
+      "source": "video TqC1qOfiVcQ Claude Agent SDK [Full Workshop] - Thariq Shihipar, Anthropic",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "When Daniel builds multi-stage GSR pipeline agents (research -> scoring -> script), spin up sub-agents per stage rather than one long context; each sub-agent returns its summary to the orchestrator.",
+      "lane": "sdk",
+      "priority": 2
+    },
+    {
+      "id": "CL-070",
+      "claim": "MCP servers load all tool descriptions into the context window upfront, making them context-heavy. Skills (markdown files) are context-efficient: only the skill description loads until the skill is actually invoked, at which point the full markdown is read. For sub-agents with limited context, prefer assigning one MCP server per sub-agent rather than loading all MCPs into every agent.",
+      "source": "video jNpH_hOFvg4 Build & deploy agents with the Claude Agent SDK",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "In GSR's multi-agent pipeline, give the RC sub-agent only the RC MCP, and the Supabase sub-agent only the Supabase MCP, to avoid context pollution that degrades accuracy.",
+      "lane": "sdk",
+      "priority": 1
+    },
+    {
+      "id": "CL-071",
+      "claim": "Claude Agent SDK can be invoked from a FastAPI web server with skills loaded from a local .claude/skills/ directory. Setting cwd in the query options determines which project's .claude folder (and thus which skills) the agent reads. This enables exposing Claude Code skills as HTTP endpoints on any server environment including cloud-deployed containers.",
+      "source": "video DU6ozVjWep8 Claude Code Skills Using Claude Agent SDK",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR's Next.js API routes already call Claude server-side; this confirms that Agent SDK with skill loading from the project's .claude/skills/ folder is a valid pattern for the gsr-automation-v2 codebase.",
+      "lane": "sdk",
+      "priority": 2
+    },
+    {
+      "id": "CL-072",
+      "claim": "Claude Agent SDK overhead is approximately 28,000 input tokens per call regardless of prompt size. Each agent run costs roughly 30-60 cents at API rates. Three env vars redirect the SDK to any OpenAI-compatible provider: ANTHROPIC_BASE_URL (no /v1 suffix for Anthropic-compatible endpoint), ANTHROPIC_API_KEY='' (blank to override stored login), ANTHROPIC_DEFAULT_MODEL (model name). The SDK auto-appends a '1m' context-size suffix to model names.",
+      "source": "video Egt3DhQThA8 Claude Agent SDK Tutorial: Build an AI Coding Agent with Gemma 4",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Baseline cost awareness for GSR pipeline: each automated Agent SDK invocation (lower-thirds generation, RC sync) costs ~28k tokens overhead before any prompt content, relevant when estimating Max plan usage across 5-10 parallel sessions.",
+      "lane": "sdk",
+      "priority": 2
+    },
+    {
+      "id": "CL-073",
+      "claim": "The official skill-creator skill (available via /plugins in Claude Code, anthropic namespace) can evaluate, benchmark, and trigger-tune existing skills. It runs evals comparing skill vs no-skill outputs, produces pass rate / token / time benchmarks, and rewrites skill descriptions to improve trigger accuracy. Two skill types: capability uplift (teaching new behaviors, may fade as models improve) vs encoded preference (workflows specific to the user, durable).",
+      "source": "video RAZVk5NPNtE Claude Code Skills Just Got Even Better",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Daniel can install skill-creator and run evals on GSR editorial skills (lower thirds format, hook framework) to catch regressions when Anthropic updates the underlying model, and improve trigger accuracy so skills fire on natural language prompts.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-074",
+      "claim": "Skill YAML frontmatter supports a disable_model_invocation field (default false). When false, Claude Code can invoke the skill autonomously based on natural language matching the skill description. Setting it true requires explicit slash command invocation. The description field is the only part loaded into context for skill discovery; the full skill body only loads on invocation.",
+      "source": "video RAZVk5NPNtE Claude Code Skills Just Got Even Better",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "For GSR skills that should only run on explicit request (e.g., RC import), set disable_model_invocation: true to prevent accidental triggering during unrelated sessions.",
+      "lane": "sessions",
+      "priority": 1
     }
   ]
 }

@@ -188,7 +188,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Feb 7, 2026",
-   "title": "How I\u00e2\u20ac\u2122d Teach a 10 Year Old to Build Agentic Workflows (Claude Code)",
+   "title": "How Iâ€™d Teach a 10 Year Old to Build Agentic Workflows (Claude Code)",
    "summary": "Agentic workflows explained simply enough for a 10 year old",
    "url": "https://youtu.be/3GAxd90fEE4",
    "resources": "https://drive.google.com/drive/folders/10RU0oHWIw2Cy5-rXOKw4iUD3LuMCDXLp",
@@ -335,7 +335,7 @@
    "summary": "Latest improvements to Claude Code's skills system",
    "url": "https://youtu.be/RAZVk5NPNtE",
    "resources": null,
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
   },
@@ -379,14 +379,14 @@
    "summary": "Build premium agentic workflows worth $10,000 with Claude Code",
    "url": "https://youtu.be/vFepZE_wrfg",
    "resources": null,
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
   },
   {
    "quarter": "Q1-2026",
    "date": "Mar 10, 2026",
-   "title": "Google\u00e2\u20ac\u2122s New Tool Just 10x\u00e2\u20ac\u2122d Claude Code",
+   "title": "Googleâ€™s New Tool Just 10xâ€™d Claude Code",
    "summary": "Google's new tool supercharges Claude Code productivity by 10x",
    "url": "https://youtu.be/Wu67lLD8bB0",
    "resources": null,
@@ -540,7 +540,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 30, 2026",
-   "title": "I\u00e2\u20ac\u2122ve Built 500 AI Workflows, This is What Businesses Want in 2026",
+   "title": "Iâ€™ve Built 500 AI Workflows, This is What Businesses Want in 2026",
    "summary": "Lessons from 500 AI workflows: what businesses actually want",
    "url": "https://youtu.be/Y3PcRp5RFzk",
    "resources": "https://drive.google.com/drive/folders/13pBzMyvJksi5RJLBpRr_Vk-zA1w8vF3C",
@@ -551,7 +551,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 31, 2026",
-   "title": "Codex Just 10x\u00e2\u20ac\u2122d Claude Code Projects",
+   "title": "Codex Just 10xâ€™d Claude Code Projects",
    "summary": "Codex integration makes Claude Code projects 10x more powerful",
    "url": "https://youtu.be/B2Kh_ZoLVTM",
    "resources": null,
@@ -562,7 +562,7 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 1, 2026",
-   "title": "Claude Code Source Code Just Leaked\u00e2\u20ac\u00a6 8 Things You Must Do",
+   "title": "Claude Code Source Code Just Leakedâ€¦ 8 Things You Must Do",
    "summary": "8 things you must do after the Claude Code source code leak",
    "url": "https://youtu.be/tXtCK66fPj8",
    "resources": "https://drive.google.com/drive/folders/14V5Xym3SWQ8RUUScGF5X-YY4sGmIYjFb",
@@ -606,7 +606,7 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 5, 2026",
-   "title": "Andrej Karpathy Just 10x\u00e2\u20ac\u2122d Everyone\u00e2\u20ac\u2122s Claude Code",
+   "title": "Andrej Karpathy Just 10xâ€™d Everyoneâ€™s Claude Code",
    "summary": "How Andrej Karpathy's techniques 10x'd Claude Code for everyone",
    "url": "https://youtu.be/sboNwYmH3AY",
    "resources": null,
@@ -628,7 +628,7 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 7, 2026",
-   "title": "Claude\u00e2\u20ac\u2122s New AI Just Changed the Internet Forever",
+   "title": "Claudeâ€™s New AI Just Changed the Internet Forever",
    "summary": "Claude's new AI model and how it changes the internet",
    "url": "https://youtu.be/DG1wRgEpdO4",
    "resources": null,
@@ -657,7 +657,7 @@
    "status": "rejected",
    "triage_rank": 3,
    "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
-   "rejected_reason": "Crypto/stock trading bot challenge \u2014 not relevant to GSR production"
+   "rejected_reason": "Crypto/stock trading bot challenge — not relevant to GSR production"
   },
   {
    "quarter": "Q2-2026",
@@ -1436,7 +1436,7 @@
    "summary": "[Mansel Scheffel] Wires Claude Code's OTel metrics into a self-built command center.",
    "url": "https://www.youtube.com/watch?v=dITtLiC9FzM",
    "source": "R6-lead:4 mission-control",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1447,7 +1447,7 @@
    "summary": "[Jon Lam] Beginner-friendly build of a mission-control UI over multiple agents.",
    "url": "https://www.youtube.com/watch?v=TZGvv3WFaGw",
    "source": "R6-lead:4 mission-control",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1458,7 +1458,7 @@
    "summary": "[Arindam Majumder] Open-source cc-lens analytics dashboard for session visibility; code inspectable.",
    "url": "https://www.youtube.com/watch?v=F01R99FeB5U",
    "source": "R6-lead:4 mission-control",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1469,7 +1469,7 @@
    "summary": "[Iconic Templates] Cost/usage dashboard built on the ccusage CLI.",
    "url": "https://www.youtube.com/watch?v=9nb23iA8VGc",
    "source": "R6-lead:4 mission-control",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1480,7 +1480,7 @@
    "summary": "[Joe Rhew] Current hooks tutorial covering Stop/SessionStart-style event scripts for notifications.",
    "url": "https://www.youtube.com/watch?v=G9OBGn0h6LE",
    "source": "R6-lead:5 hooks-sdk",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1491,7 +1491,7 @@
    "summary": "[Traversy Media] Major dev-education crash course on embedding the Claude Code loop in your own apps.",
    "url": "https://www.youtube.com/watch?v=ChaQ_tZDBFg",
    "source": "R6-lead:5 hooks-sdk",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1502,7 +1502,7 @@
    "summary": "[AI Engineer] Full conference workshop taught by the Anthropic team, highest-authority SDK material.",
    "url": "https://www.youtube.com/watch?v=TqC1qOfiVcQ",
    "source": "R6-lead:5 hooks-sdk",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1513,7 +1513,7 @@
    "summary": "[Matt Palmer] Build-and-deploy walkthrough from local SDK agent to hosted automation.",
    "url": "https://www.youtube.com/watch?v=jNpH_hOFvg4",
    "source": "R6-lead:5 hooks-sdk",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1524,7 +1524,7 @@
    "summary": "[Prompt Engineering] Agentic-search-plus-memory architecture on the Agent SDK.",
    "url": "https://www.youtube.com/watch?v=2VL3WtNMm90",
    "source": "R6-lead:5 hooks-sdk",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1535,7 +1535,7 @@
    "summary": "[Biz AI] Reusing Claude Code skills inside headless SDK agents, the exact GSR pipeline shape.",
    "url": "https://www.youtube.com/watch?v=DU6ozVjWep8",
    "source": "R6-lead:5 hooks-sdk",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1546,7 +1546,7 @@
    "summary": "[AyyazTech] Minimal ~20-line TypeScript agent build exposing the SDK's core loop.",
    "url": "https://www.youtube.com/watch?v=Egt3DhQThA8",
    "source": "R6-lead:5 hooks-sdk",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1582,7 +1582,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-   "rejected_reason": "Generic Supabase beginner tutorial \u2014 no production patterns beyond training knowledge"
+   "rejected_reason": "Generic Supabase beginner tutorial — no production patterns beyond training knowledge"
   },
   {
    "quarter": "R6-2026",
@@ -1638,7 +1638,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-   "rejected_reason": "Church AV system design (StreamDeck/ATEM) \u2014 hardware automation, no Claude Code relevance"
+   "rejected_reason": "Church AV system design (StreamDeck/ATEM) — hardware automation, no Claude Code relevance"
   },
   {
    "quarter": "R6-2026",
@@ -1705,7 +1705,7 @@
    "status": "rejected",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
-   "rejected_reason": "YouTube content creation workflow stack \u2014 social media automation, not GSR production"
+   "rejected_reason": "YouTube content creation workflow stack — social media automation, not GSR production"
   },
   {
    "quarter": "R6-2026",

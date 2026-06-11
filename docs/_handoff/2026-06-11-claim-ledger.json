@@ -6,7 +6,7 @@
     "PARTIAL": "works with caveats (caveat stated in verifier_evidence)",
     "REFUTED": "checked and false/stale; never build on it"
   },
-  "updated_at": "2026-06-11T13:20:00Z",
+  "updated_at": "2026-06-11T13:50:00Z",
   "claims": [
     {
       "id": "CL-001",
@@ -502,6 +502,28 @@
       "gsr_application": "Confirms SKIP of third-party orchestrators",
       "lane": "Mission Control",
       "priority": 3
+    },
+    {
+      "id": "CL-046",
+      "claim": "PR #50 ships the rename migration + ~20 call-site updates + display_duration/last_line on production_graphics; PR #52 (stacked) DEFERS the Title->Intro Graphic CHECK+data standardization to a follow-up migration, sets the validator to soft amber >65 (66-70 allowed, never blocks) with extraction prompt 60-65/70-ceiling, and persists Var 1/Var 2 into lower_thirds_variations slots 2/3 (slot 1 = primary) across all three write paths.",
+      "source": "open-PR audit 2026-06-11 (PR #50 + #52 bodies)",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "PR bodies read via GitHub MCP 2026-06-11; #52 explains the deferral (constraint-before-cleanup aborted the migration)",
+      "gsr_application": "Slice 1 scope: 1.1 (Intro Graphic follow-up migration) still needed; 1.2 becomes a reconcile (add under-55 amber + over-70 hard block per canon s13 if missing); 1.5 shrinks to post-merge verify + the 3 topic-relevant chyron variations",
+      "lane": "Lane 10",
+      "priority": 1
+    },
+    {
+      "id": "CL-047",
+      "claim": "WhisperKit v1.0.0 (May 2026, repo renamed argmax-oss-swift) bundles SpeakerKit for speaker labels; its 2.2% WER is a vendor benchmark.",
+      "source": "docs/_handoff/VERIFIED-FACTS.md (verified 2026-06-04)",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Repo-verified fact sheet dated 2026-06-04; re-verify currency at 7.2 build time per never-stale rule",
+      "gsr_application": "Transcription build (7.2) stays on the canon registry pick: WhisperKit + SpeakerKit local, WhisperX honorable fallback",
+      "lane": "Lane 12",
+      "priority": 2
     }
   ]
 }

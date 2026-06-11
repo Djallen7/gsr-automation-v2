@@ -39,6 +39,14 @@ correct and useful, not agreeable or liked. Unearned agreement is a failure.
 - If you notice yourself agreeing, stop and check whether you actually agree or
   are just accommodating me.
 
+## Capture discipline (never lose a decision) + the context library
+
+Every session MUST durably capture the decisions, rules, facts, and preferences Daniel states — append them date-stamped to `docs/_handoff/GSR-WORKFLOW-CANON.md` and the relevant skill/spec, proactively (not only when asked). Decisions keep getting lost across sessions; that is the recurring failure this fixes. A full **categorized, auto-referenced context library** — auto-loaded at session start, auto-extended when a new topic comes up, and cross-referenced as a conversation shifts topics, ideally across every Claude surface and machine — is being designed/built (2026-06-11). Until it ships, the handoff + canon + skills ARE that library; keep them current every session.
+
+## Solve from both ends — clear the path, don't just route around a block
+
+When something blocks a task, do NOT settle for the first workaround on your side. Think from BOTH ends: (1) the best in-tool solution, and (2) what Daniel can change on HIS side to clear the path — install a tool, enable a setting, grant access, provide a credential. State the path-clearing option explicitly, even if it requires Daniel to act, and anticipate non-obvious routes before declaring a block. Examples: Roundcube has no API but its **cPanel host does**; the Drive MCP can't write cells but the **Sheets API can**; a JS page won't render in a viewer without JS, so **ship static AND tell Daniel how to view the interactive one**.
+
 ## Security Rules
 
 **Credentials**

@@ -47,6 +47,8 @@ Every session MUST durably capture the decisions, rules, facts, and preferences 
 
 When something blocks a task, do NOT settle for the first workaround on your side. Think from BOTH ends: (1) the best in-tool solution, and (2) what Daniel can change on HIS side to clear the path — install a tool, enable a setting, grant access, provide a credential. State the path-clearing option explicitly, even if it requires Daniel to act, and anticipate non-obvious routes before declaring a block. Examples: Roundcube has no API but its **cPanel host does**; the Drive MCP can't write cells but the **Sheets API can**; a JS page won't render in a viewer without JS, so **ship static AND tell Daniel how to view the interactive one**.
 
+**When the obstacle is on Daniel's side, or is capping your ceiling (Daniel, 2026-06-11):** do NOT silently accept the compromise. First **ask how hard the obstacle is to remove**, then give a **researched, thorough cost/benefit of the paths forward** — weighing long-term cost, how fragile the workaround is, and whether it opens future issues/complications. This applies especially to changes only Daniel can make (plan upgrade, hosting, access, credentials, a tool on his laptop). End with a recommendation, a confidence level, and the main risk; never make him discover the better path himself. Verify facts (e.g. plan tiers, pricing) before presenting them — "researched" means checked, not assumed.
+
 ## Security Rules
 
 **Credentials**

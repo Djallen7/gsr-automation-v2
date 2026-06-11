@@ -32,14 +32,13 @@ Before designing or building any automation: **name the deliverable and the ship
 - **Scope:** only touch what the session is about. If scope is unclear, ask.
 - **Blast radius:** before any command, ask whether it could affect anything beyond the task. If yes or uncertain, stop and ask.
 - **Lower-thirds import confirmation (mandatory):** before importing lower thirds, run a dry-run, show Daniel the episode/graphic/rejected counts, and require an explicit "Type YES" before any live `/api/import`. The auto-extraction path is gated the same way: `app_config.auto_extract_apply` defaults to `false`, so a saved script holds its extraction for human confirmation via `/api/scripts/confirm-extraction`.
-- **ProPresenter:** all ProPresenter work is test-machine only; never command the production machine via automation until David explicitly approves.
+- **ProPresenter:** read access to GSN-PropRes (Tailscale 100.98.215.7) is permitted for mapping and testing. Write and control commands to the production machine require David's explicit approval; treat ProPresenter writes with caution.
 - **The David Rule:** before any action, ask "if this goes wrong, does it land on David to fix?" If yes, redesign until the answer is no.
 
 ## Off-limits to automation (non-negotiable)
 
-- **ProPresenter production machine** (GSN-PropRes, Tailscale 100.98.215.7).
-- **ATEM, Bitfocus Companion** — production hardware.
-- **QNAP admin dashboard** — off-limits via any access method. The 2026-05-20 incident was caused by admin dashboard access (tweaking server settings), not Tailscale. Tailscale read-only SMB access to QNAP is permitted. No writes, no file-watchers on the NAS (confirmed by David and Daniel, 2026-06-11).
+- **ProPresenter write/control commands** — treat with caution; no write or control commands to the production machine (GSN-PropRes, Tailscale 100.98.215.7) without explicit approval from David. Read access for mapping and testing is permitted (Daniel, 2026-06-11).
+- **QNAP** — sensitive shared hardware. Proceed with caution at all times. Strict no write access. No admin dashboard access via any method (cause of the 2026-05-20 incident). Tailscale read-only SMB is permitted; Tailscale is only restricted when writing to a server (Daniel, 2026-06-11).
 - **Notion** — wiki-only after ADR-0012.
 
 ---

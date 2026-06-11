@@ -1,6 +1,6 @@
 {
   "project": "GSR Automation",
-  "updated_at": "2026-06-11T15:02:50.044328+00:00",
+  "updated_at": "2026-06-11T17:22:30.195229+00:00",
   "lanes": [
     {
       "id": 1,
@@ -227,6 +227,12 @@
           "date": "2026-06-08",
           "text": "Captured review decisions to canon s13; built GUEST-CORRECTIONS.md (+ frameworks); authored ADRs 0004-0006; intro rule + README version pin."
         }
+      ],
+      "activity": [
+        {
+          "date": "2026-06-11",
+          "note": "Frameworks promoted to canon s16; Kilauea s14 item resolved (wording locked, row write moves to Lane 3 once the Austin episode row exists)."
+        }
       ]
     },
     {
@@ -251,6 +257,10 @@
       "resume_prompt": "Read docs/_handoff/LANES.md (Lane 9), docs/_handoff/2026-06-11-pipeline-build-plan.md (the plan, v3), docs/_handoff/2026-06-11-mission-run-notes.md (goal checklist + corrections), and docs/_handoff/2026-06-11-claim-ledger.json. If transcripts exist in 2026-06-11-transcript-pull-kit/transcripts/, mine them per item 3.2 (statuses mined/rejected, claims ASSUMED->verified). If Daniel has answered section 7, append answers to canon dated and open the Phase B lanes the plan lists in section 9. Starred defaults stand unless he says otherwise. Never bypass canon s15 gates.",
       "recent_activity": [],
       "activity": [
+        {
+          "date": "2026-06-11",
+          "note": "Track 2 burst while the Mac pulls transcripts: lanes.html sessions panel shipped (plan 2.2), ADR-0013 Mission Control (2.5), frameworks promoted to canon s16 (4.2), Kilauea fact-check RESOLVED with on-air wording in canon s14 (4.4, Daniel was right per USGS), superstore lookup spec committed (4.3, CL-049), gsr-research handoff + branch safety net shipped as that repo's PR #1 (P14). Ledger at 49 claims."
+        },
         {
           "date": "2026-06-11",
           "note": "Cloud-side research (R2-R5) verified into a 47-claim ledger, 0 priority-1 ASSUMED; R6 +63 candidates queued (162 total, none mined yet - Phase R NOT done, mining needs the Mac kit). Phase S build plan v3 drafted, critiqued 3 rounds (2 red-team blockers fixed), independently rubric-checked 7/7 AFTER the fixes; awaiting Daniel's section-7 answers."

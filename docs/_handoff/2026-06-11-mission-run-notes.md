@@ -66,6 +66,12 @@ truth here; the clock notes below are approximate session-side stamps)
 - 13:20 UTC checkpoint 2: R2+R3+R4+R5 agents ALL returned and merged (ledger at 45 claims, 0 priority-1 ASSUMED left); architect skeleton + R6 candidate finder still running. ~2.8h cumulative.
 - 14:00 UTC checkpoint 3: architect plan v2 (citations filled, 47 claims); R6 finder returned 63 oEmbed-verified candidates, merged into the queue (162 videos total, Mac pull list rank-ordered). NOTE: the three critique agents (red team, gsr-health, editorial) all hit the session usage limit (resets 14:20 UTC) and produced nothing; critique rounds re-run after reset. ~3.5h cumulative.
 
+**Runtime log addendum:**
+- ~18:45 UTC: Track 2 burst complete (sessions panel, ADR-0013, canon s16, Kilauea
+  resolved, superstore spec, gsr-research PR #1); ledger 49 claims; Mac transcript run
+  in progress on Daniel's other account. Cumulative this session well past the 5h mark
+  by git timestamps; the 5h goal box still waits on the corpus actually being MINED.
+
 ## Independent rubric verification (recorded 2026-06-11, after plan v3)
 
 An independent verifier subagent (no part in writing the plan) checked the mission's

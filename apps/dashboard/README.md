@@ -1,6 +1,6 @@
 # GSR Dashboard
 
-Next.js 16 (App Router) + shadcn/ui + Supabase. Feature 1 (Episode Graphics & Asset Tracker) lives here.
+Next.js 16.2.6 (App Router) + shadcn/ui + Supabase. Feature 1 (Episode Graphics & Asset Tracker) lives here.
 
 ## Local dev
 

@@ -438,6 +438,9 @@ These are breathing points. They invite the viewer to sit with the information b
 ### 9. Withhold the Resolution
 The host intro does not state the article's conclusion. The tease does not list the interview topics. The GSM toss does not summarize the video. The tension is loaded; the content delivers the release.
 
+### 10. Phenomenon Before Term (introduce the thing before you name it)
+Establish what is happening in plain, concrete language first; only then attach the technical label. Never drop a term the viewer cannot yet picture. Describe the lifeless stretch of ocean where nothing can breathe, and only after that call it a "dead zone." The viewer should already see the phenomenon by the time the word arrives, so the word lands as a name for something real, not as jargon to decode.
+
 ---
 
 ## Part 6: The Variation Framework — How to Keep It Alive

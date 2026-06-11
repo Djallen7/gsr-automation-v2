@@ -100,7 +100,7 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 
 ### 8. YouTube RSS Poller (Supabase Edge Function)
 **What:** Hourly cron polling `https://www.youtube.com/feeds/videos.xml?channel_id=UCNZS3IEQaAfwofwltbEBwuw`. Parse `S03, EpN` from titles, write real `youtube_url` and `youtube_published_at` to matching episode row.  
-**Why:** All 48 S3 episode rows are in the DB now with `youtube_scheduled_publish_at`. Without the poller, those fields will never flip to actual publish dates — the dashboard will show stale data indefinitely.  
+**Why:** All 48 S3 episode rows are in the DB now with `webstream_scheduled_publish_at` (the weekly Monday 4PM ET release target). Without the poller, the YouTube actuals (`youtube_url`, `youtube_published_at`) will never flip from the scheduled target to real publish data, so the dashboard will show stale data indefinitely.  
 **Build path:** Supabase Edge Function + pg_cron trigger. No external dependencies.  
 **Effort:** Low. Schema ready; the `episodes` table already has the target columns.  
 **Priority: High.** Build immediately after Stage 7 resolves.
@@ -178,3 +178,13 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 **Why deferred:** Sequenced with the per-role dashboards above (same preconditions: system designed, tested across mock episodes, real system imported). Display/placement is intentionally undecided. The earlier "Basecamp = read-only monologue ingestion, later feature" scope is superseded; monologue ingestion is now one slice of this broader two-way integration.
 
 **Guardrail:** two-way means the dashboard can write back into a tool the whole team uses live, so every dashboard-to-Basecamp write follows confirm-before-write + the David rule. Reads carry no such risk.
+
+---
+
+## Follow-up: drop youtube_scheduled_publish_at (contract step, 2026-06-08)
+
+**What it is:** The contract half of the `youtube_scheduled_publish_at` -> `webstream_scheduled_publish_at` expand-contract rename. Migration `20260608161708_add_webstream_scheduled_publish_at` already ADDED and BACKFILLED the new `webstream_scheduled_publish_at` column on `episodes`. The old `youtube_scheduled_publish_at` column is intentionally still present.
+
+**What is left:** Write a later migration `<ts>_drop_youtube_scheduled_publish_at.sql` that does `ALTER TABLE episodes DROP COLUMN IF EXISTS youtube_scheduled_publish_at;`, regenerate types, run advisors.
+
+**HARD PRECONDITION (do not skip):** Run this ONLY AFTER this branch is merged to `main` and the new build is deployed to Vercel. The currently-deployed app and the `v_episode_workflow` view still reference `youtube_scheduled_publish_at`; dropping it before the deploy that stops referencing it would break production. Update `v_episode_workflow` to use the new column in the same later migration, then drop. Priority: low, but do it before the column drifts out of memory.

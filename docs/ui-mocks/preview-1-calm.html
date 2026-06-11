@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genesis Science Report — Overview</title>
+<style>
+  :root {
+    --bg: #FBFBFA;
+    --surface: #FFFFFF;
+    --hairline: #ECECEA;
+    --ink: #1A1A18;
+    --ink-2: #6B6B66;
+    --ink-3: #A0A09A;
+    --accent: #2E6AE6;
+    --at-risk: #C2410C;
+    --s1: 8px;
+    --s2: 16px;
+    --s3: 24px;
+    --s4: 32px;
+    --s5: 48px;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .num { font-variant-numeric: tabular-nums; }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: var(--s3) var(--s2) var(--s5);
+  }
+
+  /* Header */
+  header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: var(--s1);
+    padding-bottom: var(--s3);
+    border-bottom: 1px solid var(--hairline);
+  }
+  header h1 {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  header .air {
+    font-size: 14px;
+    color: var(--ink-2);
+  }
+  header .air strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* Section heading */
+  .section { margin-top: var(--s5); }
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin-bottom: var(--s2);
+  }
+
+  /* What needs you */
+  .needs {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+  }
+  .needs-item {
+    display: flex;
+    align-items: center;
+    gap: var(--s2);
+    padding: var(--s2);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .needs-item:last-child { border-bottom: none; }
+  .needs-body { flex: 1; min-width: 0; }
+  .needs-action {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .needs-why {
+    font-size: 13px;
+    color: var(--ink-2);
+  }
+  .needs-why.warn { color: var(--at-risk); }
+  .affordance {
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 6px 12px;
+    background: var(--surface);
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .affordance.warn {
+    color: var(--at-risk);
+    border-color: var(--at-risk);
+  }
+
+  /* Episode groups */
+  .group-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    margin: var(--s3) 0 var(--s2);
+  }
+  .group-label:first-of-type { margin-top: 0; }
+
+  .episodes {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius);
+  }
+  .ep {
+    padding: var(--s2);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .ep:last-child { border-bottom: none; }
+  .ep-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--s2);
+    margin-bottom: 2px;
+  }
+  .ep-id {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink-2);
+  }
+  .ep-air {
+    font-size: 13px;
+    color: var(--ink-3);
+  }
+  .ep-title {
+    font-size: 15px;
+    color: var(--ink);
+    margin-bottom: var(--s2);
+  }
+
+  /* Stage row */
+  .ep-stage {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--ink-2);
+    margin-bottom: 10px;
+  }
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--ink-3);
+  }
+  .dot.blocked { background: var(--at-risk); }
+  .dot.risk { background: var(--at-risk); }
+  .ep-stage.blocked, .ep-stage.risk { color: var(--at-risk); font-weight: 500; }
+
+  /* Progress indicator */
+  .progress {
+    display: flex;
+    gap: 4px;
+  }
+  .cell {
+    flex: 1;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--hairline);
+    position: relative;
+  }
+  .cell.done { background: var(--ink-3); }
+  .cell.doing {
+    background: var(--ink);
+  }
+  .cell.notstarted { background: var(--hairline); }
+  .cell.blocked { background: var(--at-risk); }
+  .cell.risk { background: var(--at-risk); }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s2);
+    margin-top: var(--s2);
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .swatch { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
+  .swatch.done { background: var(--ink-3); }
+  .swatch.doing { background: var(--ink); }
+  .swatch.notstarted { background: var(--hairline); border: 1px solid var(--ink-3); }
+  .swatch.blocked { background: var(--at-risk); }
+
+  @media (min-width: 600px) {
+    .wrap { padding: var(--s4) var(--s3) var(--s5); }
+    header h1 { font-size: 26px; }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+
+    <header>
+      <h1>Genesis Science Report</h1>
+      <div class="air">Next air: <strong>Tue 8:00pm</strong></div>
+    </header>
+
+    <!-- What needs you -->
+    <section class="section">
+      <div class="section-label">What needs you</div>
+      <div class="needs">
+
+        <div class="needs-item">
+          <div class="needs-body">
+            <div class="needs-action">Approve graphic ideas</div>
+            <div class="needs-why">Ep 49 <span class="num"></span>3 ideas waiting</div>
+          </div>
+          <button class="affordance">Review</button>
+        </div>
+
+        <div class="needs-item">
+          <div class="needs-body">
+            <div class="needs-action">Type YES to import lower thirds</div>
+            <div class="needs-why">Ep 50 <span class="num">17</span> cues, dry-run ready</div>
+          </div>
+          <button class="affordance">Import</button>
+        </div>
+
+        <div class="needs-item">
+          <div class="needs-body">
+            <div class="needs-action">Confirm guest</div>
+            <div class="needs-why warn">Ep 51 airs in <span class="num">12</span> days, none booked</div>
+          </div>
+          <button class="affordance warn">Book</button>
+        </div>
+
+        <div class="needs-item">
+          <div class="needs-body">
+            <div class="needs-action">Final title call</div>
+            <div class="needs-why">Ep 48 needs your decision</div>
+          </div>
+          <button class="affordance">Decide</button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- This batch -->
+    <section class="section">
+      <div class="section-label">This batch</div>
+
+      <div class="group-label">In production</div>
+      <div class="episodes">
+
+        <div class="ep">
+          <div class="ep-top">
+            <span class="ep-id">Ep 52</span>
+            <span class="ep-air">Air Sep 1</span>
+          </div>
+          <div class="ep-title">The Fine-Tuned Universe</div>
+          <div class="ep-stage"><span class="dot"></span>Script in progress</div>
+          <div class="progress">
+            <div class="cell doing" title="Script: in progress"></div>
+            <div class="cell notstarted" title="Guests: not started"></div>
+            <div class="cell notstarted" title="Graphics: not started"></div>
+            <div class="cell notstarted" title="ProPresenter: not started"></div>
+            <div class="cell notstarted" title="Record: not started"></div>
+            <div class="cell notstarted" title="Edit: not started"></div>
+            <div class="cell notstarted" title="Metadata: not started"></div>
+            <div class="cell notstarted" title="Distribute: not started"></div>
+            <div class="cell notstarted" title="Aired: not started"></div>
+          </div>
+        </div>
+
+        <div class="ep">
+          <div class="ep-top">
+            <span class="ep-id">Ep 53</span>
+            <span class="ep-air">Air Sep 8</span>
+          </div>
+          <div class="ep-title">Fossils and the Flood</div>
+          <div class="ep-stage"><span class="dot"></span>Guests in progress</div>
+          <div class="progress">
+            <div class="cell done" title="Script: done"></div>
+            <div class="cell doing" title="Guests: in progress"></div>
+            <div class="cell notstarted" title="Graphics: not started"></div>
+            <div class="cell notstarted" title="ProPresenter: not started"></div>
+            <div class="cell notstarted" title="Record: not started"></div>
+            <div class="cell notstarted" title="Edit: not started"></div>
+            <div class="cell notstarted" title="Metadata: not started"></div>
+            <div class="cell notstarted" title="Distribute: not started"></div>
+            <div class="cell notstarted" title="Aired: not started"></div>
+          </div>
+        </div>
+
+        <div class="ep">
+          <div class="ep-top">
+            <span class="ep-id">Ep 54</span>
+            <span class="ep-air">Air Sep 15</span>
+          </div>
+          <div class="ep-title">DNA and the Code of Life</div>
+          <div class="ep-stage"><span class="dot"></span>Script in progress</div>
+          <div class="progress">
+            <div class="cell doing" title="Script: in progress"></div>
+            <div class="cell notstarted" title="Guests: not started"></div>
+            <div class="cell notstarted" title="Graphics: not started"></div>
+            <div class="cell notstarted" title="ProPresenter: not started"></div>
+            <div class="cell notstarted" title="Record: not started"></div>
+            <div class="cell notstarted" title="Edit: not started"></div>
+            <div class="cell notstarted" title="Metadata: not started"></div>
+            <div class="cell notstarted" title="Distribute: not started"></div>
+            <div class="cell notstarted" title="Aired: not started"></div>
+          </div>
+        </div>
+
+        <div class="ep">
+          <div class="ep-top">
+            <span class="ep-id">Ep 55</span>
+            <span class="ep-air">Air Sep 22</span>
+          </div>
+          <div class="ep-title">The Age of the Earth</div>
+          <div class="ep-stage"><span class="dot"></span>Script not started</div>
+          <div class="progress">
+            <div class="cell notstarted" title="Script: not started"></div>
+            <div class="cell notstarted" title="Guests: not started"></div>
+            <div class="cell notstarted" title="Graphics: not started"></div>
+            <div class="cell notstarted" title="ProPresenter: not started"></div>
+            <div class="cell notstarted" title="Record: not started"></div>
+            <div class="cell notstarted" title="Edit: not started"></div>
+            <div class="cell notstarted" title="Metadata: not started"></div>
+            <div class="cell notstarted" title="Distribute: not started"></div>
+            <div class="cell notstarted" title="Aired: not started"></div>
+          </div>
+        </div>
+
+        <div class="ep">
+          <div class="ep-top">
+            <span class="ep-id">Ep 56</span>
+            <span class="ep-air">Air Sep 29</span>
+          </div>
+          <div class="ep-title">Comets and a Young Solar System</div>
+          <div class="ep-stage"><span class="dot"></span>Script not started</div>
+          <div class="progress">
+            <div class="cell notstarted" title="Script: not started"></div>
+            <div class="cell notstarted" title="Guests: not started"></div>
+            <div class="cell notstarted" title="Graphics: not started"></div>
+            <div class="cell notstarted" title="ProPresenter: not started"></div>
+            <div class="cell notstarted" title="Record: not started"></div>
+            <div class="cell notstarted" title="Edit: not started"></div>
+            <div class="cell notstarted" title="Metadata: not started"></div>
+            <div class="cell notstarted" title="Distribute: not started"></div>
+            <div class="cell notstarted" title="Aired: not started"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="group-label">In post</div>
+      <div class="episodes">
+
+        <div class="ep">
+          <div class="ep-top">
+            <span class="ep-id">Ep 47</span>
+            <span class="ep-air">Air Aug 4</span>
+          </div>
+          <div class="ep-title">Design in the Cell</div>
+          <div class="ep-stage blocked"><span class="dot blocked"></span>Blocked at Edit</div>
+          <div class="progress">
+            <div class="cell done" title="Script: done"></div>
+            <div class="cell done" title="Guests: done"></div>
+            <div class="cell done" title="Graphics: done"></div>
+            <div class="cell done" title="ProPresenter: done"></div>
+            <div class="cell done" title="Record: done"></div>
+            <div class="cell blocked" title="Edit: blocked"></div>
+            <div class="cell notstarted" title="Metadata: not started"></div>
+            <div class="cell notstarted" title="Distribute: not started"></div>
+            <div class="cell notstarted" title="Aired: not started"></div>
+          </div>
+        </div>
+
+        <div class="ep">
+          <div class="ep-top">
+            <span class="ep-id">Ep 48</span>
+            <span class="ep-air">Air Aug 11</span>
+          </div>
+          <div class="ep-title">Galaxies and the Heavens</div>
+          <div class="ep-stage"><span class="dot"></span>Metadata in progress</div>
+          <div class="progress">
+            <div class="cell done" title="Script: done"></div>
+            <div class="cell done" title="Guests: done"></div>
+            <div class="cell done" title="Graphics: done"></div>
+            <div class="cell done" title="ProPresenter: done"></div>
+            <div class="cell done" title="Record: done"></div>
+            <div class="cell done" title="Edit: done"></div>
+            <div class="cell doing" title="Metadata: in progress"></div>
+            <div class="cell notstarted" title="Distribute: not started"></div>
+            <div class="cell notstarted" title="Aired: not started"></div>
+          </div>
+        </div>
+
+        <div class="ep">
+          <div class="ep-top">
+            <span class="ep-id">Ep 49</span>
+            <span class="ep-air">Air Aug 18</span>
+          </div>
+          <div class="ep-title">The Cambrian Explosion</div>
+          <div class="ep-stage"><span class="dot"></span>Graphics in progress</div>
+          <div class="progress">
+            <div class="cell done" title="Script: done"></div>
+            <div class="cell done" title="Guests: done"></div>
+            <div class="cell doing" title="Graphics: in progress"></div>
+            <div class="cell notstarted" title="ProPresenter: not started"></div>
+            <div class="cell done" title="Record: done"></div>
+            <div class="cell doing" title="Edit: in progress"></div>
+            <div class="cell notstarted" title="Metadata: not started"></div>
+            <div class="cell notstarted" title="Distribute: not started"></div>
+            <div class="cell notstarted" title="Aired: not started"></div>
+          </div>
+        </div>
+
+        <div class="ep">
+          <div class="ep-top">
+            <span class="ep-id">Ep 50</span>
+            <span class="ep-air">Air Aug 25</span>
+          </div>
+          <div class="ep-title">Origins of Language</div>
+          <div class="ep-stage"><span class="dot"></span>ProPresenter in progress</div>
+          <div class="progress">
+            <div class="cell done" title="Script: done"></div>
+            <div class="cell done" title="Guests: done"></div>
+            <div class="cell done" title="Graphics: done"></div>
+            <div class="cell doing" title="ProPresenter: in progress"></div>
+            <div class="cell notstarted" title="Record: not started"></div>
+            <div class="cell notstarted" title="Edit: not started"></div>
+            <div class="cell notstarted" title="Metadata: not started"></div>
+            <div class="cell notstarted" title="Distribute: not started"></div>
+            <div class="cell notstarted" title="Aired: not started"></div>
+          </div>
+        </div>
+
+        <div class="ep">
+          <div class="ep-top">
+            <span class="ep-id">Ep 51</span>
+            <span class="ep-air risk">Air Aug 31</span>
+          </div>
+          <div class="ep-title">The Origin of Stars</div>
+          <div class="ep-stage risk"><span class="dot risk"></span>At risk: Guests behind, airs in 12 days</div>
+          <div class="progress">
+            <div class="cell done" title="Script: done"></div>
+            <div class="cell risk" title="Guests: at risk"></div>
+            <div class="cell notstarted" title="Graphics: not started"></div>
+            <div class="cell notstarted" title="ProPresenter: not started"></div>
+            <div class="cell notstarted" title="Record: not started"></div>
+            <div class="cell notstarted" title="Edit: not started"></div>
+            <div class="cell notstarted" title="Metadata: not started"></div>
+            <div class="cell notstarted" title="Distribute: not started"></div>
+            <div class="cell notstarted" title="Aired: not started"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="legend">
+        <span><i class="swatch done"></i>Done</span>
+        <span><i class="swatch doing"></i>In progress</span>
+        <span><i class="swatch notstarted"></i>Not started</span>
+        <span><i class="swatch blocked"></i>Blocked or at risk</span>
+      </div>
+
+    </section>
+
+  </div>
+</body>
+</html>

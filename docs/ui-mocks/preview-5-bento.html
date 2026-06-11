@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Genesis Science Report — Overview</title>
+<style>
+  :root {
+    --bg: #0F141A;
+    --tile: #161D26;
+    --tile-2: #1B232E;
+    --border: rgba(255, 255, 255, 0.07);
+    --border-strong: rgba(255, 255, 255, 0.12);
+    --text: #E6EDF3;
+    --muted: #93A4B6;
+    --accent: #4C8DFF;
+    --green: #3FB984;
+    --amber: #E0A93C;
+    --red: #F0726A;
+    --radius: 20px;
+    --radius-sm: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.45;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+    padding: 16px;
+    min-height: 100vh;
+  }
+
+  .tabular { font-variant-numeric: tabular-nums; font-feature-settings: "tnum"; }
+
+  /* Header */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 6px 20px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .header .mark {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--accent), #2C6BE0);
+    display: grid; place-items: center;
+    font-weight: 700; font-size: 16px; color: #fff;
+    flex: none;
+  }
+  .header h1 {
+    font-size: 19px;
+    font-weight: 650;
+    letter-spacing: -0.01em;
+  }
+  .header .sub {
+    margin-left: auto;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* Bento grid */
+  .bento {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: minmax(150px, auto);
+    gap: 16px;
+  }
+
+  .tile {
+    background: var(--tile);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px;
+    transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .tile:hover {
+    transform: translateY(-3px);
+    border-color: var(--border-strong);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  .tile-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Spans */
+  .hero { grid-column: span 2; grid-row: span 2; }
+  .span-tall { grid-row: span 2; }
+
+  /* HERO content */
+  .hero-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    flex: 1;
+  }
+  .group-head {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .group-head .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+  }
+  .ep-row {
+    display: grid;
+    grid-template-columns: 56px 1fr 76px;
+    align-items: center;
+    gap: 12px;
+    padding: 7px 0;
+  }
+  .ep-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .ep-air {
+    font-size: 12px;
+    color: var(--muted);
+    text-align: right;
+  }
+  .ep-air.risk { color: var(--amber); font-weight: 600; }
+
+  /* Stage strip */
+  .strip {
+    display: flex;
+    gap: 3px;
+  }
+  .seg {
+    height: 9px;
+    flex: 1;
+    border-radius: 3px;
+    background: #283340; /* not-started */
+    position: relative;
+  }
+  .seg.done { background: var(--green); }
+  .seg.active { background: var(--accent); }
+  .seg.blocked { background: var(--red); }
+  .seg.atrisk { background: var(--amber); }
+
+  /* Stage legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    font-size: 11.5px;
+    color: var(--muted);
+  }
+  .legend .item { display: flex; align-items: center; gap: 6px; }
+  .legend .sw { width: 11px; height: 11px; border-radius: 3px; flex: none; }
+  .sw.done { background: var(--green); }
+  .sw.active { background: var(--accent); }
+  .sw.blocked { background: var(--red); }
+  .sw.atrisk { background: var(--amber); }
+  .sw.ns { background: #283340; }
+
+  /* Needs you tile */
+  .action-list { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+  .action {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--tile-2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+  }
+  .action .rank {
+    width: 22px; height: 22px; flex: none;
+    border-radius: 7px;
+    background: rgba(76, 141, 255, 0.16);
+    color: var(--accent);
+    font-size: 12px; font-weight: 700;
+    display: grid; place-items: center;
+  }
+  .action .body { flex: 1; min-width: 0; }
+  .action .title { font-size: 13.5px; font-weight: 600; }
+  .action .meta { font-size: 12px; color: var(--muted); margin-top: 1px; }
+  .btn {
+    flex: none;
+    border: 1px solid var(--accent);
+    background: rgba(76, 141, 255, 0.12);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 6px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-family: inherit;
+  }
+  .btn:hover { background: rgba(76, 141, 255, 0.22); }
+  .btn.amber { border-color: var(--amber); color: var(--amber); background: rgba(224, 169, 60, 0.12); }
+  .btn.amber:hover { background: rgba(224, 169, 60, 0.22); }
+
+  /* Next air tile */
+  .next-air { justify-content: center; align-items: flex-start; flex: 1; }
+  .countdown {
+    font-size: 52px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--accent);
+  }
+  .countdown .unit { font-size: 22px; font-weight: 600; color: var(--muted); margin-left: 6px; }
+  .next-air .detail { margin-top: 12px; font-size: 14px; color: var(--text); }
+  .next-air .detail strong { font-weight: 650; }
+
+  /* Distribution tile */
+  .dist-head { font-size: 13px; color: var(--muted); margin-bottom: 14px; }
+  .dist-head strong { color: var(--text); font-weight: 650; }
+  .dist-list { display: flex; flex-direction: column; gap: 9px; flex: 1; }
+  .dist-row { display: flex; align-items: center; gap: 10px; }
+  .dist-row .name { font-size: 13px; flex: 1; }
+  .dist-status {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 7px;
+    letter-spacing: 0.02em;
+  }
+  .st-done { background: rgba(63, 185, 132, 0.16); color: var(--green); }
+  .st-pending { background: rgba(147, 164, 182, 0.14); color: var(--muted); }
+  .st-manual { background: rgba(240, 114, 106, 0.16); color: var(--red); }
+  .dist-row .pip { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+  .pip.done { background: var(--green); }
+  .pip.pending { background: #3a4654; }
+  .pip.manual { background: var(--red); }
+
+  /* Stat tile */
+  .stat { justify-content: center; }
+  .stat .num {
+    font-size: 46px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--green);
+  }
+  .stat .desc { font-size: 13px; color: var(--muted); margin-top: 8px; }
+
+  /* Responsive: phone single column stack */
+  @media (max-width: 760px) {
+    body { padding: 12px; }
+    .bento { grid-template-columns: 1fr; gap: 12px; }
+    .hero, .span-tall { grid-column: span 1; grid-row: span 1; }
+    .header .sub { display: none; }
+    .countdown { font-size: 46px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="mark" aria-hidden="true">G</div>
+    <h1>Genesis Science Report</h1>
+    <span class="sub">Overview &middot; Season 3</span>
+  </header>
+
+  <main class="bento">
+
+    <!-- HERO: This batch -->
+    <section class="tile hero" aria-labelledby="hero-label">
+      <div class="tile-label" id="hero-label">This batch &middot; 10 episodes</div>
+
+      <div class="hero-groups">
+        <div>
+          <div class="group-head"><span class="dot" style="background:var(--accent)"></span>In production &middot; Ep 52&ndash;56</div>
+
+          <div class="ep-row">
+            <span class="ep-label tabular">Ep 52</span>
+            <div class="strip" role="img" aria-label="Stages: Script done, Guests done, Graphics active, ProPresenter to do, Record to do, Edit to do, Metadata to do, Distribute to do, Aired to do">
+              <span class="seg done"></span><span class="seg done"></span><span class="seg active"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+            </div>
+            <span class="ep-air tabular">Jul 8</span>
+          </div>
+
+          <div class="ep-row">
+            <span class="ep-label tabular">Ep 53</span>
+            <div class="strip" role="img" aria-label="Stages: Script done, Guests active, rest to do">
+              <span class="seg done"></span><span class="seg active"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+            </div>
+            <span class="ep-air tabular">Jul 15</span>
+          </div>
+
+          <div class="ep-row">
+            <span class="ep-label tabular">Ep 54</span>
+            <div class="strip" role="img" aria-label="Stages: Script active, rest to do">
+              <span class="seg active"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+            </div>
+            <span class="ep-air tabular">Jul 22</span>
+          </div>
+
+          <div class="ep-row">
+            <span class="ep-label tabular">Ep 55</span>
+            <div class="strip" role="img" aria-label="Stages: Script active, rest to do">
+              <span class="seg active"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+            </div>
+            <span class="ep-air tabular">Jul 29</span>
+          </div>
+
+          <div class="ep-row">
+            <span class="ep-label tabular">Ep 56</span>
+            <div class="strip" role="img" aria-label="Stages: all to do">
+              <span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+            </div>
+            <span class="ep-air tabular">Aug 5</span>
+          </div>
+        </div>
+
+        <div>
+          <div class="group-head"><span class="dot" style="background:var(--green)"></span>In post &middot; Ep 47&ndash;51</div>
+
+          <div class="ep-row">
+            <span class="ep-label tabular">Ep 47</span>
+            <div class="strip" role="img" aria-label="Stages: Script Guests Graphics ProPresenter Record done, Edit blocked, rest to do">
+              <span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg blocked"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+            </div>
+            <span class="ep-air tabular risk">Blocked</span>
+          </div>
+
+          <div class="ep-row">
+            <span class="ep-label tabular">Ep 48</span>
+            <div class="strip" role="img" aria-label="Stages: Script through Record done, Edit active, rest to do">
+              <span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg active"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+            </div>
+            <span class="ep-air tabular">Jun 17</span>
+          </div>
+
+          <div class="ep-row">
+            <span class="ep-label tabular">Ep 49</span>
+            <div class="strip" role="img" aria-label="Stages: Script Guests done, Graphics through rest to do">
+              <span class="seg done"></span><span class="seg done"></span><span class="seg active"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span><span class="seg"></span>
+            </div>
+            <span class="ep-air tabular">Jun 24</span>
+          </div>
+
+          <div class="ep-row">
+            <span class="ep-label tabular">Ep 50</span>
+            <div class="strip" role="img" aria-label="Stages: Script through Edit done, Metadata active, rest to do">
+              <span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg active"></span><span class="seg"></span><span class="seg"></span>
+            </div>
+            <span class="ep-air tabular">Jun 10</span>
+          </div>
+
+          <div class="ep-row">
+            <span class="ep-label tabular">Ep 51</span>
+            <div class="strip" role="img" aria-label="Stages: Script through Metadata done, Distribute at risk, Aired to do">
+              <span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg done"></span><span class="seg atrisk"></span><span class="seg"></span>
+            </div>
+            <span class="ep-air tabular risk">At risk</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="legend" aria-hidden="false">
+        <span class="item"><span class="sw done"></span>Done</span>
+        <span class="item"><span class="sw active"></span>Active</span>
+        <span class="item"><span class="sw atrisk"></span>At risk</span>
+        <span class="item"><span class="sw blocked"></span>Blocked</span>
+        <span class="item"><span class="sw ns"></span>Not started</span>
+        <span class="item">Stages: Script &middot; Guests &middot; Graphics &middot; ProPresenter &middot; Record &middot; Edit &middot; Metadata &middot; Distribute &middot; Aired</span>
+      </div>
+    </section>
+
+    <!-- Needs you -->
+    <section class="tile span-tall" aria-labelledby="needs-label">
+      <div class="tile-label" id="needs-label">Needs you</div>
+      <div class="action-list">
+        <div class="action">
+          <span class="rank tabular">1</span>
+          <div class="body">
+            <div class="title">Approve graphic ideas</div>
+            <div class="meta">Episode 49</div>
+          </div>
+          <button class="btn">Review</button>
+        </div>
+        <div class="action">
+          <span class="rank tabular">2</span>
+          <div class="body">
+            <div class="title">Type YES to import</div>
+            <div class="meta">Episode 50 &middot; lower thirds</div>
+          </div>
+          <button class="btn amber">Confirm</button>
+        </div>
+        <div class="action">
+          <span class="rank tabular">3</span>
+          <div class="body">
+            <div class="title">Confirm guest</div>
+            <div class="meta">Episode 51</div>
+          </div>
+          <button class="btn">Open</button>
+        </div>
+        <div class="action">
+          <span class="rank tabular">4</span>
+          <div class="body">
+            <div class="title">Final title</div>
+            <div class="meta">Episode 48</div>
+          </div>
+          <button class="btn">Set</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Next air -->
+    <section class="tile next-air" aria-labelledby="nextair-label">
+      <div class="tile-label" id="nextair-label">Next air</div>
+      <div class="countdown tabular">2<span class="unit">days</span></div>
+      <div class="detail"><strong>Ep 47</strong> &middot; Tue 8:00pm</div>
+    </section>
+
+    <!-- This week stat -->
+    <section class="tile stat" aria-labelledby="week-label">
+      <div class="tile-label" id="week-label">This week</div>
+      <div class="num tabular">12</div>
+      <div class="desc">tasks done</div>
+    </section>
+
+    <!-- Distribution -->
+    <section class="tile" style="grid-column: span 2;" aria-labelledby="dist-label">
+      <div class="tile-label" id="dist-label">Distribution</div>
+      <div class="dist-head"><strong>Ep 46</strong> &middot; in flight across 6 targets</div>
+      <div class="dist-list" style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px 24px;">
+        <div class="dist-row">
+          <span class="pip done"></span><span class="name">YouTube</span>
+          <span class="dist-status st-done">Done</span>
+        </div>
+        <div class="dist-row">
+          <span class="pip pending"></span><span class="name">StreamHoster</span>
+          <span class="dist-status st-pending">Pending</span>
+        </div>
+        <div class="dist-row">
+          <span class="pip pending"></span><span class="name">RLN</span>
+          <span class="dist-status st-pending">Pending</span>
+        </div>
+        <div class="dist-row">
+          <span class="pip pending"></span><span class="name">Dropbox</span>
+          <span class="dist-status st-pending">Pending</span>
+        </div>
+        <div class="dist-row">
+          <span class="pip pending"></span><span class="name">GSN</span>
+          <span class="dist-status st-pending">Pending</span>
+        </div>
+        <div class="dist-row">
+          <span class="pip manual"></span><span class="name">Rumble</span>
+          <span class="dist-status st-manual">Manual</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

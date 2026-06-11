@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>GSR Control — Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --paper: #F4EFE6;
+    --surface: #FFFFFF;
+    --ink: #1A1714;
+    --done-bg: #4C8C5A;
+    --done-tx: #0E2B16;
+    --prog-bg: #E0A526;
+    --prog-tx: #3B2A05;
+    --block-bg: #C8452B;
+    --block-tx: #FFFFFF;
+    --accent: #2D5BA8;
+    --border: 3px solid var(--ink);
+    --shadow: 6px 6px 0 var(--ink);
+    --shadow-sm: 4px 4px 0 var(--ink);
+    --display: "Archivo", "Segoe UI", system-ui, sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-feature-settings: "tnum" 1;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.35;
+    padding: 14px;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  h1, h2, h3, .display { font-family: var(--display); text-transform: uppercase; letter-spacing: 0.02em; }
+
+  .block {
+    background: var(--surface);
+    border: var(--border);
+    box-shadow: var(--shadow);
+    border-radius: 0;
+  }
+
+  /* ---------- HEADER ---------- */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 14px 16px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+  .header .brand { font-family: var(--display); font-weight: 800; font-size: 26px; line-height: 1; }
+  .header .batch {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 6px 10px;
+    border: var(--border);
+    background: var(--paper);
+  }
+  .header .role {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 15px;
+    min-width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 12px;
+    border: var(--border);
+    background: var(--accent);
+    color: #fff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* ---------- SECTION TITLES ---------- */
+  .section-title {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 17px;
+    margin: 24px 0 12px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .section-title .count {
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 700;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2px 8px;
+  }
+
+  /* ---------- WHAT NEEDS ME ---------- */
+  .needs {
+    border-width: 4px;
+    box-shadow: 8px 8px 0 var(--ink);
+    padding: 16px;
+    margin-bottom: 8px;
+  }
+  .needs-head {
+    font-family: var(--display);
+    font-weight: 800;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .needs-head .pin {
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 12px;
+    padding: 3px 8px;
+    border: 3px solid var(--ink);
+  }
+  .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--paper);
+    border: var(--border);
+    box-shadow: var(--shadow-sm);
+    padding: 12px 14px;
+    min-height: 64px;
+  }
+  .action .what {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.01em;
+    text-transform: uppercase;
+  }
+  .action .qty {
+    background: var(--block-bg);
+    color: var(--block-tx);
+    border: 2px solid var(--ink);
+    padding: 0 7px;
+    margin-left: 4px;
+    font-weight: 700;
+  }
+  .action.urgent { background: #FBE9E4; }
+
+  .btn {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--accent);
+    border: var(--border);
+    box-shadow: var(--shadow-sm);
+    padding: 0 14px;
+    height: 48px;
+    min-width: 96px;
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 0;
+    transition: transform 0.04s ease, box-shadow 0.04s ease;
+  }
+  .btn:active { transform: translate(3px, 3px); box-shadow: 1px 1px 0 var(--ink); }
+  .btn:focus-visible { outline: 3px solid var(--prog-bg); outline-offset: 2px; }
+
+  /* ---------- LEGEND ---------- */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+    align-items: center;
+    padding: 10px 14px;
+    margin: 18px 0 4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .legend .lg { display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; letter-spacing: 0.03em; }
+  .legend .swatch {
+    width: 22px; height: 22px;
+    border: 2px solid var(--ink);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 13px; line-height: 1;
+  }
+  .sw-done { background: var(--done-bg); color: var(--done-tx); }
+  .sw-prog { background: var(--prog-bg); color: var(--prog-tx); }
+  .sw-block { background: var(--block-bg); color: var(--block-tx); }
+  .sw-none { background: var(--paper); }
+
+  /* ---------- EPISODE ROW ---------- */
+  .ep {
+    display: grid;
+    grid-template-columns: 150px 1fr auto auto;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    margin-bottom: 12px;
+  }
+  .ep-id { font-family: var(--mono); font-weight: 700; font-size: 15px; }
+  .ep-meta .ep-title { font-family: var(--display); text-transform: none; font-weight: 700; font-size: 15px; line-height: 1.2; }
+  .ep-strip { display: flex; gap: 5px; }
+  .cell {
+    width: 38px; height: 38px;
+    border: 2px solid var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 15px; line-height: 1;
+    position: relative;
+  }
+  .cell .stage-lbl {
+    position: absolute; bottom: -15px; left: 50%; transform: translateX(-50%);
+    font-size: 8px; font-weight: 600; letter-spacing: 0.02em;
+    text-transform: uppercase; color: var(--ink); white-space: nowrap;
+  }
+  .c-done { background: var(--done-bg); color: var(--done-tx); }
+  .c-prog { background: var(--prog-bg); color: var(--prog-tx); }
+  .c-block { background: var(--block-bg); color: var(--block-tx); }
+  .c-none { background: var(--paper); }
+  .c-current { box-shadow: 0 0 0 3px var(--accent); z-index: 1; }
+  .ep-strip-wrap { padding-bottom: 16px; }
+
+  .frac { font-family: var(--mono); font-weight: 700; font-size: 15px; text-align: right; min-width: 44px; }
+
+  .needs-badge {
+    font-family: var(--mono); font-weight: 700; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.03em;
+    background: var(--block-bg); color: var(--block-tx);
+    border: 2px solid var(--ink); padding: 4px 8px;
+    white-space: nowrap;
+  }
+  .needs-badge.risk { background: var(--prog-bg); color: var(--prog-tx); }
+  .badge-slot { min-width: 96px; text-align: right; }
+
+  /* mobile-only chip + toggle */
+  .ep-chip, .ep-toggle { display: none; }
+
+  /* ---------- MOBILE ---------- */
+  @media (max-width: 720px) {
+    body { padding: 10px; }
+    .action-grid { grid-template-columns: 1fr; }
+    .header .brand { font-size: 22px; }
+
+    .ep {
+      grid-template-columns: 1fr auto;
+      grid-template-areas:
+        "id    frac"
+        "title title"
+        "chip  toggle"
+        "strip strip"
+        "badge badge";
+      gap: 8px 10px;
+    }
+    .ep-id { grid-area: id; }
+    .ep-meta { grid-area: title; }
+    .frac { grid-area: frac; }
+    .ep-strip-wrap { grid-area: strip; display: none; }
+    .ep.open .ep-strip-wrap { display: block; overflow-x: auto; padding-bottom: 18px; }
+    .badge-slot { grid-area: badge; text-align: left; }
+
+    .ep-chip {
+      grid-area: chip;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--mono); font-weight: 700; font-size: 12px;
+      text-transform: uppercase; letter-spacing: 0.02em;
+      border: 2px solid var(--ink); padding: 6px 10px; min-height: 40px;
+    }
+    .chip-done { background: var(--done-bg); color: var(--done-tx); }
+    .chip-prog { background: var(--prog-bg); color: var(--prog-tx); }
+    .chip-block { background: var(--block-bg); color: var(--block-tx); }
+
+    .ep-toggle {
+      grid-area: toggle;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-weight: 700; font-size: 12px;
+      text-transform: uppercase;
+      background: var(--paper); color: var(--ink);
+      border: 2px solid var(--ink); box-shadow: var(--shadow-sm);
+      min-height: 40px; min-width: 48px; padding: 0 12px; cursor: pointer;
+      border-radius: 0;
+    }
+    .ep-toggle:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
+    .cell { width: 42px; height: 42px; }
+  }
+
+  .foot { font-size: 11px; opacity: 0.7; margin-top: 22px; text-align: center; letter-spacing: 0.03em; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="block header">
+    <span class="brand">GSR CONTROL</span>
+    <span class="batch">BATCH JUNE&nbsp;&nbsp;·&nbsp;&nbsp;AIR TUE 8PM</span>
+    <span class="role" aria-label="Signed in as Daniel Allen">[DA]</span>
+  </header>
+
+  <!-- WHAT NEEDS ME -->
+  <section class="block needs" aria-labelledby="needs-h">
+    <div id="needs-h" class="needs-head"><span class="pin">DO NOW</span> WHAT NEEDS ME</div>
+    <div class="action-grid">
+      <div class="action urgent">
+        <span class="what">APPROVE GRAPHICS — EP49 <span class="qty">3</span></span>
+        <button class="btn" type="button">OPEN &gt;</button>
+      </div>
+      <div class="action">
+        <span class="what">TYPE YES IMPORT — EP50</span>
+        <button class="btn" type="button">OPEN &gt;</button>
+      </div>
+      <div class="action">
+        <span class="what">CONFIRM GUEST — EP51</span>
+        <button class="btn" type="button">OPEN &gt;</button>
+      </div>
+      <div class="action">
+        <span class="what">TITLE CALL — EP48</span>
+        <button class="btn" type="button">OPEN &gt;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEGEND -->
+  <div class="block legend" role="img" aria-label="Status legend">
+    <strong style="font-family:var(--display);font-size:13px;">LEGEND:</strong>
+    <span class="lg"><span class="swatch sw-done">✓</span> DONE</span>
+    <span class="lg"><span class="swatch sw-prog">●</span> IN PROGRESS</span>
+    <span class="lg"><span class="swatch sw-block">!</span> BLOCKED</span>
+    <span class="lg"><span class="swatch sw-none">·</span> NOT STARTED</span>
+    <span class="lg"><span class="swatch sw-none" style="box-shadow:0 0 0 3px var(--accent);"></span> CURRENT STAGE</span>
+  </div>
+
+  <!-- PRE-PRODUCTION -->
+  <h2 class="section-title">PRE-PRODUCTION <span class="count">5</span></h2>
+
+  <!-- Ep52 -->
+  <div class="block ep">
+    <span class="ep-id">EP52</span>
+    <div class="ep-meta"><div class="ep-title">The fine-tuned cosmos</div></div>
+    <span class="ep-chip chip-prog">● Script</span>
+    <button class="ep-toggle" type="button" aria-expanded="false">CELLS</button>
+    <div class="ep-strip-wrap"><div class="ep-strip" role="list" aria-label="9 stages, 1 of 9 complete">
+      <div class="cell c-prog c-current" role="listitem" title="Script — in progress">●<span class="stage-lbl">Script</span></div>
+      <div class="cell c-none" role="listitem" title="Record — not started"><span class="stage-lbl">Record</span></div>
+      <div class="cell c-none" role="listitem" title="Edit — not started"><span class="stage-lbl">Edit</span></div>
+      <div class="cell c-none" role="listitem" title="Graphics — not started"><span class="stage-lbl">Graphics</span></div>
+      <div class="cell c-none" role="listitem" title="Review — not started"><span class="stage-lbl">Review</span></div>
+      <div class="cell c-none" role="listitem" title="Approve — not started"><span class="stage-lbl">Approve</span></div>
+      <div class="cell c-none" role="listitem" title="Master — not started"><span class="stage-lbl">Master</span></div>
+      <div class="cell c-none" role="listitem" title="Deliver — not started"><span class="stage-lbl">Deliver</span></div>
+      <div class="cell c-none" role="listitem" title="Aired — not started"><span class="stage-lbl">Aired</span></div>
+    </div></div>
+    <span class="frac">1/9</span>
+    <span class="badge-slot"></span>
+  </div>
+
+  <!-- Ep53 -->
+  <div class="block ep">
+    <span class="ep-id">EP53</span>
+    <div class="ep-meta"><div class="ep-title">Reading the rock record</div></div>
+    <span class="ep-chip chip-prog">● Record</span>
+    <button class="ep-toggle" type="button" aria-expanded="false">CELLS</button>
+    <div class="ep-strip-wrap"><div class="ep-strip" role="list" aria-label="9 stages, 1 of 9 complete">
+      <div class="cell c-done" role="listitem" title="Script — done">✓<span class="stage-lbl">Script</span></div>
+      <div class="cell c-prog c-current" role="listitem" title="Record — in progress">●<span class="stage-lbl">Record</span></div>
+      <div class="cell c-none" role="listitem" title="Edit — not started"><span class="stage-lbl">Edit</span></div>
+      <div class="cell c-none" role="listitem" title="Graphics — not started"><span class="stage-lbl">Graphics</span></div>
+      <div class="cell c-none" role="listitem" title="Review — not started"><span class="stage-lbl">Review</span></div>
+      <div class="cell c-none" role="listitem" title="Approve — not started"><span class="stage-lbl">Approve</span></div>
+      <div class="cell c-none" role="listitem" title="Master — not started"><span class="stage-lbl">Master</span></div>
+      <div class="cell c-none" role="listitem" title="Deliver — not started"><span class="stage-lbl">Deliver</span></div>
+      <div class="cell c-none" role="listitem" title="Aired — not started"><span class="stage-lbl">Aired</span></div>
+    </div></div>
+    <span class="frac">1/9</span>
+    <span class="badge-slot"></span>
+  </div>
+
+  <!-- Ep54 -->
+  <div class="block ep">
+    <span class="ep-id">EP54</span>
+    <div class="ep-meta"><div class="ep-title">Design in the living cell</div></div>
+    <span class="ep-chip chip-prog">● Edit</span>
+    <button class="ep-toggle" type="button" aria-expanded="false">CELLS</button>
+    <div class="ep-strip-wrap"><div class="ep-strip" role="list" aria-label="9 stages, 2 of 9 complete">
+      <div class="cell c-done" role="listitem" title="Script — done">✓<span class="stage-lbl">Script</span></div>
+      <div class="cell c-done" role="listitem" title="Record — done">✓<span class="stage-lbl">Record</span></div>
+      <div class="cell c-prog c-current" role="listitem" title="Edit — in progress">●<span class="stage-lbl">Edit</span></div>
+      <div class="cell c-none" role="listitem" title="Graphics — not started"><span class="stage-lbl">Graphics</span></div>
+      <div class="cell c-none" role="listitem" title="Review — not started"><span class="stage-lbl">Review</span></div>
+      <div class="cell c-none" role="listitem" title="Approve — not started"><span class="stage-lbl">Approve</span></div>
+      <div class="cell c-none" role="listitem" title="Master — not started"><span class="stage-lbl">Master</span></div>
+      <div class="cell c-none" role="listitem" title="Deliver — not started"><span class="stage-lbl">Deliver</span></div>
+      <div class="cell c-none" role="listitem" title="Aired — not started"><span class="stage-lbl">Aired</span></div>
+    </div></div>
+    <span class="frac">2/9</span>
+    <span class="badge-slot"></span>
+  </div>
+
+  <!-- Ep55 -->
+  <div class="block ep">
+    <span class="ep-id">EP55</span>
+    <div class="ep-meta"><div class="ep-title">Starlight and time</div></div>
+    <span class="ep-chip chip-prog">● Script</span>
+    <button class="ep-toggle" type="button" aria-expanded="false">CELLS</button>
+    <div class="ep-strip-wrap"><div class="ep-strip" role="list" aria-label="9 stages, 0 of 9 complete">
+      <div class="cell c-prog c-current" role="listitem" title="Script — in progress">●<span class="stage-lbl">Script</span></div>
+      <div class="cell c-none" role="listitem" title="Record — not started"><span class="stage-lbl">Record</span></div>
+      <div class="cell c-none" role="listitem" title="Edit — not started"><span class="stage-lbl">Edit</span></div>
+      <div class="cell c-none" role="listitem" title="Graphics — not started"><span class="stage-lbl">Graphics</span></div>
+      <div class="cell c-none" role="listitem" title="Review — not started"><span class="stage-lbl">Review</span></div>
+      <div class="cell c-none" role="listitem" title="Approve — not started"><span class="stage-lbl">Approve</span></div>
+      <div class="cell c-none" role="listitem" title="Master — not started"><span class="stage-lbl">Master</span></div>
+      <div class="cell c-none" role="listitem" title="Deliver — not started"><span class="stage-lbl">Deliver</span></div>
+      <div class="cell c-none" role="listitem" title="Aired — not started"><span class="stage-lbl">Aired</span></div>
+    </div></div>
+    <span class="frac">0/9</span>
+    <span class="badge-slot"></span>
+  </div>
+
+  <!-- Ep56 -->
+  <div class="block ep">
+    <span class="ep-id">EP56</span>
+    <div class="ep-meta"><div class="ep-title">The Cambrian question</div></div>
+    <span class="ep-chip chip-prog">● Script</span>
+    <button class="ep-toggle" type="button" aria-expanded="false">CELLS</button>
+    <div class="ep-strip-wrap"><div class="ep-strip" role="list" aria-label="9 stages, 0 of 9 complete">
+      <div class="cell c-prog c-current" role="listitem" title="Script — in progress">●<span class="stage-lbl">Script</span></div>
+      <div class="cell c-none" role="listitem" title="Record — not started"><span class="stage-lbl">Record</span></div>
+      <div class="cell c-none" role="listitem" title="Edit — not started"><span class="stage-lbl">Edit</span></div>
+      <div class="cell c-none" role="listitem" title="Graphics — not started"><span class="stage-lbl">Graphics</span></div>
+      <div class="cell c-none" role="listitem" title="Review — not started"><span class="stage-lbl">Review</span></div>
+      <div class="cell c-none" role="listitem" title="Approve — not started"><span class="stage-lbl">Approve</span></div>
+      <div class="cell c-none" role="listitem" title="Master — not started"><span class="stage-lbl">Master</span></div>
+      <div class="cell c-none" role="listitem" title="Deliver — not started"><span class="stage-lbl">Deliver</span></div>
+      <div class="cell c-none" role="listitem" title="Aired — not started"><span class="stage-lbl">Aired</span></div>
+    </div></div>
+    <span class="frac">0/9</span>
+    <span class="badge-slot"></span>
+  </div>
+
+  <!-- POST-PRODUCTION -->
+  <h2 class="section-title">POST-PRODUCTION <span class="count">5</span></h2>
+
+  <!-- Ep47 — BLOCKED at Edit -->
+  <div class="block ep">
+    <span class="ep-id">EP47</span>
+    <div class="ep-meta"><div class="ep-title">Footprints in the ash</div></div>
+    <span class="ep-chip chip-block">! Edit</span>
+    <button class="ep-toggle" type="button" aria-expanded="false">CELLS</button>
+    <div class="ep-strip-wrap"><div class="ep-strip" role="list" aria-label="9 stages, 2 of 9 complete, blocked at Edit">
+      <div class="cell c-done" role="listitem" title="Script — done">✓<span class="stage-lbl">Script</span></div>
+      <div class="cell c-done" role="listitem" title="Record — done">✓<span class="stage-lbl">Record</span></div>
+      <div class="cell c-block c-current" role="listitem" title="Edit — blocked">!<span class="stage-lbl">Edit</span></div>
+      <div class="cell c-none" role="listitem" title="Graphics — not started"><span class="stage-lbl">Graphics</span></div>
+      <div class="cell c-none" role="listitem" title="Review — not started"><span class="stage-lbl">Review</span></div>
+      <div class="cell c-none" role="listitem" title="Approve — not started"><span class="stage-lbl">Approve</span></div>
+      <div class="cell c-none" role="listitem" title="Master — not started"><span class="stage-lbl">Master</span></div>
+      <div class="cell c-none" role="listitem" title="Deliver — not started"><span class="stage-lbl">Deliver</span></div>
+      <div class="cell c-none" role="listitem" title="Aired — not started"><span class="stage-lbl">Aired</span></div>
+    </div></div>
+    <span class="frac">2/9</span>
+    <span class="badge-slot"><span class="needs-badge">! NEEDS YOU</span></span>
+  </div>
+
+  <!-- Ep48 -->
+  <div class="block ep">
+    <span class="ep-id">EP48</span>
+    <div class="ep-meta"><div class="ep-title">Carbon clocks reconsidered</div></div>
+    <span class="ep-chip chip-prog">● Review</span>
+    <button class="ep-toggle" type="button" aria-expanded="false">CELLS</button>
+    <div class="ep-strip-wrap"><div class="ep-strip" role="list" aria-label="9 stages, 4 of 9 complete">
+      <div class="cell c-done" role="listitem" title="Script — done">✓<span class="stage-lbl">Script</span></div>
+      <div class="cell c-done" role="listitem" title="Record — done">✓<span class="stage-lbl">Record</span></div>
+      <div class="cell c-done" role="listitem" title="Edit — done">✓<span class="stage-lbl">Edit</span></div>
+      <div class="cell c-done" role="listitem" title="Graphics — done">✓<span class="stage-lbl">Graphics</span></div>
+      <div class="cell c-prog c-current" role="listitem" title="Review — in progress">●<span class="stage-lbl">Review</span></div>
+      <div class="cell c-none" role="listitem" title="Approve — not started"><span class="stage-lbl">Approve</span></div>
+      <div class="cell c-none" role="listitem" title="Master — not started"><span class="stage-lbl">Master</span></div>
+      <div class="cell c-none" role="listitem" title="Deliver — not started"><span class="stage-lbl">Deliver</span></div>
+      <div class="cell c-none" role="listitem" title="Aired — not started"><span class="stage-lbl">Aired</span></div>
+    </div></div>
+    <span class="frac">4/9</span>
+    <span class="badge-slot"></span>
+  </div>
+
+  <!-- Ep49 -->
+  <div class="block ep">
+    <span class="ep-id">EP49</span>
+    <div class="ep-meta"><div class="ep-title">The information in DNA</div></div>
+    <span class="ep-chip chip-prog">● Approve</span>
+    <button class="ep-toggle" type="button" aria-expanded="false">CELLS</button>
+    <div class="ep-strip-wrap"><div class="ep-strip" role="list" aria-label="9 stages, 5 of 9 complete">
+      <div class="cell c-done" role="listitem" title="Script — done">✓<span class="stage-lbl">Script</span></div>
+      <div class="cell c-done" role="listitem" title="Record — done">✓<span class="stage-lbl">Record</span></div>
+      <div class="cell c-done" role="listitem" title="Edit — done">✓<span class="stage-lbl">Edit</span></div>
+      <div class="cell c-done" role="listitem" title="Graphics — done">✓<span class="stage-lbl">Graphics</span></div>
+      <div class="cell c-done" role="listitem" title="Review — done">✓<span class="stage-lbl">Review</span></div>
+      <div class="cell c-prog c-current" role="listitem" title="Approve — in progress">●<span class="stage-lbl">Approve</span></div>
+      <div class="cell c-none" role="listitem" title="Master — not started"><span class="stage-lbl">Master</span></div>
+      <div class="cell c-none" role="listitem" title="Deliver — not started"><span class="stage-lbl">Deliver</span></div>
+      <div class="cell c-none" role="listitem" title="Aired — not started"><span class="stage-lbl">Aired</span></div>
+    </div></div>
+    <span class="frac">5/9</span>
+    <span class="badge-slot"></span>
+  </div>
+
+  <!-- Ep50 -->
+  <div class="block ep">
+    <span class="ep-id">EP50</span>
+    <div class="ep-meta"><div class="ep-title">Soft tissue and deep time</div></div>
+    <span class="ep-chip chip-prog">● Master</span>
+    <button class="ep-toggle" type="button" aria-expanded="false">CELLS</button>
+    <div class="ep-strip-wrap"><div class="ep-strip" role="list" aria-label="9 stages, 6 of 9 complete">
+      <div class="cell c-done" role="listitem" title="Script — done">✓<span class="stage-lbl">Script</span></div>
+      <div class="cell c-done" role="listitem" title="Record — done">✓<span class="stage-lbl">Record</span></div>
+      <div class="cell c-done" role="listitem" title="Edit — done">✓<span class="stage-lbl">Edit</span></div>
+      <div class="cell c-done" role="listitem" title="Graphics — done">✓<span class="stage-lbl">Graphics</span></div>
+      <div class="cell c-done" role="listitem" title="Review — done">✓<span class="stage-lbl">Review</span></div>
+      <div class="cell c-done" role="listitem" title="Approve — done">✓<span class="stage-lbl">Approve</span></div>
+      <div class="cell c-prog c-current" role="listitem" title="Master — in progress">●<span class="stage-lbl">Master</span></div>
+      <div class="cell c-none" role="listitem" title="Deliver — not started"><span class="stage-lbl">Deliver</span></div>
+      <div class="cell c-none" role="listitem" title="Aired — not started"><span class="stage-lbl">Aired</span></div>
+    </div></div>
+    <span class="frac">6/9</span>
+    <span class="badge-slot"></span>
+  </div>
+
+  <!-- Ep51 — AIR DATE AT RISK -->
+  <div class="block ep">
+    <span class="ep-id">EP51</span>
+    <div class="ep-meta"><div class="ep-title">Galaxies and the young universe</div></div>
+    <span class="ep-chip chip-prog">● Graphics</span>
+    <button class="ep-toggle" type="button" aria-expanded="false">CELLS</button>
+    <div class="ep-strip-wrap"><div class="ep-strip" role="list" aria-label="9 stages, 3 of 9 complete, air date at risk">
+      <div class="cell c-done" role="listitem" title="Script — done">✓<span class="stage-lbl">Script</span></div>
+      <div class="cell c-done" role="listitem" title="Record — done">✓<span class="stage-lbl">Record</span></div>
+      <div class="cell c-done" role="listitem" title="Edit — done">✓<span class="stage-lbl">Edit</span></div>
+      <div class="cell c-prog c-current" role="listitem" title="Graphics — in progress">●<span class="stage-lbl">Graphics</span></div>
+      <div class="cell c-none" role="listitem" title="Review — not started"><span class="stage-lbl">Review</span></div>
+      <div class="cell c-none" role="listitem" title="Approve — not started"><span class="stage-lbl">Approve</span></div>
+      <div class="cell c-none" role="listitem" title="Master — not started"><span class="stage-lbl">Master</span></div>
+      <div class="cell c-none" role="listitem" title="Deliver — not started"><span class="stage-lbl">Deliver</span></div>
+      <div class="cell c-none" role="listitem" title="Aired — not started"><span class="stage-lbl">Aired</span></div>
+    </div></div>
+    <span class="frac">3/9</span>
+    <span class="badge-slot"><span class="needs-badge risk">▲ AIR AT RISK</span></span>
+  </div>
+
+  <p class="foot">GSR CONTROL · OVERVIEW MOCK · PLACEHOLDER DATA</p>
+
+<script>
+  document.querySelectorAll(".ep-toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var ep = btn.closest(".ep");
+      var open = ep.classList.toggle("open");
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      btn.textContent = open ? "HIDE" : "CELLS";
+    });
+  });
+</script>
+</body>
+</html>

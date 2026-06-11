@@ -73,8 +73,9 @@ Rundown Creator title format: `May Show 1 | S03_Ep021` (underscores in the RC ti
 | thumbnail_source_path | text | Drive path to raw thumbnail source asset |
 | chapter_markers | jsonb | `[{"label":"...", "timecode":"HH:MM:SS"}]` |
 | youtube_url | text | Live YouTube link once published |
-| youtube_published_at | timestamptz | Actual publish time |
-| youtube_scheduled_publish_at | timestamptz | Target publish time (default Monday 4PM ET) |
+| youtube_published_at | timestamptz | Actual YouTube publish time |
+| webstream_scheduled_publish_at | timestamptz | Target webstream release time, the weekly Monday 4PM ET drop that fans out to all platforms (YouTube, Rumble, StreamHoster, GSN, podcast). Default Monday 4PM ET. Replaces youtube_scheduled_publish_at via expand-contract. |
+| youtube_scheduled_publish_at | timestamptz | DEPRECATED: superseded by webstream_scheduled_publish_at. Still present during expand-contract; dropped in a later migration after deploy. |
 | rumble_url | text | Rumble video link |
 | podcast_url | text | Fireside.fm episode link |
 | created_at | timestamptz | |

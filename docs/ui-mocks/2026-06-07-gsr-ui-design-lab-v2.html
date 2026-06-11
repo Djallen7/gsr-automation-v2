@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="observatory" data-role="daniel" data-page="hub">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>GSR Pipeline - Observatory Glass Design Lab v2</title>
+<!-- Space Grotesk for display type only. Degrades to the system stack if it fails to load (offline-safe). -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   GSR Pipeline UI - Observatory Glass Design Lab v2  (mock only, 2026-06-07)
+   One self-contained file, no JS dependencies. Open on phone or desktop.
+
+   What this proves over v1:
+   - A real 4-layer cosmic background (mesh gradient + nebula + drifting
+     starfield) so the glass has something to refract instead of dead navy.
+   - Upgraded "Observatory Glass" material: dual-tone bevel, specular top edge,
+     bottom refraction glow, optional Chromium SVG refraction on hero surfaces.
+   - New widget micro-components: progress ring, sparkline, deferred (violet
+     dashed) tags, connector hairlines on the pipeline chain.
+   - A second screen: the full Graphics Tracker page (master + drill-in),
+     reachable via the Hub | Graphics Tracker nav. This is the hardest page.
+
+   Themes: observatory (default), slate, bronze, daylight. Roles: Daniel,
+   Myriam, Isaac, Interns. Numbers are placeholders.
+   ========================================================================= */
+
+/* ---- Shape / motion tokens (theme-independent) ------------------------- */
+:root{
+  --r: 22px;
+  --r-sm: 14px;
+  --pad: clamp(14px, 2.2vw, 22px);
+  --gap: 12px;
+  --blur: 18px;
+  --saturate: 170%;
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --ui-font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display-font: "Space Grotesk", -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+
+/* ---- Per-theme palette blocks ----------------------------------------- */
+/* 1. OBSERVATORY - deep navy + gold. Primary, default, most on-brand. */
+[data-theme="observatory"]{
+  --bg0:#050a16; --bg1:#0b162d; --bg2:#0a2347;
+  --ink:#eaf1ff; --ink-dim:#9fb4d6; --ink-faint:#6f86ab;
+  --accent:#e7b54e; --accent-deep:#c8922f; --accent-2:#6db3ff; --violet:#7d57c4;
+  --good:#46d39a; --warn:#e7b54e; --bad:#f0726a;
+  --glass:rgba(255,255,255,.07); --glass-2:rgba(255,255,255,.04); --glass-hi:rgba(255,255,255,.55);
+  --edge:rgba(255,255,255,.16); --edge-low:rgba(120,150,200,.10);
+  --shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 18px 40px -18px rgba(0,0,0,.72);
+  --shadow-lift:0 1px 0 rgba(255,255,255,.10) inset, 0 26px 56px -22px rgba(0,0,0,.8);
+  --starfield-op:.55;
+}
+/* 2. DEEP SPACE SLATE - charcoal + electric cyan. Techy, modern. */
+[data-theme="slate"]{
+  --bg0:#06080d; --bg1:#0f151d; --bg2:#16222e;
+  --ink:#e7eef5; --ink-dim:#93a4b6; --ink-faint:#647688;
+  --accent:#34d6e0; --accent-deep:#1f9aa3; --accent-2:#5b9bff; --violet:#8a6ad0;
+  --good:#3fd6a0; --warn:#f0c24a; --bad:#f0726a;
+  --glass:rgba(255,255,255,.06); --glass-2:rgba(255,255,255,.035); --glass-hi:rgba(255,255,255,.5);
+  --edge:rgba(255,255,255,.14); --edge-low:rgba(120,150,200,.09);
+  --shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 18px 40px -18px rgba(0,0,0,.75);
+  --shadow-lift:0 1px 0 rgba(255,255,255,.09) inset, 0 26px 56px -22px rgba(0,0,0,.82);
+  --starfield-op:.5;
+}
+/* 3. MIDNIGHT BRONZE - near-black + warm bronze. Premium, masculine. */
+[data-theme="bronze"]{
+  --bg0:#070710; --bg1:#12111c; --bg2:#1c1726;
+  --ink:#f1ece4; --ink-dim:#b3a899; --ink-faint:#857a6c;
+  --accent:#d79a52; --accent-deep:#b27c38; --accent-2:#8fa6c6; --violet:#9173c9;
+  --good:#5cc48a; --warn:#d79a52; --bad:#e8736b;
+  --glass:rgba(255,255,255,.06); --glass-2:rgba(255,255,255,.03); --glass-hi:rgba(255,255,255,.5);
+  --edge:rgba(255,255,255,.15); --edge-low:rgba(150,140,120,.10);
+  --shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 18px 40px -18px rgba(0,0,0,.78);
+  --shadow-lift:0 1px 0 rgba(255,255,255,.09) inset, 0 26px 56px -22px rgba(0,0,0,.84);
+  --starfield-op:.5;
+}
+/* 4. DAYLIGHT GLASS - light frosted, navy + gold. Daytime / accessibility. */
+[data-theme="daylight"]{
+  --bg0:#dbe6f5; --bg1:#eef3fa; --bg2:#cfdcee;
+  --ink:#13233c; --ink-dim:#52647e; --ink-faint:#7d8ca1;
+  --accent:#9a6f08; --accent-deep:#7d5a06; --accent-2:#1e4f8f; --violet:#6c4fb0;
+  --good:#18794a; --warn:#9a6f08; --bad:#b53124;
+  --glass:rgba(255,255,255,.55); --glass-2:rgba(255,255,255,.4); --glass-hi:rgba(255,255,255,.95);
+  --edge:rgba(255,255,255,.8); --edge-low:rgba(120,150,200,.35);
+  --shadow:0 1px 0 rgba(255,255,255,.7) inset, 0 16px 34px -18px rgba(30,60,110,.4);
+  --shadow-lift:0 1px 0 rgba(255,255,255,.85) inset, 0 24px 48px -20px rgba(30,60,110,.45);
+  --starfield-op:0;
+}
+
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0; height:100%;}
+body{
+  font:15px/1.45 var(--ui-font);
+  color:var(--ink);
+  font-variant-numeric:tabular-nums;
+  background-color:var(--bg0);
+  background:
+    radial-gradient(1100px 820px at 82% -10%, color-mix(in oklab, var(--accent) 26%, transparent), transparent 60%),
+    radial-gradient(900px 760px at 6% 112%, color-mix(in oklab, var(--accent-2) 22%, transparent), transparent 55%),
+    radial-gradient(700px 600px at 50% 50%, color-mix(in oklab, var(--bg2) 70%, transparent), transparent 70%),
+    linear-gradient(168deg, var(--bg0) 0%, var(--bg1) 46%, var(--bg2) 100%);
+  background-attachment:fixed;
+  min-height:100%;
+  transition:color .35s var(--ease);
+}
+
+/* ---- COSMIC BACKGROUND, layer 2: nebula pools ------------------------- */
+body::before{
+  content:""; position:fixed; inset:-10%; z-index:0; pointer-events:none;
+  background:
+    radial-gradient(38% 30% at 78% 16%, color-mix(in oklab, var(--accent) 34%, transparent), transparent 70%),
+    radial-gradient(46% 38% at 14% 88%, color-mix(in oklab, var(--accent-2) 30%, transparent), transparent 72%),
+    radial-gradient(30% 26% at 60% 64%, color-mix(in oklab, var(--violet) 22%, transparent), transparent 70%);
+  filter:blur(60px) saturate(120%);
+  opacity:.85;
+  animation:drift 60s var(--ease) infinite alternate;
+}
+@keyframes drift{ to{ transform:translate3d(2%,-1.5%,0) scale(1.04); } }
+
+/* ---- COSMIC BACKGROUND, layer 3: drifting starfield ------------------- */
+body::after{
+  content:""; position:fixed; inset:0; z-index:0; pointer-events:none;
+  opacity:var(--starfield-op);
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, #fff, transparent),
+    radial-gradient(1px 1px at 70% 62%, #cfe0ff, transparent),
+    radial-gradient(1.6px 1.6px at 40% 80%, #fff, transparent),
+    radial-gradient(1px 1px at 85% 22%, #cfe0ff, transparent),
+    radial-gradient(1.6px 1.6px at 12% 70%, var(--accent), transparent),
+    radial-gradient(1px 1px at 55% 12%, #fff, transparent),
+    radial-gradient(1px 1px at 33% 48%, #cfe0ff, transparent),
+    radial-gradient(1.6px 1.6px at 92% 78%, #fff, transparent),
+    radial-gradient(1px 1px at 64% 88%, var(--accent), transparent),
+    radial-gradient(1px 1px at 8% 18%, #fff, transparent);
+  background-repeat:repeat;
+  background-size:420px 420px, 420px 420px, 680px 680px, 420px 420px, 680px 680px,
+                  420px 420px, 420px 420px, 680px 680px, 680px 680px, 420px 420px;
+  animation:twinkle 7s ease-in-out infinite alternate;
+}
+@keyframes twinkle{ from{ opacity:calc(var(--starfield-op) - .13); } to{ opacity:calc(var(--starfield-op) + .07); } }
+
+/* daylight: no stars, pale nebula, no violet pool */
+[data-theme="daylight"] body::after{ opacity:0; }
+[data-theme="daylight"] body::before{
+  opacity:.6;
+  background:
+    radial-gradient(40% 32% at 80% 14%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 72%),
+    radial-gradient(48% 40% at 12% 90%, color-mix(in oklab, var(--accent-2) 14%, transparent), transparent 74%);
+}
+
+/* ---- Ship guardrails -------------------------------------------------- */
+@media (prefers-reduced-motion:reduce){
+  body::before, body::after{ animation:none; }
+}
+@media (max-width:760px){
+  :root{ --blur:14px; }
+  body::before{ filter:blur(40px) saturate(115%); animation:none; }
+  body::after{ animation:none; }
+}
+
+/* =========================================================================
+   GLASS MATERIAL - Observatory Glass, Tier 1 base
+   ========================================================================= */
+.glass{
+  position:relative;
+  border-radius:var(--r);
+  background:
+    linear-gradient(180deg, color-mix(in oklab, var(--glass-hi) 12%, transparent) 0%, transparent 40%),
+    var(--glass);
+  backdrop-filter:blur(var(--blur)) saturate(var(--saturate));
+  -webkit-backdrop-filter:blur(var(--blur)) saturate(var(--saturate));
+  border:1px solid var(--edge);
+  border-bottom-color:var(--edge-low);
+  border-right-color:var(--edge-low);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  isolation:isolate;
+}
+/* specular top edge */
+.glass::after{
+  content:""; position:absolute; left:8%; right:8%; top:0; height:1px; z-index:2;
+  background:linear-gradient(90deg, transparent, var(--glass-hi), transparent);
+}
+/* bottom inner refraction glow */
+.glass::before{
+  content:""; position:absolute; inset:0; z-index:0; pointer-events:none;
+  background:radial-gradient(120% 60% at 50% 115%, color-mix(in oklab, var(--accent-2) 10%, transparent), transparent 70%);
+}
+.glass > *{ position:relative; z-index:1; }
+.glass:hover{ box-shadow:var(--shadow-lift); }
+
+/* Tier 2 progressive refraction - Chromium only, gated, degrades to Tier 1 */
+@supports (backdrop-filter:url(#x)){
+  .glass.refract{
+    backdrop-filter:blur(10px) saturate(180%) url(#glassRefract);
+    -webkit-backdrop-filter:blur(10px) saturate(180%);
+  }
+}
+/* Hard fallback where backdrop-filter is unsupported entirely */
+@supports not ((backdrop-filter:blur(2px)) or (-webkit-backdrop-filter:blur(2px))){
+  .glass{
+    background:
+      linear-gradient(180deg, rgba(255,255,255,.06), transparent 40%),
+      color-mix(in oklab, var(--bg1) 82%, transparent);
+  }
+}
+
+/* Lighter surface for many-row lists (no per-row backdrop-filter for perf) */
+.glass-2{
+  position:relative;
+  border-radius:var(--r-sm);
+  background:var(--glass-2);
+  border:1px solid var(--edge-low);
+  border-top-color:var(--edge);
+}
+
+/* =========================================================================
+   APP SHELL
+   ========================================================================= */
+.wrap{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:14px 14px 60px;}
+
+.topbar{
+  display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  padding:10px 12px; margin-bottom:14px; position:sticky; top:8px; z-index:30;
+}
+.brand{display:flex; align-items:center; gap:10px; margin-right:auto;}
+.logo{
+  width:38px; height:38px; border-radius:12px; display:grid; place-items:center;
+  font:700 13px/1 var(--display-font); letter-spacing:.5px; color:#0a0f1c;
+  background:linear-gradient(150deg, var(--accent), color-mix(in oklab,var(--accent) 50%, #fff));
+  box-shadow:0 6px 16px -6px var(--accent);
+}
+.brand b{font-size:15px; letter-spacing:.3px}
+.brand span{display:block; font-size:11px; color:var(--ink-dim); letter-spacing:.6px; text-transform:uppercase}
+
+.seg{display:flex; gap:4px; padding:4px; border-radius:999px;}
+.seg button{
+  appearance:none; border:0; cursor:pointer; font:inherit; font-size:12.5px; font-weight:600;
+  color:var(--ink-dim); background:transparent; padding:7px 12px; border-radius:999px;
+  transition:.25s var(--ease); white-space:nowrap;
+}
+.seg button[aria-pressed="true"]{
+  color:var(--ink);
+  background:linear-gradient(180deg, color-mix(in oklab,var(--glass-hi) 22%,transparent), var(--glass));
+  border:1px solid var(--edge);
+  box-shadow:0 6px 14px -8px rgba(0,0,0,.6);
+}
+.seg .dot{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; vertical-align:-1px}
+.t-observatory{background:#e7b54e} .t-slate{background:#34d6e0} .t-bronze{background:#d79a52} .t-daylight{background:#cfdcee}
+.bar-label{font:700 10.5px/1 var(--ui-font); text-transform:uppercase; letter-spacing:.8px; color:var(--ink-dim); padding:0 6px 0 2px}
+
+/* Hub | Graphics Tracker nav */
+.nav{display:flex; gap:4px; padding:4px; border-radius:999px;}
+.nav button{
+  appearance:none; border:0; cursor:pointer; font:inherit; font-size:12.5px; font-weight:600;
+  color:var(--ink-dim); background:transparent; padding:7px 14px; border-radius:999px;
+  transition:.25s var(--ease); white-space:nowrap;
+}
+.nav button[aria-pressed="true"]{
+  color:#0a0f1c;
+  background:linear-gradient(150deg, var(--accent), color-mix(in oklab,var(--accent) 55%,#fff));
+  box-shadow:0 6px 14px -8px var(--accent);
+}
+[data-theme="daylight"] .nav button[aria-pressed="true"]{ color:#fff; }
+
+/* =========================================================================
+   HUB PAGE
+   ========================================================================= */
+.hero{display:grid; grid-template-columns:1.4fr 1fr; gap:12px; margin-bottom:14px}
+.hero .now{padding:var(--pad)}
+.kicker{font:700 11px/1 var(--display-font); letter-spacing:.8px; text-transform:uppercase; color:var(--accent)}
+.hero h1{margin:7px 0 2px; font:700 clamp(20px,3.4vw,28px)/1.1 var(--display-font); letter-spacing:.2px}
+.hero .sub{color:var(--ink-dim); font-size:13px}
+.progress{margin-top:16px; height:10px; border-radius:999px; background:var(--glass-2); overflow:hidden; border:1px solid var(--edge)}
+.progress > i{display:block; height:100%; width:58%; border-radius:999px;
+  background:linear-gradient(90deg, var(--accent-2), var(--accent)); }
+.stage-row{display:flex; justify-content:space-between; margin-top:8px; font-size:10.5px; color:var(--ink-dim)}
+.stage-row b{color:var(--ink); font-weight:600}
+.airbox{padding:var(--pad); display:flex; flex-direction:column; justify-content:center; gap:2px}
+.airbox .big{font:800 30px/1.05 var(--display-font); letter-spacing:.5px}
+.airbox .lab{font-size:11px; text-transform:uppercase; letter-spacing:.7px; color:var(--ink-dim)}
+.airbox .pill{align-self:flex-start; margin-top:8px; font-size:11.5px; padding:5px 10px; border-radius:999px;
+  background:color-mix(in oklab,var(--good) 20%, transparent); color:var(--good); border:1px solid color-mix(in oklab,var(--good) 40%,transparent)}
+
+.grid{display:grid; grid-template-columns:repeat(12,1fr); gap:12px}
+.card{grid-column:span 4; padding:var(--pad); display:flex; flex-direction:column; gap:10px; min-height:140px;
+  transition:transform .25s var(--ease), box-shadow .25s var(--ease)}
+.card:hover{transform:translateY(-3px)}
+.card.wide{grid-column:span 8}
+.card.full{grid-column:span 12}
+.card h3{margin:0; font:600 14px/1.2 var(--ui-font); display:flex; align-items:center; gap:9px}
+.ico{width:28px;height:28px;border-radius:9px; display:grid;place-items:center; font-size:14px;
+  background:color-mix(in oklab,var(--accent) 22%, transparent); color:var(--accent);
+  border:1px solid color-mix(in oklab,var(--accent) 35%, transparent)}
+.card p{margin:0; color:var(--ink-dim); font-size:12.5px}
+.metric{display:flex; align-items:baseline; gap:8px}
+.metric .n{font:800 30px/1 var(--display-font); letter-spacing:.4px; font-variant-numeric:tabular-nums}
+.metric .u{font-size:12px; color:var(--ink-dim)}
+
+.tag{font-size:10.5px; font-weight:600; padding:3px 9px; border-radius:999px; border:1px solid var(--edge); color:var(--ink-dim)}
+.tag.g{color:var(--good); border-color:color-mix(in oklab,var(--good) 40%,transparent)}
+.tag.w{color:var(--warn); border-color:color-mix(in oklab,var(--warn) 40%,transparent)}
+.tag.b{color:var(--bad);  border-color:color-mix(in oklab,var(--bad) 40%,transparent)}
+.tag.d{color:var(--violet); border:1px dashed color-mix(in oklab,var(--violet) 45%,transparent)}
+.rowtags{display:flex; gap:6px; flex-wrap:wrap; margin-top:auto}
+
+.mini{display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:12px; padding:7px 0; border-top:1px solid var(--edge-low)}
+.mini:first-of-type{border-top:0}
+.mini b{font-weight:600}
+.mini .lhs{display:flex; align-items:center; gap:8px; min-width:0}
+
+.bars{display:flex; gap:5px; align-items:flex-end; height:42px; margin-top:auto}
+.bars i{flex:1; border-radius:5px 5px 2px 2px; background:linear-gradient(180deg,var(--accent-2),color-mix(in oklab,var(--accent-2) 30%,transparent))}
+
+/* pipeline node chain with connector hairlines */
+.pipeline{display:flex; align-items:stretch; gap:0; margin-top:4px}
+.node{flex:1; min-width:64px; text-align:center; padding:9px 6px; border-radius:var(--r-sm); border:1px solid var(--edge);
+  background:var(--glass-2); font-size:10.5px; color:var(--ink-dim); position:relative}
+.node + .node{margin-left:16px}
+.node + .node::before{
+  content:""; position:absolute; left:-16px; top:50%; width:16px; height:2px; transform:translateY(-50%);
+  background:var(--edge-low); border-radius:2px;
+}
+.node + .node.lit::before{ background:linear-gradient(90deg,var(--good),color-mix(in oklab,var(--good) 30%,transparent)); }
+.node b{display:block; color:var(--ink); font-size:11px; margin-bottom:2px}
+.node.done{border-color:color-mix(in oklab,var(--good) 45%,transparent)}
+.node.done b{color:var(--good)}
+.node.active{border-color:color-mix(in oklab,var(--accent) 60%,transparent); background:color-mix(in oklab,var(--accent) 12%,transparent)}
+.node.active b{color:var(--accent)}
+.node.bad{border-color:color-mix(in oklab,var(--bad) 55%,transparent); background:color-mix(in oklab,var(--bad) 10%,transparent)}
+.node.bad b{color:var(--bad)}
+.node.deferred{border:1px dashed color-mix(in oklab,var(--violet) 45%,transparent); color:var(--violet)}
+.node.deferred b{color:var(--violet)}
+
+/* progress ring micro-component */
+.ring{width:56px;height:56px;position:relative;flex:none}
+.ring.lg{width:64px;height:64px}
+.ring svg{transform:rotate(-90deg); display:block}
+.ring .trk{stroke:var(--glass-2); fill:none}
+.ring .fil{fill:none; stroke:url(#ringGrad); stroke-linecap:round;
+  stroke-dasharray:var(--c); stroke-dashoffset:calc(var(--c) - var(--c) * var(--p));}
+.ring.warn .fil{stroke:var(--warn)}
+.ring.bad .fil{stroke:var(--bad)}
+.ring .lab{position:absolute; inset:0; display:grid; place-items:center; font:700 13px/1 var(--display-font); color:var(--ink); font-variant-numeric:tabular-nums}
+
+/* sparkline micro-component */
+.spark{display:block}
+.spark polyline{fill:none; stroke:var(--accent-2); stroke-width:1.5; stroke-linejoin:round; stroke-linecap:round}
+.spark circle{fill:var(--accent)}
+
+/* crew board */
+.crewrow{display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:10px; font-size:12.5px; padding:8px 0; border-top:1px solid var(--edge-low)}
+.crewrow:first-of-type{border-top:0}
+.crewrow .who b{display:block; color:var(--ink); font-weight:600}
+.crewrow .who span{font-size:11px; color:var(--ink-dim)}
+.minibar{width:64px; height:6px; border-radius:999px; background:var(--glass-2); overflow:hidden}
+.minibar i{display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--accent-2),var(--accent))}
+.statepill{font-size:10px; font-weight:600; padding:3px 8px; border-radius:999px; border:1px solid var(--edge); color:var(--ink-dim); white-space:nowrap}
+.statepill.g{color:var(--good); border-color:color-mix(in oklab,var(--good) 40%,transparent)}
+.statepill.w{color:var(--warn); border-color:color-mix(in oklab,var(--warn) 40%,transparent)}
+
+.thumb{width:48px; height:27px; border-radius:6px; flex:none;
+  background:linear-gradient(135deg, color-mix(in oklab,var(--accent-2) 60%,transparent), color-mix(in oklab,var(--accent) 50%,transparent));
+  border:1px solid var(--edge)}
+
+.rolebar{margin:2px 0 14px; font-size:12.5px; color:var(--ink-dim); padding:10px 14px}
+.rolebar b{color:var(--ink)}
+.note{font-size:11.5px; color:var(--ink-dim); text-align:center; margin-top:26px; line-height:1.7}
+.note b{color:var(--accent)}
+
+/* =========================================================================
+   GRAPHICS TRACKER PAGE
+   ========================================================================= */
+.page-graphics{display:none}
+[data-page="graphics"] .page-hub{display:none}
+[data-page="graphics"] .page-graphics{display:block}
+
+.gtabs{display:flex; gap:4px; padding:5px; border-radius:999px; margin-bottom:14px; overflow-x:auto}
+.gtabs button{
+  appearance:none; border:0; cursor:pointer; font:inherit; font-size:12.5px; font-weight:600;
+  color:var(--ink-dim); background:transparent; padding:8px 14px; border-radius:999px;
+  transition:.25s var(--ease); white-space:nowrap;
+}
+.gtabs button[aria-pressed="true"]{
+  color:var(--ink);
+  background:linear-gradient(180deg, color-mix(in oklab,var(--glass-hi) 22%,transparent), var(--glass));
+  border:1px solid var(--edge);
+}
+
+/* Master view: responsive grid of show cards */
+.showgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:12px}
+.showcard{padding:var(--pad); display:flex; flex-direction:column; gap:12px; transition:transform .25s var(--ease), box-shadow .25s var(--ease); cursor:pointer}
+.showcard:hover{transform:translateY(-3px)}
+.showcard h3{margin:0; font:600 15px/1.2 var(--ui-font)}
+.showcard .ep{font-size:12px; color:var(--ink-dim)}
+.segbar{display:flex; height:9px; border-radius:999px; overflow:hidden; gap:2px; background:var(--glass-2); padding:2px}
+.segbar i{flex:1; border-radius:999px; background:var(--glass-2)}
+.segbar i.done{background:var(--good)}
+.segbar i.prog{background:var(--warn)}
+.segbar i.created{background:var(--accent-2)}
+.showcard .seglist{display:flex; flex-direction:column; gap:0}
+.showcard .seglist .mini{font-size:11.5px}
+
+/* Drill-in view: 3 independent scroll columns */
+.drill{display:grid; grid-template-columns:200px 1fr 1.1fr; gap:12px; height:calc(100vh - 230px); min-height:420px}
+.drill .col{padding:14px; overflow-y:auto; display:flex; flex-direction:column; gap:10px}
+.drill .col h4{margin:0 0 4px; font:700 10.5px/1 var(--ui-font); text-transform:uppercase; letter-spacing:.8px; color:var(--ink-dim)}
+
+/* segment rail */
+.segrail{display:flex; flex-direction:column; gap:8px}
+.segrail button{
+  appearance:none; text-align:left; cursor:pointer; font:inherit; width:100%;
+  padding:10px 12px; border-radius:var(--r-sm); border:1px solid var(--edge-low);
+  background:var(--glass-2); color:var(--ink-dim); transition:.2s var(--ease);
+}
+.segrail button[aria-pressed="true"]{ color:var(--ink); border-color:var(--edge); background:color-mix(in oklab,var(--accent) 10%,transparent) }
+.segrail button b{display:block; color:var(--ink); font-weight:600; font-size:12.5px}
+.segrail button span{font-size:11px}
+
+/* script side with highlighted cues */
+.script{font-size:12.5px; line-height:1.7; color:var(--ink-dim)}
+.script p{margin:0 0 12px}
+.script .cue{color:var(--ink); background:color-mix(in oklab,var(--accent) 22%,transparent);
+  border-bottom:1px solid var(--accent); border-radius:3px; padding:0 3px; font-weight:600}
+
+/* graphics rows (structured glass rows, not a table) */
+.grow{padding:12px; display:flex; flex-direction:column; gap:8px}
+.grow .top{display:flex; align-items:center; gap:9px}
+.gnum{font:700 11px/1 var(--display-font); padding:5px 8px; border-radius:8px; flex:none;
+  border:1px solid var(--edge); color:var(--ink); background:var(--glass-2); font-variant-numeric:tabular-nums}
+.gnum.ns{}
+.gnum.prog{color:var(--warn); border-color:color-mix(in oklab,var(--warn) 50%,transparent); background:color-mix(in oklab,var(--warn) 12%,transparent)}
+.gnum.created{color:var(--accent-2); border-color:color-mix(in oklab,var(--accent-2) 50%,transparent); background:color-mix(in oklab,var(--accent-2) 12%,transparent)}
+.gnum.loaded{color:var(--good); border-color:color-mix(in oklab,var(--good) 50%,transparent); background:color-mix(in oklab,var(--good) 12%,transparent)}
+.grow .gtype{font-weight:600; font-size:12.5px; color:var(--ink)}
+.grow .gassign{margin-left:auto; font-size:11px; color:var(--ink-dim); white-space:nowrap}
+.grow .gdesc{font-size:12px; color:var(--ink-dim)}
+.grow .gctl{display:flex; gap:8px; flex-wrap:wrap; align-items:center}
+.grow select, .grow input{
+  appearance:none; font:inherit; font-size:12px; color:var(--ink);
+  background:var(--glass-2); border:1px solid var(--edge-low); border-radius:8px; padding:7px 9px;
+}
+.grow select{flex:none}
+.grow input{flex:1; min-width:120px; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:11.5px}
+.grow input::placeholder{color:var(--ink-faint)}
+.pushbtn{
+  appearance:none; cursor:not-allowed; width:100%; font:inherit; font-weight:600; font-size:12px;
+  padding:9px; border-radius:10px; border:1px solid var(--edge-low);
+  background:var(--glass-2); color:var(--ink-faint); transition:.2s var(--ease);
+}
+.pushbtn.ready{
+  cursor:pointer; color:#06210f;
+  background:linear-gradient(150deg, var(--good), color-mix(in oklab,var(--good) 60%,#fff));
+  border-color:color-mix(in oklab,var(--good) 60%,transparent);
+  box-shadow:0 6px 14px -8px var(--good);
+}
+[data-theme="daylight"] .pushbtn.ready{ color:#fff; }
+.violet-chip{font-size:10px; font-weight:600; padding:3px 8px; border-radius:999px;
+  color:var(--violet); border:1px dashed color-mix(in oklab,var(--violet) 45%,transparent)}
+
+/* empty state */
+.empty{padding:36px var(--pad); text-align:center; color:var(--ink-dim)}
+.empty .e-ico{font-size:30px; opacity:.6; margin-bottom:10px}
+.empty b{color:var(--ink); display:block; font-size:14px; margin-bottom:4px}
+
+/* =========================================================================
+   RESPONSIVE
+   ========================================================================= */
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr}
+  .card,.card.wide,.card.full{grid-column:span 12}
+  .topbar{position:static}
+  .brand{width:100%}
+  /* Pipeline chain becomes a vertical rail with a left spine */
+  .pipeline.full-pipe{flex-direction:column; gap:0; padding-left:18px; position:relative}
+  .pipeline.full-pipe::before{content:""; position:absolute; left:6px; top:8px; bottom:8px; width:2px; background:var(--edge-low); border-radius:2px}
+  .pipeline.full-pipe .node{min-width:0; text-align:left; margin-left:0; margin-bottom:8px}
+  .pipeline.full-pipe .node + .node::before{display:none}
+  .pipeline.full-pipe .node::after{content:""; position:absolute; left:-15px; top:50%; width:9px; height:9px; transform:translateY(-50%); border-radius:50%; background:var(--edge); border:2px solid var(--bg1)}
+  .pipeline.full-pipe .node.done::after{background:var(--good)}
+  .pipeline.full-pipe .node.active::after{background:var(--accent)}
+  /* Graphics drill collapses to stacked rows; segment rail scrolls horizontally */
+  .drill{grid-template-columns:1fr; height:auto; gap:10px}
+  .drill .col{max-height:none; overflow:visible}
+  .drill .col.railcol{order:0}
+  .segrail{flex-direction:row; overflow-x:auto; gap:8px}
+  .segrail button{min-width:140px; flex:none}
+}
+@media (min-width:881px) and (max-width:1040px){
+  .card{grid-column:span 6}
+}
+</style>
+</head>
+<body>
+
+<!-- Hidden SVG defs: ring gradient + Tier-2 refraction filter (Chromium only). -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="var(--accent-2)"/>
+      <stop offset="100%" stop-color="var(--accent)"/>
+    </linearGradient>
+    <filter id="glassRefract" x="-20%" y="-20%" width="140%" height="140%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.008 0.011" numOctaves="2" seed="7" result="noise"/>
+      <feGaussianBlur in="noise" stdDeviation="2" result="soft"/>
+      <feDisplacementMap in="SourceGraphic" in2="soft" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <!-- ======= PERSISTENT GLASS TOP BAR =======
+       Production note: on phones the shipped app uses a bottom tab bar; this
+       2-screen mock keeps the segmented controls scrollable in the top bar. -->
+  <header class="topbar glass refract">
+    <div class="brand">
+      <div class="logo">GSR</div>
+      <div><b>Pipeline Command</b><span id="pageTitle">Hub</span></div>
+    </div>
+
+    <div class="nav glass" id="navSeg">
+      <button data-page="hub" aria-pressed="true">Hub</button>
+      <button data-page="graphics">Graphics Tracker</button>
+    </div>
+
+    <span class="bar-label">Theme</span>
+    <div class="seg glass" id="themeSeg">
+      <button data-theme="observatory" aria-pressed="true"><span class="dot t-observatory"></span>Observatory</button>
+      <button data-theme="slate"><span class="dot t-slate"></span>Slate</button>
+      <button data-theme="bronze"><span class="dot t-bronze"></span>Bronze</button>
+      <button data-theme="daylight"><span class="dot t-daylight"></span>Daylight</button>
+    </div>
+
+    <span class="bar-label" id="whoLabel">Who</span>
+    <div class="seg glass" id="roleSeg">
+      <button data-role="daniel" aria-pressed="true">Daniel</button>
+      <button data-role="myriam">Myriam</button>
+      <button data-role="isaac">Isaac</button>
+      <button data-role="intern">Interns</button>
+    </div>
+  </header>
+
+  <!-- ============================ HUB PAGE ============================ -->
+  <div class="page-hub">
+
+    <div class="rolebar glass" id="roleBar"></div>
+
+    <section class="hero">
+      <div class="now glass refract">
+        <div class="kicker">This week - Season 3</div>
+        <h1>Ep 49 - The Fine-Tuned Cosmos</h1>
+        <div class="sub">Guest: Dr. A. Lyle - Recorded - in post</div>
+        <div class="progress"><i></i></div>
+        <div class="stage-row">
+          <span><b>Stage 4 of 7</b> - Graphics</span>
+          <span>58% to air-ready</span>
+        </div>
+      </div>
+      <div class="airbox glass">
+        <div class="lab">Air date</div>
+        <div class="big">Tue 8:00p</div>
+        <div class="lab">Publish Mon 4:00p ET</div>
+        <div class="pill" id="airPill">On track</div>
+      </div>
+    </section>
+
+    <section class="grid" id="grid"></section>
+
+    <p class="note">
+      <b>Observatory Glass - mock only.</b> Toggle <b>Theme</b> to compare the four directions, toggle <b>Who</b>
+      to recompose the hub per teammate, and switch to <b>Graphics Tracker</b> to see the hardest page. The cosmic
+      background, refraction, and progress rings are all pure CSS so it works offline. Numbers are placeholders.
+    </p>
+  </div>
+
+  <!-- ====================== GRAPHICS TRACKER PAGE ====================== -->
+  <div class="page-graphics">
+
+    <div class="gtabs glass" id="showTabs">
+      <button data-show="master" aria-pressed="true">Master</button>
+      <button data-show="ep49">Ep 49 - Fine-Tuned Cosmos</button>
+      <button data-show="ep50">Ep 50 - Origins of Life</button>
+      <button data-show="ep51">Ep 51 - The Young Sun</button>
+      <button data-show="ep52">Ep 52 - Designed DNA</button>
+      <button data-show="ep53">Ep 53 - Ice Age Earth</button>
+    </div>
+
+    <div id="gContent"></div>
+  </div>
+
+</div>
+
+<script>
+/* ---- Role definitions ------------------------------------------------- */
+const ROLES = {
+  daniel: {
+    name:"Daniel - Owner / Producer",
+    blurb:"Scripts, guests, recording, approvals. Sees everything: full pipeline, the crew task board, distribution and system health.",
+  },
+  myriam:{
+    name:"Myriam - Metadata & Post-Production Lead (your successor)",
+    blurb:"Owns metadata, thumbnails, YouTube + Rumble uploads, and marking episodes aired. Not graphics build, editing, or system internals.",
+  },
+  isaac:{
+    name:"Isaac - Graphics & Edit Lead",
+    blurb:"Owns the Graphics Tracker, loads ProPresenter, edits, runs the review pass, and exports the final to Dropbox.",
+  },
+  intern:{
+    name:"Interns - Graphics & ProPresenter Support",
+    blurb:"Graphics Tracker and b-roll sourcing with script context, plus ProPresenter / Rundown Creator. Same as Isaac, minus post-production editing.",
+  },
+};
+
+/* ---- Reusable component builders -------------------------------------- */
+// Progress ring. p is 0..1. size 56 or 64. variant '', 'warn', 'bad'.
+function ring(p, label, size, variant){
+  size = size || 56;
+  const sw = 6, r = (size - sw)/2, c = 2*Math.PI*r;
+  return `<div class="ring ${size>=64?'lg':''} ${variant||''}" style="--c:${c.toFixed(1)};--p:${p}">
+    <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+      <circle class="trk" cx="${size/2}" cy="${size/2}" r="${r}" stroke-width="${sw}"/>
+      <circle class="fil" cx="${size/2}" cy="${size/2}" r="${r}" stroke-width="${sw}"/>
+    </svg>
+    <span class="lab">${label}</span>
+  </div>`;
+}
+// Sparkline 88x22 from an array of 0..1 values.
+function spark(vals){
+  const w=88,h=22,pad=2;
+  const pts = vals.map((v,i)=>{
+    const x = pad + i*(w-2*pad)/(vals.length-1);
+    const y = h-pad - v*(h-2*pad);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  });
+  const last = pts[pts.length-1].split(',');
+  return `<svg class="spark" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
+    <polyline points="${pts.join(' ')}"/>
+    <circle cx="${last[0]}" cy="${last[1]}" r="2.2"/>
+  </svg>`;
+}
+
+/* ---- Widget catalog. `roles` = visibility; `size` = width. ------------ */
+const WIDGETS = [
+  { id:"pipeline", size:"full", roles:["daniel","myriam","isaac","intern"],
+    icon:"◉", title:"Pipeline Overview",
+    html:`<p>Where this episode is, end to end. Stage 3 of 7, 58%.</p>
+      <div class="pipeline full-pipe">
+        <div class="node done"><b>Script</b>Daniel</div>
+        <div class="node done lit"><b>Guests</b>Daniel</div>
+        <div class="node active"><b>Graphics</b>Isaac</div>
+        <div class="node"><b>ProPres</b>load</div>
+        <div class="node"><b>Edit</b>Isaac</div>
+        <div class="node"><b>Metadata</b>Myriam</div>
+        <div class="node"><b>Distribute</b>5 active</div>
+      </div>
+      <div class="progress" style="margin-top:14px"><i></i></div>` },
+
+  { id:"graphics", size:"span4", roles:["daniel","isaac","intern"],
+    icon:"▦", title:"Graphics Tracker",
+    html:`<div style="display:flex;align-items:center;gap:14px">
+        ${ring(0.64,"64%",64)}
+        <div><div class="metric"><span class="n">14</span><span class="u">/ 22 created</span></div>
+        <p style="margin-top:4px">Across 3 segments.</p></div>
+      </div>
+      <div class="mini"><span class="lhs">Cold open</span><b>5 / 6</b></div>
+      <div class="mini"><span class="lhs">Main interview</span><b>7 / 12</b></div>
+      <div class="mini"><span class="lhs">Closing + CTA</span><b>2 / 4</b></div>
+      <div class="rowtags"><span class="tag g">12 ready</span><span class="tag w">8 in progress</span><span class="tag b">2 need filename</span></div>` },
+
+  { id:"broll", size:"span4", roles:["daniel","isaac","intern"],
+    icon:"❑", title:"B-roll Sources",
+    html:`<div class="mini"><span class="lhs">Storyblocks / Dreamstime / Envato</span><b>open</b></div>
+      <div class="mini"><span class="lhs">Raw footage to Dropbox</span><b style="color:var(--good)">Jeremiah, done</b></div>
+      <div class="mini"><span class="lhs">Clips sourced this ep</span><b>9</b></div>` },
+
+  { id:"propres", size:"span4", roles:["daniel","isaac","intern"],
+    icon:"▶", title:"ProPresenter + Rundown Creator",
+    html:`<div class="mini"><span class="lhs">Rundown synced</span><b>3 min ago</b></div>
+      <div class="mini"><span class="lhs">Slides ready</span><b>17 / 22</b></div>
+      <div class="mini"><span class="lhs">Push to ProPres</span><b style="color:var(--warn)">human-gated</b></div>
+      <div class="rowtags"><span class="tag g">test machine only</span></div>` },
+
+  { id:"edit", size:"span4", roles:["daniel","isaac"],
+    icon:"✂", title:"Edit / Review / Export",
+    html:`<div class="metric"><span class="n">42:10</span><span class="u">rough cut</span></div>
+      <div class="pipeline" style="margin-top:6px">
+        <div class="node done lit"><b>Color</b>done</div>
+        <div class="node active"><b>Review</b>2 notes</div>
+        <div class="node"><b>Export</b>-20 LKFS</div>
+      </div>
+      <div class="rowtags"><span class="tag w">2 notes from David</span></div>` },
+
+  { id:"metadata", size:"span4", roles:["daniel","myriam"],
+    icon:"✎", title:"Metadata & Thumbnails",
+    html:`<div class="mini"><span class="lhs">Title + description</span><b>drafted</b></div>
+      <div class="mini"><span class="lhs"><span class="thumb"></span>Thumbnail (16:9)</span><b style="color:var(--warn)">to create</b></div>
+      <div class="mini"><span class="lhs">YouTube category</span><b>28 Science</b></div>` },
+
+  { id:"uploads", size:"span4", roles:["daniel","myriam"],
+    icon:"⇪", title:"Uploads & Mark Aired",
+    html:`<div class="mini"><span class="lhs">YouTube upload</span><b style="color:var(--warn)">pending</b></div>
+      <div class="mini"><span class="lhs">Rumble upload</span><b style="color:var(--bad)">sync broken, manual</b></div>
+      <div class="mini"><span class="lhs">Mark episode aired</span><b>after publish</b></div>` },
+
+  { id:"crew", size:"wide", roles:["daniel"],
+    icon:"☰", title:"Crew Task Board",
+    html:`<p>The episode checklist, by who owns it.</p>
+      <div class="crewrow"><div class="who"><b>Daniel</b><span>script + guests</span></div><div class="minibar"><i style="width:100%"></i></div><span class="statepill g">done</span></div>
+      <div class="crewrow"><div class="who"><b>Isaac</b><span>graphics + edit</span></div><div class="minibar"><i style="width:64%"></i></div><span class="statepill w">active</span></div>
+      <div class="crewrow"><div class="who"><b>Jeremiah</b><span>raw footage</span></div><div class="minibar"><i style="width:100%"></i></div><span class="statepill g">done</span></div>
+      <div class="crewrow"><div class="who"><b>Jakob</b><span>roll-ins</span></div><div class="minibar"><i style="width:30%"></i></div><span class="statepill">queued</span></div>
+      <div class="crewrow"><div class="who"><b>Gabe</b><span>GSM</span></div><div class="minibar"><i style="width:20%"></i></div><span class="statepill">queued</span></div>
+      <div class="crewrow"><div class="who"><b>Myriam</b><span>metadata + upload</span></div><div class="minibar"><i style="width:40%"></i></div><span class="statepill w">drafting</span></div>` },
+
+  { id:"approvals", size:"span4", roles:["daniel"],
+    icon:"✓", title:"Approvals",
+    html:`<div class="metric"><span class="n">3</span><span class="u">waiting on you</span></div>
+      <p>Lower-thirds import is <b style="color:var(--ink)">dry-run only</b> until you Type YES. You keep the final call on titles.</p>
+      <div class="rowtags"><span class="tag w">1 import (dry-run)</span><span class="tag w">2 graphics</span></div>` },
+
+  { id:"guests", size:"span4", roles:["daniel"],
+    icon:"☼", title:"Guests",
+    html:`<div class="metric"><span class="n">175</span><span class="u">in library</span></div>
+      <p>Next 3 episodes booked. Ep 51 needs a confirmed guest.</p>
+      <div class="rowtags"><span class="tag b">Ep 51 open</span></div>` },
+
+  { id:"distribution", size:"wide", roles:["daniel"],
+    icon:"↯", title:"Distribution",
+    html:`<p>One source of truth feeds every active target. Violet = deferred, red = broken.</p>
+      <div class="pipeline">
+        <div class="node done"><b>YouTube</b>cat 28</div>
+        <div class="node done lit"><b>StreamHoster</b>FTPS</div>
+        <div class="node done lit"><b>RLN</b>Signiant</div>
+        <div class="node done lit"><b>Dropbox</b>partners</div>
+        <div class="node done lit"><b>GSN</b>feed</div>
+        <div class="node bad"><b>Rumble</b>manual / sync broken</div>
+      </div>
+      <div class="rowtags" style="margin-top:10px">
+        <span class="tag b">Rumble sync broken</span>
+        <span class="tag d">GodTube / OTA / TBN / CTN deferred</span>
+      </div>` },
+
+  { id:"health", size:"span4", roles:["daniel"],
+    icon:"⊕", title:"System Health",
+    html:`<div class="mini"><span class="lhs">Supabase</span><b style="color:var(--good)">healthy</b></div>
+      <div class="mini"><span class="lhs">Mac job poller</span><b style="color:var(--good)">running</b></div>
+      <div class="mini"><span class="lhs">QNAP (read-only)</span><b style="color:var(--good)">reachable</b></div>
+      <div class="mini"><span class="lhs">Rundown Creator API</span><b style="color:var(--warn)">watch</b></div>` },
+
+  { id:"activity", size:"span4", roles:["daniel","isaac","intern","myriam"],
+    icon:"≡", title:"This Week",
+    html:`<div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+        <div class="metric"><span class="n">38</span><span class="u">tasks done</span></div>
+        ${spark([.4,.65,.5,.85,.7,.95,.6])}
+      </div>
+      <div class="bars"><i style="height:40%"></i><i style="height:65%"></i><i style="height:50%"></i><i style="height:85%"></i><i style="height:70%"></i><i style="height:95%"></i><i style="height:60%"></i></div>
+      <p style="margin-top:8px">Tasks completed, last 7 days.</p>` },
+];
+
+const grid = document.getElementById('grid');
+const roleBar = document.getElementById('roleBar');
+
+function renderHub(role){
+  const r = ROLES[role];
+  roleBar.innerHTML = `<b>${r.name}.</b> ${r.blurb}`;
+  grid.innerHTML = '';
+  WIDGETS.filter(w => w.roles.includes(role)).forEach(w=>{
+    const el = document.createElement('div');
+    const sizeClass = w.size==='full' ? 'full' : w.size==='wide' ? 'wide' : '';
+    el.className = `card glass ${sizeClass}`;
+    el.innerHTML = `<h3><span class="ico">${w.icon}</span>${w.title}</h3>${w.html}`;
+    grid.appendChild(el);
+  });
+}
+
+/* ====================== GRAPHICS TRACKER DATA ======================= */
+const SHOWS = {
+  ep49:{ title:"Ep 49 - The Fine-Tuned Cosmos", ready:14, total:22,
+    segs:[{n:"Cold open",b:5,t:6},{n:"Main interview",b:7,t:12},{n:"Closing + CTA",b:2,t:4}] },
+  ep50:{ title:"Ep 50 - Origins of Life", ready:4, total:20,
+    segs:[{n:"Cold open",b:2,t:5},{n:"Main interview",b:2,t:11},{n:"Closing + CTA",b:0,t:4}] },
+  ep51:{ title:"Ep 51 - The Young Sun", ready:0, total:0, empty:true,
+    segs:[] },
+  ep52:{ title:"Ep 52 - Designed DNA", ready:9, total:18,
+    segs:[{n:"Cold open",b:4,t:5},{n:"Main interview",b:4,t:9},{n:"Closing + CTA",b:1,t:4}] },
+  ep53:{ title:"Ep 53 - Ice Age Earth", ready:18, total:18,
+    segs:[{n:"Cold open",b:6,t:6},{n:"Main interview",b:8,t:8},{n:"Closing + CTA",b:4,t:4}] },
+};
+
+// Sample graphics rows for the drill-in. status: ns | prog | created | loaded
+const GRAPHICS = {
+  ep49:{
+    "Cold open":[
+      {num:"G01",type:"Lower third",assign:"Isaac",desc:"David Rives, host - opening welcome",status:"loaded",file:"GSR49_LT_David.png"},
+      {num:"G02",type:"Title card",assign:"Isaac",desc:"The Fine-Tuned Cosmos - episode title",status:"created",file:"GSR49_TITLE.png"},
+      {num:"G03",type:"Full screen",assign:"Intern",desc:"Cosmic constants chart",status:"prog",file:""},
+    ],
+    "Main interview":[
+      {num:"G07",type:"Lower third",assign:"Isaac",desc:"Dr. A. Lyle, astrophysicist",status:"created",file:"GSR49_LT_Lyle.png"},
+      {num:"G08",type:"Full screen",assign:"Intern",desc:"Fine-structure constant diagram",status:"created",file:""},
+      {num:"G09",type:"Lower third",assign:"Isaac",desc:"Quote: gravitational constant",status:"prog",file:""},
+      {num:"G10",type:"Scripture",assign:"Isaac",desc:"Psalm 19:1 verse card",status:"ns",file:""},
+    ],
+    "Closing + CTA":[
+      {num:"G19",type:"Full screen",assign:"Intern",desc:"Book cover - new release",status:"prog",file:""},
+      {num:"G20",type:"CTA",assign:"Isaac",desc:"Subscribe + ministry website",status:"ns",file:""},
+    ],
+  },
+};
+
+const gContent = document.getElementById('gContent');
+
+function segClass(b,t){ if(t===0) return ''; if(b>=t) return 'done'; if(b>0) return 'prog'; return ''; }
+
+function renderMaster(){
+  let cards = '';
+  Object.keys(SHOWS).forEach(id=>{
+    const s = SHOWS[id];
+    let segs = '';
+    const totalSegs = 4; // visual 4-segment bar
+    if(s.empty){
+      segs = `<div class="empty" style="padding:18px 0"><div class="e-ico">✨</div><b>No graphics yet</b><span>Import a script to begin. Nothing is wrong.</span></div>`;
+    } else {
+      // 4-segment status bar derived loosely from the segments
+      const ratio = s.total? s.ready/s.total : 0;
+      let bar = '';
+      for(let i=0;i<totalSegs;i++){
+        const fillTo = (i+1)/totalSegs;
+        let cls = '';
+        if(ratio>=fillTo) cls='done';
+        else if(ratio> i/totalSegs) cls='prog';
+        bar += `<i class="${cls}"></i>`;
+      }
+      segs = `<div class="segbar">${bar}</div>
+        <div class="ep"><b style="color:var(--ink)">${s.ready} of ${s.total}</b> ready</div>
+        <div class="seglist">${s.segs.map(g=>`<div class="mini"><span class="lhs">${g.n}</span><b style="color:${g.b>=g.t?'var(--good)':g.b>0?'var(--warn)':'var(--ink-dim)'}">${g.b} / ${g.t}</b></div>`).join('')}</div>`;
+    }
+    cards += `<div class="showcard glass" data-jump="${id}">
+      <div><h3>${s.title}</h3><div class="ep">Season 3</div></div>
+      ${segs}
+    </div>`;
+  });
+  gContent.innerHTML = `<div class="showgrid">${cards}</div>`;
+  gContent.querySelectorAll('[data-jump]').forEach(c=>{
+    c.addEventListener('click',()=> selectShow(c.getAttribute('data-jump')) );
+  });
+}
+
+let currentSeg = "Cold open";
+function renderDrill(id){
+  const s = SHOWS[id];
+  if(s.empty || !GRAPHICS[id]){
+    gContent.innerHTML = `<div class="glass empty"><div class="e-ico">✨</div>
+      <b>Import a script to begin</b>
+      <span>This episode has no graphics tracked yet. Nothing is wrong - the tracker fills in the moment a script is imported and lower-third cues are extracted.</span></div>`;
+    return;
+  }
+  const segs = Object.keys(GRAPHICS[id]);
+  if(!segs.includes(currentSeg)) currentSeg = segs[0];
+
+  const railHtml = segs.map(seg=>{
+    const rows = GRAPHICS[id][seg];
+    const ready = rows.filter(r=>r.status==='loaded'||r.status==='created').length;
+    return `<button data-seg="${seg}" aria-pressed="${seg===currentSeg}">
+      <b>${seg}</b><span>${ready} of ${rows.length} ready</span></button>`;
+  }).join('');
+
+  const scriptHtml = `
+    <p>HOST: Welcome back to Genesis Science Report. <span class="cue">[G01 lower third: David Rives]</span> Today we are looking at the precise constants that make our universe possible.</p>
+    <p>The <span class="cue">[G03 full screen: cosmic constants chart]</span> shows just how narrow these ranges are.</p>
+    <p>My guest is an astrophysicist. <span class="cue">[G07 lower third: Dr. A. Lyle]</span></p>
+    <p>GUEST: If the gravitational constant <span class="cue">[G09 quote card]</span> shifted even slightly, stars would not form.</p>
+    <p>HOST: Scripture speaks to this. <span class="cue">[G10 Psalm 19:1]</span></p>
+    <p>As we close, look for our new book. <span class="cue">[G19 book cover]</span> And be sure to subscribe. <span class="cue">[G20 CTA]</span></p>`;
+
+  const rows = GRAPHICS[id][currentSeg];
+  const rowsHtml = rows.map((g,i)=>{
+    const ready = (g.status==='created' || g.status==='loaded') && g.file.trim()!=='';
+    const isLT = g.type.toLowerCase().includes('lower third');
+    return `<div class="grow glass-2" data-row="${i}">
+      <div class="top">
+        <span class="gnum ${g.status}">${g.num}</span>
+        <span class="gtype">${g.type}</span>
+        <span class="gassign">${g.assign}</span>
+      </div>
+      <div class="gdesc">${g.desc}</div>
+      <div class="gctl">
+        <select data-field="status">
+          <option value="ns" ${g.status==='ns'?'selected':''}>Not Started</option>
+          <option value="prog" ${g.status==='prog'?'selected':''}>In Progress</option>
+          <option value="created" ${g.status==='created'?'selected':''}>Created</option>
+          <option value="loaded" ${g.status==='loaded'?'selected':''}>Loaded In</option>
+        </select>
+        <input data-field="file" value="${g.file}" placeholder="filename.png" spellcheck="false"/>
+        ${isLT?`<span class="violet-chip">lower third → Lower-Thirds page</span>`:''}
+      </div>
+      <button class="pushbtn ${ready?'ready':''}">${ready?'Push to ProPresenter':'Push to ProPresenter (set status to Created + add filename)'}</button>
+    </div>`;
+  }).join('');
+
+  gContent.innerHTML = `<div class="drill">
+    <div class="col railcol glass">
+      <h4>Segments</h4>
+      <div class="segrail" id="segRail">${railHtml}</div>
+    </div>
+    <div class="col glass">
+      <h4>Script - cues highlighted</h4>
+      <div class="script">${scriptHtml}</div>
+    </div>
+    <div class="col glass">
+      <h4>Graphics - ${currentSeg}</h4>
+      ${rowsHtml}
+    </div>
+  </div>`;
+
+  // wire segment rail
+  gContent.querySelectorAll('#segRail button').forEach(b=>{
+    b.addEventListener('click',()=>{ currentSeg = b.getAttribute('data-seg'); renderDrill(id); });
+  });
+  // wire row controls (live recolor + gate the push button)
+  gContent.querySelectorAll('.grow').forEach(rowEl=>{
+    const sel = rowEl.querySelector('select[data-field="status"]');
+    const inp = rowEl.querySelector('input[data-field="file"]');
+    const num = rowEl.querySelector('.gnum');
+    const btn = rowEl.querySelector('.pushbtn');
+    function refresh(){
+      num.className = 'gnum ' + sel.value;
+      const ok = (sel.value==='created' || sel.value==='loaded') && inp.value.trim()!=='';
+      btn.classList.toggle('ready', ok);
+      btn.textContent = ok ? 'Push to ProPresenter' : 'Push to ProPresenter (set status to Created + add filename)';
+    }
+    sel.addEventListener('change', refresh);
+    inp.addEventListener('input', refresh);
+  });
+}
+
+let currentShow = "master";
+function selectShow(id){
+  currentShow = id;
+  document.querySelectorAll('#showTabs button').forEach(b=>b.setAttribute('aria-pressed', b.getAttribute('data-show')===id ? 'true':'false'));
+  if(id==='master') renderMaster(); else renderDrill(id);
+}
+
+/* ---- Generic segmented control wiring --------------------------------- */
+function wireSeg(id, attr, onPick){
+  const seg = document.getElementById(id);
+  seg.addEventListener('click', e=>{
+    const b = e.target.closest('button'); if(!b) return;
+    [...seg.children].forEach(c=>{ if(c.tagName==='BUTTON') c.setAttribute('aria-pressed','false'); });
+    b.setAttribute('aria-pressed','true');
+    onPick(b.getAttribute(attr));
+  });
+}
+wireSeg('themeSeg','data-theme', t=> document.documentElement.setAttribute('data-theme', t));
+wireSeg('roleSeg','data-role', r=>{ document.documentElement.setAttribute('data-role', r); renderHub(r); });
+
+// Page nav: Hub | Graphics Tracker
+const whoLabel = document.getElementById('whoLabel');
+const roleSeg = document.getElementById('roleSeg');
+const pageTitle = document.getElementById('pageTitle');
+wireSeg('navSeg','data-page', p=>{
+  document.documentElement.setAttribute('data-page', p);
+  pageTitle.textContent = p==='hub' ? 'Hub' : 'Graphics Tracker';
+  // role switcher is hub-only; hide on the graphics page
+  const showRole = p==='hub';
+  whoLabel.style.display = showRole ? '' : 'none';
+  roleSeg.style.display = showRole ? '' : 'none';
+  if(p==='graphics') selectShow(currentShow);
+});
+
+wireSeg('showTabs','data-show', s=> selectShow(s) );
+
+/* ---- Boot ------------------------------------------------------------- */
+renderHub('daniel');
+renderMaster();
+</script>
+</body>
+</html>

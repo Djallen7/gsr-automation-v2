@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GSR UI Bake-Off, Research Highlights</title>
+<style>
+  :root{ --bg:#FBFBFA; --surface:#fff; --ink:#1A1A18; --ink2:#5b5b55; --line:#e7e5e1; --accent:#2E6AE6; --good:#1f7a4d; --warn:#b8860b; --bad:#c0392b; }
+  *{box-sizing:border-box}
+  body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--bg)}
+  .wrap{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+  h1{font-size:28px;letter-spacing:-.01em;margin:0 0 4px}
+  .sub{color:var(--ink2);margin:0 0 28px}
+  h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);margin:36px 0 12px;border-top:1px solid var(--line);padding-top:18px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:0 0 14px}
+  .card h3{margin:0 0 2px;font-size:19px}
+  .tag{font-size:12px;color:var(--ink2)}
+  .verdict{font-size:14px;margin:10px 0 0}
+  .verdict b{color:var(--ink)}
+  .pro{color:var(--good)} .con{color:var(--bad)} .who{color:var(--accent)}
+  ul{margin:8px 0 0;padding-left:20px} li{margin:3px 0;font-size:14.5px}
+  .rec{background:#eef3fe;border:1px solid #cfdcf8;border-radius:14px;padding:18px 20px;margin:8px 0 0}
+  .meta{background:#fff8ea;border:1px solid #f0e2bf;border-radius:14px;padding:16px 20px}
+  code{background:#f1f0ee;padding:1px 5px;border-radius:5px;font-size:13px}
+  .src{font-size:12.5px;color:var(--ink2);margin-top:8px}
+  table{border-collapse:collapse;width:100%;font-size:13.5px;margin-top:8px}
+  td,th{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+  th{background:#f4f2ef;font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:var(--ink2)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>GSR Dashboard UI, Research Highlights</h1>
+  <p class="sub">Fresh-research bake-off. 7 teams, ~50 specialized agents, no prior visual assumptions. Generated 2026-06-07.</p>
+
+  <div class="meta">
+    <b>The one big finding.</b> Seven independent directions, researched separately, all landed on the <b>same information architecture</b>: a short per-role "what needs me" list as the entry point, plus a compact way to see all 10 episodes across the 9 stages at once. They differ in <b>skin</b>, not in <b>structure</b>. So this choice is about the feel and credibility you want, not about how the tool works. That part is settled.
+  </div>
+
+  <h2>The 7 directions</h2>
+
+  <div class="card">
+    <h3>1. Calm Minimalism</h3>
+    <span class="tag">Linear / Things / Vercel. Restraint, one accent, type-led, generous space.</span>
+    <p class="verdict"><b>Insight:</b> hierarchy comes from type weight and whitespace, not color or boxes; reserve a single accent for the one thing that needs action. "Structure felt, not seen."</p>
+    <p class="verdict"><span class="pro">Strengths:</span> calmest possible read for an overwhelmed owner; phone-native; cheap and accessible. <span class="con">Risks:</span> can look "empty/is it broken", and can under-signal urgency unless the at-risk state is allowed to break the calm. <span class="who">Best for:</span> Daniel's glance-and-go overview.</p>
+    <p class="src">Sources: Linear design refresh, Vercel Geist, Things 3, Stripe color, Calm Technology (Amber Case).</p>
+  </div>
+
+  <div class="card">
+    <h3>2. Editorial Data-Density</h3>
+    <span class="tag">Bloomberg Terminal / Notion / Airtable. Dense made elegant, a real status matrix.</span>
+    <p class="verdict"><b>Insight:</b> 10 episodes x 9 stages <i>is</i> a table, so render it as one elegant matrix (glyph + color per cell), not a wall of cards. Tabular numerals, one accent for trouble, hairlines not boxes. Value density over visual density.</p>
+    <p class="verdict"><span class="pro">Strengths:</span> the whole batch in one glance, scales as episodes change, the producer's mental model. <span class="con">Risks:</span> hostile to phones unless it collapses to cards; can read as "spreadsheet/work". <span class="who">Best for:</span> Daniel on desktop/tablet for the Monday batch review.</p>
+    <p class="src">Sources: Bloomberg UX, FT Visual Vocabulary, Stripe, Airtable, tabular-figures research.</p>
+  </div>
+
+  <div class="card">
+    <h3>3. Material 3 Expressive</h3>
+    <span class="tag">Google's current system. Tonal color, rounded cards, accessible, mobile-native.</span>
+    <p class="verdict"><b>Insight:</b> color generated from one brand seed (auto-accessible light/dark), tonal elevation instead of shadows, large touch targets, status as chips. Field-proven on phones (46 studies, 18k participants).</p>
+    <p class="verdict"><span class="pro">Strengths:</span> mobile-native, accessible by default, familiar (feels like the Google tools your team already uses). <span class="con">Risks:</span> can look generic/"Google-y" unless re-seeded with a brand color; expressive bounce can feel toy-like for a high-stakes tool. <span class="who">Best for:</span> lowest-risk, fastest-to-trust on a phone.</p>
+    <p class="src">Sources: m3.material.io (color/type/nav/motion), Android M3 Expressive launch, 9to5Google.</p>
+  </div>
+
+  <div class="card">
+    <h3>4. Neo-Brutalist Utility (warmed)</h3>
+    <span class="tag">Thick borders, flat status blocks, bold type. Warmed for a ministry.</span>
+    <p class="verdict"><b>Insight:</b> bold, flat, high-contrast blocks are unusually <i>legible</i> (a WCAG win if linted), and the "physical button" press is unmistakable on a phone. Status triple-encoded (color + glyph + caps).</p>
+    <p class="verdict"><span class="pro">Strengths:</span> zero ambiguity, distinctive, hard to mis-tap. <span class="con">Risks:</span> can feel harsh/aggressive for a ministry; must warm the palette, reserve red for true blockers, and avoid all-caps "yelling". <span class="who">Best for:</span> an internal cockpit, if you want personality and bluntness.</p>
+    <p class="src">Sources: NN/g neobrutalism, neobrutalism.dev, Gumroad/Figma, contrast research.</p>
+  </div>
+
+  <div class="card">
+    <h3>5. Bento Modular</h3>
+    <span class="tag">A cohesive grid of varied-size tiles. One hero tile + a few supporting tiles.</span>
+    <p class="verdict"><b>Insight:</b> a <i>disciplined</i> bento (one hero, ~5 supporting tiles, shared surface) is calm and scannable; the danger is regressing into the exact widget wall you rejected, so tile count and one accent must be enforced.</p>
+    <p class="verdict"><span class="pro">Strengths:</span> a curated, modern overview; flexible composition; reflows to a clean stack on phone. <span class="con">Risks:</span> easy to overload; tiles can fragment attention if not ruthlessly limited. <span class="who">Best for:</span> a home/landing that mixes status + actions + the next-air countdown.</p>
+    <p class="src">Sources: Apple bento pages, modern bento-grid dashboard guides, CSS-grid span research.</p>
+  </div>
+
+  <div class="card">
+    <h3>6. Humanist & Approachable</h3>
+    <span class="tag">Warm palette, rounded cards, friendly humanist sans, conversational copy.</span>
+    <p class="verdict"><b>Insight:</b> warmth and plain conversational language lower intimidation for a non-technical owner and a ministry team, without sacrificing clarity, if contrast stays AA (no washed-out pastels) and urgency is still visible.</p>
+    <p class="verdict"><span class="pro">Strengths:</span> least intimidating, fits a ministry's tone, reassuring. <span class="con">Risks:</span> can read as less "pro"/credible to partners; pastels risk legibility; can undersell a real deadline. <span class="who">Best for:</span> if approachability for the whole team matters more than a power-tool feel.</p>
+    <p class="src">Sources: Basecamp/Notion warmth, Headspace, humanist-type and friendly-UI research.</p>
+  </div>
+
+  <div class="card">
+    <h3>7. Mission-Control Ops</h3>
+    <span class="tag">Dark ops dashboard. Grafana / Datadog / Linear-dark. Fleet matrix + alert feed.</span>
+    <p class="verdict"><b>Insight:</b> treat 10 episodes as a monitored "fleet": a status matrix + an exception/alert feed (which doubles as "what needs me"). Glanceable status under pressure; reserve motion for one subtle alert pulse.</p>
+    <p class="verdict"><span class="pro">Strengths:</span> built for status-at-a-glance across many items; the alert feed maps perfectly to "what needs you". <span class="con">Risks:</span> dark NOC-wall can intimidate a ministry owner; alert fatigue; dark-mode contrast traps. <span class="who">Best for:</span> if you want it to feel like a serious control room.</p>
+    <p class="src">Sources: Grafana/Datadog/IBM Carbon, ops-dashboard and management-by-exception research.</p>
+  </div>
+
+  <h2>My recommendation</h2>
+  <div class="rec">
+    <p style="margin:0 0 8px"><b>Lead with Calm Minimalism or Material 3 for the everyday phone view, and borrow Editorial Data-Density's matrix for the desktop "see everything" view.</b></p>
+    <p style="margin:0">Reasoning: you are non-technical, often on a phone, and easily overwhelmed, which favors calm/minimal or M3 (accessible, familiar, mobile-native) as the daily skin. But the real power of seeing 5+5 episodes at once is a dense matrix, which the editorial direction nails. These are compatible: a calm phone home that drills into a denser matrix on desktop. Neo-Brutalist and Mission-Control are the strongest <i>distinctive</i> options if you want personality over calm; Humanist is the warmest for the wider team; Bento is the best "mixed home". Pick the feel; the structure is already decided.</p>
+  </div>
+
+  <h2>How to read the screenshots</h2>
+  <p style="font-size:14.5px;margin:0">Every preview shows the exact same content (your "what needs you" list + all 10 episodes across the 9 stages, with Ep 47 blocked and Ep 51 at-risk) so the only thing changing between them is the look and feel. Numbers are placeholders.</p>
+</div>
+</body>
+</html>

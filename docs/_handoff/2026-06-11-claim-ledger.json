@@ -1,0 +1,100 @@
+{
+  "purpose": "Claim ledger for the Fable 5 pipeline mission (docs/_handoff/2026-06-11-fable5-mission-prompt.md). Doctrine: optimistic intake (ASSUMED) -> verification (VERIFIED / PARTIAL / REFUTED) -> deepen (gsr_application). Nothing ASSUMED or REFUTED may enter the build plan. This file is the research loop's heartbeat; commit it every cycle.",
+  "status_legend": {
+    "ASSUMED": "heard from a source, not yet checked",
+    "VERIFIED": "confirmed against official docs/changelog/live test (evidence cited)",
+    "PARTIAL": "works with caveats (caveat stated in verifier_evidence)",
+    "REFUTED": "checked and false/stale; never build on it"
+  },
+  "updated_at": "2026-06-11T11:25:00Z",
+  "claims": [
+    {
+      "id": "CL-001",
+      "claim": "This environment runs Claude Code 2.1.173 with skills: deep-research, loop, verify, run, code-review, security-review, simplify, update-config, session-start-hook, fewer-permission-prompts, claude-api; /goal is NOT exposed in the web harness skill registry.",
+      "source": "live session audit (claude --version + skill registry)",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Phase E live test, see 2026-06-11-mission-run-notes.md",
+      "gsr_application": "Goal conditions are emulated as AND-checklists + independent verifier agent; /loop drives checkpoint cadence",
+      "lane": "Lane 9 (research loop)",
+      "priority": 1
+    },
+    {
+      "id": "CL-002",
+      "claim": "YouTube blocks transcript/player API requests from cloud-provider IPs; rung 1 (youtube-transcript-api) fails IpBlocked from this container even though youtube.com returns 200.",
+      "source": "mission doc + live test video kOKavHnlPik",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Live test 2026-06-11: youtube_transcript_api raised IpBlocked",
+      "gsr_application": "Seed-corpus transcript mining must run on Daniel's Mac (rung 2 kit pre-staged in 2026-06-11-transcript-pull-kit/)",
+      "lane": "Lane 9 / R1",
+      "priority": 1
+    },
+    {
+      "id": "CL-003",
+      "claim": "Invidious instances can substitute for direct YouTube caption access from a cloud IP (rung 4).",
+      "source": "mission doc rung 4",
+      "date_heard": "2026-06-11",
+      "status": "PARTIAL",
+      "verifier_evidence": "Live test 2026-06-11: inv.nadeko.net lists caption tracks but serves 0-byte caption bodies; /videos endpoint disabled; yewtu.be 403; pipedapi.kavin.rocks timeout. Metadata sometimes available, transcript content not. Matches 2026 reports that YouTube's PO-token requirement broke caption proxying.",
+      "gsr_application": "Do not plan rung 4 as a backbone; opportunistic only, as the mission doc already says",
+      "lane": "Lane 9 / R1",
+      "priority": 2
+    },
+    {
+      "id": "CL-004",
+      "claim": "/goal needs Claude Code >= v2.1.139; evaluator checks the condition every turn; /goal show + /goal clear exist.",
+      "source": "mission doc Phase E table (cited code.claude.com/docs/en/goal, verified 2026-06-11 by the doc's author)",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Doc-verified 2026-06-11 per mission contract; env version 2.1.173 satisfies the floor; feature simply not surfaced in the web harness (CL-001)",
+      "gsr_application": "Daniel's Mac CLI sessions CAN use /goal for build lanes; web sessions emulate",
+      "lane": "Lane 9 / R2",
+      "priority": 2
+    },
+    {
+      "id": "CL-005",
+      "claim": "Sample-transcript style hype ('auto mode never does anything crazy', 'the model is smarter than you, lean on it for all thinking') is reliable engineering guidance.",
+      "source": "video corpus sample transcript (mission doc R1)",
+      "date_heard": "2026-06-11",
+      "status": "REFUTED",
+      "verifier_evidence": "Contradicts canon s15 prompt-hygiene ruling and Anthropic's own confirmation-gate guidance; the mission doc itself flags it as hype. Logged per doctrine so it is on the record as not-build-on-able.",
+      "gsr_application": "None. Confirmation gates stay.",
+      "lane": "Lane 9 / R1",
+      "priority": 3
+    },
+    {
+      "id": "CL-006",
+      "claim": "Rundown Creator returns errors as HTTP 200 with a JSON error body, so every client must read the body.",
+      "source": "repo canon (CLAUDE.md, mission doc)",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Long-established in repo across /api/rc-* implementations; re-confirmed in CLAUDE.md current state",
+      "gsr_application": "Any new RC automation (Lane 4 sync) wraps calls in a body-checking client",
+      "lane": "Lane 4",
+      "priority": 2
+    },
+    {
+      "id": "CL-007",
+      "claim": "The live DB already has production_lower_thirds / lower_thirds_variations (PR #50's migration applied) while main's deployed code still reads 'graphics' — the rename ships code-side only when PR #47 + #50 + #52 merge.",
+      "source": "PR #50 body ('Migration listed in Supabase list_migrations (verified applied)') + open-PR audit 2026-06-11",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "Pending read-only Supabase MCP check of live tables (R5)",
+      "gsr_application": "First build slice (answer 1A) must sequence on this: DB is ahead of deployed code",
+      "lane": "Lane 8 / build slice 1",
+      "priority": 1
+    },
+    {
+      "id": "CL-008",
+      "claim": "cleanupPeriodDays is honored when set in a project's .claude/settings.json (not only user settings).",
+      "source": "own assumption while wiring Phase E",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Claude Code settings schema (update-config skill, 2026-06-11): cleanupPeriodDays is a general settings.json key; settings load user -> project -> local and merge. Caveat: THIS session's permission layer blocks settings.json edits (self-modification guard), so applying it falls to Daniel or a Mac session (one-liner recorded in run-notes).",
+      "gsr_application": "Mission Control needs Daniel's Mac session JSONL to survive; if user-only, the plan tells his Mac to set it once",
+      "lane": "Lane 9 / Mission Control",
+      "priority": 2
+    }
+  ]
+}

@@ -28,7 +28,7 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-08 20:00:44 UTC (15 hours ago)._
+_Last updated 2026-06-11 10:25:31 UTC (just now)._
 
 ---
 
@@ -141,13 +141,16 @@ _Last updated 2026-06-08 20:00:44 UTC (15 hours ago)._
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 8) and GSR-WORKFLOW-CANON.md. Apply the recorded standards to any new data, and when ready, add the per-episode chyron-affiliation override on episode_guests (migration + types + verify).`
 
 ## Lane 9 - Autonomous research loop
-**Status:** PAUSED.
-**Summary:** Self-paced research queue. Paused; resume when wanted.
+**Status:** IN PROGRESS.
+**Summary:** Fable 5 pipeline mission (2026-06-11): 5h+ research loop (claim ledger doctrine), then self-critiqued build plan. Mission contract: docs/_handoff/2026-06-11-fable5-mission-prompt.md.
 **Done:** docs/_handoff/research-queue.md set up. Optimization report and per-stage tool suggestions produced.
 **To finish:**
-- Resume the queue when wanted (remaining items: per-direction UI research docs, etc.).
+- Phase R: R2-R5 research via web (this session), R1 transcripts via the Mac kit (docs/_handoff/2026-06-11-transcript-pull-kit/), R6 +50 lead-driven videos after R1 scoring.
+- Claim ledger: every priority-1 claim VERIFIED/PARTIAL/REFUTED (docs/_handoff/2026-06-11-claim-ledger.json).
+- Phase S: build plan + 3 critique rounds + rubric 7/7, then one-screen summary to Daniel.
+- Resume the older research-queue.md items only if still relevant after the mission plan lands.
 **Files:** `docs/_handoff/research-queue.md`
-**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 9) and docs/_handoff/research-queue.md. Resume the self-paced loop draining that queue, committing each result.`
+**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 9), docs/_handoff/2026-06-11-fable5-mission-prompt.md, docs/_handoff/2026-06-11-mission-run-notes.md, and docs/_handoff/2026-06-11-claim-ledger.json. Continue the mission exactly where the run-notes' goal checklist stands: verify ASSUMED claims, mine any newly-arrived transcripts in 2026-06-11-transcript-pull-kit/transcripts/, expand R6 leads, checkpoint-commit every ~30 min to branch claude/vigilant-ramanujan-kt4fdc. Starred defaults stand unless Daniel says otherwise. Never bypass canon s15 gates.`
 
 ---
 

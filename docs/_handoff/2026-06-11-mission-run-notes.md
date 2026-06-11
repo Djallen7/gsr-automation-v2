@@ -59,7 +59,7 @@ patterns in parallel, and pre-stages everything the Mac run needs.
 - [x] Every priority-1 claim VERIFIED / PARTIAL / REFUTED (0 P1 ASSUMED after synthesis triage 2026-06-12; the 218 remaining ASSUMED are P2/P3 technique notes barred from build steps by doctrine)
 - [x] Claim ledger committed (every batch and checkpoint; final state 321 claims: 85 VERIFIED, 15 PARTIAL, 3 REFUTED, 218 ASSUMED-at-P2/P3)
 
-**PHASE R: COMPLETE (2026-06-12), pending the independent rubric re-check below.**
+**PHASE R: COMPLETE (2026-06-12), independently re-verified same date: 7-point mechanical check passed (queue 162/0-pending, ledger 0 P1-ASSUMED, REFUTED ids uncited-as-support, gates unweakened, tree clean). Verifier verdict: YES.**
 
 **Runtime log:** (per the independent verifier, git commit timestamps are the source of
 truth here; the clock notes below are approximate session-side stamps)

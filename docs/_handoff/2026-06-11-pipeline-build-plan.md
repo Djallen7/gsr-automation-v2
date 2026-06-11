@@ -1,9 +1,11 @@
 # GSR Pipeline Build Plan - DRAFT (2026-06-11)
 
-**Status: DRAFT v2 (citations filled).** All four research agents have reported; every
-citation slot now points at a ledger claim (docs/_handoff/2026-06-11-claim-ledger.json,
-47 claims). Critique rounds 1-3 (red team, gsr-health, editorial) and the rubric check
-follow. Per the mission contract, Phase B starts only after Daniel okays this plan.
+**Status: v3, critiqued, awaiting Daniel.** Every citation points at a ledger claim
+(docs/_handoff/2026-06-11-claim-ledger.json, 47 claims; zero ASSUMED or REFUTED cited).
+Critique rounds applied 2026-06-11: red team (18 findings, both blockers fixed as items
+1.0 and 10.0), gsr-health repo audit (9 findings), editorial Daniel-fit (25 fixes,
+verdict ship-ready). Rubric check: see the run-notes. Phase B starts only after Daniel
+okays this plan; his section 7 answers land in canon, dated.
 
 Operating answers in force (starred defaults, run-notes 2026-06-11):
 1A 2A 3A 4A 5A 6A 7A 8B 9A 10A 11A 12B 13A 14A 15A 16A.
@@ -774,11 +776,14 @@ branch) closes when slice 0 lands.
 
 ---
 
-## 10. What happens to this draft next
+## 10. How this draft got here (audit trail)
 
-1. Research agents land -> fill every `[CITE: pending]` slot or strike the item (nothing
-   ASSUMED ships).
-2. Critique round 1: red team (where does it break, what lands on David, what violates canon).
-3. Critique round 2: gsr-health vs actual repo state.
-4. Critique round 3: gsr-editorial for phone-readability.
-5. Rubric 7/7, then the one-screen summary + section 7 decisions go to Daniel.
+1. Research swarm verified 47 claims (official docs, Mission Control currency, marketplace,
+   integrations); citations filled; nothing ASSUMED or REFUTED cited.
+2. Critique round 1, red team: 18 findings, 2 blockers; all fixed (items 1.0, 10.0, the
+   Daniel-light window, and the gates strengthened across slices 6-7).
+3. Critique round 2, gsr-health vs repo: 9 findings; fixed (6.8 rescoped, truth sweep
+   extended, counts corrected).
+4. Critique round 3, editorial: 25 fixes applied; verdict ship-ready.
+5. Independent rubric verification recorded in 2026-06-11-mission-run-notes.md.
+Next: Daniel answers section 7; answers append to canon; Phase B opens its lanes.

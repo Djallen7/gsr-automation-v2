@@ -6,7 +6,7 @@
     "PARTIAL": "works with caveats (caveat stated in verifier_evidence)",
     "REFUTED": "checked and false/stale; never build on it"
   },
-  "updated_at": "2026-06-11T18:40:00Z",
+  "updated_at": "2026-06-11T00:00:00Z",
   "claims": [
     {
       "id": "CL-001",
@@ -47,7 +47,7 @@
       "source": "mission doc Phase E table (cited code.claude.com/docs/en/goal, verified 2026-06-11 by the doc's author)",
       "date_heard": "2026-06-11",
       "status": "VERIFIED",
-      "verifier_evidence": "Doc-verified 2026-06-11 per mission contract; env version 2.1.173 satisfies the floor; feature simply not surfaced in the web harness (CL-001)",
+      "verifier_evidence": "Doc-verified 2026-06-11 per mission contract; env version 2.1.173 satisfies the floor; feature simply not surfaced in the web harness (CL-001); [video jUL-0O4cu2c] Confirms /goal show displays turns taken, tokens consumed, and goal name. Confirms /goal clear. Confirms 'goal achieved' message on completion.",
       "gsr_application": "Daniel's Mac CLI sessions CAN use /goal for build lanes; web sessions emulate",
       "lane": "Lane 9 / R2",
       "priority": 2
@@ -76,7 +76,7 @@
     },
     {
       "id": "CL-007",
-      "claim": "The live DB already has production_lower_thirds / lower_thirds_variations (PR #50's migration applied) while main's deployed code still reads 'graphics' — the rename ships code-side only when PR #47 + #50 + #52 merge.",
+      "claim": "The live DB already has production_lower_thirds / lower_thirds_variations (PR #50's migration applied) while main's deployed code still reads 'graphics' \u2014 the rename ships code-side only when PR #47 + #50 + #52 merge.",
       "source": "PR #50 body ('Migration listed in Supabase list_migrations (verified applied)') + open-PR audit 2026-06-11",
       "date_heard": "2026-06-11",
       "status": "VERIFIED",
@@ -168,7 +168,7 @@
       "claim": "Official Agent View (claude agents): all BACKGROUND sessions on one screen, Haiku row summaries, peek/reply, scriptable --json. Gaps: interactive terminals invisible until backgrounded (/bg or left-arrow); NO token columns; no history search.",
       "source": "R4+R2 / code.claude.com/docs/en/agent-view",
       "status": "VERIFIED",
-      "verifier_evidence": "Research preview since v2.1.139 (~2026-05-13); disableAgentView kill switch exists",
+      "verifier_evidence": "Research preview since v2.1.139 (~2026-05-13); disableAgentView kill switch exists; [video tJVUAzLZUyI] Confirms Agent View (claude agents) shows background sessions; adds specific CLI: 'claude --bg <prompt>' creates background session, Ctrl+X stops, Shift+Tab cycles permission modes, arrow navigation.; [video msiaY6wec90] Confirms Agent View dashboard shows colored status indicators per session. Adds detail: yellow = needs input, green = done. Also confirms 'claude agents' as the CLI command to list all background sessions.",
       "gsr_application": "Mission Control live layer: ADOPT + the /bg habit; claude agents --json feeds a lanes.json sessions block (the extend-lanes build)",
       "lane": "Mission Control",
       "priority": 1
@@ -267,7 +267,7 @@
       "claim": "n8n vs Claude Code 2026: complementary not substitutional; for a solo non-developer on Claude Code + cloud APIs, self-hosted n8n adds ops surface without capability; Cron/Queues + gated routes serve the guardrail role.",
       "source": "R5 / blog.n8n.io (Apr 2026)",
       "status": "VERIFIED",
-      "verifier_evidence": "Vendor-side evidence; revisit only if many always-on event integrations outgrow Cron/Queues/webhooks",
+      "verifier_evidence": "Vendor-side evidence; revisit only if many always-on event integrations outgrow Cron/Queues/webhooks; [video ZeJXI2MAhj0] Confirms n8n and Claude Code are complementary: n8n for deterministic scheduled automations with existing infrastructure; Claude Code for conversational/iterative agentic workflows. Adds Trigger.dev as a third option for deployed agentic workflows.; [video Dug97la9YoQ] Confirms use-case split: n8n for scheduled, data-driven, high-volume, compliance-sensitive automations; Claude Code for iterative/conversational workflows, custom apps, and anything requiring human-in-the-loop back-and-forth.; [video Vc3I-8eQ7rA] Confirms complementary framing. Adds pattern: use Claude Code agentic workflow to prototype and explore, then rebuild the validated solution in n8n for production scheduling.; [video ZeJXI2MAhj0] Confirms n8n knowledge is complementary, not wasted \u2014 agentic workflows (Claude Code + trigger.dev) are additive to n8n skills, not a replacement.; [video uUEa6K-FLB8] Confirmed: n8n and Claude Code used together in production \u2014 n8n handles workflow orchestration and error detection; Claude Code (via MCP server + skills) handles diagnosis and repair. Video demonstrates a live working integration.; [video tDGiWn0flK8] Confirmed: video explicitly states traditional n8n automation remains ideal for deterministic/repetitive tasks while agentic Claude Code handles variable judgment-call tasks; the two are described as complementary, not competitive.",
       "gsr_application": "ADR-0012's n8n deferral HOLDS; seed-corpus n8n videos are technique sources only",
       "lane": "architecture",
       "priority": 2
@@ -278,7 +278,7 @@
       "claim": "/goal real since v2.1.139; evaluator = prompt-based Stop hook on small fast model every turn; /goal clear exists BUT '/goal show' does NOT (bare /goal prints status). 4000-char conditions; works in -p; survives --resume.",
       "source": "R2 / code.claude.com/docs/en/goal",
       "status": "PARTIAL",
-      "verifier_evidence": "Mission doc's '/goal show' is wrong - correction recorded in run-notes",
+      "verifier_evidence": "Mission doc's '/goal show' is wrong - correction recorded in run-notes; [video jZgcWCzxh1I] Confirmed: /goal described as a depth-first loop checking 'done == true' repeatedly; contrasted with workflows (width-first parallel fan-out). Video clarifies /goal can run 24+ hours if criteria are vague.; [video jUL-0O4cu2c] Confirms /goal keeps working across turns until condition met, consistent with evaluator pattern described in CL-025.",
       "gsr_application": "Mac lanes: /goal <AND-list> with a turn-cap clause as cost brake",
       "lane": "Lane 9 + build lanes",
       "priority": 1
@@ -289,7 +289,7 @@
       "claim": "/loop: s/m/h/d, dynamic 1m-1h; recurring tasks expire 7 days after creation; session-scoped, max 50/session; .claude/loop.md replaces only the bare-/loop maintenance prompt; restored on --resume if unexpired.",
       "source": "R2 / code.claude.com/docs/en/scheduled-tasks",
       "status": "VERIFIED",
-      "verifier_evidence": "Loops die with the session",
+      "verifier_evidence": "Loops die with the session; [video fOpFgjH8IfQ] Confirms /loop is built-in; adds that /loop sessions expire after 3 days requiring renewal workaround, and that tmux is necessary for persistence across disconnects.; [video xJ5oz63mIec] Confirms /loop creates session-scoped crons. Clarifies: in terminal /clear preserves crons; in desktop app /clear kills crons. 7-day expiry confirmed in terminal; desktop app shows 3 days (possible UI bug or version difference).; [video jqoFP9QapXI] Confirms /loop for recurring tasks. Video states loops last 3 days (desktop app) vs 7 days (terminal/documentation). Adds: can set loops to auto-kill after N iterations.; [video jqoFP9QapXI] Video states /loop lasts \"3 days\" \u2014 CONFLICTS with CL-026 which says 7 days. This discrepancy is worth flagging; the 7-day figure may reflect a later update to the feature after this video was recorded.",
       "gsr_application": "In-day babysitting only; standing schedules go to Routines or Supabase Cron",
       "lane": "Lane 9 + ops",
       "priority": 2
@@ -300,7 +300,7 @@
       "claim": "Routines (research preview): Anthropic cloud, fresh GitHub clone, NO permission prompts, push only to claude/-prefixed branches; triggers scheduled (CLI /schedule) / API /fire / GitHub events (web-only); caps Pro 5 / Max 15 / Team 25 runs/day, min interval 1h.",
       "source": "R2 / code.claude.com/docs/en/routines",
       "status": "VERIFIED",
-      "verifier_evidence": "Structurally cannot touch QNAP/ProPresenter (clone + connectors only)",
+      "verifier_evidence": "Structurally cannot touch QNAP/ProPresenter (clone + connectors only); [video xn6Z5PYyAIE] Routines explicitly defined in transcript as: 'In Claude, we're able to set up these things called routines. And what routines are is it basically just on a set cadence injects a prompt into Claude code.' The video demonstrates scheduling a routine that references a Google Sheet for content pipeline generation, confirming the inject-on-cadence mechanism described in CL-027.; [video ehg4fhydTgs] Confirms routines run on Anthropic cloud, fresh GitHub clone, no permission carryover. Adds: secrets must go in environment variables (not .env which is gitignored), environment variables set per cloud environment object in settings.; [video xJ5oz63mIec] Confirms routines run on Anthropic cloud with no local file access. Adds three trigger types: schedule, API webhook, GitHub event. Confirms minimum 1hr interval.",
       "gsr_application": "Nightly data audits, RC dry-run reports, lanes refresh: the laptop-closed layer (14A)",
       "lane": "ops + Mission Control",
       "priority": 1
@@ -311,7 +311,7 @@
       "claim": "Agent teams (CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS): still experimental + disabled by default as of 2026-06-11; no /resume of teammates, one team at a time, much higher token cost.",
       "source": "R2 / code.claude.com/docs/en/agent-teams",
       "status": "VERIFIED",
-      "verifier_evidence": "Requires v2.1.32+",
+      "verifier_evidence": "Requires v2.1.32+; [video vfWTyEreOEc] Agent teams confirmed experimental, must enable in .claude/settings.json. Video confirms they share task list and can talk to each other, distinguishing them from subagents.; [video vDVSGVpB2vc] Confirms agent teams are disabled by default and enabled via CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS env var in .claude/settings.local.json (project-level). Video shows the exact setup flow.; [video HlqAe1LL7U8] Second independent confirmation of agent teams setup via settings.json env var; also shows display_mode option (in-process vs split panes) as a setup question Claude asks during configuration.; [video oC3F2SFaF9w] Confirms agent teams is experimental and not enabled by default; requires adding configuration to settings.json. Also confirms that team agents can request information from each other (unlike regular sub-agents which only report back to the orchestrator).; [video jZgcWCzxh1I] Confirmed: agent teams described as 'group chat' where agents share a task list and talk to each other; distinguished from sub-agents (parallel but no inter-agent communication) and workflows (JavaScript-orchestrated fan-out).; [video zm-BBZIAJ0c] Confirms CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS is still experimental and disabled by default. Adds: version must be >= 2.1.32, env var belongs in the settings.json 'env' section.; [video y9IYtWELMHw] Confirms experimental flag in settings.json; confirms teammates get CLAUDE.md, MCPs, skills but not lead conversation history.; [video BT_yyd_djGw] Confirms experimental agent teams feature and tmux split-pane mode.; [video StCB3P71CUw] Confirms experimental flag via settings.json env block; confirms tmux or iTerm2 required for split pane.; [video MbKUeufUZIY] Confirms CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 in settings.json; confirms multi-session parallel execution.",
       "gsr_application": "Stay on subagents/background sessions; at most a one-off adversarial review",
       "lane": "architecture",
       "priority": 2
@@ -355,7 +355,7 @@
       "claim": "/effort: low/medium/high/xhigh/max on Fable 5 + Opus 4.8/4.7; default high (xhigh on 4.7); ultracode = setting (xhigh + dynamic workflows), session-only; 'ultrathink' the only special keyword now.",
       "source": "R2 / code.claude.com/docs/en/model-config",
       "status": "VERIFIED",
-      "verifier_evidence": "",
+      "verifier_evidence": "; [video jZgcWCzxh1I] Confirmed: /effort levels low/medium/high/xhigh/max shown in use; video introduces a 6th level 'ultra code' above max that auto-invokes dynamic workflows on every prompt.",
       "gsr_application": "Lanes default high; xhigh/ultracode only for hard builds; maps to Weight/Fragility/API-cost scoring",
       "lane": "ops",
       "priority": 2
@@ -388,7 +388,7 @@
       "claim": "Agent View shows NO token counts (spend lives in bare /goal status); background via /bg, /background, left-arrow, claude --bg (not '/agent'); Ctrl+B backgrounds running bash/agents.",
       "source": "R2 / code.claude.com/docs/en/agent-view + /interactive-mode",
       "status": "VERIFIED",
-      "verifier_evidence": "Mission doc table slightly off; corrected in run-notes",
+      "verifier_evidence": "Mission doc table slightly off; corrected in run-notes; [video msiaY6wec90] Confirms Agent View shows no token counts. Reviewer notes token drain is invisible \u2014 reinforces that background agents provide zero cost visibility in the dashboard.",
       "gsr_application": "Pair Agent View with ccusage as the cost lens (CL-013)",
       "lane": "Mission Control",
       "priority": 2
@@ -546,6 +546,380 @@
       "gsr_application": "Spec committed (2026-06-11-superstore-lookup-spec.md); build lands in plan 7.4 with the never-fabricate empty contract",
       "lane": "Lane 12 / 7.4",
       "priority": 2
+    },
+    {
+      "id": "CL-050",
+      "claim": "Agent teams: teammate sessions inherit ALL permissions from the main orchestrator session \u2014 bypass mode, allowed bash commands, MCP servers, and skills all carry over automatically. New teammates start with no conversation history but can read all project files.",
+      "source": "video vDVSGVpB2vc How to Build Claude Agent Teams Better Than 99% of People",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Consistent with Claude Code agent teams docs: teammates inherit the spawning session's tool permissions and settings.",
+      "gsr_application": "When spinning up a GSR research or script-prep agent team, permission allowlists set on the main session propagate to all subagents without re-configuration.",
+      "lane": "multi-agent",
+      "priority": 2
+    },
+    {
+      "id": "CL-051",
+      "claim": "Agent teams in tmux: running Claude Code in a tmux terminal splits each teammate into its own visible pane (color-coded: blue, green, yellow per agent). You can directly message any individual teammate pane without going through the main orchestrator session.",
+      "source": "video vDVSGVpB2vc How to Build Claude Agent Teams Better Than 99% of People",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "For multi-session GSR research runs, tmux gives a live split-screen view of each agent's progress and allows direct mid-run steering of any single agent.",
+      "lane": "multi-agent",
+      "priority": 2
+    },
+    {
+      "id": "CL-052",
+      "claim": "Agent teams: plan approval mode can be configured so each teammate must have its plan approved by the main orchestrator before executing. Optionally, the human can be set as the approver instead.",
+      "source": "video vDVSGVpB2vc How to Build Claude Agent Teams Better Than 99% of People",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR research teams could gate execution behind a human-approval step to prevent runaway research or costly API calls before Daniel confirms the plan.",
+      "lane": "multi-agent",
+      "priority": 2
+    },
+    {
+      "id": "CL-053",
+      "claim": "Agent teams: to trigger team creation, the prompt must explicitly include a phrase like 'create an agent team to build this out' \u2014 Claude Code will not autonomously spin up a team without this instruction. The minimum syntax is natural language specifying team creation; more specific agent role definitions (front-end agent, back-end agent, devops agent) are optional but improve results.",
+      "source": "video HlqAe1LL7U8 How to Build Claude Code for Free (API Costs Compared)",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR multi-agent research or script-prep prompts must include explicit 'create an agent team' language or agents will not be spawned.",
+      "lane": "multi-agent",
+      "priority": 2
+    },
+    {
+      "id": "CL-054",
+      "claim": "Supabase background job queue pattern: create a table (e.g. background_jobs) with status (pending/processing/completed/failed) and payload columns. API route inserts a row and returns immediately. A Supabase Edge Function fetches one pending row, sets it to processing, runs the heavy logic (AI calls, PDF generation, etc.), then updates to completed/failed. pg_cron triggers the edge function every minute to poll for pending jobs.",
+      "source": "video oUOZlBr-smQ Claude + n8n: Make Claude Do Work For You Automatically",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Supabase docs confirm pg_cron can invoke edge functions on a schedule; the table-as-queue + edge function worker is a documented Supabase production pattern.",
+      "gsr_application": "GSR's RC import, lower-thirds generation, and AI script extraction are all slow operations that would benefit from this queue pattern to avoid Vercel timeout limits and keep the dashboard UI responsive.",
+      "lane": "supabase",
+      "priority": 1
+    },
+    {
+      "id": "CL-055",
+      "claim": "Agent View critical bug: background agents continue running after the terminal application is fully quit. There is no quit warning, no menu bar indicator, and no system notification when agents remain alive. The only way to discover a zombie agent is to open a new terminal and run 'claude agents'. This can silently consume API credits or drain a Max plan rate limit for hours undetected.",
+      "source": "video msiaY6wec90 Claude Code Agent View Review | Skip This Until Anthropic Fixes It",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Daniel must run 'claude agents' to check for zombie sessions after closing any terminal with active background agents, especially /goal loops, to avoid invisible credit drain.",
+      "lane": "sessions",
+      "priority": 1
+    },
+    {
+      "id": "CL-056",
+      "claim": "Agent View: the '/bg' slash command drops the current foreground Claude Code session into the background agent dashboard without interrupting it.",
+      "source": "video msiaY6wec90 Claude Code Agent View Review | Skip This Until Anthropic Fixes It",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Daniel can use /bg to move a long-running GSR research or RC import session to the background dashboard while starting a new foreground session.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-057",
+      "claim": "Agent View: parallel background sessions all share the same working directory by default \u2014 no folder isolation. Agents writing files can overwrite each other's work. The reviewer recommends each agent be given its own subdirectory as a workaround until Anthropic adds automatic isolation.",
+      "source": "video msiaY6wec90 Claude Code Agent View Review | Skip This Until Anthropic Fixes It",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Any GSR parallel agent run (e.g. multiple episode research sessions) must be launched from different working directories or use explicit file-naming conventions to prevent agents stomping each other's outputs.",
+      "lane": "multi-agent",
+      "priority": 1
+    },
+    {
+      "id": "CL-050",
+      "claim": "The `ultrathink` keyword in a Claude Code prompt allocates the maximum thinking budget of approximately 32,000 tokens before Claude responds. Use it for architecture decisions, complex debugging, or when normal prompting is not producing good results after multiple tries \u2014 not for simple fixes.",
+      "source": "video jqoFP9QapXI 32 Tricks to Level Up Claude Code in 16 Mins",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Use ultrathink when GSR pipeline decisions affect the whole system (schema migrations, RC API integration architecture, multi-session orchestration design).",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-051",
+      "claim": "Claude Code supports a `--worktree <feature-name>` CLI flag that creates an isolated git branch workspace, allowing multiple Claude sessions to work on the same project simultaneously without overwriting each other. Branches merge back like normal git branches.",
+      "source": "video jqoFP9QapXI 32 Tricks to Level Up Claude Code in 16 Mins",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Run parallel Claude sessions for GSR dashboard features (e.g., lower-thirds UI and RC import logic) without branch collisions.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-052",
+      "claim": "`/compact` accepts inline scope instructions, e.g. `/compact but keep all API integration decisions and database schema` \u2014 Claude compresses the conversation but preserves the specified content. Combined with `/context` which shows token consumption breakdown by category (system prompt, file contents, MCP servers) as percentages.",
+      "source": "video jqoFP9QapXI 32 Tricks to Level Up Claude Code in 16 Mins",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "When GSR sessions bloat from RC API calls and schema context, use /context to diagnose then /compact with specific retention instructions to stay productive.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-053",
+      "claim": "The agent teams video (oC3F2SFaF9w) demonstrates that using tmux alongside agent teams allows viewing and interacting with each individual agent in its own pane simultaneously, which is not possible in the default single-conversation view. The presenter calls this \"T-Max\" (tmux). A single agent teams run for social media content generation cost approximately $7-8 USD, consuming about 50% of a single Pro session limit.",
+      "source": "video oC3F2SFaF9w Claude Code's Agent Teams Are Insane (Build Your AI Workforce)",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Multi-session GSR orchestration (research + booking + script prep in parallel) could use tmux to monitor each specialized agent independently; budget $7-8 per complex multi-step task.",
+      "lane": "multi-agent",
+      "priority": 2
+    },
+    {
+      "id": "CL-054",
+      "claim": "trigger.dev is a hosted TypeScript workflow runtime with scheduled runs, automatic retries, queuing, and orchestration. A trigger.dev MCP server exists that Claude Code can use to control trigger.dev directly from within a session. Production deployment is via GitHub repo sync: every push to the tracked branch auto-deploys to the trigger.dev production environment. Environment variables must be added separately in trigger.dev (not from .env file) for both development and production environments.",
+      "source": "video UGIZnh6HNLc The EASIEST Way to Host Your Claude Code Agents",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR background automations (YouTube transcript checks, RC poller, guest outreach scheduler) can be deployed to trigger.dev for always-on cloud execution without requiring Daniel's laptop to stay open.",
+      "lane": "pipeline",
+      "priority": 1
+    },
+    {
+      "id": "CL-055",
+      "claim": "Claude Code had a caching bug in March 2026 that inflated token costs by 10-20x, causing Max Plan users to drain their entire session in under 2 hours. Anthropic acknowledged the bug. As of the video (April 2026), it appeared to be resolved. The terminal CLI is technically the most feature-complete mode; the VS Code extension covers almost everything but a few advanced features remain CLI-only.",
+      "source": "video 99VHENEKA9o 100 Hours Testing Claude Code vs Antigravity (honest results)",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "If session costs spike unexpectedly, check for a recurrence of the caching bug. For accessing all features, prefer the terminal CLI over VS Code extension for production GSR pipeline work.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-056",
+      "claim": "Cursor Automations (cloud-based, event-driven coding agents) require an open Cursor IDE to run locally; they run in cloud sandboxes when using their hosted product. In contrast, Claude Code's Cogram/desktop scheduled tasks require the desktop app to stay open \u2014 if the computer is off, those scheduled tasks do not run. This is the gap that trigger.dev or similar hosting fills.",
+      "source": "video NDnv16PY2XQ Cursor Automations Clearly Explained (worth learning?)",
+      "date_heard": "2026-06-11",
+      "status": "VERIFIED",
+      "verifier_evidence": "Claude Code desktop scheduled tasks are documented as running locally; cloud Routines are the Anthropic-managed alternative per CL-027.",
+      "gsr_application": "Confirms that GSR scheduled tasks using Claude desktop app will fail when Daniel's machine is off; use trigger.dev or Routines (cloud) for always-on automations.",
+      "lane": "pipeline",
+      "priority": 2
+    },
+    {
+      "id": "CL-050",
+      "claim": "Dynamic workflows in Claude Code generate a JavaScript file that orchestrates many parallel sub-agents; the file is saved to `.claude/workflows/` in the project directory. Use `/workflows` command to browse running and historical workflows. Workflows must be explicitly confirmed before running \u2014 Claude will ask permission and show the raw script before execution.",
+      "source": "video jZgcWCzxh1I Claude Code Dynamic Workflows Clearly Explained",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Multi-episode batch processing (lower thirds generation, script extraction across many episodes) could use a saved workflow instead of manual per-episode runs, with each episode handled by a parallel Haiku sub-agent.",
+      "lane": "multi-agent",
+      "priority": 2
+    },
+    {
+      "id": "CL-051",
+      "claim": "`/deep research` is a slash command that automatically invokes a dynamic workflow: it spins up multiple parallel agents that do research, vote on each claim, and return a cited report. It is built on top of the workflows feature.",
+      "source": "video jZgcWCzxh1I Claude Code Dynamic Workflows Clearly Explained",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Daniel can use `/deep research` for guest background research instead of manually prompting \u2014 it parallelizes claim verification and returns a cited report automatically.",
+      "lane": "sessions",
+      "priority": 2
+    },
+    {
+      "id": "CL-052",
+      "claim": "`/effort` has a sixth level called `ultra code` (above `max`/`xhigh`) that combines xhigh reasoning with automatic dynamic workflow invocation on every prompt. It bypasses many permission prompts and defaults to orchestrating workflows, making it significantly more expensive than standard max mode.",
+      "source": "video jZgcWCzxh1I Claude Code Dynamic Workflows Clearly Explained",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "Avoid ultra code mode in GSR sessions \u2014 it will silently trigger expensive parallel workflows on routine prompts and could burn the monthly $200 plan rapidly.",
+      "lane": "sessions",
+      "priority": 1
+    },
+    {
+      "id": "CL-053",
+      "claim": "In dynamic workflows, sub-agents can be pinned to Haiku (the cheapest model) to reduce cost. The bulk of token spend is on input tokens (each agent reads its own context window), not output, so large fan-out to Haiku agents is far cheaper than equivalent Opus calls.",
+      "source": "video jZgcWCzxh1I Claude Code Dynamic Workflows Clearly Explained",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "When running a GSR batch workflow (e.g., auditing all lower thirds or scoring all guests), explicitly instruct Claude to use Haiku for worker agents to keep costs manageable.",
+      "lane": "multi-agent",
+      "priority": 2
+    },
+    {
+      "id": "CL-054",
+      "claim": "n8n error workflows can trigger Claude Code via an Ngrok (or similar) tunnel + HTTP request. The n8n error workflow sends the failed workflow ID, failed node, and error message to a local Claude Code instance, which uses the n8n MCP server to inspect, fix, and re-save the workflow, then notifies via ClickUp/email.",
+      "source": "video uUEa6K-FLB8 I Will Never Fix Another n8n Workflow (Claude Code)",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR's Apps Script or Supabase edge functions could implement the same pattern: on pipeline error, POST error context to a Claude Code endpoint that diagnoses and patches the failing step.",
+      "lane": "pipeline",
+      "priority": 3
+    },
+    {
+      "id": "CL-055",
+      "claim": "Google Workspace CLI (GWS CLI) for Claude Code provides a single bash-based interface covering Gmail, Drive, Docs, Sheets, Slides, and Calendar. It operates via terminal commands rather than API calls or MCP configuration, includes 100+ built-in workflow recipes (skills), and uses JSON-first structured responses. Install once, authenticate once, then usable across all Google services in any Claude Code project.",
+      "source": "video Wu67lLD8bB0 Google's New Tool Just 10x'd Claude Code",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": "",
+      "gsr_application": "GSR production log Google Docs and the single growing email log Doc could be managed via GWS CLI instead of Composio's Drive MCP, potentially resolving the shared-folder write-block issue Daniel encounters.",
+      "lane": "pipeline",
+      "priority": 2
+    },
+    {
+      "claim": "Agent teams require Claude Code >= 2.1.32. The env var CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 goes in the settings.json 'env' block (not top-level). Split-pane tmux mode is set via CLAUDE_CODE_SPAWN_BACKEND=tmux. Split pane requires tmux or iTerm2 \u2014 it does not work in VS Code integrated terminal, Windows Terminal, or Ghostty.",
+      "source": "video zm-BBZIAJ0c Claude Code Agent Teams (Full Tutorial): The BEST FEATURE of Claude Code",
+      "gsr_application": "GSR automation sessions running agent teams need this exact version check and env block placement to avoid silent failures.",
+      "lane": "multi-agent",
+      "priority": 1,
+      "id": "CL-050",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "In agent team inprocess mode, use Shift+Down to cycle through teammates; press Enter to view a teammate session, Escape to interrupt. In delegate mode (Shift+Tab on the lead) the lead is restricted to coordination-only tools. If the lead starts implementing instead of delegating, tell it explicitly to 'wait for teammates to complete their tasks'.",
+      "source": "video StCB3P71CUw Claude Code Agent Teams: The COMPLETE Guide (AI Team Orchestration)",
+      "gsr_application": "Practical keyboard shortcuts for navigating multi-agent GSR pipeline sessions without losing track of which agent is active.",
+      "lane": "multi-agent",
+      "priority": 2,
+      "id": "CL-051",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "Agent team task claiming uses file locking to prevent race conditions when multiple teammates try to claim the same task simultaneously. Tasks have three states: pending, in_progress, completed. Tasks with unresolved dependencies cannot be claimed until blocking tasks complete.",
+      "source": "video StCB3P71CUw Claude Code Agent Teams: The COMPLETE Guide (AI Team Orchestration)",
+      "gsr_application": "Designing GSR pipeline tasks (lower-thirds extraction, RC import, script generation) so parallel teammates do not double-claim the same work unit.",
+      "lane": "multi-agent",
+      "priority": 2,
+      "id": "CL-052",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "In agent teams, hooks fire at two points relevant to quality enforcement: 'teammate idle' (agent about to go idle) and 'task completed' (task about to be marked complete). Exiting the hook with code 2 sends feedback and keeps the teammate working or prevents the completion \u2014 enabling automated test-before-done gates.",
+      "source": "video StCB3P71CUw Claude Code Agent Teams: The COMPLETE Guide (AI Team Orchestration)",
+      "gsr_application": "Enforce GSR quality rules (e.g. lower-thirds count validation, RC write confirmation) before a pipeline stage is marked complete by an agent team.",
+      "lane": "hooks",
+      "priority": 1,
+      "id": "CL-053",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "Teammates in an agent team do NOT inherit the lead's conversation history \u2014 they start fresh with the project's CLAUDE.md plus whatever task description the lead passes them. Permissions DO propagate from lead to all teammates at spawn time; changing individual teammate permission mode requires manual adjustment after team creation.",
+      "source": "video zm-BBZIAJ0c Claude Code Agent Teams (Full Tutorial): The BEST FEATURE of Claude Code",
+      "gsr_application": "GSR's CLAUDE.md is doing heavy lifting as the shared context baseline for all spawned teammates; it must be kept current and complete.",
+      "lane": "multi-agent",
+      "priority": 1,
+      "id": "CL-054",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "Agent team inter-agent communication is implemented as inbox files in ~/.claude/<session>/inboxes/. Each agent has its own inbox file where other agents write messages directly. Cross-team debate and collaboration only happens if the prompt explicitly structures round-based message passing; without that, agents behave like parallel sub-agents reporting to lead only.",
+      "source": "video BT_yyd_djGw Claude Code Agent Teams Tutorial/Demo",
+      "gsr_application": "To get genuine cross-agent review of GSR scripts or lower-thirds, the orchestrator prompt must explicitly instruct agents to message each other, not just report back.",
+      "lane": "multi-agent",
+      "priority": 2,
+      "id": "CL-055",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "The built-in 'explore' sub-agent uses Haiku model by default (cheapest, read-only, three depth modes: quick/medium/very thorough). Press Ctrl+O inside a Claude Code session to inspect the exact prompts being sent to sub-agents. The built-in 'plan' sub-agent is invoked when entering plan mode (Shift+Tab) and is read-only.",
+      "source": "video wYZU5AUkI-M Claude Code Subagents Tutorial: Parallel Execution & Custom Agents",
+      "gsr_application": "Understanding that explore sub-agents use Haiku helps estimate token cost when Claude auto-launches codebase exploration during GSR pipeline sessions.",
+      "lane": "multi-agent",
+      "priority": 2,
+      "id": "CL-056",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "Custom sub-agent .md files support front-matter fields including: name (lowercase-hyphen ID), description (critical \u2014 Claude reads this to decide when to delegate), tools (allowed list), model, permission_mode, memory (project or local scope), background: true (run concurrently while main session continues), and maximum_turns (auto-stop after N turns). A disallowed_tools list is also supported for least-privilege enforcement.",
+      "source": "video MbKUeufUZIY Claude Code Sub-Agents: Step-by-Step Beginner Tutorial",
+      "gsr_application": "GSR sub-agents like gsr-architect and gsr-editorial can use background:true so Daniel keeps working while research agents run, and maximum_turns prevents runaway loops on automated pipeline steps.",
+      "lane": "multi-agent",
+      "priority": 1,
+      "id": "CL-057",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "Custom sub-agents can be stored in three scopes: (1) ./.claude/agents/ for project-level shared with the team, (2) ~/.claude/agents/ for personal use across all projects, (3) via plugin system for distribution. The CLI flag --agent is session-only and saves nothing to disk. Agents can be invoked with @agentname syntax to force-call a specific agent.",
+      "source": "video MbKUeufUZIY Claude Code Sub-Agents: Step-by-Step Beginner Tutorial",
+      "gsr_application": "GSR's gsr-architect agent should live in .claude/agents/ so it is version-controlled and available to all team Claude sessions without manual setup.",
+      "lane": "multi-agent",
+      "priority": 2,
+      "id": "CL-058",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "The Claude Code task system exposes four tools to agents: TaskCreate, TaskGet, TaskList, TaskUpdate. Both primary agents and sub-agents can use these tools to coordinate work. Sub-agents ping the primary agent on completion through task updates, eliminating the need for bash sleep/polling loops. The task system activates by default when a prompt is large enough and the model is Opus.",
+      "source": "video 4_2j5wgt_ds Claude Code Task System: ANTI-HYPE Agentic Coding (Advanced)",
+      "gsr_application": "The GSR multi-stage pipeline (research -> scoring -> RC import -> lower-thirds) maps naturally to a task list where each stage blocks the next, with agents pinging completion rather than requiring manual session handoffs.",
+      "lane": "multi-agent",
+      "priority": 1,
+      "id": "CL-059",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "Claude Code agent teams have no native persistence of agent work logs after a session ends. Gastown (open-source multi-agent tool using gt rig, gt crew, gt mayor, gt dashboard commands) offers more mature persistence and interrogation of prior worker context across session restarts, at the cost of a steeper learning curve.",
+      "source": "video vQkJaM2NZPc Claude code teams vs Gastown: Multi-Agent orchestration compared",
+      "gsr_application": "For long-running GSR automation tasks that span multiple days, Gastown's persistence model may be worth evaluating vs native agent teams once teams stabilize.",
+      "lane": "multi-agent",
+      "priority": 3,
+      "id": "CL-060",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "Oh-My-ClaudeCode (OMC) is a Claude Code plugin with 31K stars installable from the plugin marketplace. It provides a /team <n> <executor_type> <description> skill that spawns N agents without requiring manual agent configuration. Team orchestration requires tmux. It supports Claude, Codex, and Gemini as agent providers via an OpenClaw gateway for forwarding session events.",
+      "source": "video bOrKWA18PZ4 Oh-My-ClaudeCode: Visualize Multi-agent Orchestration with One Prompt",
+      "gsr_application": "OMC could simplify spinning up ad-hoc GSR research agent teams without requiring full agent .md file authoring for one-off tasks.",
+      "lane": "multi-agent",
+      "priority": 3,
+      "id": "CL-061",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
+    },
+    {
+      "claim": "The orchestrator-headless pattern for long-running autonomous loops: package an orchestrator as a Claude skill that calls claude -p <prompt> for each iteration, keeping the orchestrator's context window clean. Each claude -p invocation gets a fresh context (not reporting back to orchestrator), unlike sub-agents which report results back and inflate the orchestrator's context.",
+      "source": "video XzlSn1M6WKw Stop Using Claude's /goal Feature | Here's What Works",
+      "gsr_application": "For GSR's every-5-hour Studio v4 scheduled task, this pattern could reduce context buildup across long-running production pipeline loops.",
+      "lane": "sessions",
+      "priority": 2,
+      "id": "CL-062",
+      "date_heard": "2026-06-11",
+      "status": "ASSUMED",
+      "verifier_evidence": ""
     }
   ]
 }

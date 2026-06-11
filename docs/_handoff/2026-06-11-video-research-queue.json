@@ -180,14 +180,15 @@
    "summary": "Proven framework to sign your first AI client in 7 days",
    "url": "https://youtu.be/c2C_SbZk6iI",
    "resources": null,
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "AI agency sales/client acquisition content"
   },
   {
    "quarter": "Q1-2026",
    "date": "Feb 7, 2026",
-   "title": "How Iâ€™d Teach a 10 Year Old to Build Agentic Workflows (Claude Code)",
+   "title": "How I\u00e2\u20ac\u2122d Teach a 10 Year Old to Build Agentic Workflows (Claude Code)",
    "summary": "Agentic workflows explained simply enough for a 10 year old",
    "url": "https://youtu.be/3GAxd90fEE4",
    "resources": "https://drive.google.com/drive/folders/10RU0oHWIw2Cy5-rXOKw4iUD3LuMCDXLp",
@@ -385,7 +386,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 10, 2026",
-   "title": "Googleâ€™s New Tool Just 10xâ€™d Claude Code",
+   "title": "Google\u00e2\u20ac\u2122s New Tool Just 10x\u00e2\u20ac\u2122d Claude Code",
    "summary": "Google's new tool supercharges Claude Code productivity by 10x",
    "url": "https://youtu.be/Wu67lLD8bB0",
    "resources": null,
@@ -444,7 +445,7 @@
    "summary": "Why you should learn Claude Code instead of n8n in 2026",
    "url": "https://youtu.be/ZeJXI2MAhj0",
    "resources": null,
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 2,
    "triage_note": "useful technique or lead-informing (incl. n8n-vs-CC for ADR-0012, video/content pipelines); mine after rank 1"
   },
@@ -455,7 +456,7 @@
    "summary": "Build Claude Code agent teams better than 99% of people",
    "url": "https://youtu.be/vDVSGVpB2vc",
    "resources": null,
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "Claude Code feature/orchestration/Mission-Control/production-pipeline signal; mine FIRST on the Mac"
   },
@@ -539,7 +540,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 30, 2026",
-   "title": "Iâ€™ve Built 500 AI Workflows, This is What Businesses Want in 2026",
+   "title": "I\u00e2\u20ac\u2122ve Built 500 AI Workflows, This is What Businesses Want in 2026",
    "summary": "Lessons from 500 AI workflows: what businesses actually want",
    "url": "https://youtu.be/Y3PcRp5RFzk",
    "resources": "https://drive.google.com/drive/folders/13pBzMyvJksi5RJLBpRr_Vk-zA1w8vF3C",
@@ -550,7 +551,7 @@
   {
    "quarter": "Q1-2026",
    "date": "Mar 31, 2026",
-   "title": "Codex Just 10xâ€™d Claude Code Projects",
+   "title": "Codex Just 10x\u00e2\u20ac\u2122d Claude Code Projects",
    "summary": "Codex integration makes Claude Code projects 10x more powerful",
    "url": "https://youtu.be/B2Kh_ZoLVTM",
    "resources": null,
@@ -561,7 +562,7 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 1, 2026",
-   "title": "Claude Code Source Code Just Leakedâ€¦ 8 Things You Must Do",
+   "title": "Claude Code Source Code Just Leaked\u00e2\u20ac\u00a6 8 Things You Must Do",
    "summary": "8 things you must do after the Claude Code source code leak",
    "url": "https://youtu.be/tXtCK66fPj8",
    "resources": "https://drive.google.com/drive/folders/14V5Xym3SWQ8RUUScGF5X-YY4sGmIYjFb",
@@ -605,7 +606,7 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 5, 2026",
-   "title": "Andrej Karpathy Just 10xâ€™d Everyoneâ€™s Claude Code",
+   "title": "Andrej Karpathy Just 10x\u00e2\u20ac\u2122d Everyone\u00e2\u20ac\u2122s Claude Code",
    "summary": "How Andrej Karpathy's techniques 10x'd Claude Code for everyone",
    "url": "https://youtu.be/sboNwYmH3AY",
    "resources": null,
@@ -627,7 +628,7 @@
   {
    "quarter": "Q2-2026",
    "date": "Apr 7, 2026",
-   "title": "Claudeâ€™s New AI Just Changed the Internet Forever",
+   "title": "Claude\u00e2\u20ac\u2122s New AI Just Changed the Internet Forever",
    "summary": "Claude's new AI model and how it changes the internet",
    "url": "https://youtu.be/DG1wRgEpdO4",
    "resources": null,
@@ -653,9 +654,10 @@
    "summary": "Giving OpenClaw $10,000 to autonomously trade stocks",
    "url": "https://youtu.be/eu8UJtuIi-E",
    "resources": null,
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 3,
-   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject"
+   "triage_note": "monetization/trading/model-news/competitor hype; low GSR signal; skim title-level only, likely reject",
+   "rejected_reason": "Crypto/stock trading bot challenge \u2014 not relevant to GSR production"
   },
   {
    "quarter": "Q2-2026",
@@ -1104,7 +1106,7 @@
    "summary": "[Eric Tech] Practitioner critique of /goal failure modes with a working alternative pattern, not a feature recap.",
    "url": "https://www.youtube.com/watch?v=XzlSn1M6WKw",
    "source": "R6-lead:1 goal-long-horizon",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1115,7 +1117,7 @@
    "summary": "[Codedigipt] Hands-on /goal walkthrough framed against Codex-style autonomous modes.",
    "url": "https://www.youtube.com/watch?v=jUL-0O4cu2c",
    "source": "R6-lead:1 goal-long-horizon",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1126,7 +1128,7 @@
    "summary": "[Ras Mic] What /goal actually does under the hood (Haiku completion-check loop) and when it breaks.",
    "url": "https://www.youtube.com/watch?v=z00pCI_FaC0",
    "source": "R6-lead:1 goal-long-horizon",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1137,7 +1139,7 @@
    "summary": "[Yuval Yeret - Yeret Agility] Goal-condition design analysis for long-running agents, a counterweight to demos.",
    "url": "https://www.youtube.com/watch?v=blzKXRV9sv0",
    "source": "R6-lead:1 goal-long-horizon",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1159,7 +1161,7 @@
    "summary": "[AICodeKing] Day-one full tutorial of the experimental Agent Teams feature including setup flags.",
    "url": "https://www.youtube.com/watch?v=zm-BBZIAJ0c",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1170,7 +1172,7 @@
    "summary": "[Simon Scrapes] Tight setup-to-run demo of agent teams on Opus 4.6.",
    "url": "https://www.youtube.com/watch?v=y9IYtWELMHw",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1181,7 +1183,7 @@
    "summary": "[CloudYeti | Practical AI] Explicit agent-teams-vs-subagents comparison with a live demo, maps to GSR's subagent choices.",
    "url": "https://www.youtube.com/watch?v=BT_yyd_djGw",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1192,7 +1194,7 @@
    "summary": "[Hyperautomation Labs] Comprehensive orchestration guide: team leads, parallel workers, coordination.",
    "url": "https://www.youtube.com/watch?v=StCB3P71CUw",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1203,7 +1205,7 @@
    "summary": "[Nebius Academy] Academy-grade subagent tutorial on parallel execution and custom agent definitions.",
    "url": "https://www.youtube.com/watch?v=wYZU5AUkI-M",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1214,7 +1216,7 @@
    "summary": "[Thetips4you] Step-by-step build of specialized subagents with own context/tools.",
    "url": "https://www.youtube.com/watch?v=MbKUeufUZIY",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1225,7 +1227,7 @@
    "summary": "[IndyDevDan] Anti-hype engineering take on when single-agent ceilings force multi-agent designs.",
    "url": "https://www.youtube.com/watch?v=M30gp1315Y4",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1236,7 +1238,7 @@
    "summary": "[IndyDevDan] Deep dive on the Task/delegation system underpinning subagent orchestration.",
    "url": "https://www.youtube.com/watch?v=4_2j5wgt_ds",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1247,7 +1249,7 @@
    "summary": "[Nearform] Consultancy-grade head-to-head of two orchestration frameworks with criteria.",
    "url": "https://www.youtube.com/watch?v=vQkJaM2NZPc",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1258,7 +1260,7 @@
    "summary": "[DevsKingdom] Teams-first orchestration plugin with visualization; overlaps observability.",
    "url": "https://www.youtube.com/watch?v=bOrKWA18PZ4",
    "source": "R6-lead:2 agent-teams",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1401,7 +1403,7 @@
    "summary": "[ServeNoMaster] Newest critical review of Agent View, the built-in parallel-session dashboard.",
    "url": "https://www.youtube.com/watch?v=msiaY6wec90",
    "source": "R6-lead:4 mission-control",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 1,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1577,9 +1579,10 @@
    "summary": "[Mikey Vibe Coding] Most recent in-window general Supabase course, baseline for 2026 API surface.",
    "url": "https://www.youtube.com/watch?v=hVrSGKGU24g",
    "source": "R6-lead:6 supabase-next",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 2,
-   "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
+   "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
+   "rejected_reason": "Generic Supabase beginner tutorial \u2014 no production patterns beyond training knowledge"
   },
   {
    "quarter": "R6-2026",
@@ -1599,7 +1602,7 @@
    "summary": "[Jigs Dev] Background jobs via tables + Edge Functions, closest to the cron/queues sub-lead.",
    "url": "https://www.youtube.com/watch?v=oUOZlBr-smQ",
    "source": "R6-lead:6 supabase-next",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1632,9 +1635,10 @@
    "summary": "[Crazy Amazing Designs] Design half: planning AV control logic in Companion before touching hardware.",
    "url": "https://www.youtube.com/watch?v=msiTaUF2-ZM",
    "source": "R6-lead:7 propresenter",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 2,
-   "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
+   "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
+   "rejected_reason": "Church AV system design (StreamDeck/ATEM) \u2014 hardware automation, no Claude Code relevance"
   },
   {
    "quarter": "R6-2026",
@@ -1687,7 +1691,7 @@
    "summary": "[Clearmud] Bridges agent teams and script/production automation, same shape as GSR script parsing.",
    "url": "https://www.youtube.com/watch?v=HlqAe1LL7U8",
    "source": "R6-lead:8 broadcast-ai",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1698,9 +1702,10 @@
    "summary": "[Silvio Gobet] End-to-end YouTube production/upload workflow compressed via Claude Code agents.",
    "url": "https://www.youtube.com/watch?v=K8qZhxDz1nk",
    "source": "R6-lead:8 broadcast-ai",
-   "status": "pending",
+   "status": "rejected",
    "triage_rank": 2,
-   "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
+   "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine",
+   "rejected_reason": "YouTube content creation workflow stack \u2014 social media automation, not GSR production"
   },
   {
    "quarter": "R6-2026",
@@ -1720,7 +1725,7 @@
    "summary": "[Marvomatic | AI Automations] Contrarian, criteria-based split of which workloads belong in each tool.",
    "url": "https://www.youtube.com/watch?v=Dug97la9YoQ",
    "source": "R6-lead:9 n8n-vs-cc",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },
@@ -1731,7 +1736,7 @@
    "summary": "[9x] Migration story with concrete before/after workflow architecture.",
    "url": "https://www.youtube.com/watch?v=Vc3I-8eQ7rA",
    "source": "R6-lead:9 n8n-vs-cc",
-   "status": "pending",
+   "status": "mined",
    "triage_rank": 2,
    "triage_note": "R6 lead-driven candidate (oEmbed-verified 2026-06-11); mine through the same ledger doctrine"
   },

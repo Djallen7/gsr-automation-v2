@@ -319,3 +319,17 @@ From the offline flight worksheet (answers pasted 2026-06-09). Full open-discuss
 - Kilauea: Daniel believes "Episode 48" is a count of past volcanic events in the article (not an episode number), to be reframed as a record-breaking figure; he asked to be fact-checked, so VERIFY against the article before using it on air.
 
 **Worksheet decision snapshot:** BUILD = monologue 5-beat arc, graphics-philosophy scan, ProPresenter QA-verification screen, ProPres MCP (preprod-only), 507-contact import (after email classification), Operator Runbook (pending Daniel seeing its value), fix the SessionStart hook, YouTube cat 28, Intro Graphic standardization. LATER = Signiant/RLN form auto-fill, OpusClip short-form. SKIP = "Create Episode L3 Package" bulk action, the 8-phase gfx-cue pipeline. DISCUSS (queue) = the rest.
+
+## 15. Pipeline-mission authorizations + research doctrine (Daniel, gospel 2026-06-11)
+
+Stated in the 2026-06-11 session while commissioning the Fable 5 pipeline mission prompt (`docs/_handoff/2026-06-11-fable5-mission-prompt.md`).
+
+**Authorizations (supersede earlier, narrower framings where they conflict):**
+- For the pipeline mission, Daniel authorizes working beyond the default rule set, with two absolute conditions: **(1) never write to the QNAP server** (read-only SMB stands, no carve-out), and **(2) never operate on stale information** — always pull latest branch state and verify claims against current sources before acting on them.
+- **ProPresenter live rig:** Daniel authorizes designing AND wiring control of the live production ProPresenter (GSN-PropRes), including Tailscale for that path. Build and prove on the test machine first; every action against the LIVE rig requires a human "yes" in the moment (dry-run, show what will fire, wait). This extends s14's "preproduction only" line; the in-the-moment confirm is NOT waived.
+- Prompt-hygiene ruling: instructions that suppress the agent's visible reasoning or that "reframe safety constraints into executable commands" are rejected; strip them from any prompt before use.
+
+**Research doctrine (for the mission's research phases):**
+- **Optimistic intake:** community/video/hearsay claims may be provisionally assumed true so work keeps moving, BUT every claim adopted into a plan must immediately spawn a verification agent (official docs, changelog, or live test) and carry a status: ASSUMED -> VERIFIED / PARTIAL / REFUTED. Nothing REFUTED or still-ASSUMED ships in a final build step.
+- The research phase runs as a **continuous loop with a minimum 5-hour runtime**, checkpoint-committing findings as it goes.
+- Seed corpus: `docs/_handoff/2026-06-11-video-research-queue.json` (99 curated videos, Jan-Jun 2026, from Daniel's Q1/Q2 sheets).

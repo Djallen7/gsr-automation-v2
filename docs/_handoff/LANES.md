@@ -28,21 +28,22 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-08 20:00:44 UTC (15 hours ago)._
+_Last updated 2026-06-12 15:16:05 UTC (just now)._
 
 ---
 
 ## Lane 1 - UI design direction
-**Status:** OPEN.
-**Summary:** Pick a UI direction from the bake-off, then build it into the real dashboard screens. Needs Daniel's decision.
+**Status:** IN PROGRESS.
+**Summary:** Direction LOCKED to Apple "Liquid Glass" (Daniel, 2026-06-12). IN PROGRESS (secondary session, 2026-06-12). Prototype + spec + desktop/mobile/drill screenshots shipped on branch feat/ui-build (draft PR #60); React port into apps/dashboard next.
 **Done:** Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots. UI Foundation course module (m13) now teaches dashboard design from the ground up; its Lock step settles the UI direction (operational: per-role Today queue + Pipeline Matrix + mobile-first), backed by 4 cited research briefs in docs/_handoff/ui-research/.
 **To finish:**
-- Lock the UI direction via the UI Foundation module's Lock step (recommended), or pick from the bake-off.
-- Build the chosen direction into the real dashboard screens.
-- Render screenshots for review.
-**Blocked on:** Daniel's pick (now framed as the UI Foundation module's Lock step).
+- Confirm the executed Liquid Glass feel via draft PR #60 screenshots.
+- Port into apps/dashboard: add glass tokens to globals.css; build glass primitives + badge/table/tabs/sheet; routes /today, /schedule, /episodes/[id], graphics; wire Supabase read-only.
+- tsc --noEmit + eslint clean; render desktop + mobile screenshots from the real app.
+**Blocked on:** Nothing — direction locked. React port pending Daniel's go-ahead on the executed feel (draft PR #60).
 **Files:** `docs/_handoff/gsr-automation-v2-course.html`, `docs/_handoff/ui-research/`, `docs/ui-mocks/preview-1..7-*.html`, `docs/_handoff/2026-06-07-gsr-ui-strategy.md`, `docs/_handoff/2026-06-07-gsr-ui-bakeoff-research.html`
 **Recent activity:**
+- 2026-06-12 - Direction LOCKED to Apple Liquid Glass (Daniel). Self-contained prototype on real S03 data shape + globals.css port spec + desktop/mobile/drill screenshots committed to feat/ui-build; draft PR #60 opened. Status set IN PROGRESS (secondary).
 - 2026-06-08 - UI Foundation module (m13) built + 4 research briefs added; UI direction now lockable in-course
 - 2026-06-08 - course: expand m0 to Orientation + GitHub, add m13 Finish-the-Build handoff
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 1), the UI Foundation module (m13) in docs/_handoff/gsr-automation-v2-course.html, and the 4 briefs in docs/_handoff/ui-research/. Daniel's locked direction is: [FILL IN, default operational: per-role Today queue + Pipeline Matrix + mobile-first, one on-brand theme]. Build that into the real dashboard screens (Today queue, Pipeline Matrix, episode drill, graphics page) using the existing design tokens + shadcn components, render desktop + mobile screenshots, and report. Do not pick the direction yourself.`

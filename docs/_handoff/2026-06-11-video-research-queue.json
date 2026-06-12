@@ -1,0 +1,903 @@
+{
+  "source": "Daniel's Q1_2026 + Q2_2026 Google Sheets exports (uploaded 2026-06-11); one AI-automation channel's catalog, Jan 5 - Jun 10 2026",
+  "purpose": "Seed queue for the Fable 5 mission prompt video-research phase. Extract transcripts, mine techniques, verify each against official docs before adoption.",
+  "count": 99,
+  "status_legend": {
+    "pending": "not yet processed",
+    "mined": "transcript extracted + techniques logged",
+    "rejected": "no usable signal"
+  },
+  "videos": [
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 5, 2026",
+      "title": "Once You Know This, Building RAG Agents Becomes Easy in n8n",
+      "summary": "Core RAG concepts that make building agents in n8n click",
+      "url": "https://youtu.be/kOKavHnlPik",
+      "resources": "https://drive.google.com/drive/folders/1veFG7SwuGHgRT8Z_eIm7lbo2uhSuv2XQ",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 7, 2026",
+      "title": "I Built a New AI System in 3 Hours (and got paid $1650)",
+      "summary": "Live build of a paid AI system in 3 hours, start to finish",
+      "url": "https://youtu.be/Q4iEslmyMyM",
+      "resources": "https://drive.google.com/drive/folders/1v6Xqty7Ss5GUIaIYiJ-Nq0y8Rr7Vccrg",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 12, 2026",
+      "title": "I Built a Voice Agent That Calls Every New Lead (n8n + Vapi)",
+      "summary": "Automated voice agent that calls and qualifies every new lead",
+      "url": "https://youtu.be/BO-jFbN4p8Y",
+      "resources": "https://drive.google.com/drive/folders/153-dVBo9XpK4_MxiVf-xV7JNEt11gxnt",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 14, 2026",
+      "title": "Easiest Way to Migrate n8n Workflows Between Accounts (cloud to self-hosted)",
+      "summary": "Step-by-step n8n workflow migration between cloud and self-hosted",
+      "url": "https://youtu.be/t1PTmpas0bg",
+      "resources": "https://drive.google.com/drive/folders/1iRWNtD8XogUl3XTuFct3ciRMT6w9EWgJ",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 14, 2026",
+      "title": "Claude Code is Better at n8n than I am (Beginner's Guide)",
+      "summary": "Using Claude Code to build and manage n8n workflows from scratch",
+      "url": "https://youtu.be/B6k_vAjndMo",
+      "resources": "https://drive.google.com/drive/folders/1lQ_C3U2Yub8rvaQTnZyiQ-0seMQ5rre4",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 16, 2026",
+      "title": "Build ANYTHING with Claude Code & n8n (Beginner's Guide)",
+      "summary": "Build full apps and automations with Claude Code and n8n",
+      "url": "https://youtu.be/OCO3aq3G0mk",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 19, 2026",
+      "title": "I Built an AI System That Automates My Proposals (n8n + Gamma)",
+      "summary": "AI system that auto-generates client proposals using n8n and Gamma",
+      "url": "https://youtu.be/KGXFkUlBHxw",
+      "resources": "https://drive.google.com/drive/folders/1JspZDqbygDUrTaO9mJYqHUbbQPodiNam",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 19, 2026",
+      "title": "How I INSTANTLY Generate Proposal Decks with n8n AI Agents",
+      "summary": "Instantly generate polished proposal decks with n8n AI agents",
+      "url": "https://youtu.be/-Q_P7HFydZk",
+      "resources": "https://drive.google.com/drive/folders/16PDGopv9srR-EJPZ9BfM2Q2wYUdzb2BJ",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 21, 2026",
+      "title": "Master 95% of Claude Code in 36 Mins (as a beginner)",
+      "summary": "Complete beginner's guide to Claude Code, setup through advanced usage",
+      "url": "https://youtu.be/saggDHHnmtQ",
+      "resources": "https://drive.google.com/drive/folders/1zUMhDia2fY3ohHH6aanT_GW1FZnCzzur",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 22, 2026",
+      "title": "I Will Never Fix Another n8n Workflow (Claude Code)",
+      "summary": "Let Claude Code auto-detect and fix broken n8n workflows",
+      "url": "https://youtu.be/uUEa6K-FLB8",
+      "resources": "https://drive.google.com/drive/folders/1jPxiiS0AJd3BQTa2TgaHpipMw_IKw6ba",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 25, 2026",
+      "title": "Agentic Workflows Just Changed AI Automation Forever! (Claude Code)",
+      "summary": "How agentic workflows with Claude Code are changing AI automation",
+      "url": "https://youtu.be/AO5aW01DKHo",
+      "resources": "https://drive.google.com/drive/folders/1vJYIcW0eVO4tJY_w5EqGYpnR3G2xa30m",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 27, 2026",
+      "title": "Set Up Clawdbot on a VPS in Minutes (no mac mini)",
+      "summary": "Set up Clawdbot on a VPS without needing a Mac Mini",
+      "url": "https://youtu.be/BhjK2Gr0Ryc",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 28, 2026",
+      "title": "100 Hours Testing Clawdbot vs Claude Code (honest results)",
+      "summary": "Honest comparison after 100 hours testing Clawdbot vs Claude Code",
+      "url": "https://youtu.be/CBNbcbMs_Lc",
+      "resources": "https://drive.google.com/drive/folders/1rN6XlFS5O4OcLPDxmrrAwu3-71i3rJtZ",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Jan 30, 2026",
+      "title": "I Turned Clawdbot Into the Ultimate Personal Assistant",
+      "summary": "Turn Clawdbot into a personal assistant that handles everything",
+      "url": "https://youtu.be/rlJovzVhlIo",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 1, 2026",
+      "title": "Is n8n Dead?",
+      "summary": "Honest take on whether n8n is still relevant in 2026",
+      "url": "https://youtu.be/wb4uDdsFh6o",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 4, 2026",
+      "title": "How to Sign Your First AI Automation Client in 7 days (With Proof)",
+      "summary": "Proven framework to sign your first AI client in 7 days",
+      "url": "https://youtu.be/c2C_SbZk6iI",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 7, 2026",
+      "title": "How I\u00e2\u20ac\u2122d Teach a 10 Year Old to Build Agentic Workflows (Claude Code)",
+      "summary": "Agentic workflows explained simply enough for a 10 year old",
+      "url": "https://youtu.be/3GAxd90fEE4",
+      "resources": "https://drive.google.com/drive/folders/10RU0oHWIw2Cy5-rXOKw4iUD3LuMCDXLp",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 11, 2026",
+      "title": "Turn Any Website Into LLM Ready Data INSTANTLY",
+      "summary": "Convert any website into clean, LLM-ready data instantly",
+      "url": "https://youtu.be/4efAzBiTeVo",
+      "resources": "https://drive.google.com/drive/folders/17IXJBlb4HBNy5w1cPrjE3k56itSPMVy5",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 14, 2026",
+      "title": "How a College Student Made $500k with Cold Email (Exact Framework)",
+      "summary": "Exact cold email framework a college student used to make $500k",
+      "url": "https://youtu.be/XB2xmX3USUI",
+      "resources": "https://drive.google.com/drive/folders/1Eyp_cM4ZgGkC1y21Q3PqMtlUueU_QAYA",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 16, 2026",
+      "title": "How to Sign AI Workflow Clients (With 0 Followers)",
+      "summary": "How to land AI workflow clients starting with zero followers",
+      "url": "https://youtu.be/_rZAR-s4KIo",
+      "resources": "https://drive.google.com/drive/folders/1HxxJCGtVGgLcAq96sHdPnEAm4RJ22plf",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 19, 2026",
+      "title": "Building Beautiful Websites with Claude Code Is Too Easy",
+      "summary": "Build stunning websites with Claude Code, no design skills needed",
+      "url": "https://youtu.be/86HM0RUWhCk",
+      "resources": "https://drive.google.com/drive/folders/1V5H7yxrUnA6C0hmSxVMtJL5-MF3q2I4l",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 20, 2026",
+      "title": "The EASIEST Way to Host Your Claude Code Agents",
+      "summary": "Simplest way to host and deploy Claude Code agents online",
+      "url": "https://youtu.be/UGIZnh6HNLc",
+      "resources": "https://drive.google.com/drive/folders/1fFYXra4_Cs69fnwcmTZ3CBuG9OaYtCP-",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 23, 2026",
+      "title": "From Zero to Your First Agentic AI Workflow in 26 Minutes (Claude Code)",
+      "summary": "Build your first agentic AI workflow from scratch in 26 minutes",
+      "url": "https://youtu.be/tDGiWn0flK8",
+      "resources": "https://drive.google.com/drive/folders/1vBWsH1jwku4DdTsb8AqLgXAkeLFdyYe1",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 25, 2026",
+      "title": "I Can Actually Watch My AI Agents Work Now",
+      "summary": "Watch AI agents work in real-time with new observability tools",
+      "url": "https://youtu.be/62Rfe1w9NBc",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 25, 2026",
+      "title": "Claude Code Just Added What Everyone Wanted (Remote Control)",
+      "summary": "Claude Code's new remote control feature for managing agents",
+      "url": "https://youtu.be/EqhKw0Oro_k",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 27, 2026",
+      "title": "Master 95% of Claude Code Skills in 28 Minutes",
+      "summary": "Master Claude Code skills system in 28 minutes, complete guide",
+      "url": "https://youtu.be/zKBPwDpBfhs",
+      "resources": "https://drive.google.com/drive/folders/18PsHZnb2vvT_SaVt_AJgreCEliZMhacY",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Feb 27, 2026",
+      "title": "The NEW Nano Banana 2 + Antigravity Destroys Every AI Image Tool",
+      "summary": "Nano Banana 2 + Antigravity outperforms every AI image tool",
+      "url": "https://youtu.be/iTKkoGd3YcM",
+      "resources": "https://drive.google.com/drive/folders/1y5Fp9ZvadSgn5lEBN1Z6IklnAOZoVKbm",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 3, 2026",
+      "title": "The NEW Nano Banana 2 + Claude Code = $10k Websites",
+      "summary": "Build $10k-quality websites with Nano Banana 2 and Claude Code",
+      "url": "https://youtu.be/q0TgUtj6vIs",
+      "resources": "https://drive.google.com/drive/folders/1EJAYDqcda1sArWIBoowwoqeyD1aJ1uC8",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 5, 2026",
+      "title": "Turn Claude Code Into Your Executive Assistant in 27 Mins",
+      "summary": "Set up Claude Code as a full executive assistant in 27 minutes",
+      "url": "https://youtu.be/mi4hcipESKQ",
+      "resources": "https://drive.google.com/drive/folders/1jc3wC6cYqqTyltsf2OlXxSQoTx6oZflm",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 5, 2026",
+      "title": "Claude Code Skills Just Got Even Better",
+      "summary": "Latest improvements to Claude Code's skills system",
+      "url": "https://youtu.be/RAZVk5NPNtE",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 6, 2026",
+      "title": "Cursor Automations Clearly Explained (worth learning?)",
+      "summary": "Cursor Automations explained clearly, worth learning or not",
+      "url": "https://youtu.be/NDnv16PY2XQ",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 7, 2026",
+      "title": "Claude Code 2.0 Is Finally Here",
+      "summary": "Everything new in Claude Code 2.0, the biggest update yet",
+      "url": "https://youtu.be/BlNJFa3Btm8",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 7, 2026",
+      "title": "This New Claude Code Feature is a Game Changer",
+      "summary": "Game-changing new Claude Code feature explained step by step",
+      "url": "https://youtu.be/OUyfxhFtGCo",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 8, 2026",
+      "title": "How to Build $10,000 Agentic Workflows (Claude Code Tutorial)",
+      "summary": "Build premium agentic workflows worth $10,000 with Claude Code",
+      "url": "https://youtu.be/vFepZE_wrfg",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 10, 2026",
+      "title": "Google\u00e2\u20ac\u2122s New Tool Just 10x\u00e2\u20ac\u2122d Claude Code",
+      "summary": "Google's new tool supercharges Claude Code productivity by 10x",
+      "url": "https://youtu.be/Wu67lLD8bB0",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 11, 2026",
+      "title": "I Taught Claude Code to Play Tetris... It Broke the World Record",
+      "summary": "Claude Code learns to play Tetris and beats the world record",
+      "url": "https://youtu.be/l1jnOXc52NY",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 11, 2026",
+      "title": "Google's New Model + Claude Code Just Changed RAG Forever",
+      "summary": "Google's new model + Claude Code transforms RAG forever",
+      "url": "https://youtu.be/hem5D1uvy-w",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 12, 2026",
+      "title": "Build & Sell with Claude Code (10+ Hour Course)",
+      "summary": "Comprehensive 10+ hour course on building and selling with Claude Code",
+      "url": "https://youtu.be/mpALXah_PBg",
+      "resources": "https://drive.google.com/drive/folders/1Mnc-l2aeAMsQNPKx43Nh34nSzD20bkB6",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 17, 2026",
+      "title": "Generate Content for 9 Socials on Autopilot with Claude Code",
+      "summary": "Auto-generate content for 9 social platforms with Claude Code",
+      "url": "https://youtu.be/4Zaoo0YbYaw",
+      "resources": "https://drive.google.com/drive/folders/1W6UVgpd4BLZA79mYvtosxlGh7xNixi9L",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 21, 2026",
+      "title": "Stop Learning n8n in 2026...Learn THIS Instead",
+      "summary": "Why you should learn Claude Code instead of n8n in 2026",
+      "url": "https://youtu.be/ZeJXI2MAhj0",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 23, 2026",
+      "title": "How to Build Claude Agent Teams Better Than 99% of People",
+      "summary": "Build Claude Code agent teams better than 99% of people",
+      "url": "https://youtu.be/vDVSGVpB2vc",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 23, 2026",
+      "title": "This $100M AI App Just Changed Software Forever",
+      "summary": "How a $100M AI app is changing the software landscape forever",
+      "url": "https://youtu.be/T6_Ges4j1qY",
+      "resources": "https://drive.google.com/drive/folders/1EAohU9M2NdRCpvziBIHI0WPg7rvaqBtg",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 24, 2026",
+      "title": "Claude Code Just Got Another Huge Upgrade",
+      "summary": "Claude Code's latest major upgrade and what's new",
+      "url": "https://youtu.be/X6EGzi9qm3E",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 24, 2026",
+      "title": "Claude Code Just Dropped Memory 2.0",
+      "summary": "Claude Code's new Memory 2.0 feature explained in depth",
+      "url": "https://youtu.be/LrgfmZkl3nc",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 24, 2026",
+      "title": "STOP Using Bypass Permissions, Use This New Feature Instead",
+      "summary": "Better alternative to bypass permissions in Claude Code",
+      "url": "https://youtu.be/pkSxISewcw8",
+      "resources": "https://drive.google.com/drive/folders/1L9IYpeIXS60MkpbkFJ4_FRHGD0yv6Fym",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 26, 2026",
+      "title": "Claude Code + iMessage is Finally Here.",
+      "summary": "Claude Code now integrates with iMessage, full setup guide",
+      "url": "https://youtu.be/hHlpVeooPrI",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 28, 2026",
+      "title": "Gemini 3.1 Flash Live Just Changed Voice Agents Forever",
+      "summary": "Gemini 3.1 Flash Live transforms voice agent development",
+      "url": "https://youtu.be/Qt3zMBH-FNg",
+      "resources": "https://drive.google.com/drive/folders/1Mbq4I-1zqlSUxVEMzOkHnxNVY3A_vQ9r",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 28, 2026",
+      "title": "Claude Code + Paperclip Just Destroyed OpenClaw",
+      "summary": "Claude Code + Paperclip destroys OpenClaw in head-to-head test",
+      "url": "https://youtu.be/HJ-dwefABss",
+      "resources": "https://drive.google.com/drive/folders/16Q-59pQFeYe1Um84JDScO8irGBkVgGsL",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 30, 2026",
+      "title": "I\u00e2\u20ac\u2122ve Built 500 AI Workflows, This is What Businesses Want in 2026",
+      "summary": "Lessons from 500 AI workflows: what businesses actually want",
+      "url": "https://youtu.be/Y3PcRp5RFzk",
+      "resources": "https://drive.google.com/drive/folders/13pBzMyvJksi5RJLBpRr_Vk-zA1w8vF3C",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q1-2026",
+      "date": "Mar 31, 2026",
+      "title": "Codex Just 10x\u00e2\u20ac\u2122d Claude Code Projects",
+      "summary": "Codex integration makes Claude Code projects 10x more powerful",
+      "url": "https://youtu.be/B2Kh_ZoLVTM",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 1, 2026",
+      "title": "Claude Code Source Code Just Leaked\u00e2\u20ac\u00a6 8 Things You Must Do",
+      "summary": "8 things you must do after the Claude Code source code leak",
+      "url": "https://youtu.be/tXtCK66fPj8",
+      "resources": "https://drive.google.com/drive/folders/14V5Xym3SWQ8RUUScGF5X-YY4sGmIYjFb",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 1, 2026",
+      "title": "Claude Code Just Gave Everyone Virtual Pets (April Fools?)",
+      "summary": "Claude Code's April Fools virtual pets Easter egg explained",
+      "url": "https://youtu.be/JoPmpwpRrBI",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 2, 2026",
+      "title": "18 Claude Code Token Hacks in 18 Minutes",
+      "summary": "18 practical hacks to reduce Claude Code token usage",
+      "url": "https://youtu.be/49V-5Ock8LU",
+      "resources": "https://drive.google.com/drive/folders/1otBAvqeuLexmyNxEIUSnhkcVp2yB5bNb",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 4, 2026",
+      "title": "Ollama + Claude Code = 99% CHEAPER",
+      "summary": "Use Ollama with Claude Code to cut costs by 99%",
+      "url": "https://youtu.be/O2k_qwZA8HU",
+      "resources": "https://drive.google.com/drive/folders/1RSZmdxLSiqH8jlCf-dIAJ3Zoo_bVW_Hp",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 5, 2026",
+      "title": "Andrej Karpathy Just 10x\u00e2\u20ac\u2122d Everyone\u00e2\u20ac\u2122s Claude Code",
+      "summary": "How Andrej Karpathy's techniques 10x'd Claude Code for everyone",
+      "url": "https://youtu.be/sboNwYmH3AY",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 6, 2026",
+      "title": "Planning In Claude Code Just Got a Huge Upgrade",
+      "summary": "Major upgrade to planning mode in Claude Code",
+      "url": "https://youtu.be/T4fXb3sbJIo",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 7, 2026",
+      "title": "Claude\u00e2\u20ac\u2122s New AI Just Changed the Internet Forever",
+      "summary": "Claude's new AI model and how it changes the internet",
+      "url": "https://youtu.be/DG1wRgEpdO4",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 8, 2026",
+      "title": "I Tested Claude's New Managed Agents... What You Need To Know",
+      "summary": "Hands-on test of Claude's new Managed Agents feature",
+      "url": "https://youtu.be/27Y44JYXZJ8",
+      "resources": "https://drive.google.com/drive/folders/1BKy3R1WaEaiXsLH7KTHPDmDhHXOBJbGo",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 9, 2026",
+      "title": "I Gave OpenClaw $10,000 to Trade Stocks",
+      "summary": "Giving OpenClaw $10,000 to autonomously trade stocks",
+      "url": "https://youtu.be/eu8UJtuIi-E",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 9, 2026",
+      "title": "Claude Just Told Us to Stop Using Their Best Model",
+      "summary": "Why Claude says to stop using their best model, and what to use instead",
+      "url": "https://youtu.be/1EPsUXSManU",
+      "resources": "https://github.com/nateherkai/advisor-tool-demo",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 11, 2026",
+      "title": "Seedance 2.0 + Claude Code Creates $10k Websites in Minutes",
+      "summary": "Build stunning websites with Seedance 2.0 looping videos and Claude Code",
+      "url": "https://youtu.be/NvxiSG34mPU",
+      "resources": "https://drive.google.com/drive/folders/1yD1n7UIJqHXxiHCxwqmhzJRew9eYDCfq",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 12, 2026",
+      "title": "Unlock the Next Evolution of Claude Code with One Plugin",
+      "summary": "Install and use the Superpowers plugin to level up Claude Code",
+      "url": "https://youtu.be/4XqVR6xI6Kw",
+      "resources": "https://drive.google.com/drive/folders/14FLA0lcBqKzNVY5VpBtppxo6_LNyiN4H",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 13, 2026",
+      "title": "Claude Code vs Google Antigravity... Which is Better?",
+      "summary": "Compare Claude Code and Antigravity after 100 hours of real testing",
+      "url": "https://youtu.be/99VHENEKA9o",
+      "resources": "https://drive.google.com/drive/folders/1CkR5P-kfzjxiJXveCiGPYrzzXd7ZPyC4",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 14, 2026",
+      "title": "Claude Code Finally Gave Us Scheduled Automations",
+      "summary": "Set up cloud-based scheduled automations with Claude Code routines",
+      "url": "https://youtu.be/ehg4fhydTgs",
+      "resources": "https://drive.google.com/drive/folders/1gk3WhEGd3GpQsq2YgCWbtH4hqgIb0Wwn",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 15, 2026",
+      "title": "Claude + HeyGen Just Changed Content Creation Forever",
+      "summary": "Build a fully automated video production pipeline using Claude Code, HeyGen avatars, and ElevenLabs voice cloning",
+      "url": "https://youtu.be/EbJu9T30nfI",
+      "resources": "https://drive.google.com/drive/folders/1XsUFIYKYnoI5oT8xt9Cjnepf5QX-WacT",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 16, 2026",
+      "title": "Claude Opus 4.7 Just Dropped... Or Did It Really?",
+      "summary": "Breakdown of the Opus 4.7 launch and the 4.6 quality controversy",
+      "url": "https://youtu.be/NiMc2PoTiXo",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 17, 2026",
+      "title": "I Turned Claude Opus 4.7 Into a 24/7 Trader",
+      "summary": "Autonomous Opus 4.7 trading bot on Claude Code cloud routines placing live Alpaca trades",
+      "url": "https://youtu.be/6MC1XqZSltw",
+      "resources": "https://drive.google.com/file/d/1XgwarwhlzcCPUAKVRzF7YiChfKLoLvHK/view?usp=sharing",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 17, 2026",
+      "title": "Claude Design Just Became Unstoppable",
+      "summary": "Set up Claude Design so every AI output stays on-brand across your team",
+      "url": "https://youtu.be/gAoZ95kqG7w",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 18, 2026",
+      "title": "Claude Just Changed Video Editing Forever",
+      "summary": "Two natural-language motion-graphic workflows using Claude Design and Hyperframes with Claude Code",
+      "url": "https://youtu.be/ZNbgOhxhzXg",
+      "resources": "https://github.com/nateherkai/hyperframes-student-kit",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 20, 2026",
+      "title": "How to Manage Your Claude Limits Better Than 99% of People",
+      "summary": "Manage Claude Code session limits better than 99% of people",
+      "url": "https://youtu.be/_qZvORxGqI0",
+      "resources": "https://drive.google.com/drive/folders/1Gec-42rgEGFXpktKAwWLAqvaU--OuAhZ",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 21, 2026",
+      "title": "Claude Design Builds Beautiful 3D Websites Instantly (full course)",
+      "summary": "Full course on building 3D scroll-driven websites in Claude Design",
+      "url": "https://youtu.be/TcFeSjwTo7g",
+      "resources": "https://drive.google.com/drive/folders/1IokjDhZPaLlAEQKRUWIdmMAZV58DQ7CS",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 22, 2026",
+      "title": "OpenAI Image 2 is Nuts. Here are 10 Ways to Use it.",
+      "summary": "10 practical ways to use GPT Image 2, OpenAI's new top-ranked image model",
+      "url": "https://youtu.be/GY-kAiZGLOw",
+      "resources": "https://drive.google.com/drive/folders/1lDDSfutdU7hrZl55LPWV-bJW4T7F40bO",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 23, 2026",
+      "title": "Claude + HyperFrames Just Solved Video Editing",
+      "summary": "End-to-end AI video editing with Claude Code, Video Use, and HyperFrames",
+      "url": "https://youtu.be/Aw3BkmhYu4I",
+      "resources": "https://drive.google.com/drive/folders/1ElzX-mUaOkZFuXTawgn7Bk3_DNPF-rsg",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 23, 2026",
+      "title": "I Tested GPT 5.5 vs Opus 4.7: What You Need to Know",
+      "summary": "Hands-on test of GPT-5.5 vs Opus 4.7 on cost, speed, and token efficiency",
+      "url": "https://youtu.be/WX4rp-vP3zo",
+      "resources": null,
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 25, 2026",
+      "title": "Claude Code + Playwright Automates Literally Anything",
+      "summary": "Automate literally anything on the web with Claude Code and Playwright",
+      "url": "https://youtu.be/J-6pnl5DQg8",
+      "resources": "https://drive.google.com/drive/folders/18jZRRBb9a1h8PFbTKJqrxgpvoTiTRyhR",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 27, 2026",
+      "title": "32 Claude Code Hacks in 16 Mins",
+      "summary": "32 Claude Code hacks across beginner, intermediate, and advanced tiers",
+      "url": "https://youtu.be/jqoFP9QapXI",
+      "resources": "https://drive.google.com/drive/folders/1KYQGVMSgJeBtiGMw4cdBAIDmZgT5mcgi",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Apr 30, 2026",
+      "title": "Claude Design Masterclass: Websites, Videos & More (2 Hours)",
+      "summary": "Two-hour masterclass on building a complete brand and launch video in Claude Design",
+      "url": "https://youtu.be/ovabeVoWrA0",
+      "resources": "https://drive.google.com/drive/folders/14-Evyvr8MvOBQD-hfM3aGxBDfYLOYsQU",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 1, 2026",
+      "title": "Build & Sell Claude Code Operating Systems (2+ Hour Course)",
+      "summary": "Build and sell Claude Code Operating Systems with the Three Ms framework",
+      "url": "https://youtu.be/bCljOfCH8Ms",
+      "resources": "https://drive.google.com/drive/folders/1xp6z0dEdAzU274VviyErquYw5-oSbgPh",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 3, 2026",
+      "title": "I Tried 100+ Claude Code Skills. These 6 Are The Best",
+      "summary": "The 6 Claude Code skills businesses actually pay for",
+      "url": "https://youtu.be/eRS3CmvrOvA",
+      "resources": "https://drive.google.com/drive/folders/1ctUfwOovOz7EJ3zBeDIZdzLKWO4nFuFQ",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 4, 2026",
+      "title": "Building Realistic Voice Agents Has Never Been Easier",
+      "summary": "Build a realistic sales-and-booking voice agent with Claude Code, ElevenLabs, and Cal.com",
+      "url": "https://youtu.be/-cdexJWN8YA",
+      "resources": "https://drive.google.com/drive/folders/1mgGliw6EvO13GI5ATa9zU3Qxceve5qyU",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 5, 2026",
+      "title": "Higgsfield Just Turned Claude Into a Creative Agency",
+      "summary": "Turn Claude Code into a creative agency with Higgsfield for image and video ads",
+      "url": "https://youtu.be/xn6Z5PYyAIE",
+      "resources": "https://drive.google.com/drive/folders/1iRE-2mo8C9_cpvo4kPzZvCxoxG_cd8L7",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 6, 2026",
+      "title": "Master 97% of Codex in 1 Hour (full course)",
+      "summary": "Master 97% of Codex in one hour with a full end-to-end project build",
+      "url": "https://youtu.be/3TdD8Qv5Tk8",
+      "resources": "https://drive.google.com/drive/folders/1g64yKt4QF6TT4XJkyUgIqnDMOS-shuiJ",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 8, 2026",
+      "title": "Overwhelmed By AI? Just Copy My Tech Stack",
+      "summary": "Steal Nate's S/A/B/C tier AI tool stack and the mindset that keeps it lean",
+      "url": "https://youtu.be/35WuZxbAY68",
+      "resources": "https://drive.google.com/drive/folders/1J4XacDfnEuQcet2wKRaWUHrTUXOblac6",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 9, 2026",
+      "title": "Printing Press Just 10x'd Everyone's Claude Code",
+      "summary": "Turn any service into an agent-native CLI in 10 minutes with Printing Press",
+      "url": "https://youtu.be/YHk45NEpspE",
+      "resources": "https://drive.google.com/drive/folders/1oEhmzskmLL1flFAnebGPpoLr7XCnv86j",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 12, 2026",
+      "title": "Multi-Agent Building In Claude Code Somehow Got Easier",
+      "summary": "Claude Code's new agent view turns terminal-tab chaos into one tab",
+      "url": "https://youtu.be/ZAaxx3qyT8g",
+      "resources": "https://drive.google.com/drive/folders/13j4CmIdlYf0BO2pbqNmPLbCFSDwW_tW3",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 12, 2026",
+      "title": "Every Level of Claude Explained in 21 Minutes",
+      "summary": "The 5 levels of Claude every user needs to know",
+      "url": "https://youtu.be/ZRb7D6R64hM",
+      "resources": "https://drive.google.com/drive/folders/1aLs-mLYpivfGm7J8vAwwgmgUjf5dOKvU",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 15, 2026",
+      "title": "I Tested 3 Ways to Deploy Claude Agents (Here's When to Use Each)",
+      "summary": "3 ways to deploy Claude Code agents and when to use each",
+      "url": "https://youtu.be/xJ5oz63mIec",
+      "resources": "https://drive.google.com/drive/folders/1ZnE-Pkg6W3rJKxPblEcrgFEXU3qXVkJk",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 17, 2026",
+      "title": "The AI Career Opportunity Nobody is Talking About in 2026",
+      "summary": "The CAIO wave nobody on AI YouTube is talking about, broken down from IBM data",
+      "url": "https://youtu.be/iIfOprq2kCM",
+      "resources": "https://drive.google.com/drive/folders/1AUFKElWvT-o5MnnUd0HtPViP-eAiso6a",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 18, 2026",
+      "title": "How to Use Your Claude Code Projects in Codex in 5 Mins",
+      "summary": "Convert any Claude Code project to Codex with one natural-language prompt",
+      "url": "https://youtu.be/kB9iMD0EjT8",
+      "resources": "https://drive.google.com/drive/folders/1FsAOu4oKGCdfE4AaNlC3yC8yePwMzrgH",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 21, 2026",
+      "title": "The One Habit That Doubles Your Claude Code Session Limit",
+      "summary": "The one prompt-caching habit that doubles your Claude Code session limit",
+      "url": "https://youtu.be/6cEQEba0i2A",
+      "resources": "https://drive.google.com/drive/folders/1H7mXhGOEYuuLQswTPFf5CZ2Z-vcZWLSd",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 22, 2026",
+      "title": "The AI Offer You Can Sell Tomorrow Morning",
+      "summary": "The rung-zero AI consulting offer you can sell tomorrow morning",
+      "url": "https://youtu.be/Pi-m8R068r4",
+      "resources": "https://drive.google.com/drive/folders/1pajU5tstK3opSCoM7LWBsjeGkhK7zTw6",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 26, 2026",
+      "title": "100 Hours Testing Claude Code vs ChatGPT Codex (honest results)",
+      "summary": "Compare Claude Code and Codex across features, pricing, and three live builds",
+      "url": "https://youtu.be/RLjaUES9P8A",
+      "resources": "https://drive.google.com/drive/folders/1UtKVjCvnj0PE56TEc1vZcqgdeOSrbuZx",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 28, 2026",
+      "title": "Opus 4.8 Just Dropped. Here's How To Actually Use It.",
+      "summary": "How to actually use the new Opus 4.8 effort tiers and prompting principles",
+      "url": "https://youtu.be/q5lg3npxjAc",
+      "resources": "https://drive.google.com/drive/folders/1p-jO2sO0GSt6VRBJkeWQn1Yzw0ujUDSX",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 29, 2026",
+      "title": "I Turned Claude Opus 4.8 Into My Entire AI Operating System",
+      "summary": "Run your entire business from one Claude Code AI operating system",
+      "url": "https://youtu.be/0WDkwMxj13s",
+      "resources": "https://drive.google.com/drive/folders/12WSgT4_Yu-yoBIn4xX2s6o62jjHHG-sW",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "May 30, 2026",
+      "title": "Claude Code Dynamic Workflows Clearly Explained",
+      "summary": "Claude Code dynamic workflows explained, and when they're worth the cost",
+      "url": "https://youtu.be/jZgcWCzxh1I",
+      "resources": "https://drive.google.com/drive/folders/15IX51slGq6veq-qZKx4-LRXMUoG37qaZ",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Jun 3, 2026",
+      "title": "I Tested Every Claude Code Feature, These 12 Are the Best",
+      "summary": "Every Claude Code feature ranked D-to-S, plus the 12 Nate uses daily",
+      "url": "https://youtu.be/vfWTyEreOEc",
+      "resources": "https://drive.google.com/drive/folders/1fcI8jAM7EoXC5xMlVnR6yNq4HKKlQ0dT",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Jun 4, 2026",
+      "title": "The Skill That 10x'd My Claude Code Projects",
+      "summary": "Use the grill me skill to extract what's in your head into AI context",
+      "url": "https://youtu.be/c0kaKxM2pHg",
+      "resources": "https://drive.google.com/drive/folders/1m4YrG7y-AR5bqHoqNVWcFywOze87TJ9_",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Jun 9, 2026",
+      "title": "How to Build Claude Subagents Better Than 99% of People",
+      "summary": "Build Claude Code subagents that keep your context clean and cut costs",
+      "url": "https://youtu.be/e18sdZLwP7o",
+      "resources": "https://drive.google.com/drive/folders/1ZplrrnPj0EOX9e5so63A9HzRATJgjOA6",
+      "status": "pending"
+    },
+    {
+      "quarter": "Q2-2026",
+      "date": "Jun 10, 2026",
+      "title": "I Turned Claude Fable Into The Ultimate Second Brain",
+      "summary": "Turn the new Claude Fable model into your entire second brain",
+      "url": "https://youtu.be/8QQ_INxAhRs",
+      "resources": "https://drive.google.com/drive/folders/1F4ZovwWfnYMXkpLpnyTOa4XFHQANURta",
+      "status": "pending"
+    }
+  ]
+}

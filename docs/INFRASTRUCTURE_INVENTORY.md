@@ -1,6 +1,6 @@
 # Infrastructure Inventory
 
-> **SUPERSEDED (Era 1/2) — historical reference only.** This inventory was written when QNAP admin access and self-hosted n8n were the plan. Both are now off the table: QNAP admin is off-limits (cause of the 2026-05-20 incident); n8n is superseded by ADR-0012. **Tailscale is NOT banned** — Tailscale is only restricted when writing to a server; read-only access via Tailscale is permitted (Daniel + David, 2026-06-11). The live system is Supabase + Next.js on Vercel. For authoritative infrastructure restrictions see `docs/_handoff/GSR-WORKFLOW-CANON.md` sections 13-14.
+> **SUPERSEDED (Era 1/2) — historical reference only.** This inventory was written when QNAP admin access and self-hosted n8n were the plan. Both are now off the table: QNAP admin is off-limits (cause of the 2026-05-20 incident); n8n is superseded by ADR-0012. **Tailscale is NOT banned** — Tailscale is only restricted when writing to a server; read-only access via Tailscale is permitted (Daniel + David, 2026-06-11). The live system is Supabase + Next.js on Vercel. For authoritative infrastructure restrictions see `docs/_handoff/GSR-WORKFLOW-CANON.md` sections 16-17.
 
 **Last updated:** 2026-05-20
 **Owner:** Daniel

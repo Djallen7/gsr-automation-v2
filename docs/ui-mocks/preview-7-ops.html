@@ -1,0 +1,883 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GSR // Mission Control — Overview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0E1116;
+    --panel: #161B22;
+    --panel-2: #1C232C;
+    --border: #2A323D;
+    --text: #C9D1D9;
+    --muted: #8B949E;
+    --green: #3FB950;
+    --amber: #D29922;
+    --red: #F85149;
+    --blue: #58A6FF;
+    --green-dim: rgba(63,185,80,0.16);
+    --amber-dim: rgba(210,153,34,0.16);
+    --red-dim: rgba(248,81,73,0.16);
+    --blue-dim: rgba(88,166,255,0.16);
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "JetBrains Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+    --radius: 8px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mono { font-family: var(--mono); font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 14px 14px 48px;
+  }
+
+  /* ---------- Top status bar ---------- */
+  .topbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 12px 14px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    color: var(--text);
+  }
+  .health-dot {
+    width: 11px; height: 11px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 3px var(--green-dim);
+    flex: 0 0 auto;
+  }
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-left: auto;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.03em;
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 5px 11px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .pill b { color: var(--text); font-weight: 600; }
+  .pill .dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
+  .dot.ok { background: var(--green); }
+  .dot.warn { background: var(--amber); }
+  .dot.crit { background: var(--red); }
+
+  /* ---------- Section titles ---------- */
+  .section-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 22px 2px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title .count {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 1px 8px;
+    color: var(--text);
+    font-size: 11px;
+  }
+
+  /* ---------- Stat panels ---------- */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .stat {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px 14px 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .stat .label {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .stat .num {
+    font-family: var(--mono);
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.05;
+    margin-top: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat .sub {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .stat .accent-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+  }
+  .stat.s-blue .accent-bar { background: var(--blue); }
+  .stat.s-amber .accent-bar { background: var(--amber); }
+  .stat.s-red .accent-bar { background: var(--red); }
+  .stat.s-green .accent-bar { background: var(--green); }
+  .stat.s-blue .num { color: var(--blue); }
+  .stat.s-amber .num { color: var(--amber); }
+  .stat.s-red .num { color: var(--red); }
+  .stat.s-green .num { color: var(--green); }
+  .spark { margin-top: 8px; display: block; height: 22px; width: 100%; }
+
+  /* ---------- Needs attention feed ---------- */
+  .feed {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 13px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  .alert:last-child { border-bottom: 0; }
+  .alert .sev {
+    width: 10px; height: 10px; border-radius: 50%;
+    margin-top: 5px;
+    flex: 0 0 auto;
+  }
+  .alert .sev.crit { background: var(--red); box-shadow: 0 0 0 3px var(--red-dim); }
+  .alert .sev.warn { background: var(--amber); box-shadow: 0 0 0 3px var(--amber-dim); }
+  .alert .sev.info { background: var(--blue); box-shadow: 0 0 0 3px var(--blue-dim); }
+  .alert.pulse .sev.crit { animation: pulse 2.4s ease-in-out infinite; }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 3px var(--red-dim); }
+    50% { box-shadow: 0 0 0 6px rgba(248,81,73,0.08); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .alert.pulse .sev.crit { animation: none; }
+  }
+  .alert .body { flex: 1 1 auto; min-width: 0; }
+  .alert .meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    padding: 1px 7px;
+    border-radius: 4px;
+  }
+  .tag.crit { background: var(--red-dim); color: var(--red); }
+  .tag.warn { background: var(--amber-dim); color: var(--amber); }
+  .tag.info { background: var(--blue-dim); color: var(--blue); }
+  .alert .msg { font-size: 14px; color: var(--text); }
+  .alert .ep { color: var(--text); font-weight: 600; }
+  .alert .act {
+    margin-left: auto;
+    flex: 0 0 auto;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--blue);
+    background: var(--blue-dim);
+    border: 1px solid rgba(88,166,255,0.3);
+    border-radius: 6px;
+    padding: 4px 9px;
+    white-space: nowrap;
+    align-self: center;
+  }
+
+  /* ---------- Fleet status matrix ---------- */
+  .matrix-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .band-head {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--panel-2);
+    padding: 7px 12px;
+    border-bottom: 1px solid var(--border);
+    border-top: 1px solid var(--border);
+  }
+  .band-head:first-child { border-top: 0; }
+
+  /* Desktop table */
+  .matrix-table { width: 100%; border-collapse: collapse; }
+  .matrix-table th, .matrix-table td {
+    padding: 0;
+    text-align: center;
+  }
+  .col-head th {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    padding: 8px 2px;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+  }
+  .col-head th.ep-col { text-align: left; padding-left: 12px; }
+  .col-head th.chip-col { text-align: right; padding-right: 12px; }
+
+  .mrow td { border-bottom: 1px solid var(--border); padding: 7px 2px; }
+  .mrow:last-child td { border-bottom: 0; }
+  .mrow .ep-cell {
+    text-align: left;
+    padding-left: 12px;
+    white-space: nowrap;
+  }
+  .ep-cell .epname { font-family: var(--mono); font-weight: 700; font-size: 13px; color: var(--text); }
+  .ep-cell .epdate { font-family: var(--mono); font-size: 10px; color: var(--muted); }
+
+  .cell-dot {
+    width: 16px; height: 16px;
+    border-radius: 4px;
+    display: inline-block;
+    border: 1px solid transparent;
+  }
+  .c-done { background: var(--green-dim); border-color: rgba(63,185,80,0.5); }
+  .c-done::after { content: ""; }
+  .c-active { background: var(--amber-dim); border-color: rgba(210,153,34,0.6); }
+  .c-block { background: var(--red-dim); border-color: rgba(248,81,73,0.7); }
+  .c-none { background: var(--panel-2); border-color: var(--border); }
+
+  .chip {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 2px 8px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+  .chip.ok { background: var(--green-dim); color: var(--green); }
+  .chip.active { background: var(--amber-dim); color: var(--amber); }
+  .chip.block { background: var(--red-dim); color: var(--red); }
+  .chip.risk { background: var(--amber-dim); color: var(--amber); }
+  .chip.queue { background: var(--panel-2); color: var(--muted); }
+  .chip-cell { text-align: right; padding-right: 12px; }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 11px 14px;
+    border-top: 1px solid var(--border);
+    background: var(--panel);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .cell-dot { width: 12px; height: 12px; }
+
+  /* Mobile cards (hidden on desktop) */
+  .matrix-cards { display: none; }
+
+  .footer-note {
+    margin-top: 18px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 880px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .alert .act { margin-left: 0; align-self: flex-start; margin-top: 6px; }
+    .alert { flex-wrap: wrap; }
+    .alert .body { flex-basis: calc(100% - 22px); }
+
+    /* swap table for cards */
+    .matrix-table { display: none; }
+    .matrix-cards { display: block; }
+    .epcard {
+      padding: 12px 12px 13px;
+      border-bottom: 1px solid var(--border);
+    }
+    .epcard:last-child { border-bottom: 0; }
+    .epcard .head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 9px;
+    }
+    .epcard .head .left { display: flex; flex-direction: column; }
+    .epcard .strip {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 5px;
+    }
+    .epcard .scell {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .epcard .scell .lbl {
+      font-family: var(--mono);
+      font-size: 8.5px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .epcard .scell .cell-dot { width: 100%; height: 14px; border-radius: 4px; }
+  }
+
+  @media (max-width: 420px) {
+    .stats { grid-template-columns: 1fr; }
+    body { font-size: 14px; }
+  }
+
+  /* Visually-hidden helper for screen-reader status text paired with color */
+  .vh {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; border: 0;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Top status bar -->
+  <header class="topbar" role="banner">
+    <div class="brand">
+      <span class="health-dot" aria-hidden="true"></span>
+      GSR // MISSION CONTROL
+    </div>
+    <div class="pills">
+      <span class="pill"><span class="dot ok" aria-hidden="true"></span>PIPELINE: <b>OK</b></span>
+      <span class="pill">NEXT AIR: <b>TUE 8:00PM</b> <b>T-2D</b></span>
+      <span class="pill"><span class="dot warn" aria-hidden="true"></span>SYSTEM: <b>1 ALERT</b></span>
+    </div>
+  </header>
+
+  <!-- Stat panels -->
+  <div class="section-title">Status</div>
+  <section class="stats" aria-label="Key metrics">
+    <div class="stat s-blue">
+      <span class="accent-bar" aria-hidden="true"></span>
+      <div class="label">On Air In</div>
+      <div class="num mono">2d</div>
+      <div class="sub mono">Ep47 // Tue 8:00PM</div>
+    </div>
+    <div class="stat s-amber">
+      <span class="accent-bar" aria-hidden="true"></span>
+      <div class="label">Needs You</div>
+      <div class="num mono">3</div>
+      <div class="sub mono">approvals + imports</div>
+    </div>
+    <div class="stat s-red">
+      <span class="accent-bar" aria-hidden="true"></span>
+      <div class="label">Blocked</div>
+      <div class="num mono">1</div>
+      <div class="sub mono">Ep47 // edit stuck</div>
+    </div>
+    <div class="stat s-green">
+      <span class="accent-bar" aria-hidden="true"></span>
+      <div class="label">In Post</div>
+      <div class="num mono">5</div>
+      <div class="sub mono">Ep47 to Ep51</div>
+      <svg class="spark" viewBox="0 0 120 22" preserveAspectRatio="none" aria-hidden="true">
+        <polyline points="0,17 15,15 30,16 45,11 60,12 75,8 90,9 105,5 120,6"
+          fill="none" stroke="#3FB950" stroke-width="1.5" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Needs attention feed -->
+  <div class="section-title">Needs Attention <span class="count mono">4</span></div>
+  <section class="feed" aria-label="Needs attention feed">
+    <div class="alert pulse">
+      <span class="sev crit" aria-hidden="true"></span>
+      <div class="body">
+        <div class="meta">
+          <span class="tag crit">BLOCKED</span>
+          <span class="vh">Severity: critical.</span>
+          <span>EP47</span><span>// 09:14</span><span>// airs in 2d</span>
+        </div>
+        <div class="msg"><span class="ep">Ep47</span> Edit stuck, airs in 2d. Editor flagged a missing B-roll handoff.</div>
+      </div>
+      <span class="act">Open</span>
+    </div>
+
+    <div class="alert">
+      <span class="sev warn" aria-hidden="true"></span>
+      <div class="body">
+        <div class="meta">
+          <span class="tag warn">APPROVAL</span>
+          <span class="vh">Severity: warning.</span>
+          <span>EP49</span><span>// 08:02</span>
+        </div>
+        <div class="msg"><span class="ep">Ep49</span> 3 graphic ideas await approval.</div>
+      </div>
+      <span class="act">Review</span>
+    </div>
+
+    <div class="alert">
+      <span class="sev warn" aria-hidden="true"></span>
+      <div class="body">
+        <div class="meta">
+          <span class="tag warn">IMPORT</span>
+          <span class="vh">Severity: warning.</span>
+          <span>EP50</span><span>// 07:41</span>
+        </div>
+        <div class="msg"><span class="ep">Ep50</span> Lower thirds ready, type YES to import.</div>
+      </div>
+      <span class="act">Confirm</span>
+    </div>
+
+    <div class="alert">
+      <span class="sev info" aria-hidden="true"></span>
+      <div class="body">
+        <div class="meta">
+          <span class="tag info">SCHEDULE</span>
+          <span class="vh">Severity: info.</span>
+          <span>EP51</span><span>// 07:10</span><span>// airs 12d</span>
+        </div>
+        <div class="msg"><span class="ep">Ep51</span> No guest booked, airs in 12d.</div>
+      </div>
+      <span class="act">Book</span>
+    </div>
+  </section>
+
+  <!-- Fleet status matrix -->
+  <div class="section-title">Fleet Status Matrix</div>
+  <section class="matrix-card" aria-label="Fleet status matrix across nine production stages">
+
+    <!-- Desktop / tablet table -->
+    <table class="matrix-table">
+      <thead>
+        <tr class="col-head">
+          <th class="ep-col">Episode</th>
+          <th>Script</th>
+          <th>Guests</th>
+          <th>Graphics</th>
+          <th>ProPres</th>
+          <th>Record</th>
+          <th>Edit</th>
+          <th>Metadata</th>
+          <th>Distrib</th>
+          <th>Aired</th>
+          <th class="chip-col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="11" class="band-head">In Post</td></tr>
+
+        <tr class="mrow">
+          <td class="ep-cell"><div class="epname">Ep47</div><div class="epdate">Tue Jun 09</div></td>
+          <td><span class="cell-dot c-done" title="Script: done"></span></td>
+          <td><span class="cell-dot c-done" title="Guests: done"></span></td>
+          <td><span class="cell-dot c-done" title="Graphics: done"></span></td>
+          <td><span class="cell-dot c-done" title="ProPresenter: done"></span></td>
+          <td><span class="cell-dot c-done" title="Record: done"></span></td>
+          <td><span class="cell-dot c-block" title="Edit: blocked"></span></td>
+          <td><span class="cell-dot c-none" title="Metadata: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Distribute: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Aired: not started"></span></td>
+          <td class="chip-cell"><span class="chip block">BLOCKED</span></td>
+        </tr>
+
+        <tr class="mrow">
+          <td class="ep-cell"><div class="epname">Ep48</div><div class="epdate">Tue Jun 16</div></td>
+          <td><span class="cell-dot c-done" title="Script: done"></span></td>
+          <td><span class="cell-dot c-done" title="Guests: done"></span></td>
+          <td><span class="cell-dot c-done" title="Graphics: done"></span></td>
+          <td><span class="cell-dot c-done" title="ProPresenter: done"></span></td>
+          <td><span class="cell-dot c-done" title="Record: done"></span></td>
+          <td><span class="cell-dot c-active" title="Edit: active"></span></td>
+          <td><span class="cell-dot c-none" title="Metadata: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Distribute: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Aired: not started"></span></td>
+          <td class="chip-cell"><span class="chip active">EDITING</span></td>
+        </tr>
+
+        <tr class="mrow">
+          <td class="ep-cell"><div class="epname">Ep49</div><div class="epdate">Tue Jun 23</div></td>
+          <td><span class="cell-dot c-done" title="Script: done"></span></td>
+          <td><span class="cell-dot c-done" title="Guests: done"></span></td>
+          <td><span class="cell-dot c-active" title="Graphics: active"></span></td>
+          <td><span class="cell-dot c-done" title="ProPresenter: done"></span></td>
+          <td><span class="cell-dot c-done" title="Record: done"></span></td>
+          <td><span class="cell-dot c-active" title="Edit: active"></span></td>
+          <td><span class="cell-dot c-none" title="Metadata: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Distribute: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Aired: not started"></span></td>
+          <td class="chip-cell"><span class="chip active">EDITING</span></td>
+        </tr>
+
+        <tr class="mrow">
+          <td class="ep-cell"><div class="epname">Ep50</div><div class="epdate">Tue Jun 30</div></td>
+          <td><span class="cell-dot c-done" title="Script: done"></span></td>
+          <td><span class="cell-dot c-done" title="Guests: done"></span></td>
+          <td><span class="cell-dot c-done" title="Graphics: done"></span></td>
+          <td><span class="cell-dot c-active" title="ProPresenter: active"></span></td>
+          <td><span class="cell-dot c-done" title="Record: done"></span></td>
+          <td><span class="cell-dot c-none" title="Edit: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Metadata: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Distribute: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Aired: not started"></span></td>
+          <td class="chip-cell"><span class="chip active">IMPORT</span></td>
+        </tr>
+
+        <tr class="mrow">
+          <td class="ep-cell"><div class="epname">Ep51</div><div class="epdate">Tue Jul 07</div></td>
+          <td><span class="cell-dot c-done" title="Script: done"></span></td>
+          <td><span class="cell-dot c-block" title="Guests: blocked, no guest booked"></span></td>
+          <td><span class="cell-dot c-active" title="Graphics: active"></span></td>
+          <td><span class="cell-dot c-none" title="ProPresenter: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Record: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Edit: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Metadata: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Distribute: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Aired: not started"></span></td>
+          <td class="chip-cell"><span class="chip risk">AT RISK</span></td>
+        </tr>
+
+        <tr><td colspan="11" class="band-head">In Production</td></tr>
+
+        <tr class="mrow">
+          <td class="ep-cell"><div class="epname">Ep52</div><div class="epdate">Tue Jul 14</div></td>
+          <td><span class="cell-dot c-done" title="Script: done"></span></td>
+          <td><span class="cell-dot c-done" title="Guests: done"></span></td>
+          <td><span class="cell-dot c-active" title="Graphics: active"></span></td>
+          <td><span class="cell-dot c-none" title="ProPresenter: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Record: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Edit: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Metadata: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Distribute: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Aired: not started"></span></td>
+          <td class="chip-cell"><span class="chip active">PREP</span></td>
+        </tr>
+
+        <tr class="mrow">
+          <td class="ep-cell"><div class="epname">Ep53</div><div class="epdate">Tue Jul 21</div></td>
+          <td><span class="cell-dot c-done" title="Script: done"></span></td>
+          <td><span class="cell-dot c-active" title="Guests: active"></span></td>
+          <td><span class="cell-dot c-none" title="Graphics: not started"></span></td>
+          <td><span class="cell-dot c-none" title="ProPresenter: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Record: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Edit: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Metadata: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Distribute: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Aired: not started"></span></td>
+          <td class="chip-cell"><span class="chip active">PREP</span></td>
+        </tr>
+
+        <tr class="mrow">
+          <td class="ep-cell"><div class="epname">Ep54</div><div class="epdate">Tue Jul 28</div></td>
+          <td><span class="cell-dot c-active" title="Script: active"></span></td>
+          <td><span class="cell-dot c-none" title="Guests: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Graphics: not started"></span></td>
+          <td><span class="cell-dot c-none" title="ProPresenter: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Record: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Edit: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Metadata: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Distribute: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Aired: not started"></span></td>
+          <td class="chip-cell"><span class="chip queue">SCRIPTING</span></td>
+        </tr>
+
+        <tr class="mrow">
+          <td class="ep-cell"><div class="epname">Ep55</div><div class="epdate">Tue Aug 04</div></td>
+          <td><span class="cell-dot c-active" title="Script: active"></span></td>
+          <td><span class="cell-dot c-none" title="Guests: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Graphics: not started"></span></td>
+          <td><span class="cell-dot c-none" title="ProPresenter: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Record: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Edit: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Metadata: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Distribute: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Aired: not started"></span></td>
+          <td class="chip-cell"><span class="chip queue">SCRIPTING</span></td>
+        </tr>
+
+        <tr class="mrow">
+          <td class="ep-cell"><div class="epname">Ep56</div><div class="epdate">Tue Aug 11</div></td>
+          <td><span class="cell-dot c-none" title="Script: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Guests: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Graphics: not started"></span></td>
+          <td><span class="cell-dot c-none" title="ProPresenter: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Record: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Edit: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Metadata: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Distribute: not started"></span></td>
+          <td><span class="cell-dot c-none" title="Aired: not started"></span></td>
+          <td class="chip-cell"><span class="chip queue">QUEUED</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Mobile cards -->
+    <div class="matrix-cards" aria-hidden="false">
+      <div class="band-head">In Post</div>
+
+      <div class="epcard">
+        <div class="head">
+          <div class="left"><span class="epname mono">Ep47</span><span class="epdate mono">Tue Jun 09</span></div>
+          <span class="chip block">BLOCKED</span>
+        </div>
+        <div class="strip">
+          <div class="scell"><span class="cell-dot c-done" title="Script: done"></span><span class="lbl">Scr</span></div>
+          <div class="scell"><span class="cell-dot c-done" title="Guests: done"></span><span class="lbl">Gst</span></div>
+          <div class="scell"><span class="cell-dot c-done" title="Graphics: done"></span><span class="lbl">Gfx</span></div>
+          <div class="scell"><span class="cell-dot c-done" title="ProPresenter: done"></span><span class="lbl">PrP</span></div>
+          <div class="scell"><span class="cell-dot c-done" title="Record: done"></span><span class="lbl">Rec</span></div>
+          <div class="scell"><span class="cell-dot c-block" title="Edit: blocked"></span><span class="lbl">Edt</span></div>
+          <div class="scell"><span class="cell-dot c-none" title="Metadata: not started"></span><span class="lbl">Met</span></div>
+          <div class="scell"><span class="cell-dot c-none" title="Distribute: not started"></span><span class="lbl">Dst</span></div>
+          <div class="scell"><span class="cell-dot c-none" title="Aired: not started"></span><span class="lbl">Air</span></div>
+        </div>
+      </div>
+
+      <div class="epcard">
+        <div class="head">
+          <div class="left"><span class="epname mono">Ep48</span><span class="epdate mono">Tue Jun 16</span></div>
+          <span class="chip active">EDITING</span>
+        </div>
+        <div class="strip">
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Scr</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Gst</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Gfx</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">PrP</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Rec</span></div>
+          <div class="scell"><span class="cell-dot c-active"></span><span class="lbl">Edt</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Met</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Dst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Air</span></div>
+        </div>
+      </div>
+
+      <div class="epcard">
+        <div class="head">
+          <div class="left"><span class="epname mono">Ep49</span><span class="epdate mono">Tue Jun 23</span></div>
+          <span class="chip active">EDITING</span>
+        </div>
+        <div class="strip">
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Scr</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Gst</span></div>
+          <div class="scell"><span class="cell-dot c-active"></span><span class="lbl">Gfx</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">PrP</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Rec</span></div>
+          <div class="scell"><span class="cell-dot c-active"></span><span class="lbl">Edt</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Met</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Dst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Air</span></div>
+        </div>
+      </div>
+
+      <div class="epcard">
+        <div class="head">
+          <div class="left"><span class="epname mono">Ep50</span><span class="epdate mono">Tue Jun 30</span></div>
+          <span class="chip active">IMPORT</span>
+        </div>
+        <div class="strip">
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Scr</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Gst</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Gfx</span></div>
+          <div class="scell"><span class="cell-dot c-active"></span><span class="lbl">PrP</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Rec</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Edt</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Met</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Dst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Air</span></div>
+        </div>
+      </div>
+
+      <div class="epcard">
+        <div class="head">
+          <div class="left"><span class="epname mono">Ep51</span><span class="epdate mono">Tue Jul 07</span></div>
+          <span class="chip risk">AT RISK</span>
+        </div>
+        <div class="strip">
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Scr</span></div>
+          <div class="scell"><span class="cell-dot c-block" title="Guests: blocked"></span><span class="lbl">Gst</span></div>
+          <div class="scell"><span class="cell-dot c-active"></span><span class="lbl">Gfx</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">PrP</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Rec</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Edt</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Met</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Dst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Air</span></div>
+        </div>
+      </div>
+
+      <div class="band-head">In Production</div>
+
+      <div class="epcard">
+        <div class="head">
+          <div class="left"><span class="epname mono">Ep52</span><span class="epdate mono">Tue Jul 14</span></div>
+          <span class="chip active">PREP</span>
+        </div>
+        <div class="strip">
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Scr</span></div>
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Gst</span></div>
+          <div class="scell"><span class="cell-dot c-active"></span><span class="lbl">Gfx</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">PrP</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Rec</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Edt</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Met</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Dst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Air</span></div>
+        </div>
+      </div>
+
+      <div class="epcard">
+        <div class="head">
+          <div class="left"><span class="epname mono">Ep53</span><span class="epdate mono">Tue Jul 21</span></div>
+          <span class="chip active">PREP</span>
+        </div>
+        <div class="strip">
+          <div class="scell"><span class="cell-dot c-done"></span><span class="lbl">Scr</span></div>
+          <div class="scell"><span class="cell-dot c-active"></span><span class="lbl">Gst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Gfx</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">PrP</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Rec</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Edt</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Met</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Dst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Air</span></div>
+        </div>
+      </div>
+
+      <div class="epcard">
+        <div class="head">
+          <div class="left"><span class="epname mono">Ep54</span><span class="epdate mono">Tue Jul 28</span></div>
+          <span class="chip queue">SCRIPTING</span>
+        </div>
+        <div class="strip">
+          <div class="scell"><span class="cell-dot c-active"></span><span class="lbl">Scr</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Gst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Gfx</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">PrP</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Rec</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Edt</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Met</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Dst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Air</span></div>
+        </div>
+      </div>
+
+      <div class="epcard">
+        <div class="head">
+          <div class="left"><span class="epname mono">Ep55</span><span class="epdate mono">Tue Aug 04</span></div>
+          <span class="chip queue">SCRIPTING</span>
+        </div>
+        <div class="strip">
+          <div class="scell"><span class="cell-dot c-active"></span><span class="lbl">Scr</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Gst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Gfx</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">PrP</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Rec</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Edt</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Met</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Dst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Air</span></div>
+        </div>
+      </div>
+
+      <div class="epcard">
+        <div class="head">
+          <div class="left"><span class="epname mono">Ep56</span><span class="epdate mono">Tue Aug 11</span></div>
+          <span class="chip queue">QUEUED</span>
+        </div>
+        <div class="strip">
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Scr</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Gst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Gfx</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">PrP</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Rec</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Edt</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Met</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Dst</span></div>
+          <div class="scell"><span class="cell-dot c-none"></span><span class="lbl">Air</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend" aria-label="Legend">
+      <span><span class="cell-dot c-done" aria-hidden="true"></span> Done</span>
+      <span><span class="cell-dot c-active" aria-hidden="true"></span> Active</span>
+      <span><span class="cell-dot c-block" aria-hidden="true"></span> Blocked</span>
+      <span><span class="cell-dot c-none" aria-hidden="true"></span> Not started</span>
+    </div>
+  </section>
+
+  <div class="footer-note">GSR Mission Control // Overview // placeholder data // refreshed 09:14</div>
+
+</div>
+</body>
+</html>

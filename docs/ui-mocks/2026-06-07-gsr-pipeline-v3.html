@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en" data-role="daniel" data-screen="today">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>GSR Pipeline v3 - Your Move</title>
+<style>
+/* =========================================================================
+   GSR Pipeline UI v3  (mock only, 2026-06-07)
+   One self-contained file, no JS or font dependencies.
+
+   What this is, per the 2026-06-07 strategy doc:
+   - A QUEUE-FIRST information architecture, not a wall of widgets.
+   - Screen 1 TODAY / "Your Move": a ranked exception queue in 3 tiers.
+   - Screen 2 SCHEDULE: the single oversight visual, a 9-stage Pipeline Matrix.
+   - Screen 3 EPISODE: one episode's 9-stage vertical pipeline spine.
+   - One focal point per screen. One shipped theme. No theme switcher.
+
+   Color discipline (HARD rule):
+     RED   = needs attention / at risk          (--bad)
+     GREEN = done                               (--good)
+     GOLD  = brand / active only, never a warning (--accent)
+     VIOLET= deferred                           (--violet)
+     neutral ink for everything else.
+   Numbers are placeholders.
+   ========================================================================= */
+
+:root{
+  /* shape / motion */
+  --r: 18px;
+  --r-sm: 12px;
+  --pad: clamp(14px, 2.4vw, 22px);
+  --ease: cubic-bezier(.22,.61,.36,1);
+  --ui-font: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+
+  /* ONE shipped theme: restrained astronomy navy + a single gold accent. */
+  --bg0:#070d1a; --bg1:#0b1730; --bg2:#0e2046;
+  --ink:#eef3fb; --ink-dim:#a9bcdb; --ink-faint:#7388ad;
+  --accent:#e7b54e;            /* gold: brand + active only */
+  --accent-deep:#c8922f;
+  --good:#46d39a;              /* green: done */
+  --bad:#f4675f;               /* red: needs attention / at risk - the ONLY red */
+  --violet:#9b78e0;            /* violet: deferred */
+
+  --surface:rgba(255,255,255,.045);
+  --surface-2:rgba(255,255,255,.028);
+  --edge:rgba(148,176,222,.18);
+  --edge-low:rgba(120,150,200,.10);
+  --hi:rgba(255,255,255,.5);
+  --shadow:0 1px 0 rgba(255,255,255,.05) inset, 0 14px 34px -18px rgba(0,0,0,.72);
+}
+
+*{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+html,body{margin:0; height:100%;}
+body{
+  font:15px/1.45 var(--ui-font);
+  color:var(--ink);
+  font-variant-numeric:tabular-nums;
+  background-color:var(--bg0);
+  /* NEAR-FLAT quiet dark gradient. No drifting nebula, no starfield behind data. */
+  background:
+    radial-gradient(1200px 720px at 84% -12%, rgba(231,181,78,.10), transparent 60%),
+    radial-gradient(900px 700px at 4% 108%, rgba(80,120,200,.08), transparent 58%),
+    linear-gradient(170deg, var(--bg0) 0%, var(--bg1) 52%, var(--bg2) 100%);
+  background-attachment:fixed;
+  min-height:100%;
+}
+
+/* base surfaces - restrained, glass reserved for the hero/top bar only */
+.surface{
+  background:var(--surface);
+  border:1px solid var(--edge);
+  border-radius:var(--r);
+  box-shadow:var(--shadow);
+}
+.surface-2{
+  background:var(--surface-2);
+  border:1px solid var(--edge-low);
+  border-radius:var(--r-sm);
+}
+
+/* =========================================================================
+   LAB CONTROL BAR (mock scaffolding, not part of the shipped chrome)
+   ========================================================================= */
+.lab{
+  position:sticky; top:0; z-index:60;
+  display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center;
+  padding:9px clamp(12px,3vw,22px);
+  background:rgba(7,13,26,.82);
+  backdrop-filter:blur(14px) saturate(150%);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);
+  border-bottom:1px solid var(--edge);
+  font-size:12.5px;
+}
+.lab .tag{font:700 10px/1 var(--ui-font); text-transform:uppercase; letter-spacing:.9px; color:var(--ink-faint)}
+.lab .grp{display:flex; gap:4px; padding:4px; border-radius:999px; background:var(--surface-2); border:1px solid var(--edge-low)}
+.lab button{
+  appearance:none; border:0; cursor:pointer; font:inherit; font-size:12px; font-weight:600;
+  color:var(--ink-dim); background:transparent; padding:6px 12px; border-radius:999px;
+  transition:.2s var(--ease); white-space:nowrap;
+}
+.lab button[aria-pressed="true"]{
+  color:#0b1226;
+  background:linear-gradient(150deg, var(--accent), color-mix(in oklab, var(--accent) 55%, #fff));
+}
+.lab .note{margin-left:auto; color:var(--ink-faint); font-size:11px}
+
+/* =========================================================================
+   APP SHELL
+   ========================================================================= */
+.wrap{
+  max-width:1140px; margin:0 auto;
+  padding:16px clamp(12px,3vw,22px) 96px; /* bottom pad clears the tab bar */
+}
+
+/* HERO line - the single calm glass element, one focal anchor. */
+.hero{
+  display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  padding:14px 18px; margin-bottom:18px;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), var(--surface));
+  backdrop-filter:blur(16px) saturate(150%);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  border:1px solid var(--edge); border-radius:var(--r);
+  box-shadow:var(--shadow);
+}
+.hero .kick{font:700 10.5px/1 var(--ui-font); letter-spacing:.9px; text-transform:uppercase; color:var(--accent)}
+.hero .line{font:600 clamp(15px,2.6vw,19px)/1.25 var(--ui-font); margin-top:4px}
+.hero .line b{font-weight:700}
+.hero .chip{
+  margin-left:auto; font-size:12px; font-weight:600; padding:6px 12px; border-radius:999px;
+  white-space:nowrap;
+}
+.hero .chip.g{color:var(--good); background:color-mix(in oklab,var(--good) 16%,transparent); border:1px solid color-mix(in oklab,var(--good) 38%,transparent)}
+.hero .chip.w{color:var(--ink); background:color-mix(in oklab,var(--accent) 16%,transparent); border:1px solid color-mix(in oklab,var(--accent) 40%,transparent)}
+.hero .chip.b{color:var(--bad); background:color-mix(in oklab,var(--bad) 14%,transparent); border:1px solid color-mix(in oklab,var(--bad) 42%,transparent)}
+
+.screen-head{display:flex; align-items:baseline; gap:12px; margin:2px 0 12px}
+.screen-head h1{margin:0; font:700 clamp(18px,3vw,23px)/1.1 var(--ui-font); letter-spacing:.2px}
+.screen-head .meta{font-size:12.5px; color:var(--ink-dim)}
+
+/* =========================================================================
+   SCREEN 1: TODAY / YOUR MOVE  (exception queue, 3 collapsible tiers)
+   ========================================================================= */
+.tier{margin-bottom:12px}
+.tier summary{
+  list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px;
+  padding:11px 14px; border-radius:var(--r-sm);
+  font:700 12.5px/1 var(--ui-font); letter-spacing:.3px;
+  background:var(--surface-2); border:1px solid var(--edge-low);
+}
+.tier summary::-webkit-details-marker{display:none}
+.tier summary .caret{transition:transform .2s var(--ease); color:var(--ink-faint); font-size:11px}
+.tier[open] summary .caret{transform:rotate(90deg)}
+.tier summary .dot{width:9px; height:9px; border-radius:50%; flex:none}
+.tier summary .ct{margin-left:auto; font-size:11px; font-weight:700; color:var(--ink-dim);
+  padding:3px 9px; border-radius:999px; background:var(--surface-2); border:1px solid var(--edge-low)}
+.tier.blockers summary{border-color:color-mix(in oklab,var(--bad) 45%,transparent); background:color-mix(in oklab,var(--bad) 9%,transparent)}
+.tier.blockers .dot{background:var(--bad)}
+.tier.due .dot{background:var(--accent)}
+.tier.fyi .dot{background:var(--ink-faint)}
+.tier .items{display:flex; flex-direction:column; gap:8px; margin-top:8px}
+
+.item{
+  display:flex; align-items:center; gap:14px; padding:13px 14px;
+  background:var(--surface); border:1px solid var(--edge); border-radius:var(--r-sm);
+}
+.item.flag{border-color:color-mix(in oklab,var(--bad) 42%,transparent)}
+.item .body{min-width:0; flex:1}
+.item .verb{font:600 14px/1.25 var(--ui-font)}
+.item .verb b{font-weight:700}
+.item .why{margin-top:3px; font-size:12px; color:var(--ink-dim)}
+.item .why .red{color:var(--bad); font-weight:600}
+.item .why .vlt{color:var(--violet); font-weight:600}
+.item .why .snip{color:var(--ink); font-style:italic}
+.item .act{
+  appearance:none; border:0; cursor:pointer; font:inherit; font-weight:600; font-size:12.5px;
+  padding:9px 14px; border-radius:10px; white-space:nowrap; flex:none;
+  color:#0b1226; background:linear-gradient(150deg, var(--accent), color-mix(in oklab,var(--accent) 58%,#fff));
+  transition:transform .15s var(--ease);
+}
+.item .act:active{transform:scale(.97)}
+.item .act.ghost{background:transparent; color:var(--ink); border:1px solid var(--edge)}
+.item .act.yes{background:linear-gradient(150deg, var(--good), color-mix(in oklab,var(--good) 60%,#fff)); color:#04210f}
+
+.empty{
+  padding:40px var(--pad); text-align:center; color:var(--ink-dim);
+  background:var(--surface); border:1px solid var(--edge); border-radius:var(--r);
+}
+.empty .e-ico{font-size:30px; margin-bottom:12px; color:var(--good)}
+.empty b{display:block; color:var(--ink); font-size:15px; margin-bottom:6px}
+
+/* =========================================================================
+   SCREEN 2: SCHEDULE  (the Pipeline Matrix - the one oversight visual)
+   ========================================================================= */
+.matrix-scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:var(--r);}
+table.matrix{
+  border-collapse:separate; border-spacing:0; width:100%; min-width:760px;
+  background:var(--surface); border:1px solid var(--edge); border-radius:var(--r); overflow:hidden;
+}
+table.matrix th, table.matrix td{padding:0; text-align:center; vertical-align:middle}
+table.matrix thead th{
+  font:700 10px/1.25 var(--ui-font); text-transform:uppercase; letter-spacing:.4px; color:var(--ink-dim);
+  padding:10px 4px 9px; border-bottom:1px solid var(--edge); position:sticky; top:0;
+  background:color-mix(in oklab, var(--bg1) 88%, transparent);
+}
+table.matrix thead th .cleared{display:block; margin-top:4px; font-size:9.5px; font-weight:700; color:var(--ink-faint); letter-spacing:.2px}
+/* frozen left column: episode label + air date */
+.colhead-ep{text-align:left !important; padding-left:14px !important}
+.frozen{
+  position:sticky; left:0; z-index:2; text-align:left;
+  background:color-mix(in oklab, var(--bg1) 94%, transparent);
+  border-right:1px solid var(--edge); padding:10px 12px !important; min-width:148px;
+}
+thead .frozen{background:color-mix(in oklab, var(--bg1) 92%, transparent)}
+.ep-label{font:700 13px/1.2 var(--ui-font)}
+.ep-air{font-size:11px; color:var(--ink-dim); margin-top:2px}
+/* air-date alarm: row label turns red within ~7 days of air and not yet at Distribute */
+.frozen.near .ep-label, .frozen.near .ep-air{color:var(--bad)}
+.frozen.near{box-shadow:inset 3px 0 0 var(--bad)}
+
+/* band separator rows */
+.band td{
+  text-align:left; padding:8px 14px !important;
+  font:700 10.5px/1 var(--ui-font); text-transform:uppercase; letter-spacing:.9px; color:var(--accent);
+  background:color-mix(in oklab, var(--bg2) 40%, transparent); border-top:1px solid var(--edge); border-bottom:1px solid var(--edge-low);
+}
+table.matrix tbody td{border-bottom:1px solid var(--edge-low); height:46px}
+table.matrix tbody tr:last-child td{border-bottom:0}
+
+/* cell glyphs - shape AND color, colorblind-safe */
+.cell{display:inline-grid; place-items:center; width:22px; height:22px; margin:0 auto; position:relative}
+.cell.done{border-radius:50%; background:var(--good); color:#04210f; font-size:12px; font-weight:800}
+.cell.prog{border-radius:50%; border:2.5px solid var(--accent); animation:pulse 2.2s var(--ease) infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 color-mix(in oklab,var(--accent) 55%,transparent)} 50%{box-shadow:0 0 0 4px color-mix(in oklab,var(--accent) 0%,transparent)}}
+.cell.none{border-radius:50%; border:2px solid var(--edge); }
+.cell.bad{border-radius:4px; background:var(--bad); color:#fff; font-size:12px; font-weight:800}
+.cell.deferred{border-radius:3px; border:1.5px dashed var(--violet)}
+@media (prefers-reduced-motion:reduce){ .cell.prog{animation:none} }
+
+/* right-edge status chip */
+.colhead-chip{padding-right:12px !important}
+td.chipcell{padding-right:12px !important; text-align:right}
+.schip{font-size:10.5px; font-weight:700; padding:4px 9px; border-radius:999px; white-space:nowrap; display:inline-block}
+.schip.g{color:var(--good); background:color-mix(in oklab,var(--good) 14%,transparent); border:1px solid color-mix(in oklab,var(--good) 36%,transparent)}
+.schip.w{color:var(--ink); background:color-mix(in oklab,var(--accent) 16%,transparent); border:1px solid color-mix(in oklab,var(--accent) 40%,transparent)}
+.schip.b{color:var(--bad); background:color-mix(in oklab,var(--bad) 14%,transparent); border:1px solid color-mix(in oklab,var(--bad) 42%,transparent)}
+
+tbody tr.eprow{cursor:pointer}
+tbody tr.eprow:hover td:not(.frozen){background:rgba(255,255,255,.025)}
+tbody tr.eprow:hover .frozen{background:color-mix(in oklab, var(--bg2) 60%, transparent)}
+
+.legend{display:flex; flex-wrap:wrap; gap:14px 20px; margin-top:14px; padding:12px 16px; font-size:12px; color:var(--ink-dim)}
+.legend span{display:inline-flex; align-items:center; gap:8px}
+
+/* MOBILE matrix: collapse rows to a single 9-segment color-only bar */
+.matrix-mobile{display:none}
+.mrow{display:flex; align-items:center; gap:10px; padding:12px 14px; border-bottom:1px solid var(--edge-low)}
+.mrow:last-child{border-bottom:0}
+.mrow .minfo{min-width:0; flex:1}
+.mrow .mep{font:700 13px/1.2 var(--ui-font)}
+.mrow .mep.near{color:var(--bad)}
+.mrow .mair{font-size:11px; color:var(--ink-dim)}
+.mrow .mair.near{color:var(--bad)}
+.segbar{display:flex; gap:2px; margin-top:7px}
+.segbar i{flex:1; height:8px; border-radius:2px; background:var(--edge)}
+.segbar i.done{background:var(--good)}
+.segbar i.prog{background:var(--accent)}
+.segbar i.bad{background:var(--bad); border-radius:1px}
+.segbar i.deferred{background:transparent; border:1px dashed var(--violet)}
+.mband{padding:9px 14px; font:700 10.5px/1 var(--ui-font); text-transform:uppercase; letter-spacing:.9px; color:var(--accent); background:color-mix(in oklab, var(--bg2) 40%, transparent); border-top:1px solid var(--edge); border-bottom:1px solid var(--edge-low)}
+
+/* =========================================================================
+   SCREEN 3: EPISODE drill  (vertical 9-stage spine)
+   ========================================================================= */
+.crumb{font-size:12.5px; color:var(--ink-dim); margin-bottom:14px}
+.crumb b{color:var(--ink)}
+.crumb .sep{color:var(--ink-faint); margin:0 6px}
+
+.spine{position:relative; padding-left:30px; margin-top:6px}
+.spine::before{content:""; position:absolute; left:11px; top:6px; bottom:6px; width:2px; background:var(--edge); border-radius:2px}
+.stage{position:relative; padding:10px 0 14px}
+.stage .knob{
+  position:absolute; left:-30px; top:11px; width:24px; height:24px; border-radius:50%;
+  display:grid; place-items:center; background:var(--bg1); border:2px solid var(--edge);
+  font-size:12px; font-weight:800; color:var(--ink-faint); z-index:1;
+}
+.stage.done .knob{background:var(--good); border-color:var(--good); color:#04210f}
+.stage.active .knob{border-color:var(--accent); color:var(--accent); animation:pulse 2.2s var(--ease) infinite}
+.stage.bad .knob{background:var(--bad); border-color:var(--bad); color:#fff; border-radius:5px}
+.stage.deferred .knob{border:1.5px dashed var(--violet); color:var(--violet)}
+.stage .sname{font:600 14px/1.2 var(--ui-font)}
+.stage.active .sname{color:var(--accent)}
+.stage.bad .sname{color:var(--bad)}
+.stage .sowner{font-size:11.5px; color:var(--ink-faint); margin-left:8px; font-weight:600}
+.stage .ssum{font-size:12.5px; color:var(--ink-dim); margin-top:3px}
+
+.stagecard{margin-top:18px; padding:var(--pad); }
+.stagecard .kick{font:700 10.5px/1 var(--ui-font); letter-spacing:.9px; text-transform:uppercase; color:var(--accent)}
+.stagecard h3{margin:6px 0 4px; font:700 17px/1.2 var(--ui-font)}
+.stagecard p{margin:0 0 14px; color:var(--ink-dim); font-size:13px}
+.stagecard .primary{
+  appearance:none; border:0; cursor:pointer; font:inherit; font-weight:700; font-size:13.5px;
+  padding:11px 18px; border-radius:11px; color:#0b1226;
+  background:linear-gradient(150deg, var(--accent), color-mix(in oklab,var(--accent) 58%,#fff));
+}
+
+/* =========================================================================
+   BOTTOM TAB BAR (mobile nav model demo - visual only)
+   ========================================================================= */
+.tabbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:50;
+  display:flex; padding:8px 10px calc(8px + env(safe-area-inset-bottom));
+  background:rgba(8,14,28,.9);
+  backdrop-filter:blur(16px) saturate(150%);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  border-top:1px solid var(--edge);
+}
+.tabbar button{
+  appearance:none; border:0; cursor:pointer; flex:1; background:transparent;
+  display:flex; flex-direction:column; align-items:center; gap:3px;
+  font:600 10.5px/1 var(--ui-font); color:var(--ink-faint); padding:5px 0; position:relative;
+}
+.tabbar button[aria-pressed="true"]{color:var(--accent)}
+.tabbar .ic{font-size:18px; line-height:1}
+.tabbar .badge{
+  position:absolute; top:0; left:calc(50% + 8px); min-width:16px; height:16px; padding:0 4px;
+  border-radius:999px; background:var(--bad); color:#fff; font:700 10px/16px var(--ui-font); text-align:center;
+}
+
+/* =========================================================================
+   SCREEN VISIBILITY
+   ========================================================================= */
+.screen{display:none}
+[data-screen="today"]    .screen.today{display:block}
+[data-screen="schedule"] .screen.schedule{display:block}
+[data-screen="episode"]  .screen.episode{display:block}
+
+.foot{font-size:11px; color:var(--ink-faint); text-align:center; margin-top:28px; line-height:1.7}
+.foot b{color:var(--ink-dim)}
+
+/* =========================================================================
+   RESPONSIVE
+   ========================================================================= */
+@media (max-width:760px){
+  .matrix-scroll{display:none}
+  .matrix-mobile{display:block; background:var(--surface); border:1px solid var(--edge); border-radius:var(--r); overflow:hidden}
+  .legend{padding:12px 4px}
+  .item{flex-wrap:wrap}
+  .item .act{margin-left:auto}
+}
+@media (min-width:761px){
+  .matrix-mobile{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== LAB CONTROL BAR (mock only) ===================== -->
+<div class="lab">
+  <span class="tag">Role</span>
+  <div class="grp" id="roleSeg">
+    <button data-role="daniel" aria-pressed="true">Daniel</button>
+    <button data-role="myriam">Myriam</button>
+    <button data-role="isaac">Isaac</button>
+    <button data-role="intern">Interns</button>
+  </div>
+  <span class="tag">Screen</span>
+  <div class="grp" id="screenSeg">
+    <button data-screen="today" aria-pressed="true">Today</button>
+    <button data-screen="schedule">Schedule</button>
+    <button data-screen="episode">Episode</button>
+  </div>
+  <span class="note">Lab scaffolding. Shipped app has no role or screen switcher here.</span>
+</div>
+
+<div class="wrap">
+
+  <!-- ============================ SCREEN 1: TODAY ============================ -->
+  <section class="screen today">
+    <div class="hero">
+      <div>
+        <div class="kick">This week on air</div>
+        <div class="line"><b>Ep 49 - The Fine-Tuned Cosmos</b>, Tue 8:00p</div>
+      </div>
+      <span class="chip g" id="heroChip">On track</span>
+    </div>
+    <div class="screen-head"><h1 id="todayTitle">Your move</h1><span class="meta" id="todayMeta"></span></div>
+    <div id="queue"></div>
+  </section>
+
+  <!-- ============================ SCREEN 2: SCHEDULE ============================ -->
+  <section class="screen schedule">
+    <div class="screen-head"><h1>Schedule</h1><span class="meta" id="schedMeta">Both batches, 9 stages each. Will they make air?</span></div>
+
+    <!-- DESKTOP matrix -->
+    <div class="matrix-scroll">
+      <table class="matrix" id="matrix"></table>
+    </div>
+
+    <!-- MOBILE collapsed bars -->
+    <div class="matrix-mobile" id="matrixMobile"></div>
+
+    <div class="legend surface-2">
+      <span><i class="cell done" style="width:18px;height:18px">&#10003;</i> Done</span>
+      <span><i class="cell prog" style="width:18px;height:18px;animation:none"></i> In progress</span>
+      <span><i class="cell none" style="width:18px;height:18px"></i> Not started</span>
+      <span><i class="cell bad" style="width:18px;height:18px">!</i> Blocked / at risk</span>
+      <span><i class="cell deferred" style="width:18px;height:18px"></i> Deferred</span>
+    </div>
+  </section>
+
+  <!-- ============================ SCREEN 3: EPISODE ============================ -->
+  <section class="screen episode">
+    <div class="crumb">In post <span class="sep">&rsaquo;</span> <b>Ep 47 - The Designed Cell</b></div>
+    <div class="screen-head"><h1>Ep 47 pipeline</h1><span class="meta">Air Tue Jun 9, 8:00p</span></div>
+
+    <div class="spine" id="spine"></div>
+
+    <div class="stagecard surface" id="stageCard"></div>
+  </section>
+
+  <p class="foot">
+    <b>GSR Pipeline v3 - mock only.</b> Queue-first IA per the 2026-06-07 strategy. One self-contained file,
+    no external dependencies. Numbers are placeholders.
+  </p>
+
+</div>
+
+<!-- ===================== BOTTOM TAB BAR (visual demo) ===================== -->
+<nav class="tabbar" id="tabbar">
+  <button data-screen="today" aria-pressed="true"><span class="ic">&#9678;</span>Today</button>
+  <button data-screen="episode"><span class="ic">&#9635;</span>Episodes</button>
+  <button data-screen="schedule"><span class="ic">&#10003;</span>Approvals<span class="badge">3</span></button>
+  <button><span class="ic">&#8943;</span>More</button>
+</nav>
+
+<script>
+/* =====================================================================
+   DATA: 10 plausible GSR episodes, Season 3, consecutive Tuesday airs.
+   5 "in production" + 5 "in post". Stage states vary; includes one
+   hard blocker and one at-risk-near-air. Stages are the 9 real ones.
+   state codes: done | prog | none | bad | deferred
+   ===================================================================== */
+const STAGES = ["Script","Guests","Graphics","ProPres","Record","Edit","Meta+Thumb","Distribute","Aired"];
+
+// near = within ~7 days of air & not yet at Distribute -> air-date alarm.
+const EPISODES = [
+  // ----- IN POST (closest to air) -----
+  { band:"post", ep:"Ep 47", title:"The Designed Cell", air:"Tue Jun 9", near:true,
+    chip:"behind", chipc:"b",
+    s:["done","done","done","done","done","bad","none","none","none"] }, // BLOCKER: Edit blocked, air in 2 days
+  { band:"post", ep:"Ep 48", title:"Echoes of the Flood", air:"Tue Jun 16", near:false,
+    chip:"watch", chipc:"w",
+    s:["done","done","done","done","done","prog","none","none","none"] },
+  { band:"post", ep:"Ep 49", title:"The Fine-Tuned Cosmos", air:"Tue Jun 23", near:false,
+    chip:"on track", chipc:"g",
+    s:["done","done","prog","none","done","none","none","none","none"] },
+  { band:"post", ep:"Ep 50", title:"Origins of Life", air:"Tue Jun 30", near:false,
+    chip:"on track", chipc:"g",
+    s:["done","done","prog","none","done","none","none","none","none"] },
+  { band:"post", ep:"Ep 51", title:"The Young Sun", air:"Tue Jul 7", near:false,
+    chip:"watch", chipc:"w",
+    s:["done","bad","none","none","none","none","none","none","none"] }, // AT RISK: guest unconfirmed
+  // ----- IN PRODUCTION -----
+  { band:"prod", ep:"Ep 52", title:"Designed DNA", air:"Tue Jul 14", near:false,
+    chip:"on track", chipc:"g",
+    s:["done","done","prog","none","none","none","none","none","none"] },
+  { band:"prod", ep:"Ep 53", title:"Ice Age Earth", air:"Tue Jul 21", near:false,
+    chip:"on track", chipc:"g",
+    s:["done","prog","none","none","none","none","none","none","none"] },
+  { band:"prod", ep:"Ep 54", title:"The Created Kinds", air:"Tue Jul 28", near:false,
+    chip:"on track", chipc:"g",
+    s:["prog","done","none","none","none","none","none","none","none"] },
+  { band:"prod", ep:"Ep 55", title:"Signatures in Stone", air:"Tue Aug 4", near:false,
+    chip:"on track", chipc:"g",
+    s:["prog","prog","none","none","none","none","none","deferred","none"] }, // OTA distribute deferred
+  { band:"prod", ep:"Ep 56", title:"Light From Distant Stars", air:"Tue Aug 11", near:false,
+    chip:"on track", chipc:"g",
+    s:["none","none","none","none","none","none","none","none","none"] },
+];
+
+/* =====================================================================
+   ROLE config:
+   - today: hero + queue items (verb, episode, why, action, optional flag)
+   - cols:  which of the 9 stage columns this role sees in the matrix
+   ===================================================================== */
+const ALL_COLS = [0,1,2,3,4,5,6,7,8];
+const ROLES = {
+  daniel: {
+    label:"Daniel - owner",
+    cols: ALL_COLS, // sees all 9
+    hero:{chip:"behind", chipc:"b", line:"<b>Ep 49 - The Fine-Tuned Cosmos</b>, Tue 8:00p"},
+    today:[
+      { tier:"blockers", flag:true, verb:'<b>Unblock Ep 47</b> - edit is stuck', why:'<span class="red">Airs in 2 days and not past Edit.</span> Isaac needs the corrected b-roll export.', act:"Open", actc:"ghost" },
+      { tier:"blockers", flag:true, verb:'<b>Confirm a guest</b> for Ep 51 - The Young Sun', why:'<span class="red">Unconfirmed guest, airs Jul 7.</span> Booking blocks graphics and record.', act:"Confirm", actc:"" },
+      { tier:"due", verb:'<b>Approve</b> graphic ideas for Ep 49', why:"3 new full-screen concepts from Isaac waiting on your yes.", act:"Approve", actc:"" },
+      { tier:"due", verb:'<b>Type YES</b> to import 18 lower-thirds for Ep 49', why:'Dry-run: <b>18 graphics</b>, 0 rejected. Live import is gated on your YES.', act:"Type YES", actc:"yes" },
+      { tier:"due", verb:'<b>Approve final title</b> for Ep 48 - Echoes of the Flood', why:"Myriam needs the locked title before she writes metadata.", act:"Approve", actc:"" },
+      { tier:"fyi", verb:'<b>Ep 50</b> graphics moved to in progress', why:"Isaac started the main-interview set. No action needed.", act:"View", actc:"ghost" },
+    ],
+  },
+  myriam: {
+    label:"Myriam - metadata, thumbnails, uploads, mark-aired",
+    cols:[6,7,8], // Meta+Thumb -> Distribute -> Aired
+    hero:{chip:"watch", chipc:"w", line:"<b>Ep 47 - The Designed Cell</b>, Tue 8:00p"},
+    today:[
+      { tier:"blockers", flag:true, verb:'<b>Rumble upload</b> for Ep 46 - Fossils in Layers', why:'<span class="red">Manual upload, sync is broken.</span> YouTube already live; Rumble must be done by hand.', act:"Open Rumble", actc:"" },
+      { tier:"due", verb:'<b>Write metadata</b> for Ep 48 - Echoes of the Flood', why:"Title is locked. Description, tags, and category 28 needed before publish.", act:"Write", actc:"" },
+      { tier:"due", verb:'<b>Make thumbnail</b> for Ep 48 (16:9)', why:"No thumbnail yet. Needed for the YouTube schedule.", act:"Make", actc:"" },
+      { tier:"due", verb:'<b>YouTube upload</b> for Ep 47 - The Designed Cell', why:"Export lands today; upload is queued and pending the final file.", act:"Open", actc:"ghost" },
+      { tier:"fyi", verb:'<b>Mark Ep 46 aired</b> once Rumble is up', why:"Last step after every target is live. Not yet ready.", act:"Mark aired", actc:"ghost" },
+    ],
+  },
+  isaac: {
+    label:"Isaac - graphics, ProPresenter, edit/export",
+    cols:[2,3,5], // Graphics, ProPres, Edit
+    hero:{chip:"behind", chipc:"b", line:"<b>Ep 47 - The Designed Cell</b>, Tue 8:00p"},
+    today:[
+      { tier:"blockers", flag:true, verb:'<b>Finish edit</b> on Ep 47 - The Designed Cell', why:'<span class="red">Airs in 2 days, edit blocked.</span> Waiting on corrected b-roll, then color and -20 LKFS export.', act:"Open editor", actc:"" },
+      { tier:"due", verb:'<b>Push graphics to ProPresenter</b> for Ep 49', why:'17 of 22 slides ready. <b>Human-gated</b> - you confirm before any push, test machine only.', act:"Review push", actc:"ghost" },
+      { tier:"due", verb:'<b>Build 5 graphics</b> for Ep 49 main interview', why:"Fine-structure diagram, 2 quote cards, Psalm 19:1, CTA still open.", act:"Open tracker", actc:"" },
+      { tier:"due", verb:"<b>David's review notes</b> on Ep 48", why:"2 notes from David on the rough cut. Address before export.", act:"View notes", actc:"ghost" },
+      { tier:"fyi", verb:'<b>Export due</b> for Ep 47 by end of day', why:"Final to Dropbox after edit clears. Blocked upstream right now.", act:"View", actc:"ghost" },
+    ],
+  },
+  intern: {
+    label:"Interns - graphics + b-roll (no editing)",
+    cols:[2,3,5], // Graphics, ProPres, Edit (Edit shown read-only context)
+    hero:{chip:"on track", chipc:"g", line:"<b>Ep 49 - The Fine-Tuned Cosmos</b>, Tue 8:00p"},
+    today:[
+      { tier:"due", verb:'<b>Design</b> the cosmic-constants chart for Ep 49', why:'Approved by Daniel. Script: <span class="snip">"shows just how narrow these ranges are."</span>', act:"Open tracker", actc:"" },
+      { tier:"due", verb:'<b>Design</b> the fine-structure diagram for Ep 49', why:'Approved. Script: <span class="snip">"if the constant shifted even slightly, stars would not form."</span>', act:"Open tracker", actc:"" },
+      { tier:"due", verb:'<b>Source b-roll</b> for Ep 49 cold open', why:'Need a galaxy flythrough. Script: <span class="snip">"the precise constants that make our universe possible."</span>', act:"Source", actc:"ghost" },
+      { tier:"fyi", verb:'<b>Source b-roll</b> for Ep 50 - Origins of Life', why:"Early ask. Tide pools and amino-acid animation. Not urgent yet.", act:"Source", actc:"ghost" },
+    ],
+  },
+};
+
+/* ---- Build the TODAY queue for a role ------------------------------- */
+const TIERS = [
+  { key:"blockers", cls:"blockers", title:"Blockers - needs you now" },
+  { key:"due",      cls:"due",      title:"Due before Tuesday" },
+  { key:"fyi",      cls:"fyi",      title:"FYI" },
+];
+
+function renderToday(role){
+  const cfg = ROLES[role];
+  document.getElementById("heroChip").className = "chip " + cfg.hero.chipc;
+  document.getElementById("heroChip").textContent =
+    cfg.hero.chipc==="g" ? "On track" : cfg.hero.chipc==="w" ? "Watch" : "Behind";
+  document.querySelector(".today .hero .line").innerHTML = cfg.hero.line;
+  document.getElementById("todayMeta").textContent = cfg.label;
+
+  const q = document.getElementById("queue");
+  const items = cfg.today || [];
+
+  // Empty state is a feature.
+  if(!items.length){
+    q.innerHTML = `<div class="empty">
+      <div class="e-ico">&#10003;</div>
+      <b>Nothing needs you right now.</b>
+      Next air Tue 8p, on track.
+    </div>`;
+    return;
+  }
+
+  let html = "";
+  TIERS.forEach(t=>{
+    const list = items.filter(i=>i.tier===t.key);
+    if(!list.length) return;
+    const openAttr = t.key==="fyi" ? "" : "open";
+    html += `<details class="tier ${t.cls}" ${openAttr}>
+      <summary><span class="caret">&rsaquo;</span><span class="dot"></span>${t.title}<span class="ct">${list.length}</span></summary>
+      <div class="items">`;
+    list.forEach(i=>{
+      html += `<div class="item ${i.flag?"flag":""}">
+        <div class="body">
+          <div class="verb">${i.verb}</div>
+          <div class="why">${i.why}</div>
+        </div>
+        <button class="act ${i.actc||""}">${i.act}</button>
+      </div>`;
+    });
+    html += `</div></details>`;
+  });
+  q.innerHTML = html;
+}
+
+/* ---- Build the SCHEDULE matrix for a role --------------------------- */
+function cellGlyph(state){
+  if(state==="done")     return `<i class="cell done">&#10003;</i>`;
+  if(state==="prog")     return `<i class="cell prog"></i>`;
+  if(state==="bad")      return `<i class="cell bad">!</i>`;
+  if(state==="deferred") return `<i class="cell deferred"></i>`;
+  return `<i class="cell none"></i>`;
+}
+
+function renderSchedule(role){
+  const cols = ROLES[role].cols;
+
+  // per-column "n/10 cleared" = count of done across all 10 episodes
+  const cleared = cols.map(c=> EPISODES.filter(e=>e.s[c]==="done").length );
+
+  // ---- DESKTOP TABLE ----
+  let thead = `<thead><tr>
+    <th class="frozen colhead-ep">Episode &middot; air</th>`;
+  cols.forEach((c,ix)=>{
+    thead += `<th>${STAGES[c]}<span class="cleared">${cleared[ix]}/10</span></th>`;
+  });
+  thead += `<th class="colhead-chip">Status</th></tr></thead>`;
+
+  function bandRows(band, label){
+    let rows = `<tr class="band"><td colspan="${cols.length+2}">${label}</td></tr>`;
+    EPISODES.filter(e=>e.band===band).forEach(e=>{
+      rows += `<tr class="eprow" data-ep="${e.ep}">
+        <td class="frozen ${e.near?"near":""}">
+          <div class="ep-label">${e.ep}</div>
+          <div class="ep-air">${e.title} &middot; ${e.air}</div>
+        </td>`;
+      cols.forEach(c=>{ rows += `<td>${cellGlyph(e.s[c])}</td>`; });
+      rows += `<td class="chipcell"><span class="schip ${e.chipc}">${e.chip}</span></td></tr>`;
+    });
+    return rows;
+  }
+
+  document.getElementById("matrix").innerHTML =
+    thead + `<tbody>${bandRows("post","In post")}${bandRows("prod","In production")}</tbody>`;
+
+  // ---- MOBILE BARS (9-segment color-only, full 9 regardless of role filter) ----
+  function mBand(band,label){
+    let h = `<div class="mband">${label}</div>`;
+    EPISODES.filter(e=>e.band===band).forEach(e=>{
+      let segs = "";
+      e.s.forEach(st=>{
+        const cls = st==="done"?"done":st==="prog"?"prog":st==="bad"?"bad":st==="deferred"?"deferred":"";
+        segs += `<i class="${cls}"></i>`;
+      });
+      h += `<div class="mrow" data-ep="${e.ep}">
+        <div class="minfo">
+          <div class="mep ${e.near?"near":""}">${e.ep} - ${e.title}</div>
+          <div class="mair ${e.near?"near":""}">${e.air}</div>
+          <div class="segbar">${segs}</div>
+        </div>
+        <span class="schip ${e.chipc}">${e.chip}</span>
+      </div>`;
+    });
+    return h;
+  }
+  document.getElementById("matrixMobile").innerHTML = mBand("post","In post") + mBand("prod","In production");
+
+  // tap a row -> drill to Episode screen
+  document.querySelectorAll('[data-ep]').forEach(el=>{
+    el.addEventListener('click', ()=> setScreen('episode'));
+  });
+}
+
+/* ---- EPISODE drill (Ep 47, the blocker, as the worked example) ------ */
+const EP47 = {
+  crumb:"In post", ep:"Ep 47 - The Designed Cell",
+  stages:[
+    { name:"Script",     owner:"Daniel",  state:"done",   sum:"Locked and imported." },
+    { name:"Guests",     owner:"Daniel",  state:"done",   sum:"Dr. R. Marek confirmed." },
+    { name:"Graphics",   owner:"Isaac",   state:"done",   sum:"22 of 22 created, loaded to ProPres." },
+    { name:"ProPresenter",owner:"Isaac",  state:"done",   sum:"All slides pushed, test machine." },
+    { name:"Record",     owner:"Daniel",  state:"done",   sum:"Recorded May 30, full take." },
+    { name:"Edit / Review / Export", owner:"Isaac", state:"bad", sum:"Blocked: waiting on corrected b-roll export. Airs in 2 days." },
+    { name:"Metadata + Thumbnail", owner:"Myriam", state:"none", sum:"Not started, waiting on final cut." },
+    { name:"Distribute", owner:"Myriam",  state:"none",   sum:"6 targets queued behind export." },
+    { name:"Aired",      owner:"Myriam",  state:"none",   sum:"Tue Jun 9, 8:00p." },
+  ],
+  active:5, // the Edit stage (the blocker) is the current focus
+};
+
+function renderEpisode(){
+  let html = "";
+  EP47.stages.forEach((st,i)=>{
+    const cls = st.state==="done"?"done":st.state==="bad"?"bad":st.state==="deferred"?"deferred":(i===EP47.active?"active":"");
+    const knob = st.state==="done"?"&#10003;":st.state==="bad"?"!":(i+1);
+    html += `<div class="stage ${cls}">
+      <div class="knob">${knob}</div>
+      <div class="sname">${st.name}<span class="sowner">${st.owner}</span></div>
+      <div class="ssum">${st.sum}</div>
+    </div>`;
+  });
+  document.getElementById("spine").innerHTML = html;
+
+  const cur = EP47.stages[EP47.active];
+  document.getElementById("stageCard").innerHTML = `
+    <div class="kick">Current stage &middot; needs attention</div>
+    <h3>${cur.name}</h3>
+    <p>${cur.sum} Owner: ${cur.owner}. This is the one thing standing between Ep 47 and air.</p>
+    <button class="primary">Open editor and clear b-roll</button>`;
+}
+
+/* ---- Wiring --------------------------------------------------------- */
+let currentRole = "daniel";
+
+function setRole(role){
+  currentRole = role;
+  document.documentElement.setAttribute("data-role", role);
+  renderToday(role);
+  renderSchedule(role);
+}
+
+function setScreen(screen){
+  document.documentElement.setAttribute("data-screen", screen);
+  // sync both the lab switcher and the bottom tab bar
+  document.querySelectorAll('#screenSeg button').forEach(b=>
+    b.setAttribute('aria-pressed', b.dataset.screen===screen ? "true":"false"));
+  document.querySelectorAll('#tabbar button').forEach(b=>
+    b.setAttribute('aria-pressed', b.dataset.screen===screen ? "true":"false"));
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+document.getElementById("roleSeg").addEventListener("click", e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  [...e.currentTarget.children].forEach(c=>c.setAttribute("aria-pressed","false"));
+  b.setAttribute("aria-pressed","true");
+  setRole(b.dataset.role);
+});
+document.getElementById("screenSeg").addEventListener("click", e=>{
+  const b = e.target.closest("button"); if(!b) return;
+  setScreen(b.dataset.screen);
+});
+document.getElementById("tabbar").addEventListener("click", e=>{
+  const b = e.target.closest("button"); if(!b || !b.dataset.screen) return;
+  setScreen(b.dataset.screen);
+});
+
+/* ---- Boot ----------------------------------------------------------- */
+renderEpisode();
+setRole("daniel");
+setScreen("today");
+</script>
+</body>
+</html>

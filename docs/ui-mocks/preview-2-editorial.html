@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Genesis Science Report - Overview</title>
+<style>
+  :root {
+    --paper:    #FBFAF7;
+    --ink:      #1A1A17;
+    --ink-2:    #6B6862;
+    --ink-3:    #A6A29A;
+    --hairline: #E8E4DC;
+    --accent:   #B4471F;
+    --accent-bg:#F4E6DE;
+    --ok:       #2F6F4E;
+    --watch:    #B8860B;
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, Consolas, monospace;
+    --serif: "Iowan Old Style", Georgia, "Times New Roman", serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  .wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 28px 24px 56px;
+  }
+
+  /* ---------- Header ---------- */
+  header.masthead {
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 14px;
+    margin-bottom: 22px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.05;
+    letter-spacing: 0.2px;
+    margin: 0 0 10px;
+  }
+  .counter-strip {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--ink-2);
+    text-transform: uppercase;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    align-items: baseline;
+  }
+  .counter-strip .seg { white-space: nowrap; }
+  .counter-strip .sep { color: var(--ink-3); padding: 0 10px; }
+  .counter-strip .hot { color: var(--accent); font-weight: 700; }
+  .counter-strip .num { color: var(--ink); font-weight: 700; }
+
+  /* ---------- Section labels ---------- */
+  .sec-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    margin: 0 0 10px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+  }
+  .sec-label::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: var(--hairline);
+    position: relative;
+    top: -3px;
+  }
+
+  /* ---------- What needs you ledger ---------- */
+  .ledger {
+    border: 1px solid var(--hairline);
+    margin-bottom: 30px;
+  }
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 18px 64px 1fr auto;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .ledger-row:last-child { border-bottom: 0; }
+  .ledger-row.david {
+    background: var(--accent-bg);
+  }
+  .ledger-dot {
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    justify-self: center;
+  }
+  .ledger-ep {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .ledger-action {
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .ledger-row.david .ledger-action { color: #6e2912; }
+  .due-chip {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--ink-2);
+    border: 1px solid var(--hairline);
+    background: var(--paper);
+    border-radius: 2px;
+    padding: 3px 8px;
+    white-space: nowrap;
+  }
+  .due-chip.today { color: var(--accent); border-color: var(--accent); }
+  .due-chip.soon  { color: var(--watch); border-color: var(--watch); }
+
+  /* ---------- Batch grid ---------- */
+  .grid-scroll { overflow: visible; }
+
+  table.batch {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  table.batch th, table.batch td {
+    padding: 0;
+    text-align: center;
+    border-bottom: 1px solid var(--hairline);
+  }
+  /* sticky stage header */
+  table.batch thead th {
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+    z-index: 3;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink-2);
+    font-size: 10.5px;
+    padding: 9px 0 8px;
+    border-bottom: 1px solid var(--ink);
+    text-transform: uppercase;
+  }
+  thead th.ep-head {
+    text-align: left;
+    padding-left: 10px;
+    z-index: 4;
+    left: 0;
+  }
+  thead th.status-head { text-align: right; padding-right: 12px; }
+
+  /* frozen left column */
+  td.ep-cell {
+    position: sticky;
+    left: 0;
+    background: var(--paper);
+    z-index: 2;
+    text-align: left;
+    padding: 9px 14px 9px 10px;
+    border-right: 1px solid var(--hairline);
+    min-width: 200px;
+  }
+  .ep-code {
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--ink);
+    letter-spacing: 0.02em;
+  }
+  .ep-title {
+    font-family: var(--serif);
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.15;
+  }
+  .ep-air {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    margin-top: 2px;
+  }
+  tr.behind td.ep-cell .ep-code,
+  tr.behind td.ep-cell .ep-title { color: var(--accent); }
+
+  td.glyph-cell {
+    width: 7%;
+    height: 40px;
+    line-height: 0;
+  }
+  tbody tr:hover td { background: #F4F1EA; }
+  tbody tr:hover td.ep-cell { background: #F4F1EA; }
+
+  /* glyphs */
+  .g {
+    display: inline-block;
+    width: 13px; height: 13px;
+    line-height: 0;
+    vertical-align: middle;
+  }
+  .g svg { display: block; }
+
+  /* band divider */
+  tr.band-head td {
+    background: var(--paper);
+    text-align: left;
+    padding: 16px 10px 6px;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    border-bottom: 1px solid var(--hairline);
+  }
+  tr.band-head.heavy td { border-top: 2px solid var(--ink); }
+  tr.band-head td.sticky-band {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: var(--paper);
+  }
+
+  /* status chip in trailing column */
+  td.status-cell {
+    text-align: right;
+    padding-right: 12px;
+    width: 92px;
+  }
+  .status-chip {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
+    border: 1px solid;
+  }
+  .status-chip.ontrack { color: var(--ok);     border-color: #BFD8CB; background: #ECF3EF; }
+  .status-chip.watch   { color: var(--watch);  border-color: #E4D2A0; background: #F6F0DE; }
+  .status-chip.behind  { color: var(--accent); border-color: #E2BCAC; background: var(--accent-bg); }
+
+  /* legend */
+  .legend {
+    margin-top: 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-2);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: center;
+    letter-spacing: 0.02em;
+  }
+  .legend .item { display: inline-flex; align-items: center; gap: 6px; }
+  .legend .stages {
+    color: var(--ink-3);
+    width: 100%;
+    margin-top: 6px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ---------- Phone cards (hidden on desktop) ---------- */
+  .cards { display: none; }
+
+  @media (max-width: 720px) {
+    .wrap { padding: 20px 14px 44px; }
+    .masthead h1 { font-size: 24px; }
+    .grid-scroll { display: none; }
+    .cards { display: block; }
+
+    .card {
+      border: 1px solid var(--hairline);
+      margin-bottom: 12px;
+      padding: 12px 14px;
+    }
+    .card.behind { border-color: var(--accent); }
+    .card-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 4px;
+    }
+    .card-code {
+      font-family: var(--mono);
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0.02em;
+    }
+    .card.behind .card-code { color: var(--accent); }
+    .card-title {
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+    .card.behind .card-title { color: var(--accent); }
+    .card-glyphs {
+      font-family: var(--mono);
+      display: flex;
+      gap: 7px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .card-now {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink-2);
+      letter-spacing: 0.02em;
+    }
+    .card-now b { color: var(--ink); }
+    .card .due-chip { margin-left: auto; }
+    .band-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      margin: 18px 0 10px;
+      border-top: 2px solid var(--ink);
+      padding-top: 10px;
+    }
+    .band-title.first { border-top: 0; padding-top: 0; margin-top: 4px; }
+  }
+
+  /* desktop: hide phone-only band titles handled by media query */
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="masthead">
+    <h1>Genesis Science Report</h1>
+    <div class="counter-strip" aria-label="Status summary">
+      <span class="seg"><span class="num">PRE 5</span> / <span class="num">POST 5</span></span>
+      <span class="sep">·</span>
+      <span class="seg hot">3 NEED YOU</span>
+      <span class="sep">·</span>
+      <span class="seg">NEXT AIR TUE 8:00PM</span>
+    </div>
+  </header>
+
+  <!-- ===================== WHAT NEEDS YOU ===================== -->
+  <h2 class="sec-label">What needs you</h2>
+  <div class="ledger" role="list" aria-label="Actions that need you">
+
+    <div class="ledger-row" role="listitem">
+      <span class="ledger-dot" aria-hidden="true"></span>
+      <span class="ledger-ep">EP 49</span>
+      <span class="ledger-action">Approve graphic ideas</span>
+      <span class="due-chip" aria-label="due in 2 days">2d</span>
+    </div>
+
+    <div class="ledger-row" role="listitem">
+      <span class="ledger-dot" aria-hidden="true"></span>
+      <span class="ledger-ep">EP 50</span>
+      <span class="ledger-action">Type YES to import lower thirds</span>
+      <span class="due-chip today" aria-label="due today">today</span>
+    </div>
+
+    <div class="ledger-row david" role="listitem">
+      <span class="ledger-dot" aria-hidden="true"></span>
+      <span class="ledger-ep">EP 51</span>
+      <span class="ledger-action">Confirm guest · airs soon, behind</span>
+      <span class="due-chip soon" aria-label="due in 1 day">1d</span>
+    </div>
+
+    <div class="ledger-row" role="listitem">
+      <span class="ledger-dot" aria-hidden="true"></span>
+      <span class="ledger-ep">EP 48</span>
+      <span class="ledger-action">Final title</span>
+      <span class="due-chip" aria-label="due in 4 days">4d</span>
+    </div>
+
+  </div>
+
+  <!-- ===================== BATCH GRID (desktop) ===================== -->
+  <h2 class="sec-label">Batch grid</h2>
+  <div class="grid-scroll">
+    <table class="batch">
+      <thead>
+        <tr>
+          <th class="ep-head" scope="col">Episode</th>
+          <th scope="col" title="Script">SCR</th>
+          <th scope="col" title="Guest">GST</th>
+          <th scope="col" title="Graphics">GFX</th>
+          <th scope="col" title="ProPresenter">PPR</th>
+          <th scope="col" title="Record">REC</th>
+          <th scope="col" title="Edit">EDT</th>
+          <th scope="col" title="Metadata">MTA</th>
+          <th scope="col" title="Distribution">DST</th>
+          <th scope="col" title="Air">AIR</th>
+          <th class="status-head" scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- ===== BAND: IN POST ===== -->
+        <tr class="band-head" aria-hidden="true">
+          <td class="sticky-band">In post</td>
+          <td colspan="10"></td>
+        </tr>
+
+        <!-- EP 47: blocked at EDT -->
+        <tr>
+          <td class="ep-cell">
+            <span class="ep-code">EP 47</span>
+            <div class="ep-title">Fingerprints of Design</div>
+            <div class="ep-air">Air May 27</div>
+          </td>
+          <td class="glyph-cell" data-stage="SCR" aria-label="Script: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GST" aria-label="Guest: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GFX" aria-label="Graphics: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="PPR" aria-label="ProPresenter: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="REC" aria-label="Record: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="EDT" aria-label="Edit: blocked"><span class="g g-blocked" role="img" aria-label="blocked"></span></td>
+          <td class="glyph-cell" data-stage="MTA" aria-label="Metadata: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="DST" aria-label="Distribution: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="AIR" aria-label="Air: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="status-cell"><span class="status-chip behind">Behind</span></td>
+        </tr>
+
+        <!-- EP 48 -->
+        <tr>
+          <td class="ep-cell">
+            <span class="ep-code">EP 48</span>
+            <div class="ep-title">The Ordered Cosmos</div>
+            <div class="ep-air">Air Jun 03</div>
+          </td>
+          <td class="glyph-cell" data-stage="SCR" aria-label="Script: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GST" aria-label="Guest: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GFX" aria-label="Graphics: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="PPR" aria-label="ProPresenter: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="REC" aria-label="Record: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="EDT" aria-label="Edit: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="MTA" aria-label="Metadata: active"><span class="g g-active" role="img" aria-label="active"></span></td>
+          <td class="glyph-cell" data-stage="DST" aria-label="Distribution: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="AIR" aria-label="Air: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="status-cell"><span class="status-chip ontrack">On track</span></td>
+        </tr>
+
+        <!-- EP 49 -->
+        <tr>
+          <td class="ep-cell">
+            <span class="ep-code">EP 49</span>
+            <div class="ep-title">Echoes of the Flood</div>
+            <div class="ep-air">Air Jun 10</div>
+          </td>
+          <td class="glyph-cell" data-stage="SCR" aria-label="Script: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GST" aria-label="Guest: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GFX" aria-label="Graphics: active"><span class="g g-active" role="img" aria-label="active"></span></td>
+          <td class="glyph-cell" data-stage="PPR" aria-label="ProPresenter: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="REC" aria-label="Record: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="EDT" aria-label="Edit: active"><span class="g g-active" role="img" aria-label="active"></span></td>
+          <td class="glyph-cell" data-stage="MTA" aria-label="Metadata: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="DST" aria-label="Distribution: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="AIR" aria-label="Air: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="status-cell"><span class="status-chip watch">Watch</span></td>
+        </tr>
+
+        <!-- EP 50 -->
+        <tr>
+          <td class="ep-cell">
+            <span class="ep-code">EP 50</span>
+            <div class="ep-title">Light Before the Sun</div>
+            <div class="ep-air">Air Jun 17</div>
+          </td>
+          <td class="glyph-cell" data-stage="SCR" aria-label="Script: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GST" aria-label="Guest: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GFX" aria-label="Graphics: active"><span class="g g-active" role="img" aria-label="active"></span></td>
+          <td class="glyph-cell" data-stage="PPR" aria-label="ProPresenter: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="REC" aria-label="Record: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="EDT" aria-label="Edit: active"><span class="g g-active" role="img" aria-label="active"></span></td>
+          <td class="glyph-cell" data-stage="MTA" aria-label="Metadata: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="DST" aria-label="Distribution: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="AIR" aria-label="Air: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="status-cell"><span class="status-chip ontrack">On track</span></td>
+        </tr>
+
+        <!-- EP 51: behind, near air -->
+        <tr class="behind">
+          <td class="ep-cell">
+            <span class="ep-code">EP 51</span>
+            <div class="ep-title">The Witness of Starlight</div>
+            <div class="ep-air">Air Jun 24</div>
+          </td>
+          <td class="glyph-cell" data-stage="SCR" aria-label="Script: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GST" aria-label="Guest: active"><span class="g g-active" role="img" aria-label="active"></span></td>
+          <td class="glyph-cell" data-stage="GFX" aria-label="Graphics: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="PPR" aria-label="ProPresenter: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="REC" aria-label="Record: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="EDT" aria-label="Edit: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="MTA" aria-label="Metadata: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="DST" aria-label="Distribution: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="AIR" aria-label="Air: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="status-cell"><span class="status-chip behind">Behind</span></td>
+        </tr>
+
+        <!-- ===== BAND: IN PRODUCTION ===== -->
+        <tr class="band-head heavy" aria-hidden="true">
+          <td class="sticky-band">In production</td>
+          <td colspan="10"></td>
+        </tr>
+
+        <!-- EP 52 -->
+        <tr>
+          <td class="ep-cell">
+            <span class="ep-code">EP 52</span>
+            <div class="ep-title">Mountains in Minutes</div>
+            <div class="ep-air">Air Jul 01</div>
+          </td>
+          <td class="glyph-cell" data-stage="SCR" aria-label="Script: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GST" aria-label="Guest: active"><span class="g g-active" role="img" aria-label="active"></span></td>
+          <td class="glyph-cell" data-stage="GFX" aria-label="Graphics: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="PPR" aria-label="ProPresenter: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="REC" aria-label="Record: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="EDT" aria-label="Edit: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="MTA" aria-label="Metadata: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="DST" aria-label="Distribution: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="AIR" aria-label="Air: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="status-cell"><span class="status-chip ontrack">On track</span></td>
+        </tr>
+
+        <!-- EP 53 -->
+        <tr>
+          <td class="ep-cell">
+            <span class="ep-code">EP 53</span>
+            <div class="ep-title">The Cell's Small Print</div>
+            <div class="ep-air">Air Jul 08</div>
+          </td>
+          <td class="glyph-cell" data-stage="SCR" aria-label="Script: active"><span class="g g-active" role="img" aria-label="active"></span></td>
+          <td class="glyph-cell" data-stage="GST" aria-label="Guest: done"><span class="g g-done" role="img" aria-label="done"></span></td>
+          <td class="glyph-cell" data-stage="GFX" aria-label="Graphics: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="PPR" aria-label="ProPresenter: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="REC" aria-label="Record: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="EDT" aria-label="Edit: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="MTA" aria-label="Metadata: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="DST" aria-label="Distribution: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="AIR" aria-label="Air: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="status-cell"><span class="status-chip ontrack">On track</span></td>
+        </tr>
+
+        <!-- EP 54 -->
+        <tr>
+          <td class="ep-cell">
+            <span class="ep-code">EP 54</span>
+            <div class="ep-title">Reading the Rock Record</div>
+            <div class="ep-air">Air Jul 15</div>
+          </td>
+          <td class="glyph-cell" data-stage="SCR" aria-label="Script: active"><span class="g g-active" role="img" aria-label="active"></span></td>
+          <td class="glyph-cell" data-stage="GST" aria-label="Guest: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="GFX" aria-label="Graphics: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="PPR" aria-label="ProPresenter: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="REC" aria-label="Record: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="EDT" aria-label="Edit: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="MTA" aria-label="Metadata: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="DST" aria-label="Distribution: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="AIR" aria-label="Air: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="status-cell"><span class="status-chip watch">Watch</span></td>
+        </tr>
+
+        <!-- EP 55 -->
+        <tr>
+          <td class="ep-cell">
+            <span class="ep-code">EP 55</span>
+            <div class="ep-title">A Question of Time</div>
+            <div class="ep-air">Air Jul 22</div>
+          </td>
+          <td class="glyph-cell" data-stage="SCR" aria-label="Script: active"><span class="g g-active" role="img" aria-label="active"></span></td>
+          <td class="glyph-cell" data-stage="GST" aria-label="Guest: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="GFX" aria-label="Graphics: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="PPR" aria-label="ProPresenter: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="REC" aria-label="Record: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="EDT" aria-label="Edit: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="MTA" aria-label="Metadata: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="DST" aria-label="Distribution: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="AIR" aria-label="Air: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="status-cell"><span class="status-chip ontrack">On track</span></td>
+        </tr>
+
+        <!-- EP 56 -->
+        <tr>
+          <td class="ep-cell">
+            <span class="ep-code">EP 56</span>
+            <div class="ep-title">Designed to Wonder</div>
+            <div class="ep-air">Air Jul 29</div>
+          </td>
+          <td class="glyph-cell" data-stage="SCR" aria-label="Script: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="GST" aria-label="Guest: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="GFX" aria-label="Graphics: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="PPR" aria-label="ProPresenter: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="REC" aria-label="Record: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="EDT" aria-label="Edit: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="MTA" aria-label="Metadata: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="DST" aria-label="Distribution: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="glyph-cell" data-stage="AIR" aria-label="Air: not started"><span class="g g-todo" role="img" aria-label="not started"></span></td>
+          <td class="status-cell"><span class="status-chip ontrack">On track</span></td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <div class="legend">
+      <span class="item"><span class="g g-done" role="img" aria-label="done glyph"></span> Done</span>
+      <span class="item"><span class="g g-active" role="img" aria-label="active glyph"></span> Active</span>
+      <span class="item"><span class="g g-todo" role="img" aria-label="not started glyph"></span> Not started</span>
+      <span class="item"><span class="g g-blocked" role="img" aria-label="blocked glyph"></span> Blocked</span>
+      <span class="stages">SCR Script · GST Guest · GFX Graphics · PPR ProPresenter · REC Record · EDT Edit · MTA Metadata · DST Distribution · AIR Air</span>
+    </div>
+  </div>
+
+  <!-- ===================== PHONE CARDS ===================== -->
+  <div class="cards" aria-hidden="false">
+
+    <div class="band-title first">In post</div>
+
+    <div class="card behind">
+      <div class="card-top">
+        <span class="card-code">EP 47</span>
+        <span class="due-chip soon" aria-label="behind">behind</span>
+      </div>
+      <div class="card-title">Fingerprints of Design · Air May 27</div>
+      <div class="card-glyphs" aria-label="Stages: script done, guest done, graphics done, propresenter done, record done, edit blocked, metadata not started, distribution not started, air not started">
+        <span class="g g-done" role="img" aria-label="SCR done"></span>
+        <span class="g g-done" role="img" aria-label="GST done"></span>
+        <span class="g g-done" role="img" aria-label="GFX done"></span>
+        <span class="g g-done" role="img" aria-label="PPR done"></span>
+        <span class="g g-done" role="img" aria-label="REC done"></span>
+        <span class="g g-blocked" role="img" aria-label="EDT blocked"></span>
+        <span class="g g-todo" role="img" aria-label="MTA not started"></span>
+        <span class="g g-todo" role="img" aria-label="DST not started"></span>
+        <span class="g g-todo" role="img" aria-label="AIR not started"></span>
+      </div>
+      <div class="card-now">Now: <b>Edit (blocked)</b></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-code">EP 48</span>
+        <span class="due-chip" aria-label="on track">on track</span>
+      </div>
+      <div class="card-title">The Ordered Cosmos · Air Jun 03</div>
+      <div class="card-glyphs" aria-label="Stages: script done, guest done, graphics done, propresenter done, record done, edit done, metadata active, distribution not started, air not started">
+        <span class="g g-done" role="img" aria-label="SCR done"></span>
+        <span class="g g-done" role="img" aria-label="GST done"></span>
+        <span class="g g-done" role="img" aria-label="GFX done"></span>
+        <span class="g g-done" role="img" aria-label="PPR done"></span>
+        <span class="g g-done" role="img" aria-label="REC done"></span>
+        <span class="g g-done" role="img" aria-label="EDT done"></span>
+        <span class="g g-active" role="img" aria-label="MTA active"></span>
+        <span class="g g-todo" role="img" aria-label="DST not started"></span>
+        <span class="g g-todo" role="img" aria-label="AIR not started"></span>
+      </div>
+      <div class="card-now">Now: <b>Metadata</b></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-code">EP 49</span>
+        <span class="due-chip" aria-label="watch">watch</span>
+      </div>
+      <div class="card-title">Echoes of the Flood · Air Jun 10</div>
+      <div class="card-glyphs" aria-label="Stages: script done, guest done, graphics active, propresenter not started, record done, edit active, metadata not started, distribution not started, air not started">
+        <span class="g g-done" role="img" aria-label="SCR done"></span>
+        <span class="g g-done" role="img" aria-label="GST done"></span>
+        <span class="g g-active" role="img" aria-label="GFX active"></span>
+        <span class="g g-todo" role="img" aria-label="PPR not started"></span>
+        <span class="g g-done" role="img" aria-label="REC done"></span>
+        <span class="g g-active" role="img" aria-label="EDT active"></span>
+        <span class="g g-todo" role="img" aria-label="MTA not started"></span>
+        <span class="g g-todo" role="img" aria-label="DST not started"></span>
+        <span class="g g-todo" role="img" aria-label="AIR not started"></span>
+      </div>
+      <div class="card-now">Now: <b>Graphics</b></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-code">EP 50</span>
+        <span class="due-chip today" aria-label="action today">today</span>
+      </div>
+      <div class="card-title">Light Before the Sun · Air Jun 17</div>
+      <div class="card-glyphs" aria-label="Stages: script done, guest done, graphics active, propresenter not started, record done, edit active, metadata not started, distribution not started, air not started">
+        <span class="g g-done" role="img" aria-label="SCR done"></span>
+        <span class="g g-done" role="img" aria-label="GST done"></span>
+        <span class="g g-active" role="img" aria-label="GFX active"></span>
+        <span class="g g-todo" role="img" aria-label="PPR not started"></span>
+        <span class="g g-done" role="img" aria-label="REC done"></span>
+        <span class="g g-active" role="img" aria-label="EDT active"></span>
+        <span class="g g-todo" role="img" aria-label="MTA not started"></span>
+        <span class="g g-todo" role="img" aria-label="DST not started"></span>
+        <span class="g g-todo" role="img" aria-label="AIR not started"></span>
+      </div>
+      <div class="card-now">Now: <b>Graphics</b></div>
+    </div>
+
+    <div class="card behind">
+      <div class="card-top">
+        <span class="card-code">EP 51</span>
+        <span class="due-chip soon" aria-label="behind, airs soon">behind</span>
+      </div>
+      <div class="card-title">The Witness of Starlight · Air Jun 24</div>
+      <div class="card-glyphs" aria-label="Stages: script done, guest active, graphics not started, propresenter not started, record not started, edit not started, metadata not started, distribution not started, air not started">
+        <span class="g g-done" role="img" aria-label="SCR done"></span>
+        <span class="g g-active" role="img" aria-label="GST active"></span>
+        <span class="g g-todo" role="img" aria-label="GFX not started"></span>
+        <span class="g g-todo" role="img" aria-label="PPR not started"></span>
+        <span class="g g-todo" role="img" aria-label="REC not started"></span>
+        <span class="g g-todo" role="img" aria-label="EDT not started"></span>
+        <span class="g g-todo" role="img" aria-label="MTA not started"></span>
+        <span class="g g-todo" role="img" aria-label="DST not started"></span>
+        <span class="g g-todo" role="img" aria-label="AIR not started"></span>
+      </div>
+      <div class="card-now">Now: <b>Guest</b></div>
+    </div>
+
+    <div class="band-title">In production</div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-code">EP 52</span>
+        <span class="due-chip" aria-label="on track">on track</span>
+      </div>
+      <div class="card-title">Mountains in Minutes · Air Jul 01</div>
+      <div class="card-glyphs" aria-label="Stages: script done, guest active, remaining six not started">
+        <span class="g g-done" role="img" aria-label="SCR done"></span>
+        <span class="g g-active" role="img" aria-label="GST active"></span>
+        <span class="g g-todo" role="img" aria-label="GFX not started"></span>
+        <span class="g g-todo" role="img" aria-label="PPR not started"></span>
+        <span class="g g-todo" role="img" aria-label="REC not started"></span>
+        <span class="g g-todo" role="img" aria-label="EDT not started"></span>
+        <span class="g g-todo" role="img" aria-label="MTA not started"></span>
+        <span class="g g-todo" role="img" aria-label="DST not started"></span>
+        <span class="g g-todo" role="img" aria-label="AIR not started"></span>
+      </div>
+      <div class="card-now">Now: <b>Guest</b></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-code">EP 53</span>
+        <span class="due-chip" aria-label="on track">on track</span>
+      </div>
+      <div class="card-title">The Cell's Small Print · Air Jul 08</div>
+      <div class="card-glyphs" aria-label="Stages: script active, guest done, remaining seven not started">
+        <span class="g g-active" role="img" aria-label="SCR active"></span>
+        <span class="g g-done" role="img" aria-label="GST done"></span>
+        <span class="g g-todo" role="img" aria-label="GFX not started"></span>
+        <span class="g g-todo" role="img" aria-label="PPR not started"></span>
+        <span class="g g-todo" role="img" aria-label="REC not started"></span>
+        <span class="g g-todo" role="img" aria-label="EDT not started"></span>
+        <span class="g g-todo" role="img" aria-label="MTA not started"></span>
+        <span class="g g-todo" role="img" aria-label="DST not started"></span>
+        <span class="g g-todo" role="img" aria-label="AIR not started"></span>
+      </div>
+      <div class="card-now">Now: <b>Script</b></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-code">EP 54</span>
+        <span class="due-chip" aria-label="watch">watch</span>
+      </div>
+      <div class="card-title">Reading the Rock Record · Air Jul 15</div>
+      <div class="card-glyphs" aria-label="Stages: script active, remaining eight not started">
+        <span class="g g-active" role="img" aria-label="SCR active"></span>
+        <span class="g g-todo" role="img" aria-label="GST not started"></span>
+        <span class="g g-todo" role="img" aria-label="GFX not started"></span>
+        <span class="g g-todo" role="img" aria-label="PPR not started"></span>
+        <span class="g g-todo" role="img" aria-label="REC not started"></span>
+        <span class="g g-todo" role="img" aria-label="EDT not started"></span>
+        <span class="g g-todo" role="img" aria-label="MTA not started"></span>
+        <span class="g g-todo" role="img" aria-label="DST not started"></span>
+        <span class="g g-todo" role="img" aria-label="AIR not started"></span>
+      </div>
+      <div class="card-now">Now: <b>Script</b></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-code">EP 55</span>
+        <span class="due-chip" aria-label="on track">on track</span>
+      </div>
+      <div class="card-title">A Question of Time · Air Jul 22</div>
+      <div class="card-glyphs" aria-label="Stages: script active, remaining eight not started">
+        <span class="g g-active" role="img" aria-label="SCR active"></span>
+        <span class="g g-todo" role="img" aria-label="GST not started"></span>
+        <span class="g g-todo" role="img" aria-label="GFX not started"></span>
+        <span class="g g-todo" role="img" aria-label="PPR not started"></span>
+        <span class="g g-todo" role="img" aria-label="REC not started"></span>
+        <span class="g g-todo" role="img" aria-label="EDT not started"></span>
+        <span class="g g-todo" role="img" aria-label="MTA not started"></span>
+        <span class="g g-todo" role="img" aria-label="DST not started"></span>
+        <span class="g g-todo" role="img" aria-label="AIR not started"></span>
+      </div>
+      <div class="card-now">Now: <b>Script</b></div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <span class="card-code">EP 56</span>
+        <span class="due-chip" aria-label="on track">on track</span>
+      </div>
+      <div class="card-title">Designed to Wonder · Air Jul 29</div>
+      <div class="card-glyphs" aria-label="Stages: all nine not started">
+        <span class="g g-todo" role="img" aria-label="SCR not started"></span>
+        <span class="g g-todo" role="img" aria-label="GST not started"></span>
+        <span class="g g-todo" role="img" aria-label="GFX not started"></span>
+        <span class="g g-todo" role="img" aria-label="PPR not started"></span>
+        <span class="g g-todo" role="img" aria-label="REC not started"></span>
+        <span class="g g-todo" role="img" aria-label="EDT not started"></span>
+        <span class="g g-todo" role="img" aria-label="MTA not started"></span>
+        <span class="g g-todo" role="img" aria-label="DST not started"></span>
+        <span class="g g-todo" role="img" aria-label="AIR not started"></span>
+      </div>
+      <div class="card-now">Now: <b>Not started</b></div>
+    </div>
+
+  </div>
+
+  <!-- ===================== GLYPH DEFINITIONS (one SVG sprite, reused) ===================== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="sym-done" viewBox="0 0 13 13">
+        <circle cx="6.5" cy="6.5" r="5.5" fill="#2F6F4E"/>
+      </symbol>
+      <symbol id="sym-active" viewBox="0 0 13 13">
+        <circle cx="6.5" cy="6.5" r="5" fill="none" stroke="#B4471F" stroke-width="1.6"/>
+        <path d="M6.5 1.5 A5 5 0 0 1 6.5 11.5 Z" fill="#B4471F"/>
+      </symbol>
+      <symbol id="sym-todo" viewBox="0 0 13 13">
+        <circle cx="6.5" cy="6.5" r="5" fill="none" stroke="#A6A29A" stroke-width="1.2"/>
+      </symbol>
+      <symbol id="sym-blocked" viewBox="0 0 13 13">
+        <rect x="1.5" y="1.5" width="10" height="10" rx="1.5" fill="#B4471F"/>
+      </symbol>
+    </defs>
+  </svg>
+
+</div>
+
+<script>
+  // Paint glyphs from sprite so each glyph is a single shared definition (one fact = one encoding).
+  (function () {
+    var map = {
+      'g-done': '#sym-done',
+      'g-active': '#sym-active',
+      'g-todo': '#sym-todo',
+      'g-blocked': '#sym-blocked'
+    };
+    var nodes = document.querySelectorAll('.g');
+    nodes.forEach(function (n) {
+      var key = Object.keys(map).find(function (k) { return n.classList.contains(k); });
+      if (!key) return;
+      var ns = 'http://www.w3.org/2000/svg';
+      var svg = document.createElementNS(ns, 'svg');
+      svg.setAttribute('width', '13');
+      svg.setAttribute('height', '13');
+      svg.setAttribute('viewBox', '0 0 13 13');
+      svg.setAttribute('aria-hidden', 'true');
+      svg.setAttribute('focusable', 'false');
+      var use = document.createElementNS(ns, 'use');
+      use.setAttributeNS('http://www.w3.org/1999/xlink', 'href', map[key]);
+      use.setAttribute('href', map[key]);
+      svg.appendChild(use);
+      n.appendChild(svg);
+    });
+  })();
+</script>
+</body>
+</html>

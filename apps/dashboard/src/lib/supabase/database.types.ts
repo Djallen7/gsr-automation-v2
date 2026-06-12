@@ -14,6 +14,190 @@ export type Database = {
   }
   public: {
     Tables: {
+      app_config: {
+        Row: {
+          created_at: string
+          key: string
+          value: string
+        }
+        Insert: {
+          created_at?: string
+          key: string
+          value: string
+        }
+        Update: {
+          created_at?: string
+          key?: string
+          value?: string
+        }
+        Relationships: []
+      }
+      articles: {
+        Row: {
+          added_by: string | null
+          created_at: string
+          id: string
+          key_points: string | null
+          lane: string | null
+          outreach_framing_notes: string | null
+          published_date: string | null
+          recommended_guest_id: string | null
+          score_audience_engagement: number | null
+          score_biblical_alignment: number | null
+          score_guest_fit: number | null
+          score_production_viability: number | null
+          score_research_depth: number | null
+          score_scientific_clarity: number | null
+          score_story_originality: number | null
+          score_timeliness: number | null
+          source_publication: string | null
+          status: string
+          summary: string | null
+          title: string
+          total_score: number | null
+          url: string | null
+          yec_stance: string | null
+        }
+        Insert: {
+          added_by?: string | null
+          created_at?: string
+          id?: string
+          key_points?: string | null
+          lane?: string | null
+          outreach_framing_notes?: string | null
+          published_date?: string | null
+          recommended_guest_id?: string | null
+          score_audience_engagement?: number | null
+          score_biblical_alignment?: number | null
+          score_guest_fit?: number | null
+          score_production_viability?: number | null
+          score_research_depth?: number | null
+          score_scientific_clarity?: number | null
+          score_story_originality?: number | null
+          score_timeliness?: number | null
+          source_publication?: string | null
+          status?: string
+          summary?: string | null
+          title: string
+          total_score?: number | null
+          url?: string | null
+          yec_stance?: string | null
+        }
+        Update: {
+          added_by?: string | null
+          created_at?: string
+          id?: string
+          key_points?: string | null
+          lane?: string | null
+          outreach_framing_notes?: string | null
+          published_date?: string | null
+          recommended_guest_id?: string | null
+          score_audience_engagement?: number | null
+          score_biblical_alignment?: number | null
+          score_guest_fit?: number | null
+          score_production_viability?: number | null
+          score_research_depth?: number | null
+          score_scientific_clarity?: number | null
+          score_story_originality?: number | null
+          score_timeliness?: number | null
+          source_publication?: string | null
+          status?: string
+          summary?: string | null
+          title?: string
+          total_score?: number | null
+          url?: string | null
+          yec_stance?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "articles_recommended_guest_id_fkey"
+            columns: ["recommended_guest_id"]
+            isOneToOne: false
+            referencedRelation: "guests"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      booking_pipeline: {
+        Row: {
+          article_id: string | null
+          created_at: string
+          created_by: string | null
+          episode_guest_id: string | null
+          guest_id: string
+          id: string
+          last_contact_at: string | null
+          notes: string | null
+          outreach_sent_at: string | null
+          outreach_tier: string
+          shoot_session_id: string | null
+          status: string
+          target_month: number | null
+          target_season: number | null
+        }
+        Insert: {
+          article_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          episode_guest_id?: string | null
+          guest_id: string
+          id?: string
+          last_contact_at?: string | null
+          notes?: string | null
+          outreach_sent_at?: string | null
+          outreach_tier: string
+          shoot_session_id?: string | null
+          status?: string
+          target_month?: number | null
+          target_season?: number | null
+        }
+        Update: {
+          article_id?: string | null
+          created_at?: string
+          created_by?: string | null
+          episode_guest_id?: string | null
+          guest_id?: string
+          id?: string
+          last_contact_at?: string | null
+          notes?: string | null
+          outreach_sent_at?: string | null
+          outreach_tier?: string
+          shoot_session_id?: string | null
+          status?: string
+          target_month?: number | null
+          target_season?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "booking_pipeline_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "booking_pipeline_episode_guest_id_fkey"
+            columns: ["episode_guest_id"]
+            isOneToOne: false
+            referencedRelation: "episode_guests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "booking_pipeline_guest_id_fkey"
+            columns: ["guest_id"]
+            isOneToOne: false
+            referencedRelation: "guests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "booking_pipeline_shoot_session_id_fkey"
+            columns: ["shoot_session_id"]
+            isOneToOne: false
+            referencedRelation: "shoot_sessions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       content_clips: {
         Row: {
           clip_duration_sec: number | null
@@ -164,6 +348,80 @@ export type Database = {
           },
         ]
       }
+      email_threads: {
+        Row: {
+          body_snippet: string | null
+          booking_pipeline_id: string | null
+          created_at: string
+          email_type: string
+          episode_guest_id: string | null
+          guest_id: string
+          id: string
+          notes: string | null
+          outreach_draft_id: string | null
+          sent_at: string
+          sent_by: string | null
+          subject: string | null
+        }
+        Insert: {
+          body_snippet?: string | null
+          booking_pipeline_id?: string | null
+          created_at?: string
+          email_type: string
+          episode_guest_id?: string | null
+          guest_id: string
+          id?: string
+          notes?: string | null
+          outreach_draft_id?: string | null
+          sent_at: string
+          sent_by?: string | null
+          subject?: string | null
+        }
+        Update: {
+          body_snippet?: string | null
+          booking_pipeline_id?: string | null
+          created_at?: string
+          email_type?: string
+          episode_guest_id?: string | null
+          guest_id?: string
+          id?: string
+          notes?: string | null
+          outreach_draft_id?: string | null
+          sent_at?: string
+          sent_by?: string | null
+          subject?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "email_threads_booking_pipeline_id_fkey"
+            columns: ["booking_pipeline_id"]
+            isOneToOne: false
+            referencedRelation: "booking_pipeline"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_threads_episode_guest_id_fkey"
+            columns: ["episode_guest_id"]
+            isOneToOne: false
+            referencedRelation: "episode_guests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_threads_guest_id_fkey"
+            columns: ["guest_id"]
+            isOneToOne: false
+            referencedRelation: "guests"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "email_threads_outreach_draft_id_fkey"
+            columns: ["outreach_draft_id"]
+            isOneToOne: false
+            referencedRelation: "outreach_drafts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       episode_guests: {
         Row: {
           appearance_notes: string | null
@@ -280,6 +538,7 @@ export type Database = {
           thumbnail_source_path: string | null
           thumbnail_url: string | null
           title: string | null
+          webstream_scheduled_publish_at: string | null
           youtube_published_at: string | null
           youtube_scheduled_publish_at: string | null
           youtube_url: string | null
@@ -304,6 +563,7 @@ export type Database = {
           thumbnail_source_path?: string | null
           thumbnail_url?: string | null
           title?: string | null
+          webstream_scheduled_publish_at?: string | null
           youtube_published_at?: string | null
           youtube_scheduled_publish_at?: string | null
           youtube_url?: string | null
@@ -328,6 +588,7 @@ export type Database = {
           thumbnail_source_path?: string | null
           thumbnail_url?: string | null
           title?: string | null
+          webstream_scheduled_publish_at?: string | null
           youtube_published_at?: string | null
           youtube_scheduled_publish_at?: string | null
           youtube_url?: string | null
@@ -484,13 +745,15 @@ export type Database = {
           do_not_contact: boolean
           email: string | null
           expertise: string | null
-          expertise_tags: string[] | null
+          expertise_tags: string[]
           first_name: string
           id: string
+          is_christian: boolean | null
           is_deceased: boolean
           is_yec: boolean | null
           job_title: string | null
           last_name: string
+          location_city: string | null
           notes: string | null
           organization: string | null
           phone: string | null
@@ -499,6 +762,7 @@ export type Database = {
           sensitive_flag: boolean
           sensitive_notes: string | null
           source: string | null
+          timezone: string | null
           title: string | null
           website: string | null
         }
@@ -509,13 +773,15 @@ export type Database = {
           do_not_contact?: boolean
           email?: string | null
           expertise?: string | null
-          expertise_tags?: string[] | null
+          expertise_tags?: string[]
           first_name: string
           id?: string
+          is_christian?: boolean | null
           is_deceased?: boolean
           is_yec?: boolean | null
           job_title?: string | null
           last_name: string
+          location_city?: string | null
           notes?: string | null
           organization?: string | null
           phone?: string | null
@@ -524,6 +790,7 @@ export type Database = {
           sensitive_flag?: boolean
           sensitive_notes?: string | null
           source?: string | null
+          timezone?: string | null
           title?: string | null
           website?: string | null
         }
@@ -534,13 +801,15 @@ export type Database = {
           do_not_contact?: boolean
           email?: string | null
           expertise?: string | null
-          expertise_tags?: string[] | null
+          expertise_tags?: string[]
           first_name?: string
           id?: string
+          is_christian?: boolean | null
           is_deceased?: boolean
           is_yec?: boolean | null
           job_title?: string | null
           last_name?: string
+          location_city?: string | null
           notes?: string | null
           organization?: string | null
           phone?: string | null
@@ -549,6 +818,7 @@ export type Database = {
           sensitive_flag?: boolean
           sensitive_notes?: string | null
           source?: string | null
+          timezone?: string | null
           title?: string | null
           website?: string | null
         }
@@ -557,6 +827,7 @@ export type Database = {
       interview_prep: {
         Row: {
           angle_notes: string | null
+          article_id: string | null
           article_summary: string | null
           article_title: string | null
           article_url: string | null
@@ -571,6 +842,7 @@ export type Database = {
         }
         Insert: {
           angle_notes?: string | null
+          article_id?: string | null
           article_summary?: string | null
           article_title?: string | null
           article_url?: string | null
@@ -585,6 +857,7 @@ export type Database = {
         }
         Update: {
           angle_notes?: string | null
+          article_id?: string | null
           article_summary?: string | null
           article_title?: string | null
           article_url?: string | null
@@ -598,6 +871,13 @@ export type Database = {
           talking_points?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "interview_prep_article_id_fkey"
+            columns: ["article_id"]
+            isOneToOne: false
+            referencedRelation: "articles"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "interview_prep_episode_guest_id_fkey"
             columns: ["episode_guest_id"]
@@ -625,6 +905,176 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "v_episode_workflow"
             referencedColumns: ["episode_id"]
+          },
+        ]
+      }
+      outreach_drafts: {
+        Row: {
+          body_text: string
+          created_at: string
+          created_by: string | null
+          id: string
+          is_active: boolean
+          subject_line: string
+          tier: string
+          version: number
+        }
+        Insert: {
+          body_text: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          subject_line: string
+          tier: string
+          version?: number
+        }
+        Update: {
+          body_text?: string
+          created_at?: string
+          created_by?: string | null
+          id?: string
+          is_active?: boolean
+          subject_line?: string
+          tier?: string
+          version?: number
+        }
+        Relationships: []
+      }
+      premade_library: {
+        Row: {
+          asset_type: string
+          created_at: string
+          description: string | null
+          drive_file_url: string | null
+          duration_sec: number | null
+          id: string
+          is_loop: boolean
+          license_type: string | null
+          name: string
+          notes: string | null
+          resolution: string | null
+          server_file_path: string | null
+          source: string
+          source_url: string | null
+          tags: string[]
+        }
+        Insert: {
+          asset_type: string
+          created_at?: string
+          description?: string | null
+          drive_file_url?: string | null
+          duration_sec?: number | null
+          id?: string
+          is_loop?: boolean
+          license_type?: string | null
+          name: string
+          notes?: string | null
+          resolution?: string | null
+          server_file_path?: string | null
+          source: string
+          source_url?: string | null
+          tags?: string[]
+        }
+        Update: {
+          asset_type?: string
+          created_at?: string
+          description?: string | null
+          drive_file_url?: string | null
+          duration_sec?: number | null
+          id?: string
+          is_loop?: boolean
+          license_type?: string | null
+          name?: string
+          notes?: string | null
+          resolution?: string | null
+          server_file_path?: string | null
+          source?: string
+          source_url?: string | null
+          tags?: string[]
+        }
+        Relationships: []
+      }
+      production_graphics: {
+        Row: {
+          assigned_to: string | null
+          created_at: string
+          description: string | null
+          drive_file_url: string | null
+          episode_id: string
+          graphic_type: string
+          id: string
+          lastline_trigger: boolean
+          notes: string | null
+          premade_library_id: string | null
+          rc_row_label: string | null
+          rc_rundown_id: string | null
+          rundown_position: number | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          assigned_to?: string | null
+          created_at?: string
+          description?: string | null
+          drive_file_url?: string | null
+          episode_id: string
+          graphic_type: string
+          id?: string
+          lastline_trigger?: boolean
+          notes?: string | null
+          premade_library_id?: string | null
+          rc_row_label?: string | null
+          rc_rundown_id?: string | null
+          rundown_position?: number | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          assigned_to?: string | null
+          created_at?: string
+          description?: string | null
+          drive_file_url?: string | null
+          episode_id?: string
+          graphic_type?: string
+          id?: string
+          lastline_trigger?: boolean
+          notes?: string | null
+          premade_library_id?: string | null
+          rc_row_label?: string | null
+          rc_rundown_id?: string | null
+          rundown_position?: number | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "production_graphics_episode_id_fkey"
+            columns: ["episode_id"]
+            isOneToOne: false
+            referencedRelation: "episodes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "production_graphics_episode_id_fkey"
+            columns: ["episode_id"]
+            isOneToOne: false
+            referencedRelation: "v_episode_master"
+            referencedColumns: ["episode_id"]
+          },
+          {
+            foreignKeyName: "production_graphics_episode_id_fkey"
+            columns: ["episode_id"]
+            isOneToOne: false
+            referencedRelation: "v_episode_workflow"
+            referencedColumns: ["episode_id"]
+          },
+          {
+            foreignKeyName: "production_graphics_premade_library_id_fkey"
+            columns: ["premade_library_id"]
+            isOneToOne: false
+            referencedRelation: "premade_library"
+            referencedColumns: ["id"]
           },
         ]
       }
@@ -663,6 +1113,97 @@ export type Database = {
             referencedColumns: ["graphic_id"]
           },
         ]
+      }
+      scripts: {
+        Row: {
+          created_at: string
+          episode_id: string
+          extracted_at: string | null
+          extraction_status: string | null
+          id: number
+          pending_extraction: Json | null
+          script_text: string
+          segment: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          episode_id: string
+          extracted_at?: string | null
+          extraction_status?: string | null
+          id?: never
+          pending_extraction?: Json | null
+          script_text?: string
+          segment: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          episode_id?: string
+          extracted_at?: string | null
+          extraction_status?: string | null
+          id?: never
+          pending_extraction?: Json | null
+          script_text?: string
+          segment?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "scripts_episode_id_fkey"
+            columns: ["episode_id"]
+            isOneToOne: false
+            referencedRelation: "episodes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "scripts_episode_id_fkey"
+            columns: ["episode_id"]
+            isOneToOne: false
+            referencedRelation: "v_episode_master"
+            referencedColumns: ["episode_id"]
+          },
+          {
+            foreignKeyName: "scripts_episode_id_fkey"
+            columns: ["episode_id"]
+            isOneToOne: false
+            referencedRelation: "v_episode_workflow"
+            referencedColumns: ["episode_id"]
+          },
+        ]
+      }
+      shoot_sessions: {
+        Row: {
+          created_at: string
+          id: string
+          label: string | null
+          location: string | null
+          notes: string | null
+          production_month: number
+          season: number
+          session_date: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          label?: string | null
+          location?: string | null
+          notes?: string | null
+          production_month: number
+          season: number
+          session_date: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          label?: string | null
+          location?: string | null
+          notes?: string | null
+          production_month?: number
+          season?: number
+          session_date?: string
+        }
+        Relationships: []
       }
       social_posts: {
         Row: {

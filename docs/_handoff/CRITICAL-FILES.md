@@ -80,8 +80,18 @@ reverse-engineering the live system, but you would not want to.
 - `apps/dashboard/AGENTS.md` — the Next.js 16 caveats; wrong assumptions here break every route.
 - `apps/dashboard/package.json` — the dependency + script manifest for the live app.
 - `apps/dashboard/src/lib/segments.ts` — the canonical 12-value SEGMENTS list shared across import/upload/extract.
-- `apps/dashboard/src/lib/text-only-sentinel.ts` — the text-only guard used by the extraction path.
 - `apps/dashboard/src/app/api/import/route.ts` — the gated import logic (dry-run, conflict refusal); the heart of the David-rule import safety.
+- `apps/dashboard/src/lib/import-mode.ts` — the server-side Type-YES write gate: no confirm token, no write (2026-06-12).
+- `docs/_handoff/GUEST-CORRECTIONS.md` — do-not-contact / deceased / title corrections; guest-facing safety authority.
+- `docs/_handoff/lanes.json` — source of truth for the lanes tracker (LANES.md and lanes.html are generated from it).
+- `docs/_handoff/2026-06-11-claim-ledger.json` — the verified-claims ledger (VERIFIED/PARTIAL/REFUTED evidence base for every build decision).
+- `docs/_handoff/2026-06-11-pipeline-build-plan.md` — the build plan of record (slices 0-10 + addenda).
+- `docs/_handoff/2026-06-11-mission-run-notes.md` — mission decisions, verifier verdicts, incident retros, standing procedures.
+- `docs/_handoff/2026-06-11-fable5-mission-prompt.md` — the mission contract the research phase executed under.
+- `docs/_handoff/2026-06-08-review-decisions.md` — full record behind canon s13 (Daniel's gospel decisions).
+- `docs/_handoff/export-archaeology-backlog.json` — the triage backlog canon s13 cites.
+- `docs/_handoff/2026-06-11-superstore-lookup-spec.md` — the creationsuperstore.com lookup contract (plan 7.4 builds on it).
+- `.claude/agents/gsr-editorial.md` — the editorial/voice agent definition.
 - `docs/decisions/` — the ADRs; the decision record of record (esp. 0012 Supabase backend).
 - `docs/runbooks/stage-7-episode-test.md` — the live episode-test runbook (the real Stage 7 milestone).
 - `docs/2026-06-08-basecamp-dashboard-integration.md` — the Basecamp two-way-sync data contract: which Basecamp data feeds each of the 4 role dashboards, and sync direction.
@@ -99,6 +109,7 @@ Listed so it is explicit these are *not* missing knowledge. The check does not
 police these; rebuild them on demand.
 
 - `apps/dashboard/src/lib/supabase/database.types.ts` — generated from the schema; regenerate with `generate_typescript_types`.
+- `docs/_handoff/LANES.md` + `docs/_handoff/lanes.html` — generated from lanes.json by `tools/build_lanes.mjs`.
 - `apps/dashboard/node_modules/` — reinstall with `npm install`.
 - `docs/_handoff/gsr-automation-v2-course.html` — derived presentation of facts already in the handoff docs.
 - `docs/GIT_CHEATSHEET.md` — convenience reference; reproducible from any git docs.
@@ -113,6 +124,26 @@ The coverage audit skips these deliberately-disposable files:
 - `docs/2026-06-08-basecamp-env-diagnosis.md` — point-in-time Basecamp credential fix verification record; not carry-forward canon.
 - `docs/2026-06-08-basecamp-import-review-sheet.md` — transient decision aid for Daniel to pick Basecamp import elements; superseded once the integration doc is finalized.
 - `docs/2026-06-08-monologue-cue-spec.md` — provisional monologue graphics-cue spec from the data export; superseded once validated against a real David sample.
+- `docs/_handoff/LANES.md` — generated from lanes.json.
+- `docs/_handoff/lanes.html` — generated from lanes.json.
+- `docs/_handoff/sessions-snapshot.json` — point-in-time session inventory; re-snapshot anytime.
+- `docs/_handoff/2026-06-11-video-research-queue.json` — mission run state; corpus outcomes live in the claim ledger.
+- `docs/_handoff/2026-06-11-next-prompts.md` — staged prompts for the mission's follow-on sessions; consumed as they run.
+- `docs/_handoff/research-queue.md` — superseded by the 2026-06-11 mission queue.
+- `docs/_handoff/2026-06-07-build-optimization-report.md` — point-in-time optimization report.
+- `docs/_handoff/2026-06-07-gsr-ui-strategy.md` — UI direction record; locked outcomes live in canon 9-9d and the course m13.
+- `docs/_handoff/2026-06-07-gsr-ui-bakeoff-research.html` — derived research presentation.
+- `docs/_handoff/2026-06-07-tool-suggestions-by-stage.md` — point-in-time tool survey; durable picks live in ADR-0013.
+- `docs/_handoff/2026-06-08-s3-ep1-16-dataset.md` — episode data now imported into the live episodes table.
+- `docs/_handoff/2026-06-08-segment-publishing-schedule.md` — schedule snapshot; the DB owns publish dates.
+- `docs/_handoff/2026-06-08-session-changelog.md` — historical session log.
+- `docs/_handoff/2026-06-08-easy-builds-chain.md` — superseded by the pipeline build plan.
+- `docs/_handoff/2026-06-08-gsr-course-overview.html` — derived course overview.
+- `docs/_handoff/2026-06-08-export-archaeology.md` — narrative of the export dig; decisions live in review-decisions + canon s13.
+- `docs/_handoff/2026-06-09-discussion-queue.md` — items since resolved into canon s14 or the plan.
+- `docs/_handoff/2026-06-09-build-task-1-schema-rename.md` — historical spec; the rename shipped 2026-06-12.
+- `docs/_handoff/gsr-flight-worksheet.html` — the offline worksheet; answers live in canon s14.
+- `docs/_handoff/guest-topic-brief-template.html` — reusable template, regenerable from the research repo's build script.
 <!-- audit:end -->
 
 ---

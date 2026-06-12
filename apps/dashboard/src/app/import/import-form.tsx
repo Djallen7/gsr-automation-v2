@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useRef, useState, useTransition } from 'react'
 import { Button, buttonVariants } from '@/components/ui/button'
 import { Textarea } from '@/components/ui/textarea'
+import { TypeYesConfirm } from '@/components/type-yes-confirm'
 
 const EXTRACTION_PROMPT = `You are extracting GSR (Genesis Science Report) lower-third graphics from script documents stored in Google Drive.
 
@@ -98,6 +99,7 @@ interface RejectedReport {
 type ImportResponse =
   | {
       dry_run: true
+      mode_reason?: string
       episodes: { total: number; new: number; updated: number }
       graphics: { total: number; new: number; conflicts: number }
       conflicts: string[]
@@ -114,8 +116,10 @@ type ImportResponse =
 
 export function ImportForm() {
   const [jsonText, setJsonText] = useState('')
-  const [dryRun, setDryRun] = useState(true)
   const [result, setResult] = useState<ImportResponse | null>(null)
+  // The exact JSON text that passed the last dry-run. Editing the text after
+  // a dry-run disarms the Type-YES gate until it is validated again.
+  const [validatedJson, setValidatedJson] = useState<string | null>(null)
   const [isPending, startTransition] = useTransition()
   const [promptCopied, setPromptCopied] = useState(false)
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -139,9 +143,12 @@ export function ImportForm() {
     setResult(null)
   }
 
+  // Step 1 — always a dry-run. No confirm token is sent, so the server
+  // cannot write even if this code were wrong about it.
   function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setResult(null)
+    setValidatedJson(null)
 
     let parsed: unknown
     try {
@@ -156,13 +163,34 @@ export function ImportForm() {
         const response = await fetch('/api/import', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...(parsed as object), dry_run: dryRun }),
+          body: JSON.stringify(parsed),
         })
         const body = (await response.json()) as ImportResponse
         setResult(body)
+        if ('dry_run' in body) setValidatedJson(jsonText)
+      } catch (err) {
+        setResult({
+          error: err instanceof Error ? err.message : 'Submit failed.',
+        })
+      }
+    })
+  }
 
-        // On successful live submit, redirect to /lower-thirds after a moment.
-        if (!dryRun && 'success' in body && body.success) {
+  // Step 2 — the live write, only reachable through the Type-YES gate below,
+  // and only for the exact JSON that passed the dry-run.
+  function onConfirmedSubmit() {
+    if (validatedJson === null || validatedJson !== jsonText) return
+    const parsed = JSON.parse(validatedJson) as object
+    startTransition(async () => {
+      try {
+        const response = await fetch('/api/import', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ...parsed, confirm: 'YES' }),
+        })
+        const body = (await response.json()) as ImportResponse
+        setResult(body)
+        if ('success' in body && body.success) {
           setTimeout(() => router.push('/lower-thirds'), 1500)
         }
       } catch (err) {
@@ -221,28 +249,30 @@ export function ImportForm() {
           />
         </div>
 
-        <label className="flex cursor-pointer items-center gap-2 text-sm">
-          <input
-            type="checkbox"
-            checked={dryRun}
-            onChange={(e) => setDryRun(e.target.checked)}
-            className="h-4 w-4"
-          />
-          <span>
-            <strong>Dry run</strong> — validate & report, do not write to the database
-          </span>
-        </label>
-
         <div className="flex gap-3">
           <Button type="submit" disabled={isPending || !jsonText.trim()}>
-            {isPending
-              ? 'Working…'
-              : dryRun
-              ? 'Run dry-run validation'
-              : 'Submit for real'}
+            {isPending ? 'Working…' : 'Run dry-run validation'}
           </Button>
         </div>
+        <p className="text-xs text-muted-foreground">
+          Every submit validates first without writing. Writing requires the Type-YES
+          confirmation that appears after a clean dry-run.
+        </p>
       </form>
+
+      {result &&
+        'dry_run' in result &&
+        result.graphics.conflicts === 0 &&
+        validatedJson === jsonText && (
+          <div className="mt-4">
+            <TypeYesConfirm
+              summary={`Write ${result.graphics.new} lower-third${result.graphics.new !== 1 ? 's' : ''} across ${result.episodes.total} episode${result.episodes.total !== 1 ? 's' : ''} (${result.episodes.new} new, ${result.episodes.updated} updated)?`}
+              busy={isPending}
+              onConfirm={onConfirmedSubmit}
+              confirmLabel="Write to database"
+            />
+          </div>
+        )}
 
       {result && (
         <section className="mt-6 rounded-md border bg-muted/30 p-4 text-sm">

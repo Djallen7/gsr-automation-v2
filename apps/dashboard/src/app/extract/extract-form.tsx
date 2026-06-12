@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState, useTransition } from 'react'
 import { Button, buttonVariants } from '@/components/ui/button'
+import { TypeYesConfirm } from '@/components/type-yes-confirm'
 import { Textarea } from '@/components/ui/textarea'
 
 const SEGMENTS = [
@@ -82,6 +83,15 @@ type Stage =
   | { name: 'idle' }
   | { name: 'extracting' }
   | { name: 'preview'; payload: ImportPayload; graphics: ExtractedGraphic[]; rejected: RejectedItem[] }
+  // Dry-run passed; waiting on the Type-YES gate before the live write.
+  | {
+      name: 'confirm'
+      payload: ImportPayload
+      graphics: ExtractedGraphic[]
+      rejected: RejectedItem[]
+      newCount: number
+      conflicts: string[]
+    }
   | { name: 'importing' }
   | { name: 'done'; count: number }
   | { name: 'error'; message: string }
@@ -204,8 +214,42 @@ export function ExtractForm({ episodes }: { episodes: Episode[] }) {
     })
   }
 
-  function handleImport() {
+  // Step 1: dry-run (no confirm token, so the server cannot write).
+  function handleValidate() {
     if (stage.name !== 'preview') return
+    const { payload, graphics, rejected } = stage
+
+    startTransition(async () => {
+      try {
+        const res = await fetch('/api/import', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        const body = await res.json() as { error?: string; dry_run?: boolean; conflicts?: string[]; graphics?: { new: number } }
+
+        if (!res.ok) {
+          setStage({ name: 'error', message: body.error ?? 'Validation failed.' })
+          return
+        }
+
+        setStage({
+          name: 'confirm',
+          payload,
+          graphics,
+          rejected,
+          newCount: body.graphics?.new ?? 0,
+          conflicts: body.conflicts ?? [],
+        })
+      } catch (err) {
+        setStage({ name: 'error', message: err instanceof Error ? err.message : 'Network error.' })
+      }
+    })
+  }
+
+  // Step 2: the live write, only after Type-YES.
+  function handleConfirmedImport() {
+    if (stage.name !== 'confirm') return
     const payload = stage.payload
     setStage({ name: 'importing' })
 
@@ -214,15 +258,12 @@ export function ExtractForm({ episodes }: { episodes: Episode[] }) {
         const res = await fetch('/api/import', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...payload, dry_run: false }),
+          body: JSON.stringify({ ...payload, confirm: 'YES' }),
         })
-        const body = await res.json() as { success?: boolean; error?: string; conflicts?: string[]; graphics?: { new: number } }
+        const body = await res.json() as { success?: boolean; error?: string; graphics?: { new: number } }
 
         if (!res.ok) {
-          setStage({
-            name: 'error',
-            message: body.error ?? 'Import failed.',
-          })
+          setStage({ name: 'error', message: body.error ?? 'Import failed.' })
           return
         }
 
@@ -395,7 +436,7 @@ export function ExtractForm({ episodes }: { episodes: Episode[] }) {
         )}
 
         {/* Preview */}
-        {stage.name === 'preview' && (
+        {(stage.name === 'preview' || stage.name === 'confirm') && (
           <section className="rounded-md border bg-muted/30 p-4">
             <div className="mb-3 flex items-center justify-between">
               <p className="text-sm font-medium">
@@ -406,11 +447,29 @@ export function ExtractForm({ episodes }: { episodes: Episode[] }) {
                 <Button variant="outline" size="sm" onClick={() => setStage({ name: 'idle' })}>
                   Re-extract
                 </Button>
-                <Button size="sm" onClick={handleImport} disabled={isPending}>
-                  {isPending ? 'Importing…' : `Import ${stage.graphics.length} lower-thirds`}
-                </Button>
+                {stage.name === 'preview' && (
+                  <Button size="sm" onClick={handleValidate} disabled={isPending}>
+                    {isPending ? 'Validating…' : `Validate ${stage.graphics.length} (dry run)`}
+                  </Button>
+                )}
               </div>
             </div>
+            {stage.name === 'confirm' &&
+              (stage.conflicts.length > 0 ? (
+                <p className="mb-3 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+                  {stage.conflicts.length} beat{stage.conflicts.length !== 1 ? 's' : ''} already exist:{' '}
+                  {stage.conflicts.join('; ')}. Resolve in the source script, then re-extract.
+                </p>
+              ) : (
+                <div className="mb-3">
+                  <TypeYesConfirm
+                    summary={`Dry-run passed: ${stage.newCount} new lower-third${stage.newCount !== 1 ? 's' : ''} will be written.`}
+                    busy={isPending}
+                    onConfirm={handleConfirmedImport}
+                    confirmLabel={`Write ${stage.newCount}`}
+                  />
+                </div>
+              ))}
 
             <div className="overflow-x-auto">
               <table className="w-full text-xs">

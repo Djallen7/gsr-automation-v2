@@ -258,6 +258,10 @@
       "activity": [
         {
           "date": "2026-06-12",
+          "note": "Item 1.0 SHIPPED: server-side Type-YES write gate on /api/import (no token = always dry-run) + the typed-YES step wired into all three import screens (import page, extract page, episode workspace; all three previously wrote without it). 10/10 mock-content gate tests pass; tsc, eslint, and full production build clean. Advisor hardening migration WRITTEN but not applied (live-DB carve-out; Daniel tap card pending). Rumble ladder + ambition rule + context-economy rule in canon."
+        },
+        {
+          "date": "2026-06-12",
           "note": "Daniel granted standing approval (Claude merges its own tested batches; live-show/live-DB/money/irreversible still need his yes) and replaced the two working sessions with one-tap decision cards. Rumble answered: no working API at the moment; CL-329 logged, plan 4.1 closed, manual upload stays."
         },
         {

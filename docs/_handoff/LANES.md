@@ -156,13 +156,13 @@ _Last updated 2026-06-11 21:55:19 UTC (4 hours ago)._
 
 ## Lane 9 - Autonomous research loop
 **Status:** IN PROGRESS.
-**Summary:** Fable 5 pipeline mission (2026-06-11): 5h+ research loop (claim ledger doctrine), then self-critiqued build plan. Mission contract: docs/_handoff/2026-06-11-fable5-mission-prompt.md.
+**Summary:** Fable 5 pipeline mission (2026-06-11): Phase R complete + independently verified; PR stack #47/#50/#52 squash-merged 2026-06-12 (Lane A, Daniel's one-tap yes), CL-009 resolved, plan 0.2 truth sweep done. Next: Daniel merges PR #53, then Phase B lanes 10-15 open.
 **Done:** docs/_handoff/research-queue.md set up. Optimization report and per-stage tool suggestions produced.
 **To finish:**
-- Daniel: answer the plan's section 7 (6 decisions); answers append to canon.
-- Mac run: transcript pull kit (docs/_handoff/2026-06-11-transcript-pull-kit/), then 3.2 mining of the 162-video queue into the ledger.
-- Phase B lanes 10-15 open per the plan once Daniel approves.
-- Weekly claim-ledger re-verification loop once Phase B starts.
+- Daniel: merge draft PR #53 (research corpus + plan + canon/lanes updates).
+- Daniel: decision 5 (two 30-45 min working sessions; default Tue Jun 24 morning back-to-back).
+- Daniel: send the drafted Rumble email; enable leaked-password protection in Supabase Auth settings (one toggle).
+- Then PROMPT B item 1.0 (import confirm-token + advisor hardening migration) on a fresh branch off main.
 **Files:** `docs/_handoff/research-queue.md`
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 9), docs/_handoff/2026-06-11-pipeline-build-plan.md (the plan, v3), docs/_handoff/2026-06-11-mission-run-notes.md (goal checklist + corrections), and docs/_handoff/2026-06-11-claim-ledger.json. If transcripts exist in 2026-06-11-transcript-pull-kit/transcripts/, mine them per item 3.2 (statuses mined/rejected, claims ASSUMED->verified). If Daniel has answered section 7, append answers to canon dated and open the Phase B lanes the plan lists in section 9. Starred defaults stand unless he says otherwise. Never bypass canon s15 gates.`
 

@@ -201,3 +201,59 @@ Run a targeted 2-video deep-dive on lO5yNntbx7g (Supabase full-stack, 185KB tran
 - R6 second wave: CLOSED (addendum A5).
 - Plan addendum v2 written; ADR-0013 amended; goal checklist flipped with evidence.
 
+
+## Decision 1 executed + post-merge truth sweep (2026-06-12, lead session)
+
+Daniel answered the one-tap questions: push the #47 conflict fix = YES; decision 1 =
+Lane A, lead drives. Executed: #47 squash-merged (e279f4f), #50 retargeted to main +
+synced + squash-merged (2c25776), #52 retargeted + synced + squash-merged (cf6987c).
+Vercel production deploy of cf6987c is READY; the deployed dashboard now queries
+production_lower_thirds, so the lower-thirds pages' schema skew (CL-009) is resolved.
+
+Plan 0.2 results (run on the mission branch, the one branch this session may push):
+- list_migrations: rename migration applied (version 20260609115904). NOTE a benign
+  skew: the live DB ran the ORIGINAL #50 migration (constraint swap succeeded because
+  production_graphics had 0 rows); the repo file 20260609120000 is #52's edited version
+  (archive guard + deferred Title->Intro). End state matches; the archive table
+  _archive_lower_thirds_dropped_cols_20260609 does NOT exist live (nothing to archive,
+  0 rows). If the migration is ever replayed on a fresh DB, the repo version governs.
+- list_tables: 20 tables; production_lower_thirds + lower_thirds_variations live;
+  content_clips + social_posts confirmed (slice 9 prereq).
+- REAL migration count is 48 (not 46/47 as docs said): 46 as of 2026-06-04 + webstream
+  (06-08) + rename (06-09). Fixed in CLAUDE.md, HANDOFF, SYSTEM-EVOLUTION,
+  SUPABASE_SCHEMA_DESIGN.
+- tsc + eslint clean on the exact tree that became main.
+- Docs reconciled: canon s0 table row; roadmap (Phase 1A marked shipped as /workflow,
+  char-limit entry updated to the 70 ceiling, items 5/9 + stale-row table renamed);
+  stage-7 runbook; gsr-health agent fact sheet; course (3 strings); SYSTEM-EVOLUTION
+  restriction language aligned to canon s15-s17; repo grep for "table is `graphics`"
+  now returns only historical/spec mentions.
+- Advisors NOT clean (0.2's done-when is amended honestly): security has 1 pre-existing
+  ERROR (v_episode_master SECURITY DEFINER) + warns (2 functions with mutable
+  search_path; pg_net in public; USING(true) authenticated policies everywhere by
+  design; public bucket listing; 3 SECURITY DEFINER functions executable by anon;
+  leaked-password protection off). Performance: INFO only (unindexed FKs + unused
+  indexes on a ~0-row DB). None of these block. Punch list -> the item 1.0 branch as a
+  small hardening migration: pin search_path on toggle_propresenter_added +
+  notify_script_extract, revoke anon EXECUTE on the 3 functions, switch
+  v_episode_master to SECURITY INVOKER, enable leaked-password protection (dashboard
+  toggle, Daniel).
+
+## Retro: the conflict-marker incident (2026-06-12, lead session, severity HIGH)
+
+What happened: while merging main into feat/lower-thirds-table and fix/lt-merge-blockers
+I read the merge output with `tail`, which cut off most of the CONFLICT lines, resolved
+only the conflicts I saw, then ran `git add -A` and committed. That staged the OTHER
+conflicted files with literal <<<<<<< markers inside. Two marker-laden files
+(database.types.ts, AUTOMATION_ROADMAP.md) reached MAIN via the #50 squash; the next two
+Vercel builds errored (production stayed on the last good deploy, so nothing user-facing
+broke). Caught minutes later by reading PR #52's diff before merging it; repaired inside
+the authorized #52 push (restore reviewed file versions + regenerate types from the live
+schema), gates re-run clean, and the #52 squash healed main. Lesson, now standing
+procedure for every merge in this project:
+1. NEVER `git add -A` during conflict resolution. Stage each resolved file by name.
+2. Read the FULL merge output; then `git status` and resolve every UU/AA path explicitly.
+3. Before committing any merge: `git grep -l '^<<<<<<< '` across the whole tree must be
+   empty, and `git status` must show zero unmerged paths.
+4. For merges touching apps/: tsc + eslint before push, no exceptions.
+5. Before squash-merging any PR: read its files/diff once, end to end.

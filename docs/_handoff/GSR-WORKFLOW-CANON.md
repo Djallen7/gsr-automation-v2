@@ -17,7 +17,7 @@ They are never mixed, never share a workflow, always referred to by those exact 
 | Lives in | The script document | The **Graphics Tracker** (monthly Google Sheet) |
 | Pushed to Rundown Creator? | **No** | **Yes** |
 | ProPresenter | Their **own** presentations | **Separate** presentations |
-| DB table | currently `graphics` (should be renamed `lower_thirds`) | `production_graphics` |
+| DB table | `production_lower_thirds` (renamed from `graphics` 2026-06-09; variations child table `lower_thirds_variations`) | `production_graphics` |
 
 ---
 

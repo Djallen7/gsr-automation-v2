@@ -36,7 +36,7 @@ Run these checks and report findings as a short punch list. Mark each item
 
 ### 4. Schema sync
 - Run `list_migrations` against `lafkbxypmciopebentxp` and compare to `supabase/migrations/` on disk (counts and names should match).
-- The lower-thirds table is `graphics`. There is NO `lower_thirds` table — flag any code or doc that assumes one.
+- The lower-thirds table is `production_lower_thirds` (renamed from `graphics` 2026-06-09; variations child `lower_thirds_variations`). There is NO `lower_thirds` table and no `graphics` table anymore — flag any code or doc that assumes either.
 
 ### 5. Config sanity
 - `config/production.json`: show name "Genesis Science Report", air_day "Tuesday", YouTube category 28 (not 24/27).

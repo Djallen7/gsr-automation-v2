@@ -29,7 +29,7 @@ episodes
   └── social_posts                     episode-level posts (promos, quote graphics)
 ```
 
-All tables listed above have applied migrations as of the 46-migration live schema. The lower-thirds table is `graphics`; there is no `lower_thirds` table (only the storage bucket is named `lower-thirds`).
+All tables listed above have applied migrations as of the 48-migration live schema. The lower-thirds table is `production_lower_thirds` (renamed from `graphics` 2026-06-09; variations child table `lower_thirds_variations`); there is no `lower_thirds` table (only the storage bucket is named `lower-thirds`).
 
 Two views centralize operational data:
 - **`v_episode_master`** — flat JOIN of all tables, ordered by show sequence.

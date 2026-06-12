@@ -116,23 +116,28 @@ git pull origin claude/vigilant-ramanujan-kt4fdc. Read the MINING SUMMARY in
 Gates stand: no merges, Type-YES, live-rig yes, QNAP read-only.
 ```
 
-## PROMPT B - post-merge build slice. EITHER account, model: SONNET. Run only AFTER
-Daniel merges the PR stack (#47 -> #50 -> #52, or Lane B: #47 + #50).
+## PROMPT B - post-merge build slice. EITHER account, model: SONNET.
+STATUS 2026-06-12: the stack IS merged (#47 e279f4f, #50 2c25776, #52 cf6987c) and the
+old step 1 (plan 0.2 truth sweep) is DONE by the lead session (results + advisor punch
+list in 2026-06-11-mission-run-notes.md; the doc fixes ride PR #53). Only item 1.0
+remains. Run any time after PR #53 merges (so the sweep's doc fixes are on main).
 
 ```
 Work in the gsr-automation-v2 repo (Mac path /Users/claudefix/Documents/GitHub/gsr-automation-v2
-or cloud /home/user/gsr-automation-v2). git fetch origin main; confirm main now contains the
+or cloud /home/user/gsr-automation-v2). git fetch origin main; confirm main contains the
 production_lower_thirds rename (grep apps/dashboard/src for .from('production_lower_thirds');
-if absent, STOP and report that the stack has not merged).
-1. Run plan item 0.2 exactly as written in docs/_handoff/2026-06-11-pipeline-build-plan.md
-   (post-merge verification + the full docs truth sweep it lists). Branch chore/post-merge-
-   truth-sweep off main, commit, push, draft PR.
-2. Then plan item 1.0 (import-gate hardening) on branch feat/import-confirm-token off main:
+if absent, STOP and report).
+1. Plan item 1.0 (import-gate hardening) on branch feat/import-confirm-token off main:
    /api/import requires an explicit confirm token (omitting it = dry-run, never a live
    write); wire episode-workspace.tsx through the full dry-run + Type-YES gate or delete it
    (check first whether the merged code already removed it). cd apps/dashboard &&
    npx tsc --noEmit && npx eslint src/ both clean. Draft PR. Do NOT run any real import.
-3. Report: PRs opened, sweep results, anything that did not match the plan's description.
+2. Same branch, one small hardening migration from the advisor punch list (mission-run-notes,
+   "plan 0.2 results"): pin search_path on toggle_propresenter_added + notify_script_extract,
+   REVOKE anon EXECUTE on the 3 SECURITY DEFINER functions, switch v_episode_master to
+   SECURITY INVOKER. Idempotent DDL, one concern per statement, regenerate types after
+   applying, run advisors, commit types + migration together.
+3. Report: PR opened, anything that did not match the plan's description.
 Use /goal with each item's done-when list if available. Never merge anything.
 ```
 

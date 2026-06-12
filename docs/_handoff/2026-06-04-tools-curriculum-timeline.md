@@ -38,7 +38,7 @@ Both are tagged in the master table below.
 | **GitHub** | Sync between the web app and your Mac; version history; PRs. | Stage 0 | Rule: **pull before you start, push when you stop.** Web work lives on GitHub until you pull it down. |
 | **1Password CLI** (`op`) | Pulls every credential (Dropbox, YouTube, Supabase, Claude) at runtime. | Stage 0 | **Hard rule: credentials via `op item get …` only, never pasted.** |
 | **Supabase MCP** | Lets Claude read/write your database, list migrations, deploy edge functions during the build. | Stage 2+ | Always `list_migrations` before writing SQL. |
-| **Basecamp skill + CLI** | Pulls monologue Scripture/graphics instructions later. | Stage (later) | For monologue ingestion (§11). |
+| **Basecamp skill + CLI / API** | Two-way sync of the existing Basecamp system (card tables, to-dos, schedule, monologue docs). | Stage (later) | Broader integration, not just monologue; see `docs/2026-06-08-basecamp-dashboard-integration.md`. Monologue ingestion (§11) is one slice. |
 | **Google Drive + Gmail MCPs** | Drive inventory, the airing-schedule Sheet, the email archive for DNC. | Stage 8 | Gmail = the DNC fragile part. |
 | **Rundown Creator MCP** | Reads `rc_*_map.json` rundown/column maps. | Stage 8 (verification) | Corroboration source. |
 | **Desktop Commander** | Local file ops on the Mac (Whisper watch folder, ffmpeg). | Stage 3 | Ties to `~/Productions`. |
@@ -269,7 +269,7 @@ These are non-negotiable. They are not in the build at any stage.
 
 | Feature | Tools it'll need | Note |
 |---|---|---|
-| Monologue / Basecamp ingestion | Basecamp skill + CLI | Needs a sample monologue with the link/graphics format first. Episode assignment stays manual. |
+| Basecamp two-way sync (incl. monologue ingestion) | Basecamp skill + CLI / API | Per-role data + sync direction in `docs/2026-06-08-basecamp-dashboard-integration.md`. Monologue ingestion needs a sample with the link/graphics format first; episode assignment stays manual. |
 | Content clips + social posts | Claude API; existing `content_clips` / `social_posts` schema | Written from transcripts. |
 | Outreach tracking | — | v1 = just track which guests were contacted. |
 | Local research → dashboard sync | an intake route like existing `/import` | Sync Claude Desktop research in. Feasible, deferred. |

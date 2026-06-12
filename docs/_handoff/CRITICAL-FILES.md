@@ -84,6 +84,8 @@ reverse-engineering the live system, but you would not want to.
 - `apps/dashboard/src/app/api/import/route.ts` — the gated import logic (dry-run, conflict refusal); the heart of the David-rule import safety.
 - `docs/decisions/` — the ADRs; the decision record of record (esp. 0012 Supabase backend).
 - `docs/runbooks/stage-7-episode-test.md` — the live episode-test runbook (the real Stage 7 milestone).
+- `docs/2026-06-08-basecamp-dashboard-integration.md` — the Basecamp two-way-sync data contract: which Basecamp data feeds each of the 4 role dashboards, and sync direction.
+- `docs/2026-06-08-basecamp-build-spec-isaac-board-my-tasks.md` — build spec for the two new Basecamp surfaces (Isaac's GSR editing board + per-role My Tasks): data model, API ops, EARS acceptance, open decisions.
 - `scripts/extract_email_voice.py` — the email-voice extraction script.
 - `scripts/basecamp_token.py` — mints the Basecamp access token from the stored refresh token; the entry point for every Basecamp API read.
 
@@ -108,6 +110,9 @@ The coverage audit skips these deliberately-disposable files:
 <!-- audit:ignore -->
 - `docs/_handoff/*-preview.html` — derived HTML previews of the handoff docs.
 - `*/.gitkeep` — empty directory placeholders.
+- `docs/2026-06-08-basecamp-env-diagnosis.md` — point-in-time Basecamp credential fix verification record; not carry-forward canon.
+- `docs/2026-06-08-basecamp-import-review-sheet.md` — transient decision aid for Daniel to pick Basecamp import elements; superseded once the integration doc is finalized.
+- `docs/2026-06-08-monologue-cue-spec.md` — provisional monologue graphics-cue spec from the data export; superseded once validated against a real David sample.
 <!-- audit:end -->
 
 ---

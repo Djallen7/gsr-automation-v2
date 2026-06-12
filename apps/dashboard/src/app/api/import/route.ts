@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createClient } from '@/lib/supabase/server'
+import { resolveImportMode } from '@/lib/import-mode'
 
 // SEGMENT enum — must match the graphic_segment Postgres enum exactly.
 // If you add a value here, also add it in a SQL migration:
@@ -84,7 +85,10 @@ const ImportPayload = z.object({
   // Top-level array from the v2 prompt for over-length / unclassifiable
   // copy lines. We acknowledge them in the response but never write them.
   rejected: z.array(RejectedItem).optional().default([]),
-  dry_run: z.boolean().optional().default(false),
+  // Safe by default: a live write requires confirm === IMPORT_CONFIRM_TOKEN.
+  // dry_run: true still forces a dry-run even if a token is present.
+  dry_run: z.boolean().optional(),
+  confirm: z.string().optional(),
 })
 
 // Resolve the canonical primary text for a graphic — primary wins, falls
@@ -215,9 +219,13 @@ export async function POST(request: Request) {
   const newGraphicCount =
     payload.graphics.length - existingGraphicsConflicts.length
 
-  if (payload.dry_run) {
+  // The write gate: without the explicit confirm token this is ALWAYS a
+  // dry-run, regardless of what the caller intended. See lib/import-mode.ts.
+  const importMode = resolveImportMode(payload)
+  if (importMode.mode === 'dry_run') {
     return NextResponse.json({
       dry_run: true,
+      mode_reason: importMode.reason,
       episodes: {
         total: payload.episodes.length,
         new: newEpisodeCount,

@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { TypeYesConfirm } from '@/components/type-yes-confirm'
 import { GraphicCard } from '../graphic-card'
 import { SEGMENTS } from '@/lib/segments'
 
@@ -57,6 +58,15 @@ type ExtractStage =
   | { name: 'idle' }
   | { name: 'extracting' }
   | { name: 'preview'; payload: ImportPayload; graphics: ExtractedGraphic[]; rejected: RejectedItem[] }
+  // Dry-run passed; waiting on the Type-YES gate before the live write.
+  | {
+      name: 'confirm'
+      payload: ImportPayload
+      graphics: ExtractedGraphic[]
+      rejected: RejectedItem[]
+      newCount: number
+      conflicts: string[]
+    }
   | { name: 'importing' }
   | { name: 'done'; count: number }
   | { name: 'error'; message: string }
@@ -245,8 +255,44 @@ function SegmentSlot({
     })
   }
 
-  function handleImport() {
+  // Step 1: dry-run (no confirm token, so the server cannot write).
+  function handleValidate() {
     if (extractStage.name !== 'preview') return
+    const { payload, graphics, rejected } = extractStage
+    startTransition(async () => {
+      try {
+        const res = await fetch('/api/import', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        })
+        const body = (await res.json()) as {
+          error?: string
+          dry_run?: boolean
+          graphics?: { new: number }
+          conflicts?: string[]
+        }
+        if (!res.ok) {
+          setExtractStage({ name: 'error', message: body.error ?? 'Validation failed.' })
+          return
+        }
+        setExtractStage({
+          name: 'confirm',
+          payload,
+          graphics,
+          rejected,
+          newCount: body.graphics?.new ?? 0,
+          conflicts: body.conflicts ?? [],
+        })
+      } catch (err) {
+        setExtractStage({ name: 'error', message: err instanceof Error ? err.message : 'Network error.' })
+      }
+    })
+  }
+
+  // Step 2: the live write, only after Type-YES.
+  function handleConfirmedImport() {
+    if (extractStage.name !== 'confirm') return
     const payload = extractStage.payload
     setExtractStage({ name: 'importing' })
     startTransition(async () => {
@@ -254,7 +300,7 @@ function SegmentSlot({
         const res = await fetch('/api/import', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ...payload, dry_run: false }),
+          body: JSON.stringify({ ...payload, confirm: 'YES' }),
         })
         const body = (await res.json()) as { error?: string; graphics?: { new: number } }
         if (!res.ok) {
@@ -352,7 +398,7 @@ function SegmentSlot({
             </p>
           )}
 
-          {extractStage.name === 'preview' && (
+          {(extractStage.name === 'preview' || extractStage.name === 'confirm') && (
             <div className="rounded-md border bg-muted/30 p-3">
               <div className="mb-2 flex items-center justify-between">
                 <p className="text-sm font-medium">
@@ -363,11 +409,29 @@ function SegmentSlot({
                   <Button variant="outline" size="sm" onClick={() => setExtractStage({ name: 'idle' })}>
                     Re-extract
                   </Button>
-                  <Button size="sm" onClick={handleImport} disabled={isPending}>
-                    {isPending ? 'Importing…' : `Import ${extractStage.graphics.length}`}
-                  </Button>
+                  {extractStage.name === 'preview' && (
+                    <Button size="sm" onClick={handleValidate} disabled={isPending}>
+                      {isPending ? 'Validating…' : `Validate ${extractStage.graphics.length} (dry run)`}
+                    </Button>
+                  )}
                 </div>
               </div>
+              {extractStage.name === 'confirm' &&
+                (extractStage.conflicts.length > 0 ? (
+                  <p className="mb-2 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+                    {extractStage.conflicts.length} beat{extractStage.conflicts.length !== 1 ? 's' : ''} already exist for this
+                    episode: {extractStage.conflicts.join('; ')}. Resolve in the source script, then re-extract.
+                  </p>
+                ) : (
+                  <div className="mb-2">
+                    <TypeYesConfirm
+                      summary={`Dry-run passed: ${extractStage.newCount} new lower-third${extractStage.newCount !== 1 ? 's' : ''} will be written.`}
+                      busy={isPending}
+                      onConfirm={handleConfirmedImport}
+                      confirmLabel={`Write ${extractStage.newCount}`}
+                    />
+                  </div>
+                ))}
               <div className="overflow-x-auto">
                 <table className="w-full text-xs">
                   <thead>

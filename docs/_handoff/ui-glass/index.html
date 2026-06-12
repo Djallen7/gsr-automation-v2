@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>GSR Dashboard — Liquid Glass</title>
+<style>
+  /* ============================================================
+     GSR DASHBOARD · Apple "Liquid Glass" direction
+     Prototype for Lane 1. Tokens mirror apps/dashboard navy+gold.
+     Material = translucent fill + backdrop blur/saturate (refraction)
+     + lit rim (lensing) + elevation + motion-reactive specular.
+     ============================================================ */
+
+  :root {
+    /* brand — matches apps/dashboard globals.css (OKLCH) */
+    --navy:      oklch(0.28 0.07 243);
+    --navy-deep: oklch(0.17 0.05 250);
+    --gold:      oklch(0.83 0.135 85);
+    --gold-soft: oklch(0.88 0.10 88);
+
+    /* semantic status (colorblind-safe: shape carries too) */
+    --ok:    oklch(0.74 0.16 150);   /* done   */
+    --watch: oklch(0.83 0.15 85);    /* in prog / pending */
+    --risk:  oklch(0.66 0.21 25);    /* blocked / at risk */
+    --defer: oklch(0.70 0.13 300);   /* deferred */
+
+    --ink:    oklch(0.98 0.01 250);
+    --ink-2:  oklch(0.84 0.02 250);
+    --ink-3:  oklch(0.68 0.03 250);
+
+    /* glass material */
+    --glass-fill-1: color-mix(in oklab, white 15%, transparent);
+    --glass-fill-2: color-mix(in oklab, white 5%, transparent);
+    --glass-blur: 26px;
+    --glass-sat: 180%;
+    --rim: 1px;
+
+    --r-sm: 0.7rem;
+    --r:    1.15rem;
+    --r-lg: 1.6rem;
+    --r-xl: 2.1rem;
+
+    --shadow-lift: 0 24px 60px -22px rgba(3,10,35,.7), 0 6px 18px -12px rgba(3,10,35,.6);
+
+    --font: -apple-system, BlinkMacSystemFont, "Geist", "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+    --maxw: 1200px;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    font-family: var(--font);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    background: var(--navy-deep);
+    overflow-x: hidden;
+  }
+  .num { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
+
+  /* ---------- colorful, CALM background (what the glass refracts) ---------- */
+  .aura {
+    position: fixed; inset: -20vmax; z-index: -2; pointer-events: none;
+    background:
+      radial-gradient(36vmax 36vmax at 14% 16%, oklch(0.52 0.17 255 / .68), transparent 60%),
+      radial-gradient(44vmax 44vmax at 90% 10%, oklch(0.60 0.14 196 / .52), transparent 62%),
+      radial-gradient(48vmax 48vmax at 80% 86%, oklch(0.55 0.18 305 / .50), transparent 60%),
+      radial-gradient(40vmax 40vmax at 16% 94%, oklch(0.66 0.13 84  / .40), transparent 60%),
+      var(--navy-deep);
+    filter: saturate(122%);
+    animation: drift 34s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    0%   { transform: translate3d(0,0,0) scale(1); }
+    50%  { transform: translate3d(-3%, 2%, 0) scale(1.06); }
+    100% { transform: translate3d(2%, -2%, 0) scale(1.03); }
+  }
+  /* fine grain so flat gradients don't band */
+  .grain {
+    position: fixed; inset: 0; z-index: -1; pointer-events: none; opacity: .04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+
+  /* ---------- the glass material ---------- */
+  .glass {
+    position: relative;
+    background: linear-gradient(150deg, var(--glass-fill-1), var(--glass-fill-2));
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-sat));
+    border-radius: var(--r);
+    box-shadow: var(--shadow-lift),
+                0 -1px 1px 0 rgba(255,255,255,.04) inset;
+    isolation: isolate;
+  }
+  /* lit rim — the lensing edge */
+  .glass::before {
+    content:""; position:absolute; inset:0; border-radius:inherit; padding:var(--rim);
+    background: linear-gradient(140deg,
+      rgba(255,255,255,.75), rgba(255,255,255,.10) 28%,
+      rgba(255,255,255,0) 55%, rgba(255,255,255,.22));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    pointer-events:none; z-index: 2;
+  }
+  /* slow specular travel — only on heroes, only if motion allowed */
+  .glass.spec::after {
+    content:""; position:absolute; inset:0; border-radius:inherit; z-index:1; pointer-events:none;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.16) 45%, rgba(255,255,255,.04) 52%, transparent 66%);
+    transform: translateX(-30%); opacity:.0;
+    animation: sweep 7.5s ease-in-out infinite;
+  }
+  @keyframes sweep { 0%,100%{ transform:translateX(-35%); opacity:0 } 45%{ opacity:.9 } 55%{ opacity:.9 } 70%{ transform:translateX(35%); opacity:0 } }
+
+  .glass-tint { background:
+      linear-gradient(150deg, color-mix(in oklab, var(--navy) 34%, transparent),
+                              color-mix(in oklab, var(--navy) 12%, transparent)); }
+
+  /* ---------- layout shell ---------- */
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(14px, 3vw, 30px); }
+
+  header.bar {
+    position: sticky; top: 0; z-index: 40;
+    margin: 14px auto 0; max-width: calc(var(--maxw) + 0px);
+    display: flex; align-items: center; gap: 14px;
+    padding: 12px 18px; border-radius: var(--r-lg);
+    transition: padding .35s cubic-bezier(.4,.6,.2,1), margin .35s ease;
+  }
+  header.bar.shrink { padding: 7px 16px; }
+  .mark { display:flex; align-items:center; gap:11px; font-weight:650; letter-spacing:-.01em; }
+  .mark .orb {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, var(--gold-soft), var(--gold) 42%, oklch(0.5 0.13 70) 100%);
+    box-shadow: 0 0 0 1px rgba(255,255,255,.35) inset, 0 4px 14px -2px oklch(0.7 0.14 80 / .6);
+  }
+  .mark small { display:block; font-weight:500; font-size:11px; color:var(--ink-3); letter-spacing:.02em; margin-top:1px;}
+  .bar .spacer { flex:1; }
+  .seg { display:flex; gap:3px; padding:3px; border-radius:999px;
+         background: rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10); }
+  .seg button { all:unset; cursor:pointer; font-size:13px; font-weight:550; color:var(--ink-2);
+                padding:6px 13px; border-radius:999px; transition:.2s; }
+  .seg button[aria-pressed="true"] { background: linear-gradient(var(--gold-soft),var(--gold));
+                color: oklch(0.24 0.05 70); box-shadow:0 2px 8px -2px oklch(0.7 0.14 80 / .7); }
+
+  main { padding: 22px 0 120px; }
+  .grid { display:grid; gap:18px; grid-template-columns: 1fr; }
+  @media (min-width: 900px){
+    .grid { grid-template-columns: 360px 1fr; align-items:start; }
+    .col-hero { position: sticky; top: 92px; }
+  }
+
+  .eyebrow { font-size:12px; font-weight:650; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-3); }
+
+  /* hero countdown */
+  .hero { padding: 22px; }
+  .hero .target { font-size:13px; color:var(--ink-2); display:flex; align-items:center; gap:8px; }
+  .hero h1 { margin:.35rem 0 .1rem; font-size: clamp(24px, 6vw, 42px); letter-spacing:-.025em; line-height:1.04; font-weight:700; overflow-wrap:anywhere; }
+  .hero .cd { display:flex; gap:10px; margin-top:16px; }
+  .hero .cd div { flex:1; text-align:center; padding:12px 6px; border-radius:var(--r-sm);
+                  background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09); }
+  .hero .cd b { font-size:26px; font-weight:700; letter-spacing:-.02em; display:block; }
+  .hero .cd span { font-size:10.5px; color:var(--ink-3); letter-spacing:.08em; text-transform:uppercase; }
+  .hero .ok { margin-top:14px; font-size:13.5px; color:var(--ink-2); display:flex; gap:8px; align-items:center; }
+  .dot { width:9px;height:9px;border-radius:50%; background:var(--ok); box-shadow:0 0 0 4px oklch(0.74 0.16 150 / .18); }
+
+  /* queue */
+  .tier { margin-top:18px; }
+  .tier .h { display:flex; align-items:center; gap:9px; margin:0 2px 10px; }
+  .tier .h .lab { font-size:12.5px; font-weight:650; letter-spacing:.04em; color:var(--ink-2); }
+  .tier .h .pill { font-size:11px; font-weight:650; padding:2px 9px; border-radius:999px; }
+  .pill.r { color:oklch(0.9 0.06 25); background:oklch(0.66 0.21 25 / .22); border:1px solid oklch(0.66 0.21 25 / .4);}
+  .pill.w { color:oklch(0.95 0.05 90); background:oklch(0.83 0.15 85 / .20); border:1px solid oklch(0.83 0.15 85 / .4);}
+  .pill.n { color:var(--ink-2); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.14);}
+
+  .item { display:flex; align-items:center; gap:14px; padding:14px 15px; margin-bottom:10px; border-radius:var(--r); cursor:pointer;
+          transition: transform .18s cubic-bezier(.3,.7,.2,1), box-shadow .25s; }
+  .item:hover { transform: translateY(-2px); }
+  .item:active { transform: translateY(0) scale(.995); }
+  .item .lead { width:42px; height:42px; flex:none; border-radius:12px; display:grid; place-items:center; font-weight:700; font-size:13px;
+                background: rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12); }
+  .item .lead.r { background: oklch(0.66 0.21 25 / .2); border-color: oklch(0.66 0.21 25 / .45); }
+  .item .body { flex:1; min-width:0; }
+  .item .verb { font-weight:600; font-size:14.5px; letter-spacing:-.01em; }
+  .item .why { font-size:12.5px; color:var(--ink-3); margin-top:2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .btn { all:unset; cursor:pointer; flex:none; font-size:12.5px; font-weight:650; padding:8px 14px; border-radius:999px;
+         background: linear-gradient(var(--gold-soft), var(--gold)); color:oklch(0.24 0.05 70);
+         box-shadow:0 4px 14px -4px oklch(0.7 0.14 80 / .7), 0 1px 0 rgba(255,255,255,.4) inset; transition:.18s; }
+  .btn:hover { filter:brightness(1.05); transform:translateY(-1px); }
+  .btn.ghost { background:rgba(255,255,255,.08); color:var(--ink); box-shadow:0 0 0 1px rgba(255,255,255,.14) inset; }
+
+  .empty { padding:22px; text-align:center; color:var(--ink-2); font-size:14px; }
+
+  /* ---------- Pipeline Matrix ---------- */
+  .panel { padding: 18px 16px 8px; }
+  .panel > .ph { display:flex; align-items:center; justify-content:space-between; margin:0 4px 14px; gap:10px; flex-wrap:wrap;}
+  .panel h2 { font-size:16px; margin:0; letter-spacing:-.02em; font-weight:650; }
+  .legend { display:flex; gap:13px; flex-wrap:wrap; font-size:11px; color:var(--ink-3); }
+  .legend i { font-style:normal; display:inline-flex; align-items:center; gap:5px; }
+  .gl { width:13px; height:13px; display:inline-block; }
+  .g-done { border-radius:50%; background:var(--ok); }
+  .g-prog { border-radius:50%; border:2px solid var(--watch); box-shadow:0 0 7px oklch(0.83 0.15 85 / .7); }
+  .g-none { border-radius:50%; border:1.5px solid rgba(255,255,255,.32); }
+  .g-risk { background:var(--risk); border-radius:3px; }
+  .g-defer{ border-radius:50%; border:1.5px dashed var(--defer); }
+
+  .matrix { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+  table.mx { border-collapse:collapse; width:100%; min-width:680px; }
+  table.mx th, table.mx td { padding:9px 4px; text-align:center; }
+  table.mx thead th { font-size:10.5px; font-weight:600; letter-spacing:.04em; color:var(--ink-3); text-transform:uppercase;
+                      position:sticky; top:0; }
+  table.mx .epc { text-align:left; padding-left:8px; white-space:nowrap; }
+  .bandrow td { padding-top:16px; }
+  .bandlab { font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); text-align:left; padding-left:8px; }
+  .eprow { border-top:1px solid rgba(255,255,255,.06); transition:background .2s; cursor:pointer; }
+  .eprow:hover { background:rgba(255,255,255,.04); }
+  .epname { font-weight:600; font-size:13.5px; letter-spacing:-.01em; }
+  .epmeta { font-size:11px; color:var(--ink-3); }
+  .epname.late { color:oklch(0.86 0.12 25); }
+  .cell { display:inline-grid; place-items:center; width:26px; height:26px; }
+  .rowchip { font-size:10.5px; font-weight:700; padding:3px 8px; border-radius:999px; }
+  .rc-ok { color:oklch(0.92 0.07 150); background:oklch(0.74 0.16 150 / .18); }
+  .rc-watch { color:oklch(0.95 0.05 90); background:oklch(0.83 0.15 85 / .2); }
+  .rc-late { color:oklch(0.92 0.06 25); background:oklch(0.66 0.21 25 / .22); }
+  tfoot td { font-size:10px; color:var(--ink-3); padding-top:10px; border-top:1px solid rgba(255,255,255,.08); }
+
+  /* ---------- bottom tab nav (mobile-first) ---------- */
+  nav.tabs {
+    position: fixed; left:50%; transform:translateX(-50%); bottom: max(14px, env(safe-area-inset-bottom));
+    z-index: 50; display:flex; gap:4px; padding:7px; border-radius:999px; width:min(440px, calc(100% - 24px));
+  }
+  nav.tabs a { flex:1; text-decoration:none; color:var(--ink-3); display:flex; flex-direction:column; align-items:center; gap:3px;
+               padding:8px 4px; border-radius:999px; font-size:10.5px; font-weight:600; position:relative; transition:.2s; }
+  nav.tabs a.on { color: oklch(0.24 0.05 70); background:linear-gradient(var(--gold-soft),var(--gold));
+                  box-shadow:0 4px 14px -4px oklch(0.7 0.14 80 / .7); }
+  nav.tabs a .ic { width:20px; height:20px; }
+  nav.tabs .badge { position:absolute; top:4px; right:50%; margin-right:-22px; min-width:16px; height:16px; padding:0 4px;
+                    border-radius:999px; background:var(--risk); color:#fff; font-size:10px; font-weight:700; display:grid; place-items:center; }
+
+  /* ---------- episode drill sheet ---------- */
+  .scrim { position:fixed; inset:0; z-index:60; background:oklch(0.12 0.04 255 / .5); backdrop-filter:blur(3px);
+           opacity:0; visibility:hidden; transition:.3s; }
+  .scrim.open { opacity:1; visibility:visible; }
+  .sheet {
+    position:fixed; z-index:61; left:50%; transform:translate(-50%, 110%);
+    bottom:0; width:min(560px, 100%); max-height:86vh; overflow:auto;
+    border-radius: var(--r-xl) var(--r-xl) 0 0; padding:20px 18px 30px;
+    transition: transform .42s cubic-bezier(.32,.72,0,1), opacity .3s ease;
+    opacity:0; visibility:hidden; pointer-events:none;
+  }
+  .sheet.open { transform:translate(-50%, 0); opacity:1; visibility:visible; pointer-events:auto; }
+  @media (min-width:640px){
+    .sheet { bottom:auto; top:50%; transform:translate(-50%,-44%) scale(.98); border-radius:var(--r-xl); max-height:84vh; }
+    .sheet.open { transform:translate(-50%,-50%) scale(1); opacity:1; visibility:visible; pointer-events:auto; }
+  }
+  .grab { width:38px; height:5px; border-radius:999px; background:rgba(255,255,255,.3); margin:0 auto 14px; }
+  .step { display:flex; gap:13px; padding:11px 6px; align-items:flex-start; }
+  .step .rail { display:flex; flex-direction:column; align-items:center; gap:4px; }
+  .step .rail .line { width:2px; flex:1; background:rgba(255,255,255,.14); min-height:14px; }
+  .step .nm { font-weight:600; font-size:14px; }
+  .step .dt { font-size:12px; color:var(--ink-3); }
+
+  /* ---------- accessibility fallbacks (Apple ships these too) ---------- */
+  @media (prefers-reduced-motion: reduce){
+    .aura, .glass.spec::after, .item, nav.tabs a, .sheet, .scrim { animation:none !important; transition:none !important; }
+  }
+  @media (prefers-reduced-transparency: reduce){
+    .glass { backdrop-filter:none; -webkit-backdrop-filter:none;
+             background: oklch(0.22 0.05 250); }
+    .aura { filter:none; }
+  }
+  .sr { position:absolute; width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0); }
+
+  @media (max-width: 460px){
+    .hero { padding:18px; }
+    .hero .cd { gap:7px; }
+    .hero .cd div { padding:10px 3px; }
+    .hero .cd b { font-size:22px; }
+    .mark small { font-size:10px; }
+  }
+</style>
+</head>
+<body>
+  <div class="aura"></div><div class="grain"></div>
+
+  <header class="bar glass spec" id="bar">
+    <div class="mark"><span class="orb" aria-hidden="true"></span>
+      <span>Genesis Science Report<small>Production Command · Season 3</small></span>
+    </div>
+    <div class="spacer"></div>
+    <div class="seg" role="group" aria-label="Role view">
+      <button aria-pressed="true"  data-role="daniel">Daniel</button>
+      <button aria-pressed="false" data-role="myriam">Myriam</button>
+      <button aria-pressed="false" data-role="isaac">Isaac</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <!-- LEFT: hero + Today/Your-Move queue -->
+      <section class="col-hero">
+        <div class="glass spec hero glass-tint">
+          <div class="target">▲ Next on air · <span id="airlabel">Tue 8:00 PM</span></div>
+          <h1 id="heroEp">Ep 026 · The Information Enigma</h1>
+          <div class="cd num" id="cd">
+            <div><b id="cdD">5</b><span>days</span></div>
+            <div><b id="cdH">21</b><span>hrs</span></div>
+            <div><b id="cdM">44</b><span>min</span></div>
+          </div>
+          <div class="ok"><span class="dot"></span><span id="trackline">Post batch on track. 1 item needs you.</span></div>
+        </div>
+
+        <div class="tier" id="queue">
+          <div class="h"><span class="lab">Your move</span><span class="pill r" id="qcount">1 blocker</span></div>
+
+          <div class="glass item" data-ep="022" data-stage="Distribute">
+            <div class="lead r">022</div>
+            <div class="body"><div class="verb">Approve Rumble fallback</div>
+              <div class="why">Ep 022 · Distribute blocked · airs in 0 days</div></div>
+            <button class="btn" onclick="event.stopPropagation()">Review</button>
+          </div>
+
+          <div class="h" style="margin-top:18px"><span class="lab">Due before Tuesday</span><span class="pill w">2</span></div>
+          <div class="glass item" data-ep="026" data-stage="Graphics">
+            <div class="lead">026</div>
+            <div class="body"><div class="verb">Approve 15 lower thirds</div>
+              <div class="why">Ep 026 · waiting on your yes · Type-YES gate</div></div>
+            <button class="btn" onclick="event.stopPropagation()">Approve</button>
+          </div>
+          <div class="glass item" data-ep="023" data-stage="Metadata">
+            <div class="lead">023</div>
+            <div class="body"><div class="verb">Confirm episode metadata</div>
+              <div class="why">Ep 023 · title + thumbnail ready for Myriam</div></div>
+            <button class="btn ghost" onclick="event.stopPropagation()">Open</button>
+          </div>
+
+          <div class="h" style="margin-top:18px"><span class="lab">FYI</span><span class="pill n">1</span></div>
+          <div class="glass item" data-ep="030" data-stage="Guests">
+            <div class="lead">030</div>
+            <div class="body"><div class="verb">Guest confirmed</div>
+              <div class="why">Ep 030 · booking locked · no action needed</div></div>
+            <span style="font-size:18px" aria-hidden="true">✓</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT: Pipeline Matrix -->
+      <section class="glass panel">
+        <div class="ph">
+          <h2>Pipeline Matrix · 10 episodes × 9 stages</h2>
+          <div class="legend">
+            <i><span class="gl g-done"></span>done</i>
+            <i><span class="gl g-prog"></span>in&nbsp;progress</i>
+            <i><span class="gl g-none"></span>not&nbsp;started</i>
+            <i><span class="gl g-risk"></span>at&nbsp;risk</i>
+            <i><span class="gl g-defer"></span>deferred</i>
+          </div>
+        </div>
+        <div class="matrix">
+          <table class="mx num" id="mx">
+            <thead><tr>
+              <th class="epc">Episode</th>
+              <th>Script</th><th>Guests</th><th>Graphics</th><th>ProPres</th><th>Record</th>
+              <th>Edit</th><th>Meta</th><th>Dist</th><th>Aired</th><th>Status</th>
+            </tr></thead>
+            <tbody id="mxbody"></tbody>
+            <tfoot><tr id="mxfoot"></tr></tfoot>
+          </table>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <nav class="tabs glass">
+    <a class="on" href="#"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>Today</a>
+    <a href="#"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg>Episodes</a>
+    <a href="#"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Approvals<span class="badge">3</span></a>
+    <a href="#"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg>More</a>
+  </nav>
+
+  <!-- episode drill -->
+  <div class="scrim" id="scrim" onclick="closeSheet()"></div>
+  <aside class="sheet glass glass-tint" id="sheet" role="dialog" aria-modal="true" aria-label="Episode detail">
+    <div class="grab"></div>
+    <div class="eyebrow" id="shEy">Episode 026 · In production</div>
+    <h2 style="margin:.2rem 0 .1rem; font-size:22px; letter-spacing:-.02em" id="shTitle">The Information Enigma</h2>
+    <div class="epmeta" id="shMeta" style="margin-bottom:8px">Airs Tue 8:00 PM · on track · owner: Isaac</div>
+    <div id="shSteps"></div>
+  </aside>
+
+<script>
+(() => {
+  "use strict";
+  const STAGES = ["Script","Guests","Graphics","ProPres","Record","Edit","Meta","Dist","Aired"];
+  // status codes: 2 done · 1 in-progress · 0 not started · r at-risk · d deferred
+  const EP = [
+    // band: post (airing soonest)
+    {n:"021", t:"Soft Tissue & Deep Time", band:"post", air:"Tue · today", late:false, owner:"Myriam",
+     s:[2,2,2,2,2,2,2,2,1], chip:["watch","on air tonight"]},
+    {n:"022", t:"The Comet Question", band:"post", air:"Tue · today", late:true, owner:"Myriam",
+     s:[2,2,2,2,2,2,2,"r",0], chip:["late","Dist blocked"]},
+    {n:"023", t:"Reading the Rock Record", band:"post", air:"+7 days", late:false, owner:"Myriam",
+     s:[2,2,2,2,2,2,1,0,0], chip:["watch","meta due"]},
+    {n:"024", t:"Designed for Discovery", band:"post", air:"+14 days", late:false, owner:"Myriam",
+     s:[2,2,2,2,2,1,0,0,0], chip:["ok",""]},
+    {n:"025", t:"The Fine-Tuned Cosmos", band:"post", air:"+21 days", late:false, owner:"Myriam",
+     s:[2,2,2,2,2,1,0,0,0], chip:["ok",""]},
+    // band: production
+    {n:"026", t:"The Information Enigma", band:"prod", air:"+5 days*", late:false, owner:"Isaac",
+     s:[2,2,1,0,0,0,0,0,0], chip:["watch","graphics now"]},
+    {n:"027", t:"Catastrophe & the Canyon", band:"prod", air:"+12 days", late:false, owner:"Isaac",
+     s:[2,2,0,0,0,0,0,0,0], chip:["ok",""]},
+    {n:"028", t:"Origins of the Code", band:"prod", air:"+19 days", late:false, owner:"Isaac",
+     s:[2,1,0,0,0,0,0,0,0], chip:["ok",""]},
+    {n:"029", t:"The Created Heavens", band:"prod", air:"+26 days", late:false, owner:"Isaac",
+     s:[1,1,0,0,0,0,0,0,"d"], chip:["ok",""]},
+    {n:"030", t:"Witness of the Whale", band:"prod", air:"+33 days", late:false, owner:"Isaac",
+     s:[1,2,0,0,0,0,0,0,0], chip:["ok",""]},
+  ];
+
+  const cellHTML = (v) => {
+    const cls = {2:"g-done",1:"g-prog",0:"g-none","r":"g-risk","d":"g-defer"}[v];
+    const lab = {2:"done",1:"in progress",0:"not started","r":"at risk","d":"deferred"}[v];
+    return `<span class="cell"><span class="gl ${cls}" title="${lab}"></span><span class="sr">${lab}</span></span>`;
+  };
+  const chipHTML = ([k,txt]) => {
+    const map={ok:["rc-ok","On track"],watch:["rc-watch",txt||"Watch"],late:["rc-late",txt||"Behind"]};
+    const [c,l]=map[k]; return `<span class="rowchip ${c}">${l}</span>`;
+  };
+
+  function buildMatrix(){
+    const body = document.getElementById("mxbody");
+    let html = "";
+    const band = (label) => `<tr class="bandrow"><td class="bandlab" colspan="11">${label}</td></tr>`;
+    html += band("In post · airing now");
+    EP.filter(e=>e.band==="post").forEach(e=>html+=row(e));
+    html += band("In production");
+    EP.filter(e=>e.band==="prod").forEach(e=>html+=row(e));
+    body.innerHTML = html;
+    // column tallies
+    const foot = document.getElementById("mxfoot");
+    let f = `<td class="epc" style="color:var(--ink-3)">cleared / 10</td>`;
+    STAGES.forEach((_,i)=>{ const done=EP.filter(e=>e.s[i]===2).length; f+=`<td>${done}/10</td>`; });
+    f+=`<td></td>`; foot.innerHTML=f;
+  }
+  function row(e){
+    let cells = e.s.map(cellHTML).join("");
+    return `<tr class="eprow" data-ep="${e.n}">
+      <td class="epc"><div class="epname ${e.late?'late':''}">Ep ${e.n}</div>
+        <div class="epmeta">${e.t.length>20?e.t.slice(0,20)+'…':e.t} · ${e.air}</div></td>
+      ${cells}<td>${chipHTML(e.chip)}</td></tr>`;
+  }
+
+  // ---- episode drill sheet ----
+  const scrim=document.getElementById("scrim"), sheet=document.getElementById("sheet");
+  function openSheet(n){
+    const e=EP.find(x=>x.n===n); if(!e) return;
+    document.getElementById("shEy").textContent=`Episode ${e.n} · ${e.band==="post"?"In post":"In production"}`;
+    document.getElementById("shTitle").textContent=e.t;
+    document.getElementById("shMeta").textContent=`Airs ${e.air.replace('*','')} · ${({ok:"on track",watch:"watch",late:"behind"})[e.chip[0]]} · owner: ${e.owner}`;
+    const labs={2:"Done",1:"In progress",0:"Not started","r":"At risk","d":"Deferred"};
+    let h="";
+    e.s.forEach((v,i)=>{
+      const cls={2:"g-done",1:"g-prog",0:"g-none","r":"g-risk","d":"g-defer"}[v];
+      h+=`<div class="step"><div class="rail"><span class="gl ${cls}"></span>${i<8?'<span class="line"></span>':''}</div>
+            <div><div class="nm">${STAGES[i]}</div><div class="dt">${labs[v]}</div></div></div>`;
+    });
+    document.getElementById("shSteps").innerHTML=h;
+    scrim.classList.add("open"); sheet.classList.add("open");
+  }
+  window.closeSheet=()=>{ scrim.classList.remove("open"); sheet.classList.remove("open"); };
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeSheet(); });
+
+  // ---- countdown (next Tuesday 20:00 local) ----
+  function nextTue(){
+    const now=new Date(), d=new Date(now); d.setHours(20,0,0,0);
+    let add=(2 - d.getDay()+7)%7; if(add===0 && d<=now) add=7; d.setDate(d.getDate()+add); return d;
+  }
+  function tick(){
+    const ms=Math.max(0, nextTue()-new Date());
+    const dd=Math.floor(ms/864e5), hh=Math.floor(ms%864e5/36e5), mm=Math.floor(ms%36e5/6e4);
+    const set=(id,v)=>{const el=document.getElementById(id); if(el)el.textContent=v;};
+    set("cdD",dd); set("cdH",hh); set("cdM",mm);
+  }
+
+  // ---- scroll-shrink bar (Apple tab/bar behavior) ----
+  const bar=document.getElementById("bar");
+  addEventListener("scroll",()=>{ bar.classList.toggle("shrink", scrollY>20); }, {passive:true});
+
+  // ---- role switch (filters the queue framing) ----
+  document.querySelectorAll(".seg button").forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll(".seg button").forEach(x=>x.setAttribute("aria-pressed","false"));
+    b.setAttribute("aria-pressed","true");
+    const r=b.dataset.role, line=document.getElementById("trackline");
+    line.textContent = r==="myriam" ? "Post batch on track. Meta on Ep 023 is yours."
+                     : r==="isaac"  ? "Graphics on Ep 026 due this week."
+                     : "Post batch on track. 1 item needs you.";
+  }));
+
+  // ---- wire taps ----
+  document.addEventListener("click",e=>{
+    const it=e.target.closest("[data-ep]"); if(it) openSheet(it.dataset.ep);
+  });
+
+  buildMatrix(); tick(); setInterval(tick,30000);
+})();
+</script>
+</body>
+</html>

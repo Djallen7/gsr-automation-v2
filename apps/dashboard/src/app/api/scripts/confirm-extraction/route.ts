@@ -9,14 +9,9 @@ const SEGMENT_VALUES = [
 ] as const
 
 // A held lower-thirds row stored in scripts.pending_extraction.
-<<<<<<< HEAD
 // current_image_url is a legacy field stripped before insert. var_1/var_2 are
 // the generated alternate phrasings: stripped from the production_lower_thirds
 // insert (those columns were dropped) but re-persisted into lower_thirds_variations.
-=======
-// The JSON blob may carry legacy fields (current_image_url, var_1, var_2)
-// written by older extractions; strip them before inserting.
->>>>>>> origin/main
 interface HeldGraphic {
   episode_id: string
   segment: string
@@ -25,14 +20,9 @@ interface HeldGraphic {
   status: string
   l3_type: string
   source_doc: string
-<<<<<<< HEAD
   // legacy field present in older blobs — stripped before DB insert
   current_image_url?: string
   // alternate phrasings — moved to lower_thirds_variations, not a parent column
-=======
-  // legacy fields present in older blobs — stripped before DB insert
-  current_image_url?: string
->>>>>>> origin/main
   var_1?: string | null
   var_2?: string | null
 }
@@ -142,7 +132,6 @@ export async function POST(request: Request) {
       .eq('status', 'pending_review')
     if (delErr) return NextResponse.json({ error: delErr.message }, { status: 500 })
 
-<<<<<<< HEAD
     // Strip fields that no longer exist as columns on production_lower_thirds.
     // current_image_url is dropped entirely; var_1/var_2 are pulled out here and
     // re-persisted into lower_thirds_variations below so the generated alternate
@@ -155,12 +144,6 @@ export async function POST(request: Request) {
       .from('production_lower_thirds')
       .insert(insertRows)
       .select('id, initial_text')
-=======
-    // Strip legacy fields that no longer exist on production_lower_thirds
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const insertRows = graphics.map(({ current_image_url: _img, var_1: _v1, var_2: _v2, ...rest }) => rest)
-    const { error: insErr } = await supabase.from('production_lower_thirds').insert(insertRows)
->>>>>>> origin/main
     if (insErr) return NextResponse.json({ error: insErr.message }, { status: 500 })
 
     // Preserve alternate phrasings: variation_number 1 mirrors the primary

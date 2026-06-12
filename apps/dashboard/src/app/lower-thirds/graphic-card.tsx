@@ -143,13 +143,8 @@ export function GraphicCard({
             </span>
           </div>
           <p className="font-medium">{initialText}</p>
-<<<<<<< HEAD
           <p className={`text-xs tabular-nums ${initialText.length > 65 ? 'text-amber-500 font-semibold' : initialText.length < 55 ? 'text-amber-500 font-semibold' : 'text-muted-foreground'}`}>
             {initialText.length}/65 chars{initialText.length > 65 ? ' — over sweet spot (60–65)' : initialText.length < 55 ? ' — too short' : ''}
-=======
-          <p className={`text-xs tabular-nums ${initialText.length > 70 ? 'text-destructive font-semibold' : initialText.length < 55 ? 'text-amber-500 font-semibold' : 'text-muted-foreground'}`}>
-            {initialText.length}/70 chars{initialText.length > 70 ? ' — over limit' : initialText.length < 55 ? ' — too short' : ''}
->>>>>>> origin/main
           </p>
           <FontEditor
             graphicId={id}
@@ -203,7 +198,7 @@ export function GraphicCard({
           <div className="flex flex-col gap-1">
             <span className="text-xs text-muted-foreground">Original</span>
             <p className="rounded border bg-muted p-2 text-sm font-mono">{initialText}</p>
-            <span className="text-xs tabular-nums text-muted-foreground">{initialText.length}/70</span>
+            <span className="text-xs tabular-nums text-muted-foreground">{initialText.length}/65</span>
           </div>
           <div className="flex flex-col gap-2">
             <span className="text-xs text-muted-foreground">Generated variations — click to select</span>
@@ -221,13 +216,9 @@ export function GraphicCard({
                 <div className="flex items-center justify-between gap-2">
                   <span>{v.text}</span>
                   <span className={`shrink-0 text-xs tabular-nums ${
-<<<<<<< HEAD
                     v.text.length > 65 ? 'text-amber-500 font-semibold' : v.text.length < 55 ? 'text-amber-500' : 'text-muted-foreground'
-=======
-                    v.text.length > 70 ? 'text-destructive font-semibold' : v.text.length < 55 ? 'text-amber-500' : 'text-muted-foreground'
->>>>>>> origin/main
                   }`}>
-                    {v.text.length}/70
+                    {v.text.length}/65
                   </span>
                 </div>
               </button>

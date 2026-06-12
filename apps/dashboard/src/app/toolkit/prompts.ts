@@ -307,7 +307,7 @@ OUTPUT — write all of the following:
 Format: [Topic A], [Topic B], and [Topic C] | Genesis Science Report - S03, Ep{##}
 Requirements:
 - ~30% shorter than the full production title (hard rule — count the words)
-- Under 70 characters total (hard limit — count the characters)
+- Target 60–65 characters total (sweet spot); never exceed 70 (hard ceiling — count the characters)
 - Lead with the most compelling finding, not the guest name
 - Vary the format across 3 options: try a question, a list, and a contrast or twist
 

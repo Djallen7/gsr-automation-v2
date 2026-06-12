@@ -9,8 +9,9 @@ const SEGMENT_VALUES = [
 ] as const
 
 // A held lower-thirds row stored in scripts.pending_extraction.
-// The JSON blob may carry legacy fields (current_image_url, var_1, var_2)
-// written by older extractions; strip them before inserting.
+// current_image_url is a legacy field stripped before insert. var_1/var_2 are
+// the generated alternate phrasings: stripped from the production_lower_thirds
+// insert (those columns were dropped) but re-persisted into lower_thirds_variations.
 interface HeldGraphic {
   episode_id: string
   segment: string
@@ -19,8 +20,9 @@ interface HeldGraphic {
   status: string
   l3_type: string
   source_doc: string
-  // legacy fields present in older blobs — stripped before DB insert
+  // legacy field present in older blobs — stripped before DB insert
   current_image_url?: string
+  // alternate phrasings — moved to lower_thirds_variations, not a parent column
   var_1?: string | null
   var_2?: string | null
 }
@@ -130,11 +132,64 @@ export async function POST(request: Request) {
       .eq('status', 'pending_review')
     if (delErr) return NextResponse.json({ error: delErr.message }, { status: 500 })
 
-    // Strip legacy fields that no longer exist on production_lower_thirds
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const insertRows = graphics.map(({ current_image_url: _img, var_1: _v1, var_2: _v2, ...rest }) => rest)
-    const { error: insErr } = await supabase.from('production_lower_thirds').insert(insertRows)
+    // Strip fields that no longer exist as columns on production_lower_thirds.
+    // current_image_url is dropped entirely; var_1/var_2 are pulled out here and
+    // re-persisted into lower_thirds_variations below so the generated alternate
+    // phrasings are preserved rather than discarded.
+    const insertRows = graphics.map(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      ({ current_image_url: _img, var_1: _v1, var_2: _v2, ...rest }) => rest,
+    )
+    const { data: insertedGraphics, error: insErr } = await supabase
+      .from('production_lower_thirds')
+      .insert(insertRows)
+      .select('id, initial_text')
     if (insErr) return NextResponse.json({ error: insErr.message }, { status: 500 })
+
+    // Preserve alternate phrasings: variation_number 1 mirrors the primary
+    // (generated_by='human'), slots 2/3 hold var_1/var_2 from the extraction.
+    // Insertion order of .select() matches insertRows / graphics order.
+    const variationRows = (insertedGraphics ?? []).flatMap((row, idx) => {
+      const held = graphics[idx]
+      const rows: Array<{
+        graphic_id: string
+        variation_number: number
+        text_content: string
+        generated_by: string
+        generation_context: Record<string, unknown>
+      }> = [
+        {
+          graphic_id: row.id,
+          variation_number: 1,
+          text_content: row.initial_text,
+          generated_by: 'human',
+          generation_context: { source: 'confirm_extraction_route' },
+        },
+      ]
+      const variants: Array<{ slot: number; text: string | null | undefined }> = [
+        { slot: 2, text: held?.var_1 },
+        { slot: 3, text: held?.var_2 },
+      ]
+      for (const { slot, text } of variants) {
+        if (typeof text === 'string' && text.trim().length > 0) {
+          rows.push({
+            graphic_id: row.id,
+            variation_number: slot,
+            text_content: text,
+            generated_by: 'ai_extraction',
+            generation_context: { source: 'confirm_extraction_route' },
+          })
+        }
+      }
+      return rows
+    })
+
+    if (variationRows.length > 0) {
+      const { error: varErr } = await supabase
+        .from('lower_thirds_variations')
+        .insert(variationRows)
+      if (varErr) return NextResponse.json({ error: varErr.message }, { status: 500 })
+    }
   }
 
   const { error: updErr } = await supabase

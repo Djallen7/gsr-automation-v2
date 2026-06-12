@@ -308,16 +308,42 @@ export async function POST(request: Request) {
 
   // Insert variation_1 for each new graphic. text_content mirrors initial_text;
   // generated_by='human' marks the original import source.
-  const variationRows = (insertedGraphics ?? []).map((g, idx) => ({
-    graphic_id: g.id,
-    variation_number: 1,
-    text_content: g.initial_text,
-    generated_by: 'human',
-    generation_context: {
-      source: 'import_route',
-      source_doc: payload.graphics[idx]?.source_doc ?? null,
-    },
-  }))
+  // Slots 2 and 3 preserve the v2 prompt's alternate phrasings (var_1 / var_2)
+  // when present, so generated copy alternatives aren't discarded.
+  const variationRows = (insertedGraphics ?? []).flatMap((g, idx) => {
+    const src = payload.graphics[idx]
+    const rows = [
+      {
+        graphic_id: g.id,
+        variation_number: 1,
+        text_content: g.initial_text,
+        generated_by: 'human',
+        generation_context: {
+          source: 'import_route',
+          source_doc: src?.source_doc ?? null,
+        },
+      },
+    ]
+    const variants: Array<{ slot: number; text: string | null | undefined }> = [
+      { slot: 2, text: src?.var_1 },
+      { slot: 3, text: src?.var_2 },
+    ]
+    for (const { slot, text } of variants) {
+      if (typeof text === 'string' && text.trim().length > 0) {
+        rows.push({
+          graphic_id: g.id,
+          variation_number: slot,
+          text_content: text,
+          generated_by: 'ai_extraction',
+          generation_context: {
+            source: 'import_route',
+            source_doc: src?.source_doc ?? null,
+          },
+        })
+      }
+    }
+    return rows
+  })
   if (variationRows.length > 0) {
     const { error: varErr } = await supabase
       .from('lower_thirds_variations')

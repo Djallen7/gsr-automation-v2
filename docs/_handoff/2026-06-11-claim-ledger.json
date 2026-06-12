@@ -3545,10 +3545,21 @@
       "source": "Rumble support reply to Daniel's API request email",
       "date_heard": "2026-06-12",
       "status": "VERIFIED",
-      "verifier_evidence": "Vendor's own statement relayed by Daniel 2026-06-12 (highest authority). Consistent with prior findings: YouTube->Rumble auto-sync broken since late 2023, Upload API partner-gated. Re-check ~Sep 2026.",
-      "gsr_application": "Rumble distribution stays manual web upload (Myriam's current process); no pipeline slice may depend on a Rumble API; the distribution tracker records Rumble as a manual step.",
+      "verifier_evidence": "Vendor's own statement relayed by Daniel 2026-06-12 (highest authority). Consistent with prior findings: YouTube->Rumble auto-sync broken since late 2023, Upload API partner-gated. Re-check ~Sep 2026. CORROBORATED 2026-06-12: player.rumble.com/developers/Rumble-Upload-API.html and .../Upload.html both return HTTP 503, so a documented Upload API product exists but is currently down or paused. Watch that URL; re-ask ~Sep 2026 citing it.",
+      "gsr_application": "Rumble is manual TODAY but not closed: ambition ladder (canon s11 registry row) = prep card, assisted form-filler, full-auto on hold, monthly API watch.",
       "lane": "distribution",
       "priority": 1
+    },
+    {
+      "id": "CL-330",
+      "claim": "Rumble uploads can be automated through the web upload form via browser automation; proven by a community Selenium project (FelixEdenborgh/Rumble-Automatic-video-uploader: Chrome remote-debug, pre-login, form fill, toy-grade).",
+      "source": "github.com/FelixEdenborgh/Rumble-Automatic-video-uploader (live-checked 2026-06-12)",
+      "date_heard": "2026-06-12",
+      "status": "VERIFIED",
+      "verifier_evidence": "Repo exists and documents the approach (4 stars, single author, experimental). Feasibility proven; production version would be ours: Playwright on the Mac worker, assist mode, human presses publish.",
+      "gsr_application": "Basis for ladder rung 2 (assisted filler) and rung 3 (unattended, HOLD pending Daniel's explicit ToS/account-risk yes). Fragile to UI drift; graceful fallback is the rung-1 prep card.",
+      "lane": "distribution",
+      "priority": 2
     }
   ]
 }

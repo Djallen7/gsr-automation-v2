@@ -281,10 +281,22 @@ Cite: mission Phase S rules.
 
 ### Slice 4 - Quick wins batch (Lane 8 mostly) (Jun 12-14, parallel)
 
-**4.1 Rumble Upload API request sent. ✓ CLOSED 2026-06-12 (answered).**
-Daniel sent it; Rumble replied they have NO working API at the moment. No follow-up
-needed. Build impact: none (Phase 1 already used manual web upload for Rumble).
-Re-check ~Sep 2026 or if Rumble announces an API. Cite: CL-329.
+**4.1 Rumble: ambition ladder (reopened 2026-06-12 under the obstacle-ambition rule).**
+Vendor says no working API at the moment; their own Upload API doc page 503s (the product
+exists but is down/paused). Ladder, each rung scored effort-vs-benefit:
+- **4.1a Rumble prep card** (rung 1) · Ship with the episode dashboard work, target ~Jun 20
+  · Effort S · Risk none · Benefit ~10 min/episode + zero metadata typos: an episode card
+  showing the exact file, title, description, tags, thumbnail, schedule time, each with a
+  copy button; Myriam drags, pastes, clicks. Done when: card renders for a mock episode
+  with all fields copyable.
+- **4.1b Assisted form-filler** (rung 2) · After 4.1a + slice 7 Mac worker · Effort M ·
+  Risk low (assist mode: fills rumble.com upload form in her browser, attaches file, STOPS;
+  a human reviews and presses publish/schedule) · Benefit another ~5 min + no paste errors.
+  Fragile to Rumble UI changes; graceful fallback is 4.1a. Cite CL-330.
+- **4.1c Unattended upload** (rung 3) · HOLD. Needs Daniel's explicit yes on ToS/account
+  risk; only if the API stays dead and 4.1a/b prove insufficient.
+- **4.1d API watch** (rung 0) · Effort XS · monthly automated check of the Upload API doc
+  URL (503 -> up?) + re-ask Rumble ~Sep 2026 citing the page. Cite CL-329.
 
 **4.2 Booking frameworks promoted into canon.**
 Ship Jun 13 · Lane 8 · Effort S · $0.

@@ -4,7 +4,7 @@
 extract → import → review → approve → ProPresenter copy.
 
 > **Stage 7 is operational, not a code fix.** There is no schema blocker. The
-> lower-thirds table is `graphics` (there is no `lower_thirds` table, and the
+> lower-thirds table is `production_lower_thirds` (renamed from `graphics` 2026-06-09; there is no `lower_thirds` table, and the
 > old "JSON vs lower_thirds column mismatch" was a phantom). The only reason
 > `graphics` has 0 rows is that no real episode has been imported yet. This
 > runbook is that first real import.

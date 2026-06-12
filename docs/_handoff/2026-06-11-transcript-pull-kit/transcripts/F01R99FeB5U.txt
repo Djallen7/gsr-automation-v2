@@ -1,0 +1,211 @@
+A lot of us use Claude Code every day,
+but once the session is over, it becomes
+surprisingly hard to inspect what
+actually happened. You might remember a
+workflow went well or a session messed
+up or that Claude used a lot of tools,
+but after that most of the context stays
+buried inside the local file and it is
+very hard to explore them properly. So,
+I built CC Lens, an open-source
+dashboard that turns your Claude Code
+data into something that you can
+actually explore. It reads everything
+from your dot Claude folder and gives
+you a clear view of your project,
+session, model, activity patterns, and
+overall usages. You can browse all of
+your session, filter it by signals like
+web, MCP, agent workflows, and quickly
+find the session that is worth looking
+at. The setup is pretty simple. All you
+need to do is just run NPX CC Lens and
+it will open the dashboard in your
+browser.
+>> [music]
+>> So, this part is very important. So,
+this is local first and there is no
+cloud sync, login, telemetry that leaves
+your machine. It just reads the Claude
+Code data that already exists in your
+system and gives you an easier way to
+navigate that. Awesome. So, enough
+talking. Now, let's see this in action.
+Okay. So, I have opened my terminal and
+now I will just show you how this looks
+like. So, I'll just run NPX CC Lens
+and install the package.
+And now this will open the dashboard for
+us.
+Okay. So, you can see our dashboard is
+here and here we can see all the data
+that we are getting from the dot Claude
+file. And for example, I have done
+13,000 conversation with Claude and 121
+session. This month itself I had 107
+session, which is quite good. Uh
+and the token usage is quite high. I
+have used uh 334 million tokens. I
+worked on 10 projects. And here we can
+see the token usage over time. So, after
+March 21, you can see a spike here and
+you can see the project distribution
+here. You can see what all project that
+we have been working on and then you can
+also see the peak hours and the current
+session. So, you can see right now
+itself I have these many active sessions
+of Claude Code. And you can also visit
+the inactive ones and and you can also
+check all the sessions as well. So, it
+makes it a bit easier for you to
+navigate. So, this was basically an
+overview. Now, we will go to our project
+section and here we can see what all
+projects that we have been working on
+and I'm currently working on this
+project called uh TermUI. And there are
+some other projects like CCBoard, uh
+FormAI, which is uh Formality that I
+launched recently.
+And then you can also see the sessions
+from here.
+So, what all session that is running?
+For example, for this project you can
+see I'm running this for 6 hours and 16
+minutes and I had 401 message, which is
+quite high. And you can see the cost is
+not that much, which is fair enough. And
+then uh what all other session that I
+was running? Lately I'm just working on
+this project, so the sessions are filled
+with uh TermUI, but you can also filter
+it with CCBoard. You can see you can
+find the sessions for CCBoard. Now, with
+this what you can do is you can just
+click on this
+and this will give you a detailed
+overview of every conversation you had
+and this will also give you a token
+breakdown. You can see here input
+tokens, output tokens, the cache read,
+and total tokens that it spent and what
+all tools that it used. So, you can see
+the bash tools mostly, read tasks,
+update tasks, create, and all. So, here
+you can see what all message that I sent
+and what Claude actually did. And you
+can also see the read operation it did,
+the thinking block. You can also check
+the issues it had failed. So, overall
+you get the whole chat summary and you
+can see okay what worked well for you,
+what did not. So, you can also prompt
+better and improve your Claude Code
+workflow. Similarly, you can also check
+the cost breakdown here. You can see the
+total estimated cost. So, for Claude
+Code if you're not using APIs, you don't
+need to take a look at this because they
+mostly work with rate limits. So, so if
+I would not use their monthly
+subscription, it might cost me this much
+amount, which is very [music] high.
+And the cost breakdown as well and per
+model cost as well. So, what all cost it
+took for uh Opus 4.5 and Opus 4.6.
+And the cache hit rate as well.
+So, the next very important part is the
+tool calls.
+So, we can see what all MCP servers we
+are using the most, what all tool call
+it is using. So, we have better clarity
+over what Claude actually does.
+So, most of the times you can see it
+uses bash tools and the read operation,
+write operation.
+Then the following tools here. And then
+you can also see the MCP server. So,
+lately I've been using In- Sports MCP
+server a lot for creating backends. So,
+you can see all these tools it has used.
+And you can see the feature adoption as
+well. Uh web pages used in 20 session,
+task agent is used in 13 session. So, so
+you can see it has a lot of granular
+information that otherwise was very hard
+to navigate.
+Now, we can also see the activity.
+So, I tried to keep it more like GitHub
+which are the days I'm most active.
+You can also see the streak as well, the
+longest streak, the most active day, and
+the usages over time, the peak hours
+that we have also seen in the overview
+section. And the day week pattern as
+well. And this was quite interesting
+because I found out that I am quite
+active with Claude Code in the Fridays.
+So, that was an interesting insight for
+me.
+And then you can also see the chat
+histories here.
+Uh what all conversation I had. The
+to-dos, uh what all to-dos it had, how
+much of them were in progress, how much
+of them are done, and all.
+>> You can also check the plans it has
+created. For example, I had this plan
+for uh documentation QA and illustration
+plan. And next is an important feature
+that Claude Code added recently, which
+is the memory feature. So, you can also
+check what is in Claude Code's memory.
+For example, you can see no Claude
+attribution in the commits. So, this is
+something I asked Claude Code to
+remember that sometimes whenever Claude
+commits it, it always adds co-authored
+by Claude and no reply@anthropic.com,
+something like that. I don't want that
+thing, so I just asked it to store it in
+memory. So, you can actually see that
+how it is stored in the memory. So, you
+can see here do not include co-authored
+by Claude attribution in the commit
+message. And one more thing that I've
+done here is you can actually add this
+memory. So, if you want to add some more
+information to it instead of asking
+Claude Code to do that, you can just
+come here and add it and save it here.
+It should work the same way. So, you can
+see what all other memories that I had.
+And then
+we have the settings, uh which just
+gives you the skills I use, the basic
+plugin settings, and all. I don't have
+much things added yet. If you have some
+more things I should add, do let me know
+in the comments. I will do that.
+>> And finally, if you want to export a
+session, you can do it from here.
+And that's it. So, in short, it is not
+just about replaying one session. It
+gives you a broader picture about how
+you actually work with Claude Code. So,
+that is the main idea behind CC Lens.
+Also, the code is open source. You can
+find it here on arindam200/cclens.
+So, if you have some feature suggestions
+or if you want to contribute to it, feel
+free to do it. I would really appreciate
+that. Also, if you find this project
+useful, don't forget to give it a star.
+This motivates me even more to create
+projects like this.
+>> And that's it. Do let me know your
+feedbacks in the comments. I will be
+keeping an eye on that and thanks a lot
+for watching this video till the end. I
+will see you in the next video. Bye.

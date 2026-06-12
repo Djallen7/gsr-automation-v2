@@ -1,0 +1,777 @@
+I like how in SuperSet, right here in a
+terminal tab, you know, at any given
+time I'm typically flipping between
+different work trees within one project,
+and sometimes I'm even working on
+additional projects, and I can flip
+between them just like that, which is
+which is really nice. Almost a year ago,
+I published a video on this channel
+about multitasking with Claude Code
+using Git work trees. I knew it was
+possible back then, but it didn't really
+stick. Not for me, not for most of us.
+It's only recently here in 2026 that I
+actually find myself of working with
+multiple agents on multiple tasks at the
+same time almost all the time.
+Sure, the tools got better. We have
+stronger models now. Harnesses like
+Claude Code keep getting better. That's
+all true. But that's not what caused me
+to change my behavior as a builder. In
+fact, in the last 4 years, I noticed a
+distinct change in my workflow, and it's
+not until 2026 where multitasking with
+agents really shows up in my day-to-day.
+So, I'll show you what multitasking
+looks like for me today. But before I do
+that, let me trace back how we got here.
+Cuz back in 2023, this was before AI
+really entered my work, I was designing,
+coding, writing everything by hand. And
+this was the craft that I had been
+practicing my whole career. Then 2024, I
+think we'll look back on as the early
+days of AI in our work. This was the
+enhancement phase. It started speeding
+up the work that I was already doing by
+hand. So, things like tab completion,
+finishing lines of code, using ChatGPT
+to punch up a headline or some marketing
+copy. So, it was a power-up, but it was
+not really changing my workflow. 2025 is
+when AI became my collaborator. And this
+was the first real shift. So,
+spec-driven development started to take
+over. I started running all of my
+creative work through an agent, not just
+code, but writing, too. And by the end
+of 2025, I wasn't writing a single line
+of code by hand. Here in 2026, I'm
+orchestrating agents. And it wasn't
+until recently that I really embraced
+multitasking with agents. Because here's
+what I figured out. Spec writing is a
+practice, just like any other craft.
+Right now, about 90% of my hours are
+spent shaping and refining specs with
+agents. Only about 10% is reviewing what
+they've built. And the reason that
+balance works isn't because the models
+and harnesses got better, and they did.
+It's that I kept pushing more of my
+focus and my creative energy into
+product thinking and shaping specs for
+my agents to build. So, once it became
+clear that specs are the real output of
+my creative work, and once those specs
+became larger and more ambitious,
+working with just one agent at a time
+started to feel like a bottleneck. And
+look, at this point multitasking isn't a
+hack or a power move. It's just what
+comes next as we evolve as builders with
+AI. So, I'll show you what this looks
+like in my world today. And by the way,
+if you're new here, I'm Brian Castle.
+Here on the channel, I show you how we
+level up as builders with AI. And every
+Friday, I send my builder briefing. It's
+a free 5-minute read on taking that next
+step as a builder with AI. You can get
+yours by going to buildermethods.com.
+By the way, in buildermethods pro, I
+just launched a new course called become
+the builder. It's about making that jump
+from vibe coding to building the way
+that the pros build. You can join us by
+going to buildermethods.com/pro.
+So, the first place multitasking shows
+up as in my actual work as a builder.
+So, when I'm working on code, I'm
+typically moving between two to four
+different features, sometimes across
+different code bases at any given time.
+And so, given how much time I'm
+multitasking with agents, I'm finally
+moving away from the IDE plus one
+terminal, and I'm feeling more
+comfortable in these modern interfaces
+for agentic development. So, let me show
+you a few of these tools that I've been
+trying out lately as my daily driver for
+multitasking. So, lately I've been on a
+bit of a quest to find my new daily
+driver for all of my coding and and
+building work. And you know, because it
+has occurred to me that I am really
+multitasking a lot more, and I'm
+interacting with multiple agents. And
+that's really what all of these modern
+agentic development tools are sort of
+designed around these days. So, you
+know, I had been coming from Cursor.
+I've been using Cursor for, you know, a
+couple of years now. It started out as a
+VS Code fork, you know, but they've
+since released a new version. I think
+this is Cursor version 3.
+And and you know, this one has like the
+the agent sidebar. So, you can run
+multiple different repos, different
+projects, different agents. So, that's
+interesting, but to be honest, I didn't
+really spend a lot of time with that
+because Cursor doesn't have that native
+Claude Code interface. You're using
+Cursor's interface, which is nice, but I
+I really like to use Claude Code, uh the
+CLI interface. All right, this is the
+Claude desktop app and I'm in the code
+tab, which is now over here. And so,
+they've just recently redesigned that,
+so I wanted to give that a look,
+especially since it's from Anthropic and
+uh you know, since I'm primarily using
+Claude Code most of the time. Sometimes
+I'll dabble with other models, but
+lately I've I've just been working
+really well with the Claude Code CLI.
+And I use the Claude mobile app all the
+time with with Claude Code over there.
+So, I wanted to give a look at the newly
+redesigned Claude Code interface on
+Claude desktop. This too has the sidebar
+interface where I can, you know, kind of
+flip through my different projects and
+repos and uh and kind of work on
+different things here. But, you know, I
+got to be honest, I I didn't really find
+this interface to be, you know, really
+kind of fits the way that my brain
+works. It's nice, but it doesn't really
+have all of the interface niceties that
+I would expect from from like a daily
+driver type of thing. It it it's kind of
+cool that you can see the plan here.
+There's some windows for viewing the
+tasks. You know, I haven't really been
+actively using it, so I'm not super
+familiar with how to use it. I think it
+has some keyboard shortcuts, but kind of
+limited on that front. I also found it a
+a bit odd that I couldn't really In some
+cases I could access all of my skills,
+but in other cases I couldn't. That
+might be a user error, but th- there
+were just some like weird things that
+kept popping up here that I'm I still
+need to give it some more time. But that
+being said, I've been actually spending
+a lot more time in this app called
+SuperSet, and this is actually becoming
+my daily driver at least right now. I
+was I've been kind of comparing SuperSet
+and Conductor quite a bit. Now one thing
+that you'll notice in all four of these,
+they really are all starting to converge
+on the same general layout, right? So
+we've got, you know, left sidebar, repos
+and workspaces and work trees. I can
+show you a bit more of that in just a
+minute. And then like your main agent
+conversation happening in the middle,
+and typically on the right side we have
+the files. You can look at the files in
+your repo, or you can look at the
+changes that you're making. And I like
+that, even though I'm not actively
+writing code anymore, I do like to see
+the structure of my project and see
+where all the files are. It just makes
+it a lot easier to understand how things
+are getting built. And that was one of
+the things that I found a little bit
+frustrating with the Claude code
+interface in Claude desktop. I know that
+they have like a file browser somewhere,
+but again I had a little a bit of
+trouble accessing it. I don't really see
+a button for it. In certain cases I can
+click on a single file and and review
+the file, but here I could at least see
+the entire file system for my project,
+which is really nice. Now for me, as
+I've been kind of comparing these
+different tools, it really came down to
+SuperSet and Conductor. I think they're
+both really nicely designed
+applications, especially here on the
+Mac. I I've kind of gone back and forth
+between them. They look very very
+similar, and I still might flip around
+in the next couple of weeks. One thing
+that I don't really love about Conductor
+is that you're primarily interacting
+with Claude through Conductor's
+interface like wrapper over it. So if if
+I say, "Hello, are you on?" You know, it
+looks nice and I can see how it's
+working there. They're basically
+wrapping the Claude code interface using
+like the Claude P command. This isn't
+actually like the native Claude code.
+whereas in SuperSet, I can actually run
+Claude code here just like I'm I'm used
+to running it, you know, as I normally
+would. Now, I know that in Conductor, I
+think that they recently added the
+ability to just have a regular terminal
+tab in here, so you can actually run
+Claude code, but it's you know, or
+Claude code CLI here in in Conductor,
+but it's not exactly the same. Like you
+don't see the the active icon happening
+over here. You don't get the the sound
+notification. So, it's sort of like a
+second class feature right now. I I
+really hope that they switched it to
+more of a native feel like we have in
+SuperSet. So, when it comes to
+multitasking in SuperSet, that's what I
+really love. First of all, I like how by
+default the first workspace is the local
+branch, the local repository. That's
+another thing about Conductor. Every
+time we open up a new workspace, it's
+actually creating a new work tree, which
+is a copy of the entire workspace into a
+new folder, which is sort of essential
+when you're doing multitasking because
+you don't want the two agents to like
+overwrite each other. But, there is no
+built-in way to have access to the local
+branch, at least not easily. You have
+this terminal down here, which you can
+sort of do some things, but a little bit
+out of the way, whereas I like how in
+SuperSet, we have that by default, so I
+can do like a quick change or I can pull
+latest from GitHub right here in a
+terminal tab in the main window. But
+then when I'm ready to work on something
+new, especially if I'm multitasking, I
+can just do, you know, command N and I
+can say add a joke to the footer of
+homepage. And so now that is going to
+actually fire up a new work tree, and I
+can work on that here. It actually gets
+to work right away. Sometimes I'll I'll
+escape out of it and and give it a
+little bit more instruction. So, you
+know, at any given time, I'm typically
+flipping between different work trees
+within one project, and sometimes I'm
+even working on additional projects, and
+I can flip between them just like that,
+which is which is really nice. So, I'm
+still sort of jumping around tools.
+Right now, I really like SuperSet. I
+believe that they have a new version
+coming out pretty soon. So, I'm looking
+forward to taking a look at that. But,
+yeah, when it comes to building, I'm I'm
+really focusing most of my attention on
+this left sidebar and using work trees.
+So, if I just finish something up, I'll
+commit that change to this branch.
+Again, we are working on a work tree,
+which is currently a copy of the whole
+code base. But, when I'm ready to, you
+know, ship this or, you know, deploy it
+or merge it back into main, all I do is
+command shift P and that sets me up for
+PR. I can create that I can merge it
+back into into main very easy. And then
+I actually have a deployment process so
+that when I merge into main, we actually
+deploy. And depending on the project, I
+might deploy into staging first and then
+main. So, that's another story. So, I
+don't know if the rise of multitasking
+is driven by these newer agentic
+development tools or if we're just
+evolving as builders. I think it's a bit
+of both. Either way, it's clearly a
+pattern worth paying attention to. Now,
+let me tell you about the sponsor for
+today's video, Consensus, because this
+one actually fits what we were just
+talking about. Here's the thing. When
+your agents are doing research on your
+behalf, whether that's during spec
+planning or when you're reviewing what
+they've built, they're usually pulling
+from a web search, which means they're
+pulling from the same noisy blog posts
+and SEO content that everyone else is.
+That might be fine for low-stakes stuff,
+but if you're building anything where
+decisions actually matter, healthcare,
+fintech, enterprise tools, anything
+where you might have to report or
+justify your technical choices, the
+quality of the data that your agents are
+working from suddenly matters a lot.
+Consensus is a different data layer for
+your agents. It's an MCP server that you
+can plug into Claude, Claude Code,
+Cursor, Codex, any MCP client. And it
+searches over 200 million peer-reviewed
+academic papers, not just blog posts,
+actual published research where every
+result comes with citable sources that
+you can point to. And the way Consensus
+returns information is what really makes
+it useful in an agent workflow because
+every finding comes back with
+line-by-line citations linking to the
+peer-reviewed papers that back it up.
+So, your agent isn't just giving you the
+answer, it's showing you exactly which
+studies it pulled from, where the claims
+came from, and letting you verify the
+source. That's the kind of trail that
+you actually want when decisions matter.
+Now, while Consensus has typically been
+used for academic researchers, their MCP
+makes it a great tool for builders, too.
+And I can see this being especially
+useful in two places in a typical
+workflow. The first is during spec
+planning, when you're deciding on an
+approach for a new feature, a UX
+pattern, a user behavior, accessibility,
+a security trade-off. You can have your
+agent pull peer-reviewed research on the
+decisions before the spec gets
+finalized. The second is during review.
+So, when your agent ships a PR, you're
+not just reviewing the code, you're
+reviewing the decisions behind it.
+Consensus is a way to validate that
+those decisions line up with actual
+research, not just what an LLM thinks
+sounds right. So, you can try it for
+free by going to consensus.app, and you
+can connect it via MCP in a snap. All
+right, now let's talk about context
+switching for a second, because that's
+the mental barrier that I think prevents
+many of us from really embracing
+multitasking, even though we know that
+the tools are capable of it now. But,
+I'm starting to think of it more like
+context blending, because more often
+than not my product work is directly
+related to my marketing work, and I'm
+even building agent skills to tie these
+two together even more closely. Let me
+show you. So, lately I've been building
+a lot of these internal tools. So, this
+one is called SparkDrop, and this is
+where me and my agents sort of manage my
+pipeline of new content ideas that we're
+developing and then scheduling out and
+building out my newsletter. So, this is,
+you know, internal and uh designed
+around my own workflow. I've got another
+one called BrainDown, and this is where
+I'm able to edit and read markdown files
+and easily share them with my agents. It
+all uh integrates nicely with Dropbox.
+It's just a really nice kind of markdown
+file manager, if you will. So, these are
+my internal tools, but I'm starting to
+release them publicly in the form of
+build kits or starter kits, if you will,
+that I'm releasing to Builder Met-
+Methods Pro members, so that, you know,
+members can build their own versions of
+these same tools starting from my
+prompts and plans and PRDs and specs and
+then my video guides that come along
+with it. So, it's a really nice way for
+builders to be able to build exactly the
+same thing I built or deviate and
+customize it to your own internal needs.
+That's kind of the beauty being able to
+build your own internal tools like this.
+I'm going to show you a bit more of
+Spark Drop later in this video,
+especially how I have my agents working
+and interacting with it while I'm also
+interacting with it as well. I'll get
+into that like agent multitasking thing.
+But, what I want to talk about here is
+how I'm sort of blending marketing with
+these products. So, if I if I sign out
+of these accounts and then just look at
+the homepage, so you can see at
+braindown.app and at sparkdrop.co,
+I have these kind of marketing pages
+built out for these. Now, I'm not
+actually offering these as like
+standalone software tools or SaaS tools
+at this time. Again, they're they're
+just tools for me, but I still like to
+have like a a public marketing page at
+least to explain what this tool is since
+I like to share the tools that I build
+here on the channel and share the
+starter kits. So, to create these
+marketing pages, I actually did that
+directly in the codebase for the
+products themselves. So, like in Spark
+Drop, this is just the the root page for
+it. But, I built a specialized skill
+that I can always come back to anytime I
+build a new tool to quickly and easily
+spin up a new one-page marketing page
+for the homepage, right? So, I can
+easily call it up by just calling like
+app marketing page and then I can just
+have it run the process. Since I've
+already done that, I'll just show you
+the skill itself. So, in my collection
+of internal skills, I've got this one
+called app marketing page. And then if
+we look at that, it's uh this is how I
+tend to organize the skills that I have
+my agents work on. So, I usually have
+like the one main skill.md,
+which is the overall process, and it
+has, you know, multiple phases. What
+it's going to do is this one will
+analyze the codebase and then interview
+me about like what I think the most
+important messaging points are about
+this. Then it's going to use the
+front-end design skill to design the
+page, and then it will implement the
+page. And then I I usually have this
+folder called steps, where I will kind
+of flesh out the individual instructions
+for each of these steps. Now, you know,
+this is how I wanted to design the
+process for making these these marketing
+pages the way that I want them. So, it's
+just really easy to work with Claude to
+craft the process however fits your
+business and your workflow. So, I like
+to have these like reusable skills built
+in here. So, that's an example of how
+I'll often just switch between building
+on the tool itself and then have an
+agent work on the marketing page
+directly in the same codebase, sometimes
+in two different work trees in the app.
+Now, in addition to the marketing pages,
+I'm also starting to extract more ideas
+and assets from the products that I'm
+building. So, like I talked about those
+starter kits, I actually created an
+agent skill, and this one is more
+complex for generating the starter kit
+from the actual codebase that I built
+out. So, the the my plan for the for the
+next couple of weeks is to build more of
+these tools similar to like Spark
+Spark Drop and what I call Brain Down,
+and I've got a few more in the pipeline
+that I'm that I'll be building. But then
+I'll be turning them into starter kits
+that that members can can get access to
+and build from. And so, I have an agent
+skill that will do the same analysis,
+build out the PRD, the tech stack, the
+design system, and then, you know, build
+out some ready-made prompts. And there's
+a lot more to it than that. I'm I'm
+giving a lot more input along the way,
+and and so, each of these has some like
+interview steps for me to to work
+through. These are all the different
+steps in the process of creating a
+starter kit. Um so, you know, again,
+it's like building out these operations
+in my business, turning them into agent
+skills, and then building them into my
+actual workflow, where I can easily flip
+between having an agent work on a
+marketing task, creating an asset, or
+actually building out one of my
+products, and really doing these side by
+side, sometimes at the same time. One
+more of these skills that I just
+recently set up is called plan videos
+from build. So, again, I'm trying to
+extract more ideas and takeaways and
+design patterns from my actual work
+itself building in the products to turn
+them into concepts that I can share on
+videos for YouTube, right? So, I created
+a skill for that, and I'm going to be
+doing more of these in the coming weeks
+here on the channel. So, again, it's
+going to analyze the code base, it'll
+analyze my conversations that I've had
+with Claude, and the process for how I
+went about building the building
+whatever tool it was that I built, and
+then we have a bunch of steps for
+actually drafting and structuring and
+outlining a video for me to then develop
+and record and and come out with. and
+marketing used to be two totally
+separate workflows, and now they run in
+parallel, sometimes inside the same code
+base.
+Now, here's a form of multitasking that
+I've been waiting for for a year, but
+it's only really doable now. And that's
+having agents keep working on my
+projects even when I'm not at work. I'm
+talking about mobile, and it's kind of
+addicting.
+Now, I did a deep dive into all the ways
+you can use Claude code on mobile just a
+few weeks ago here on the channel. But,
+to give you more context, I'm seeing a
+few patterns in my day-to-day. Before I
+finish up my day here in the office, I
+give Claude a big task to keep working
+on while I go to dinner and hang out
+with my kids. And most nights I grab my
+phone and kick off a task just before
+bed so that it's working while I sleep.
+And the next morning, you guessed it,
+I'm grabbing my phone and I'm having it
+plan a new task while I go do some
+exercise and get my morning coffee
+going. You know, a lot of this is about
+optimizing the timing of our interaction
+with AI agents, because a lot of it is
+just waiting for Claude to analyze an
+entire code base or do some research or
+churn through a big spec. So, instead of
+waiting there and watching Claude do its
+thing, I'd rather kick it off and either
+go enjoy my free time or start planning
+the next feature in a different work
+tree. Now, 2026 is also the year of
+agents, which means that on most days
+there are tasks being done by an Open
+Claude agent or a Claude Co-work agent
+that I didn't need to prompt or even
+watch it work. They're just members of
+my team doing their jobs on schedule
+following the process every time. Now,
+I've covered my agent setup in a few
+videos recently here on the channel and
+inside Builder Methods Pro. But, here's
+a fresh look at what my agents are
+actually doing most days. So, I showed
+some of this in my previous videos on
+Open Claude. This is my custom dashboard
+that I use to assign and dispatch
+recurring scheduled tasks to all of my
+agents. So, on Open Claude, which is
+running on a dedicated Mac mini here on
+my desk, I have four different agents
+and each one of them is responsible for
+a number of different tasks. For
+example, my agent named Gumbo does like
+a daily synthesis of my work and to-do's
+and intakes a lot of like files and
+stuff and then sends me a a morning
+report that looks sort of like this. I
+get the Met score, sometimes the Knicks
+score, my to-do list, and a summary of
+what happened yesterday. We capture all
+that stuff into like a a brain file
+system. And so, I can manage it all in
+this custom dashboard here and so, each
+of these tasks can map to a custom skill
+that I've built into my system. By the
+way, this dashboard for dispatching
+tasks and scheduling them on a recurring
+basis to a team of agents, this is
+another one of those apps that I have
+released a starter kit, like a builder's
+kit for you to be able to build your own
+version of this. That's available inside
+of Builder Methods Pro along with my
+entire course on setting up a team of
+agents with Open Claude. So, that's a
+quick look at my agents on Open Claude.
+Again, I I shared some of this in my
+other videos, but this this agent
+handles a task that I call content
+radar, and that one is basically
+following some tweets and news from the
+industry for me to pay attention to, and
+we can maybe, you know, use that as
+material to create some new content.
+Now, all of these are tied to skills.
+So, you can see like daily synthesis,
+content radar scan, intake processing,
+like a weekly report. And so, these are
+defined in my collection of skills. For
+example, here is the daily synthesis
+skill that my agent follows. And in my
+open class series in Builder Methods
+Pro, I go through my entire setup, how I
+wire it up, how I configure the agents,
+how I have them able to read uh specific
+skills, and especially dealing with
+multiple agents. It can get pretty
+involved, but I share all the cheat
+sheets and all the setups and everything
+in there. Now, lately I've started to
+use Claude co-work agents as well. And
+this is a really interesting pattern
+that I think is going to become more
+common. So, I mentioned that I recently
+built this tool for myself called
+SparkDrop. And this is my me and my
+team, and when I say my team, I mean my
+agents, we use this to develop content
+and move it through the pipeline,
+whether it's ideas for new videos here
+on the channel, or my weekly newsletter,
+or things that I might put up on Twitter
+or X or LinkedIn. So, they start out as
+sparks. These are like new potential
+ideas that are being pitched that I can
+react to, and I can either revise them,
+I can comment them, and I can, you know,
+say, "Yeah, let's green-light this for
+development." And then these ideas, you
+know, turn into call flames. And so,
+these are like drafts that my agent will
+give me a first draft. I can comment on
+it, give it some feedback. I can rewrite
+it myself, which I often do. And then we
+can, you know, schedule it into the
+schedule and send it out on X or market
+as something that I'm going to include
+in this week's newsletter. So, this is
+an interface for me to be able to do all
+that stuff, but my agent also interacts
+with this same interface using our API.
+So, I built an API and it has
+documentation in here. So, this
+custom-built app has an API and all
+these API endpoints that my agent can
+use to submit a new Spark idea or
+develop a draft on a flame. And I'm
+actually using a Claude Co-work agent.
+The reason I use Claude for that is
+because I want it to be using the latest
+model of Opus using my Claude Max plan.
+And so, for that we're using Claude
+Co-work. Now, here I'm actually looking
+into a window that looks into the
+dedicated Mac mini where I have my
+agents running. I have two different
+users on that Mac mini. One is for open
+Claude agents and the other is like my
+account on the Mac mini and that's where
+I run Claude Co-work inside that Mac
+mini. So, this is like a window from my
+main machine into my Mac mini and this
+is Claude Co-work and I have this
+scheduled content development task which
+happens every morning at 6:00 a.m. And
+we can see that it happened uh today at
+6:00 a.m. and yesterday. For some reason
+it happens like 4 minutes later. So,
+6:04. The agent will go through and do
+its thing. Now, now it is configured to
+use my skill which I've named content
+development. And I define that and I'm
+and I maintain that back in my codebase
+for content development that is here.
+So, here's the main skill for that. This
+is the content development pipeline and
+this one goes deep. So, I've got
+instructions to the agent on how to
+interact with my SparkDrop API and then
+it goes through and instructs the agent
+on where to find the training data. You
+know, we have a lot of training built
+into SparkDrop on like my voice and
+preferences and topics that I like to
+talk about and then how to read my
+comments and take my feedback and how to
+post its own comments. We also have a
+system for the agent to create
+learnings. You know, it learns from me.
+It learns my voice, learns my new
+preferences and we fold that back into
+the training. And then here are the
+pipeline steps. Again, here's that
+pattern where each step in our main
+process will link off into these sub
+steps. So, how to generate sparks or
+generate new ideas for content, a whole
+process for that, how to integrate
+learnings back into into our work, how
+to write drafts, and then how to like
+move drafts into the newsletter
+sections. So, you know, a bunch of steps
+here. I'm not going to bore you with all
+the nitty-gritty, but that's how I
+structure it. And so, basically what
+happens in the background automatically
+using Claude co-work, this is running
+every morning at 6:00 a.m. like
+clockwork, right? It's just always
+running and the agent using the latest
+Claude Opus model is going to run my
+skill with all those processes and
+submit new ideas, new content into my
+Spark Drop application. This is like the
+user interface and then I can access
+this here or on my mobile device and I
+can just give feedback and and we can
+approve and move content through the
+pipeline. So, I just really like that
+trifecta of like me, human in the loop,
+with the custom-built internal tool, the
+interface, and the agent being able to
+all kind of converge and and interact
+this way. I think it works really well
+and this is how we're able to, you know,
+develop content and just push it through
+the schedule while I work on other
+stuff, while I work on the next project
+or the next video. So, all of this is to
+show that whether you're becoming a
+builder or you're adapting your work as
+a builder, it's a progression. And once
+you focus on your role as the human in
+the loop, you start to see patterns
+emerge, which makes multitasking the
+natural next step. Now, as I showed, one
+of those unlocks has been getting truly
+productive with managing agents from
+mobile. So, you won't want to miss my
+recent video showing every way that you
+can use Claude code from your mobile
+device. First, hit subscribe so you
+don't miss my next video and then I'll
+see you over there next. Let's keep
+building.

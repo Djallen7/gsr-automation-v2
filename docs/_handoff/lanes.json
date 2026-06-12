@@ -1,6 +1,6 @@
 {
   "project": "GSR Automation",
-  "updated_at": "2026-06-08T20:00:44.993Z",
+  "updated_at": "2026-06-11T21:55:19.317244+00:00",
   "lanes": [
     {
       "id": 1,
@@ -227,26 +227,60 @@
           "date": "2026-06-08",
           "text": "Captured review decisions to canon s13; built GUEST-CORRECTIONS.md (+ frameworks); authored ADRs 0004-0006; intro rule + README version pin."
         }
+      ],
+      "activity": [
+        {
+          "date": "2026-06-11",
+          "note": "Frameworks promoted to canon s18; Kilauea s14 item resolved (wording locked, row write moves to Lane 3 once the Austin episode row exists)."
+        }
       ]
     },
     {
       "id": 9,
       "name": "Autonomous research loop",
-      "status": "paused",
-      "summary": "Self-paced research queue. Paused; resume when wanted.",
+      "status": "in progress",
+      "summary": "Fable 5 pipeline mission (2026-06-11): Phase R complete + independently verified; PR stack #47/#50/#52 squash-merged 2026-06-12 (Lane A, Daniel's one-tap yes), CL-009 resolved, plan 0.2 truth sweep done. Next: Daniel merges PR #53, then Phase B lanes 10-15 open.",
       "done": [
         "docs/_handoff/research-queue.md set up.",
         "Optimization report and per-stage tool suggestions produced."
       ],
       "to_finish": [
-        "Resume the queue when wanted (remaining items: per-direction UI research docs, etc.)."
+        "Merge PR #53 under the standing grant (in progress this session).",
+        "Open Phase B: item 1.0 import-gate hardening next, with mock-content testing, on the session branch.",
+        "Graphics + segment-timing questions go out as one-tap card batches when slices need them (decision 5 resolved)."
       ],
       "blocked_on": "",
       "files": [
         "docs/_handoff/research-queue.md"
       ],
-      "resume_prompt": "Read docs/_handoff/LANES.md (Lane 9) and docs/_handoff/research-queue.md. Resume the self-paced loop draining that queue, committing each result.",
-      "recent_activity": []
+      "resume_prompt": "Read docs/_handoff/LANES.md (Lane 9), docs/_handoff/2026-06-11-pipeline-build-plan.md (the plan, v3), docs/_handoff/2026-06-11-mission-run-notes.md (goal checklist + corrections), and docs/_handoff/2026-06-11-claim-ledger.json. If transcripts exist in 2026-06-11-transcript-pull-kit/transcripts/, mine them per item 3.2 (statuses mined/rejected, claims ASSUMED->verified). If Daniel has answered section 7, append answers to canon dated and open the Phase B lanes the plan lists in section 9. Starred defaults stand unless he says otherwise. Never bypass canon s15 gates.",
+      "recent_activity": [],
+      "activity": [
+        {
+          "date": "2026-06-12",
+          "note": "Daniel granted standing approval (Claude merges its own tested batches; live-show/live-DB/money/irreversible still need his yes) and replaced the two working sessions with one-tap decision cards. Rumble answered: no working API at the moment; CL-329 logged, plan 4.1 closed, manual upload stays."
+        },
+        {
+          "date": "2026-06-12",
+          "note": "DECISION 1 EXECUTED (Lane A, lead drove): #47 e279f4f, #50 2c25776, #52 cf6987c squash-merged; Vercel production READY on cf6987c; deployed pages now query production_lower_thirds (CL-009 resolved). Plan 0.2 truth sweep run on the mission branch: real migration count 48 fixed across docs, canon s0 / roadmap / runbook / course / SYSTEM-EVOLUTION reconciled, advisors inventoried (1 pre-existing ERROR + warns -> punch list in run-notes for the 1.0 branch). Incident: two stack merges briefly committed conflict markers (2 files reached main, builds errored, production unaffected); caught via PR-diff review, healed in the #52 squash; standing merge procedure added to run-notes retro. Mission branch synced with main (canon booking now s18)."
+        },
+        {
+          "date": "2026-06-12",
+          "note": "PHASE R COMPLETE: 162/162 videos resolved (148 mined, 60 of them R6), 321-claim ledger with 0 P1 ASSUMED after synthesis triage. Addendum v2 in the plan (Jun-15 headless credit split is the urgent one); ADR-0013 amended to c9watch; R6 closed. Awaiting independent rubric re-check + Daniel's merge and calendar."
+        },
+        {
+          "date": "2026-06-11",
+          "note": "Track 2 burst while the Mac pulls transcripts: lanes.html sessions panel shipped (plan 2.2), ADR-0013 Mission Control (2.5), frameworks promoted to canon s18 (4.2), Kilauea fact-check RESOLVED with on-air wording in canon s14 (4.4, Daniel was right per USGS), superstore lookup spec committed (4.3, CL-049), gsr-research handoff + branch safety net shipped as that repo's PR #1 (P14). Ledger at 49 claims."
+        },
+        {
+          "date": "2026-06-11",
+          "note": "Cloud-side research (R2-R5) verified into a 47-claim ledger, 0 priority-1 ASSUMED; R6 +63 candidates queued (162 total, none mined yet - Phase R NOT done, mining needs the Mac kit). Phase S build plan v3 drafted, critiqued 3 rounds (2 red-team blockers fixed), independently rubric-checked 7/7 AFTER the fixes; awaiting Daniel's section-7 answers."
+        },
+        {
+          "date": "2026-06-11",
+          "note": "Mission started in cloud session on branch claude/vigilant-ramanujan-kt4fdc: Phase E audit done (run-notes), claim ledger created, transcript pull kit pre-staged for the Mac (cloud IP blocked), R2-R5 research swarm launched. Starred defaults adopted (answer sheet unfilled)."
+        }
+      ]
     }
   ],
   "closed": [

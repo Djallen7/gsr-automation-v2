@@ -1,0 +1,695 @@
+Anthropic just shipped a scheduled task
+for Claude Code and Twitter is calling
+it cron jobs for AI and some people are
+saying Claude Code just killed open
+clone. So, what's going on? I have set
+up a three agents in my Obsidian vault
+and I have those sub agents and I have
+interval when they're going to fire and
+let's take example here. That's my
+accountability check. It's asking me
+about okay, so every 30 minutes I'm on
+track on the goals. That's one example.
+Another one is executive coach and the
+final one is a source monitor. I have
+them here in my terminal in this
+workspace auto all. And here's my
+executive coach checking on me asking me
+questions. When did you feel the most
+alive today? Every 3 hours and then here
+is our source monitor which is getting
+information from Reddit threads and my
+YouTube home feed every 8 hours and
+another agent is accountability agent
+which asks me about okay, so what are
+you doing? Actually, I've been
+procrastinating on that.
+>> [laughter]
+>> So, I'm still looking that
+I am editing my slides for this video
+and saying okay, just just hit it. Just
+record it. And here we are. Let's try to
+understand how you can set this up those
+automations yourself. And that's what
+you're going to get by the end of this
+video. You're going to understand so
+what's the difference now with those
+scheduled tasks. We're going to set up
+the Reddit automation. We're going to
+set up accountability check and
+executive coach and also the limitations
+of this approach. All right, so let's
+start. So, how how can you set this up?
+To set this up, uh we're going to use
+this loop command in Claude Code. Let me
+open my Claude Code right now.
+I'm in my terminal. I go to the Claude
+Code. And by the way, this is also
+available on desktop version.
+Okay, um here's a loop. Let's say here's
+a loop command and here's a description.
+Run a prompt or a slash command on
+recurring interval. And here is a helper
+for us. What is the interval you want
+run and then there is a prompt. And
+let's say uh okay, so I'm going to get
+there and let's say um
+loop. So, every 30 minutes I want to
+read my day plan for today, my daily
+note and check with me if I am on track.
+And if I don't have anything in my daily
+plan for today, ask me what is the goal.
+Right now, Claude
+going to use this skill called loop.
+This is available by default. I didn't
+create this skill. It comes with the
+Claude Code. And now it's parsing that.
+Okay, every 30 minutes so interval is 30
+minutes
+and then it's scheduled a cron job for
+us, basically a script which is going to
+run inside of this session with all of
+the context which we have here. And then
+it's going to fire every 30 minutes
+and it's going to read my day plan and
+day note and check if I'm on track.
+Let's actually test it. I wanted just
+fire this now to see how it's going to
+behave. So, let's let's try to fire
+this.
+Okay, so now it's going to fire it
+manually. So, it's going to go and
+explore what are my daily notes for
+today. So, the daily note is not on this
+path. So, it figured this out. Oh, are
+you on track for the demo day? So, I had
+like um
+two plans for today.
+Um
+and it's asking me about okay, so what's
+happening, right? So, I want to show how
+it works. So, let's actually create a a
+new daily note now
+in the daily folder and open it in my
+Obsidian in a new tab. And then let's
+say my goal for today is to publish this
+video
+and just you know, relax a bit at the
+end of the day. It's Saturday. Okay, so
+here is my daily note template which has
+been created and it's quite extensive.
+Um And let's say here is my today goal
+which Claude wrote. So, I want to try to
+see how how you're going to behave. So,
+try to skate like run this
+and uh
+I want to see how how it's going to look
+like. And here's a simulation how it's
+going to look like in 30 minutes.
+Um let's say okay, publish
+um
+scheduled task video then relax. That's
+a goal and then it's asking about okay,
+am I on track? Um where are you in the
+process and so on.
+And it's going to run it within this
+session. Now, and this is what makes
+this all powerful that we have this
+agent which has access to all of our
+skills to all of our MCP tools and
+connections to all of our context within
+Obsidian. It can reason. It can
+understand. It can debug and adapt at
+the next run. And here is a point that
+right? It's um
+running with all of the context. Let's
+say I have those automations set up
+right here. I can see what's going on
+here and the agent remembers what was
+the previous interactions before and it
+has all the context. And another thing
+which excites me that I can actually go
+here
+and if I something if I don't like
+something, I can just tell okay, so
+let's change the skill
+and make it in a bit different way and
+that's how I went about this source
+monitor.
+Um that's a Reddit and YouTube check.
+Let me show you what it's doing for me.
+So, I have this a daily note
+and we agreed with Claude. So, we're
+going to run this automation.
+So, I have this automations right here.
+It's called um
+source monitor. I can go there.
+And it tells Claude okay, so check my
+sources for the relevant content about
+Claude Code agents Obsidian. I'll scan
+those
+those Reddits using the Reddit red
+skill.
+And then
+also check my YouTube home feed. Okay,
+so and do that for each source extract
+uh
+the most interesting items
+and then try to notify me once we are
+done. And the way we did it on the first
+iteration
+this is what Claude produced. I produced
+this um
+sources with our Reddit threads. I can
+click there.
+So, it opens
+a Reddit thread. But I didn't like that
+it actually didn't read the comments and
+understand what what's happening there.
+And here is just um the YouTube videos
+with no links, with no summary. So, this
+one I didn't like and then we went about
+doing another iteration within the same
+session. And here is uh
+iteration two. Here's actually okay.
+Actually, Claude read all of the
+comments and extracted, you know, what
+is community thinks about that. And here
+it also for the Obsidian subreddit all
+of those uh different posts with
+activity.
+Now, I can go there and click and engage
+with the material which matters to me.
+So, I don't have to scroll Reddit or
+YouTube on my own. My agents can just
+okay
+go ahead and extract what only matters
+to me
+and what would be interesting for me.
+So, I don't have to go to those YouTube
+home feed to Reddit. Now, just um
+huge unlock if you can see. Now, I'm
+also interested in the immigration. I
+can check okay, so what's going on with
+immigration to Canada? Um there's some
+problems.
+And also for the YouTube uh
+this is like amazing. Just imagine that
+okay Claude went um
+and searched for the recent videos
+about, you know, Claude Code and that's
+interview with Boris Cherny. And here is
+actual video.
+So
+it went about getting the transcript and
+giving me a summary
+so what matters and here are some take
+takeaways
+from the actual source. You know, the
+Boris runs five terminal tabs um and so
+on.
+And here is some analysis.
+Yeah, and you can just make it your own.
+You can have make your own daily digest
+without going to those, you know,
+different websites. Just huge unlock.
+And that was a prompt which we did with
+Claude. That's it. I told okay, use my
+Reddit skill and use my YouTube skill to
+accomplish this.
+And that's how it looks like in
+terminal. Let me just like okay. Let me
+just go about um
+going full screen right here. So, I like
+it more.
+So, that's a source monitor.
+So, what we kind of did is
+okay, um
+we set up this automation
+and then Claude went about exploring
+what's going on.
+It
+appended to my daily note the first
+results and then it told that I want to
+have exact links. I want to have uh you
+know,
+uh add this uh subreddit into my
+monitoring and then you run it again.
+So, this way you can like um if you're
+not satisfied with the results, you can
+just okay, tell let's change that and
+let it rerun. And I can trigger this job
+whenever I want. I can tell
+okay, so let's do this right now. So
+let's trigger this now. Okay, it reads
+this source monitor.
+So, it actually
+uh updated the skill right now because I
+asked it to to update before but it
+didn't and now it actually updates it
+and it reruns it right now. So, in this
+way you can see that if you don't like
+something, you can change it right away
+and
+and rerun it right away. So, here is
+just let's start this bug out agent.
+Yeah, so that's been
+uh this part uh for the source monitor
+Yeah, and by the way, if you're
+interested in those skills, so you can
+grab them
+here. So, link in the description. So,
+it has the source monitor for scanning
+Reddit and YouTube and save it into your
+wall.
+It has to have this accountability
+check, which I'm going to show next and
+executive coach.
+And it's a skill pattern which you can
+apply for different other areas which
+are interested to you.
+The next one is accountability check.
+So, in this one is um
+the one that helps me to stay on track.
+Every 30 minutes, it fires this
+automation to see if I'm on track, if
+I'm on track with what I plan to do uh
+throughout my day.
+Typically, what happens I start working
+on something and then okay, one like two
+hours later I am
+I don't know what's happening and how I
+ended here in the current situation. Uh
+this is very very helpful um
+for people who might have, you know,
+like multitasking and they're quickly
+deviating away from from the goal.
+That's how it looks like. Um that's the
+accountability check.
+One, it's um actually
+uh quite cool. Uh so,
+it reminds me that okay, you have a
+limited time in your life and every 30
+minutes matters.
+So, I'm checking with me so, what am I
+doing right now?
+So, remind today plan for my daily note.
+Yeah, it asks a hard question, you know?
+Um isn't that thing that the matters the
+most right now or how many like 30
+minutes work do you have left today?
+And then in the end, it notifies me.
+Uh
+So, you can see that like I think here
+is a terminal
+right here. That's accountability check.
+So, you can see that it was um actually
+firing
+firing those jobs uh at at 12 12:00 p.m.
+today.
+So, I was not answering because I was
+busy.
+And now we can try to see
+let's say okay, go check on me.
+So, we can try try to see how how how
+it's going to look like.
+So, right now it checks what's the
+current date right now.
+So, then it fires this notification. It
+should appear here,
+I believe. Um okay, so no notifications.
+Yeah, the notification didn't fire,
+but now uh
+>> it's telling me you're reading the
+accountability automation file instead
+of recording.
+Yes, so it's prompting me to to record.
+Um I'm recording. Go chill.
+Yeah, so you can see how it can be very
+very useful
+so to stay on track. So, this is
+especially useful if you're seated and
+think for 15 minutes at the start of
+your day what you want to accomplish and
+then you fire this agent and tell okay,
+so
+let's go, let's stay on track.
+So, that was accountability check.
+And I also have this
+executive coach
+and I use this Dan Coyle framework for
+six interrupts throughout my day.
+So, that's the resource. Um
+So, let let let me let me show you um
+how it looks like. So, for this
+executive coach, it is basically runs
+every three hours.
+It tries to ask me like these questions
+to interrupt the patterns which I live
+throughout my life.
+Um and those are questions really really
+hard. So, am I moving towards the life
+ahead or the life I want?
+And those questions are really
+refreshing if you're throughout your day
+and you're
+you know, just um
+into the task and you try to think of is
+it really like matters? Like the most
+important thing to do right now?
+So, I would say there's overlap between
+this 30 minutes uh check-in and this
+executive coach. I think the scope is a
+bit different.
+I think this executive coach is
+something like which enables this like
+broad broad perspective on what's going
+So, I highly recommend this article from
+Dan Coyle.
+So, I think it's was right here.
+Yeah, so how to fix your life in in one
+day. So, it's it's a good read.
+So, and I basically extracted like those
+questions
+uh from this framework. Yeah, so here
+are the questions. Um
+So, regarding the throughout the day um
+this interrupting autopilot.
+And those questions are supposed to
+interrupt the patterns and they should
+be, you know, like just random.
+And here like those questions which I
+just like imported into my Obsidian and
+set up this agent for me.
+And then at the end of the day, you
+perform this uh
+insights synthesis.
+Um and you kind of reflect okay, so
+what's happening?
+So, then regarding the notification, so
+I think it's very like useful to add
+some observability.
+So, when do I need to check up on my
+agent? And essentially, this is done by
+those um
+notifications which you can set up. And
+then I tell uh when I have this
+automation
+called executive coach
+I tell it to run this this command to
+display
+to notify me basically that uh this
+session requires some action with
+So, I think let's see if it's going to
+work right now.
+Yeah, I think it doesn't work because I
+am
+do not disturb mode.
+But that's the way you set up those uh
+notifications.
+So, also one thing which was huge and
+long for me is to
+um set up this terminal.
+So, I have this like terminal with uh
+with a bunch of um
+you know, tabs and it's has those
+workspaces.
+If I try to work on something else, so I
+create a new workspace.
+And then I can start Cloud Code sessions
+here.
+And it's uh it's been very helpful to
+keep those workspaces organized.
+And that's
+uh the way I manage my automations. So,
+I have this all
+workspace where I have
+terminals running there.
+So, they're all together. So, I can
+clearly see what's happening.
+The terminal which I'm using is called
+uh Cmax.
+It can actually
+>> [gasps]
+>> do a lot of stuff. So, if you connect
+Cloud Code to this Cmax, if you can tell
+Cloud how to like use this terminal,
+it can actually do
+uh some quite good stuff for you.
+Uh let me let's say
+I have this orchestrator workspace
+and I want to show how you can set up
+your automation just in
+in one command.
+I want to set up my automations uh using
+Cmax skill.
+I want to create a new workspace. Um so,
+this is for demo purposes. I already
+have a workspace for my automations.
+Just call it in a different way. So,
+then I want to spawn all of the three
+automations
+in a new workspace.
+And then rename this workspace as well
+as all the terminals.
+Now, what's going to happen right now is
+that I have this um spawn workspace
+command
+which can create those Cloud Code
+sessions with those automations running.
+Now, it checks on which are the
+workspaces which are available right
+now. It checks all the smart
+automations.
+And right now it's going to set them up
+So, it reads this automation skill right
+now.
+Okay, and here is a plan. Spawn three
+different workspaces.
+So, we actually want a one workspace
+and spawn uh terminals inside of this
+workspace with those um
+um automations.
+Okay, so it figures out that now it
+created a new workspace.
+So, that's workspace 11 right now.
+So, and then it creates those
+uh terminals for me.
+Right now, they're ready. So, and then
+it's going to run Cloud Code inside of
+them.
+So, here is uh Cloud Code which is
+running one by one.
+So, you can see it's it's working. It's
+sending those commands to set up a works
+uh those workspaces.
+And then here it also starts um this
+executive coach. And then here it's I
+think it's just starting.
+So, this one
+it was accountability check and here is
+a source uh monitor for Reddit. And then
+it renamed all the terminals.
+Uh that's accountability, source
+monitor, executive check.
+So, in this way I can just spawn my
+automations um
+and there you go. So, it's going to do
+all of this work for me so I don't have
+to do it manually.
+It renamed the workspaces so I can have
+a clear dashboard
+to see all of my different automations.
+And I just like stop stop them because I
+don't want to do those. They're already
+running for me in this tab. Yeah, so
+that's been uh
+like how you can manage those agents
+there through a terminal.
+And then also,
+we can control those automations through
+the
+from our phone
+or from a desktop app. So, here is a
+um Cloud Desktop app and I can actually
+see here
+all of my sessions
+appearing right here.
+And that's the one which you just run.
+And here we just schedule this job and I
+can access to those sessions
+from the
+a desktop app as well as the web app and
+my map my mobile phone.
+And that's a remote control.
+And the key here is to turn on in the
+settings,
+uh you can go to Cloud Code and uh say
+remote control and then you enable
+remote control for for all of the
+sessions.
+Uh each session which is spawned inside
+the terminal, it becomes uh available
+for remote control and you can connect
+to it through your phone
+or through the desktop app. It's in the
+same thing.
+Now and also that's the point that okay,
+so what's the difference between open
+claw, right?
+open claw can actually do
+these tasks
+um but so what we have here is we have
+like full vault context on every run and
+you can execute skills
+on a different intervals and I feel it
+was much easier for me to manage what's
+happening because I was trying to set up
+those cron jobs inside of open claw and
+it was just not great experience um
+everything was just uh falling apart. So
+right now I kind of have easier way to
+debug my automations
+and my agents. And also
+yeah, you can use this command because
+caffeinate uh you can set up it in a
+such way that um
+your MacBook is going to be alive when
+the lid is closed. So this way you can
+run it um
+even if it's closed. Yeah, and I think
+that um
+here is the main difference. Here is the
+main difference
+um how I think about that. And this is
+the concept of uh this self-healing
+agent that
+so let's say we have some automations
+like on this example of a daily digest,
+right? Where we just parsed the
+resources from YouTube, from Reddit.
+We then we run it
+and then
+we didn't like something
+or there was some error.
+So and then what we did is we provide a
+feedback, right? Our agent reads the
+logs of what went wrong.
+And then you can based on this feedback
+and based on those logs
+agent goes and edits the code or our
+skill files and then the next run
+is going to produce a better result.
+This way you can have this continuous
+loop where you don't actually try to
+design a perfect automation
+perfect agent from like one go. It's
+continuously evolving and you tune it in
+how you want the agent to behave and you
+have this complete flexibility in terms
+of what the agent are capable
+and that makes this very very flexible
+and just exciting, you know?
+And here are some limitations which I
+found. Here are some constraints that so
+those automations should be
+those automations only work within a
+session.
+And by session what I mean is
+let's say
+this terminal has the cloudcode running
+and that's a session. That's the one
+session of the cloudcode. And within
+this cloudcode
+if the session is alive
+it's going to work.
+Now there's another limitation that uh
+those sessions have a three-day expiry
+date.
+So they they auto expire and um
+to avoid this I also set up this um
+in automation base a task renewer like
+every two days to renew automation.
+So they um
+get automatically rescheduled um and
+avoiding this uh three-day limit.
+So it's going to delete the old cron job
+and then create a new cron job. Also the
+machine must be awake. So if your
+machine is not running then okay, so
+it's not going to run, right? And then
+there might be some issues with the
+token cost. We need to manage uh our how
+much is actually spent on that.
+So if you're going to have a lot of
+tasks, you can see that okay, so it
+might be not that manageable to to have
+all of them running. So here we need
+here we need to be mindful.
+And here uh here are some workarounds
+about that. So if you
+if you want to
+make um
+cloudcode session persistent persistent
+uh you can run it inside of the uh tmux
+and the tmux is a terminal multiplexer
+or you can just uh set up those sessions
+you know, on a MacBook so on a Mac mini
+uh which is always on
+and then it runs those automations for
+you.
+And this solves this like those two
+issues for the session only and for the
+machine being awake. And I guess for
+this one for the three-days expiry we
+have this like workaround that
+automation which
+um deletes old jobs and creates new
+ones.
+And then in terms of token cost so we're
+going to see so how how it actually
+is it like manageable or not.
+Um yes and that's been quite quite
+exciting for me to record this video. I
+I'm very very keen on exploring this
+further
+because it seems to be very very
+powerful
+and I really love this concept that
+you have
+automation with full context
+with all the skills, with all of the
+cloud.md rules, with all of your tools
+which makes it very very different from
+what I've seen before.
+Now actually so if you're using cloud
+desktop you can also set up those tasks
+right there
+and they're in the code code code
+section and they're in the schedule
+section. So and here you can create a
+new task um
+and here is the name of the task,
+description
+and then you can select folder. You can
+just put your Obsidian vault
+and then there is a frequency like
+manual, hourly, weekly
+and kind of similar interface.
+And I just found that it's it was much
+easier to do it from the term terminal
+because I don't have to fill out any
+forms. I can just tell okay, every 30
+minutes let's do accountability and then
+it creates this for me.
+It's much easier in terminal to manage
+all of these automations.
+Yeah, and if you want to grab the
+skills, there's a link in the
+description. It contains source monitor
+automation, accountability check and
+executive coach. So you can just set
+this up in just one go. So link in the
+description and thank you for stopping
+by. It was been amazing to see you and I
+guess until the next one.

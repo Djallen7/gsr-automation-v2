@@ -1,0 +1,771 @@
+So, in about 5 hours and 80 million
+tokens later, I've built myself a full
+executive assistant. His name is Klouse.
+He has his own email account, his own
+ClickUp account, and I treat him like I
+would treat a regular employee. He
+remembers everything about me, about the
+business, about our Q1 initiatives, and
+he actually built himself this dashboard
+so that I can manage things that he's
+doing. I can see all of the
+deliverables. I can see the action log,
+and I can drop him some notes in here.
+And I can also see him up in the top
+left. So when he's working or when he's
+thinking or when he's idle or if he's
+spinning up sub agents, I can see
+everything that he's actually doing
+live. And so this is awesome. I've had
+so much fun playing around with
+Claudebot. It's been all over my feed,
+which is why I wanted to play around
+with it, obviously. And we've seen some
+really, really cool use cases. So you've
+got some basic things like email
+cleanup, sending reminders, creating
+issues, helping with ideas, helping
+create reports. I saw this one from Alex
+Finn, which I thought was pretty cool.
+He texted his bot, Henry, to make a
+reservation. And once the bot realized
+that it wasn't on Open Table or, you
+know, it couldn't actually book through
+Open Table, it ended up just using 11
+Labs and called them and then booked a
+reservation that way. So, we're seeing
+these Cloud bots be super proactive and
+great problem solvers. And of course, a
+lot of that is thanks to the underlying
+model a lot of times, which is Opus 4.5.
+So, let me just real quick introduce you
+guys to my Claudebot, Klaus. Hey, Klaus,
+just wanted to say hi. Could you give my
+YouTube audience a quick 5 to 10 second
+intro of what you do for me? So, I just
+shot that off. You can see on the top
+left now we see that Klouse is working.
+And so I love being able to see, you
+know, just glance over and see if it's
+green, he's working. But if he's gray
+and it's idle, then I know, okay, well,
+let me just fire off something else for
+Clawude to do. And now Klouse is
+thinking because he's writing back a
+response.
+>> I'm Claus, Nate's AI executive
+assistant. I run 24/7 on a server,
+checking his emails, monitoring social
+media, doing research, and basically
+handling all the busy work so he can
+focus on making content for you guys.
+>> I mean, that's the dream, right? But I
+realized that a lot of the stuff that
+I'm actually building with Cloudbot, I
+could actually do inside Cloud Code. And
+it's not even anything too new. It's one
+of those things that just all of a
+sudden takes the internet by storm like
+out of nowhere. You can see the blue
+line here is Claude Code over the past 3
+months and the red line is Claudebot
+over the past 3 months. And all of a
+sudden, within the past week, Claudebot
+has just absolutely exploded. So, what I
+wanted to do is put these two tools side
+by side, actually compare them across
+metrics that matter to you guys, and
+share what I found. So today we're doing
+an analysis of Cloudbot versus Cloud
+Code. So why am I making this video?
+Because Cloud Code is a coding sidekick
+and it lives inside your developer tools
+and it helps you read, write, and fix
+code faster on your local machine. Now
+Cloudbot is more of a 24/7 AI system
+that runs on your own hardware or
+server. And this was released much more
+recently, pretty much like the beginning
+of 2026. And as of today, it is now
+known as Moltbot because Claude, you
+know, Anthropic basically said, "Hey,
+this sounds too much like Claude, so you
+got to change that." As you can see
+right here, a tweet from Moltbot. Big
+news, we've molted. Clogbot is now
+Moltbot. But anyways, what I'm going to
+be doing here is looking at eight
+different metrics that you guys should
+actually care about, the metrics that I
+care about, and I'm going to be giving
+them different scores out of 10. And by
+the end, we'll see which of these two
+tools is truly the winner. So the
+categories that we're going to be
+looking at today are out of the box
+ability, setup friction and risk, cost,
+power and access, security, everyday
+usability, actual ROI, and the ICP. So I
+think that this gives a pretty holistic
+understanding of like the differences
+between the two tools, especially when
+we isolate these different factors and
+look at just that element. But if I've
+missed anything, please feel free to let
+me know in the comments and let me know
+what you guys think about these two
+tools. Okay, so first of all, we have
+out of the box ability. So, for this
+one, I g Claude Code a seven because
+it's excellent at helping you code right
+away. But out of the box, it takes a
+little bit of understanding to actually
+be able to make it useful. A lot of
+people that are non-technical and don't
+come from a formal software engineering
+background, it feels pretty inaccessible
+and it's a it's very intimidating. I
+remember when I was switching over from
+using NIN basically only to wanting to
+learn cloud code, I was intimidated as
+well. But now that I have a good
+understanding for it, I see all the
+power. For Claudebot, I decided to go
+with a nine out of 10 because once you
+actually get it configured and you just
+start talking to it, it's so powerful.
+It asks you questions. It learns about
+your business. It has persistent memory
+and it can create automations and apps
+right away. And you don't even really
+have to think about deploying or hosting
+or anything like that. It feels way more
+powerful than a coding assistant when
+you first set it up. It feels like
+someone that you could treat like an
+employee, which is why I gave mine, you
+know, its own login credentials for
+different things. And I can just forward
+it emails or CC it on emails and have it
+just do things for me. and come back and
+let me know when it's done. So, let me
+show you guys a quick example of two
+different outputs. One with Claude Code
+and one with Cloudbot. So, I'm in a
+Cloud Code project right here and I'm
+just going to say, "Hey Claude, I need
+you to run a YouTube analysis of my
+channel and then send it to me." So, I'm
+shooting this off and then while this is
+running, let's go ahead and do the same
+thing to Claudebot. Hey Claus, go ahead
+and run another YouTube audit of my
+channel. Okay, so I shot that off. We
+can see right here that Klouse is
+working. We can see over here that
+Claude Code is working. Although I need
+to give it some more information and
+then I'm going to come back when all
+this is done and I'll show you guys. And
+also one other thing to mention is both
+Claude Code right now and Claudebot are
+using Opus 4.5. So they're using the
+same exact chat model. All right, first
+we have the deliverable from Claude
+Code. So this got sent to my email. We
+can see we've got AI automation YouTube
+analytics. 30 channels tracked, 191
+videos analyzed. It comes up with the
+top videos this week. But then here's
+the actual PDF report that it created
+for me. So I've got YouTube channel
+analytics Nate Herk generated on January
+27th. So, here are my channel statistics
+at the moment. Then, it goes over and
+looks at my most recent 100 videos with
+average views per video, average likes,
+comments, median views, and views per
+subscriber. We've got an analysis on
+video duration that comes with some
+charts. We've got engagement rate
+distribution, which is pretty cool.
+We've also got views versus engagement
+analysis. We have most used tags. And
+actually, there was one more page,
+fastest growing videos. So, it looks at
+some of the stuff that I've been doing
+with Claude Code, which has been a big
+trend, obviously. Now, let's see what
+Claus got up to. In my dashboard, I can
+go to the YouTube audits, which opens up
+a Google Drive. And in this folder, you
+can see that I've have, you know,
+different audits that I've been using
+for testing. So, this is the most recent
+one that I just created for us as a PDF.
+And this one looks a lot more branded
+because I gave both of them my brand
+guidelines and a logo. And so, what I'd
+have to do is go back into Cloud Code
+and have it work a little bit better to
+actually implement all the brand
+guidelines because this one looks a lot
+more like what I gave it. So, same
+thing. 56,000 subscribers, 21.3 total
+million views, blah blah blah. It's
+giving us some other metrics here, as
+well as strengths, weaknesses,
+opportunities, and threats. Something's
+a little bit off with the spacing here,
+but not a huge deal. I'm sure we could
+fix that. We've got some recent content
+analysis. So, Claudebot, agentic
+workflows. The trend that it's seeing is
+heavy focus on cloud code plus an
+integration. And then we've got some
+strategic recommendations like diversity
+of tool coverage, launch evergreen
+series, build team capacity, YouTube
+short strategy, and then it even gives
+us some priority action items as well. I
+don't think these automatically get put
+into our dashboard up here. That'd be
+pretty cool. And then maybe we could
+like cross them off if we didn't
+actually want to do them. So, I'll let
+you guys form your own opinions based on
+that demo and based on, you know, your
+own use cases. But that's why right here
+I decided to give Cloud Code a seven and
+Cloudbot a nine. Number two, setup
+friction and risk. So, for this one, I
+gave Cloud Code an 8 out of 10. It's a
+lot lower friction to install and start
+actually using. You basically just
+install VS Code and then you add the
+Cloud Code extension. At least that's
+the way that I do it. It's super super
+easy. And then with Cloudbot, it's a lot
+more technical. You have to be a lot
+more in the terminal and you have to be
+a lot more aware of like what you're
+actually doing, what environments you're
+in, and you know, that's why people are
+buying the Mac minis or on a VPS. And
+I'm actually using a VPS for this. I'm
+hosting my CloudBot on Hostinger, which
+you can get started for a lot cheaper.
+You can go ahead and sign up here for,
+you know, six bucks a month, n bucks a
+month. And I use the KVM 2 and this is
+going to be more than enough to just get
+started with a Cloudbot and test it out.
+And when you're in here, if you're doing
+an annual plan, you can get 10% off in
+addition if you use code Nate Herk. So,
+like I said, when it comes to the setup,
+Cloudbot is a little bit more technical
+and confusing. I just did a full setup
+guide tutorial, so I will tag that right
+up here if you're interested in watching
+that. And also, if you do decide to use
+Hostinger and you've set up your VPS
+right here, if you go to the Docker
+Manager catalog, they've actually added
+the ability to just basically one-click
+install or oneclick deploy CloudBot. So,
+should make it a lot easier. Anyways, we
+decided to give Cloud Code an eight and
+give Cloudbot a six because it is more
+technical and also there's a lot more
+risk involved with actually setting this
+up. If you're doing that on your main
+hardware, which I would not recommend,
+if you're doing it on a Mac Mini or if
+you're doing it on some sort of VPS,
+there's still a lot of risk that goes
+into what people could actually access
+or where your keys are going to go,
+which brings us to a tie at 15 points.
+Now, this next one is super interesting.
+It's about cost, which I know that
+everyone cares a lot about, and we have
+Claude Code at an eight and Claudebot at
+a six. And let me explain why. So,
+starting off with Claude, you would
+basically pay for a plan to be able to
+actually use Claude Code. So, you would
+have to be on at least the pro version,
+which is about 20 bucks a month. Or you
+could go up to max 5x or max 20x for 100
+or 200 bucks a month. Now, I know what
+you guys are thinking. That's insanely
+expensive if you think about other
+things that you might buy a monthly
+subscription for. But if you actually
+think about how much usage and output
+you can get out of a coding assistant
+like Claude Code in a month, and then
+you think about that compared to what
+you would normally pay an actual AI
+engineer or software engineer to do in a
+month, it's an absolute steal. So for
+200 bucks a month, if I can basically
+unlimitedly code using Opus 4.5, I'm
+going to do so and I'm going to be
+really happy about it. So that's why I'm
+giving Cloud Code an 8 out of 10. Now
+with Cloudbot, which is actually now
+called Moltbot, as we just saw, this is
+different because it's an open source
+program. So you don't actually pay
+anything to use it or to install it.
+What you then are paying for instead is
+hardware or like where you actually host
+it and then also the AI model that is
+going to power the whole system. Unless
+of course you're using a local AI model,
+but still in that case you're paying for
+the hardware. And so it's interesting
+because the majority of demos that I've
+been seeing, people are using cloud
+models in their Claudebot to actually
+power everything. But what you have to
+be careful about and why you guys saw me
+earlier show off that I had used about
+80 million tokens today just with my
+testing and building is that you're not
+actually supposed to use a max plan. So
+you're not supposed to use one of your
+actual cloud subscriptions when you're
+using something like Cloudbot, which is
+essentially a Telegram wrapper around
+cloud code. that is actually against
+Enthropic's terms of service. At least
+that's my understanding. So that means
+you have to use an actual API key for
+Enthropic or Open Router or whatever
+models you want to use. And if you're
+not careful and you're just talking to
+your Cloudbot on Telegram all the time,
+you could quickly quickly run up a
+pretty big bill. So my bill today with
+that 8 million tokens was about 80 bucks
+and in you know one session I could have
+done that in Claude Code and it would
+not have used up almost half of my
+monthly membership. So I think in the
+grand scheme of things it is more
+expensive. So that's why we gave
+Cloudbot a 6 out of 10. So now we're at
+Cloud Code 23, Claudebot 21. Moving on
+to number four, we have power and
+access. And I went ahead and gave Cloud
+Code a 7 and Claudebot a 10. So there's
+a lot of similarities here, but there
+are some things that I just think that
+Cloudbot is actually more powerful at
+and just has more access. So Cloud Code
+can edit files and folders that you
+point it to. It can run terminal
+commands. It can operate wherever you
+wire it to operate. It usually lives on
+your local hardware and it works on your
+code, your documents, your local
+projects. And if something goes wrong,
+the damage is mostly limited to that
+machine and the folders that you were
+actually using it with and maybe any
+APIs or tools that you gave it access
+to. Cloudbot is explicitly designed for
+full system access. So I could get
+technical and we could talk about all
+this stuff, but basically like if you
+had a VA that you gave passwords to,
+credit card information to, bank account
+information to, that's a risk. This
+stuff at the end of the day is AI. It's
+not deterministic. And so everything
+that you give it, it could actually go
+use and it's probably going to make
+mistakes. So I just went ahead and asked
+Klouse, can you please explain to my
+audience how you work, what do you
+actually have access to and why I
+limited you to keep things safe. And it
+said, I'm Claude Opus 4.5 running
+through Cloudbot and always on Damon on
+a server. I have access to Telegram,
+YouTube, Google Workspace,
+web search, X, all these other things.
+And what it's supposed to do is
+research, draft, analyze, and organize,
+and then wait on any external actions
+because an AI with shell access and API
+keys could do real damage if it
+misunderstands something. And so for the
+Google Workspace, I gave it its own
+documents. And so for Google Workspace,
+I gave it its own email. So it creates
+its own docs, its own drive. It sends
+emails on, you know, from its own
+account and that kind of stuff. I gave
+it access to view my calendar, my main,
+you know, Nate Herk calendar, but it has
+its own, so it can't actually delete any
+of my stuff. Now, that's a really good
+practice. And I would do similar things
+with cloud code and still give them you
+know like certain read only access
+permissions and stuff like that too. But
+a good oneliner would be if something
+went really wrong with cloud code and
+something went really wrong with
+cloudbot it would be worse in the
+cloudbot scenario which brings us to
+cloud code 30 cloudbot 31. So let's move
+on to number five which is right along
+with this one which is security. And so
+this is the type of stuff where you may
+not be seeing as much online just
+because of so much hype and how cool it
+really is to be seeing this kind of
+stuff. And I really couldn't agree more.
+Super super cool. I've been seeing
+awesome demos. I've had so much fun
+today and yesterday just playing around
+with Claudebot all day long. But we have
+to talk about security. So for Claude
+Code, I'm going to give it a 7 out of
+10. And for Clawbot, we're giving it a 3
+out of 10. I wanted to share this quick
+tweet real quick, which comes from Peter
+Steinberger, the actual creator of
+Claudebot. And he put this out last
+night. The amount of crap I get for
+putting out a hobby project for free is
+quite something. People treat this like
+a multi-million dollar business.
+Security researchers demanding a bounty.
+Heck, I can barely buy a Mac Mini from
+the sponsors. It's supposed to inspire
+people and I'm glad it does. And yes,
+most non- techies should not install
+this. It's not finished. I know about
+the sharp edges. It's only 3 months old.
+So hopefully that really puts it into
+perspective. If you are not a power
+user, if you don't understand security
+and all the risks of giving AI different
+access to things, then maybe you
+shouldn't be doing this. or if you are,
+it should be purely experimental and
+you're not embedding it into your actual
+work processes. Cloud code, it's still
+very powerful and it can still be very
+dangerous if you abuse it or if you
+don't know what you're doing. But once
+again, worst case scenario in both of
+these tools. The worst case would be
+worse with Cloudbot. So, Cloudbot
+centralizes keys and control over many
+services. It often runs on public-f
+facing servers and has already been
+caught wide open in the wild when people
+misconfigure it. So, here's another
+tweet, and I actually just going to
+switch over to the actual X interface
+where we can read this, but there were
+over 900 servers that have been exposed
+with no password protection, leaking API
+keys, and months of private chat
+history. Cloudbot is an open source AI
+system that connects to WhatsApp,
+Telegram, Slack, what have you. And a
+security researcher found that there are
+tons of exposed servers using search
+tools that can scan the internet for
+specific software. And a lot of these
+had no authentication. So, anyone could
+basically get in there. And if someone
+hacked into, you know, your Clawbot
+interface where you talk to it, then
+they could get all of your information,
+all of your API keys, all of your
+access. So, here's the actual image that
+came alongside this tweet. As you can
+see, the problem is a default setting
+meant for testing on your own computer
+that doesn't work safely when you put
+the software online. People deployed it
+without realizing that the door was wide
+open. So, besides the fact that when
+you're giving Claude Code or Cloudbot
+your API keys, you shouldn't actually do
+it in chat because then it saves it in
+conversation history. You should be
+doing that in the ENV files. whether
+that is through your terminal or if
+you're configuring those files locally
+and then just putting them into that
+project. But on top of that, you have
+access stuff. So if you're putting stuff
+online, making sure that you're not, you
+know, pushing any secrets to GitHub or
+putting them online anywhere or when
+you're setting up these different, you
+know, dashboards and windows, you're
+actually making sure that you're running
+security checks on those. And so I'm no
+expert on security. I think that that
+much is very clear. What you can do is
+you can use these models to help you
+because they're pretty smart. Obviously,
+that doesn't work 100% of the time, but
+it's way better than you at least like
+just completely ignoring it. So, another
+thing that I would have my Cloudbot do
+or Claude Code do is constantly check
+the code. If I ever commit something to
+GitHub, check the code, make sure we
+didn't expose anything. When I built
+this dashboard, I had to do a um a
+security audit. As you can see, I have
+this scheduling so that every single
+week it's running security audits across
+everything that we've been doing. And
+so, I didn't yet make the security
+audits a really pretty PDF with branding
+yet. But, basically, we have issues that
+it found. So first of all like the
+dashboard was publicly accessible. We
+had API keys in the environment. We had
+different things with the ports being
+opened. And then we have some other best
+practices here. But then based on that
+security audit, I basically said, okay,
+well, let's actually do some of that
+stuff. And let me just clear some of
+these out of here and archive them to
+make the screen smaller. But what it did
+now is I have to actually log into this
+dashboard. So people couldn't log in
+here and see what I'm doing, see what's
+going on in the audit log and actually
+submit notes to talk to my Klouse. And
+so that's not like super super secure,
+but I'm just trying to paint the picture
+that you can have your assistants help
+you out when it comes to security and
+build in some good best practices there.
+But of course, I still did give Cloud
+Code a 7 and Claudebot A3. So now our
+new total is Cloud Code 37, Cloudbot 34.
+Okay, so moving on to everyday
+usability. In this case, I gave Cloud
+Code a 6 and Cloudbot A9. So Cloud Code
+lives mainly in your terminal or VS Code
+or whatever you choose to use it from.
+And that's really comfortable for
+developers, but it could be intimidating
+for non-technical people. The UX is
+optimized for looking in files and
+looking in projects and coding
+workflows, using slash commands, stuff
+like that, rather than being able to
+just pull up your phone or pull up Slack
+and say something while you're at a
+restaurant or while you're laying in bed
+or while you're on vacation. Now, of
+course, to be fair, you can build this
+functionality using Cloud Code. It's
+just not as easy out of the box. And on
+the other hand, Cloudbot 9 out of 10.
+You can talk to it pretty much anywhere
+and you can have it really easily set up
+in a way where it's always living on
+that VPS and you can always communicate
+with it, which means it's really good at
+doing things proactively and reminding
+you of things, looking at your project
+management and and taking action before
+you even know something's a problem. And
+I just think it's cool that in about 5
+hours, I built an assistant where right
+before I go to bed, I can talk to it on
+Telegram and it can just do things all
+night while I'm sleeping. And then I can
+wake up and have things ready for me and
+more action items. Now, of course, there
+is some scariness there because that
+means I'm doing all of this stuff
+through Telegram and I'm never actually
+looking at the files that are being
+created or the structure of the project
+or anything else like that, but when
+we're just getting tunnel vision on
+actual usability, I am going to give it
+a 9 out of 10 here. And I promise you
+guys, I'm not doing this on purpose, but
+we are back at another tie at 43 points.
+So, to come break up this tie, we've got
+actual ROI, which I think is super super
+important. And in my mind, I weight this
+a little bit higher. So Cloud Code comes
+in at an 8.5 out of 10 with Claudebot
+coming in at a six. The reason is Cloud
+Code has been around for about a year
+now and Claudebot is like 3 weeks old.
+So Cloud Code has actual receipts. Teams
+are shipping real features faster with
+less manual work. There are so many data
+and projects to back that up. Internal
+and third party analysis talk about 10
+to 30% faster delivery on comparable
+tasks. Plus roughly a quarter of work
+being extra features and fixes that
+wouldn't have been built without the
+assistance of claude code. And really
+like the poster child is cloud co-work
+which was built completely with cloud
+code by a few engineers in about 10
+days. And I don't know a ton about
+software engineering and you know
+feature and product design but I know
+for a fact that this would have taken at
+least a few months if not a year with
+manual coding and probably more than
+just a few engineers. Cloudbot on the
+other hand has been doing some really
+impressive stuff and that's why it's
+doing well on X and YouTube and
+LinkedIn, but it's just a lot of cool
+use cases right now and I haven't seen
+people really ship like amazing apps or
+generate tons of revenue and money from
+this type of stuff yet or save hours and
+hours of work yet. It's super super
+cultural and it's conceptual and it's
+really cool and I'm not trying to take
+anything away from the team that has
+built Cloudbot because it is very very
+impressive. It's just that right now
+it's super new and it's just hard to
+actually see where the ROI is. We can
+conceptualize and we understand this
+whole like idea of AGI and the ability
+to have an executive assistant. And I of
+course have, you know, have spun mine up
+and I think that it's pretty valuable.
+But just because stuff gets done quicker
+doesn't actually mean that it's getting
+done better. And I know that it is using
+Opus 4.5 a lot of the time. So we do
+have some good faith there. But still,
+I'm giving it a six rather than giving
+it anywhere up near cloud code at an
+8.5. So that brings our total right now
+to 51.5 for cloud code and 49 for
+cloudbot. And unfortunately that is
+going to be the final score because the
+last metric I wasn't able to really give
+a numeric value to but I wanted to talk
+about the ICP here because I do also
+believe that these are kind of built for
+different people at least right now and
+you know cloudbot is super super new so
+it's going to evolve a lot but it's just
+kind of different use cases right now.
+So cloud code primarily built for soft
+engineers, technical founders, data and
+machine learning folks. It's dev heavy
+and it's for teams that are ready to
+ship real features and products. It's
+also good for non-coders who are willing
+to, you know, get out of the comfort
+zone a little bit like me. I would kind
+of consider myself, you know, a
+non-coder and I'm able to build these
+things like workflows for myself, other
+automations, frontends, and it's been
+really, really good and it's helped me
+become more productive. Now for
+Cloudbot, a little bit similar, yes, but
+in the early stages, it's for technical
+founders, indie hackers, automation
+nerds, and security savvy tinkerers who
+are comfortable running a server, wiring
+APIs, thinking about ports, privacy,
+blast radius, all that kind of stuff.
+You remember the tweet from the creator
+himself, and yes, most non techies
+should not install this. And I also said
+in my last video about how to set up
+Claudebot on a VPS, that this is
+definitely for power users. You should
+be experimenting. You shouldn't be
+putting this into real business
+environments if you don't know how it
+works and what it's going to do. So
+ultimately, how do I feel about who
+wins? Well, the numbers here show Cloud
+Code. Cloud Code wins on security,
+proven results, and lower risk for
+non-experts. Cloudbot wins on
+accessibility, ambient presence, and it
+feels like the future. And it really
+does, and it's super cool. Like I said,
+I just think that it's really important
+to think about when something's blowing
+up online, why is it blowing up? What is
+the motive for all these creators? And
+obviously I can't lie because I made a
+video because I knew it was going to do
+well because I knew a lot of people are
+looking to set this up on a VPS because
+I don't want to set it up on a Mac Mini.
+So there is an element of, you know,
+taking advantage of the hype. But that's
+why I really wanted to make this
+comparison video because when I started
+to use it more and more, I realized
+everything that I'm doing here I could
+be doing on cloud code, but on cloud
+code I actually understand it a bit
+more. So I really hope that you guys
+enjoyed this breakdown. So if you did
+and you appreciate this style of
+teaching and thinking, then definitely
+check out my plus community. The link
+for that is down in the description.
+We've got a great community of over
+3,000 members who are building with AI
+every single day, building businesses
+around AI. So, it's a great place to be
+if you have similar goals. We've got
+full courses in here and we're planning
+to launch completely new series and
+workshops around the idea of vibe coding
+and cloud code and stuff like that. So,
+if you're interested, I'd love to see
+you guys in this community. But anyways,
+that's going to do it for this one. So,
+if you guys enjoyed or if you learned
+something new, then please give it a
+like. It definitely helps me out a ton.
+And before I sign off, I just wanted to
+have Klouse give you guys a word of
+advice. You don't need to be a developer
+to use these tools. 6 months ago, most
+of what you just saw wasn't possible. A
+year from now, it'll be even crazier.
+The people who win aren't the ones who
+wait for it to be easy. They're the ones
+experimenting right now, making
+mistakes, figuring it out. So, pick a
+tool, break something, learn from it.
+That's how you stay ahead. See you in
+the next one.
+>> All right. Well, thanks, Claus. Thanks,
+everyone. I'll see you guys in the next
+one.

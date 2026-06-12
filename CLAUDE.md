@@ -46,7 +46,7 @@ Before designing or building any automation: **name the deliverable and the ship
 ## Project State (current)
 
 **Active app:** `apps/dashboard` — Next.js 16.2, React, shadcn/ui, Tailwind v4, Supabase SSR, deployed on Vercel.
-**Supabase project:** `lafkbxypmciopebentxp` — 20 tables, 47 migrations, 2 enums, 2 views, 3 functions, 3 triggers, 1 storage bucket (`lower-thirds`). Rows: episodes 48, guests 175, **production_lower_thirds 0** (no live import yet — the real Stage 7 milestone, an operational step not a code defect).
+**Supabase project:** `lafkbxypmciopebentxp` — 20 tables, 48 migrations, 2 enums, 2 views, 3 functions, 3 triggers, 1 storage bucket (`lower-thirds`). Rows: episodes 48, guests 175, **production_lower_thirds 0** (no live import yet — the real Stage 7 milestone, an operational step not a code defect).
 **Architecture of record:** ADR-0012 (Supabase + Next.js, accepted 2026-05-23). Eras 1 (self-hosted n8n/SQLite) and 2 (Notion) are superseded; their docs were pruned (recoverable in git history). See `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md`.
 **Model:** Claude via `@anthropic-ai/sdk`, `ANTHROPIC_REGENERATE_MODEL` (default `claude-opus-4-7`), server-side only.
 
@@ -87,7 +87,7 @@ This is **not** the Next.js your training data knows. Read `apps/dashboard/AGENT
 
 ## Context
 
-- Daniel Allen is the project owner and a non-developer; he builds everything through Claude Code. Plain English, no jargon, no em-dashes, recommend don't poll, never make him re-enter data that exists somewhere.
+- Daniel Allen is the project owner and a non-developer; he builds everything through Claude Code. **Talk developer-to-CLIENT, never developer-to-developer** (canon, 2026-06-12): plain English, no jargon (no squash/rebase/diff/migration talk in reports), no em-dashes, recommend don't poll, never make him re-enter data that exists somewhere. Reports = what works now in workflow terms, what broke and when it will be fixed, what you need from him. Test features with mock content BEFORE reporting them working; if a test needs his logins, give him a 30-second check instead.
 - Show: Genesis Science Report (GSR), Christian creation-science TV, ~58 min, weekly, Season 3, for David Rives Ministries.
 - David Rives is the on-screen talent and ministry director — protect anything that affects him on air.
 - Subagents: `gsr-architect` (`.claude/agents/`, the system-aware planner), `gsr-editorial` (`agents/gsr-editorial.md`, copy/voice review), and `gsr-health` (`.claude/agents/`, repo-health auditor).

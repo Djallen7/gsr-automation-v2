@@ -18,11 +18,11 @@ Ranked by estimated friction-reduction per hour of build work.
 
 ### 1. ~~Guest last-aired tracker~~ ✓ DONE (2026-05-28)
 ~~A structured record of every guest's most recent air date + expertise tags + communication style rating.~~
-**`guests` table** with expertise, is_yec, communication_notes + **`episode_guests`** table with booking_status and filming history is now live in Supabase. Dashboard UI still needed (see Phase 1A below).
+**`guests` table** with expertise, is_yec, communication_notes + **`episode_guests`** table with booking_status and filming history is now live in Supabase. Dashboard UI shipped as the `/workflow` page (Phase 1A below, done).
 
 ### 2. ~~Lower thirds character-count checker~~ ✓ DONE (2026-05-28)
 ~~Auto-flag any L3 line that exceeds 65 characters before the full package is delivered.~~
-**Implemented in `apps/dashboard/src/app/lower-thirds/graphic-card.tsx`** — amber warning at <55 chars (too short), red error at >65 chars (over limit). Full 55–65 character range enforced in the review UI.
+**Implemented in `apps/dashboard/src/app/lower-thirds/graphic-card.tsx`** — amber warning at <55 chars (too short), soft amber over 65 (sweet spot 60-65), hard ceiling 70 (canon s13, PR #52) (over limit). Full 55–65 character range enforced in the review UI.
 
 ### 3. Monthly interview package compiler
 **What it is:** At the start of each month, pull guest emails + spreadsheet entries + Apple Notes schedule + article links into one formatted document.  
@@ -59,14 +59,14 @@ Ranked by estimated friction-reduction per hour of build work.
 ## Deferred items added 2026-05-28
 
 ### Lower thirds styles (in progress — parallel session 2026-05-28)
-**What:** Pulling lower third style/template variants from the data archive. Likely adds a style/template field to the `graphics` table or `graphics_variations`.  
-**Status:** Active work in a separate session. Do not build schema or UI for lower third styles until that session's output is merged — coordinate to avoid conflicts with the `graphics` table and `/lower-thirds` review UI.  
+**What:** Pulling lower third style/template variants from the data archive. Likely adds a style/template field to the `production_lower_thirds` table or `lower_thirds_variations`.  
+**Status:** Active work in a separate session. Do not build schema or UI for lower third styles until that session's output is merged — coordinate to avoid conflicts with the `production_lower_thirds` table and `/lower-thirds` review UI.  
 **Blockers:** Awaiting output from parallel session.
 
-### Phase 1A — Guest email workflow UI
+### Phase 1A — Guest email workflow UI ✓ DONE (shipped as `/workflow`)
 **What:** Dashboard page showing `v_episode_workflow` — computed email due dates for zoom link, pre-air, post-shoot, and YouTube emails per guest per episode. Mark sent via button → writes timestamp to `episode_guests`.  
 **Schema:** Ready. `episode_guests` has all 6 email timestamp columns. `v_episode_workflow` has computed due dates + sent booleans.  
-**Blockers:** None. Awaiting Feature 1 Stage 7 completion.
+**Status:** Shipped — the `/workflow` page renders `v_episode_workflow` (live routes list, CLAUDE.md).
 
 ### Content clips UI
 **What:** Dashboard page for logging soundbites — enter timecode in/out, paste verbatim quote, select segment, tag platform fit. Shows all clips per episode.  
@@ -106,7 +106,7 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 **Priority: High.** Build immediately after Stage 7 resolves.
 
 ### 9. Run the first real-episode import (Stage 7)
-**What:** The `/api/import` route, the extraction prompt, and the schema all align on the `graphics` table. There is **no `lower_thirds` table** — the old "JSON vs lower_thirds column mismatch" was a phantom (the first migration's filename misleads; every query uses `graphics`). Stage 7 is now purely operational: no live episode import has run yet, so `graphics` has 0 rows.  
+**What:** The `/api/import` route, the extraction prompt, and the schema all align on the `production_lower_thirds` table (renamed from `graphics` 2026-06-09, on main since 2026-06-12). The old "JSON vs lower_thirds column mismatch" was a phantom. Stage 7 is now purely operational: no live episode import has run yet, so `production_lower_thirds` has 0 rows.  
 **Why:** Running one episode end to end (extract -> import dry-run -> type YES -> review -> approved) closes Feature 1.  
 **Build path:** Use the live `/api/import` (dry-run, then confirm). No schema fix is needed.  
 **Effort:** Low.  
@@ -136,7 +136,7 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 
 | Blocker | Impact | Resolution path |
 |---|---|---|
-| First real-episode import not yet run (graphics = 0 rows) | Stage 7 operational milestone | Run /api/import dry-run then confirm; no schema fix needed (the lower_thirds mismatch was a phantom) |
+| First real-episode import not yet run (production_lower_thirds = 0 rows) | Stage 7 operational milestone | Run /api/import dry-run then confirm; no schema fix needed (the lower_thirds mismatch was a phantom) |
 | Composio unreliable | Blocks Google Sheets write automation | Switch to native Google Sheets MCP |
 | RC MCP frequent timeouts | Daily friction | Investigate MCP server restart cadence; add retry logic |
 | No `youtube_published_at` auto-flip | Episodes show stale data | Build YouTube RSS poller Edge Function |
@@ -188,3 +188,13 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 **Why deferred:** Sequenced with the per-role dashboards above (same preconditions: system designed, tested across mock episodes, real system imported). Display/placement is intentionally undecided. The earlier "Basecamp = read-only monologue ingestion, later feature" scope is superseded; monologue ingestion is now one slice of this broader two-way integration.
 
 **Guardrail:** two-way means the dashboard can write back into a tool the whole team uses live, so every dashboard-to-Basecamp write follows confirm-before-write + the David rule. Reads carry no such risk.
+
+---
+
+## Follow-up: drop youtube_scheduled_publish_at (contract step, 2026-06-08)
+
+**What it is:** The contract half of the `youtube_scheduled_publish_at` -> `webstream_scheduled_publish_at` expand-contract rename. Migration `20260608161708_add_webstream_scheduled_publish_at` already ADDED and BACKFILLED the new `webstream_scheduled_publish_at` column on `episodes`. The old `youtube_scheduled_publish_at` column is intentionally still present.
+
+**What is left:** Write a later migration `<ts>_drop_youtube_scheduled_publish_at.sql` that does `ALTER TABLE episodes DROP COLUMN IF EXISTS youtube_scheduled_publish_at;`, regenerate types, run advisors.
+
+**HARD PRECONDITION (do not skip):** Run this ONLY AFTER this branch is merged to `main` and the new build is deployed to Vercel. The currently-deployed app and the `v_episode_workflow` view still reference `youtube_scheduled_publish_at`; dropping it before the deploy that stops referencing it would break production. Update `v_episode_workflow` to use the new column in the same later migration, then drop. Priority: low, but do it before the column drifts out of memory.

@@ -1,0 +1,452 @@
+I've built hundreds of automations in
+n8n workflows that took hours to set up,
+days to debug, and still broke every
+time an API changed. And recently, I've
+started building workflows in a
+completely new way. It's called an
+agentic workflow. Instead of manually
+connecting every node and defining every
+step, you just describe what you want in
+plain English, and an AI agent figures
+out how to build it, writes the code,
+and even fixes its own errors when
+things break. By the end of this video,
+you'll know exactly why everyone's
+moving to agentic workflows, and I'll
+show you how to build them yourself so
+you can create automations in 5 minutes
+that used to take you 5 hours and a
+bunch of headache. Plus, I'll give you
+my honest take about when traditional
+workflows still make more sense. To
+understand why this is such a big shift,
+let's look at the problem agentic
+workflows are actually solving. This is
+a workflow we built in n8n. We run live
+workshops every week at 9:00 X on AI and
+automation, and we plan everything in
+Notion, the event description, the
+assets, all of it. When we're ready to
+publish our next live workshop, this
+automation handles all the logistics. It
+creates the event in Luma, sets up the
+Zoom meeting, adds us as host, creates
+the YouTube live stream, connects that
+stream to Zoom, saves all the IDs back
+to Notion, and tells us it's done. Now,
+this is actually quite a simple process.
+The logic is straightforward. Create the
+Luma event, create the Zoom, create the
+YouTube stream, connect everything
+together, that's it. But that simple
+logic, it turned into a 24-step
+workflow. 24 nodes that we had to figure
+out, connect, test. Along the way, we
+had to solve a bunch of things that we
+weren't expecting, like image hosting,
+API quirks, data formatting between
+platforms. Now, I want to make something
+very, very clear. Tools like n8n and
+Make and Zapier, they are absolutely
+brilliant. They've literally changed the
+way that I've worked. I generally think
+everyone should learn how to build
+traditional workflows. It trains you to
+think in systems, forces you to break
+problems down into steps. That's a skill
+that transfers to everything. But the
+reality is when you're actually building
+this stuff, every single step has to be
+figured out by you, every connection,
+every piece of logic, every edge case,
+you're the one solving it. And this is
+one of the main reasons why most people
+give up on automation entirely. So,
+think about it. A non-technical user
+sits down excited to automate something.
+They get to maybe node three of a
+24-step workflow, and they're stuck.
+They can't figure out why the data isn't
+passing through. They're Googling error
+messages, watching tutorials, trying to
+understand API authentication. And at
+some point, they do the math. I've spent
+4 hours trying to build this thing, and
+I could have just done the task manually
+10 times over. So, they quit, not
+because automation isn't valuable, but
+because the barrier to actually build it
+is so high. And even if you're technical
+enough to push through, you still have
+to deal with debugging. When your
+automation fails, you have to trace it
+step by step. Was it this node, the one
+before? Did an API change? Did a field
+get renamed? One small change upstream,
+and the whole thing breaks. Now, you're
+spending an hour fixing something that
+was working fine yesterday. So, what is
+the alternative? What actually are
+Agentic Workflows, and why is everyone
+talking about them? Here's the thing
+that took me a while to realize. Whether
+you're building a traditional workflow
+or an Agentic workflow, the starting
+point is exactly the same. You always
+begin with the what. What are we
+building? What's the process? What do we
+want to automate? And this is thinking
+that you'll need to do up front,
+regardless of which method you'll be
+using. Now, where things completely
+change between these two methods is the
+how. How do we build it? With
+traditional workflows, as we just saw,
+you are responsible for figuring out
+every single step of the how. Which API
+to call first? How to pass data between
+nodes? What to do when something fails?
+You're the orchestrator, the builder,
+the debugger. You're solving every
+problem yourself. With Agentic
+workflows, you hand off the how part to
+an AI agent. Instead of defining every
+step, you just define the outcome. You
+describe what you want in plain English,
+and an AI agent figures out how to build
+it. So, instead of wiring up 24 nodes
+yourself, you tell the agent, "Hey, when
+we're ready to launch a new workshop, I
+want you to go ahead and create the Luma
+event, set up the Zoom with us as hosts,
+create the YouTube live stream, and
+connect it all together. That's it.
+That's your entire input. The agent then
+takes that and figures out the rest. It
+connects to Notion and discovers the
+schema itself, what fields exist, how
+things are structured. You don't need to
+map that out. It works out which APIs to
+call, how to pass data between the
+different tools, in which order things
+need to happen. It handles details you
+didn't even think to specify. And the
+real unlock is what happens when
+something goes wrong. The agent reads
+the error and fixes its own code.
+There's no more tracing through nodes.
+It sees the problem, understands what
+went wrong, and adjusts. Now, I can
+explain this all day long, but it's one
+of those things that you just need to
+see to believe. So, let me show you this
+working end to end. All right. So, for
+this demo, I've just got a simple base
+set up here in Airtable, which is for
+managing an invoicing process. So, we
+have an invoices table as well as a line
+items table. Each line item is connected
+uh to an invoice, so one invoice can
+have multiple line items. And the way we
+want this process to work when for all
+invoices here where the status is
+create, we want to have an automation
+that automatically creates the invoice
+PDF, attaches it here, and then updates
+the status as ready to send. And to
+build this agentic workflow, I'm going
+to be using Claude Code. And so, here in
+Claude Code, all I need to do is, as I
+said, describe the what. What is the
+process? So, I've got a very simple
+prompt here describing what we want to
+happen. I have an Airtable base with
+invoice data. For each invoice where the
+status is create, generate an HTML
+invoice, export it as PDF, upload it
+back to Airtable, and then update the
+status as ready to send. And I've also
+got here in this folder like a test
+invoice PDF. And so, I've added to the
+prompt the invoices should match the
+style of the test invoice PDF. And you
+can also grab the company details from
+there, as well. So, here, literally just
+describing what I want to happen, not
+how it should be done. And let's send
+this one off to Claude Code. Before I
+do, what I'm going to do is I'm going to
+change this one into plan mode. What's
+really cool about plan mode is Claude
+Code will now think about how this
+workflow can be set up, come up with a
+plan, show it to me for approval before
+going ahead and immediately creating the
+agentic workflow. So, let's send this
+one off.
+So, Claude Code has started by reading
+the test invoice to understand the
+style.
+And now Claude's going to ask me a few
+questions to help it come up with the
+plan. First of all, what language do I
+want to use? I want to use Python.
+Claude will also ask for any credentials
+that it needs to connect to the
+different tools in the workflow. So, in
+my case, it's asking, "Do you already
+have an Airtable API key and do you know
+your base ID?" In my case, I have both
+of these things ready, so I'm just going
+to select the first one. But, here's
+what's really great with these agentic
+workflows. If you have no idea what an
+Airtable API key is, where to find it,
+or what your base ID is, see the second
+option here, "No, I need guidance." You
+can just select that, and Claude will
+walk you through everything
+step-by-step. Now, if you remember, I
+also mentioned that these tools are
+incredible at understanding the schema
+of the different tools you're using.
+Here, it's asking me, "What are the
+exact field names in your Airtable
+base?" It's given me the two options,
+"I'll provide them or use common default
+names." Here, I'm just going to select
+other and say, "Connect to my Airtable
+and look up the schema yourself." This
+is going to save you a bunch of time,
+and you won't need to copy and paste
+field names.
+So, now it's asking me to share my
+Airtable API key and base ID. I just
+need to paste them both in here.
+So, even here in plan mode, Claude Code
+has already made some API calls to
+Airtable, grabbed the schema of the base
+and some sample records.
+Now, after just a couple of minutes,
+Claude is done with all of its research
+and has created a full implementation
+plan. I can just make this one a little
+bit uh bigger here. You can see at the
+bottom here, Claude is asking us, "Do we
+want to accept this plan?" Before you go
+ahead and just immediately accept this,
+it's very important to actually review
+the proposal that Claude has made. Now,
+this plan is super detailed and
+impressive. We have an overview of the
+automation, the full project structure
+in terms of what files are going to be
+involved, the different libraries and
+dependencies that the automation will
+use, and a step-by-step walk-through of
+how this is going to work. And all of
+this simply from that one or two
+sentence description of what I want to
+achieve. Now, what I recommend is read
+this plan carefully. If there's anything
+that you're unsure about, you can simply
+ask Claude more questions to clarify at
+the bottom here. Once you're happy with
+it, you can just click yes and auto
+accept and Claude will get to work. So,
+we'll auto accept the plan. And this
+part is really amazing. We can just
+basically sit back now and watch Claude
+get to work. It's already started
+creating some files here in our folder.
+It's created this its own to-do list.
+And as it works through these tasks, it
+actually updates this and ticks them
+off.
+And this is where it gets super
+interesting. Right now, we're in the
+step where Claude is testing out this
+automation end to end. We can see here
+it actually ran into an error when it
+tried to run the invoice generation. And
+here it diagnosed the problem,
+understood that there was an issue with
+the library or the tool that it was
+using for generating with the PDFs, and
+has immediately fixed the issue by
+updating its own code. This sort of
+error and debugging would be taking me
+hours in N8N. And what's super exciting
+here, we can see that Claude code has
+already updated our Airtable, and it's
+actually run into a little bit of an
+error with the logo for the invoice. And
+without me telling it anything
+whatsoever, it's realized that there's
+an issue with the logo and it needs to
+regenerate the PDFs. And we can see now
+it's regenerating all three invoices
+with the logo fixed. This type of
+debugging is the stuff that you'd end up
+spending hours on in N8N. And let's see,
+and here we go, the invoices are
+updated, all with the perfect logo in
+the exact style and format that we
+wanted. And now, here is the real power
+that turns this into an agentic workflow
+that we can use on demand. Now that I've
+gone through the process with Claude
+code once, and it knows exactly how to
+run this, I'm going to ask it to create
+a reusable command. So, I'm just giving
+the simple prompt, "Can you create a
+create invoices skill so I can run this
+exact workflow again in the future and
+send this one off?"
+So, what Claude Code has done is it's
+actually created a skill for itself and
+turned this into a repeatable
+automation. If we check here in the
+Claude folder, we now have a skills
+folder and we have the very specific
+instructions. I'll make this one a
+little bit bigger here and just preview
+this file. So, this is giving Claude all
+the instructions it needs whenever it
+runs this process. And the way that we
+can trigger this, whenever you create a
+new skill, you just need to reload
+Claude Code in a new conversation. What
+I'm actually going to go ahead and do is
+update our Airtable now and let's mark a
+few more invoices as ready to create.
+Back in Claude Code, I can simply just
+type {forward slash} and I'll start
+typing out the name of that skill,
+create invoices. We can see there's an
+option here and hit enter. That's all I
+need to do.
+And we can see Claude has activated that
+exact same automation we just set up,
+running the invoice automation script to
+generate PDFs from Airtable. And we can
+see just like that in real time how fast
+that was. All four invoices immediately
+created in one go and we can see it's
+perfectly still matching our exact
+format and pulling in all of that
+dynamic data from Airtable. And so, that
+is all done. Now, anytime I need to
+generate new invoices, I simply just
+type {forward slash} create invoices and
+we're good to go. And this can be
+applied to any repetitive task that you
+need to do for work. Now, you might be
+wondering, "Does this mean we're going
+to cancel our N8N, Make, Zapier account,
+throw everything we've learned about
+workflow and automation away?" The
+simple answer is no, absolutely not. And
+here's why. You've probably noticed what
+we just created is running locally on my
+computer and it requires me to trigger
+it. Here's an example. Every week I
+write a newsletter. I have an hour
+blocked for it and I have an agentic
+workflow that kicks things off. It pulls
+in our latest YouTube video, our
+upcoming workshop details, drafts out
+those sections for me, but I'm still in
+control. I'm reviewing, editing, adding
+sections, making decisions. The agent is
+just making me way faster, but I'm still
+running the process. And that's where
+agentic workflows really shine. When you
+need speed, when you're exploring,
+you're not sure what the right approach
+is, if you're prototyping, just telling
+the agent what you want to happen and it
+figures everything out, but you're
+really working with the agent. It's not
+running this without you. Traditional
+workflows are for something completely
+different. Think about a form on your
+website for every submission that needs
+to get saved to your CRM, they should
+receive an automated email. This needs
+to happen every single time like
+clockwork, exactly the same way, whether
+you're asleep, on vacation, there's no
+human in the loop at all. An agentic
+workflow should never really be used for
+that use case. This is the type of thing
+that N8N Make and Zapier were
+specifically built for. The visual
+nature of these tools also makes them
+easier to hand off. When someone new
+joins your team, they can look at a
+workflow and understand what's
+happening. So, here's how I think about
+it simplified down. Agentic workflows
+for processes where you're still
+involved, speed, exploration, thinking
+through options, and traditional
+workflows for processes that need to run
+on their own. Think production, scale,
+consistency. And there's an emerging
+pattern that I'm seeing more and more,
+where people are using agentic workflows
+to figure out the solution first. You
+let the agent explore the APIs, test the
+different approaches, then once you've
+nailed it down, you can build the final
+version in N8N. And the real pro move
+here is more and more people are
+actually even using tools like Claude
+Code to build the N8N workflows for
+them. The reality is companies and
+business professionals will be using
+both. It's not one or the other. It's
+knowing which tool to reach for and
+when. So, if you want to start using
+agentic workflows yourself, you need
+Claude Code, that's the tool that I was
+using in the demo, and you'll need API
+keys for whatever platforms you want to
+connect to. There's a little bit of a
+setup to do at the start, but then the
+learning curve is minimal. If you can
+clearly describe what you want, you're
+most of the way there, because your AI
+agent is going to guide you the rest of
+the way. Something else that I didn't
+expect when I started using this, that
+plan mode, it isn't just about building
+things. It's actually one of the best
+learning tools I found. When the agent
+creates a plan, like you saw in the
+demo, you get to see exactly how it's
+thinking, which libraries it's choosing,
+which APIs it's using, why it's taking a
+certain approach. You can review that,
+ask questions, push back, and over time
+you actually start to understand how
+these things work without needing to
+become a developer. For business
+professionals, this is pretty huge
+because you're not just automating
+tasks, you're actually building up real
+technical knowledge while you work. So,
+now you know what Agentic workflows are,
+when they make sense, and when to stick
+with traditional tools. The next
+question is, what can you actually build
+with this? So, click this video here
+where I walk you through the most
+practical use cases for Claude Code.
+Actual workflows that'll save you hours
+every week, not theoretical demos. If
+you're wondering where to start, that
+video will give you real ideas and the
+prompt so that you can implement them
+immediately. I'll see you over there.

@@ -1,0 +1,2225 @@
+Hey everyone, so check this out. Hey
+Claude, can you please make sure that
+you add the dark and the light mode on
+my website and then just redeploy the
+complete website so I can see the
+changes. Hey everyone, welcome back to
+my YouTube channel. So guys, today we
+are going to see that how can you hire
+an intern which works 24/7, always
+available, and can also listen to each
+and every of your request by running
+Claude code on the cloud. And the best
+part is that it is very, very cheap and
+you can make sure that you ask it to do
+anything. We're going to also understand
+that how it works internally and we can
+also give it then multiple tasks which
+it will be able to do right in front of
+us all from our phone. So with that,
+everyone, let's now get started. This is
+actually the unlocking of another
+dimension of Claude code. Many of you
+gave me very good reviews on my Claude
+code crash course, so this is like of
+the next part of that particular crash
+course where you will see that how can
+you run that so that you can easily
+enjoy your vacation, leave for a place
+early, and Claude can just tell you what
+all is happening and do the changes
+while you enjoy your life. So with that,
+everyone, now let's get started. Just
+one more thing as well, so you have a I
+have a very good surprise for you
+towards the end by which you will get a
+$60 software for free. So do make sure
+that you take the advantage because sure
+till when this coupon is available. So
+with that, everyone, now let's get
+started. So great, everyone, now let's
+start and now master Claude code on the
+cloud. So very, very important and very,
+very nice concept. So first let's
+discuss about the problem because I
+think that is the major thing, right,
+which you need to understand so that
+you're aware that why you need to if you
+can run Claude code on the cloud, right?
+So if you will see, everyone, like this
+is something which I think all of us
+have faced and I did talk to many of my
+friends who are in the industries as
+well and many of the learners. And yes,
+of course, all of them are facing this
+one issue where now, since we are trying
+to do a lots of white coding, it always
+happen that we are unnecessarily sitting
+now, right, and we are waiting for our
+tokens to sorry, for our AI model to
+present to us that what should be done.
+Now it might have happened a lot with
+you that you have started, so I will
+would show you an example. Let's say
+that I am in this particular let's say
+Claude code crash course code base.
+If I do Claude here,
+then it will just start.
+And once it has started, I can just ask,
+"Can you go through my
+entire code base, explore
+the same?" Okay, and I will just change
+the model.
+1 minute.
+Okay, so I think it didn't take the
+model. But yeah, nobody's everyone. So
+if you will see changes like this or any
+other changes for that matter when you
+are actually having the plan mode or you
+are building something, there are lots
+of things, right? It will again make
+sure that it is going through the
+complete code base. It is taking a lots
+of time and maybe many times it takes
+upwards of 40-50 minutes because it has
+to go through the whole code base. It
+might be trying to get a lot of
+information. It is trying to do a lots
+of edit etc. in the file as well, right?
+And we all have been there where we are
+just now waiting either watching YouTube
+video etc. But the problem arises that
+like now, what if that you have to
+attend a meeting or you have to leave
+for if you are in office.
+And otherwise as well, something happens
+like your power cut or your Wi-Fi issue
+etc., right? And you have to leave and
+let's say now go.
+That is where I feel that if you have
+Claude code running on the cloud, it is
+exactly like you have hired an intern
+who is 24/7 running, who is having all
+the access everything of your code base
+and everything and whatnot. So with that
+everyone, now let's try to understand
+the same in little bit more depth.
+Claude code as of now, if you are
+working on it, it dies with your laptop.
+If your laptop has any battery issues,
+if the Wi-Fi drops, if the lid closes or
+if there is a screen lock as well,
+right?
+Normally, Claude stop working. Now, I
+did told you that how you can connect to
+remote control
+via Claude, right? So there is an option
+of that as well, but
+again, that is also dependent on your
+machine only everyone. And though of
+course you can create these sessions up,
+so you can say that, "Hey Mayank, we can
+have these sessions." So I can say exit,
+you can have the sessions etc., but it
+still becomes a lot difficult, right? If
+I will just now open this particular
+one, everyone, if I will do resume,
+there are lots of so many different
+different sessions which I might have to
+go through with and understand. Plus, if
+it has spent the token on a particular
+task, right? Because many companies are
+now providing you to like the cost.
+Okay, so let's say $200, $500 per month.
+If it is already spent, let's say $30,
+$40 on a task, if it is like let's say
+Opus model is going through each and
+everything in depth, then of course it
+will also be a problem. So, that is the
+major major problem, everyone. Another
+major problem is that let's say that if
+you are having multiple machines or if
+you are normally using Cloud Code
+across, then you are not able to easily
+resume anything between session. Look,
+Cloud Code forgets each and everything
+between session. So, that is a very very
+big major concern as well. Now, to help
+you remember or help you relate more,
+many of you must have had the case like
+my friend, it has happened multiple
+times with him where he was just
+waiting, right? For Cloud Code to
+complete because his laptop was having
+internet and battery issues. If he
+leaves, the whole session will die and
+all his work of let's say 1 2 hours will
+be all done, right? Because then he will
+have to resume the session and
+everything. And we of course know that
+anytime you are resuming a session,
+there are some quality drops or some
+tokens drop, etc. So, with that,
+that how what is the difference between
+your laptop and running it on the VPS on
+on Cloud. Now, one thing more, please
+make sure that you watch it till the end
+because I have shared a very very
+awesome production level technique as
+well which I even got to know regarding
+the memory part as well. So, solving
+this second problem is also very very
+important. Now, if we talk about this,
+everyone, now Cloud on your laptop,
+battery dead, Wi-Fi gone, lid closed,
+screen locked, it stops and it can stop
+because of any other issue as well.
+Let's say that you have to attend a
+meeting or you are doing some changes,
+but you may need to stop them because of
+some other work. So, again, multiple
+things, right?
+Then, what happens, everyone, now is
+that when you move it to the Cloud, it
+is just like your cloud code will run
+and it will be having the complete
+access each and everything. You can now
+just talk to cloud like you will do on a
+phone and it can actually keep on
+working no matter like even if you are
+let's say at uh 2:00 in the night, if
+you just ask that, "Hey Claude, can you
+provide me with this information or that
+information?" So, that is the level of
+autonomy you get. And I feel this is
+where we as human level are kind of
+opening AGI for us. For AI, I think it
+is still a little far off, but for us,
+we can now actually hire people
+remotely like this. Okay, so with that
+everyone, now let's move forward and try
+to understand that how can we set up our
+own uh VPS or a virtual machine on the
+cloud. So, to get your machine everyone,
+now I will suggest Hostinger and I have
+a very good coupon code for you all as
+well. Now, if you will go on this link
+hostinger.com/ai/aiagency
+and then you open this. After this, you
+will see that how we are having multiple
+machines in here, right? So, KVM 2 is
+something which you can select off
+because Claude code, the good thing is
+that the whole Claude logic at least
+works on the Anthropic end. So, you
+don't need to have this level of issues
+where let's say
+uh you want a very big machine. So, I
+will suggest KVM 2 at least because
+there's one more benefit and I feel that
+everyone should have at least a VPS now
+like again, if you are let's say a
+student in third or fourth year or at
+least let's say a professional because
+all the newer things which are coming in
+the AI space like open claw, Claude
+code, anything, Hermes agents they are
+very nicely directly. So, if I select a
+choose plan option here, right?
+If I now scroll down, okay, so let me
+just move forward. Yeah, if I now scroll
+down everyone, you will see that how
+anything is selected. I could easily
+select Claude code. They have open claw
+as well.
+Hermes agent as well. So, all and
+everything which is kind of very hot and
+all these things, they kind of get
+available. So, you can just install with
+a single click. Let me select Claude
+code in here.
+Confirm. And now it will be installed.
+Now, coming to the discount everyone, I
+have the best discount for you. So, you
+do AI Agency 20, and you will see that
+how you are able to take the benefit of
+getting a 20% off. Now, other earlier I
+had a 10-15% coupon, but I discussed
+with the team and they were generous
+enough to provide me with this coupon
+because I am creating and I plan to
+create more and more content where you
+all are actually able to understand and
+host and create these things up, right?
+In future, I will also show that how I
+have created for my AI Agency. So, in
+that as well I'm using Hostinger as of
+now. The best part, even if you take a
+one-year plan, the same is valid. So,
+you can see that how you are getting 20%
+off, right? So, again, the coupon is
+valid for a long for a short for a short
+time. So, please take advantage. Like it
+has been I think valid since 2 months,
+so long time since it is valid, so it
+can close at any time. So, please take
+advantage. Normally, you used to get 10%
+off, but I will suggest that now please
+get the 20% off. If you can, highly
+suggest it because I want that you are
+taking the full benefit. So, 12 month,
+everything here. No backup and
+everything is fine. You can select,
+let's say
+India, Mumbai 2.
+And yeah, I think now it's all done. You
+can just continue everyone, and you can
+just move forward. So, just register
+your account, do the payment, and then
+you will be having your own VPS which is
+running. I will be showing the best part
+that it it supports rewriting the new
+software and everything as well. So,
+that would be very very helpful. Just
+make sure that you are going exactly via
+this particular link
+hostinger.com/ai/in/ai
+agency, okay? So, this is the link
+everyone, and after that AI Agency 20.
+10 and 15% coupon are also working, but
+why do you use that? And once you have
+this thing, then you can just make sure
+that you are following and having the
+cloud code installed, everything will
+work family well. So, now let's meet and
+let's work on on our Hostinger machine
+or any VPS for that matter.
+Everyone that you have set up the same,
+and again hosting is pretty good with
+it. It is having pre-built set up
+everything for cloud code as well. So
+that would be pretty helpful. You will
+see that how just like I'm having a
+terminal, there is a terminal button in
+here as well. So this is the complete
+like machine everyone. You will see that
+how it is in India or Bombay location
+and this is also very important like
+again if you change try to change the
+location, right? If you let's say say
+try to open at UK or Germany because
+again many websites have some VPN level
+restrictions, it will say that hey I
+will reinstall the same. It will kind of
+try to get a newer machine. So that's
+also some problem which we will try to
+understand how can we get like around if
+you are starting these multiple servers.
+So it is having Ubuntu and all these
+things VPS uptime. I think I've just
+started the complete machine so it is
+just having cloud code. Now the second
+you click on terminal,
+it will open another tab. Now what I
+will do everyone, I will be doing each
+and everything here only. So let me
+clear out and just do everything, yeah.
+I will make sure that I'm doing
+everything here only
+so that you all are able to easily do it
+as well. Now again I can connect this
+particular terminal to my
+like let's say my machine as well. So
+remotely this connection is possible but
+let's try to do each and everything
+here. We will open multiple sessions as
+required, okay? So yeah just like you
+can actually now write cloud everyone.
+If cloud is not installed, okay if cloud
+is not installed, you can just actually
+go to chat GPT or cloud as well
+and ask it how can I install cloud code
+on a
+new VPS and it will give you all the
+commands. Like they are pretty easy
+commands and everything. Along with that
+one more good thing is that if you will
+see one minute, yeah. There is this ask
+AI button. So pretty good thing from
+Hostinger. Like you can ask it here only
+that hey, can you give me the command
+and it will give you all these things
+here only, okay? So with that everyone
+let me close this one, yeah. Now let's
+start. So you will see that again how
+cloud is directly asking you that hey,
+which mode you want? So I can say dark.
+Now everyone it is asking you for a like
+subscription or a key based thing,
+right? So in our local of course it used
+to open a particular browser so we can
+authorize but here
+the second I select cloud account with
+subscription it is trying to open
+browser but again of course we are on a
+virtual machine which is somewhere
+around Mumbai Bombay and then again it
+cannot open browser for us so cloud is
+pretty awesome with that as well. It has
+provided us with a link it is saying
+that hey please go and copy paste this
+link. And the second I copy paste this
+you will see that how it is asking me
+for authorization. I'm logged into cloud
+AI from this particular browser the
+second I authorize it will give me a
+key. Please make sure that you save this
+key properly and make sure that you
+delete this so it doesn't get out. Even
+my key I will be deleting so please
+don't use it. The second you go out you
+can just paste this code. And just like
+that your cloud is done. It is saying
+that hey cloud can make mistakes and
+stuff.
+I trust this folder and you have your
+cloud working here. So just like how I
+have this cloud working on my local
+machine everyone
+now this particular VPS right this
+particular machine is also having cloud
+running. So a very good confetti because
+this is how you kind of run for the very
+first time the cloud code on the cloud.
+Because again even if your machine gets
+off like your laptop this cloud instance
+is already running because this machine
+is running 24/7, okay?
+Now you can do anything so I can just
+say hi just to check if everything is
+all good and all these stuff. So see how
+hi hi how can I help you today? So I
+could just say that as well create and
+set up a cloud
+or let's say dot cloud directory
+inside my
+slash first project. Okay so I'm just
+asking that hey please just set up the
+new project so it is saying that hey it
+doesn't most probably it will not exist
+so it will try to create one.
+Let it work so it It saying make
+directory first project dot cloud. So
+again, the way you work on cloud
+everyone, this is exactly the same. Just
+like all the things are happening on the
+cloud here. So unlike VS code where we
+have this kind of a UI, it is not
+present. But if you remember, I told you
+and when I mention, I told you I mean
+this particular crash course like which
+I which is on live on YouTube. Now again
+everyone, pretty awesome crash course it
+is of I think 14 hours. Yeah, 14 hours
+crash course where I have covered about
+each and everything in complete depth.
+All the commands, everything there are
+timestamps, everything is there. So
+highly suggest you that you walk
+like watch it because here I've
+explained that how can you actually run
+and master cloud code on terminal via VS
+code extension and all the things right
+with respect to each and every concept.
+Rather if you will see this cloud
+certification which many companies are
+now asking,
+all the concepts which are kind of
+expected, they have been explained by me
+in that particular video. So that will
+also be very helpful. Now again, once
+you do that video, it will be very like
+you will be able to understand lots of
+things conceptually as well. If you will
+see agentic architecture, MCPs, all
+these things I've explained in depth,
+okay?
+So now everyone that we have this cloud
+connected, let's try to again set few
+things up in here.
+The very very first important thing
+which I would like to do is without
+wasting any time, I would love to
+control it from my mobile. Because if
+let's say as an example,
+I have my code base. So I can easily get
+my code base which is on GitHub or
+somewhere here and cloud can create PRs,
+everything for me, right? So again, see
+how smartly we are moving towards
+uh connecting it to the cloud because
+again,
+if I have my code base completely here,
+I could just make sure that I am able to
+uh
+do any changes right from cloud and then
+cloud can create a PR for me. I can see
+the changes as well. All these things
+cloud can of course do to me. One more
+benefit everyone, if I just do MCP here,
+you will see that how
+I am having all of these different
+different MCP servers. Rather it can
+create a calendar invite everything for
+me as well. So for that I mean, first
+let's try to connect with our return. I
+will just write remote control.
+So, you will see this remote control.
+And it is saying that remote control
+lets you access this CLI session from
+the web or the cloud app. So, you can
+pick up where you left off on any
+device. Let me say enable remote control
+for this session.
+And it is saying code in CLI or at this
+link. So, let me just for the timing
+copy this link. Let's see.
+And we are able So, let me say just let
+me say how are you?
+Right?
+And if I go back, where is it?
+See, it is able to directly connect.
+Right? So, that connection is pretty
+good. Now, let's take it a step forward.
+What I will do, I will actually just do
+one quick thing.
+Because I feel that my mobile is logged
+in with another account. So, just give
+me a minute.
+Okay, you might not have to do this.
+I will just quickly
+authorize with another account that like
+which I'm logged in from my mobile.
+So, let me just quickly do it.
+Authorize.
+And
+we
+and it should be done. Right? Yeah.
+So,
+if I now just do remote control again
+since that I've changed the account,
+I could say disconnect this session
+and I could just create another one.
+Okay.
+So, see everyone, now this has been
+done. What I will do, I will copy this
+particular thing.
+And with this link now again I have to
+just show you my uh
+phone as well. So, let me try if I can
+have them side by side. Just a minute.
+Wait a minute, everyone. So, a little
+difficult, but let me try still.
+So, this is here. This is here. Let me
+open like again, my camera will be off
+because I'm using phone here now.
+Let me paste this particular cloud link.
+And what you will see everyone I had my
+water. Let me pause this. What?
+Great. So, I can just say
+this. Let me reject.
+Let me just quickly solve this up as
+well, everyone. Like it is asking me to
+log in here. So, I logged on to my
+browser, everyone. Now, if I try to
+access this, right?
+You will see that how it is asking open
+by Anthropic. So, the second I open it.
+And create and set up cloud directory.
+So, this is working, right? So, that is
+actually what I wanted to show you. Like
+again, now if I show you everyone, if I
+say hi.
+Uh it is connecting. Let's see. Yeah.
+So, see it is getting a hi. Now, if you
+think about this like this opens so many
+possibilities because your overall cloud
+is always now running on the web, right?
+Uh you will not be able to see me
+because my phone is getting used uh
+here. So, uh can you tell me what all
+folders
+are there and create a
+quick one
+page Python calculator
+app.
+So, the second I ask it this, everyone,
+uh in the back end
+my main system will get started with it.
+And see, each and everything I have the
+full control, right? So, it is asking
+me. I can say always allow for this
+session. It is just actually like you
+are having a complete uh intern who is
+working, right? So, you can just talk to
+him just like you normally do. And yeah,
+I think that is the benefit, right? So,
+instead of being glued to your machine,
+you can now have your chai breaks in uh
+lots of uh tension-free environment. You
+can travel You can actually now just
+easily travel and work. So,
+just think about it. Like how strong
+this is. You can have multiple of these
+sessions, everyone, running. And each
+and every one of them you could very,
+very easily just maintain. So, see, it
+is saying that it has done the same. I
+could just say that great. Create a Git
+uh initial
+commit etc. as well. So, again, I'm just
+asking that hey, please uh like just
+initialize the Git thing as well.
+And it will do each and everything for
+me. So, that is the best thing, right?
+Because this is always running. This
+will not stop. And I could just keep on
+working. So, if I have a production bug,
+if I have, let's say, any particular
+requirement, if I have a meeting,
+I could just connect and say that, "Hey
+Claude, can you do this for me?" And
+provided again, provided that you
+understand your code very much nicely,
+Claude will be able to do all these
+things. So, each and everything which I
+see here, all this is present here as
+well. Now, even though it is connected
+to your like the same way you can
+connect your machine as well, but your
+with your machine it should not be off.
+Uh Wi-Fi connection issues, okay?
+Power cut issues, all of these things
+pose a problem, right? So, with respect
+to that, everyone, once we have done
+this thing, I hope you understood the
+first level of thing which we have
+gained control of. So, now let's move
+forward. And again, all the different
+different other things are exactly the
+same in here, right? So, the way you run
+the Claude commands and all that part,
+we have discussed a lot in depth. So,
+all of these things, I will highly
+suggest again to watch this crash
+course. Each and everything is kind of
+covered in here.
+Now, let's go forward, everyone. And
+what I will do, everyone, pay attention.
+I will just exit out from this for the
+time being.
+Now, what happens is that in many
+companies, they are giving you the
+complete access via, let's say, your uh
+like they have the enterprise level
+thing, right? So, there is a very
+awesome library, everyone, which you
+will see in here.
+What does this library helps you to do
+is
+that you will be easily able to
+just
+see
+all the things about your Claude. So,
+what I will do, just pay attention. I
+will just
+uh go and say UV here, okay? I think UV
+will not be there. So, let me just ask
+this particular thing.
+Can you install UV
+in my VPS? So, again, I'm just asking it
+to install UV. Uh UV again is a Python
+manager which can help us to install
+future packages.
+Let me make it bigger, everyone.
+Uh we have the Yeah, we have the scene
+here.
+So, again, uh for the time being, of
+course, I think it must have
+disconnected.
+So, let Let just select first one. I
+will show you. I think I don't think it
+will work. Now, see, it is saying failed
+to send messages and an unknown network
+error has occurred because in here we
+have closed this thing up, right? So,
+here as well, everyone, I will show you
+a very, very awesome awesome way, okay?
+So, for the time being, let me close
+this up, right?
+So, let me close the monitoring, and I
+think you should be able to see me now.
+So, great. Now, see, everyone, it has
+actually done the same part. Now, I will
+just copy this.
+I'll install UV install cloud monitor.
+Seems like it has done.
+And I could just paste copy the CCM.
+Let me close this. See, now everyone,
+how nice it is that it is actually kind
+of showing me each and everything. So,
+as of now, it is say it is assuming that
+I have a $200 plan.
+Unfortunately, I'm not that rich. So,
+what I will do, I will just give it a
+command that, hey,
+yeah, hyphen plan pro. So, let me go
+back. Let me
+close this.
+CCM hyphen hyphen plan pro.
+So, now it will run with respect to pro
+package. So, $0.16 out of $18. Now, the
+reason, everyone, this is very, very
+helpful is very simple, like again,
+whenever you are working in a company
+environment, you you should have an idea
+of this, right? It is not that if you
+have hired an intern, or normally as
+well, you have me no idea. So, just a
+new easy way to see the same. Now, you
+can see tokens will run out, limit will
+be set when, burn rate, cost rate, all
+of these things. Rather, to be very
+honest, if you go on cloud monitor
+GitHub, if you just search this thing
+up, everyone,
+you will find multiple different
+different applications, like pretty
+awesome applications which people have
+created. So, if you will go here,
+it is also one of the dashboards, like
+which someone has created. And see, very
+nicely it is able to tell each and
+everything, like what all is running.
+And they are pretty simple to install,
+because they work on the concept of
+hooks. Again, something which I have
+covered. But, at a user level, they are
+very, very simple to install. But, I
+like to keep my setup very simple. So,
+as of now, everyone, if you will focus
+what we have done, we have understood
+the pain point. Then we have understood
+that, okay, how can we run cloud code
+via the How can we run cloud code on our
+machine?
+After that, we have also seen that how
+can we easily connected by remote
+control? That is a total game changer.
+So, just on your server. And again,
+normally as well in in companies, your
+code is kept on a server. So,
+this is from where you can easily
+connect to it and let's say just create
+your PRs and do each and everything
+there from there, right? Do any changes,
+solve any production issue, etc.
+And of course, as I told you everyone,
+so in here,
+if even if I'm starting this cloud,
+right? So, if I go in here,
+uh let me start another one. I will show
+you how that is like we can also do one
+thing where we don't have to do this.
+So, pay attention everyone. Now, another
+one has been started.
+This one is still running. Let me have
+them in let's say
+vertical mode. So, tile them vertically.
+See, cloud.
+It will ask me
+great.
+Can you explore my uh code base? Because
+I'm just asking this and you will see
+that how almost in real time these
+things will change.
+So, this thing is kind of handling. See,
+the cost increased a little bit. Cost
+rate
+one day you will see that as the token
+increases, it will keep on updating in a
+little bit, right? So, see, it is saying
+that hey, you have not controlled any
+application or something. See, how the
+message usage got to 6%. It from 0.3 to
+0.37%. So, a little good dashboard
+overall.
+But I love to see this that how can I go
+a step further and make sure that my uh
+I'm able to visualize this as well,
+right? So, for the same everyone, I will
+be using the same technology which I
+used I think somewhere in here.
+Uh
+which all of you loved as well. So, I
+received so many messages like hey
+Mayank, this thing was pretty cool. So,
+this what this was doing everyone, I
+will show you this quickly.
+So, if I am on VS code, let me open
+agent flow.
+Right? Let me close this. The second I
+start a session,
+you will be able to see that how I'm
+able to see each and everything here,
+See, how nicely it is able to do
+everything? So, I can say
+start a sub-agent.
+Now, when the sub-agent will start,
+everyone, it will be showing you another
+sub-agent kind of running here.
+So, I could just say uh code quality
+reviewer, okay? Just let me ask this.
+And now it will try to start another
+sub-agent. So, see, every chat,
+everything is right in front of us. We
+can just go back as well.
+Now, the code quality reviewer will uh
+again, I can say full full code. Be
+fine.
+And in a bit, now just we will be seeing
+the full code going and everything. So,
+see, how nicely it is, right? So, I will
+just stop for the timing because I don't
+want it to unnecessarily get this token.
+See, this one is killed as well.
+What I will do, everyone, again in a
+similar manner, just because I want
+everything to be visually appealing to
+me,
+I will just go to this library and in a
+similar manner, I will just make sure
+that I am installing this complete
+library. So, again, very very simple, I
+will just have NPX uh here.
+I think again it will give me the same
+issue that NPX is not available. Let me
+paste it in here only.
+And I think that Claude will ask that,
+"Hey, yes, run this command." It will
+give an error, NPX command not found.
+So, Claude will try to solve the same
+again, okay?
+So, let me quickly set it up and let me
+show you like how we can easily just
+connect to the same. Like the idea is
+exactly the same. Once we set it up,
+then it will all be done, right? So, I
+will just say install the same
+and try to
+run it then.
+So, pay attention. It will just install
+Node and all these different different
+requirements. So, it is saying apt-get
+update,
+Node.js, NPM, all of these things, via
+which I will be able to actually install
+each and everything. So, pay attention,
+everyone, what happens, right? So, one
+thing which I have to explain,
+just like your machine, VPS is also a
+machine.
+Now, with VPS, we actually have to
+install these things up because I set up
+my VPS from scratch.
+Once you have installed the same, after
+that it's not a problem, right? So,
+after that all the things which we do,
+they can be done very easily. So, that's
+not a problem. Everyone, now pay
+attention what is happening here.
+So, it seems like again it has done
+install the same and try to run it
+again. It is trying to do the same. Uh I
+think it's a little bit
+uh more in-depth, so let me just circle
+back once it is installed. So, good
+everyone. As you can see, I was able to
+make it working. So, I will show the
+process like it's pretty simple, not a
+problem like from the non-tech
+perspective as well. But, first let us
+try it out. So, let me just start a new
+terminal. And again, uh everyone,
+ideally you can have these multiple
+terminals. So, what I mean by that like
+let's say whenever you are using it
+inside, right? So, uh yeah. So, you can
+have your terminals multiple terminals
+like this. But, again in Hostinger,
+since I don't want to make it very
+complex, I am just starting it like this
+only. So, let me do cloud, right?
+And let's say I enter this folder. And
+let me say hi.
+I feel that now yeah. So, see.
+Uh let me close this, yeah.
+See everyone, now this is actually the
+IP address of my machine. And on the
+port 8080, this thing is working, right?
+So, if I just do anything, so if I just
+show you quickly again,
+uh this is where we are, right? So, let
+me do
+file name vertically.
+How
+How are you?
+Right? I think it will say I'm fine,
+thank you. But anyways, the idea is that
+now actually this link since uh this
+one, right?
+This link everyone, if you will see, it
+is my uh machine IP address plus some
+port, okay? So, I will quickly share
+about how it is done. Like I can have
+the more details on the
+link as well. So, there are multiple
+ways actually, but due to the main the
+main problem is that there are some
+security expects. So, not everyone can
+directly log in to your machine or try
+to work on it. So, pay attention
+everyone.
+If you will see, right?
+Uh I just started the normal agent flow
+the way it is started. So, on my
+localhost I am able to use it.
+In VS Code, we are able to use it via an
+extension as well. So, here as well it
+is working. How are you? Let's say if I
+just ask, it will just kind of work on
+the same.
+But, uh
+it is starting on the local host of my
+machine here, right? So, I just use
+another thing known as socat. So, via
+that we are easily just able to forward
+the post so that it can listen. So, that
+is the case. Now, I do understand like
+if I just try to
+dial them to create
+multiple things are working at RN,
+right? So, let me just try to see 1
+minute. Oh, yeah. So, if you will see,
+this is where our overall
+complete thing with respect to tokens
+are working. And this is totally also
+fine. Like, if you even if you want, you
+can run it like this as well. This is
+where our uh agent flow dashboard is
+working. And this is where we are just
+kind of doing a port forwarding kind of
+a thing. So, with respect to that,
+everyone, now what I will do, uh this is
+my main terminal, right? Where anything
+which I ask now, I can just ask, "Can
+you
+create a dot cloud folder
+and do the complete in it here?"
+And you will see that how the second it
+got get the command.
+On the web, I'm able to actually see
+that how it is running reading these
+things. LS hyphen LA root it is
+uh like reading about it. It is using a
+init skill, right? So, she skill in it.
+Searching for a pattern, finding
+everything.
+Searching for one pattern, listing one
+directory, and everything it is able to
+tell. So, user what user asked, and now
+what it's trying to do. There's no code
+base here, root only. And then empty
+directory there is a holding a few
+possibility. Did you mean? So, I can
+say, "Please set up a code base in my
+first directory." Because I'm just
+giving it a very simple case, everyone.
+Let's try to see this.
+So, please set up a code base in my
+first directory.
+And uh I could just ask a very simple
+one. Let's say, Python project.
+Uh which language or a type Python only?
+And yeah, submit answer. So, again, very
+simple thing. You are able to see it
+right now working. But, again, just
+remember all of this is on the web. So,
+even if you get this particular link
+everyone, even if I open this in
+incognito, I will show you.
+See how this is working, right?
+Even on incognito, anyone can rather
+access it, right? Because again, it is
+my server. So, even if I am, let's say,
+traveling, right? So, I can I can just
+try it out. Let me again start the
+iPhone mirroring.
+So, let me disconnect because my camera
+was being used. Just a minute.
+So, even if I'm not a very, uh,
+terminal kind of a guy, this can also
+work here as well, as you can see,
+right? So, it is absolutely fabulously
+well working here. I could just see the
+same. Now, that because again, this
+server, it is running 24/7. It is
+present everywhere, right? So, that is
+the whole idea. Now, if I select, let's
+say,
+fast or flask, let me select a fast API
+server. No worries. So, yeah, we can see
+everything, right? So, that is the
+benefit. Now, let's say that you are
+having multiple of these sessions,
+everything. I could just make sure that
+I can select multiple sessions, all of
+the messages.
+And this is the complete benefit, right?
+This is actually the kind of control
+which you are getting on your 24/7
+running assistant, okay? So, that is the
+benefit. And if you know the things,
+right? In depth. So, with that, you have
+seen everyone now that how we are able
+to work out the same.
+Now, it will set up all the things, but
+we have seen multiple things that, uh,
+how in the scenario one without VPS plus
+remote control, all the things close.
+With remote control, okay? Without
+persistent processes, well, we face this
+problem where everything dies.
+But now with VPS plus persistent process
+plus remote control everyone, we are
+easily able to connect and do everything
+which we want. And you will notice that,
+uh, again, I'm just getting a project
+from scratch, okay? Because I kind of
+wiped out the complete
+server to showcase the same to you.
+But in a way, how good it is, right?
+Like I can actually do anything. I could
+just talk to my client.
+And it is like a 24/7 assistant which is
+running. I can actually go, as I said,
+go on a any meeting, go for a vacation,
+anything. If I know that yes, this is
+working and how to handle the same,
+And of course, like the idea is pretty
+simple as well. If I just ask it, so I
+could just start multiple servers and I
+could just make sure that I'm asking it.
+As of now, it is saying that no remote
+session found because I think we all
+know the reason.
+So, Python pip command not found. I
+think it will have to do pip three
+install. So, that that thing already it
+will handle, right? So, that I'm not
+aware of. Oh, sorry. I don't have any
+issues.
+So, we will see that how it will install
+each and everything for us. Uh that's
+the benefit of cloud
+uh cloud port, rather. And yeah, my
+server will actually be having each and
+everything for my disposal. And I could
+say yes.
+And this is actually now uh
+overall case where you are having an
+MCP, you are having each and everything.
+And it is working fabulously well. So,
+now everyone, we have seen how to
+monitor. So, this kind of thing is also
+running here.
+Now, uh a lot better way of this I will
+be showing in a bit. Little not
+technical, but a very awesome manner.
+Like, for people who are in tech, they
+will know tmux, but I will show in a
+similar manner. I hope I'm not
+pronouncing it wrong. So, yeah,
+everything is happening in here,
+everyone. But again, the problem is uh
+with due to which I want to showcase
+that. And again, I have a surprise for
+all of you as well. A real production
+problem, which uh as I told, I got to
+aware got to know from one of my
+friends. I will be discussing that. And
+along with that, of course, I will show
+I like give you that uh particular
+access for one more technology. So, we
+can just make sure that it installs
+everything, right? That should not be a
+problem.
+And once it installed, then we can just
+start the same as well. I don't think it
+will be a problem at that level as well,
+right, everyone? So, just let me
+uh these all things up and let me come
+back with a
+quick app. So, great, everyone. Now, as
+you can see, actually the application a
+kind of a dummy application has been
+created and it is running as well. So,
+again, we can have a much more bigger
+application as well and I will be
+exporting one towards the end. But if
+you will see, it is running fabulously
+well. What I can do now, everyone, I can
+just go in here and say remote control.
+And now this will give me uh and again I
+think I forget to show you this, but
+lots of
+changes and things are happening at this
+end as well. So, if you will see right,
+uh our particular session has to do lots
+of work, okay? So, that was the whole
+point. If you will just rewind a little,
+you will see that how many file it was
+working on.
+Now I can just copy this and
+make sure that I paste the same. Now it
+will just ask me to open Cloud Code. So,
+it will start.
+Now we can see that how each and
+everything is running everyone. I will
+do one more thing. So, if you will focus
+like my application is kind of running
+here, right? So, I can see the same
+application running.
+Now what I can do everyone, I can just
+make sure that I go to Cloud. I could
+ask, uh can you please add a
+light and dark mode
+toggle switch
+to my application. Now again, I would
+like to actually explain you here that
+small small issues and everything which
+we normally work upon.
+And overall as well, this is a very good
+way of handling each and everything,
+right? So, just think about it, right?
+Everything is working and that is
+more or less what you are doing when you
+are working on Cloud Code on your PC as
+well.
+Just that I have taken this whole thing
+out and we are actually able to create
+the application. So, this is the back
+end everyone. If you will see,
+this is the front end.
+And I think it was telling more things
+as well. So, yeah, we can see the docs
+as well. So, let me just open 2020
+/docs.
+Some Swagger, yeah. So, again,
+everything it has done fast API based
+Swagger docs are created. And this is
+where actually the API and everything is
+happening.
+Uh Socket is like a technology by which
+I can easily just route them outside
+because in Hostinger or many servers
+that might be the case. So, see now, it
+is trying to do the same everyone. So, I
+will rewrite the code. I think it is
+still working. We can again, since it is
+connected with my phone, I can be all
+fine, right? So, you can see that how it
+is working on the same. Once it does the
+same, then I will check the same on my
+mobile only. So, just think about this
+how smart the same is, right? So,
+finally this is working everyone. I will
+just quickly close the same and we will
+just move a little bit forward so that I
+can tell you.
+And let me I think I have So, the camera
+is open. So, now everyone meanwhile this
+happens and we will again go to the
+mobile. Let's now try to try to
+understand one more issue everyone which
+is a very very
+like I think logical one. Now again, I
+think I have stopped it. So, if the
+second I play it and go it on live, it
+is actually working on all the changes
+which I'm asking, right? So, this was
+the major thing everyone. So, I want all
+of you to focus a lot. Now, what
+happened and if you think about this in
+future, we can have multiple of these
+VPS where our cloud code is running.
+Unlike our laptop or our machine where
+we do have a dot cloud folder at a major
+level,
+that is not the case here, right?
+And that is a problem because again, it
+may happen that we are having multiple
+machines as well when we are starting
+some app with multiple horizontal
+scaling. So, multiple of these machines
+starts up and maybe just I want to SSH
+into a particular machine and control my
+cloud code in that machine to check
+everything and all these things, right?
+Along with that, I hope you do remember
+that how I covered the same that now
+that you have done this on a machine,
+you can have the cloud code level
+commands as well. So, if you go on your
+terminal, I will show from the local
+terminal, but if you go on the terminal,
+then you could easily make sure that we
+can have cron tab level commands, right?
+So, in the terminal on the cloud, you
+can have cloud commands running as well.
+So, if you want to have a skill, have a
+particular command, have anything other
+working at a particular time, you can
+set the same on your remote server. So,
+all of these are the benefits which
+actually takes you towards automating
+your work with AI because I feel that
+this is the benefit if AI is working and
+it doesn't need a very machine, why
+should we spend so much time on a
+laptop? Like rather let's say it is
+better if we enjoy or like normally
+learn something new. So, that was the
+whole thing and now I'm talking about a
+problem everyone which is regarding
+memory.
+Now what happened everyone with respect
+to memory if you try to think about this
+and this was again something which one
+of my friend company is doing as well.
+So, the use case was immediately
+clickable and I want to move beyond the
+basics as well, right? So, that has
+always been my approach.
+They used to say that hey
+so like again he's having a company and
+he was just selling the same and he said
+that man what was happening was like we
+used to go to let's say
+any VPS, okay.
+We are starting our VPS again and again
+and these kind of a things were
+happening. We were installing a
+different application or all these
+things were taking place.
+And in that we have to set up these
+things from complete scratch again and
+again. Now you can have a GitHub and
+everything as well where we are having a
+project available dot cloud. But that
+was also giving a lot of problem.
+Because multiple people might be working
+on the same and you cannot keep your
+let's say company level things here. And
+unless you're an enterprise dot cloud is
+not present
+you cannot have some company or
+enterprise wide memories or let's say
+instructions there, right? So, just pay
+attention what I will do everyone.
+And I will then explain you. So, I open
+this another cloud or another terminal
+and again I know that there are lots of
+terminal. I will just say
+please extract
+all the memories
+memories
+okay, on my server so we can
+get started with the project.
+So, I'm just asking this particular
+thing. Let's see that if it is able to
+catch the same that how it has to
+extract the memory. So, it is calling
+some mem zero get memories. Let me say
+yes.
+And you will see that how actually all
+the memories are kind of taking place.
+So, see this is like I'm just showing
+that how it will be getting all the
+memories. Let me close this up.
+Mem zero memory server is currently
+empty, okay. Have I started with another
+one? Just let me check. So, I think I
+know the issues. Can you use the
+user ID as this? So, again, I am like
+having a user created, and now you will
+see that what will happen. So, let me
+And it will be able to hopefully get all
+the memories, right? So, see, perfect
+your memory space and then let's set up
+an ID from now on I will use the same.
+Great.
+Please first get all the memories,
+Not sure like uh should be fine. Get
+memories. Yeah, the user ID this time is
+I think I have eight or nine memories.
+So, everyone I was just uh dying to
+actually do a lots of experimentation.
+Let us now check.
+So, hopefully it should be able to get
+all the memories pretty easily.
+Let's check if this was user ID. So,
+once it works, I think then it will be
+all fine. So, see, yeah, I think it is
+now able to find uh it was maybe calling
+with a different uh overall
+parameters. So, yeah, I found nine
+memories on your server. Here's what I
+retrieved and everything. So, all of
+this is all good. I could just now ask
+it, "Can you just get the
+technology memory?"
+Right? And then I will explain you like
+what exactly happened here.
+So, I will just say yes.
+And see, actually, it will just try to
+get See, here are your
+technology-related memories. So, it is
+saying that VPS infrastructure, Grafana,
+linear testing, code style, all of these
+things are present. Now, just think
+about this, everyone, what happened in
+here, okay?
+Ideally, okay, I might have these
+different different VPS and all these
+things running where everywhere I have
+the cloud code running.
+Now, every time it starts, I will have
+to set up my cloud empty and all these
+things. And with respect to memories,
+the whole problem is which happens,
+uh as you keep on working, right? You
+can start appending to your memory, so
+your cloud code gets started having the
+idea. So, each session it is having a
+very good idea that where did the last
+one stop? Because in a setup like this,
+you don't you are not experimenting. You
+are actually working, and you want to
+understand that, "Hey,
+I want to check what when I last
+stopped." So, just as an example, if
+this particular session stops, right?
+And when the new session will start,
+again this session everyone where I
+asked it to do the minute, yeah, where I
+asked it to do my complete application
+light mode, dark mode, everything. When
+it will stop, then again new session
+will start and all these things will
+happen.
+But that's a problem, right? Because
+again, when I'm solving these issues up,
+I want to quickly just get to the work.
+So, in that sense everyone, that was the
+problem which they were facing and that
+is how it is how they solved it. So,
+they went to an external memory store.
+So, instead of storing, right? So, I
+will just have a memory icon here.
+Let me get this one only.
+So, instead of storing these memories
+locally or on any GitHub etc., they went
+towards the third-party store.
+And in that third-party store everyone,
+something which is known as Mem Zero,
+like it is again very, very famous kind
+of, I think, state-of-the-art one
+because I have used it with other
+frameworks as well, like AutoGen,
+CrewAI, etc.
+All the memories are getting stored
+here. So, just to show you an help you
+imagine the picture, this was the whole
+idea.
+Without Mem Zero or rather any memory
+store, there were multiple sessions and
+all of those sessions were not having
+any idea. You have to give them the
+complete uh picture and all that stuff.
+Plus, if you want to work with multiple
+sessions. So, now you will say that,
+"Hey Mayank, no worries. I will always
+resume my session. What's the problem in
+that?" Well, the problem is that, for
+example, if currently my this session is
+working, right? And you know that with
+long code bases and long use like let's
+say plan mode etc., it takes a lot of
+time. Long code again easily take 30-40
+minutes.
+How will you take the advantage of
+parallelism? Even on your phone as well,
+there are tabs on which you can run
+multiple of these remote sessions,
+right? So, I could just ask it, "Hey,
+get the complete memory." So, it will be
+having that, "Hey, I changed the I added
+the dark mode then the light mode button
+for this particular, let's say, uh not
+user this time project, but we can have
+that user ID connected to a project."
+So, this was the complete benefit
+everyone and I will show you. So, see,
+with Mem Zero, I use FastAPI, Python,
+AI, and all these things. So, it is
+having all these parts. Uh you can add
+your name, etc. as well just for uh like
+this is actually what they were
+following. So, since
+they don't want that, okay, someone
+comes in and add that particular uh
+let's say a memory which no one is uh
+like kind of focusing on because they
+were maintaining it at a project level.
+They asked for the username as well. So,
+now everyone anytime the new session
+loads up and even if they have restarted
+the complete thing, restarted the whole
+overall, let's say uh server, they were
+able to get the memories, right? So,
+this was the whole case. Uh new session
+start in mem0 and everything like you
+can again say that, "Hey, whenever a new
+session start, please get all the
+memories." So, see, each and everything
+we can have this whole approach ready.
+And what I was talking everyone, so
+thanks to my friend, I was able to get a
+very good deal for all of you. And what
+you will get from that, let me show you
+quickly.
+So, if you will use this link and again
+I will have the link in the video as
+well. If you will use this mem0. uh
+Cloud Cloud, right? So, via Cloud Cloud,
+You will be able to get 3 months for
+free. So, if I show you the pricing
+first, let me show you the pricing
+See,
+in the pricing everyone, you will see
+that how they give you hobby which is
+just having 10,000 and 1,000. But this
+starter plan which is $19 a month, okay,
+since this company is associated, you
+will be easily able to get the same for
+free. So, yeah, take the advantage of
+this because this memory thing it is
+actually very, very helpful, right? So,
+now I can just easily add, let's say, my
+email ID.
+Let me say continue with email.
+what I will do everyone,
+so I got the magic link as well. Now I
+can just
+add it.
+auto redirecting, right? So, let it let
+it, I think, redirect
+uh via the magic link and I will be
+logged in. So, see mem mem0 dashboard.
+If I go on upgrade, if you are already
+using this link, uh and if you go on
+upgrade, let's say, if you select the
+starter plan,
+so, let me move forward.
+Okay, so I think because I have gone via
+the starter plan it is not taking but
+you can enter cloud
+cloud
+cloud as well.
+So specifically I asked for this and it
+will be zero.
+See, it is zero for the three months. Uh
+$19 off for three months. So a good
+savings of $57. So take the advantage
+because Mem Zero it is not just helpful
+for cloud code, it is actually helpful
+for many many things.
+And the way to install this everyone
+just like see now you're able to get the
+memory. I could just now say
+Uh I could just say that
+add to the memory
+that
+I
+run the
+apps
+and expose them via So if I show you
+what was the technology
+So socket, yeah. So I can just say
+socket.
+So this is how actually you can do it.
+And yeah, everything will work fine
+because the memory store is there. If I
+show you the UI as well it is pretty
+good. Let me show the one which is yeah.
+So if you will see everyone this is how
+the memories are supported. Now these
+are all the memories which I have
+created.
+And overall you have the memory by
+category etc. So you can add that
+project etc. You can have the entities
+like what is the user and everything.
+So entities you can create multiple
+here. So that can be based on projects.
+Then request all the requests which you
+are getting and complete dashboard as
+well. And as I said this will be helpful
+for everywhere. So just take the benefit
+because thanks to connections I guess we
+were able to get this for free months.
+So believe me it will be very helpful.
+Like this is something which is used by
+lots of frameworks.
+Many many different cloud providers as
+well they give this thing that hey you
+can use the Mem Zero directly. And yeah,
+that is where it will be helpful. To set
+it up everyone there is a very very good
+article which I will link up here. Like
+again it is it is written by the
+founders but pretty simple. Like you
+just have to install these things up.
+Just maybe copy the same and give it to
+cloud and it will add an MCB server. So
+it is working in the back end in an MCB
+server.
+One more good article which I found
+right while I was researching on the
+same and I thought that hey, this is
+some problem which
+people are solving this like this in a
+company, okay? So let me explain to my
+audience and my let's say learners as
+well. This article is very nicely
+written everyone. So please go through
+the same as well. Here what they have
+done is since they deal in the memory,
+when the Claude code leak happened, they
+actually understand that how Claude code
+is handling the same and what is the
+overall problem. Like one problem which
+I was aware about was that that there is
+a 200 line cap. Anything which you are
+storing after 200 lines,
+that don't used to get up. So see, it
+appends a warning to the truncated
+content. If your goes beyond that, the
+system silently truncates it. Whereas
+here we can load memory on the go. So
+again, some good software practices
+which should be aware of. And thankfully
+we got the like thanks to my friend we
+were able to get this particular link as
+well, right?
+So yeah, I think now everyone if you
+will see this is all done. If I have
+just added the memory,
+and I have again used that mem zero with
+auto gen in Claude AI before, so I was
+having the idea as well.
+So that's why I was more than happy. So
+see, memory has been added. Now again,
+we can change the user, we can get the
+category and all these things so that in
+future we can easily use this, okay?
+So that is all what has been done
+everyone. Now let us circle back to our
+iPhone and see that how can we control
+all these things up. So again everyone,
+we are back on this. Now if you will see
+I can just make sure that I go to
+Safari,
+refresh,
+and see, like right in front of us we
+are able to see that it added iPhone.
+And this is like how you can at least do
+70-80% of your development very nicely.
+Like even without actually being on your
+machine. And that is the kind of thing
+which I'm hoping that once you
+understand these things how easy it is,
+right? So see it has added the same. Now
+you must have checked it on the web, you
+can check it on the this as well. And if
+you feel any issue, so let's say if I
+feel any issue, what is the issue?
+Search items. So let let me just try it
+out. Let me just say
+please don't my mobile.
+Because you are seeing multiple
+applications.
+Can you add some dummy
+data as well. Okay.
+So I'm just asking it to add some dummy
+data. I think all of you know that it
+will add and then we will be able to
+move forward.
+And this is the kind of development
+which I think is totally at a agile
+level, right? Like where you are
+actually handling each and everything.
+So in that everyone we have not
+discussed about how can you have this
+thing visually seen?
+Right? How all of these things happen?
+Let me show. Yeah. How all of these
+things is happening and all that part.
+How can you actually make sure that you
+are moving? So it is asking me for yes.
+I can say yes from here as well. But
+again, phone is there. So even if I want
+to break and I break my good chai break,
+I can just
+say and see. It is saying that hey, that
+has been added. Now let me go to this
+Safari.
+And we know that what we have to do.
+Refresh.
+Where are the dummy items? Could not
+reach API port. So I could just ask it
+again.
+Let me go in here again.
+See, FE is showing that it cannot reach
+2020 port. Okay. So again, all the basic
+level of issues like I think which are
+80-90% of the issues
+can be solved in here. For the rest
+10-15% you can easily just
+make sure that you are doing that from
+your machine only. Along with that
+always and always make sure that you are
+Again, when we will be connecting the
+same everyone, right? With respect to
+your
+uh Git or some version control. Like
+whenever you will be having so you can
+also of course create a PR and you can
+see if the changes and everything are
+taking place, right? So that thing is
+also possible that hey, these are the
+changes which my uh Cloud Port did. So
+let me now move forward and see the
+same. So see, it is trying to solve the
+same for me. I think it is giving us the
+whole thing in here as well.
+We saw it here that when we say let me
+receive the data. So I think it is
+trying to do something and that is the
+benefit of cloud code and everything,
+So I think it is trying to add the data
+batch items.
+All fixed. The problem was CORS. The
+browser was blocking the request. Okay,
+so let me just now go back
+and check.
+And just think, right? Right now that
+I'm explaining you these things, but how
+nice it would be like if you are just
+actually traveling and something. You
+connect with your team and say that hey,
+that I'm doing this changes. Don't
+worry, I am on my machine and all you
+are actually doing is just via your
+mobile when you are with friends and
+everything. And I actually try to do all
+these things like whenever now any
+application which I'm creating for a
+client, I try I am trying trying to move
+into to this kind of a system as well,
+right? So yeah, all this is pretty good
+Now pay attention what I will do. Let me
+And hopefully you will be able to see me
+now. So now everyone, two more things
+before we close this up and I think all
+of this will be done.
+Just one thing which I would like to
+show you, right? And I can show you this
+from the application. So pay attention.
+Let's say if I open Okay, so Claude is
+already open here. Let me open remote
+control, right?
+And now you know that remote control
+will start. I can just copy this. I
+think that it will not start from this
+one because
+when it start
+Yeah, it is saying that session could
+not be found. I know the reason.
+The reason is that this this one is
+having my different email ID. So let me
+do one thing. Let me do one thing
+quickly. Let me say login.
+Okay, let me say login here.
+Login.
+Let me login with another account
+because now I think we are done with the
+phone thing, so it should not be a
+problem. Let me copy this up.
+Let me just
+So again, your Claude session and
+everything should be from the right
+account, right? So I will authorize it.
+Copy this.
+Copy.
+Back. Paste it and it will be
+authorized.
+So see, it is authorized so everyone now
+I can do remote control. Uh one thing
+more everyone it can show you the QR
+code as well so you can easily just uh
+like make sure from your mobile you can
+easily just uh go with it right.
+So I will say disconnect the session. I
+will say remote
+remote control and now it is active.
+Since now I have the right ID, I can
+just go in here
+paste the same
+and see I'm able to access it.
+And I can see great.
+Able to
+access. And yeah so this is actually the
+kind of a window which gets opened on
+your mobile as well so that is the whole
+Although I think if I have opened from
+this particular email ID now again I
+have three subscriptions because of the
+team is everything. So I'm able to
+check. Now everyone one problem which
+happened is that if you close this up
+right if I close this up
+See uh this is done and dusted right.
+If I say hi for it is saying that hey
+I'm facing some issue the session has
+been closing here.
+And this is a kind of a problem which we
+face with our laptop as well right that
+hey everything is working fine but
+suddenly laptop start giving an issue.
+So pay attention what I will do everyone
+there is a very very awesome
+uh piece of tool which is tmux so I will
+just ask it install tmux.
+What tmux helps you to do is that it
+keeps your session running. See your
+machine is always running. If you are
+coming out what is the difference or
+normally as well even if my internet
+drops right even if there is a power or
+internet drops all these session will
+kind of die down. So you can see that
+how I'm having these multiple sessions
+and everything and I told you that how I
+will show you like see these all things
+are running and telling us that hey I'm
+handling uh
+this particular agent flow thing which
+we are which you are able to see in
+So these all are kind of running in the
+background that is why you're able to
+see everything. That is how things work
+in a session right.
+But with tmux so you will see that how
+with tmux everyone
+I could just say start a new
+tmux session.
+So it will just start with a new
+session.
+So, let it run.
+I'm just using this thing here, right?
+So, it should be fine.
+Let me see tmux. Okay.
+So, session one window created tmux I
+think hyphen LS.
+Or if I do tmux normally, I'm not the
+tmux. Yeah. So, that is actually how the
+session starts. I think it created a
+session, but it didn't go to Wait. Now,
+everyone, this what happens exactly is
+in your machine, in your terminal on the
+cloud, right?
+So, let's say this is your terminal,
+everyone. And again, these are a little
+bit important things. Okay, there are
+lots of other things as well, which we
+can
+do in our uh cloud, but I'm keeping it
+to
+mid-tech level of a thing. Okay, mid
+difficulty, because I want that you move
+beyond. Okay, it should not just be
+that, "Hey, I showed you this thing, but
+when you go back, it is stopping." So,
+what I What tmux helps everyone, so this
+is kind of a
+terminal which is running inside your
+terminal. You can like think of that.
+But, that will always keep running. So,
+if I say that if I let's say go back,
+okay, if I run a cloud session here.
+Now, if I do remote control just as an
+example,
+if I
+open this, okay.
+If I start this up,
+you can see hi.
+So, see, it is working. Now, to exit
+from tmux from like this particular
+thing is difficult, because it expects
+me to give Windows like control D and
+everything. Let me see the commands. So,
+see.
+Uh double tap to clear output, all these
+things. Control I know that it is
+control D and G. So, let me just try it
+out.
+It is all okay. It is all that things,
+right? Let me Let me try to close this
+for the time being. Let's try if it is
+working. See.
+I've closed this thing up. I will say,
+"How are you?
+Ideally, it should have stopped.
+But thanks to the benefit of tmux, it is
+still working. Like if I go back
+if I go on terminal
+and that is very, very big thing which
+I'm telling. Because this now actually
+opens all these things for you, right?
+So, let me clear out everything. Clear.
+tmux {hyphen} ls, I think was the
+command.
+tmux ls.
+Yeah, so it is saying that, "Hey, window
+is there." I would just ask this now.
+Take me inside tmux one window.
+Now again, on local it is pretty easy.
+We can have these multiple sessions,
+etc. as well. So, see, it will most
+probably give me the command.
+And I'll be circle back. So, see, it is
+now always running. That So, that is the
+whole benefit, everyone. Now, this
+particular command will keep on running.
+That is the idea, right? So, I can ask
+it, "Can you take me back
+to main terminal?"
+And the whole thing is that now you can
+have all of these different, different
+sessions, everything which is running
+all together
+totally handled very nicely because
+just to show you, right? Just to show
+you, I hope I hope you got the idea that
+how this thing is running here.
+The second I close this thing, right?
+The second I close
+it will
+the remote session is now gone, okay?
+This thing is closed up.
+I think my application might also die.
+Let me check it.
+Okay, so it is still working because
+they have been taken care from that.
+But let me still try a few things up,
+If I
+now let's say do
+this particular command, I can see all
+the socat thing running. So, see, this
+is where all my socats are kind of
+running. This is how like it is exposing
+But yes, if my terminal gets down, like
+if I close all these windows, rather for
+example, just as an example I'm showing.
+Let's say
+this one, right? So, this one, it is
+handling my agent flow. If I close this
+let me go back and check.
+Okay, so I think socat kind of does it
+directly, so that's also pretty good.
+But if I close this one, for example, if
+I close this one everyone,
+right? Or if I close this thing here,
+because let's say if I have to write
+another command,
+now this is dead. Okay? So you need
+terminal inside terminal. Like you will
+not be having these multiple commands
+and everything. Plus, the problem is
+that mistakenly if you click on this, it
+is it is gone, right? It is all gone.
+See?
+You are not not able to load this thing
+up, because that particular window was
+handling everything. So it is actually
+stuck here.
+So that is the problem everyone, because
+of which we need this particular awesome
+piece of technology which is tmux.
+Okay, so it is saying you are inside
+tmux session now.
+And yeah, this can keep on working. And
+So I have a very awesome thing for all
+of you.
+What we will do,
+I will just quickly copy a
+very good piece of thing which we will
+try to use.
+Okay?
+So again, this has been killed because
+we were kind of just get away from the
+terminal. So now everyone, I'm building
+a visitor wall, so I want that all of
+you who are playing with it or seeing
+this, you are able to actually use it.
+So pay attention. I just pasted this.
+Expose on 999
+via socat.
+Again, there are multiple ways, but just
+I'm following the easiest one. So now
+everyone, what it will do, pay
+attention. It will try to actually
+create a complete application, and we
+will be able to
+just use it.
+And you all will be also able to make
+sure that you are able to come to that
+website with the link which I will give.
+Okay? It will be an IP address. Like I
+can add a domain to it, but should be
+And yes, everything will be fine there.
+And another benefit, as I said,
+once this is done, so let it create, I
+can just close this.
+It is just asking me here as well.
+And the benefit is that now you are
+actually at a level, so if you are
+creating these tmux sessions, they
+always keeps on working. If I just show
+you what tmux says as well.
+Tmux is terminal multiplexer that allows
+you to manage multiple terminal session
+windows and panes within a single
+window. Even while connecting remotely
+via SSH.
+It enables detaching sessions so
+processes continue running in the
+background and reattaching later making
+it ideal for managing long-running tasks
+and remote work. So, what are we doing?
+We are going to handle remote work. So,
+now next time please don't again
+if you just start your terminal like the
+way we were starting earlier.
+Okay, but then you close it, then it's a
+problem again, okay? You might have to
+you will not be able to talk to Cloud.
+So, that is why I told you this
+particular thing and I don't want that
+you are having anything
+with respect to say your So, let me
+start here that you are having any SSH
+or anything in the form. So, see it is
+saying that lost connected to the
+server. So, what happened everyone since
+it was open for long it lost the
+connection. Maybe there was an internet
+drop or something, it lost the complete
+connection. So, now I can just exit it.
+I can go here.
+I can say terminal.
+I can just say tmux ls.
+What was the command? I forget the
+command. tmux
+allow me to
+access both
+tmux sessions. Okay, so tmux session one
+it was, right? So, where we started?
+tmux session one.
+Uh okay, tmux What was the command?
+Start a new
+tmux session one. tmux
+Let me ask it again, okay?
+Take me inside
+tmux
+one window. Now again, uh of course,
+after AI I'm not actually remembering
+the
+commands. Majorly I'm just using it
+directly. So, that is what I will expect
+you to do. Commands AI ChatGPT Cloud can
+give us, right?
+Or like even this complete AI thing it
+can give.
+So, let it work and I think we should be
+all good.
+Let's see.
+Generating the responses.
+Okay, so it is attach Okay, yeah. So,
+attach session hyphen T1.
+Uh okay, let it work as well. So, yeah,
+it might be taking a time.
+So, again if you we are inside the
+session, now I can just make sure that
+everything is working here.
+And yeah, it is that easy and that is
+like the best part now. So, this is
+actually I think which no one will tell
+you.
+Uh since I have worked with these things
+up, right? I wanted to make sure that
+you are getting the right information.
+And let me just showcase this
+completely. Okay, my bad. Let me just
+And our beta application will be up and
+we will be easily able to make sure in a
+minute.
+Yeah.
+So, it will run on localhost on my
+machine, then I will use to expose via
+the IP address. So, each and every one
+of us can easily get it. Okay?
+So, that is a good idea. Nice. Okay.
+I'm just saying that yes to everything.
+And that is another benefit of the
+remote machine, everyone, that
+unless like see
+few things. If your code base like if
+you're doing it for code base, it does
+the connection to your
+uh let's say Git, right? If it is
+creating a PR and everything, that is
+how it can always work. So, even if it
+deletes everything, you are all fine.
+So, now let us try to do it. Let's do
+this.
+Do this.
+See, it is working. Okay, nice. So, this
+is good, right?
+Uh now again, I think all of you can
+just quickly check the same now, right?
+So, you can just make sure that you
+just let's let's see that after one week
+what will happen.
+Now for the time being, what I will do,
+everyone, I will again close this up.
+yeah, it will keep on working. So, so
+that is the benefit.
+Okay, let me refresh it. So, see, it is
+kind of going. So, this is the link,
+everyone. I will have it in the
+description or in the
+like let's say the comment as well.
+I want that all of you go here and
+quickly just tell me what you want. It
+was helpful, it inspired, what it
+mind-blown.
+I have not added any comments or any
+name because I thought that people might
+abuse it like people will say that hey,
+let me enter anything my help will
+handle. So, it will be keeping on
+working for at least 2-3 days so that
+you can try it out, right?
+So, with that everyone, I think we have
+covered each and everything and as you
+can see this is cleaning up now.
+In here if you will see if I clear
+everything up
+tmux ls, there are multiple uh this is
+one session running and I can have
+multiple session like this running. So,
+if I do tmux
+it has started the second session. I can
+do exit.
+And see if I do tmux
+ls now Okay, I think I have to write
+something here. tmux
+uh tmux t Okay, I think exit kills that
+session. Okay, that is why it happened.
+Rather, you can create one tmux. Oh,
+sorry. tmux Okay, so very very awesome
+technology. I'm just using it at a very
+basic level to be very honest.
+So, if I do tmux
+ls now it will work.
+And there was one more thing. Let me ask
+uh just to show you like this last one
+thing how to create
+multiple panes in tmux. Because that was
+very helpful.
+Multiterminal to create a tmux you use
+prefer control B.
+And then I think this percentage. Okay,
+so let me check it if it's work with
+Windows. So, let me say
+control B then
+percentage. Yeah, so
+control B then percentage. So, see
+control B then percentage.
+Wait a minute. Control B then
+percentage. So, it is able to create so
+many of these sessions everyone. Uh we
+can have it in a good manner as well.
+But yeah, now actually everything is
+like this is one session. So, where
+everything is working.
+Just think about how strong this is,
+right? Uh that is actually how you are
+kind of getting
+the whole idea. So, yeah, you can have
+all these sessions up everyone. Now,
+inside this one we are having multiple
+of these, right? So, that is the whole
+idea. Now, I can do tmux detach.
+And now when I say tmux hyphen
+uh sorry, tmux
+a Okay, what was the command? Let me
+check quickly again.
+You attach a tmux {hyphen} a Oh, okay. I
+think I can just If I normally do
+tmux there, I think it takes to the last
+one. Yeah. So, again, just just one very
+awesome technology which I want all of
+you to understand. I know that it is not
+cloud, but yeah, very important if you
+are working on the
+whole like on any VPS or any machine by
+default as well. So, yes, but the good
+thing each and everything is running
+here. I could just ask it
+give me a
+dark and light
+mode
+toggle as well.
+So, I don't care like everything now can
+be closed here. So, totally not a
+My session is running absolutely fine. I
+can just ask it anything.
+And again, I can be on a phone as well.
+My terminal it is having an tmux session
+which is always and always running.
+Okay? So, that was the complete idea
+everyone. I think let it add. I hope it
+will not ask me for yes or no.
+And Okay, it is asking me allow once.
+And yes, once it does, I think it is
+pretty simple everyone like we can go in
+here and we can access the same. I would
+wait for your reactions in here so I can
+see that, okay, how much this video have
+reached out to people.
+Uh okay, 1 minute. Let me open this.
+Visit the wall. Let us go to cloud. This
+is how you actually make sure that you
+are
+automating your work, right? You are
+actually now using AI. So, that was the
+all benefit everyone of using cloud on
+uh cloud.
+Please please make sure that again you
+are seeing this complete video because
+this is very much in line with all the
+certification and normally as well this
+will be very helpful.
+Uh there are actually pretty good uh
+time set up as well. It loads sometimes.
+Upper time it is it. Maybe
+maybe it's a big video. That's the
+But uh yeah, I think it will be pretty
+helpful to all of you. And please make
+sure that you check out Hostinger as
+well everyone because the best part
+which I like with Hostinger is that
+unlike AWS, GCP, and everything, it is a
+fixed cost and it is a very simple fixed
+machine. In GCP, Azure, AWS, like you
+have to actually go through a lot of
+in-depth tech if you are taking a EC2
+machine, etc.
+And uh one more pretty good thing which
+I think will be helpful even if you take
+up a machine, right? Easily you have all
+the latest of the things. So, if you
+will see that they have now for agents
+open class. So, they are very quick in
+this space. You can host your
+application, your personal website, and
+all these things as well. So, now if I
+refresh this, uh as of now it is not
+there. Or is it there? Let me refresh
+it.
+See? It is not working.
+So, that's the benefit everyone, right?
+So, with that everyone, I'm pretty sure
+that the same is clear now. Uh it is
+very, very important that
+we are moving and we are learning these
+new, new things because I have seen that
+not a lot of people are discussing about
+that. Even I got to know about its power
+last month by connecting with my friend
+who is working in the industry. And
+again, I was also aware because I have
+done this type of uh engineering and
+everything, right? Please make sure that
+you also take up the benefit of Mem Zero
+because again, uh it is free for a
+limited time. And believe me, it is a
+very, very awesome piece of technology.
+If you're getting it for free,
+take the advantage because in future we
+will be discussing about a lots of
+things related to agent memory because
+that get used up on every framework
+system, right? And yeah, that was all
+everyone. So, I hope you like this. I
+know it's a little difficult, not
+difficult, different topic which many of
+you will be amazed, but that was my
+idea. And in that case, I will get
+inspired and
+uh maybe mind-blown kind of a emoji,
+right? So, that was the whole approach
+everyone. Do make sure that you like the
+video. Share it with everyone who wants
+to free up their work and actually
+travel while you can work. So, this
+actually gives you that kind of a
+benefit where you can travel and work,
+right? And yeah, I will meet you in the
+next video everyone where we will master
+more things about cloud coding. Anyway,
+I do let me know in the comments how do
+you like this video. Do subscribe to my
+channel. And as I said, please share it
+with your office team, college, everyone
+so that everyone can take the benefit of
+building like this. And uh make sure
+that you also let me know in the comment
+how you like the video. And if there is
+any other topic which you would like me
+to explain. So, with that, thanks a lot
+everyone. Do

@@ -1,0 +1,877 @@
+Hi folks, this is part two of the Claude
+code vibe coding tutorial. Hopefully you
+watched part one. Part one had to do
+with all the stuff that you should do
+before you get to this point, which is
+to start vibe coding, start using cloud
+code in the terminal and start creating
+your project. So if you haven't gone
+through that, definitely give that a
+quick breeze through. It contains a lot
+of important things to make sure that
+your project is going to run smoothly
+instead of getting stuck in these
+infinite loops of trying to brute force
+errors to be fixed. If you're new to
+this channel, my name is John. I'm a
+serial entrepreneur, had a video game
+studio with over a dozen shipped
+products, 4 million players worldwide.
+And so I'm really excited because I've
+been waiting for this time for almost 10
+years where I could build a product by
+myself without needing artists, without
+needing programmers. And as of a few
+months ago, that became a reality. So
+that's what we're here to do.
+All right. So this is what we're going
+to be building.
+Uh now, everything that I do has a
+little bit of a video game flavor
+because of my background, right? So what
+I've got here is a scene, and we've got
+an animated little agent. He's running
+around and he's going to spawn new
+agents as he does work. We've got an
+activity feed that shows what agents are
+doing what and what model they're using.
+So, this kind of helps with this black
+box kind of feeling that you get when
+you just enter stuff into the chat
+prompt. Especially when you're managing
+multiple agents, you don't necessarily
+know what they're doing at any given
+time. So, this helps with that. Then, we
+have a canban board, which is most
+project management software is going to
+have this. You can create a task,
+assign it to somebody,
+uh, assign a project to it, give it a
+stage, attach files, that kind of thing.
+So, once I create this task, it's going
+to go into the assigned column,
+and when the agent picks it up, you're
+going to see that it's going to spawn uh
+something uh spawn an agent to deal with
+it. So, here it goes.
+um plays this spawn animation. The the
+agent appears. Uh it does the work and
+then it's going to go and despawn
+itself.
+Okay. So, just something a little bit
+more fun to look at than, you know, a
+terminal screen. Then we've just got a a
+place to create the projects that we can
+assign tasks to. Then we have a skills
+repository. So, I haven't created any
+skills yet, but if we do create custom
+skills for Claude, then we can put them
+here. I also have a discovery tab where
+it pulls skills from the internet uh so
+that you can check them out and adopt
+them if you want. Then we have a cost
+dashboard that shows how many tokens are
+being used by which agent for which
+tasks that kind of thing. And then
+finally, a memory system. This is kind
+of an important upgrade if you're using
+AI. It's basically a system for
+recording specific things either about
+yourself or your company so that the AI
+doesn't forget those things. So that
+could be things like communication
+preferences, decisions that you make,
+architecture, tools, all that kind of
+stuff. So that's what we're making.
+Okay, we're just going to quickly go
+through what is in your tutorial
+document package, but just to give you a
+refresher or for those that didn't watch
+the first video, we have a memory system
+that's split into two parts, your
+personal memory system and a company
+memory system
+that helped to generate this claude MD
+file.
+Okay. Then we've got the tutorial
+instructions. And so that's going to
+give you, you know, some prompts that
+you can just copy and paste and do the
+work that we're going to be doing.
+And then for your reference, we have the
+mission control product requirements
+document that we created in the last
+video, as well as the technical spec.
+I've also included product screenshots.
+So, this really helps when you're doing
+the vibe coding thing because what
+you're going to be doing is putting the
+screenshot of that page along with a
+prompt for that page and then it's going
+to create the portion of mission control
+for you. Okay. Alternatively, you can
+just put all of these screenshots in the
+documents folder for Claude Code to look
+at and it's going to understand which
+one because they're named the same as
+the
+um portions of mission control and it'll
+know what you're trying to execute on.
+And then finally, the robot stuff. So,
+there is an office screen
+uh where there's animated robots and
+stuff. And so we have a drone that you
+can use gears. You can of course, you
+know, we could do go through how to make
+these assets using chat GPT. Um, but
+yeah, you can just also just take these
+assets and slot them right in if you
+don't feel like making your own. And now
+that we have all of that out of the way,
+I think we can get into
+using Claude code in the terminal. So
+the first thing you want to do is take
+that PRD and the text specs document and
+you're going to put it into a documents
+folder that cloud code has access to. So
+in the last video you created a project
+folder. You committed that to git,
+right? And now you're going to give it a
+place to hold these docs. And so I'm
+going to pause it real quick. So you'll
+notice here I basically asked it like
+text back looks good, the PRD looks
+good. What am I supposed to do next? And
+that's one of the great things with AI
+is if you don't know what you're
+supposed to do, just ask it what you're
+supposed to do and it'll give you the
+quick steps. So in this case, it said
+create this project folder, copy the
+docs into a doc subfolder, and that's
+going to let me read it. Okay, here it's
+giving you terminal commands to run. And
+so these are things that you can just
+copy and paste into your terminal one
+line at a time. Okay, if you're not
+familiar with what terminal is, terminal
+is a a program on your computer and it's
+basically if you see the letter CLI
+that's command line interface. Terminal
+is like where you access the command
+line, right? And so it's a again you can
+find that in the applications folder or
+if you're on Windows you just search for
+an application called terminal and you
+can open it and then you can type these
+or copy and paste these um into
+terminal. So here you can see that white
+window is terminal and I've copied and
+pasted that command and it comes up with
+an error. So in this case it said
+there's no such directory as blah blahjl
+working/ projects. So again I'm going to
+pause. So what it's trying to do is make
+this directory project/mission control
+but it's failing because this projects
+directory doesn't even exist. Okay. The
+first thing that I have to do is
+actually make the directory projects
+first and then make the directory
+projects/mission
+control. So I'm going to show you that
+again real quick. Hopefully we can zoom
+in. So I copy and pasted this command.
+It returns an error because there's no
+directory called projects. So I make
+directory. That's mkdir space tilda/
+projects. So I make the projects folder.
+Then I go with the original command make
+the project/mission control folder.
+Hopefully that makes sense. The second
+man command is cd into that same folder.
+So cd is change directory. And so what
+you're doing is moving yourself from
+here into the mission control folder.
+Okay. Then lastly, we're just going to
+make that last directory make directory
+docs. and you're going to create a docs
+folder inside mission control inside
+projects. All right. So, I think it kind
+of screwed up a little bit here. So, I'm
+okay. I'm just going to show you an
+error that I ran into while I was doing
+this. And so, I was in that directory. I
+tried to tell Claude to do stuff. So, it
+told me um to that directory and type
+Claude and then nothing happened. Okay.
+So, sorry if you can see right here on
+bottom there. Um, I typeed claude and
+then it said zsh command not found
+claude. And so you can install claude in
+a specific directory and it might not
+have access to other directories. So I
+believe that's what happened in this
+case. And so you're going to see I tell
+claude um work this and then it just
+tells me stuff to do to fix it. So here
+you can see I'm in the directory. I type
+claude and nothing happened. And then
+here it's going through some
+diagnostics. So when I checked whether
+it's installed. So see I typed which
+claude it says claude's not found. So
+claude is not installed and it's not
+accessible from this directory. So then
+it says use that npm ex. So I basically
+just copied and pasted that and then it
+installed
+um into that directory. Now if you're
+totally new to this you might not have
+npm either. And so you can see if you
+don't have npm you can tell cloud that
+you don't have npm or whatever error it
+gives you and then you'll have to
+install that first and then install
+cloud. Okay, as you can see just like in
+the last video where we installed uh
+codeex you basically just type it in. It
+goes through like it says yes it's
+installed and off you go. Now you're um
+we configured it. So you might have to
+like look into your anthropic account
+and connect the two so that you can
+start using the paid version. Great. But
+long story short, um, we put the files
+into that docs folder. And here's the
+first command. So, this should be in the
+MD files that I'm going to make public
+and share with you. And so, you can just
+copy and paste this prompt, but
+basically tells it read those fold, read
+those files, read your claude.md file,
+and then all the files in your docs
+folder. confirm your understanding of
+the project and then start phase one.
+That's basically what it's doing. And so
+I guess now is a good time just to go
+through what the vibe coding cycle is.
+All right. So with vibe coding, you're
+basically going through this cycle where
+you start off with a prompt. Then it's
+going to do work. And through that work,
+you're going to have a ton of approvals
+that you need to do because it wants to
+ask you and make sure that it has
+permission to do what you want it to do.
+At some point, you're going to have to
+make some decisions. It'll give you
+like, I can do it this way or that way.
+which way should I do it? Effectively,
+you should probably ask it what the
+proper way of doing it is. So, usually
+it's going to give you like a temporary,
+you know, duct tape version of how to do
+something and then there's a more solid
+stable version. Just pick the stable
+version. Then it's going to deliver some
+stuff and then you'll have to test it.
+So, testing often fails from things like
+the servers won't start and nothing is
+happening to,
+you know, making little screen changes
+is usually pretty hard. So just moving
+things around and changing the shape of
+things and stuff can sometimes be a
+pain. And so when you test it, you find
+stuff that's not correct. You tell it
+and then has to rework. Eventually it
+becomes correct and then you start over
+again. So that's the overall cycle. And
+you're just going to do that over and
+over and over again. Where's my video?
+All right. So here we pasted that prompt
+and then it's going to start cranking
+away. So here it's again doing what you
+asked it to do or what I asked it to do
+which is confirming its understanding
+right it reiterates what is the project
+what are we trying to do what's phase
+one and basically saying all right do
+you want to proceed yes okay I'll just
+show you again because you're going to
+see a number of times where it's keeps
+asking like do you want to let me do X
+and here it's creating code it's
+installing different packages that it
+needs needs. And every time something
+like that happens, it's going to um for
+your permission. Okay. In the technical
+doc, it says that we're going to be
+using Firebase as the um back end. And
+so here, I'm just going in because I
+already have a Firebase account. I'm
+just creating a project inside Firebase.
+But if you don't have a Firebase
+account, you go to firebase.google.com
+or search for it and then create an
+account. Create a project like I'm doing
+here. You just basically assign it a
+name, accept the terms. You don't have
+to if you don't have Google Analytics,
+it doesn't matter. It like isn't
+important to the project, but you can
+connect all that stuff if you want. All
+right. And so in here, as it's asking
+you for permission for stuff, you can
+add or ask it to explain what it is that
+you're giving permission to. And so if
+you're a total newbie to this and you
+want to learn more about the whole
+coding process, you can ask it. But like
+you're going to see this happens like
+hundreds of times. And so honestly, you
+usually have an option to say yes or yes
+to all of these types of requests. And I
+just say yes to all of these types of
+requests. Don't really think that it can
+really screw up my computer. And if I
+do, I have a different computer where I
+can keep it more firewall to that. Okay.
+Here it I'm just going to rewind it two
+seconds. So here it's basically said
+that it's done. Okay. It said that it's
+delivered this. and do you want to run
+the development server and take a look?
+And I'm like, sure, let's run the
+development server. Okay, it's starting
+a server on your computer. And then it's
+created this development server. It's
+running at localhost is your own
+computer. And this 5173 is a port
+number. So, it's running off your
+computer on port 5173.
+And so if you just copy and paste that
+and put it into Chrome or whatever
+browser you're using,
+um, the idea is you're supposed to see
+what is running on that development
+server. Now, I'm going to almost
+guarantee you this is going to happen to
+you at least once, if not quite often,
+which is you're going to paste this in
+and nothing's going to happen. So there
+we are. We pasted the address and we got
+a glorious black screen. Now, this is
+the lovely thing about Vive Coding. So,
+you're just going to go in and tell it,
+hey, I went to that address. I got a
+black screen. So, here you can see I'm
+typing, all I see is a black screen on
+5173.
+And then it's going to figure out why
+that is and then fix it. And if you
+haven't done coding before, so I'm going
+to tell you even 8 months ago, this
+could have happened. I would tell it I
+got a black screen and then it would
+just go in this loop of like not fixing
+it and I'd have the same thing and then
+it would not fix again and I'd have the
+same thing and then I'd be off looking
+on Stack Overflow trying to figure out
+what these errors mean and stuff like
+that. Okay, so you can see in the time
+that I was yammering on, which was like
+30 seconds or whatever, we said all I
+see is a black screen. It goes fixes it,
+rebuilds the dev server, and boom. Okay,
+in this phase, it was only supposed to
+build this cananband board. So, this is
+just uh if you've ever used Trello,
+something like that. It's supposed to be
+a board that has all these tasks. You
+can drag them from one process stage to
+the next. Um you can assign them to
+people, all that kind of stuff. So,
+there you go. You have a functioning
+development server. It is serving a web
+page. The web page has navigation on the
+side. This is currently just a mockup.
+Um, so don't get too excited, but that's
+amazing stuff. All right, so basically
+you're going to tell it, right? In this
+case, I've told it, okay, look up
+Firebase next. I mean, you're going to
+walk through your plan and effectively
+tell it to go through each phase and
+finish the development on each. Okay,
+one thing that happened to me quite
+often, this is all dummy data. So none
+of this is actually wired. That's why
+you you have to connect to Firebase
+because that's the database that holds
+all the information, right? Quite often
+it'll create something that looks like
+the thing that you showed it because you
+have screenshots and all that kind of
+stuff, right? So the next thing after it
+creates the dummy version is okay, then
+you have to tell it when I click this,
+this is supposed to happen, right? When
+I click new task, it's supposed to open
+up a popup. It's supposed to have these
+fields in it so that I can type it in
+and then it's supposed to save to the
+database. when I change or when I drag
+something from backlog to assign, it
+should kind of wiggle and then snap to
+this column or whatever. So, it's a
+process of again going back to this vibe
+coding cycle thing, right? You're going
+to prompt it. It's going to do stuff.
+You saw the approval process already.
+Then you got to make some decisions.
+Then you got to test, is this what I was
+asking for? If not, you tell it to do
+more work and then it fixes it. So,
+that's basically all you're going to do.
+And like I said, when I first did this,
+it took 3 hours. I'm just going to fast
+forward through some of the things,
+right? Connecting Firebase, right? It's
+just like again installing the Firebase
+command line interface so that it can
+talk to Firebase directly. Okay, here's
+an important piece. Um, last time we
+created a GitHub account. Now that we've
+done some work, I tell it, can we
+connect to GitHub and create the project
+there and push what we have? So, commit
+is like saving something and then
+pushing is uploading it onto the GitHub
+server. And so you definitely want to
+get in the habit of constantly
+committing and then every now and again
+you want to push up to the devel uh up
+to the GitHub server. And just to let
+you know, I I in the interim I changed
+the color of the terminal. So before it
+was white, but now it's dark. Okay, it's
+committing. Oh, it didn't have
+Oh, what? it wasn't a Git repository, so
+it's going to make it a Git repository,
+blah blah blah. I mean, you just tell it
+to do it. It's going to figure out
+what's working and what's not. So, here
+again, we're going through the different
+phases. We're at phase three now,
+which is a cost dashboard. So, it's
+created a cost dashboard. Again, this is
+still a mockup. None of this actually
+works, but the next step is to tell it,
+okay, now this is what those things are
+supposed to do. Then, we made the office
+scene. Okay, so I want to take a second
+just to talk about this particular
+screen. Again, this is the graphical
+representation of the office. We've got
+little agents. Uh this is the main
+agent. It's floating around. When a new
+agent is created, it will play a little
+spawning animation and then a new robot
+agent will start walking around. So, I'm
+going to show you that real quick.
+We're going to assign test task
+Create task.
+You can see that Shawn the agent has
+picked it up. And there you go. It
+spawned here. As it's doing work, the
+little gear thing uh spins above him.
+And then when he's done, he's going to
+go and despawn himself. I still haven't
+set the boundaries for where they can
+walk around necessarily. So,
+and then I do have a testing phase where
+a tester is going to come in and test
+the work, but all he did was print
+hello. Okay. So, what is actually
+happening here? There is a background.
+So, that's an image. I have happen to
+have this Ferrari because that's what
+the whole F8 launch lab thing is about,
+but you don't have to have a Ferrari.
+Um, but there are little robots and then
+the probe
+and um, particle effects. So, that is
+called a particle effect.
+And yeah, we're going to go through how
+to do all of that stuff. Now, I am going
+to warn you, this took the longest out
+of all of this mission control. And this
+is mostly just for fun. Although it is
+pretty useful to be able to understand
+which agents are working and what
+they're working on. So this activity
+feed is super useful. This is just more
+for fun because I made video games and
+that's what I like to do. And this, you
+know, reminds me of the video game days.
+But let's go through piece by piece how
+to make this. So the PRD already has
+basically what the technical spec uh
+specs are going to be. you need to make
+a background image. And so I think the
+easiest
+is ChachiPT,
+but you can do it anywhere, right? You
+can use um Google Gemini is really good
+with images. Claude can make images. And
+then obviously there are a whole bunch
+of different software like Hicksfield
+and things like that where you can use
+multiple models. But here all I did was
+take an image off the internet. So, this
+is a Star Wars uh hanger, right? But
+there are like, let's see if we can zoom
+in on this. There a whole bunch of like
+stormtroopers and stuff in there. And
+obviously, we don't want that. So,
+I just told it
+uh I want the
+an empty hanger bay, no troops with two
+spacecraft. So, it made that. Now, the
+problem with this is it's really dark.
+So, if you have this thing floating in
+the in the middle and it's not almost
+black, it's going to look really weird.
+And so, I I told it, can we have
+brighter lighting, please? It made the
+lighting brighter. And then now I need a
+floating probe that's going to fit that
+same style. It would be small and side
+profile view only.
+So, this is a side profile view. So,
+that's different than a three/arter view
+or where it's looking at you. that's
+going to be um face on and on a
+transparent background. So that's why I
+tell you to use chat GPT cuz chat GPT
+can actually do transparent backgrounds
+whereas uh Google Gemini as of this
+recording cannot do that.
+And what a transparent background is is
+it makes this in a PNG file where all
+this check pattern stuff it's actually
+transparent.
+And so if I go back to the mission
+control
+Right. This probe is actually like a
+square
+except the
+um all the stuff around the probe is
+transparent. So you can see through it
+and that's why you can see the
+background behind it.
+And so in this image, that's what's
+happening here. So you can download this
+and it's actually transparent. In Google
+Gemini, it'll make an image that looks
+exactly like this with a check
+background, except it actually has a
+check background. So, it's kind of like
+a fake. It doesn't know what a
+transparent PNG looks like. It knows
+what it's supposed to look like. Okay.
+Um, meanwhile, in your folder, so in the
+assets folder that I've made available
+for you to download.
+Okay. So in your tutorial zip file uh we
+have all the documents of course
+then we have all the screenshots of the
+mission control so that you can just
+feed them in if you know if you like how
+this looks then you can just basically
+get exactly that.
+But I also gave you the robot character
+so you saw that when the characters
+spawn. So there's the probe, but you can
+also have these characters and it has
+all the animation states.
+And so you basically just tell it, hey,
+when it's walking towards the camera,
+you're going to use front one, front
+two, front three, and just play them in
+a cycle. And it should just do that over
+and over and over again. Uh, when it's
+walking sideways, it's going to do that.
+When it turns around, you just mirror
+it. Yeah, this is the gears so that you
+can make it spin. This is the snowflake
+for the particle animation. Um, the old
+school one. So, the somewhat ugly one
+and there's also the JSON file for the
+settings. So, then you don't have to go
+to that GitHub, go to the website, set
+it all up, and then download the
+configuration. It's already in here.
+Okay.
+Trying to make this as easy as we can
+for you.
+So there you go.
+You got the main
+pieces of this, right? There's a drone.
+Uh there's the background. It's floating
+around. You basically tell it, "Hey, I
+want this drone image." You tell it the
+drone image. Um you tell it you want to
+float across the screen, bobbing up and
+down. I didn't actually tell it to bob
+up and down. It did that by itself. The
+only other thing I'm going to add is I
+did tell it to create a little shadow.
+So you can see that when it's floating
+around, there's a shadow that follows
+underneath. And that's just again, you
+know, it makes it look a little bit more
+realistic.
+Okay. So yeah,
+you tell it to make the probe, you use
+the image that we've given you, tell it
+to bop up and down floating around. Um,
+when you want to spawn a new agent, it's
+going to create agent with the robot.
+And you have to tell it that the agent
+is going to fade in while this spawn
+particle animation is playing. And then
+if you want, you can tell it when it
+despawns or when it stops working, it
+can fade out and play that spawn
+animation again. In here, I wanted it to
+play a little, it's called a particle
+emitter. So, it's a little animation
+that happens uh when it brings a new
+agent into the game as it were. So, I
+asked it like, "Okay, can you find ways
+to do these particle particle
+animations?" So, I figured out three.
+Then, I looked at them and the best one
+seemed to be this this one. Yeah, this
+guy's. So, he has a site where it like
+you can look at all the different
+particles that his system can make. And
+then I just thought this one might work.
+So you can see depending on what the
+base image is, it makes different
+looking particle animations. So I
+basically tell it go use that particle
+system and on his website you can like
+download these settings and then I
+uploaded them to cloud code and let it
+try a few things. All right, so now it
+is not doing what it's supposed to be
+doing.
+And honestly, like this stuff took by
+far the longest to do out of any of the
+different functions.
+So, can board easy. This screen in
+general just took a long time from
+playing around with the animations like
+the first time I built it, playing
+around with these robot animations,
+creating the robot animations,
+then figuring out this particle emitter,
+and then I didn't like how it looks, so
+I changed it to something else. But
+yeah, you can see that right now it's
+this kind of gross orange pukey blob. So
+I didn't like that. And long story
+short, we changed it out here. I've
+changed it to a white image. It looks
+better. So the original one was like a
+yellow star. And so it made everything
+like yellow. This was just a white star.
+So for the animation we ended up using,
+I did go to find a more premium
+animation. And so just searching with
+YouTube, um, I found this guy, Ryan, the
+developer. As you can see, he's got a
+bunch of cool animations that use 3JS.
+It's not Pixie. Um, but that doesn't
+matter. Uh, Cloud Co just added another
+layer on top with 3JS. Uh, this guy has
+a Patreon where you can download and
+purchase individual
+animations. And so yeah, it's definitely
+worth checking out if you want it
+looking like I think it looks pretty
+awesome for five bucks. Pretty
+reasonable.
+And yeah, he's like you can see he's got
+a whole ton of them.
+So yeah, that covers this screen. We've
+given you the assets. We've given you
+the free animation system. Um even
+sample background, sample drone, sample
+animated robots, all that kind of stuff.
+So just have fun with it, you know, tell
+it
+tell cloud code what you're hoping to
+get out of this, what you want the
+behaviors to be and yeah, just iterate
+on it.
+Okay. So, this is an interesting use
+case for AI. And what we're doing here
+is
+um I've asked a different AI agent to do
+a code review on this code. And so, um
+we were using OpenClaw. Right now, I'm
+using Hermes. Um but you can also do
+this with codeex.
+and you basically give it access to the
+GitHub and then say, "Look at this
+GitHub, figure out ways that you could
+make this code better, improve the
+security and whatnot." And so it went
+through and audited the code. And as you
+can see here, it found a bunch of things
+that could be improved
+uh from some high priority security
+findings to some lower priority
+usability issues.
+And you know this is an excellent use
+case of
+um using AI in an adversarial way or a
+competitive way with the other AI to
+improve it.
+So I would definitely encourage you to
+do the same thing.
+And now it's saying oh do what do you
+want me to do with this uh information?
+and it said, "Do you want to to create a
+patch list?" And that's what it's doing
+right now. And then we ask it to create
+a document.
+So a PR template
+um basically a pull request. So these
+are, you know, edits that you're
+requesting to the code
+and I've asked it for it in one document
+so that it's easier to feed back into
+cloud code.
+So once I get that thing
+and here it is.
+So it's a pull request
+explains why it exists, what the scope
+is, what some of the requests are.
+And I did ask claude code like what do
+you think of this PR and yeah it said oh
+this is these are some great ideas. Okay
+so now we fed that document into cloud
+code and let it munch on it and it's
+just going to go and run through and
+code a bunch of stuff.
+So here it's basically done. And
+one important thing um I ask it here do
+you need to update the documentation
+and this is another thing that you want
+to get in the habit of is that the
+documentation needs to be updated when
+you make changes. So when you add new
+features or whatever it is, um you
+definitely want to update the
+documentation so that next time when you
+start a new session, it's going to
+remember because otherwise it's going to
+forget.
+Okay, so hopefully you found that
+beneficial.
+Uh, we, you know, this was a tough video
+to make because literally have three
+plus hours of footage and trying to cut
+it down into something that wasn't too
+boring, but at the same time gave you
+enough details to get through it.
+Hopefully, it was successful. If you do
+have questions, of course, give me a
+shout. More than happy to record another
+video or um respond to comments and that
+kind of thing. But just to give you a
+review of what we've gone over. So,
+we've basically started from uh you're
+hitting terminal maybe for the first
+time or you just installed cloud code
+and that's it. We've created the
+directories that you're going to work
+out of, started the project based on all
+of the documentation that I've supplied
+for you. Uh then you've gone through a
+number of vibe coding cycles where you
+gave it a prompt and then it started
+doing some work. you did your approvals,
+you made a few decisions, you tested the
+output, and then you um eventually
+approved it. Hopefully, by the end,
+you've gotten this result, which is a
+functioning mission control for your
+clawed set of agents. We have an office
+with an animation screen. You have an
+agent that's going to spawn new agents
+as they come on stream. You have this
+canban board where you can drag things
+from one place to the next. You can come
+in, look at tasks, edit them, see what
+the output is, that kind of thing.
+Um, skills.
+So, this would be where you can discover
+new skills that are out in the wild that
+you might want to adopt for your setup,
+as well as develop your own skills by
+creating a skill.
+And then a cost dashboard which is going
+to look at which agents are using, how
+many tokens, what models they're using,
+what tasks are chewing them up, that
+kind of thing. And then that memory
+system. So again, the memory system is
+key. Making sure that your clawed code
+remembers the things that it needs to
+remember over time and across multiple
+sessions.
+Just as a reminder again,
+all of this stuff would have been in
+your
+project files.
+So again, to reiterate, when you're
+coding each phase, it's definitely going
+to help if you refer COD code to this
+project screenshot and say that you want
+a screen and it's going to look like
+this and it's going to do these things,
+right? Every screen has that in it and
+it's going to help you execute on this
+a lot more easily.
+So that's it for today. Like I said, I
+hope you got a lot of value out of this.
+The next one, we're going to take a step
+up in terms of the project complexity.
+And so, our next project is actually
+going to be a demo app, a mobile app.
+It's going to have a backend. It's going
+to have some algorithms. Um, it's also
+going to be housed in a SAS container.
+So if you wanted to turn it into a SAS
+product or if we wanted to turn that
+into a SAS product, all of the
+infrastructure is already there from
+user account creation, login, Stripe
+payments, all that kind of stuff. And so
+yeah, this is kind of how this series is
+going, right? We're taking really small
+projects. We started off with just a
+basic web page, converting a PDF to a
+web page. Then this is mission control.
+And then the next one is going to be
+almost a full-fledged SAS product.
+So stay tuned and give us a subscribe
+and a like if you enjoyed the content.

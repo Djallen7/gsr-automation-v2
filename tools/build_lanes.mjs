@@ -8,7 +8,7 @@
 // No external dependencies. No network. The HTML embeds the data inline so it
 // opens from a phone with no server and no fetch.
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -18,6 +18,9 @@ const HANDOFF = join(ROOT, "docs", "_handoff");
 const JSON_PATH = join(HANDOFF, "lanes.json");
 const HTML_PATH = join(HANDOFF, "lanes.html");
 const MD_PATH = join(HANDOFF, "LANES.md");
+// Optional live-sessions snapshot written by tools/sessions_snapshot.mjs on the Mac
+// (Mission Control, build plan item 2.1/2.2). The page renders without it.
+const SNAP_PATH = join(HANDOFF, "sessions-snapshot.json");
 
 // Status -> human label, ordering, and badge color (accessible contrast).
 const STATUS = {
@@ -100,14 +103,50 @@ function absoluteTime(iso) {
   return d.toISOString().replace("T", " ").replace(/\.\d+Z$/, " UTC");
 }
 
+// ---------- sessions snapshot (optional) ----------
+
+function loadSnapshot() {
+  if (!existsSync(SNAP_PATH)) return null;
+  try {
+    const snap = JSON.parse(readFileSync(SNAP_PATH, "utf8"));
+    if (!snap || !Array.isArray(snap.sessions)) return null;
+    // Newest activity first; cap what the page shows so it stays phone-light.
+    snap.sessions.sort((a, b) =>
+      String(b.last_activity || "").localeCompare(String(a.last_activity || ""))
+    );
+    return snap;
+  } catch {
+    return null;
+  }
+}
+
+// Session state -> badge color (mirrors the lane palette).
+function sessionStateMeta(state) {
+  const s = String(state || "unknown").toLowerCase();
+  if (s.includes("need") || s.includes("input")) return { label: "Needs input", bg: "#b45309" };
+  if (s.includes("work") || s.includes("run")) return { label: "Working", bg: "#1d4ed8" };
+  if (s.includes("review") || s.includes("ready")) return { label: "Ready for review", bg: "#7c3aed" };
+  if (s.includes("complete") || s.includes("done")) return { label: "Completed", bg: "#15803d" };
+  return { label: "Unknown", bg: "#374151" };
+}
+
 // ---------- markdown ----------
 
-function buildMarkdown(data) {
+function buildMarkdown(data, snapshot) {
   const lines = [];
   lines.push(MD_INTRO.trimEnd());
   lines.push("");
   lines.push(`_Last updated ${absoluteTime(data.updated_at)} (${relativeTime(data.updated_at)})._`);
   lines.push("");
+  if (snapshot) {
+    lines.push(`## Live sessions (snapshot ${relativeTime(snapshot.generated_at)})`);
+    for (const s of snapshot.sessions.slice(0, 12)) {
+      const sm = sessionStateMeta(s.state);
+      const sum = s.summary ? ` - ${s.summary}` : "";
+      lines.push(`- **${s.project || "?"}** [${sm.label}] ${relativeTime(s.last_activity)}${sum}`);
+    }
+    lines.push("");
+  }
   lines.push("---");
   lines.push("");
 
@@ -148,9 +187,42 @@ function buildMarkdown(data) {
 
 // ---------- html ----------
 
-function buildHtml(data) {
+function buildHtml(data, snapshot) {
   const counts = {};
   for (const lane of data.lanes) counts[lane.status] = (counts[lane.status] || 0) + 1;
+
+  // Sessions panel (only when a snapshot exists): "what is every session doing"
+  // next to the lanes, per Mission Control answer 11A.
+  let sessionsPanel = "";
+  if (snapshot) {
+    const rows = snapshot.sessions
+      .slice(0, 12)
+      .map((s) => {
+        const sm = sessionStateMeta(s.state);
+        const sum = s.summary
+          ? `<div class="sess-sum">${escHtml(String(s.summary).slice(0, 160))}</div>`
+          : "";
+        return `
+      <div class="sess">
+        <div class="sess-top">
+          <span class="sess-proj">${escHtml(s.project || "?")}</span>
+          <span class="badge" style="background:${sm.bg};color:#fff">${escHtml(sm.label)}</span>
+          <span class="sess-when">${escHtml(relativeTime(s.last_activity))}</span>
+        </div>
+        ${sum}
+      </div>`;
+      })
+      .join("");
+    const extra = snapshot.sessions.length > 12
+      ? `<p class="sess-more">+ ${snapshot.sessions.length - 12} older sessions in the snapshot file</p>`
+      : "";
+    sessionsPanel = `
+  <section class="sessions">
+    <h2>Sessions <span class="sess-stamp">snapshot ${escHtml(relativeTime(snapshot.generated_at))}</span></h2>
+    ${rows}
+    ${extra}
+  </section>`;
+  }
 
   // Counts header chips (only statuses that exist, in defined order).
   const orderedStatuses = Object.keys(STATUS).sort(
@@ -332,6 +404,15 @@ function buildHtml(data) {
   .closed h2 { font-size: 1rem; }
   .closed ul { color: var(--ink-dim); font-size: 0.88rem; padding-left: 18px; }
   .hidden { display: none !important; }
+  .sessions { margin: 0 0 18px; }
+  .sessions h2 { font-size: 1rem; margin: 0 0 8px; }
+  .sess-stamp { color: var(--ink-dim); font-weight: 400; font-size: 0.8rem; }
+  .sess { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin: 0 0 8px; }
+  .sess-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .sess-proj { font-weight: 600; font-size: 0.9rem; }
+  .sess-when { color: var(--ink-dim); font-size: 0.8rem; margin-left: auto; }
+  .sess-sum { color: var(--ink-dim); font-size: 0.85rem; margin-top: 4px; }
+  .sess-more { color: var(--ink-dim); font-size: 0.8rem; margin: 4px 0 0; }
   @media (prefers-reduced-motion: reduce) { .chev { transition: none; } }
 </style>
 </head>
@@ -342,7 +423,7 @@ function buildHtml(data) {
     <p class="updated">Last updated <span id="rel">${escHtml(relativeTime(data.updated_at))}</span> &middot; ${escHtml(absoluteTime(data.updated_at))}</p>
     <div class="counts">${countChips}</div>
   </header>
-
+${sessionsPanel}
   <nav class="filters" aria-label="Filter lanes by status">${filterChips}</nav>
 
   <main id="lanes">
@@ -424,11 +505,15 @@ ${cards}
 
 function main() {
   const data = JSON.parse(readFileSync(JSON_PATH, "utf8"));
-  writeFileSync(HTML_PATH, buildHtml(data));
-  writeFileSync(MD_PATH, buildMarkdown(data));
+  const snapshot = loadSnapshot();
+  writeFileSync(HTML_PATH, buildHtml(data, snapshot));
+  writeFileSync(MD_PATH, buildMarkdown(data, snapshot));
   console.log(`Wrote ${HTML_PATH}`);
   console.log(`Wrote ${MD_PATH}`);
-  console.log(`Lanes: ${data.lanes.length}, closed: ${(data.closed || []).length}`);
+  console.log(
+    `Lanes: ${data.lanes.length}, closed: ${(data.closed || []).length}` +
+      (snapshot ? `, sessions: ${snapshot.sessions.length}` : ", sessions: no snapshot")
+  );
 }
 
 main();

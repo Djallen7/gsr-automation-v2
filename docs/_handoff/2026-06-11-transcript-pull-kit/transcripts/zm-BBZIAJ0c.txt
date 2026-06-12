@@ -1,0 +1,300 @@
+[music]
+Hi, welcome to another video.
+So, Claude Code just got what might be
+its most significant feature yet. It's
+called agent teams, and it basically
+lets you run multiple Claude Code
+instances that work together as a
+coordinated team.
+One session acts as the team lead. It
+spawns teammates, assigns tasks, and the
+teammates work independently in their
+own context windows while messaging each
+other directly.
+And if you've been following my channel,
+you know I've been covering this exact
+trajectory.
+I talked about tasks, which gave Claude
+code persistent task management and
+coordination across sessions.
+I talked about Ralphie which was the
+community solution for running multiple
+AI agents in parallel with git work
+trees.
+Well, agent teams is anthropic official
+answer to all of that and it goes
+further than either of them. So, let's
+get right into it.
+Now, before I explain how agent teams
+work, let me first clarify why this is
+different from sub aents. because I know
+a lot of you are going to ask.
+Subentants have been in clawed code for
+a while. They're quick, focused workers
+that run inside a single session. A sub
+agent does a job, reports back to the
+main agent, and that's it.
+Think of them like interns. You give
+them a task, they do it, they hand you
+the result.
+Agent teams are fundamentally different.
+Teammates don't just report back to the
+lead. They talk to each other. They can
+challenge each other's findings. They
+can self-coordinate.
+They share a task list. If one teammate
+finishes a task, the others see that
+update and can pick up the next piece of
+work. It's peer-to-peer messaging, not
+just a hub and spoke model. Think of it
+like this. Sub agents are one person
+delegating to assistants. Agent teams
+are an actual team working together
+where each team member can message any
+other team member directly. This is a
+pretty big deal. Now, let me explain how
+to actually set this up. Agent teams are
+experimental right now, so they're
+disabled by default. To enable them, you
+need to set an environment variable. You
+can either add claud_code_experimental
+agent teams equals 1 to your environment
+or you can add it to your settings.json
+file.
+In the settings file, you'd put it under
+the envy section. Set
+claude_code_experimental
+agent teams to the string one. Either
+way works once you've enabled it. Here's
+the cool part. You don't need to learn
+some complicated API or write
+configuration files.
+You just tell Claude in natural language
+what team you want. You literally say
+something like create an agent team to
+review this PR spawn three reviewers.
+One focused on security, one on
+performance, and one on test coverage.
+and Claude creates the team, spawns the
+teammates, and coordinates the work.
+This is kind of great. Now, let's talk
+about how the architecture actually
+works under the hood. When you ask
+Claude to create a team, it becomes the
+team lead. It then spawns teammates, and
+each teammate is a full independent
+Claude code instance with its own
+context window. This is the key insight
+here. Each agent gets a clean, narrow
+context, which means better reasoning.
+The more stuff you cram into one context
+window, the worse the model performs.
+By splitting work across multiple
+agents, each one can focus on its
+specific domain without getting
+distracted by everything else.
+The teammates share a task list with
+dependency tracking. So you can have
+task A and task B running in parallel,
+but task C waits until both are done.
+This is the same concept we saw with the
+tasks feature, but now it's being used
+to coordinate actual separate agents.
+For communication, there's an
+inbox-based messaging system. The team
+lead can send messages to specific
+teammates or broadcast to everyone.
+Teammates can message each other
+directly.
+This is that peer-to-peer messaging I
+mentioned earlier. When the security
+reviewer finds something concerning, it
+can message the test coverage reviewer
+directly and say, "Hey, check if there
+are tests covering this authentication
+edge case."
+Now, there are two backends for how
+these teammates actually run. By
+default, it uses inprocess mode, which
+works in any terminal, but you can't see
+what each agent is doing. If you want
+visibility, you can switch to t-m mode
+by setting claude code
+spawn_backend
+equals timux. In T-Mux mode, you get
+split panes where you can actually watch
+each teammate working in real time. The
+team lead gets the left pain and the
+workers stack up on the right. It's like
+watching a little army of coders, which
+is honestly pretty fun to watch.
+One thing to note though, split pane
+mode requires T-Mox or iTerm 2. It
+doesn't work in VS Code's integrated
+terminal, Windows terminal, or Ghosty.
+So, keep that in mind. Now, let's talk
+about when you'd actually use this. The
+strongest use cases are research and
+review, new modules or features, and
+debugging with competing hypotheses.
+For PR reviews, you can spawn three
+reviewers with different focuses.
+One checks security, one checks
+performance, one validates test
+coverage, three reviewers, three lenses,
+one comprehensive review.
+This is genuinely useful because a
+single agent doing all three tends to
+get tired and miss things by the time it
+gets to the third area. For building new
+features, you can have teammates each
+own a separate piece. One builds the
+front-end component, one handles the API
+endpoint, one writes the tests. They
+work in parallel without stepping on
+each other's files. For debugging, this
+is where it gets really interesting. You
+can have teammates test different
+hypotheses in parallel. One investigates
+whether it's a database issue. Another
+checks if it's a catching problem. A
+third looks at the API layer. They
+converge on the answer faster than a
+single agent could because they're
+exploring multiple paths simultaneously
+and because they can message each other.
+If one finds evidence that eliminates
+another's hypothesis, it can share that
+immediately.
+This is the kind of workflow that
+Ralphie was enabling with parallel
+execution and git work trees. But agent
+teams handle the coordination natively.
+You don't need to set up YML files with
+parallel groups. You don't need git work
+trees. You don't need the d-max parallel
+flag. You just describe what you want
+and Claude handles the rest. Now that
+said, Ralphie still has its place.
+Ralphie gives you branch per task
+isolation, automatic PR creation, and
+support for multiple AI engines like
+Open Code and Codeex CLI.
+Agent teams are cla
+or if you want to use different AI
+backends, Ralphie is still the better
+choice for that.
+Now, I do have to talk about the
+elephant in the room, token usage. Agent
+teams use significantly more tokens than
+a single session. Each teammate has its
+own context window and usage scales with
+the number of active teammates. If
+you're running three teammates plus a
+lead, you're essentially paying for four
+clawed code sessions running
+simultaneously.
+For research, review, and building new
+features where parallel exploration adds
+real value. The extra tokens are usually
+worth it. You're trading money for time
+and quality. But for routine tasks, a
+single session is way more cost
+effective. Don't spin up an agent team
+to refactor a function. That's overkill.
+There are also some important things to
+know about context. Teammates
+automatically get your projects claw.md
+file, your MCP servers, and your skills.
+But they don't inherit the lead's
+conversation history. They start fresh
+with the project context, plus whatever
+task description the lead gives them.
+So, make sure your claw.md is solid
+because that's doing a lot of heavy
+lifting for your teammates.
+Now, let me talk about the current
+limitations because this is still
+experimental and the rough edges are
+real. First, there's no session
+resumption for inprocess teammates. If
+you use the /res or slre commands, your
+teammates won't come back. That's a
+pretty significant limitation for longer
+running work. Second, the lead sometimes
+implements instead of delegating.
+This is annoying. You tell it to create
+a team and sometimes it just starts
+doing the work itself instead of
+spawning teammates. The workound is to
+explicitly tell it to wait for teammates
+to complete their tasks. You can also
+use delegate mode by pressing shift plus
+tab, which restricts the lead to
+coordination only tools, but it
+shouldn't be something you have to fight
+with.
+Third, permissions are set at spawn
+time. All teammates start with the
+lead's permission mode. You can change
+individual teammate modes after they're
+spawned, but you can't set per teammate
+modes at spawn time.
+So if you want one teammate to have auto
+accept permissions and another to be
+more restricted, you have to adjust that
+manually after the team is created.
+Fourth, and this is something a lot of
+people won't think about, your task
+definitions matter a lot. Each
+teammate's task needs to be
+self-contained enough that it can work
+independently.
+If you define tasks with heavy
+dependencies on each other, you'll get
+failures because the code one teammate
+needs doesn't exist yet.
+Structure your tasks so that parallel
+work is actually independent.
+Use the dependency tracking for things
+that genuinely need to wait.
+So where does this leave us? If I look
+at the progression, we went from totos
+which were just in-memory checklists to
+tasks which gave us persistent
+file-based task management with
+dependency tracking to agent teams which
+give us actual multi- aent orchestration
+with peer-to-peer communication.
+This is the AI as a team future I talked
+about in my tasks video. And it's
+happening faster than I expected.
+You're not pair programming anymore.
+You're not even just delegating to one
+assistant. You're managing a team. You
+define the objectives, break down the
+work, and let the agents coordinate
+among themselves.
+The competition is going to have to
+respond to this. Cursor doesn't have
+anything like this.
+Neither does C-Pilot.
+Open code and some community tools have
+been doing parallel execution,
+but the built-in peer-to-peer messaging
+and native task coordination
+that's unique to Claude Code right now.
+Is it perfect? No. The experimental
+status is real. The token costs are
+significant. The lead sometimes goes
+rogue and does the work itself, but the
+foundation is solid. And for the right
+use cases, research, reviews, multiodule
+features, adversarial debugging, it
+genuinely finds things that a single
+agent misses. Overall, it's pretty cool.
+Anyway, share your thoughts below and
+subscribe to the channel. You can also
+donate via Superthanks option or join
+the channel as well and get some perks.
+I'll see you in the next video. Bye.

@@ -1,0 +1,372 @@
+When working with Claude Code, there
+are at least four official
+ways of using it remotely without you
+sitting
+on your machine. And there is a fifth
+secret way which I'll also show you.
+Now, the four official ways that
+are supported is by
+using the Claude Code cloud,
+by using a feature
+called remote control,
+by using a feature called
+dispatch, and by using a feature called
+channels. And the question obviously
+is why do we have all
+these different approaches
+and why do we need them and
+which approach?
+And that's exactly what I'll show you,
+cloud. Now,
+this is maybe the one that's easiest to
+understand even without this video.
+The idea is that you don't use Claude Code
+on your machine,
+but instead, guess what? In the cloud,
+on servers owned and
+managed by Anthropic. So you send a
+task to the cloud,
+which you can do from the Claude Code
+CLI, but also from their web
+interface or their mobile app,
+and this task
+then gets executed in the cloud on those
+servers.
+For that to work,
+you need to have your code on a GitHub
+repository, and you need to connect
+that to your
+Claude Code account,
+your Anthropic account.
+Give them access to it, of course, so
+that this code can be downloaded
+onto the server where the task
+is being executed, and there
+are various limitations here, of course.
+One limitation, obviously, is
+that anything that is on
+your system, any global skills, any
+CLI tools you may rely on in your
+application or in your
+build scripts or workflows, all that
+is not
+available there on those cloud servers
+because it isn't your
+machine. The advantage, of course, is
+that you can
+truly execute tasks there without your
+machine
+even being turned on because, well,
+it's not
+happening on your machine. So
+if you wanna run some task
+overnight or if you wanna run multiple
+tasks in parallel but can't
+or don't want to use your
+machine for that, if you're traveling
+or if you have an unstable
+internet connection or anything like that,
+using the cloud may
+be an interesting alternative to using
+Cloud Code on your machine.
+By the way,
+if you wanna learn more about Cloud Code,
+I'm showing you here
+and you wanna dive a bit deeper
+the most out of Cloud Code,
+I do have a complete Cloud Code
+course which may be interesting to you.
+And right now,
+we still have our spring sale going on
+the Academy Pro annual membership for a
+much lower price than
+you normally would get it,
+169 instead of 249,
+and this membership gives you access
+to all the courses we have,
+as long as you have an active membership,
+including the Cloud Code course
+and any future courses we may release,
+in addition to the extensive course
+catalog we already have.
+Links below this video. Now, all remaining
+approaches here, on the other hand,
+are about executing
+Cloud Code on your machine,
+not on Anthropic's server.
+So the cloud solution really
+is kind of a special solution,
+also be used in conjunction to those other
+approaches because, of course,
+nobody's stopping you from executing some
+tasks in
+the cloud whilst also working on other
+features in the same
+project on your machine.
+You just have to merge the different
+changes thereafter.
+So let's start with remote control then.
+Remote control is mostly about
+continuing some task or some work
+that you maybe started
+on your system,
+still on your machine whilst you
+are leaving your machine.
+So let's say you're going for lunch
+or you have to go to a
+meeting, but your computer, your,
+your Mac, your PC stays
+turned on and you want to continue working
+on a
+task Now, obviously,
+Cloud Code will continue
+you're leaving the machine,
+as long as your machine doesn't go to
+But once it's done, it won't continue.
+Now, with remote control,
+you can make it continue and you
+can also start a new task,
+but your machine needs to
+be turned on. And not just that, instead,
+you need to
+start Cloud Code,
+the CLI in a special mode, in the
+remote control mode, or in an interactive
+session,
+you need to turn on remote control mode by
+using the respective slash command.
+Once the remote control mode is turned on,
+you can connect
+your mobile phone with the Cloud mobile
+app, you
+need that,
+to your machine by scanning a QR code,
+for example,
+which you can have Cloud Code show you.
+And then once that connection
+is established, you can
+use a chat session.
+You can send messages to Cloud Code in
+your mobile app,
+but those chat messages are then not sent
+to the cloud or somewhere else,
+but instead to your connected machine
+through remote control.
+So remote control can be very useful,
+but it has a couple of potential
+disadvantages.
+The two most important ones,
+in my opinion, being
+to keep your machine turned on, and
+if it goes to sleep, you
+lose the connection,
+so you must ensure it doesn't.
+And you must start your Cloud Code session
+in
+that remote control mode.
+If you forget this, there is no way
+for you to send messages to it.
+So you must
+set it up first and then you can use
+itThat is
+where Dispatch comes into play.
+With Dispatch, you still need to
+ensure that your machine doesn't go to
+sleep, though it gets a bit
+easier as you'll see,
+but you don't need to start
+Claude Code in any special remote control
+mode first in
+order to use it. For Dispatch,
+you need the
+Claude desktop app,
+though you need to download
+and once you did that,
+you also need to go through a
+one-time setup process to enable Dispatch.
+In that Claude desktop app,
+you can also turn on a
+setting that prevents your machine from
+going to sleep whilst the app is
+up and running, though, so
+that eliminates this my machine went
+to sleep and now my session broke or
+was canceled
+problem. Now, with Dispatch then set up,
+you
+can use the Claude mobile app again, and
+there,
+the Dispatch feature to send messages to
+And the big difference now is
+that you don't need to start a Claude
+Code session through the CLI first
+or anything like
+that. Instead,
+you just need to have the desktop app up
+and that is it. Now,
+you can send messages to Claude
+on your machine, and it goes ahead
+and executes them.
+Now, what's important here, though,
+is that Dispatch was
+originally a feature released for Claude
+Cowork, which
+is their more general AI assistant,
+not specifically
+focused on coding, and therefore,
+at least right now when I'm
+recording this, your Dispatch messages are
+not connected to a specific project,
+which, on the other
+hand, with Remote Control
+was the case since you deliberately
+interactive session. With Dispatch,
+you're just sending a message to
+Claude on your machine,
+and it needs to figure out what to
+do with that message.
+That message could be totally unrelated to
+if you want to invoke Claude Code to do
+some work in one
+of your projects, well, then,
+you will need to tell
+it in that Dispatch message where to find
+that
+project,
+give it some hints regarding the folder to
+So, that can be a bit inconvenient here,
+but it is doable, of course,
+and then you can start
+or continue sessions
+from anywhere through the mobile app with
+Dispatch feature.
+And then last, but not least,
+we have Channels, and you would
+kind of see Channels as maybe the
+connection of Remote Control and Dispatch,
+and also,
+Channels is essentially Anthropic's way of
+trying to
+merge Claude Code or their Claude offering
+general into an OpenClaw alternative,
+kind of. Many features OpenClaw has
+are missing,
+but Channels is, in the end, a-
+a way for you
+to connect any kind of messaging channel
+to Claude
+Code. And by default,
+Anthropic gives you an official
+Telegram channel connector you can set
+up, which makes it quite easy
+and straightforward
+to use Telegram to communicate with your
+Claude Code session. You still need to go
+through a one-time setup process
+and enable
+Channels,
+and you also need to start a Claude
+session with the channel you wanna use
+enabled, so
+you need to do that just as you had to do
+it with Remote Control.
+But once you did that, you can use
+that channel to send
+messages to Claude Code. So,
+you're then no longer limited to just
+the mobile app. Instead,
+you can use your channel, and of course,
+could start a Claude session
+that you keep on running forever,
+essentially, with that channel connected,
+and therefore, you
+can keep on pushing messages to Claude
+Code there and work on
+a broad variety of tasks. And of course,
+you could
+also start Claude Code not connected to
+one specific project, but
+in general on your machine with Channels
+enabled, and then kind
+of use it as an OpenClaw alternative by
+asking it to do all
+kinds of things on your machine.
+You could also do that with
+Remote Control, and with Dispatch,
+as mentioned, it's the default,
+simply allows you to use any communication
+channel of your
+choice.
+And of course, therefore,
+on the other hand,
+and with the setup process you have to go
+through with Remote Control,
+then you can just keep on using that,
+and you don't need Channels It's also
+noting that this Channel's feature right
+now when I'm recording this is in
+research preview, and therefore,
+both the setup process and
+the- the feature set may, of course,
+change over time.
+I also mentioned a- a fifth, uh,
+secret way of
+remotely talking to Claude Code,
+and this is actually
+simply a way that you could use with any
+tool you have installed on your
+machine, not just with Claude Code.
+If you're running Claude Code on a machine
+which you could access
+via SSH, so which is exposed to a
+network or the internet, then, of course,
+you can
+connect to that machine via SSH.
+And for example, you could have a
+VPS up and running,
+which you maybe use for development work
+instead of your Mac or your PC, and
+when that is
+exposed to a network, to, uh,
+to the internet, uh,
+preferably, of course, secured with,
+for example, a VPN
+solution like Tailscale, then you can
+connect to it via SSH.
+And you cannot just do that from your
+Mac,
+which doesn't really give you a huge
+You still have to be you on your machine
+for that, but you could also use an
+app like Terminus on your mobile phone,
+make sure that this is
+connected to this machine through a key
+pair preferably, and then, of course,
+you can start a session there
+and simply invoke any
+command on that machine because it's just
+a SSH session, and
+that, of course, therefore,
+includes Claude Code, and you can then
+start sessions from there. Now,
+it's worth noting that
+depending on your operating system
+and so on, when you close that app, the
+SSH session gets, uh, terminated,
+and therefore, the
+Claude Code session, uh, will stop
+But still,
+it is a way of quickly invoking certain
+one-off tasks, and of course, you
+can use a solution like Tmux to kind of
+decouple your connected
+session from the session on the machine
+and keep those sessions
+going.
+That is all something you could also look
+And that's, therefore, how you can use
+and control
+Claude Code remotely on your machine or a
+VPS. And as mentioned,
+if you wanna learn more,
+that offer I mentioned before

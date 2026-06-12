@@ -1,0 +1,428 @@
+I'm going to show you how you can add
+Claude code into any app using the
+Claude agent SDK. This isn't just
+another SDK where you get access to some
+kind of API endpoint and a model. It's
+so much more than that. It's Claude code
+as an SDK. So, you get an entire toolkit
+to fully customize Claude code any way
+you want right within your apps. In this
+video, we're going to dive into using
+the Claude agent SDK. I'll first explain
+how it works, and then we're going to
+get our hands dirty and write To give
+you an idea of what's possible with all
+of this, I want to show you this project
+that I'm working on. So, this is my own
+AI coding workflow manager tool. And my
+issue was that anytime I'm running
+multiple Claude instances, running my
+agents, I'm always switching back and
+forth. So, when one task is done, I'm
+always opening up multiple terminals,
+trying to figure out where I'm at in
+this process, and it makes it hard to
+manage. So, when I was learning the
+agent SDK, I really wanted to push the
+limits and see what I can do with this.
+And I decided to build out my own
+interactive AI coding terminal that's
+attached to every ticket in this Kanban
+board style application. So,
+essentially, I can open up a ticket,
+fire off a prompt right from my ticket
+here, and while that's running, I can
+see it on the left side. I can easily
+jump into another ticket, work on a
+task, and then once the next one is
+done, I can open it up and can continue
+from there. So, it makes it really easy,
+and I never lose where I'm at. I even
+added in the ability to send off tasks
+to a remote environment. So, if need to
+leave my computer, I can fire off a
+prompt, and my agent will spin up this
+remote environment, and it'll continue
+working even if my computer's off. This
+part actually uses Warp's Oz
+orchestration platform in order to spin
+up these remote environments, but more
+on that later. If you've ever built out
+any AI-powered apps, then you understand
+exactly how difficult something like
+this would be to build. And this is
+exactly where the Claude agent SDK can
+help us. Now, the Anthropic team
+explained why they launched the Agent
+SDK in an article, and their logic was
+that they saw a lot of people using
+Claude code for non-coding tasks. So,
+things like note-taking, video creation,
+working with Excel files, and so on. So,
+they decided to take that same engine
+that powers Claude code and release it
+as an SDK, so you can just keep building
+on top of it, and it's become extremely
+useful for that. Now, it's important to
+understand the difference between the
+Claude Agent SDK and the Claude client
+SDK cuz these are two different things.
+So, the client SDK is a wrapper around
+the Claude API. Maybe you've worked with
+OpenAI's API. Essentially, it's the same
+thing. So, you get this API endpoint,
+and you send off a request, and you get
+back a response with access to a model.
+And that's it. So, nothing on top of
+that. You have to build in everything
+else from scratch. Now, on the other
+hand, you have the Claude Agent SDK, and
+this is a ready-to-use agent. So,
+essentially, when you fire off a prompt,
+this is a fully functioning agent. So,
+it already has the agent loop. It
+already manages context. If you want to
+add in memory, there's just a few
+configurations you have to add in, and
+it comes in with built-in tools. So, if
+you want to read and write files, you
+want to run bash scripts, you want to
+perform web searches, all this is
+already built in, and you just configure
+what tools and how much permission this
+agent has. So, the client SDK gives you
+access to a model, and everything else
+you have to build out on top of it. The
+Agent SDK, you get a ready-to-use agent
+out of the box. Okay, so let's actually
+get into building something out here.
+So, we're going to go ahead and work
+within this simple file here, and I'm
+going to show you how to configure your
+first agent. So, we have a few different
+options for how we can install this, but
+in my case, I want to stick to the
+TypeScript SDK. So, I'm going to go
+ahead and copy this command right here,
+and go ahead and just install this. Once
+we've installed the SDK, we can get
+started by importing this query method
+from the Claude agent SDK. Now, this
+function is just our main entry point
+and it initializes that agent loop. In
+here, we'll kick things off by passing
+in a prompt and in my case, I'm just
+going to tell it, "Please review the
+images in this current directory and
+create a report of all the data in
+them." Now, I'm going to explain what's
+happening here in a second, but
+ultimately, it's just a folder with
+images of receipts. Next, we want to
+pass in our options. Now, this is a
+series of values that configure our
+agent's behavior. So, the settings we
+pass in here will determine what tools
+our agent can use, which model to use,
+and any other configuration we need
+specifically for this agent. Now, within
+my options, the first thing I want to
+pass in is the current working
+directory. So, this just tells the agent
+which folder we're working within. Now,
+in my case, this is just going to be a
+hard-coded value. It's going to point to
+a folder on my desktop and that folder
+contains those images of those receipts.
+So, from here, I'm just going to set the
+model that I want to use and I'm also
+going to pass in my Claude API key. Now,
+if you don't have one, just go to your
+Claude developer console and you should
+be able to create one under the API keys
+tab there. So, go ahead and create it
+and pass it in here. The last thing I
+want to pass in is going to be an array
+of allowed tools. So, out of the box,
+the Claude agent SDK already has these
+built-in tools for us and here, we can
+just add them in and this tells the
+agent what it can use. So, we have tools
+for reading and writing, performing web
+searches, running bash scripts, and much
+more. So, for this demo, I'm just going
+to pass in all the tools that we already
+have built in. And in this case, this
+agent is just going to have access to
+everything. So, this way, you can get an
+idea of what's available. We've
+configured the query method, but now we
+need to handle the response and this is
+going to be an async iterable. So, we're
+just going to write a for loop to
+process all the messages as they stream
+in. So, as the agent is working, we're
+going to see a series of messages like
+the tools the agent is using, the
+agent's thinking and reasoning process,
+as well as the actual messages that the
+agent wants to return back to the user.
+So, it's up to us to extract which
+messages we want the user to see and get
+these values. So, if I run this and log
+out all the messages, we're going to see
+something like this. It's just going to
+be a bunch of messages as objects with
+the details of the message contents. So,
+here we see the assistant messages where
+we can see the type value and from here,
+we can get access to the actual contents
+of the message. The last message will
+always be with the type of result and
+this is just that final assistant
+message telling us that the task has
+been completed and it's like that final
+message that you see in any chat box.
+So, here we can see that this assistant
+reviewed all the images and it even
+created a report based on the
+transactions that we have. So, that's
+actually pretty cool. So, I want to
+return the actual message value and not
+this object here because I want to
+stream this back to the user. So, in
+this case, I'm going to access the
+message content value and this is going
+to give me that message text. I can do
+the same for the final result by
+checking for the type of result
+and now when I run this, I can actually
+see the message contents being returned
+and this is much cleaner and these are
+the values that I'm going to stream back
+into that user's chat interface. All
+right, so I've showed you how to connect
+a basic agent and now I want to show you
+how powerful this actually is. So, I
+took this code and I connected it to my
+own chat interface. So, I built out the
+UI, added in the streaming and I want to
+run a task here to show you what this
+agent can do. So, here I have a couple
+of images in my desktop and these are
+just pictures of receipts. I just
+googled up some images of receipts and
+as you can see, they're not the highest
+quality, but there is information on
+these receipts. So, we're going to have
+this agent go ahead and look through
+this folder, analyze these receipts and
+we're going to create a report in a
+markdown format. So, I'm going to tell
+this agent process the receipts in the
+current folder, review each image and
+its contents and create a markdown table
+with the information out of these
+receipts and put them into a receipts.md
+file. So, we're going to go ahead and
+generate this. Now, really quick, we're
+going to go back into our configuration
+settings and I'm going to set permission
+mode to bypass permissions and I'll also
+allow dangerously skip permissions and
+set that to true. And the reason why I'm
+doing this is because certain commands
+require us to approve things and
+interact with the UI and I just want my
+agent to not have any guardrails and
+just be able to complete the task. So,
+I'm going to go ahead and just run this
+and we're just going to see how the
+agent streams things in and what the
+final result's going to look like. So,
+let's take a look. So, here I can see
+the agent's thinking. I can see that
+it's reading certain files, it's going
+through them, and it's actually
+returning some messages as it's going
+through its reasoning process. Now, I
+just did a little bit of configuration,
+I didn't fully build everything in, but
+this should give you an idea. So, if we
+want to open these up, we can see the
+exact inputs that it ran and these are
+those message streams that the agent has
+for us. Okay, so it looks like we have a
+final success message. We can see the
+write command and it looks like it put
+it into the receipts.md folder. And if I
+open this up and take a look at it, here
+we see the final report. So, I see a
+full table here. It looks like all the
+items are listed out and it actually
+organized it in a cool way. So, I know
+that this is a simple example, but this
+just shows you the power of the agent
+SDK. The fact that it was able to call
+tools on its own. It was able to read
+the images without us having to custom
+build everything in and it generated a
+full report off of minimal
+configuration. And this is just a slight
+version of how I was able to make that
+full coding agent. So, if I wanted to
+have it build me some kind of app, I can
+actually start that process from this
+minimal chat UI and it'll actually
+function. It'll write the code, run the
+commands that it needs to, and it has
+full control, the same control that
+Claude code has itself. I want to switch
+gears for a second and talk about
+spinning up agents in a remote
+environment since this was a key part of
+the AI coding platform that I demoed at
+the start of the video. So, my idea was
+to have a tool that I don't just use on
+my machine, but something that I can
+take on the go. So, if I'm ever getting
+on a flight, I want to be able to spin
+up an agent, close my computer, and have
+that agent keep running. And
+essentially, offload the work from my
+computer to this environment. Well, as I
+was working on this, I actually stumbled
+upon the Warp Oz orchestration platform,
+and it actually does pretty much
+everything that I need it to do. So, I
+want to show you this, and I want to
+explain how this works. If you haven't
+heard of Warp, it's a fully native AI
+development environment, and they
+recently announced their orchestration
+platform for cloud agents called Oz.
+Now, Oz lets you spin up multiple cloud
+coding agents in these remote
+development environments. So, you fire
+off a prompt, an agent clones the linked
+up GitHub repo, it begins work remotely,
+and once it's done, that code is ready
+for you to review. And this can come in
+the form of a pull request, or you can
+just bring that code down locally and
+continue working on it. Now, to trigger
+these agents, we have multiple options.
+We can do this from the Warp CLI, we can
+do this with integrations like Slack or
+Telegram, but the method that works
+perfectly for me is their TypeScript
+SDK. So, this way, I can actually build
+this and trigger an agent from my own
+UI. So, I can do it programmatically and
+fire off these remote tasks anytime I
+need something sent off. So, I want to
+jump into the code and actually show you
+how I did this and how it all works.
+Okay, so jumping back into the code, the
+first thing we'll want to do is install
+the Warp Oz agent SDK. Once we have that
+installed, we're going to import the Oz
+API class, which is going to set up our
+client instance, and this is going to be
+our entry point. Now, there are three
+key methods that I needed in order to
+make this work within my own UI. So,
+first, we have the run method, which
+essentially lets us fire off a run. So,
+this is where we add in our prompt, and
+it triggers that run in the remote
+environment. Then, we have the list
+method, which allows us to see our runs,
+and this is crucial for being able to
+see that status. So, if I want to see
+where a run is at in my dashboard, I'm
+able to list those out, see that current
+value, and last we have the retrieve
+method, which just lets me get the
+details about a specific run. So, these
+three methods give me pretty much
+everything that I need in order to
+control these runs from my own UI. So,
+to spin up an agent, I'm just going to
+go ahead and trigger the agent run
+method, and I'm going to provide it with
+a prompt. So, in my case, I'll just say
+create a proper readme file explaining
+this project and what it's about, and
+generate a pull request when it's done.
+Now, I can pass in more configuration
+settings like the model we want to use
+or the name of the run, a base prompt,
+but in this case, I'm just going to pass
+in the minimum settings, and at the bare
+minimum, we at least need an environment
+ID here. And this just tells the agent
+what environment we're working within.
+Now, we don't have an environment ID
+yet. So, what we're going to do is
+quickly create one. We'll grab that ID,
+and we're going to pass this in here.
+So, there's multiple ways of creating
+environments. We can do it from the Warp
+CLI, or we can do it from the Oz web
+platform. So, we're going to use the web
+platform just for simplicity. So, we can
+go to oz.warp.dev,
+and once you sign up for an account in
+there, you're going to see this section
+for environments. Now, I'm going to go
+ahead and create a new environment.
+We're going to give this a name. Now,
+for the repo, I already connected my
+GitHub account, and I'm just going to
+work within this repository that I
+attached. So, you just want to give it
+some permissions, and for the Docker
+image name, well, I'm just going to
+click on suggest there, and that's just
+going to simplify everything. Okay, so
+our environment's created. We can go
+ahead and copy this ID, and let's just
+paste it in, and that's all we need in
+order to fire off a run. So, let's just
+go ahead and test this. We're going to
+run this file and see what happens. So,
+when I fired that off, I can immediately
+see the run right here inside of my UI.
+So, I can see the status of it. If I
+want to intervene, I can go ahead and
+open up the run, click on the session,
+and open this in my Warp terminal, and I
+can keep adding prompts if I need to
+work within it, and this lets me
+interact with it. Now, when the run is
+done, we're going to see this pull
+request here. So, if I open up this
+repo, here we see the pull request, and
+that run was completed. So, it's pretty
+cool. Now, it's ready for me to review,
+and I can either work on this locally,
+accept the PR, and that work was done
+all in a remote environment through my
+agent. All right, so that's it for this
+mini crash course on the Claude agent
+SDK and the warp odds orchestration
+platform. Now, I know I only showed you
+two edge cases here, but I hope this
+gives you ideas of what's possible and
+what you can build with it, because it
+is incredibly powerful, and I'm excited
+to see what you all come up with. If you
+have any ideas, share them down in the
+comments here. I would love to take a
+look at those. Oh, and there are 1,000
+free warp credits available down in the
+video description. So, be sure to check
+that out if you want to try warp. So,
+with that being said, that's it for the
+video. I'll see you all in the next one.

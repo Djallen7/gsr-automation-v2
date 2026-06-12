@@ -34,7 +34,7 @@ In roughly three weeks (May 15 → June 4, 2026) the system was redesigned twice
 
 **The single throughline:** every era was about the same job — take an episode from script to graphics to multi-platform distribution with less manual work — but the *how* got progressively simpler and more cloud-native, moving away from hardware that a non-developer would have to maintain.
 
-**Where it actually stands today (verified against the live database):** the Supabase backend has **20 tables, 46 migrations, 2 enums, 2 views, 3 functions, 3 named triggers, 1 storage bucket**. `episodes` = 48 rows, `guests` = 175 rows, and **`graphics` = 0 rows**. That last number is the real story of "Stage 7": the lower-thirds pipeline is fully built but **no graphics row has ever landed in production yet** — the first real-episode import has not been completed. It is an operational milestone, not a code defect (see the phantom-blocker note in Part 2).
+**Where it actually stands today (verified against the live database):** the Supabase backend has **20 tables, 48 migrations, 2 enums, 2 views, 3 functions, 3 named triggers, 1 storage bucket**. `episodes` = 48 rows, `guests` = 175 rows, and **`production_lower_thirds` = 0 rows** (the lower-thirds table; renamed from `graphics` on 2026-06-09). That last number is the real story of "Stage 7": the lower-thirds pipeline is fully built but **no graphics row has ever landed in production yet** — the first real-episode import has not been completed. It is an operational milestone, not a code defect (see the phantom-blocker note in Part 2).
 
 ---
 
@@ -78,7 +78,7 @@ The current architecture of record (accepted 2026-05-23) supersedes everything b
 - **Next.js (App Router)** dashboard (React, shadcn/ui components, Supabase SSR auth), deployed on **Vercel**
 - **Claude API** for lower-thirds generation and script extraction
 - **Notion** demoted to wiki-only (project rule: do not extend the pre-pivot Notion scripts)
-- **QNAP** stays read-only; **ProPresenter / ATEM / Bitfocus Companion / Tailscale** stay off-limits to automation
+- **QNAP** stays read-only (strict no writes, no admin dashboard); **ProPresenter writes/control** need David's explicit approval (reads permitted for mapping/testing); **ATEM / Bitfocus Companion** are production hardware handled with care, no longer a hard ban; **Tailscale** is only restricted when writing to a server (read-only is fine). Superseded detail: GSR-WORKFLOW-CANON sections 16-17 (Daniel + David, 2026-06-11)
 
 **The build blitz (verified via GitHub history):** the new dashboard repository was spun up around May 21–22, and from May 26–30 the dashboard was built stage by stage. Verified PR sequence: shell + auth, then upload, then review/regenerate/approve, then the full relational schema, then guest profiles + prompt library + voice profile, then health checks, the editorial agent, script-to-lower-thirds extraction, and the guests/workflow/episodes pages.
 
@@ -234,7 +234,7 @@ Trigger: a broadcast master MP4 lands in a flat per-show Dropbox folder. A **~30
 
 ## Part 4 — The Database Layer (verified live)
 
-**Project:** `lafkbxypmciopebentxp`. **46 migrations**, built in three waves between May 26–28.
+**Project:** `lafkbxypmciopebentxp`. **48 migrations** (46 as of 2026-06-04, built mostly in three waves May 26–28; plus the 2026-06-08 webstream column and the 2026-06-09 `graphics` → `production_lower_thirds` rename).
 
 - **Wave 1 (May 26) — Feature 1 MVP:** `episodes`, `graphics`, `graphics_variations`; the two enums; RLS; the `lower-thirds` storage bucket; `propresenter_added`; `regenerate_attempts`; the `toggle_propresenter_added` RPC. (The first `graphic_segment` enum had 11 values here.)
 - **Wave 2 (May 27) — hardening + v2 extraction:** font fields; the `(season, episode_number)` unique constraint; audit fixes (indexes, a plpgsql RPC, status NOT NULL); the `show_intro` segment added (taking the enum to 12); `l3_type` (15-value CHECK) plus `var_1`/`var_2`.
@@ -527,7 +527,7 @@ Note on the "skills" reference: there is **no project-owned `skills` repository*
 | Tailwind CSS | ^4 | Utility-first styling. | 3 |
 | Supabase JS (`@supabase/supabase-js`) | ^2.106.2 | Client for Postgres, Auth, Storage. | 3 |
 | Supabase SSR (`@supabase/ssr`) | ^0.10.3 | Cookie-based server-side auth for Next.js. | 3 |
-| Supabase (platform) | hosted | Postgres + Auth + Storage + RLS + Edge Functions + pg_cron/pg_net. 46 migrations, 20 tables. | 3 |
+| Supabase (platform) | hosted | Postgres + Auth + Storage + RLS + Edge Functions + pg_cron/pg_net. 48 migrations, 20 tables. | 3 |
 | PostgreSQL | via Supabase | Enums, RLS, RPC functions, triggers. | 3 |
 | Anthropic Claude API (`@anthropic-ai/sdk`) | ^0.98.0 | Server-side lower-thirds generation + extraction. Model `claude-opus-4-7`. Never called from the browser. | 3 |
 | Zod | ^4.4.3 | Runtime validation of every import before DB writes. | 3 |
@@ -542,11 +542,11 @@ Note on the "skills" reference: there is **no project-owned `skills` repository*
 | Notion | — | Database backend in Era 2; demoted to wiki-only. | 2 (dead as DB) |
 | SQLite (`better-sqlite3`) | — | Status DB on the NAS. | 1 (dead) |
 | Chokidar / BullMQ + Redis / faster-whisper / Playwright / ntfy / UptimeRobot | — | NAS file watcher, job queue, transcription, browser automation, notifications, monitoring. | 1 (dead) |
-| Tailscale | — | Remote network access; permanently off-limits after the 2026-05-20 incident. | 1–2 (off-limits) |
+| Tailscale | — | Remote network access; restricted only for server writes (the 2026-05-20 incident was QNAP admin-dashboard access, not Tailscale; read-only use permitted — canon s16). | 1–2 (read-only) |
 
 **Distribution targets (real):** YouTube (Data API, auto), Rumble (no API, YouTube sync), Dropbox, Fireside.fm (no upload API), Signiant → Real Life Network, StreamHoster (FTP), Genesis Science Network (internal).
 
-**Off-limits to automation (non-negotiable):** the production ProPresenter machine, the ATEM switcher, Bitfocus Companion, QNAP write/admin, the Notion workspace (wiki-only), and Tailscale / direct-server access.
+**Off-limits to automation (non-negotiable):** QNAP writes and the QNAP admin dashboard, and the Notion workspace beyond wiki use. **Gated, not banned (canon s15-s17, 2026-06-11):** ProPresenter writes/control (David's explicit approval; live-rig actions need an in-the-moment yes), ATEM / Bitfocus Companion (production hardware, confirm with David), Tailscale (restricted only when writing to a server).
 
 ### 6.3 The GSN subchannel campaign (self-contained playbook)
 
@@ -576,10 +576,10 @@ The evolution left decisions stranded in old files. These are stated as concepts
 
 **High — stale architecture language:**
 - "Notion is the database" persists in master-context documents and across the entire original (Era-1/2) repository.
-- Tailscale / SSH / server-setup steps remain in the old project-plan and infrastructure-inventory documents, even though that path is now permanently off-limits.
+- Tailscale / SSH / server-setup steps remain in the old project-plan and infrastructure-inventory documents; the self-hosted-server path they describe is dead (ADR-0012), though Tailscale itself is now permitted read-only (canon s16).
 - Non-portable home-directory paths (macOS-style `/Users/...` and `~/Documents/GitHub/...`) appear in the blueprint's rules file and the mail CLI's README; on the current Linux host these break the "don't write into the live repo" guardrail.
 
-**High — the phantom blocker:** a schema-design document describes a `graphics → lower_thirds` table rename as "pending." It was never executed; the live table is `graphics` and every query site uses it. This single thread spawned the false "Stage 7 blocked by a `lower_thirds` mismatch" claim repeated in several status files. The same schema document is also stale at "43 migrations" (live: 45) and still refers to a `lower_thirds` table by name.
+**High — the phantom blocker:** a schema-design document describes a `graphics → lower_thirds` table rename as "pending." It was never executed as written; on 2026-06-09 the table WAS renamed, to `production_lower_thirds` (not `lower_thirds`), and every query site now uses that name. This single thread spawned the false "Stage 7 blocked by a `lower_thirds` mismatch" claim repeated in several status files. The same schema document is also stale at "43 migrations" (live: 45) and still refers to a `lower_thirds` table by name.
 
 **Medium — count / config drift:**
 - A production config file records `episode_count: 25` while the database holds 48 (15 originally aired + extrapolated through January 2027), and lists an old platform set (Odysee/Facebook/Instagram/Website) instead of the real distribution platforms.
@@ -636,4 +636,4 @@ For building a system-setup course, the stack maps to these teaching layers (lea
 
 ---
 
-*Compiled 2026-06-04 from a full repository sweep, corroborated by a 10-agent verification pass against the live Supabase schema (46 migrations, 20 tables), the dashboard source code, the decision records, and the GitHub PR/commit history (41 PRs, 85 commits). Every count in this document was verified live. This file is self-contained: nothing outside it is required to understand the system.*
+*Compiled 2026-06-04 from a full repository sweep, corroborated by a 10-agent verification pass against the live Supabase schema (46 migrations at the time, 20 tables; 48 as of 2026-06-12, verified live via list_migrations), the dashboard source code, the decision records, and the GitHub PR/commit history (41 PRs, 85 commits). Every count in this document was verified live. This file is self-contained: nothing outside it is required to understand the system.*

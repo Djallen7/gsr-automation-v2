@@ -1,0 +1,271 @@
+Clo autonomously implemented C compiler.
+Cursor run the agent for a week uh in
+order to implement a new browser from
+scratch. But when you use coding agents
+uh you probably ask it to do something
+and they run for uh about 3 5 minutes.
+You see the result result is great but
+still uh like the amount of changes the
+volume of changes is not that big as uh
+you hear in the news. In this video, I
+want to show you how to use cloth code
+sub aents in order to implement huge
+changes autonomously. So if you are
+interested, please continue watching. So
+what is a sub aent in clo code? Uh it's
+basically a clot code running a clot
+code itself. So uh sub aent is like a
+subprocess in cloud code and the main
+cloud code process it can delegate some
+specific task to a sub aent. then sub
+agent will do uh its own job. So it's
+cloth code itself uh with some same or
+different prompt uh it will do something
+and then return to the main cloud code
+with the result of its work. Let's
+actually see how it works. So we are now
+in clot code and we can type uh agents
+and here you can see builtin uh sub
+aents below. So what we have here we
+have clot code guide. Uh it's a sub
+agent that helps uh user and helps clot
+code to understand how clot code works.
+Um so there is explore agent. This agent
+is used by clot code to explore some
+aspect of your codebase. So for example
+if you ask hey how this and this works
+in my codebase uh clot code will decide
+that it needs to run explore sub agent
+with some specific task about that.
+There is general purpose agent uh which
+is basically the same cloth code with
+the same prompt. Uh so it can uh do
+whatever you ask it to do. There is plan
+agent which is used in plan mode. Uh so
+when you turn on plan mode uh claude
+will automatically run this plan agent
+in order to come up with a plan. And uh
+there is a status line setup which is
+used if you want to change something
+about UI in cloudcut. Let's now see uh
+the most simple example of uh how you
+can use explore agent. So because agent
+uh is some process that uh runs in its
+own context and does its own task, you
+can run multiple sub aents in parallel.
+And so with uh explore sub agent, you
+can ask uh cloud explicitly to run
+multiple explore sub aents in parallel
+and it will do that for you. So let's
+see how it works. run multiple explore
+sub agents in parallel uh to explore
+different aspects of the codebase and
+explain how it is structured. Let's run
+this uh prompt and see what claude is
+going to do.
+Okay, you see uh it is running multiple
+explore uh agents. If you press uh
+control O you will see exact uh like
+prompts and tasks uh it is given to sub
+aent. So for the first sub aent the
+prompt is here. For the second sub aent
+the prompt is here and etc. Uh while we
+have five sub aents uh running uh we can
+see uh like two of them are done and
+we're waiting for five of them to
+complete its job. Uh note that for
+explore sub agent uh claude uses haiku
+model which is the cheapest one. So it's
+uh saving you usage and saving you
+tokens uh which is great and which is uh
+enough for just exploring how something
+works. Okay. So we waited uh for all
+agents uh to complete their job. They
+returned with some uh report about their
+exploration and now the main cloud code
+process uh can generate us uh like the
+structure of the database uh explaining
+how everything works based on results of
+five exploration agents. Uh, of course
+this is very useful when you have a huge
+codebase. You can explicitly ask CL to
+run explore sub agents in parallel. Now
+you can create your own sub agent. So if
+you go to agents again uh there is
+create new agent. First you select
+whether you want it to be personal so
+for your own clot code or you want it to
+be inside the project which means that
+it will be shared with your teammates.
+Uh so let's go with projects. And now
+you can either u manually configure it.
+Uh so you'll need to create a markdown
+file uh describing prompts for the agent
+or you can generate it with cloud. So
+let's go with uh generate with cloud.
+And let's say I want uh to create an
+agent that will generate uh tests for
+me. Generate unit tests after every
+change I make to the codebase and run
+them. Now it asks uh me what tools I'm
+going to give to this agent. Uh so we
+can go with all tools uh or readonly
+tools, edit tools, uh execution tools.
+It's for example for bash. So can it run
+bash commands because we want it to uh
+create test with us. Uh let's just uh go
+with all tools available. Continue. So
+now I can select uh which model it is
+going to use. Uh so it can either uh
+inherit from our main model. So if we
+use uh like haiku, it will continue
+using haiku. Uh let's go with this
+option. Uh color for this agent. Let's
+go automatic color. Yeah, there's also
+option to uh add memory to your agent.
+So it will uh remember something. Let's
+enable it by default. And now you see uh
+the description of the agent uh
+subsystem prompt etc. Uh let's click
+enter and let's see what clo created. If
+you go to cloud uh you'll see agents
+here and you'll see unit test generator.
+And if you expand, you'll see that this
+is a markdown file uh name, it has
+description, it has model, uh memory,
+and now it has um some detailed
+instructions on how it should generate
+tests for this specific project. Now I
+can use this agent. So uh I can ask
+use unit test generator agent to
+generate test plan for the codebase. Uh
+let's run the prompt
+and you see that uh this agent is
+running uh with some specific prompt.
+Again if we press uh control O we will
+see the exact uh prompt sent to this
+agent. Uh and agent has its own system
+prompt. So now it is uh doing its job uh
+like running some tools uh searching
+something. Uh the agent itself can uh
+run its own sub agent as well. Uh so it
+can uh decide to explore something for
+example uh and then uh like come up with
+a test plan like we asked it to.
+Now you can see that the agent created
+test plan which we can see in the
+project in markdown file. Uh so it's uh
+like describes the coverage of the
+project. It also updated this uh memory
+for this project. So it's again a
+markdown file uh test infrastructure
+status uh key source files etc etc. This
+memory file will be automatically used
+uh when you ask it to generate new
+tests. So it will check uh what's the
+current uh test status. So it's quite
+useful to have some memories which are
+tied to these specific agents and are
+not used outside of it. Now I promised
+you to show how we can uh implement huge
+amount of changes using sub aents in
+cloth code. So let's do this with our
+test plan. So we have uh this test plan
+which is a huge plan which includes 229
+uh tests. Uh so and how we can uh
+implement it in one go. So first uh
+let's clear context in um clo code. So
+we start from scratch. Now we write the
+following prompt. Implement all the
+tests from testplan.mmd by spinning up
+unit test generator sub aent for a task.
+Then check its work. Mark it as done in
+testplan.mmd and continue with the next
+task. So what we are asking clot to do
+is basically uh take some task uh from
+the test plan uh spin up sub agent let
+it work in its own context and then come
+back with the result and then this main
+clot code will check the result of uh
+the sub agent. So what it has done mark
+this task as done in uh the plan and
+continue with the next task. So we can
+do this uh if we have a lot of tasks and
+it makes sense to do this if you have a
+lot of tasks in your plan. It is good
+because uh now every task will be
+implemented in its own context. So
+you're not very uh limited by context of
+the model. Uh so now we uh mentioned
+that uh we wanted to use test generator
+sub aent. Uh if you want to if we work
+with uh not test but general like
+feature implementation uh you can
+replace this test generator sub aent
+with general purpose sub agent which is
+available by default in cloud code. just
+be explicit uh and say hey spin up uh
+general purpose sub agents for every
+task and clot code will do it. So let's
+run this prompt.
+So you see the main cloud code uh
+installed all the packages for testing
+uh implemented this uh y test config ts
+added some test scripts uh to package
+JSON and now it is creating a list of uh
+like general tasks uh in its to-do.
+Cool. And now uh it decided to run five
+sub agents in parallel for uh all of
+these uh types of tests. So you see it
+is uh spinning up sub agents for
+validations for uh submission utils.
+Cool. You can now uh see how it uh
+waited for these two agents to finish uh
+these two like when you see task usually
+also a sub agent. Uh so you see that uh
+these sub agents finished as well. uh it
+decided to run the test after tier one
+implementation. Uh all uh test uh passed
+which is great and now uh it is marking
+uh test as done in the test plan. If we
+open test plan now
+we can see that uh some test plan are
+done.
+So it's using emojis to mark as done and
+now uh it is implementing uh tier 2 uh
+changes again uh by spinning up test
+agents. Now during the implementation of
+uh tier three tests uh clo decided to
+compact its conversation. So it's
+basically summarized all the previous
+conversation because the context uh
+became too long. But this is fine. This
+happens uh automatically in cloud code.
+And now we just continues with the
+implementation. You can see that after
+uh implementing tier three uh tests, it
+is running already for 21 minutes
+without interruptions. Okay, so the
+implementation is done. Uh we can see
+that Claude implemented 348 tests. The
+total running time was 24 uh minutes. It
+checked that all test uh passed and now
+we have them in our codebase. So we can
+commit them uh or we can automate uh
+testing with GitHub workflows. So
+obviously if you have bigger plan or if
+you have more changes you can make cloud
+code to run even longer. This was all I
+wanted to show you today. Uh so just to
+recap it's very useful to spin up sub
+aents even if it's general purpose agent
+and also to ask cloud code to check work
+of the sub agent. So it will run as an
+independent judge. It can execute the
+code. It can run tests for you and check
+that sub agent did the work properly. I
+hope that was useful. Thank you very
+much for watching. Please subscribe to
+our channel. We post weekly tutorials
+about cloud codecs cursor on our
+channel. Thank you and see you next

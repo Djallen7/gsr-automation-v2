@@ -1,0 +1,333 @@
+It's also one of the top health and
+fitness apps in Apple's App Store and is
+projected to generate more than $30
+million in revenue this year. We had
+just finished 2025 having done $30
+million in that year. In December 2025,
+an 18-year-old sold his AI app for what
+experts say could be over $100 million
+changing what we thought about software
+forever. Before, most startups needed to
+have a highly trained team of developers
+and raise thousands with investors just
+to start. But this 18-year-old built
+this app with his high school friends
+>> [music]
+>> and within a year, they scaled it to
+over $30 million a year in revenue. So
+today, I'm going to break down exactly
+how this simple app became a $100
+million company, the three strategies
+that actually got it there, and how
+right now anyone watching this can
+[music] do the exact same thing. So
+let's get into it. So Zach started
+coding when he was 7 years old because
+he was obsessed with video games and
+wanted to make his own. His mom put him
+in a coding camp and from that point on,
+he spent years building stuff. Little
+games and projects here and there that
+went nowhere, but it gave Zach the
+knowledge he needed to make the right
+idea work. And the idea came when he
+wanted to bulk up for the gym and he
+started tracking calories on
+MyFitnessPal. But after just 3 days, he
+quit because of how annoying it was to
+weigh every meal on a scale and manually
+type out every single ingredient. To
+him, every fitness app sucked and when
+AI models like ChatGPT started dropping,
+he saw the opportunity to make something
+better. And the idea is actually really
+simple. What if you could just take a
+picture of your food and get the
+calories instantly without typing or
+weighing anything? So, he teamed up with
+a friend he met at coding camp and a
+23-year-old founder who had already
+grown two other apps to millions of
+downloads. Together, they built the
+first version of Cal AI in about a month
+and launched it around May of 2024. That
+first version of the app was dead simple
+but incredibly useful. You basically
+just had to press one button of your
+food and a prompt was sent to an AI
+model to calculate the [music] calories.
+And within 3 to 4 months, they hit a
+million downloads. Then, after 6 months,
+they were generating over a million
+dollars a month in revenue. And just in
+the beginning of the year, they sold the
+app to their biggest competitor for
+multi-millions. Some even say over $100
+million. And here's what this means to
+the AI apps and software space. What
+Zach did is impressive, but the
+landscape has completely changed since
+he started. When Zach built Cal AI, he
+already knew how to code and that gave
+him a real advantage. But the advantage
+you have right now is that the barrier
+to building an app is basically gone.
+When Cal AI launched in 2024, tools like
+Cursor and Lovable were already making
+it easier to build software. But now in
+2026, we have five coding tools where
+you can literally describe what you want
+and AI builds the app for you. Even Zach
+said [music] this. My friend actually
+that I went to high school with, he
+built an app on Rock. It's called
+Wrestle AI or Fight AI. He released two.
+And it's now doing $30,000 a month. And
+he is also just
+like a normal kid in college.
+>> So, you don't need to be a developer to
+build a million-dollar app anymore
+because you can use tools like Cloud
+Code, Cursor, or Replit without knowing
+how to code. But here's what hasn't
+changed. The business side is still the
+hardest part to make this work and it's
+still 80% of your success. The good news
+is that we can actually study what made
+Cal AI a $100 million company and break
+it down into three steps that you can
+follow. So step one, find your idea.
+This first step is the one that most
+people get wrong before they even start
+building. And it's something that Zach
+had said before. It's really just about
+identifying something that
+you can derive value from or you can see
+someone around you driving value from.
+I think that's the best way to come up
+with an idea and build it out because if
+you are your ideal user, you'll know
+exactly what to build. That is such an
+important mindset shift because most
+people think you start with a product.
+You build something cool and then you
+figure out how to sell it. But Zach did
+the opposite and he started with the
+problem. And then, he built a simple
+version of the solution. And this is the
+right way to start building an app.
+People don't download apps because they
+look good or because they have extra
+space on their phone. They download apps
+because the app solves a very specific
+problem in their lives. For example,
+Uber solved the problem of getting
+around without calling a cab and waiting
+30 minutes. Duolingo solved the problem
+of language courses being too expensive
+and too boring. And Cal AI solved the
+problem of tedious calorie weighing and
+tracking. Every successful app starts
+with one core feature that makes someone
+say, "I need that." So if you're
+watching this and thinking about
+building something, here's exactly what
+I'd do. First, think about your own
+life. What's a problem that you've run
+into that frustrates you and how could
+you solve it? Then, look at what's
+already out there and find outdated
+solutions. For example, MyFitnessPal had
+been around for over a decade. It was
+bloated, complicated, [music] and hadn't
+innovated in years. And that created the
+opportunity to make something simpler
+and faster with AI. You can start to
+look at the top apps in different
+categories and try them out to see which
+ones feel old or which ones are doing
+something that AI could make 10 times
+easier for the actual user. And then,
+once you have that idea, build the
+simplest possible version that you can
+using AI tools like Cloud Code or
+Antigravity or Baseplate 4. And that way
+you can [music] move really fast. And
+moving fast is really important because
+just how you got that idea, other people
+could get it too. Cal AI has a ton of
+copycats, but the reason why Cal AI won
+is because they got into the market
+faster and they capitalized on that. So
+don't spend 6 months perfecting
+something that nobody has used yet. Get
+it out there, get real feedback, and
+iterate. Because just having a great
+product that solves a real problem,
+that's only the first piece of the
+puzzle. Without getting anyone in front
+of it and getting people to actually use
+it, nobody will obviously know that your
+app exists. And that brings me into step
+two, which is the thing that made Cal AI
+grow so fast. If you had a perfect app
+but the worst marketing, you would get
+no downloads. If you had the worst app
+but amazing marketing, you would still
+get downloads and you'd make some money
+from those people even though it's
+probably like very small conversion
+rate. So marketing, it's just building.
+What Zach did to grow in a highly
+competitive market like fitness was
+reinvest almost all of the money that
+they made back into making sure that
+people knew about the app. So Zach sent
+hundreds of DMs each day to fitness
+creators on TikTok and Instagram. At
+first, almost nobody responded, but he
+kept going until he found creators
+willing to work with them and create
+some ads for the app. But they didn't
+ask influencers to do any hard selling
+like, "Hey guys, this video is sponsored
+by Cal AI." Instead, they told the
+creator to make their regular content
+and somewhere in the first 15 seconds,
+they'll show themselves using Cal AI.
+They simply had to add a section where
+they snap a picture of food and let the
+calories pop up on the screen. And
+because the concept of scanning your
+food and instantly seeing calories is so
+visual, people watching would
+immediately notice it and flood in the
+comments asking, "What app is that?" And
+this worked so well because if you see a
+traditional ad that says, "Download Cal
+AI," your brain immediately just kind of
+tells you to ignore it. But when you see
+a fitness creator you've been following
+for years scanning their lunch, your
+brain won't even think that it's an ad.
+It feels more like getting a
+recommendation from a friend. You don't
+trust a billboard, but when your friend
+says, "Yo, try this app," you download
+it that night. So here's what you can do
+to get your app in front of people.
+First, find 20 to 30 creators in
+whatever market your app is. They don't
+need to be huge. Even someone with a few
+thousand followers works. Then, DM them.
+Tell them what your app does and show
+them why their audience would care about
+it. And offer a flat rate for a bundle
+of videos. But most importantly, give
+them complete creative freedom. They
+know what works with their audience.
+Just give them the app and tell them to
+show it in the first 15 seconds of the
+video. The less that it looks like an
+ad, the better it will work. And the
+fourth step is to track everything. So
+look at when the video was posted, how
+many views it got, and what your
+downloads and revenue looked like on
+that same day. This is how you figure
+out which influencers and types of
+content work best. And from there, it's
+just a matter of doing more of what's
+working, signing more creators, and
+getting more users. Okay, step three is
+to build predictable income. So a lot of
+people think that once someone downloads
+your app, the deal is done. But it's
+actually just starting. Cal AI has a lot
+of copycats trying to do the same thing,
+so they know that convincing someone to
+download their app is going to be hard.
+Some months they could add thousands of
+new users, but other months they could
+only add maybe a couple hundred. So to
+build predictable revenue, they need to
+make sure that every single user they
+already had keeps using Cal AI. If users
+downloaded the app, used it for a week,
+and then went with the competition, the
+whole business model falls apart. So how
+did Cal AI do it? Well, it comes down to
+three strategies and the first one
+starts before users even start snapping
+pictures. When you first open the app,
+it asks you a series of questions.
+What's your weight? What's your goal
+weight? Why are you trying to lose or
+gain weight? How is this going to
+improve your life? And the reason is
+that when you ask more personal
+questions about goals and motivations,
+it turns into a higher conversion rate.
+Because by the time someone has answered
+10 questions about why they want to get
+healthier, they've already invested time
+and emotional energy. So when the
+subscription page pops up, paying 30
+bucks for the year feels like the
+obvious next step. Second strategy comes
+back to that core product decision that
+we talked about earlier. They made the
+app so simple [music] that using it was
+basically effortless. You take a
+picture, you get your calories, and it's
+done. The whole interaction takes maybe
+5 seconds. Compare that to a generic
+fitness app where you're scrolling
+through databases, searching for your
+food, putting it on a scale, and
+manually adjusting portions. Cal AI was
+able to remove that friction. And that's
+the key inside here. The less effort
+that it takes to use your app every day,
+the more likely people are to keep using
+it. They also added small features that
+reinforce the habit like daily streaks,
+simple dashboards showing your progress,
+and a health score that told you how
+well you were eating. Now these aren't
+groundbreaking features, but they give
+users a reason to come back and check in
+every single day. And if you're using
+something every single day, then it's
+hard to justify using something else.
+And here's why this matters for the long
+run. When your monthly revenue is solid
+and predictable, that's when your app
+becomes attractive to bigger companies
+and when the acquisition offers actually
+start to come in. So Cal AI selling for
+millions proved that the opportunity
+right now is real. A teenager with no
+investors or fancy office built an AI
+app into a company worth hundreds of
+millions of dollars. And the tools
+available today are even better than
+what he had when he started. So, you can
+do what Zach did in less time. But this
+window is not going to stay open
+forever. The AI space is moving insanely
+fast, so you need to act with speed and
+not waste time. That's why I created a
+roadmap file based on Cal AI success to
+help give you clarity on the steps that
+you need to follow. You can download
+this for completely free. It's inside of
+my free school community where you can
+get more information about how to use AI
+tools like Cloud Code to build a
+business from scratch. You can join for
+free with the link in the description.
+Anyways, that's going to do it for
+today's video. As always, thanks for
+staying until the end and I'll see you
+guys in the next one. Thanks, everyone.

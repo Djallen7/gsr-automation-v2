@@ -1,0 +1,255 @@
+Hello team.
+So, I wanted to try a few experiments
+where
+I want to run some cloud code skills
+within a web server.
+So, let's say I have created some skills
+and by the way, I created many skills
+but I can always run it within
+cloud code with my local environment.
+But, I want to export them
+to, you know, some server where maybe I
+can interact with
+it via some web API and want to invoke
+on that particular server.
+So, how to do that?
+So, while exploring, I came to know
+that, you know, we have cloud agents SDK
+and cloud agents SDK is a library which
+allows you to do that. Now,
+in our case,
+what we are going to explore today is we
+are going to create a fast API.
+Imagine that this fast API is created
+and deployed on some uh web environment.
+For example, let's say Azure web app
+and we are going to interact with it.
+So, we are going to
+fire some queries and behind the scenes,
+what it is going to do is using
+agents SDK, it is going to invoke those
+cloud skills
+within the web server where this
+solution is deployed.
+So, let's see how to get started.
+So, here I am.
+This is my Visual Studio Code which is
+available.
+And what I'm trying to do is I'm running
+everything in my dev container. So, if
+you see,
+I have a dev container which is
+installed.
+So, I have I'm running everything on
+Docker as such.
+So, that's what I'm trying to do.
+And what I have done is I have installed
+few libraries inside this dev container.
+So, those who are new to dev container,
+this is a way I can run
+uh Linux within my Windows as such.
+And the way I need to do it is I need to
+ensure that there are some plugins which
+are available within Visual Studio Code.
+And here if I if you see
+what I've done is I've installed fast
+API, python.environment, as well as
+Claude Agent SDK. And Claude Agent SDK
+is the one
+which is going to provide the equated
+environment that we try to do it in
+within local.
+And it is going to
+make sure that, you know, whenever it is
+deployed on some
+web application it is going to invoke
+all the
+Claude skills.
+So, that's how it will work.
+So, for experiment, what I have done is
+just to show you
+I have created some test file. And if
+you see this test file
+what I'm trying to do is I'm just
+invoking Claude Agent SDK.
+And I'm just providing it a very simple
+prompt. So, the prompt that I'm
+providing it is humanize following text.
+So, what it is going to do is it is
+going to
+take this text and going to humanize it.
+And similarly
+what we can do is we can create some
+skills. And again, I will just show you
+very quickly. I have created some skills
+here.
+Here are those skills which I created.
+So, I have created two skills. One is my
+humanizer.
+And what it tries to do is it tries to
+humanize that text as well as there is a
+humor creator which tries to create a
+humor like response.
+And the file which I was trying to show
+you, the file it doesn't contain any
+skills. What we are doing here is
+we are using Claude agent SDK
+to invoke
+you know
+and run Claude directly. That's what we
+are trying to do.
+Now, what we are going to do it in test
+script 02 is we are going to
+rather than, you know, giving a direct
+system prompt, we are going to invoke
+skills. That's the difference. So, in
+test script 01
+we have simple prompt which is passed to
+Claude agent SDK.
+And then in test script 02, we have
+created two skills. These are the two
+skills which are created. And what we
+are going to do is we are going to
+invoke Claude agent SDK and tell it to
+use these skills.
+And these two skills is, you know, my
+humanizer and my human creator.
+So, rather than explicitly passing the
+whole system prompt we are going to
+invoke these skills.
+And thirdly, the last thing what we have
+done is we have created a fast API.
+And via this fast API
+we can have an endpoint where we can,
+you know, invoke any sort of skills or a
+system prompt through Claude agent SDK.
+So, I can run
+you know, some text.
+I can specify whether a skill has to be
+invoked or not using this
+chat SDK.
+So, that's what we are going to see
+today.
+So, first few things. So, we already
+installed, you know, the appropriate
+libraries.
+Now, we also have sample.environment.
+And here are all the environment
+variables that we need. So, in the
+earlier video we
+walked through how we connect Claude
+through bedrock. And that's what we are
+doing here. So, we are specifying that
+rather than using the
+Claude models on the consumer version,
+we will be using the bedrock version.
+So, the models which are deployed on
+Claude
+on the bedrock, that's what we are going
+to do.
+Now, if you see test script 01, here we
+are calling Claude Claude agent SDK.
+So, what we are doing is we are, you
+know,
+invoking one class
+and we are passing the current
+directory. We are also giving it some
+configuration like project. So, project
+is nothing but, you know,
+from where it is going to read all these
+files
+or settings. For example, you know,
+things like skills, where it is going to
+read it.
+So, that's what, you know, it specifies.
+So, you know, user specifies that it
+will be applicable to all the users
+within this machine. Project is only to
+this project. In this case, it doesn't
+matter.
+So, you know, you can keep it by
+default. And allow tools are read,
+write, and bash, which means, you know,
+the Claude agent SDK has allowed has
+access to read, write, and bash. And
+that's what we are doing here.
+Nothing fancy here. We are just passing
+it a text and just saying humanize it.
+So, that's what we are trying to do.
+In the test script 02, which is more
+important, what we are doing is
+something similar. The only thing is if
+you see what we are doing is we are
+allowing it to have access to tools
+also.
+So, what we are in a nutshell saying is,
+you know,
+while you are running,
+please run through current directory.
+Within current direct directory, there
+will be a folder called dot Claude.
+Within that, there will be skills folder
+which is created and use that skills
+folder. So, essentially, it is going to
+load these
+two skills which I have, my humanizer
+and my human humor creator.
+And then what I can do is I can run all
+of these. So, that is what it is
+trying to do. So, rather than directly
+putting any prompt, we are saying use
+this skill or this skill to convert some
+text.
+And this is what we have done in app.py
+So, we have wrapped whatever we saw in
+the last file into some way to read
+all the skills and run it. So, that's
+what we have.
+So, if I run this, for example, I will
+just try to run this
+uh app.py and we'll see the
+API endpoints. So, if I go here
+I have the API created.
+Let me try to invoke a chat
+interface. So, what it
+gives you way to run it is it gives you
+a way to have a post query created. So,
+we'll post something as a prompt and
+then it will go it will give us the
+output. So, let me do something. So, in
+then within my sample 02 test script,
+let me say that, you know, convert
+following text.
+I will just, you know,
+write it down.
+And then let me put some sample text.
+So, I already have some sample text
+which is created.
+So, let me take it from there. Uh
+so, let's say I create or let me take it
+like from here.
+So, I'm just saying take this line, you
+know, maybe humanize it.
+So, let's see what the response comes.
+So, behind the scene, Claude Agent SDK
+will read this,
+will invoke my humanizer and convert
+this text into some
+better way. So, let's see.
+And
+this is what I want to tell that, you
+know, with this, you know, there is a
+possibility to
+make your skills
+run it on a separate environment.
+That's really very helpful.
+So, if you see, it says, you know,
+humanized version and so on and so on.
+So, it gives some text.
+And it was invoked using the skills
+which I created.
+So, I will post this uh
+repo's link
+in the YouTube description.
+Again, thanks. Thanks for watching.
+Bye.

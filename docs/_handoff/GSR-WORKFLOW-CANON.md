@@ -17,7 +17,7 @@ They are never mixed, never share a workflow, always referred to by those exact 
 | Lives in | The script document | The **Graphics Tracker** (monthly Google Sheet) |
 | Pushed to Rundown Creator? | **No** | **Yes** |
 | ProPresenter | Their **own** presentations | **Separate** presentations |
-| DB table | currently `graphics` (should be renamed `lower_thirds`) | `production_graphics` |
+| DB table | `production_lower_thirds` (renamed from `graphics` 2026-06-09; variations child table `lower_thirds_variations`) | `production_graphics` |
 
 ---
 
@@ -160,8 +160,8 @@ These cover the fluid insert/update/delete reconciliation Daniel described. Toda
 - **GSN (Roku/OTT):** generate a **Roku Direct Publisher JSON feed** from the episodes table (Next.js route or Edge Function); Roku polls it. Requires each episode MP4 at a stable public HTTPS URL (Roku-spec H.264/HLS). **Verify GSN's Roku channel is Direct Publisher (feed-driven), not a custom SDK channel.**
 - **Social clips:** **Vizard** (public API + scheduler, handles 58-min inputs) with a human review-before-publish gate at first. Opus Clip's API is enterprise-gated (manual only). A per-platform **upload tracker** shows status.
 - **Orchestration:** Supabase Cron -> Edge Function for scheduled jobs (on-stack, sub-minute). **Secrets:** a 1Password Service Account (`op run`/`op read`) — but **1Password does NOT refresh OAuth tokens**; the code must do the refresh exchange + write back the rotated token, with an **alert on auth failure** or unattended publishing dies silently.
-- Chain: master -> local Mac (transcription + YouTube resumable upload) -> templated metadata -> Rumble (API token or manual) + Transistor + Roku feed + Vizard clips; dashboard tracks every platform's status.
-- **>> REMINDER (Daniel TODO):** (1) clear the YouTube/Google API audit; (2) pursue the Rumble Upload API token via support@rumble.com / live chat / Partner Program (bd@rumble.com bounced); (3) verify Rumble's 58-min resolution tier; (4) verify Fireside allows a 301; (5) confirm GSN's Roku channel is Direct Publisher.
+- Chain: master -> local Mac (transcription + YouTube resumable upload) -> templated metadata -> Rumble (manual; vendor confirmed no working API as of 2026-06-12) + Transistor + Roku feed + Vizard clips; dashboard tracks every platform's status.
+- **>> REMINDER (Daniel TODO):** (1) clear the YouTube/Google API audit; (2) ANSWERED 2026-06-12: Rumble replied to Daniel that they have NO working API at the moment; upload stays manual, re-check ~Sep 2026 or if Rumble announces an API; (3) verify Rumble's 58-min resolution tier; (4) verify Fireside allows a 301; (5) confirm GSN's Roku channel is Direct Publisher.
 
 **Phase 1 distribution scope (Daniel, locked 2026-06-06):** build triggers for **all four** — YouTube (private-first), Rumble (manual upload now), Transistor (podcast, migrate off Fireside), and Vizard (clips, human review gate). Rumble Upload API token contact bd@rumble.com bounced; the API is real but partner-gated, so manual is the Phase-1 Rumble path while the token is pursued through monitored channels.
 
@@ -186,7 +186,7 @@ This registry is the durable, never-re-ask record of WHERE GSR episodes go and H
 | Target | enum id | What it carries | Delivery mechanism | Special requirement |
 |---|---|---|---|---|
 | YouTube | `youtube` | Full episode; the anchor + canonical URL | YouTube Data API v3 (googleapis, resumable, on Mac/worker) | Category 28; Mon 4 ET scheduled; private until Google audit cleared (irreversible per-video) |
-| Rumble | `rumble` | Secondary full episode | **Manual web upload (Phase 1)** | YouTube->Rumble sync is BROKEN; official Upload API is partner-gated (bd@rumble.com bounced); verify 58-min HD (720p risk) |
+| Rumble | `rumble` | Secondary full episode | **Manual web upload (Phase 1)** | YouTube->Rumble sync is BROKEN; Rumble confirmed NO working API at the moment (reply to Daniel, 2026-06-12); manual upload is the path, re-check ~Sep 2026; verify 58-min HD (720p risk) |
 | Dropbox | `dropbox` | Broadcast master to unnamed partner stations; **also the source for OTA broadcast**; also the input trigger | Dropbox API (REST + OAuth) | No metadata required; do not name specific stations; 150MB single-request cap -> chunk |
 | Fireside (podcast) | `fireside_podcast` | Audio-only MP3 podcast | Web-UI upload (API is read-only) | **Feeds Spotify + Apple Podcasts automatically via RSS.** Migrate to Transistor.fm (real publish API); 301 the feed (verify Fireside allows it) |
 | Real Life Network | `real_life_network` | Broadcast master to RLN | **Signiant Media Shuttle** (`api_client_media_shuttle_node` SDK) | **RLN = RightNow Media (one and the same target).** Metadata via Google Form; thumbnail 1200x1800 portrait; **-20 LKFS audio normalization** (this requirement currently lives ONLY in superseded migration `..002000:32-33` -- recapture it when RLN delivery is built) |
@@ -245,13 +245,19 @@ This registry is the durable, never-re-ask record of WHERE GSR episodes go and H
 - **Jakob (roll-ins), Jeremiah (b-roll / raw footage), Gabe (Genesis Science Minute)** do NOT get distinct dashboards. A generic landing page with role-specific info may be added later if needed (Daniel, 2026-06-07).
 - **DEFERRED task: per-role login credentials.** Build real auth so each user logs in and lands on only their view. This is sequenced for AFTER the system is designed, tested across multiple mock episodes, and the current real system is fully imported. Tracked in `docs/AUTOMATION_ROADMAP.md`.
 
+**Basecamp = keep it, integrate it, two-way sync (Daniel, 2026-06-08).** Basecamp stays a first-class live source the team already uses; we do NOT ditch it. The dashboard integrates the existing Basecamp system. **Sync rule (Daniel, 2026-06-08):** every element we import SYNCS (stays current from Basecamp); TWO-WAY editing (writes back to Basecamp) is enabled ONLY for items meant to be checked off / marked complete: post-production episode status, to-dos, and card checklist items. Everything else is read-only (scripts and calendar are therefore read-only unless Daniel says otherwise; he earlier mentioned two-way for those, flagged for confirmation). **Out of scope (not imported):** message boards, chats/Campfire, the generic card table, activity feeds, and the Prayer Request + Aquarium projects. **Decisions locked (Daniel, 2026-06-08):** (a) ALL WWN elements are DEFERRED to future phases, out of the current build; (b) to-dos sync per person, each sees only their own, for **Daniel, Isaac, Myriam** only (interns get none for now); (c) calendar imports only events tagged **`PROD |`**; (d) **Isaac gets a GSR editing page built to mirror his Basecamp "Genesis Science Report" card board as closely as possible** (same columns `Triage -> Not now -> Recorded -> In Progress -> Editing -> Rendering -> Done`, same card feel) so it is instantly familiar with no learning curve, moving a card advances post-production status two-way. Full design + per-role inventory: `docs/2026-06-08-basecamp-dashboard-integration.md` (the review sheet `docs/2026-06-08-basecamp-import-review-sheet.md` captured the choices). **Embed the DATA, not Basecamp's pages:** Basecamp blocks iframing its own screens, so pull cards/to-dos/scripts/schedule through the API and render them in the dashboard's own UI with API write-back, so users never leave the dashboard and no "go to Basecamp" link is needed on the main flow (keep one escape-hatch link only for attachments/comments). **Conflicting episode databases are resolved by one owner per fact:** recommended = the Basecamp card is the system of record for production stage + tasks (the episode row stores the card id, not a competing status column), while Supabase owns dashboard-only data (lower thirds, metadata, distribution); two-way at the system level, single-owner at the field level. Production-stage owner is DECIDED (Daniel, 2026-06-08): **Basecamp owns stage** — stages stay linked and two-way, one stored value (the card column), Basecamp wins any tie. Full per-role data inventory + approach: `docs/2026-06-08-basecamp-dashboard-integration.md`. The live pipeline is the **"Genesis Science Report"** card table in **"02_ Production"** (account **5805529**; columns `Triage -> Not now -> Recorded -> In Progress -> Editing -> Rendering -> Done`) plus the **"WWN"** card table; calendar + admin to-dos live in **"01_DRM Staff"**. Write-back is a live-team action: confirm-before-write + the David rule. This SUPERSEDES the earlier "Basecamp = read-only, later monologue-ingestion only" framing (e.g. handoff §11, tools-curriculum timeline); monologue ingestion is now one slice. Credentials verified working 2026-06-08 (`docs/2026-06-08-basecamp-env-diagnosis.md`).
+
 **"Webstream" = the weekly online-release umbrella (Daniel, 2026-06-08):** Webstream is the weekly online-release milestone, the Monday 4PM ET drop, that fans out to ALL platforms: YouTube, Rumble, StreamHoster, GSN, and the podcast. YouTube is just ONE target under it, not the milestone itself. Term-collision note: this is a DIFFERENT idea from the canon's existing "web stream / web-stream" (the StreamHoster/GSN OTT target and the "web-stream episodes" folder). Keep them distinct: write the new umbrella as "webstream publish" or "webstream release" (no hyphen), and keep the OTT target as "web-stream / OTT (StreamHoster/GSN)". Consequence: the generic publish-date column `episodes.youtube_scheduled_publish_at` is being renamed to `webstream_scheduled_publish_at` via expand-contract. The new column was ADDED and BACKFILLED on 2026-06-08 (migration `20260608161708_add_webstream_scheduled_publish_at`); the old `youtube_scheduled_publish_at` column stays until a later contract migration drops it, AFTER this branch is deployed to main, so production never references a missing column. KEPT as genuine YouTube-platform fields (not renamed): `youtube_url`, `youtube_published_at`, the YouTube `publishAt` scheduled-upload, category 28, the ~100/day quota, the playlists, the YouTube RSS poller, and the m10 "YouTube anchor" (YouTube is the canonical URL the other platforms point at).
 
 **Guest affiliations are topic-relevant per episode (Daniel, 2026-06-08):** A guest may have more than one valid affiliation. The on-screen chyron uses the affiliation relevant to that episode's specific interview topic, not a fixed default. Example: Dan Janzen is both Executive Director of Fellowship of Christian Farmers International and a UFO/biblical-theology researcher; on the S3 Ep15 UFO episode his chyron shows the UFO-researcher affiliation, not the farming one. Storage note (2026-06-08): the schema has no per-episode chyron-affiliation field (`guests` holds a single affiliation via `job_title`/`organization`; `episode_guests` has no affiliation/role column). DEFERRED enhancement: add an affiliation/chyron override on `episode_guests` so each appearance can carry its own topic-relevant affiliation cleanly. Interim handling for Ep15: both Janzen affiliations are preserved on his `guests` row, his primary `job_title` was set UFO-researcher-first (Ep15 is his only Season 3 appearance and is UFO-themed), the multi-affiliation rule is recorded in his `guests.notes`, and the intended Ep15 chyron is noted in that link's `episode_guests.appearance_notes`.
 
-**Interaction: present confirmations as one-tap choices (Daniel, 2026-06-08):** When Claude has items for Daniel to confirm or address, present them as one-tap choices (tappable options with the recommended option pre-marked), never open-ended homework. Daniel is often on mobile; the goal is to save his time. Recommend, do not poll.
+**Approvals: standing go-ahead for finished work (Daniel, gospel 2026-06-12):** Daniel delegates the sign-off button. Claude folds its own finished, gate-checked, tested work into the official version (merging its reviewed batches) without asking each time, then reports in client terms what changed. STILL requires Daniel's in-the-moment yes, unchanged by this grant: anything touching the live show or broadcast chain, the team's real production data (including applying schema/database changes to the live database), money, accounts or credentials, deletions, or anything not easily reversible. The Type-YES bulk-import gate, the live-rig in-the-moment yes, and QNAP read-only stand exactly as before.
 
-**Basecamp = keep it, integrate it, two-way sync (Daniel, 2026-06-08).** Basecamp stays a first-class live source the team already uses; we do NOT ditch it. The dashboard integrates the existing Basecamp system. **Sync rule (Daniel, 2026-06-08):** every element we import SYNCS (stays current from Basecamp); TWO-WAY editing (writes back to Basecamp) is enabled ONLY for items meant to be checked off / marked complete: post-production episode status, to-dos, and card checklist items. Everything else is read-only (scripts and calendar are therefore read-only unless Daniel says otherwise; he earlier mentioned two-way for those, flagged for confirmation). **Out of scope (not imported):** message boards, chats/Campfire, the generic card table, activity feeds, and the Prayer Request + Aquarium projects. **Decisions locked (Daniel, 2026-06-08):** (a) ALL WWN elements are DEFERRED to future phases, out of the current build; (b) to-dos sync per person, each sees only their own, for **Daniel, Isaac, Myriam** only (interns get none for now); (c) calendar imports only events tagged **`PROD |`**; (d) **Isaac gets a GSR editing page built to mirror his Basecamp "Genesis Science Report" card board as closely as possible** (same columns `Triage -> Not now -> Recorded -> In Progress -> Editing -> Rendering -> Done`, same card feel) so it is instantly familiar with no learning curve, moving a card advances post-production status two-way. Full design + per-role inventory: `docs/2026-06-08-basecamp-dashboard-integration.md` (the review sheet `docs/2026-06-08-basecamp-import-review-sheet.md` captured the choices). **Embed the DATA, not Basecamp's pages:** Basecamp blocks iframing its own screens, so pull cards/to-dos/scripts/schedule through the API and render them in the dashboard's own UI with API write-back, so users never leave the dashboard and no "go to Basecamp" link is needed on the main flow (keep one escape-hatch link only for attachments/comments). **Conflicting episode databases are resolved by one owner per fact:** recommended = the Basecamp card is the system of record for production stage + tasks (the episode row stores the card id, not a competing status column), while Supabase owns dashboard-only data (lower thirds, metadata, distribution); two-way at the system level, single-owner at the field level. Production-stage owner is DECIDED (Daniel, 2026-06-08): **Basecamp owns stage** -- stages stay linked and two-way, one stored value (the card column), Basecamp wins any tie. Full per-role data inventory + approach: `docs/2026-06-08-basecamp-dashboard-integration.md`. The live pipeline is the **"Genesis Science Report"** card table in **"02_ Production"** (account **5805529**; columns `Triage -> Not now -> Recorded -> In Progress -> Editing -> Rendering -> Done`) plus the **"WWN"** card table; calendar + admin to-dos live in **"01_DRM Staff"**. Write-back is a live-team action: confirm-before-write + the David rule. This SUPERSEDES the earlier "Basecamp = read-only, later monologue-ingestion only" framing (e.g. handoff §11, tools-curriculum timeline); monologue ingestion is now one slice. Credentials verified working 2026-06-08 (`docs/2026-06-08-basecamp-env-diagnosis.md`).
+**Show decisions arrive as tap cards, not meetings (Daniel, 2026-06-12):** the two proposed working sessions (graphics decisions; segment timing) are replaced by batched one-tap question cards sent when a build slice actually needs the answer. Daniel was confused by the meeting framing; do not schedule meetings for decision-gathering.
+
+**Interaction: report developer-to-client, and test with mock content first (Daniel, gospel 2026-06-12):** Daniel is the client, not a fellow developer. Every report to him must read like a developer updating a client: "this feature works now, here is the part of your workflow you can do with it", "I hit an issue, here is what it means for you, it is fixed / will be fixed by [date]", "here is the one thing I need from you, in plain words". NO developer jargon (no "squash", "rebase", "PR diff", "conflict markers", "migration" etc. without a plain-English translation; prefer dropping the term entirely). Git/infrastructure mechanics are the developer's problem and stay out of client reports unless Daniel asks. Claude is RESPONSIBLE for issues: own them, fix them, state the impact and the timeline; never hand Daniel a problem without a plan. And BEFORE reporting any feature as working: test it with mock content (run a fake script / fake episode through it) wherever access allows; where a test physically requires Daniel's logins or machine, say so and hand him a 30-second check instead of an untested claim.
+
+**Interaction: present confirmations as one-tap choices (Daniel, 2026-06-08):** When Claude has items for Daniel to confirm or address, present them as one-tap choices (tappable options with the recommended option pre-marked), never open-ended homework. Daniel is often on mobile; the goal is to save his time. Recommend, do not poll.
 
 ## 13. Findings-review decisions (Daniel, gospel 2026-06-08)
 
@@ -318,7 +324,7 @@ From the offline flight worksheet (answers pasted 2026-06-09). Full open-discuss
 
 **Confirms:**
 - Run-of-show map (canon 9c) confirmed.
-- Kilauea: Daniel believes "Episode 48" is a count of past volcanic events in the article (not an episode number), to be reframed as a record-breaking figure; he asked to be fact-checked, so VERIFY against the article before using it on air.
+- Kilauea: Daniel believes "Episode 48" is a count of past volcanic events in the article (not an episode number), to be reframed as a record-breaking figure; he asked to be fact-checked, so VERIFY against the article before using it on air. **RESOLVED (verified vs USGS, 2026-06-11): Daniel was right.** "Episode 48" = USGS's numbered lava-fountaining episodes in the current Halemaumau eruption; episode 48 (June 1, 2026) set "a new record number of fountaining episodes in any one Kilauea eruption" (old mark: 47, Puu Oo 1983-86). On-air-safe wording (re-check the live count on record day, episode 49 was forecast mid-June; scope stays "any Kilauea eruption", never "biggest eruption ever"): "Kilauea has just set an all-time record. Since this eruption began in December 2024, its summit has now produced more lava-fountaining episodes than any Kilauea eruption on record, 48 and counting as of June 1, passing the old mark of 47 set back in the 1980s." Lower third: "KILAUEA SETS ALL-TIME RECORD: MOST FOUNTAINING EPISODES OF ANY KILAUEA ERUPTION ON RECORD". Full citations: ledger CL-048. The Austin/Kilauea episode has no DB row yet (Austin is in guests, unlinked); wording moves to the row when Lane 3 creates it.
 
 **Worksheet decision snapshot:** BUILD = monologue 5-beat arc, graphics-philosophy scan, ProPresenter QA-verification screen, ProPres MCP (preprod-only), 507-contact import (after email classification), Operator Runbook (pending Daniel seeing its value), fix the SessionStart hook, YouTube cat 28, Intro Graphic standardization. LATER = Signiant/RLN form auto-fill, OpusClip short-form. SKIP = "Create Episode L3 Package" bulk action, the 8-phase gfx-cue pipeline. DISCUSS (queue) = the rest.
 
@@ -335,6 +341,37 @@ Stated in the 2026-06-11 session while commissioning the Fable 5 pipeline missio
 - **Optimistic intake:** community/video/hearsay claims may be provisionally assumed true so work keeps moving, BUT every claim adopted into a plan must immediately spawn a verification agent (official docs, changelog, or live test) and carry a status: ASSUMED -> VERIFIED / PARTIAL / REFUTED. Nothing REFUTED or still-ASSUMED ships in a final build step.
 - The research phase runs as a **continuous loop with a minimum 5-hour runtime**, checkpoint-committing findings as it goes.
 - Seed corpus: `docs/_handoff/2026-06-11-video-research-queue.json` (99 curated videos, Jan-Jun 2026, from Daniel's Q1/Q2 sheets).
+
+**Lead-agent directive (Daniel, gospel 2026-06-11, spoken while reviewing the mission run):**
+Claude is the lead on the pipeline project. Wherever Claude holds a researched
+recommendation, it makes the call and records it here, dated, without re-asking; it asks
+Daniel only when it genuinely lacks the information for the right call, and batches those
+questions. Usage preservation: heavy mechanical work (transcript pulls, bulk file
+processing) routes to a separate local session on Daniel's other account whenever it can
+run without project context; outputs flow back via the mission branch. NOT waived, ever:
+merges need Daniel's yes, the Type-YES import gate, the live-rig in-the-moment yes, QNAP
+read-only, 1Password-only credentials.
+
+**Decisions exercised under that directive (Claude as lead, 2026-06-11):**
+- Install batch: YES to ccusage, claude-devtools, jkawamoto local transcript MCP,
+  supabase/agent-skills, vercel-labs/next-skills, commit-commands (all run on the Mac
+  prompt). The ergut REMOTE transcript MCP is DEFERRED, not installed: the Mac pull makes
+  cloud mining redundant; revisit only if the Mac run covers under ~60% of the queue.
+- Rundown Creator adapter (plan P1/decision 3): YES, build in slice 6 before any further
+  RC automation.
+- Transcription (P2/decision 4): BUILD local (WhisperKit + SpeakerKit per the canon
+  registry); revisit only if correspondent-segment diarization fails on the first episode.
+- Decision 6 taps: YES to all three - P7 five quality checks as soft warnings only, P14
+  gsr-research repo hygiene, and the jobs-queue internals on Supabase Queues (pgmq; same
+  Mac-polls-Supabase shape s12 locked, better plumbing).
+- Proposal dispositions locked as recommended in plan v3 section 6: P3 runbook after
+  slice 7; P4 fold guest-picker + Monday Tasks into the dashboard, keep lanes.html
+  standalone; P5 no separate STATUS.md; P6 skip extra L3 views for now; P11 live-ASR
+  deferred behind 10.3/10.4; P13 skip Cline rules. P16 stays exactly as Daniel ruled
+  (skip), with the standing exposure flag on record.
+- Still Daniel-only: decision 1 (merge the PR stack - his yes, two lanes offered),
+  decision 5 (calendar for the two working sessions; default Tue Jun 24 morning stands),
+  the Rumble send, and the physical Mac runs.
 
 ## 16. Security incident correction (Daniel + David, confirmed 2026-06-11)
 
@@ -354,3 +391,29 @@ Correct restrictions (as of 2026-06-11):
 - **QNAP:** Sensitive shared hardware. The rule is strict no write access and no admin dashboard access. Proceed with caution on anything touching QNAP. Tailscale for read access is always fine.
 - **Tailscale:** Only restricted when it would write to a server. Tailscale for read access is always permitted.
 - **Notion:** Wiki-only after ADR-0012 remains correct and unchanged.
+
+## 18. Booking + topic-evaluation frameworks (Daniel, promoted to canon 2026-06-11)
+
+Recovered verbatim from the GSR Interview Research project on 2026-06-08 (full text:
+`GUEST-CORRECTIONS.md` section 5); promoted here per Lane 8 so they govern every monthly
+slate. Use them when building or vetting guests and topics.
+
+- **Guest mix 40/40/15/5**, enforced at the 30-topic shortlist (not the 100-topic
+  longlist): 40% explicit creationists / ID proponents (ICR, Discovery, AiG, Logos),
+  40% neutral practitioners (NASA engineers, university researchers, field scientists,
+  medical researchers), 15% faith-friendly, 5% science communicators.
+- **Five-Point Stakes Assessment, all five or kill/reframe:** personal impact; visual
+  potential; novelty + universality; emotional payload (wonder, justice, awe,
+  understanding); accessibility ladder (teenager AND PhD).
+- **Four hook types (use what the story already has):** universal anchor; incongruity;
+  numbers made personal; consequence before cause.
+- **Tags:** accessibility tier BROAD / MID / SPECIALIST; worldview fit CLEAN / NEEDS
+  FRAMING / RISKY; guests carry a 0-100 fit score (90+ = bullseye).
+- **The Barentine Test:** the template is the John Barentine interview (Reflect Orbital's
+  50,000 mirrors): extremely fascinating or a clear "so what" for the average viewer,
+  universal anchors, real stakes, visible impact. A topic does NOT need a creationist
+  angle to qualify.
+
+Cross-reference, not duplicated here: confirmed is not booked; talking points only, never
+verbatim questions; chyron = 3 topic-relevant variations (s13).
+

@@ -1,0 +1,389 @@
+We can now use AI to make videos
+programmatically with Remotion and Claw
+Code. For example, for my application
+that I built called bookkeepers.cloud, I
+was able to use claw code, remotion, and
+hen to create a marketing trailer video
+for my products. Check this out. So,
+you're running a small business and you
+got receipts piling up, bank statements
+you have looked at, and tax season is
+right around the corner. Go to
+bookkeepers, upload your receipts, PDFs,
+photos, whatever, and throw in your bank
+statements too. Bookkeeper's AI will
+scan every receipts, pull out the
+details like vendor, dates, amount, and
+matches it to the bright bank
+transactions automatically with no
+manual data entries required. One click
+and everything is in a clean, organized
+spreadsheet, match, categorize, and
+ready for accountants. Bookkeepers is an
+all-in-one tool that manage your
+receipts, match your transactions, and
+get your books in order. So, what are
+you waiting for? Try bookkeepers for
+free today. Link in the description
+below. All right, so pretty much that's
+the trailer. And if you're interested to
+see how I use that to build my video for
+using remotion and clock code, then make
+sure to follow this video along. And by
+the end of this video, I'm going to show
+you exactly the five-step process that I
+use to make any videos using Remotion
+and CL code. So, with that being said,
+if you're interested, let's get into it.
+All right, so before we jump in, a quick
+intro for those who are new here. My
+name is Eric and I have spent years as a
+senior software engineer at companies
+like Amazon, AWS, and Microsoft. And I
+have started this YouTube channel to
+share everything I have learned along
+the way from AI and coding to
+automations, web three, career
+developments, and more. All broken down
+into practical tutorials that you can
+actually follow. So if you're ready to
+level up, make sure to check out my
+YouTube channel and hit that subscribe
+button. Now, let's get back to the
+video. All right, so first thing first,
+we're going to do here is to go to
+Remotion documentation. And right here
+you can see it gave us a command exactly
+how we can be able to install or add the
+reotion dev skills into our local
+machine. So this works with claw codeex
+or cursor and many other coding ids that
+we have here. So I'm just going to copy
+this command right here. And what I'm
+going to do here is I'm going to hop
+over to the terminal and here currently
+I'm in the root directory and I'm just
+going to paste this command right here
+and run this. So you can install this
+using bun but for my case here I'm just
+going to use the mpx here to install. So
+first thing first you can see that it
+has found one skill which is this remote
+best practice skill right and here these
+are the uh coding agents that we can be
+able to choose from. So I'm just going
+to choose my preference which is claw
+code but you can feel free to choose
+like open cloud or client or any other
+coding ids you like. So once you have
+chose that you're just going to click on
+enter. And here it's asking us if you
+want to install this in a project level
+or we can be able to install this
+globally which will be available across
+all projects. So here I'm going to
+choose the global option instead. And
+then in terms of installation here,
+we're just going to choose the sim link
+here for the recommendation. So once
+that's done, we're just going to say
+proceed with installation. And now you
+can see that we have one skills that's
+fully installed. All right. So next
+thing we're going to do here is to make
+sure to install reotion inside of our
+projects. So I'm just going to copy this
+command. And here what I'll do here is I
+basically create a folder called
+bookkeepers video and cd into it and
+basically run this command right here.
+Now once you have your project set up,
+this is what the project structure look
+like. And what we're going to do first
+is take a look at what we're going to
+try to create. So I have a image folder
+here and this is basically all the
+products the screenshots that I took for
+the product that I built. For example,
+the product that I built is bookkeepers.
+And here inside of the bookkeeper
+applications, there's the bank
+statements, the bank transactions,
+right? Where you can be able to view the
+source files, the entire transaction
+details as well as the comparison on how
+is it different compared to other
+competitors in the market as well as the
+confirmation on the match. Right? You
+can match a receipt with the bank
+transaction. There's also the the
+dashboard where you can be able to see
+the real stats on how much was spending,
+how much tax was being recovered and
+also the HST maybe like the GST or like
+tax breakdown on different stats as well
+as like different categories for the
+spending, the exports and also landing
+page, the receipt page, and also the
+three-step process. Right? Once you have
+the designs, you can feed this in into
+claw code. And you're simply just going
+to type in reotion best practice, which
+is the claw skill that it has created
+onto your local machine. And simply
+you're just going to tap into this and
+say things like based on the images that
+we have created here, right? These are
+all the images from our original
+application. Try to create a plan on
+exactly how we're going to build this.
+Right? That's part one. And part two is
+where we can be able to take trailers
+from like different products maybe like
+Apple, Claude or XYZ companies uh
+product trailer videos from YouTube or
+another place that you can be able to
+take a look is dribble.coms where
+there's so many product videos like for
+example this one right here which is
+showing in the main screen to show the
+entire product design or the product
+trailer video that you can actually be
+able to feed into Google studio which
+I'll show you in a second and convert it
+into a MD format the entire video
+prompts after it has analyzed frame by
+frame for the video that it provides.
+So, for example, I really like this
+Google Viz trailer video and I basically
+attach that in the Google AI studio and
+here is the exact prompt. So, I
+basically say that you're a frame by
+frame video analyst and I give you a
+product trailer and your job is to
+reverse engineer each scene, every
+elements, every animations, every color,
+text, transitions, everything convert it
+into a structured markdown document. And
+this is the entire full prompt. By the
+end of this video, I'll make sure to
+show you where you can be able to find
+this prompt. But follow me for a second
+here. And at the end of it you can see
+it will give you the entire answer on
+okay this is the title the products the
+frames the canvas the design tokens. So
+Google as studio already has this data
+and you just ask it it will basically
+analyze it try to give you exactly what
+you want. For example design tokens on
+the color the typographies the spacing
+the inventories scenes right and all the
+scenes breaking down like scene number
+one scene number two. So you can
+literally use this and tell exactly,
+okay, I want to create something similar
+to the Apple trailer video, right? Or
+claw trailer video or XYZ trailer video
+or trailer videos from dribble.coms for
+the UI inspirations. And you can
+literally just download it, right? And
+attach it in Google AI studio and it
+gives you a MD file and you can
+literally use that MD file here to
+basically tell claude exactly, hey,
+please look at this reference and try to
+design something similar to this, right?
+And literally that's the two-step
+process that I follow to generate the
+video that you saw in the intro video.
+And just want to recap really quickly
+the two things that I mentioned here is
+one taking screenshots for the current
+product that you're trying to you know
+sell that you're trying to you know that
+you have maybe like a landing page and
+the second is take a look at some
+inspirations right like YouTube videos
+or dripple.com's and try to find those
+things and for example in the context I
+have a MD file called the videos links
+and these are some of the inspiration
+that I really like from you know from
+different product trailers like chbt
+atlas or Google vids like some other
+video files from YouTube, right? And I
+use that as inspiration, follow the step
+two process that I follow by converting
+them into a MD file which contains the
+comprehensive blueprint for a particular
+trailer video, right? Where we can be
+able to replicate this in reotion. And
+this is the entire thing that I passed
+to claw code. And step three is really
+just try to you know execute. And the
+way how I do it is make sure to use the
+/remotion best practice because we just
+installed this onto our claw code
+session, right? So make sure to use tab
+to basically slash this scale right here
+to use it and design the remote that you
+want. And basically you just reference
+this context stuff and also the image
+stuff that you just that I just
+mentioned from step one and step two.
+First try to design the transcript
+first. Right here you can see this the
+entire transcript. Then I'll basically
+try to work uh backwards by saying that
+this is the transcript. These are the
+you know scenes that I really like.
+These are the current you know products
+that I have in our applications. Can you
+design a trailer video for this? All
+right. So once you use the reotion
+command here to build the first draft,
+then the first draft always is not going
+to be perfect. What I usually do here is
+I will try to make sure that we try to
+focusing on the reusable component first
+before we try to refine the scenes.
+Right? For example, here you can see
+there's a source folder and inside of it
+there is a components and components
+there's a shared folder. These are all
+the shared components that we are using
+throughout the entire scenes. So for
+example if I were to open you know do
+the mpm rundev here is the first scene
+right the hooks you can see the line
+here you can see the background color
+you can see the receipts and I carry the
+same thing over to the second scene as
+well right so you can see that the
+button here and if we were to look at
+this one you can see the background
+color is the same as the first scene so
+they are reusable right and here you can
+see this receipt here is showing in the
+first scene as well or this actually the
+scene number two uh and also the match
+scene as well so you can see the
+background color the buttons here the
+color are all exactly are using the
+reusable components that we have
+designed initially. So my recommendation
+is that always focusing on the reusable
+components because once you have those
+downs you can design how many scenes you
+want because you have already have the
+base components down right so once you
+have those downs you can be able to
+design as many scenes consistently
+throughout the entire you know story or
+whatever right uh you can design however
+you want because you have the share
+components okay so that's my
+recommendation make sure to focus on the
+share component first before you are
+going to create the stories okay that's
+the most important tip that I will give
+you. And the next step you're going to
+do here is basically try to iterating
+through, right? And one tip that I can
+give you that not a lot of people talk
+about is you can actually use /frontend
+design skill. I actually talk in the
+claw scale video which you can check out
+here. I talk about how you can be able
+to use the front end design skill to
+design something on the front end,
+right? You can actually use the same
+claw skill uh inside of your scenes. For
+example, once you have all the share
+components down and you struggle to put
+them all together like oh how should I
+be able to put this in this screen or
+how should I put this in this scene and
+you can literally just say oh uh friend
+of design skill give me a wireframe on
+you know for this particular scene this
+is a transcript can you give me a
+wireframe for using the share components
+that we have in our current library uh I
+want to design the scene right and the
+front of design skill will basically try
+to design it give you a wireframe oh
+this is what it looks like oh this is
+what it should be where this text should
+locate right? You can be able to pick
+that and basically try to let the front
+end design skill to design it and pieces
+all together and that's really one of
+the thing that I uh find it really
+helpful. So make sure to iterating
+through using the front end design skill
+if you can try to give enough context on
+the shared components right and tell it
+exactly what is the scene that you're
+trying to design and it will basically
+think of all the shared components you
+have and try to design it and also try
+to convert it into a wireframe if you
+can uh in the terminal confirm it before
+it started building that I find it
+really helpful if you're going to try to
+do this. So that's my take if you follow
+this five-step process that I mentioned
+this video and I'll make sure to put the
+all the resource inside of this
+repository like the entire prompts from
+video to prompts inside of the Google
+studio as well all the images right all
+the context as well as the transcript
+that I have for this video everything is
+inside of this repository now I do
+understand how difficult it is to
+building from scratch using reotion claw
+code and that's why I saved the entire
+projects like all the prompts into this
+zip file right here. If you open it, you
+have all the reasonable components, all
+the prompts that I use, and all the
+resources that I have inside of this
+repository right here. And I'll make
+sure to put this inside of our school
+community so that you can be able to
+download this and set this up on your
+local machine. So, pretty much that's it
+for this video. And currently, we only
+have one member in our community right
+now. Make sure to join our school
+community cuz I just switched from our
+Discord community right here all the way
+to our school community, which is what
+you see here. And I'll make sure that in
+the future all the video resources will
+be put in our community. And going
+forward, I'm also planning on hosting
+our first event where we're gonna have a
+Q&A sessions in the future for you to
+ask any questions you want in a Google
+Meet. So, if you're interested, please
+make sure to join our community. And I'm
+planning on doing that and expanding our
+community inside of the school. Just
+getting started today, moving all the
+course materials uh into our school. In
+the future, I'm also planning on
+creating a course and also plan on
+creating a pool to find out what are the
+courses that we're going to create
+inside of our pay community so you get
+access to that as well. All right, so
+pretty much that's it for this video.
+And if you do find out in this video,
+please make sure to like this video,
+consider to subscribe for more content
+like this. But with that being said,
+I'll see you in the next video.

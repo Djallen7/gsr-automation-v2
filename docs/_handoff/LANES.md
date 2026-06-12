@@ -28,7 +28,21 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-08 20:00:44 UTC (15 hours ago)._
+_Last updated 2026-06-11 21:55:19 UTC (5 hours ago)._
+
+## Live sessions (snapshot 10 hours ago)
+- **-Users-claudefix** [Unknown] 10 hours ago
+- **-Users-claudefix** [Unknown] 10 hours ago
+- **-Users-claudefix** [Unknown] 17 hours ago
+- **-Users-claudefix** [Unknown] 20 hours ago
+- **-Users-claudefix** [Unknown] 20 hours ago
+- **-Users-claudefix** [Unknown] 21 hours ago
+- **-Users-claudefix** [Unknown] 21 hours ago
+- **-Users-claudefix** [Unknown] 21 hours ago
+- **-Users-claudefix-Downloads-GSN-Dashboard-Local-GSR-GraphicsPackage** [Unknown] 21 hours ago
+- **-Users-claudefix** [Unknown] 21 hours ago
+- **-Users-claudefix** [Unknown] 21 hours ago
+- **-Users-claudefix** [Unknown] 21 hours ago
 
 ---
 
@@ -141,13 +155,15 @@ _Last updated 2026-06-08 20:00:44 UTC (15 hours ago)._
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 8) and GSR-WORKFLOW-CANON.md. Apply the recorded standards to any new data, and when ready, add the per-episode chyron-affiliation override on episode_guests (migration + types + verify).`
 
 ## Lane 9 - Autonomous research loop
-**Status:** PAUSED.
-**Summary:** Self-paced research queue. Paused; resume when wanted.
+**Status:** IN PROGRESS.
+**Summary:** Fable 5 pipeline mission (2026-06-11): Phase R complete + independently verified; PR stack #47/#50/#52 squash-merged 2026-06-12 (Lane A, Daniel's one-tap yes), CL-009 resolved, plan 0.2 truth sweep done. Next: Daniel merges PR #53, then Phase B lanes 10-15 open.
 **Done:** docs/_handoff/research-queue.md set up. Optimization report and per-stage tool suggestions produced.
 **To finish:**
-- Resume the queue when wanted (remaining items: per-direction UI research docs, etc.).
+- Merge PR #53 under the standing grant (in progress this session).
+- Open Phase B: item 1.0 import-gate hardening next, with mock-content testing, on the session branch.
+- Graphics + segment-timing questions go out as one-tap card batches when slices need them (decision 5 resolved).
 **Files:** `docs/_handoff/research-queue.md`
-**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 9) and docs/_handoff/research-queue.md. Resume the self-paced loop draining that queue, committing each result.`
+**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 9), docs/_handoff/2026-06-11-pipeline-build-plan.md (the plan, v3), docs/_handoff/2026-06-11-mission-run-notes.md (goal checklist + corrections), and docs/_handoff/2026-06-11-claim-ledger.json. If transcripts exist in 2026-06-11-transcript-pull-kit/transcripts/, mine them per item 3.2 (statuses mined/rejected, claims ASSUMED->verified). If Daniel has answered section 7, append answers to canon dated and open the Phase B lanes the plan lists in section 9. Starred defaults stand unless he says otherwise. Never bypass canon s15 gates.`
 
 ---
 

@@ -1,0 +1,354 @@
+Look at this. The entire file just
+rewrote itself with proper formatting
+and comments. An AI agent did it. 20
+lines of TypeScript. No entropic API
+key. Google Gemma 4 instead of Cloud.
+And I'll walk you through every line.
+Quick context before we build. You are
+probably already using Cloud Code, the
+official CLA from Enthropic, but you
+might not know Cloud Code is built on a
+public SDK that ships with it. It's
+called the Claude agent SDK. Same
+engine, same tool calls, same file
+editing, same agent loop. Anyone can use
+it directly. And here is the trick. You
+can point that SDK at any entropic
+compatible model, not just claude. Today
+we are using Google's Gemma 4 because if
+you can do it with Gemma, you can do it
+with anything. So now let's quickly
+start from scratch. First of all, we
+need to initialize the project and
+install the dependencies. So, first of
+all, I'm going to create a folder by
+using command mkdir AI agent. And let's
+go to the AI- agent folder and open in
+the editor. Now, let's quickly open the
+terminal of the editor. I'll use the
+bun. I'll recommend to use bun because
+bun is much faster as compared to the
+npm. So, I will be using bun in this
+video. So bun init-y
+and you see that the project is
+initialized very quickly within just 2
+seconds. So that was really fast and we
+got the node modules folder as well
+installed. Excellent. Now let's install
+the cloud agent SDK. So for that type
+bun add at the rate enthropic-
+ai/cloud
+agent- SDK. So this is official SDK. Hit
+submit. So just one package is required
+nothing else. Once it is installed then
+you are ready to use it. All right it is
+installed. Let me quickly take you to
+the package.json. You see we have only
+one dependency that is entropic AI
+claude agent SDK. Now I will show you a
+hello world demo via GMA 4. Before
+creating the actual agent we just want
+to make sure that we can talk to Gemma
+4. So for that first of all I will
+create the env folder and first thing I
+will add this environment variable
+entropic base URL and one very critical
+and important thing is that in this URL
+you should not add / v1 like this
+because that's a different open router
+endpoint. So if you want to use it with
+the entropic SDK then this will be
+compatible with the entropic SDK. We
+need another endpoint that is entropic o
+token. So here we will be saving the
+open router API key. I will get it from
+my account. So let's go to the browser.
+Create your account on open router if
+not created already and then go to the
+API keys and here you need to create a
+new API key. Make sure you have added
+the credits in your account already.
+Currently I have $3.14.
+I think these will be more than enough
+for this video. Now let's create the API
+key. And here I will just name it
+anything. And in the expiration I am
+going to set one day. I will still
+delete this key after completing this
+video. The key is created. Now just copy
+the key and and let's go back to the
+editor and paste the key here like this.
+Next uh we have to add this environment
+variable entropic API key. And we must
+have to keep it blank. This is mandatory
+that you have to keep it blank. If you
+have cloud code logged in because if you
+already have cloud code logged in in
+your computer and you're already using
+it and you don't set it to empty or
+blank then your SDK will try to use your
+cloud login instead of open router. So
+you will face issues and things will not
+work as expected. Just keep in mind if
+you are not using cloud code then you
+can just skip this environment variable.
+Anyways now next we need to add another
+variable that is entropic default set
+model and I'm going to set it to google
+/jam 426 billiona4 billion ID. So this
+is the trick cloud code routes by tier
+name. We override tier name to point at
+gema 4. So here we have added default
+set opus uh set model and here we have
+added the default opus model. So for
+both uh environment variable we will
+keep the same model jamma 4. Save it.
+Now open the terminal and we have to
+move the env file in the git ignore
+folder so that we don't commit our key
+accidentally to the github otherwise
+this will be a security risk. So for
+that I will just run echo.env TNV g
+ignore. All right. And let me show you.
+It is added to the g ignore at the
+bottom. Okay. Now let's quickly create a
+file here. Hello. TS. And here I'm going
+to paste my code that I'm going to use.
+So here you see we have we are importing
+the query function from this SDK
+entropic AI cloud agent SDK. And this is
+my for loop. And here I'm passing my
+prompt where I'm asking to say hello in
+exactly five words and if message type
+is assistant then this and if message
+type is result then show the results on
+the screen and it will also show the
+cost at the end that how much money we
+have spent so far. So let's open the
+terminal and run the command bun
+hello.ts. All right, we got the
+response. You see this was the actual
+response that we received from the AI
+and this is the version that we have
+passed and this is the cost of this
+single message. So this worked. Now
+let's create our actual agent. For that
+I'll create a folder by using mkdir-pr.
+Now I will create a file in source
+folder with the name message.js. Okay.
+So the file is created. Now let's paste
+some code in it. For that I will open
+nano source message.js. I can use this
+editor uh this file directly and paste
+my code in this file directly from the
+editor. But the problem is that
+currently the editor is configured in a
+way that it will automatically uh format
+the code and adds the proper spacing and
+indentations. But that is not what I
+want because I want to keep it messy so
+that I can give the opportunity to my
+agent to fix it by itself. So for that
+I'm just going to use nano and let's
+paste our code. So now you see that this
+is the messy code and there are no
+proper spacing and line breaks and no
+comments. So just let's save it and the
+code is added and now we can move on. So
+let's build the actual agent. For that
+here I'll create a file my- agent.ts
+and here I will paste this code code and
+here I'm importing the query from the
+SDK. I'm storing the prompt in this
+variable. So there are two options to
+create the prompt. First option is that
+I can either receive the prompt from the
+user input interactively from the
+terminal. User can type any prompt they
+want or if user don't provide any prompt
+then it will use this default prompt and
+the default prompt is saying that read
+src/
+messy.js GS file and rewrite it with
+clean formatting, proper spacing and a
+small JS doc comment on each function.
+And here we have the for loop and uh
+here I'm passing it the options where
+these are the tools that I am allowing
+this agent to use. It can read, edit,
+write files. It can use the bash
+commands to perform any actions in
+terminal and also giving it these tools
+and current working directory will be
+the source folder and the permissions
+mode is accept edit. So it will not ask
+for my permission. It will just decide
+and make the edits that it needs to do.
+And max turns are five. And here in that
+loop we are checking if message type is
+assistant then it will just print it in
+the terminal. But if the message type is
+result means it is a response from the
+AI. All right. So it's time to test it.
+Now open the terminal and here I will
+just type the command bun my- aents.ts
+and I'm going to hit enter. And at this
+time I didn't provide any prompt. After
+that that's mean it will simply use this
+default prompt and it will read the
+message messy.js file and it will
+rewrite it with clean formatting and
+proper spacing and small JS doc comment
+on each function. So let's see what it
+does. Hit enter. All right. I see some
+progress. You can just ignore this line
+because this is not about this agent.
+This is from my terminal zsh that I'm
+using. But it is still working. I don't
+have to touch anything. I don't have to
+give it any permission because I have
+provided the permission mode except
+edits. So it is still happening. You see
+that it is now thinking. This is the
+thinking payload. And here you see the
+thinking the reasoning behind it. The
+user wants to read this file etc.
+Actually I made a mistake in the source
+folder. It actually created a new folder
+source and create a new messy file. So
+as we are already in the src folder so
+we shouldn't say that it should be
+source folder we should just directly
+target or mention the message.js file
+without specifying the path because the
+folder where this agent will be
+activated in that folder for agent this
+file exist at the root of the folder
+where this agent is activated so we
+don't have to specify the folder so let
+me quickly save it and uh let me delete
+this folder and I will try it again. So
+it was completed already and it also had
+completed the maximum turns that I had
+set five that's why it was stopped.
+Anyways now let's run it again and this
+time it will look at the actual file and
+we'll update that existing file instead
+of creating a new one. All right, it has
+started and it is using these tools
+globe input. So in every step you see
+that it is using the tools and tool
+names are read and then again it is
+using the tool read. So you can watch
+every underlying details of this agent
+while it is working. It is still working
+and the message.js is not changed yet.
+So let's give it a bit more time. All
+right. So you see the entire reasoning
+and all of the changes all of the steps
+it has performed and it is done at the
+end it is giving you a summary that I
+have written messy.js with clean
+formatting proper spacing and JS doc
+comments for each function and cost is
+0.571
+around estimatedly and let's look at the
+results. So look at this this is the
+message.js JS file and it has updated it
+improved the spacing and added added the
+JS dock properly and it looks really
+nice. Now let's quickly try a custom
+prompt to verify that write plus bash
+also work if you just pass a random
+prompt from the terminal instead of
+relying on the default prompt. So for
+that I will just again use bun space uh
+my-agent.ts.
+Here I'm asking it create a new file
+utils.js JS with a function that
+calculates factorial of a number with
+full JS top and don't forget this agent
+will be activated within the same src
+folder that's mean whenever it will
+create a new file or folder that will be
+created within the source folder because
+source folder is the root directory of
+this agent. So let's hit submit and see
+what happens. All right, it has started
+and it has created the file util.js JS
+and it is saying done and cost is
+0.2371.
+And let's look at the utils.js.
+And look at this code. This is this
+looks really really nice, well formatted
+and looks professional. It has the JS
+doc on the top and here is the factorial
+function that it just created. So that
+was amazing. So you see we have around
+24 uh lines of code. Our agent is ready
+to be used and you can now do anything
+with the help of it. So before you ship
+this there are five things I learned the
+hard way. First one is cost reality.
+It's not actually free as you saw it was
+costing us money. Cloud code overhead is
+28,000
+input tokens per call. Each agent run
+cost is around 30 to 60 cents. So budget
+for it. And next thing is the /v1 trap.
+Open router has two APIs. The open AI1
+and the entropic one. We need the
+entropic one. Don't put / V v1 in the
+base URL here. Then API key. So if you
+have cloud code logged in then you have
+to set this entropic API key to empty
+otherwise the SDK uses your cloud login
+instead of open router. Fourth one is
+the 1 million suffix. Cloud code auto
+appends a 1 million context marker to
+the model names. Not every model on on
+open router has that variant registered.
+Gemma for paid works and many free ones
+don't. So for example we have added this
+model name but uh this SDK automatically
+add a suffix like this 1 m and if that
+matches on your open router model name
+then it will work if not then it won't.
+So this suffix works with this model. It
+might work with other models but you
+have to check yourself that which model
+can work with this suffix. So number
+five is it's the primitive not the full
+product. This is the foundation. Cloud
+code itself has sub aents, MCP servers,
+skills/comands,
+hundreds of features on top of this. You
+are building the base. Although you
+still have full flexibility here because
+this uh SDK cloud agent SDK is very
+powerful. It has capability to build
+anything you want. You can add MCP
+servers. You can add any tools. You can
+add custom tools or whatever you want to
+do, you can do with the help of this.
+This is very powerful. But in this code,
+we just built the foundation. Currently,
+this version is not the 100% replacement
+of the cloud code, but it is a good
+starting point to have a solid
+understanding that how things work
+behind the scene and how you can scale
+it up to build something very powerful.
+All right, that's it. 20 lines of
+TypeScript code, cloud agent SDK,
+Google's Gemma 4, a real working AI
+coding agent. Source code link is in the
+description. So, clone it, swap it in
+any model you want. See what happens.
+This is video number four in my cloud
+code customization series. CloudMD
+skills, hooks, all linked below.
+Subscribe for more AI dev workflows and
+tell me what model would you run this
+with. Best one in the comments goes in
+the next video.

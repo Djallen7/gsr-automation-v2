@@ -117,6 +117,15 @@ Requirements that bound the synthesis:
   centered-everything layouts, no purple gradients, no uniform rounded corners, no Inter
   font; KPI-row-first dashboard anatomy (headline numbers, then work surfaces, then
   detail).
+- **Adjust pass (2026-06-12, Daniel's "Adjust first" tap):** preview audited against the
+  `redesign-skill` + `taste-skill` in Daniel's taste-skill repo and the official
+  `frontend-design` skill in his skills repo. Fixes applied: 10px label floor enforced
+  everywhere, two-tier radius rule (containers 10px / controls 6px), shadows tinted to
+  the navy instead of pure black, pressed states + keyboard focus rings added, hero
+  headline given display presence (tighter tracking, balanced wrap), countdown gets the
+  one permitted glow. The exact ui-ux-pro-max pack on the Mac stays un-synced (cloud
+  cannot read Mac paths); its uploaded members (design-system, web-artifacts-builder,
+  build-dashboard) are absorbed above.
 
 **Donor map (the most intuitive + elegant aspect of each example, combined):**
 - **World 01 Deep Field:** the palette discipline (ONE warm accent on deep teal blacks; amber
@@ -158,7 +167,8 @@ Requirements that bound the synthesis:
 --accent:#E8A84C;                       /* brand / active / primary action ONLY */
 --ok:#34D07A; --warn:#FFD234; --danger:#FF3B5C; --hold:#4A9EFF; --draft:#8A9BB5;
 /* glass: blur(12px) saturate(130%); border rgba(255,255,255,.10), top edge .16;
-   inset top catch-light + deep double shadow (W01/W09 stack); radius 6px;
+   inset top catch-light + deep double shadow tinted to the navy (never pure black);
+   radius rule: containers 10px, controls 6px (documented two-tier scale);
    one full-screen grain layer at 0.028 opacity (never per-panel) */
 ```
 

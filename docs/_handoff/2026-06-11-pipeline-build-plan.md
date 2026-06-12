@@ -281,10 +281,10 @@ Cite: mission Phase S rules.
 
 ### Slice 4 - Quick wins batch (Lane 8 mostly) (Jun 12-14, parallel)
 
-**4.1 Rumble Upload API request sent.**
-Ship Jun 12 · Owner: Daniel, one tap (send the drafted Gmail from a working account) · $0.
-Done when: sent without a bounce; follow-up reminder set for +7 days.
-Cite: canon s13 Rumble correction (the 2026-05-15 bounces were sender-side).
+**4.1 Rumble Upload API request sent. ✓ CLOSED 2026-06-12 (answered).**
+Daniel sent it; Rumble replied they have NO working API at the moment. No follow-up
+needed. Build impact: none (Phase 1 already used manual web upload for Rumble).
+Re-check ~Sep 2026 or if Rumble announces an API. Cite: CL-329.
 
 **4.2 Booking frameworks promoted into canon.**
 Ship Jun 13 · Lane 8 · Effort S · $0.
@@ -722,7 +722,7 @@ ergut deferred with reason). Open and his alone: decision 1 (the merge) and deci
    call because it refines a decision you made). Recommend: yes to all three; each lands
    in canon, dated, after your yes.
 
-One owner ACTION, not a decision: tap send on the drafted Rumble email (4.1).
+~~One owner ACTION: tap send on the drafted Rumble email (4.1).~~ DONE + answered 2026-06-12 (no working API; manual stays).
 
 ---
 

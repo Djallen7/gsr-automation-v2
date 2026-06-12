@@ -86,7 +86,8 @@ reverse-engineering the live system, but you would not want to.
 - `docs/_handoff/lanes.json` — source of truth for the lanes tracker (LANES.md and lanes.html are generated from it).
 - `docs/_handoff/2026-06-11-claim-ledger.json` — the verified-claims ledger (VERIFIED/PARTIAL/REFUTED evidence base for every build decision).
 - `docs/_handoff/2026-06-11-pipeline-build-plan.md` — the build plan of record (slices 0-10 + addenda).
-- `docs/_handoff/2026-06-12-dashboard-redesign-plan.md` — the dashboard redesign plan of record (canon s19 directive: liquid glass theme spec, navigation IA, R1-R5 sequence).
+- `docs/_handoff/2026-06-12-dashboard-redesign-plan.md` — the dashboard redesign plan of record (navigation IA + build sequence; the visual sections were retired by the 2026-06-12 UI fresh start).
+- `docs/_handoff/DESIGN-TASTE.md` — the ONLY visual design guidance (Daniel's reactions, append-only; all older mocks/UI advice live in `docs/_archive/2026-06-12-ui-fresh-start/` and are not guidance).
 - `docs/_handoff/2026-06-11-mission-run-notes.md` — mission decisions, verifier verdicts, incident retros, standing procedures.
 - `docs/_handoff/2026-06-11-fable5-mission-prompt.md` — the mission contract the research phase executed under.
 - `docs/_handoff/2026-06-08-review-decisions.md` — full record behind canon s13 (Daniel's gospel decisions).

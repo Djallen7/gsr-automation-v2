@@ -48,11 +48,11 @@ Output: `docs/course/module-0-orientation.md`
 Draft the end-of-course handoff: detailed instructions plus copy-paste AI prompts that tell a fresh Claude Code session to complete the system build from the repo plus the course's enriched export file. Include a spec for a "Pipeline Review" interactive HTML that flags weak/fragile points. Theme-agnostic.
 Output: `docs/course/finish-the-build.md`
 
-### [todo] T5 - Per-direction UI research docs (7 sub-deliverables, one per loop pass)
+### [superseded] T5 - Per-direction UI research docs — RETIRED by the 2026-06-12 UI fresh start (the bake-off frame is dead; do not produce these)
 For EACH of the 7 directions (calm-minimalism, editorial-density, material3, neo-brutalist, bento, humanist, mission-control-ops), write a focused research doc: defining principles, color tokens, type, layout, components, motion, accessibility/mobile, and GSR-fit. Re-research from the web as needed; ground in the repo. Do one direction per iteration so each is committed before the next.
 Output: `docs/ui-research/<slug>.md` (e.g. `docs/ui-research/calm-minimalism.md`)
 
-### [blocked-needs-daniel] T6 - Build the chosen UI direction into a full working mock
+### [superseded] T6 - Build the chosen UI direction into a full working mock — RETIRED by the 2026-06-12 UI fresh start (no mock builds until Daniel's go after the words-first design pass; see docs/_handoff/DESIGN-TASTE.md)
 Blocked until Daniel picks a direction (or two) from the bake-off. Do NOT choose for him. Once chosen, build the full multi-screen mock + screenshots in that direction.
 Output: (TBD after the decision)
 

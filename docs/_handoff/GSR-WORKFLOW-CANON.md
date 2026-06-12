@@ -439,8 +439,9 @@ worksheet HTML files).
   and the wider pipeline), not tool-named pages.
 - **Supersedes:** the 7-direction bake-off as a decision frame, and the unstyled
   "one on-brand theme" placeholder in answer 3A. The operational structure from 3A
-  (per-role Today queue + Pipeline Matrix, mobile-first) stands and is what the liquid
-  glass theme is applied to.
+  (per-role Today queue + Pipeline Matrix, mobile-first) stands; the visual treatment
+  applied to it is governed by `docs/_handoff/DESIGN-TASTE.md` (see the fresh-start
+  entry below).
 - Plan of record: `docs/_handoff/2026-06-12-dashboard-redesign-plan.md`.
 
 **Confirmations (Daniel, one-tap cards, 2026-06-12 late session):**
@@ -453,12 +454,31 @@ worksheet HTML files).
 - claude.ai/design sync: **build the real components first, then sync from the Mac**
   (this cloud session has no claude.ai/design connection; a skills folder is not a
   component library). CONFIRMED.
-- Liquid glass look: **APPROVED (Daniel, one-tap, 2026-06-12 late session).** After the
-  skill-audit adjust pass, Daniel compared four styles side by side (liquid glass v2,
-  editorial minimal, Swiss print, soft structural — the latter three staged in
-  `docs/ui-mocks/alts/`) and picked **A · Liquid Glass**. The dark navy glass theme is
-  the dashboard's visual direction of record; the alternates stay in the repo as
-  reference only.
+- Liquid glass look: one-tap approval **RESCINDED later the same day** (see the
+  fresh-start entry below, which governs).
 - Note for the record: an earlier identical card round returned opposite answers on three
   items; the later, clarified round above governs (his latest word wins).
+
+**UI FRESH START (Daniel, 2026-06-12, latest word — governs over everything above):**
+- After living with the four mocks on his phone, Daniel rescinded the Liquid Glass pick.
+  Of the three alternates, **Soft Structural** felt best ("cleaner"), but **no mock is
+  approved** and he wants **no new mockups yet**.
+- Core design law, his words: he cannot look at walls of numbers without getting
+  overwhelmed. **Visual elements must tell the story on the dashboard's behalf; numbers
+  are detail, one tap deep.** Every element must exist for a stateable reason and the
+  whole must be cohesive. A generic/ugly template dashboard is equally rejected.
+- He declared a **fresh start on design guidance**: every mock and UI-advice doc was
+  archived to `docs/_archive/2026-06-12-ui-fresh-start/` (12 mock HTML files + the 4
+  ui-research briefs) and none of it is guidance anymore. The ONLY live visual guidance
+  is `docs/_handoff/DESIGN-TASTE.md` (his reactions, append-only). Redesign-plan
+  sections 4–5 (theme synthesis, donor map, token sheet, screen blueprints) are retired
+  with the archive.
+- Process, per Daniel: he cannot spec a look in words and question batteries don't work;
+  he specs by reacting ("no, I don't like that" is the data). Required loop: research +
+  planning first, then a words-first brainstorm with him, mockups only after that, one
+  screen at a time, on his real data, phone first, every reaction logged in
+  DESIGN-TASTE.md so nothing is re-asked.
+- Unchanged by the fresh start: the five-place navigation, the 12-station pipeline, all
+  gates, and the build-then-sync answer on claude.ai/design. Those are structure, not
+  styling, and remain CONFIRMED.
 

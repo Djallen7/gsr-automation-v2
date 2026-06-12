@@ -18,7 +18,7 @@ You are resuming a GSR work lane. Follow these steps exactly. Plain English, no 
      - Episode/data lanes: use the Supabase MCP (project `lafkbxypmciopebentxp`, READ ONLY first) to read current rows; reference `docs/_handoff/2026-06-08-s3-ep1-16-dataset.md`.
      - Rundown Creator lane: use the RC API recipe in that lane (env `RUNDOWN_CREATOR_API_KEY`/`RUNDOWN_CREATOR_API_TOKEN`, trim whitespace, url-encode; actions getRundowns/getRows/getScript).
      - Basecamp lane: read `docs/_handoff/2026-06-08-basecamp-map.md` if present; use the Basecamp env vars if set.
-     - UI lanes: open the relevant mocks in `docs/ui-mocks/` and the UI strategy/bake-off docs in `docs/_handoff/`.
+     - UI lanes: the ONLY visual guidance is `docs/_handoff/DESIGN-TASTE.md` (UI fresh start, 2026-06-12). Do NOT load mocks or UI advice from `docs/_archive/2026-06-12-ui-fresh-start/`; that folder is retired, not guidance.
      - Course lane: read `docs/_handoff/gsr-automation-v2-course.html`.
    - Note explicitly what the lane is blocked on.
 

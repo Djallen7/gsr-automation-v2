@@ -1,15 +1,16 @@
-# Dashboard Redesign Build Plan — Liquid Glass (2026-06-12)
+# Dashboard Redesign Build Plan (2026-06-12)
 
 **Directive (Daniel, gospel 2026-06-12, canon s19):** scrap the current dashboard UI; it was
 designed from outdated information. Rebuild with (1) only the features and elements Daniel
-has been talking about recently (canon s12–s15 + the 2026-06-11 pipeline build plan), (2) an
-elegant liquid glass theme combining the most intuitive and elegant aspects of his supplied
-example mocks (worlds 01, 05–10 + the older pipeline/bake-off/worksheet files), and (3)
-navigation that matches and fits the actual workflow.
+has been talking about recently (canon s12–s15 + the 2026-06-11 pipeline build plan), and
+(2) navigation that matches and fits the actual workflow.
 
-**Anti-churn declaration:** deliverable = this plan + a phone-openable liquid glass theme
-preview, shipping today (2026-06-12). The build itself lands as the redesign PRs below,
-absorbing build-plan slice 5 (Lane 1) and the UI half of slice 1, finishing by Jun 25.
+> **STATUS (2026-06-12, late — fresh start):** the VISUAL half of this plan is reopened.
+> Daniel rescinded the liquid glass pick, archived every mock and UI-advice doc to
+> `docs/_archive/2026-06-12-ui-fresh-start/`, and set the only live visual guidance as
+> `docs/_handoff/DESIGN-TASTE.md`. Former sections 4–5 of this plan (theme synthesis,
+> donor map, token sheet, screen blueprints) are retired with that archive. Sections 1–3
+> below (workflow, why-scrap, navigation/IA) remain CONFIRMED by Daniel and unchanged.
 
 This plan does not change any gate. Type-YES import, dry-run-first, held extraction,
 ProPresenter human-push, QNAP read-only: all unchanged. The redesign treats every gate as a
@@ -60,7 +61,7 @@ things recent canon actually asks for. Theme is default shadcn light gray with n
 
 ## 3. The new information architecture (recent-canon features only)
 
-Primary navigation (desktop: glass sidebar; phone: bottom tab bar), role-ready per canon
+Primary navigation (desktop sidebar; phone bottom tab bar), role-ready per canon
 s12 (Daniel sees all; per-role logins stay deferred):
 
 1. **Today** (`/`) — the per-role queue (answer 3A): approvals waiting (variation picks,
@@ -86,14 +87,14 @@ s12 (Daniel sees all; per-role logins stay deferred):
 **Pipeline stations (one list, canonized):** the older mocks carried three competing stage
 lists (a 9-column matrix, a 10-node course diagram, a 12-row superset) — the 9-column
 matrix silently dropped Lower Thirds, Rundown, and Transcript, all real gated steps.
-Recommended canonical list = the 12-station superset with owners (canon s8/s12):
+Canonical list = the 12-station superset with owners (canon s8/s12, Daniel CONFIRMED):
 Script (Daniel) → Guests (Daniel) → Lower Thirds (Daniel approves) → Graphics (Isaac +
 interns) → Rundown (Daniel confirms the preview) → ProPresenter (human load) → Record
 (crew, no automation) → Edit/Review/Export (Isaac) → Transcript (Mac, automated) →
 Metadata + Thumbnail (Myriam) → Distribution (Myriam) → Aired (Myriam). The matrix shows
 each role its relevant columns; the phone shows a 12-segment bar per episode.
 
-Reserved slots (appear when their slices land, greyed glass tiles until then): **Graphics**
+Reserved slots (appear when their slices land, greyed tiles until then): **Graphics**
 (the locked s9 side-by-side design; builds after the graphics decision cards), **Schedule**
 (6.5 Basecamp read-only season calendar), **System** (gear menu: jobs heartbeat, maturity
 dial per task, import history; absorbs `/toolkit`). Mac Mail / Apple Notes surfaces stay
@@ -101,159 +102,66 @@ feature-flagged OFF until role auth (7.5 red-team gate).
 
 Old routes 301/redirect to their new stations so nothing Daniel bookmarked breaks.
 
-## 4. The liquid glass theme (synthesis of Daniel's examples)
+## 4. Visual direction — REOPENED (fresh start, 2026-06-12 late)
 
-Requirements that bound the synthesis:
-- **Legibility first (the David Rule applied to UI):** status, counts, and gate confirms
-  must read at a glance on a phone in a control room. Glass never sits under body text at
-  under 4.5:1 contrast (WCAG 2.2 AA, per the ui-research briefs); blur is for surfaces,
-  not for information.
-- **Performance:** `backdrop-filter` layers are expensive; cap nested blur layers at 2,
-  use composited transforms only, respect `prefers-reduced-motion`, and keep ambient
-  animation off the phone profile.
-- **One theme, dark, space-grade:** matches the show's identity (creation-science /
-  astronomy) without cosplay; data surfaces stay neutral so status colors carry meaning.
-- **Anti-slop guardrails (from Daniel's uploaded skill pack, 2026-06-12):** no
-  centered-everything layouts, no purple gradients, no uniform rounded corners, no Inter
-  font; KPI-row-first dashboard anatomy (headline numbers, then work surfaces, then
-  detail).
-- **Adjust pass (2026-06-12, Daniel's "Adjust first" tap):** preview audited against the
-  `redesign-skill` + `taste-skill` in Daniel's taste-skill repo and the official
-  `frontend-design` skill in his skills repo. Fixes applied: 10px label floor enforced
-  everywhere, two-tier radius rule (containers 10px / controls 6px), shadows tinted to
-  the navy instead of pure black, pressed states + keyboard focus rings added, hero
-  headline given display presence (tighter tracking, balanced wrap), countdown gets the
-  one permitted glow. The exact ui-ux-pro-max pack on the Mac stays un-synced (cloud
-  cannot read Mac paths); its uploaded members (design-system, web-artifacts-builder,
-  build-dashboard) are absorbed above.
+The former contents of this section (liquid glass synthesis, donor map of the ten example
+mocks, CSS token sheet, type/motion spec) are retired to the archive and are not guidance.
 
-**Donor map (the most intuitive + elegant aspect of each example, combined):**
-- **World 01 Deep Field:** the palette discipline (ONE warm accent on deep teal blacks; amber
-  reads "tally light," not toy) and the System integrations tile (it already names the real
-  stack: Rundown Creator, Supabase, Lower Thirds 0/15).
-- **World 05 Event Horizon:** the clearest status ramp (ok/warn/danger/hold/draft as five
-  distinct hues; **hold = blue, "waiting on a person," never red**) and the big-number
-  summary triptych form.
-- **World 06 Cassini Rings:** the Alloc/Actual/Delta timing data model, the document-flow
-  band layout (the only example that degrades gracefully to a phone), and the cheap
-  one-listener specular highlight.
-- **World 07 Heliophysics:** the progress instrument panel (linear gauges animating to value:
-  L3s locked, script rows confirmed, booking fill) and per-row completion micro-bars.
-- **World 08 Celestial Nav:** the circular runtime gauge with an over-run arc and the brand
-  mark idea (the star chart and fantasy RA/Dec readouts are dropped: decoration posing as
-  data is a credibility risk).
-- **World 09 Aurora Signal:** THE glass recipe (neutral white-alpha borders so status colors
-  keep their meaning), the row anatomy (title + context subtitle), and the only example with
-  honest time semantics ("Headroom +3:35" positive, never alarming an under-target show).
-- **World 10 Cosmic Telemetry:** the app shell (sticky glass header, normally scrolling body,
-  sticky status bar — the only phone-viable skeleton), the 6-cell KPI strip, explicit
-  OK/OVER flags, count-up numbers (the FUI costume — particles, scanlines, glitch,
-  crosshair — is dropped).
-- **Pipeline v3 (Daniel's earlier favorite):** the hard color rule (**RED = needs you /
-  GREEN = done / GOLD = brand + active only, never a warning / VIOLET = deferred**), glass
-  reserved for chrome + hero while data sits on quiet surfaces, near-flat background behind
-  data, the air-date alarm, colorblind-safe glyphs (shape + color, never color alone),
-  phone segment-bars, the designed empty state.
-- **Flight worksheet:** the pre-filled tap-to-change decision pattern ("Pre-filled (my
-  suggestion) — tap to change", "Show only what I changed"), 40px touch targets.
+What governs now:
+- `docs/_handoff/DESIGN-TASTE.md` — Daniel's reactions, the only visual rulebook. Current
+  laws: no walls of numbers on front screens (visuals tell the story; numbers one tap
+  deep); cleaner beats richer (Soft Structural felt best of the four mocks, on phone, not
+  approved); every element needs a stateable reason; not generic either (character from
+  real show content); phone first.
+- Next step (R0, awaiting Daniel's go): a research + planning pass on calm visual-story
+  status surfaces, then a words-first brainstorm with Daniel about the story each screen
+  tells — especially Today. No mockups until he says go after that conversation.
+- Accessibility and safety floors carry over as engineering constraints (not styling):
+  WCAG 2.2 AA contrast for body text, status triple-encoded (color + shape + word),
+  40px touch targets, `prefers-reduced-motion` respected, no perpetual animation layers.
 
-**Token set (the R1 deliverable, as CSS custom properties):**
+## 5. Screen blueprints — RETIRED
 
-```css
---bg-void:#04080f;                      /* W01 deep teal-black */
---surface-1:rgba(6,14,22,0.58);         /* panels (W09) */
---surface-2:rgba(8,14,26,0.72);         /* dense/mobile panels (W10: opaque = legible) */
---text-hi:#c8dde8; --text-mid:rgba(200,221,232,0.55); --text-dim:rgba(200,221,232,0.28);
---accent:#E8A84C;                       /* brand / active / primary action ONLY */
---ok:#34D07A; --warn:#FFD234; --danger:#FF3B5C; --hold:#4A9EFF; --draft:#8A9BB5;
-/* glass: blur(12px) saturate(130%); border rgba(255,255,255,.10), top edge .16;
-   inset top catch-light + deep double shadow tinted to the navy (never pure black);
-   radius rule: containers 10px, controls 6px (documented two-tier scale);
-   one full-screen grain layer at 0.028 opacity (never per-panel) */
-```
+The detailed blueprints (KPI strips, big-number triptychs, count-first queues) were built
+on the number-grid idiom Daniel has now rejected. Screen content gets redesigned in the R0
+design pass around stories, not stats. The structural decisions in section 3 (which
+screens exist, what each absorbs, the gates each carries) are unchanged.
 
-Type: Archivo Narrow 600/700 for titles (tracked caps) + Archivo body at 13px +
-JetBrains Mono with `tabular-nums` for every number, count, and timecode; labels never
-under 10px. Motion budget: entrance fade-up stagger (60ms), gauges animate to value once,
-one heartbeat dot, hover = border brighten; all behind `prefers-reduced-motion`; **no
-perpetual canvas/animation layers**; specular = one root-level listener behind
-`(pointer: fine)`. Background: near-flat deep-space gradient + scrim, no starfield behind
-data, never `background-attachment: fixed` (breaks on iPhone). Accessibility floor: 4.5:1
-body contrast on glass, status triple-encoded (color + glyph + word), 40px touch targets.
+## 6. Build sequencing (revised for the fresh start)
 
-## 5. Screen blueprints
-
-- **Today:** hero strip (this week on air + on-track chip + countdown), the W10 KPI strip
-  (6 cells: next air, L3s approved, held extractions, YES gates waiting, guests confirmed,
-  webstream), then the v3 queue in three tiers — **"Blockers - needs you now"**, **"Due
-  before Tuesday"**, **"FYI"** (collapsed) — items verb-first with exactly one button and
-  the evidence on the gate itself ("Type YES to import 14 lower thirds — dry-run: 14 rows,
-  0 rejected"). Decision cards use the flight-worksheet pattern (recommendation pre-filled,
-  tap to change). Designed empty state: "Nothing needs you right now. Next air Tue 8:00p,
-  on track."
-- **Episodes / Pipeline Matrix:** rows = episodes (S03EPxxx + title, frozen column),
-  columns = the 12 stations; glyph cells (shape + color); per-column "n cleared" counters;
-  **"In post" / "In production"** bands; per-row on-track / watch / behind chip; the
-  **air-date alarm** (a row flags red within ~7 days of air if not yet at Distribute —
-  the David Rule as UI). Tap a row → episode workspace (script, lower thirds, guests,
-  distribution in one place, one "current stage needs attention" card with one primary
-  action). Phone swaps the table for per-episode 12-segment bars. Realtime via the
-  broadcast-from-database pattern (CL-018), no polling.
-- **Lower Thirds hub:** three stages as glass panels — Intake (drop zone + episode/segment
-  picker + held-extraction list), Review (s9b: segment tabs, beat rows, Primary/Var1/Var2
-  selectable, char-band pill colored 55/60–65/70, cycle-variation button, 15-count meter on
-  monologue), Send (approved set, ALL-CAPS preview, dry-run → counts → type YES). The gate
-  modal is a styled liquid-glass moment: counts huge, YES field centered.
-- **Distribution hub:** webstream milestone header per episode (Mon 4PM ET countdown);
-  platform cards in registry order with per-platform status + the action that platform
-  actually supports in Phase 1 (YouTube: flip-public check; Rumble: prep card with
-  copy buttons for file/title/description/tags/thumbnail/schedule; Dropbox: drop confirm;
-  StreamHoster: FTPS handoff status; RLN: Signiant + the -20 LKFS note; GSN: handoff card;
-  podcast: episode MP3 status). Nothing fires uploads from the dashboard in Phase 1; cards
-  track + prep.
-- **Guests:** searchable glass list, guest sheet drawer: affiliations (multi, topic-relevant
-  chyron picker), appearances, do-not-book / correction flags surfaced loudly.
-
-## 6. Build sequencing (PR-sized, each mock-tested + screenshotted before report)
-
-- **R1 — Theme foundation (Jun 13–14):** design tokens as CSS custom properties, glass
-  primitives (GlassPanel, GlassCard, StatusChip, GateConfirm), nav shell (sidebar + bottom
-  tabs), background system. No data-logic changes. Screenshots desktop + phone.
-- **R2 — Today + Pipeline Matrix (Jun 15–16):** both screens on real episode/guest data,
-  realtime status. View-only = safe inside the Daniel-light window (the only thing he taps
-  before Jun 16 is nothing — these need no input).
-- **R3 — Lower Thirds hub (Jun 16–18):** consolidate the six pages into the staged hub;
-  all existing gates wired through unchanged (server YES token already enforced); the
-  slice-1 items (first real import 1.4, variations flow 1.5, three-column comparison 1.6)
-  ride on this hub instead of the old pages.
-- **R4 — Distribution hub v1 + Rumble prep card (Jun 19–20):** registry cards + the 4.1a
-  prep card for a mock episode (its standing ship date holds).
-- **R5 — Guests reskin + episode workspace polish + redirects (Jun 21–23):** old routes
-  redirect; screenshots embed into course m13 (5.3); urgency tracker (5.2) and the
-  decision-card surface land on Today.
-- **Slice-5 close (by Jun 25):** sweep, mobile pass, `tsc`/`eslint` clean, LANES + canon
-  updated, course facts reconciled.
+- **R0 — Design pass (BLOCKS visual work; starts on Daniel's go):** research how calm,
+  glanceable products tell status visually; draft the Today screen's story in words;
+  brainstorm with Daniel; log every reaction in DESIGN-TASTE.md; only then mock ONE
+  screen, on real data, phone first.
+- **Structural work that may proceed during/before R0 (visually quiet, default styling):**
+  route consolidation + redirects, nav shell (five places + reserved slots), data wiring
+  for Today/Matrix queries, realtime via the broadcast-from-database pattern (CL-018).
+  Nothing visual gets polished before R0 lands.
+- **R1–R5 (re-dated after R0):** theme foundation → Today + Pipeline Matrix → Lower
+  Thirds hub (gates unchanged; slice-1 items 1.4/1.5/1.6 ride on it) → Distribution hub
+  v1 + Rumble prep card (4.1a keeps its ~Jun 20 ship target) → Guests reskin + episode
+  workspace + redirects + m13 screenshots. Each step mock-tested + screenshotted
+  (desktop + phone) before reporting, `tsc`/`eslint` clean.
 
 ## 7. Supersedes / does not touch
 
-- **Supersedes:** the 7-direction bake-off as a decision frame (preview-1..7 files stay in
-  git history); the unthemed "one on-brand theme" placeholder in 3A; the tool-named page
-  set. Lane 1 is updated to carry this plan.
+- **Supersedes:** the 7-direction bake-off as a decision frame; the unthemed "one
+  on-brand theme" placeholder in 3A; the tool-named page set; the liquid glass theme
+  synthesis and its preview (archived 2026-06-12).
 - **Stands (recent canon, unchanged):** the operational structure (Today queue + Pipeline
   Matrix + mobile-first, answer 3A); every locked page design (s9 graphics side-by-side,
-  s9b lower-thirds spreadsheet + send, s9c rundown preview grid) — they get the glass skin
+  s9b lower-thirds spreadsheet + send, s9c rundown preview grid) — they get the new skin
   when their slices build; all gates; the maturity dial; role scopes (auth deferred).
 - **Not in scope here:** graphics page build (awaits decision cards), Basecamp schedule
   view (6.5), ProPresenter push (slice 10), Mac-worker surfaces (slice 7).
 
-## 8. One-tap confirms for Daniel — RESOLVED (one-tap cards, 2026-06-12 late session)
+## 8. One-tap confirms for Daniel — status
 
 1. Section 1 workflow statement: **CONFIRMED correct.**
 2. Navigation set (Today, Episodes, Lower Thirds, Distribution, Guests + reserved):
    **CONFIRMED.**
 3. The 12-station pipeline list as the one canonical stage vocabulary: **CONFIRMED.**
-4. Theme: **APPROVED — A · Liquid Glass** (Daniel's one-tap pick, 2026-06-12, chosen over
-   three skill-built alternates in `docs/ui-mocks/alts/`: editorial minimal, Swiss print,
-   soft structural). The adjusted glass preview
-   (`docs/ui-mocks/2026-06-12-liquid-glass-dashboard-preview.html`) is the visual contract
-   for the build. All four confirms are now settled; nothing in this plan awaits input.
+4. Theme: **REOPENED.** The one-tap A · Liquid Glass pick (2026-06-12) was rescinded by
+   Daniel later the same day in the fresh-start message. No mock is approved; visual
+   direction runs through DESIGN-TASTE.md and the R0 design pass. Items 1–3 are
+   unaffected.

@@ -28,11 +28,11 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-12 13:27:35 UTC (57 minutes ago)._
+_Last updated 2026-06-12 13:27:35 UTC (2 hours ago)._
 
-## Live sessions (snapshot 21 hours ago)
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
+## Live sessions (snapshot 22 hours ago)
+- **-Users-claudefix** [Unknown] 22 hours ago
+- **-Users-claudefix** [Unknown] 22 hours ago
 - **-Users-claudefix** [Unknown] 1 day ago
 - **-Users-claudefix** [Unknown] 1 day ago
 - **-Users-claudefix** [Unknown] 1 day ago
@@ -56,7 +56,7 @@ _Last updated 2026-06-12 13:27:35 UTC (57 minutes ago)._
 - R1-R3 re-dated after R0: theme foundation per DESIGN-TASTE.md; Today + Pipeline Matrix on real data; Lower Thirds hub (gates unchanged).
 - R4 Distribution hub v1 + Rumble prep card 4.1a (~Jun 20 target holds).
 - R5 Guests reskin, episode workspace polish, redirects, m13 screenshots; slice-5 close re-dated after R0.
-**Blocked on:** Daniel's reaction to the centralization-problem reply and his go for the month-map draft.
+**Blocked on:** The producer month map grows via Lane 10 (home page is composed LAST). Meanwhile: visually-quiet structural work, and the crew-facing tracks (distribution, graphics, post) per the enablement plan.
 **Files:** `docs/_handoff/2026-06-12-dashboard-redesign-plan.md`, `docs/_handoff/DESIGN-TASTE.md`, `docs/_handoff/GSR-WORKFLOW-CANON.md (s19)`, `docs/_archive/2026-06-12-ui-fresh-start/`
 **Recent activity:**
 - 2026-06-12 - Centralization problem captured (canon): Today-screen content reopened (only confirmed seed = his daily todo from his notes), home page decided LAST, booking needs an explicit tracker with email as evidence not source of truth, trust-by-evidence rules added to DESIGN-TASTE; R0 now starts with the producer month map.
@@ -169,6 +169,22 @@ _Last updated 2026-06-12 13:27:35 UTC (57 minutes ago)._
 - Graphics + segment-timing questions go out as one-tap card batches when slices need them (decision 5 resolved).
 **Files:** `docs/_handoff/research-queue.md`
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 9), docs/_handoff/2026-06-11-pipeline-build-plan.md (the plan, v3), docs/_handoff/2026-06-11-mission-run-notes.md (goal checklist + corrections), and docs/_handoff/2026-06-11-claim-ledger.json. If transcripts exist in 2026-06-11-transcript-pull-kit/transcripts/, mine them per item 3.2 (statuses mined/rejected, claims ASSUMED->verified). If Daniel has answered section 7, append answers to canon dated and open the Phase B lanes the plan lists in section 9. Starred defaults stand unless he says otherwise. Never bypass canon s15 gates.`
+
+## Lane 10 - Producer model (brain dumps -> month map)
+**Status:** OPEN.
+**Summary:** The enablement engine for Daniel's OWN tracking (the hard half of the centralization problem). Daily raw brain dumps land verbatim in docs/_handoff/PRODUCER-JOURNAL.md; extraction builds a three-layer working picture (ALWAYS / USUALLY / NOW) where every item carries a dated receipt of his words; contradictions are flagged and held as data, never silently resolved; every dump gets a max-5-line echo receipt; he is never asked anything the journal answers. Method doc: docs/_handoff/2026-06-12-rant-to-model-method.md (PROPOSED, awaiting his go). Crew tracks (Isaac/Myriam/intern: post, graphics, distribution) build in parallel in Lanes 1/9 because their info exists on paper.
+**Done:** Method designed + proposed (2026-06-12). PRODUCER-JOURNAL.md opened; Entry 1 = the recovered fragment of Daniel's lost dictation; Entry 2 = his enablement-plan statements (crew-first, daily rants, months-long commitment, contradiction warning).
+**To finish:**
+- Daniel agrees or adjusts the method (his stated condition for investing the time).
+- On go: add a /braindump command so ANY session processes a dump by the method's exact rules (append raw, extract, flag conflicts, echo receipt, commit, push).
+- Process dumps as they arrive, daily; promote repeatedly-confirmed items to the month map / canon with journal pointers.
+- Month map v1: crew tracks filled confidently from paper sources, Daniel's tracks marked UNVERIFIED and filled by the journal over time; feeds Lane 1 (home page composed LAST).
+- Later: the Mac watches Daniel's pinned brain-dump Apple Note (same pattern as the transcription watcher) so dictations are loss-proof and auto-ingested.
+**Blocked on:** Daniel's go (or adjustments) on the method.
+**Files:** `docs/_handoff/PRODUCER-JOURNAL.md`, `docs/_handoff/2026-06-12-rant-to-model-method.md`, `docs/_handoff/GSR-WORKFLOW-CANON.md (enablement plan + centralization problem entries)`
+**Recent activity:**
+- 2026-06-12 - Lane opened. Method proposed; journal created with the recovered lost-dictation fragment as Entry 1 and the enablement-plan statements as Entry 2. Awaiting Daniel's go.
+**Resume prompt:** `Read docs/_handoff/2026-06-12-rant-to-model-method.md and docs/_handoff/PRODUCER-JOURNAL.md IN FULL, plus the canon enablement-plan and centralization-problem entries. If Daniel sends a brain dump: append it raw and dated to the journal (verbatim, never paraphrased in place), extract candidate items tagged ALWAYS/USUALLY/NOW each with his words as receipt, flag any conflict with existing items (keep both, dated; never silently resolve; recency wins only for plain facts), reply with a max-5-line echo receipt (logged / changed / conflicts), then commit and push. Never ask him anything the journal already answers. Do not activate beyond this until he has said go on the method.`
 
 ---
 

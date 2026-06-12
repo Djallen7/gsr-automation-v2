@@ -20,7 +20,7 @@
         "R4 Distribution hub v1 + Rumble prep card 4.1a (~Jun 20 target holds).",
         "R5 Guests reskin, episode workspace polish, redirects, m13 screenshots; slice-5 close re-dated after R0."
       ],
-      "blocked_on": "Daniel's reaction to the centralization-problem reply and his go for the month-map draft.",
+      "blocked_on": "The producer month map grows via Lane 10 (home page is composed LAST). Meanwhile: visually-quiet structural work, and the crew-facing tracks (distribution, graphics, post) per the enablement plan.",
       "files": [
         "docs/_handoff/2026-06-12-dashboard-redesign-plan.md",
         "docs/_handoff/DESIGN-TASTE.md",
@@ -298,6 +298,36 @@
         {
           "date": "2026-06-11",
           "note": "Mission started in cloud session on branch claude/vigilant-ramanujan-kt4fdc: Phase E audit done (run-notes), claim ledger created, transcript pull kit pre-staged for the Mac (cloud IP blocked), R2-R5 research swarm launched. Starred defaults adopted (answer sheet unfilled)."
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Producer model (brain dumps -> month map)",
+      "status": "open",
+      "summary": "The enablement engine for Daniel's OWN tracking (the hard half of the centralization problem). Daily raw brain dumps land verbatim in docs/_handoff/PRODUCER-JOURNAL.md; extraction builds a three-layer working picture (ALWAYS / USUALLY / NOW) where every item carries a dated receipt of his words; contradictions are flagged and held as data, never silently resolved; every dump gets a max-5-line echo receipt; he is never asked anything the journal answers. Method doc: docs/_handoff/2026-06-12-rant-to-model-method.md (PROPOSED, awaiting his go). Crew tracks (Isaac/Myriam/intern: post, graphics, distribution) build in parallel in Lanes 1/9 because their info exists on paper.",
+      "done": [
+        "Method designed + proposed (2026-06-12).",
+        "PRODUCER-JOURNAL.md opened; Entry 1 = the recovered fragment of Daniel's lost dictation; Entry 2 = his enablement-plan statements (crew-first, daily rants, months-long commitment, contradiction warning)."
+      ],
+      "to_finish": [
+        "Daniel agrees or adjusts the method (his stated condition for investing the time).",
+        "On go: add a /braindump command so ANY session processes a dump by the method's exact rules (append raw, extract, flag conflicts, echo receipt, commit, push).",
+        "Process dumps as they arrive, daily; promote repeatedly-confirmed items to the month map / canon with journal pointers.",
+        "Month map v1: crew tracks filled confidently from paper sources, Daniel's tracks marked UNVERIFIED and filled by the journal over time; feeds Lane 1 (home page composed LAST).",
+        "Later: the Mac watches Daniel's pinned brain-dump Apple Note (same pattern as the transcription watcher) so dictations are loss-proof and auto-ingested."
+      ],
+      "blocked_on": "Daniel's go (or adjustments) on the method.",
+      "files": [
+        "docs/_handoff/PRODUCER-JOURNAL.md",
+        "docs/_handoff/2026-06-12-rant-to-model-method.md",
+        "docs/_handoff/GSR-WORKFLOW-CANON.md (enablement plan + centralization problem entries)"
+      ],
+      "resume_prompt": "Read docs/_handoff/2026-06-12-rant-to-model-method.md and docs/_handoff/PRODUCER-JOURNAL.md IN FULL, plus the canon enablement-plan and centralization-problem entries. If Daniel sends a brain dump: append it raw and dated to the journal (verbatim, never paraphrased in place), extract candidate items tagged ALWAYS/USUALLY/NOW each with his words as receipt, flag any conflict with existing items (keep both, dated; never silently resolve; recency wins only for plain facts), reply with a max-5-line echo receipt (logged / changed / conflicts), then commit and push. Never ask him anything the journal already answers. Do not activate beyond this until he has said go on the method.",
+      "recent_activity": [
+        {
+          "date": "2026-06-12",
+          "text": "Lane opened. Method proposed; journal created with the recovered lost-dictation fragment as Entry 1 and the enablement-plan statements as Entry 2. Awaiting Daniel's go."
         }
       ]
     }

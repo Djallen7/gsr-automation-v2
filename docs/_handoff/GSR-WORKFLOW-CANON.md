@@ -509,3 +509,27 @@ worksheet HTML files).
   tracks he actually uses; day-one home content = things Daniel authors himself (the
   daily note).
 
+**THE ENABLEMENT PLAN (Daniel, 2026-06-12, third message — he agreed with the direction above and refined it):**
+- **Crew tracks first.** Isaac, Myriam, and the intern only need the big things tracked
+  (post-production, graphics tracking, distribution phases), and their information
+  "exists on paper instead of in their heads." These are the right early automation
+  targets: high volume but checkable against documents (Graphics Tracker, Rundown
+  Creator, the distribution registry, export artifacts).
+- **Daniel's own tracking is the long road, by his explicit choice.** Many moving
+  parts; the ORDER shifts month to month, so no single stored order can be right. His
+  chosen path: conversations every day, multiple times a day, where Claude extracts
+  tasks and ordering from his long rambles. He expects a long ramp and accepts it.
+- **His commitment + risk preference (governing value):** months more of his time if
+  needed; he would rather take two months of zero return than force a faster finish and
+  own a system he cannot fully trust. He invests ONLY against a method both sides agree
+  on. Method proposed: `docs/_handoff/2026-06-12-rant-to-model-method.md` (raw journal,
+  three-layer picture with receipts, contradictions held as data, echo receipts,
+  never-asked-twice, loss-proof capture). Awaiting his go.
+- **The contradiction warning (his words, standing constraint):** his style produces
+  apparent self-contradictions in long rambling paragraphs and will not change; careless
+  interpretation/logging would poison the records. Conflict handling per the method doc
+  is therefore mandatory whenever processing his dumps: raw first, receipts always,
+  conflicts flagged and held open, never argued, never silently resolved.
+- Raw intake lives in `docs/_handoff/PRODUCER-JOURNAL.md` (append-only). A dictation
+  was lost to an incoming call on 2026-06-12; its recovered fragment is Entry 1.
+

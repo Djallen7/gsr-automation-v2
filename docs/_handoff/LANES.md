@@ -28,21 +28,21 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-11 21:55:19 UTC (just now)._
+_Last updated 2026-06-11 21:55:19 UTC (4 hours ago)._
 
-## Live sessions (snapshot 4 hours ago)
-- **-Users-claudefix** [Unknown] 4 hours ago
-- **-Users-claudefix** [Unknown] 5 hours ago
-- **-Users-claudefix** [Unknown] 12 hours ago
-- **-Users-claudefix** [Unknown] 15 hours ago
-- **-Users-claudefix** [Unknown] 15 hours ago
-- **-Users-claudefix** [Unknown] 15 hours ago
-- **-Users-claudefix** [Unknown] 15 hours ago
-- **-Users-claudefix** [Unknown] 15 hours ago
-- **-Users-claudefix-Downloads-GSN-Dashboard-Local-GSR-GraphicsPackage** [Unknown] 15 hours ago
+## Live sessions (snapshot 9 hours ago)
+- **-Users-claudefix** [Unknown] 9 hours ago
+- **-Users-claudefix** [Unknown] 9 hours ago
 - **-Users-claudefix** [Unknown] 16 hours ago
-- **-Users-claudefix** [Unknown] 16 hours ago
-- **-Users-claudefix** [Unknown] 16 hours ago
+- **-Users-claudefix** [Unknown] 19 hours ago
+- **-Users-claudefix** [Unknown] 19 hours ago
+- **-Users-claudefix** [Unknown] 20 hours ago
+- **-Users-claudefix** [Unknown] 20 hours ago
+- **-Users-claudefix** [Unknown] 20 hours ago
+- **-Users-claudefix-Downloads-GSN-Dashboard-Local-GSR-GraphicsPackage** [Unknown] 20 hours ago
+- **-Users-claudefix** [Unknown] 20 hours ago
+- **-Users-claudefix** [Unknown] 20 hours ago
+- **-Users-claudefix** [Unknown] 20 hours ago
 
 ---
 

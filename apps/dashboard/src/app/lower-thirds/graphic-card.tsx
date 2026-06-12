@@ -1,7 +1,6 @@
 'use client'
 
 import { useState, useTransition } from 'react'
-import Image from 'next/image'
 import { toast } from 'sonner'
 import { Button } from '@/components/ui/button'
 import {
@@ -12,7 +11,6 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { FontEditor } from '@/components/font-editor'
-import { isTextOnly } from '@/lib/text-only-sentinel'
 import { adoptVariation, approveGraphic, rejectGraphic } from './actions'
 
 interface GraphicCardProps {
@@ -21,7 +19,6 @@ interface GraphicCardProps {
   beatNumber: number | null
   initialText: string
   status: string
-  currentImageUrl: string
   episodeLabel: string
   fontFamily: string | null
   fontSizePt: number | null
@@ -34,7 +31,6 @@ export function GraphicCard({
   beatNumber,
   initialText,
   status,
-  currentImageUrl,
   episodeLabel,
   fontFamily,
   fontSizePt,
@@ -118,8 +114,6 @@ export function GraphicCard({
 
   const isPendingReview = localStatus === 'pending_review'
 
-  const textOnly = isTextOnly(currentImageUrl)
-
   const cardBorder =
     localStatus === 'approved'
       ? 'border-green-500 bg-green-50 dark:bg-green-950/20'
@@ -130,22 +124,6 @@ export function GraphicCard({
   return (
     <article className={`flex flex-col gap-3 rounded-md border p-3 transition-colors ${cardBorder}`}>
       <div className="flex gap-3">
-        {textOnly ? (
-          <div
-            aria-label="Text-only graphic"
-            className="flex h-20 w-36 shrink-0 items-center justify-center rounded border bg-muted text-xs uppercase tracking-wide text-muted-foreground"
-          >
-            text-only
-          </div>
-        ) : (
-          <Image
-            src={currentImageUrl}
-            alt={`Lower-third for ${episodeLabel}, ${segment} beat ${beatNumber ?? '?'}`}
-            width={144}
-            height={80}
-            className="h-20 w-36 shrink-0 rounded border bg-muted object-cover"
-          />
-        )}
         <div className="flex flex-1 flex-col gap-1 text-sm">
           <div className="flex flex-wrap items-center gap-2 text-xs">
             <span
@@ -165,8 +143,8 @@ export function GraphicCard({
             </span>
           </div>
           <p className="font-medium">{initialText}</p>
-          <p className={`text-xs tabular-nums ${initialText.length > 65 ? 'text-destructive font-semibold' : initialText.length < 55 ? 'text-amber-500 font-semibold' : 'text-muted-foreground'}`}>
-            {initialText.length}/65 chars{initialText.length > 65 ? ' — over limit' : initialText.length < 55 ? ' — too short' : ''}
+          <p className={`text-xs tabular-nums ${initialText.length > 65 ? 'text-amber-500 font-semibold' : initialText.length < 55 ? 'text-amber-500 font-semibold' : 'text-muted-foreground'}`}>
+            {initialText.length}/65 chars{initialText.length > 65 ? ' — over sweet spot (60–65)' : initialText.length < 55 ? ' — too short' : ''}
           </p>
           <FontEditor
             graphicId={id}
@@ -238,7 +216,7 @@ export function GraphicCard({
                 <div className="flex items-center justify-between gap-2">
                   <span>{v.text}</span>
                   <span className={`shrink-0 text-xs tabular-nums ${
-                    v.text.length > 65 ? 'text-destructive font-semibold' : v.text.length < 55 ? 'text-amber-500' : 'text-muted-foreground'
+                    v.text.length > 65 ? 'text-amber-500 font-semibold' : v.text.length < 55 ? 'text-amber-500' : 'text-muted-foreground'
                   }`}>
                     {v.text.length}/65
                   </span>

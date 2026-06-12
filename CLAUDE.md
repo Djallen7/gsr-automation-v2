@@ -32,15 +32,13 @@ Before designing or building any automation: **name the deliverable and the ship
 - **Scope:** only touch what the session is about. If scope is unclear, ask.
 - **Blast radius:** before any command, ask whether it could affect anything beyond the task. If yes or uncertain, stop and ask.
 - **Lower-thirds import confirmation (mandatory):** before importing lower thirds, run a dry-run, show Daniel the episode/graphic/rejected counts, and require an explicit "Type YES" before any live `/api/import`. The auto-extraction path is gated the same way: `app_config.auto_extract_apply` defaults to `false`, so a saved script holds its extraction for human confirmation via `/api/scripts/confirm-extraction`.
-- **ProPresenter:** all ProPresenter work is test-machine only; never command the production machine via automation until David explicitly approves.
+- **ProPresenter:** read access to GSN-PropRes (Tailscale 100.98.215.7) is permitted for mapping and testing. Write and control commands to the production machine require David's explicit approval; treat ProPresenter writes with caution.
 - **The David Rule:** before any action, ask "if this goes wrong, does it land on David to fix?" If yes, redesign until the answer is no.
 
 ## Off-limits to automation (non-negotiable)
 
-- **ProPresenter production machine** (GSN-PropRes, Tailscale 100.98.215.7).
-- **ATEM, Bitfocus Companion** — production hardware.
-- **QNAP** — read-only SMB only; no admin, no writes, no file-watchers.
-- **No Tailscale or direct server tools** — permanently off-limits after the 2026-05-20 security incident. All automation goes through cloud APIs or read-only SMB.
+- **ProPresenter write/control commands** — treat with caution; no write or control commands to the production machine (GSN-PropRes, Tailscale 100.98.215.7) without explicit approval from David. Read access for mapping and testing is permitted (Daniel, 2026-06-11).
+- **QNAP** — sensitive shared hardware. Proceed with caution at all times. Strict no write access. No admin dashboard access via any method (cause of the 2026-05-20 incident). Tailscale read-only SMB is permitted; Tailscale is only restricted when writing to a server (Daniel, 2026-06-11).
 - **Notion** — wiki-only after ADR-0012.
 
 ---
@@ -48,13 +46,13 @@ Before designing or building any automation: **name the deliverable and the ship
 ## Project State (current)
 
 **Active app:** `apps/dashboard` — Next.js 16.2, React, shadcn/ui, Tailwind v4, Supabase SSR, deployed on Vercel.
-**Supabase project:** `lafkbxypmciopebentxp` — 20 tables, 46 migrations, 2 enums, 2 views, 3 functions, 3 triggers, 1 storage bucket (`lower-thirds`). Rows: episodes 48, guests 175, **graphics 0** (no live import yet — the real Stage 7 milestone, an operational step not a code defect).
+**Supabase project:** `lafkbxypmciopebentxp` — 20 tables, 47 migrations, 2 enums, 2 views, 3 functions, 3 triggers, 1 storage bucket (`lower-thirds`). Rows: episodes 48, guests 175, **production_lower_thirds 0** (no live import yet — the real Stage 7 milestone, an operational step not a code defect).
 **Architecture of record:** ADR-0012 (Supabase + Next.js, accepted 2026-05-23). Eras 1 (self-hosted n8n/SQLite) and 2 (Notion) are superseded; their docs were pruned (recoverable in git history). See `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md`.
 **Model:** Claude via `@anthropic-ai/sdk`, `ANTHROPIC_REGENERATE_MODEL` (default `claude-opus-4-7`), server-side only.
 
 **Live routes:** pages `/import`, `/lower-thirds`, `/lower-thirds/ready`, `/approved`, `/upload`, `/extract`, `/episodes`, `/guests`, `/workflow`, `/toolkit`, `/login`, `/update-password`; API `/api/import`, `/api/extract-lower-thirds`, `/api/regenerate`, `/api/scripts`, `/api/scripts/confirm-extraction`, `/api/rc-explore`, `/api/rc-import`, `/auth/callback`.
 
-**The lower-thirds table is `graphics`.** There is no `lower_thirds` table (the first migration's filename misleads; every query uses `graphics`). The storage bucket is the only thing named `lower-thirds`.
+**The lower-thirds table is `production_lower_thirds`.** There is no `lower_thirds` table (the first migration's filename misleads; every query uses `production_lower_thirds`). The storage bucket is the only thing named `lower-thirds`. The variations child table is `lower_thirds_variations`.
 
 **Active external tools:** Rundown Creator (in-app via `/api/rc-*`; returns errors as HTTP 200 with a JSON body, so always read the body), QNAP SMB (read-only).
 

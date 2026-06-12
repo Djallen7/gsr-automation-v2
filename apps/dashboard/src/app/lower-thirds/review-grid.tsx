@@ -17,7 +17,6 @@ interface Graphic {
   beat_number: number | null
   initial_text: string
   status: string
-  current_image_url: string
   episode: Episode | Episode[] | null
 }
 
@@ -52,14 +51,6 @@ function GraphicCard({
   return (
     <Card>
       <CardContent className="flex flex-col gap-3 p-4">
-        <div className="aspect-video w-full overflow-hidden rounded bg-muted">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={graphic.current_image_url}
-            alt={graphic.initial_text}
-            className="h-full w-full object-contain"
-          />
-        </div>
         <div className="flex flex-col gap-1 text-sm">
           <span className="font-medium leading-snug">{graphic.initial_text}</span>
           <span className="text-muted-foreground">{episodeLabel(graphic.episode)}</span>
@@ -168,7 +159,7 @@ export function ReviewGrid({
     } = await supabase.auth.getUser()
 
     const { error: updateError } = await supabase
-      .from('graphics')
+      .from('production_lower_thirds')
       .update({
         status: 'approved',
         approved_text: approvedText,
@@ -198,7 +189,7 @@ export function ReviewGrid({
     addProcessing(id)
 
     const { error: updateError } = await supabase
-      .from('graphics')
+      .from('production_lower_thirds')
       .update({ status: 'rejected' })
       .eq('id', id)
 

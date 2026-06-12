@@ -231,7 +231,7 @@
       "activity": [
         {
           "date": "2026-06-11",
-          "note": "Frameworks promoted to canon s16; Kilauea s14 item resolved (wording locked, row write moves to Lane 3 once the Austin episode row exists)."
+          "note": "Frameworks promoted to canon s18; Kilauea s14 item resolved (wording locked, row write moves to Lane 3 once the Austin episode row exists)."
         }
       ]
     },
@@ -263,7 +263,7 @@
         },
         {
           "date": "2026-06-11",
-          "note": "Track 2 burst while the Mac pulls transcripts: lanes.html sessions panel shipped (plan 2.2), ADR-0013 Mission Control (2.5), frameworks promoted to canon s16 (4.2), Kilauea fact-check RESOLVED with on-air wording in canon s14 (4.4, Daniel was right per USGS), superstore lookup spec committed (4.3, CL-049), gsr-research handoff + branch safety net shipped as that repo's PR #1 (P14). Ledger at 49 claims."
+          "note": "Track 2 burst while the Mac pulls transcripts: lanes.html sessions panel shipped (plan 2.2), ADR-0013 Mission Control (2.5), frameworks promoted to canon s18 (4.2), Kilauea fact-check RESOLVED with on-air wording in canon s14 (4.4, Daniel was right per USGS), superstore lookup spec committed (4.3, CL-049), gsr-research handoff + branch safety net shipped as that repo's PR #1 (P14). Ledger at 49 claims."
         },
         {
           "date": "2026-06-11",

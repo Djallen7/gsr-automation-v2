@@ -22,7 +22,7 @@ export default async function LowerThirdsReadyPage() {
   if (!user) redirect('/login')
 
   const { data: graphics } = await supabase
-    .from('graphics')
+    .from('production_lower_thirds')
     .select(
       'id, segment, beat_number, initial_text, approved_text, propresenter_added, episode:episodes(season, episode_number, title)',
     )

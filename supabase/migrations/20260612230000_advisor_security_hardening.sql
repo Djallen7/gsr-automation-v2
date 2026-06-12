@@ -1,6 +1,6 @@
 -- Advisor hardening (run-notes punch list, 2026-06-12). One concern per
--- statement, all idempotent. NOT YET APPLIED to the live project: applying
--- needs Daniel's go-ahead (live-DB carve-out in the canon approvals grant).
+-- statement, all idempotent. APPLIED live 2026-06-12 with Daniel's go-ahead;
+-- completed by 20260612233000 (PUBLIC revoke, see that file).
 
 -- 1. Pin search_path on every exposed function (advisor 0011).
 ALTER FUNCTION public.toggle_propresenter_added(uuid) SET search_path = public, pg_temp;

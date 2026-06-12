@@ -11,7 +11,7 @@ export async function approveGraphic(graphicId: string) {
   if (!user) throw new Error('Not authenticated.')
 
   const { data: latestVariation } = await supabase
-    .from('graphics_variations')
+    .from('lower_thirds_variations')
     .select('text_content')
     .eq('graphic_id', graphicId)
     .order('variation_number', { ascending: false })
@@ -19,7 +19,7 @@ export async function approveGraphic(graphicId: string) {
     .single()
 
   const { error } = await supabase
-    .from('graphics')
+    .from('production_lower_thirds')
     .update({
       status: 'approved',
       approved_at: new Date().toISOString(),
@@ -41,7 +41,7 @@ export async function rejectGraphic(graphicId: string) {
   if (!user) throw new Error('Not authenticated.')
 
   const { error } = await supabase
-    .from('graphics')
+    .from('production_lower_thirds')
     .update({ status: 'rejected' })
     .eq('id', graphicId)
   if (error) throw error
@@ -57,7 +57,7 @@ export async function adoptVariation(graphicId: string, newText: string) {
   if (!user) throw new Error('Not authenticated.')
 
   const { error } = await supabase
-    .from('graphics')
+    .from('production_lower_thirds')
     .update({ initial_text: newText })
     .eq('id', graphicId)
   if (error) throw error
@@ -91,7 +91,7 @@ export async function setFont(graphicId: string, overrides: FontOverrides) {
   }
 
   const { error } = await supabase
-    .from('graphics')
+    .from('production_lower_thirds')
     .update({
       font_family: overrides.font_family,
       font_size_pt: overrides.font_size_pt,

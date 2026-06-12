@@ -14,7 +14,6 @@ interface GraphicRow {
   beat_number: number | null
   initial_text: string
   status: string
-  current_image_url: string
   font_family: string | null
   font_size_pt: number | null
   font_color: string | null
@@ -435,7 +434,6 @@ function SegmentSlot({
                   beatNumber={g.beat_number}
                   initialText={g.initial_text}
                   status={g.status}
-                  currentImageUrl={g.current_image_url}
                   episodeLabel={episodeLabel}
                   fontFamily={g.font_family}
                   fontSizePt={g.font_size_pt}

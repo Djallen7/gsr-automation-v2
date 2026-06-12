@@ -1,6 +1,6 @@
 'use client'
 
-import { useId, useState, type ChangeEvent, type DragEvent, type FormEvent } from 'react'
+import { useId, useState, type FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -41,8 +41,6 @@ interface Episode {
 interface UploadFormProps {
   episodes: Episode[]
 }
-
-const MAX_PNG_SIZE = 5 * 1024 * 1024
 
 const AUTOFILL_PROMPT = `You are extracting metadata for ONE lower-third graphic from a GSR (Genesis Science Report) script.
 
@@ -100,7 +98,6 @@ export function UploadForm({ episodes }: UploadFormProps) {
   const segmentId = useId()
   const beatNumberId = useId()
   const initialTextId = useId()
-  const fileId = useId()
   const errorId = useId()
 
   const [mode, setMode] = useState<'existing' | 'new'>(
@@ -120,44 +117,8 @@ export function UploadForm({ episodes }: UploadFormProps) {
   >(null)
   const [showPrompt, setShowPrompt] = useState(false)
   const [promptCopied, setPromptCopied] = useState(false)
-  const [file, setFile] = useState<File | null>(null)
-  const [dragActive, setDragActive] = useState(false)
-  const [status, setStatus] = useState<'idle' | 'uploading' | 'error'>('idle')
+  const [status, setStatus] = useState<'idle' | 'saving' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
-
-  function takeFile(picked: File | null) {
-    if (!picked) {
-      setFile(null)
-      return
-    }
-    if (picked.size > MAX_PNG_SIZE) {
-      setStatus('error')
-      setErrorMessage(`PNG is larger than 5 MB (${(picked.size / 1024 / 1024).toFixed(1)} MB).`)
-      return
-    }
-    setFile(picked)
-    setStatus('idle')
-    setErrorMessage(null)
-  }
-
-  function handleFileInputChange(event: ChangeEvent<HTMLInputElement>) {
-    takeFile(event.target.files?.[0] ?? null)
-  }
-
-  function handleDrop(event: DragEvent<HTMLLabelElement>) {
-    event.preventDefault()
-    setDragActive(false)
-    takeFile(event.dataTransfer.files?.[0] ?? null)
-  }
-
-  function handleDragOver(event: DragEvent<HTMLLabelElement>) {
-    event.preventDefault()
-    setDragActive(true)
-  }
-
-  function handleDragLeave() {
-    setDragActive(false)
-  }
 
   function handleAutofill() {
     setAutofillMessage(null)
@@ -217,7 +178,7 @@ export function UploadForm({ episodes }: UploadFormProps) {
 
     setAutofillMessage({
       kind: 'ok',
-      text: `Filled ${filled.join(', ')}. Drop your PNG and click Upload.`,
+      text: `Filled ${filled.join(', ')}.`,
     })
   }
 
@@ -233,11 +194,10 @@ export function UploadForm({ episodes }: UploadFormProps) {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    setStatus('uploading')
+    setStatus('saving')
     setErrorMessage(null)
 
     try {
-      if (!file) throw new Error('Choose a PNG to upload.')
       if (!segment) throw new Error('Pick a segment.')
       if (!initialText.trim()) throw new Error('Enter the lower-third text.')
 
@@ -271,7 +231,7 @@ export function UploadForm({ episodes }: UploadFormProps) {
       let computedBeat = Number(beatNumber)
       if (!computedBeat) {
         const { data: maxData } = await supabase
-          .from('graphics')
+          .from('production_lower_thirds')
           .select('beat_number')
           .eq('episode_id', resolvedEpisodeId)
           .eq('segment', segment)
@@ -280,35 +240,21 @@ export function UploadForm({ episodes }: UploadFormProps) {
         computedBeat = (maxData?.[0]?.beat_number ?? 0) + 1
       }
 
-      const fileExt = file.name.split('.').pop()?.toLowerCase() || 'png'
-      const filePath = `${resolvedEpisodeId}/${segment}/${computedBeat}-${crypto.randomUUID()}.${fileExt}`
-      const { error: uploadError } = await supabase.storage
-        .from('lower-thirds')
-        .upload(filePath, file, {
-          contentType: file.type || 'image/png',
-        })
-      if (uploadError) throw uploadError
-
-      const { data: publicUrlData } = supabase.storage
-        .from('lower-thirds')
-        .getPublicUrl(filePath)
-
-      const { data: graphicData, error: graphicError } = await supabase
-        .from('graphics')
+      const { data: ltData, error: ltError } = await supabase
+        .from('production_lower_thirds')
         .insert({
           episode_id: resolvedEpisodeId,
           segment,
           beat_number: computedBeat,
           initial_text: initialText,
-          current_image_url: publicUrlData.publicUrl,
           status: 'pending_review',
         })
         .select('id')
         .single()
-      if (graphicError) throw graphicError
+      if (ltError) throw ltError
 
-      const { error: varError } = await supabase.from('graphics_variations').insert({
-        graphic_id: graphicData.id,
+      const { error: varError } = await supabase.from('lower_thirds_variations').insert({
+        graphic_id: ltData.id,
         variation_number: 1,
         text_content: initialText,
         generated_by: 'human',
@@ -327,8 +273,8 @@ export function UploadForm({ episodes }: UploadFormProps) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Upload lower-third</CardTitle>
-        <CardDescription>PNG up to 5 MB, paired with its copy.</CardDescription>
+        <CardTitle>Add lower-third</CardTitle>
+        <CardDescription>Manually add a text lower-third to an episode.</CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -501,7 +447,7 @@ export function UploadForm({ episodes }: UploadFormProps) {
           </div>
 
           <div className="flex flex-col gap-2">
-            <label htmlFor={initialTextId} className="text-sm font-medium">Initial text</label>
+            <label htmlFor={initialTextId} className="text-sm font-medium">Lower-third text</label>
             <Textarea
               id={initialTextId}
               placeholder="DR. JOHN SMITH / GEOLOGIST"
@@ -512,48 +458,12 @@ export function UploadForm({ episodes }: UploadFormProps) {
             />
           </div>
 
-          <div className="flex flex-col gap-2">
-            <span className="text-sm font-medium">PNG file</span>
-            <label
-              htmlFor={fileId}
-              onDrop={handleDrop}
-              onDragOver={handleDragOver}
-              onDragLeave={handleDragLeave}
-              className={`flex cursor-pointer flex-col items-center justify-center gap-1 rounded-md border-2 border-dashed p-6 text-sm transition-colors ${
-                dragActive
-                  ? 'border-primary bg-muted/50'
-                  : 'border-input hover:bg-muted/30'
-              }`}
-            >
-              <input
-                id={fileId}
-                type="file"
-                accept="image/png"
-                className="sr-only"
-                onChange={handleFileInputChange}
-              />
-              {file ? (
-                <>
-                  <span className="font-medium">{file.name}</span>
-                  <span className="text-xs text-muted-foreground">
-                    {(file.size / 1024).toFixed(1)} KB
-                  </span>
-                </>
-              ) : (
-                <>
-                  <span>Click to choose or drop a PNG</span>
-                  <span className="text-xs text-muted-foreground">Max 5 MB</span>
-                </>
-              )}
-            </label>
-          </div>
-
           <Button
             type="submit"
-            disabled={status === 'uploading'}
+            disabled={status === 'saving'}
             aria-describedby={status === 'error' && errorMessage ? errorId : undefined}
           >
-            {status === 'uploading' ? 'Uploading…' : 'Upload'}
+            {status === 'saving' ? 'Saving…' : 'Add lower-third'}
           </Button>
 
           {status === 'error' && errorMessage ? (

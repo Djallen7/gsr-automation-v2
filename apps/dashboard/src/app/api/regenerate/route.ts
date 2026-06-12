@@ -82,7 +82,7 @@ export async function POST(request: Request) {
   }
 
   const { data: graphic, error: graphicError } = await supabase
-    .from('graphics')
+    .from('production_lower_thirds')
     .select(
       `id, segment, beat_number, initial_text,
        episode:episodes(season, episode_number, title, guest_name)`,
@@ -94,7 +94,7 @@ export async function POST(request: Request) {
   }
 
   const { data: existingVariations } = await supabase
-    .from('graphics_variations')
+    .from('lower_thirds_variations')
     .select('text_content, variation_number')
     .eq('graphic_id', graphicId)
     .order('variation_number', { ascending: false })
@@ -193,7 +193,7 @@ VAR 3: YOUR TEXT HERE`
       },
     }))
     const { error: insertError } = await supabase
-      .from('graphics_variations')
+      .from('lower_thirds_variations')
       .insert(insertRows)
     if (insertError) throw insertError
 

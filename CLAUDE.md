@@ -46,13 +46,13 @@ Before designing or building any automation: **name the deliverable and the ship
 ## Project State (current)
 
 **Active app:** `apps/dashboard` — Next.js 16.2, React, shadcn/ui, Tailwind v4, Supabase SSR, deployed on Vercel.
-**Supabase project:** `lafkbxypmciopebentxp` — 20 tables, 46 migrations, 2 enums, 2 views, 3 functions, 3 triggers, 1 storage bucket (`lower-thirds`). Rows: episodes 48, guests 175, **graphics 0** (no live import yet — the real Stage 7 milestone, an operational step not a code defect).
+**Supabase project:** `lafkbxypmciopebentxp` — 20 tables, 47 migrations, 2 enums, 2 views, 3 functions, 3 triggers, 1 storage bucket (`lower-thirds`). Rows: episodes 48, guests 175, **production_lower_thirds 0** (no live import yet — the real Stage 7 milestone, an operational step not a code defect).
 **Architecture of record:** ADR-0012 (Supabase + Next.js, accepted 2026-05-23). Eras 1 (self-hosted n8n/SQLite) and 2 (Notion) are superseded; their docs were pruned (recoverable in git history). See `docs/_handoff/2026-06-04-SYSTEM-EVOLUTION.md`.
 **Model:** Claude via `@anthropic-ai/sdk`, `ANTHROPIC_REGENERATE_MODEL` (default `claude-opus-4-7`), server-side only.
 
 **Live routes:** pages `/import`, `/lower-thirds`, `/lower-thirds/ready`, `/approved`, `/upload`, `/extract`, `/episodes`, `/guests`, `/workflow`, `/toolkit`, `/login`, `/update-password`; API `/api/import`, `/api/extract-lower-thirds`, `/api/regenerate`, `/api/scripts`, `/api/scripts/confirm-extraction`, `/api/rc-explore`, `/api/rc-import`, `/auth/callback`.
 
-**The lower-thirds table is `graphics`.** There is no `lower_thirds` table (the first migration's filename misleads; every query uses `graphics`). The storage bucket is the only thing named `lower-thirds`.
+**The lower-thirds table is `production_lower_thirds`.** There is no `lower_thirds` table (the first migration's filename misleads; every query uses `production_lower_thirds`). The storage bucket is the only thing named `lower-thirds`. The variations child table is `lower_thirds_variations`.
 
 **Active external tools:** Rundown Creator (in-app via `/api/rc-*`; returns errors as HTTP 200 with a JSON body, so always read the body), QNAP SMB (read-only).
 

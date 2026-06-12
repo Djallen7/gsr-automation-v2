@@ -64,10 +64,12 @@ things recent canon actually asks for. Theme is default shadcn light gray with n
 Primary navigation (desktop sidebar; phone bottom tab bar), role-ready per canon
 s12 (Daniel sees all; per-role logins stay deferred):
 
-1. **Today** (`/`) — the per-role queue (answer 3A): approvals waiting (variation picks,
-   held extractions, dry-runs awaiting YES), air-date urgency (canon s13 urgency tracker),
-   batched one-tap decision cards (canon s12, 2026-06-12 ruling), upcoming tapings
-   (e.g. Ming Wang Jun 15, 9:30/10:00).
+1. **Today** (`/`) — route stays; **CONTENT REOPENED (Daniel, 2026-06-12 second
+   message):** the per-role queue concept is NOT confirmed content. The only confirmed
+   seed is Daniel's daily todo list synced from his notes. Priority queues, urgency
+   trackers, and decision cards wait until the producer month map exists and the
+   trust-by-evidence mechanisms are in place (see canon, "the centralization problem").
+   The home page is composed LAST, from the tracks Daniel actually uses.
 2. **Episodes** (`/episodes`) — the Pipeline Matrix (answer 3A): every episode × stage at a
    glance, then drill into one episode's workspace: script, lower thirds, guests, webstream
    + distribution status in one place. Absorbs `/workflow`.
@@ -129,10 +131,15 @@ screens exist, what each absorbs, the gates each carries) are unchanged.
 
 ## 6. Build sequencing (revised for the fresh start)
 
-- **R0 — Design pass (BLOCKS visual work; starts on Daniel's go):** research how calm,
-  glanceable products tell status visually; draft the Today screen's story in words;
-  brainstorm with Daniel; log every reaction in DESIGN-TASTE.md; only then mock ONE
-  screen, on real data, phone first.
+- **R0 — Month map + design pass (BLOCKS visual work; starts on Daniel's go):** FIRST
+  map the producer month: Claude drafts the recurring responsibility tracks from repo
+  knowledge (booking/guest pipeline, per-episode script + lower-thirds line, taping
+  days, post + weekly distribution rhythm, the monthly research/guest-selection cycle,
+  plus whatever has no home yet), Daniel corrects it the way he corrects a mockup; the
+  result becomes a canon doc. THEN the words-first screen-story brainstorm, one screen
+  at a time, home page LAST. Research on calm, glanceable, visual-story products feeds
+  both. Log every reaction in DESIGN-TASTE.md; only then mock ONE screen, on real data,
+  phone first.
 - **Structural work that may proceed during/before R0 (visually quiet, default styling):**
   route consolidation + redirects, nav shell (five places + reserved slots), data wiring
   for Today/Matrix queries, realtime via the broadcast-from-database pattern (CL-018).
@@ -165,3 +172,6 @@ screens exist, what each absorbs, the gates each carries) are unchanged.
    Daniel later the same day in the fresh-start message. No mock is approved; visual
    direction runs through DESIGN-TASTE.md and the R0 design pass. Items 1–3 are
    unaffected.
+5. Today-screen content: **REOPENED** (2026-06-12 second message). Only confirmed
+   content: Daniel's daily todo list synced from his notes. Home-page composition is
+   decided LAST, after the month map and the responsibility tracks exist.

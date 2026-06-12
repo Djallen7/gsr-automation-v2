@@ -31,6 +31,24 @@ that" — becomes a rule here so the same idea is never re-tested on him twice.
 5. **Phone first.** Daniel reviews on his phone. Judge every design there first;
    desktop is the second pass.
 
+**2026-06-12 (second message, the centralization problem):**
+
+6. **Home page last.** Daniel has not decided what he wants to see, and "what makes
+   sense on a home page" is the wrong question. Build the responsibility tracks first;
+   the home screen gets composed later from what he actually uses. Do not pitch
+   home-screen layouts until the producer month map exists.
+7. **The today-view seed is his own words.** The only confirmed "today" content is his
+   daily todo list synced from his notes. Self-authored content first; inferred or
+   prioritized content earns its place track by track.
+8. **The five-episode status grid on the home page: doubted.** (The Episodes screen
+   itself still stands; this is specifically about home-page content.)
+9. **Trust by evidence, never by claim.** No black-box priority lists. Anything the
+   dashboard asserts (a deadline, a waiting-on, a flag) shows its evidence inline and is
+   correctable in one tap, and corrections are remembered. Booking lives in an explicit
+   tracker with states; email is attached evidence, never the source of truth (Claude's
+   email comprehension has a known failure history: missed items, confusion on booking
+   threads; never build anything whose correctness silently depends on it).
+
 ## Process rules (how Daniel specs design)
 
 - Daniel cannot spec a look in words, and rounds of yes/no questions do not work.

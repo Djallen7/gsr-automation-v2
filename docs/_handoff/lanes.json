@@ -14,13 +14,13 @@
         "2026-06-12 late: UI fresh start executed - 12 mock HTML files + 4 research briefs archived to docs/_archive/2026-06-12-ui-fresh-start/, DESIGN-TASTE.md created, canon/plan/lane/skill pointers rewritten."
       ],
       "to_finish": [
-        "R0 design pass (waiting on Daniel's go): research calm visual-story status surfaces + words-first Today-screen brainstorm with Daniel; NO new mockups until he says go.",
+        "R0 (waiting on Daniel's go): draft the producer month map for his correction FIRST, then the words-first screen-story brainstorm; home page composed LAST from the tracks he actually uses; NO new mockups until he says go.",
         "Structural work allowed meanwhile (visually quiet): route consolidation + redirects, five-place nav shell, Today/Matrix data wiring, realtime (CL-018).",
         "R1-R3 re-dated after R0: theme foundation per DESIGN-TASTE.md; Today + Pipeline Matrix on real data; Lower Thirds hub (gates unchanged).",
         "R4 Distribution hub v1 + Rumble prep card 4.1a (~Jun 20 target holds).",
         "R5 Guests reskin, episode workspace polish, redirects, m13 screenshots; slice-5 close re-dated after R0."
       ],
-      "blocked_on": "Daniel's reaction to the fresh-start thoughts and his go for the R0 research pass.",
+      "blocked_on": "Daniel's reaction to the centralization-problem reply and his go for the month-map draft.",
       "files": [
         "docs/_handoff/2026-06-12-dashboard-redesign-plan.md",
         "docs/_handoff/DESIGN-TASTE.md",
@@ -29,6 +29,10 @@
       ],
       "resume_prompt": "Read docs/_handoff/LANES.md (Lane 1), docs/_handoff/DESIGN-TASTE.md (the ONLY visual guidance), the canon s19 fresh-start entry, and redesign plan sections 1-3 + 6. Visual direction is OPEN: do not design from docs/_archive/2026-06-12-ui-fresh-start/ and do not build mockups unless Daniel has said go after the words-first brainstorm. If he has not, do the visually-quiet structural work in plan section 6 or advance the R0 design pass in words.",
       "recent_activity": [
+        {
+          "date": "2026-06-12",
+          "text": "Centralization problem captured (canon): Today-screen content reopened (only confirmed seed = his daily todo from his notes), home page decided LAST, booking needs an explicit tracker with email as evidence not source of truth, trust-by-evidence rules added to DESIGN-TASTE; R0 now starts with the producer month map."
+        },
         {
           "date": "2026-06-12",
           "text": "UI fresh start (late session): glass pick rescinded, all mocks + UI advice archived, DESIGN-TASTE.md created, plan sections 4-5 retired, R0 words-first design pass defined."

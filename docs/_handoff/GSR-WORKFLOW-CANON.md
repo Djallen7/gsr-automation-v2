@@ -482,3 +482,30 @@ worksheet HTML files).
   gates, and the build-then-sync answer on claude.ai/design. Those are structure, not
   styling, and remain CONFIRMED.
 
+**THE CENTRALIZATION PROBLEM (Daniel, 2026-06-12, second message — read with the fresh-start entry):**
+- The Today screen as previously conceived is NOT confirmed content. The only thing Daniel
+  knows he wants from a "today" surface is **his daily todo list synced from his notes**
+  (Apple Notes). A status grid of the five preproduction episodes on the home page:
+  probably not helpful either (the Episodes screen itself still stands; this is about
+  home-page content). His words: he has been going with "whatever makes the most sense to
+  have on the home page" instead of "what would actually be the most useful," and he has
+  NOT decided what he wants to see. Do not presume home-screen content.
+- Trust gap, stated plainly: Daniel does not yet trust Claude-built priority lists,
+  because Claude has not demonstrated understanding of his monthly work cycle, and has a
+  track record of **missing things in his email and getting confused tracking
+  communication and booking.** Treat this as a standing constraint: never build a feature
+  whose correctness depends on Claude silently reading email correctly. Trust is earned by
+  being checkable (evidence shown inline, one-tap correctable, corrections remembered),
+  not by claiming smartness.
+- The chicken-and-egg he named: a zoomed-out monthly view needs the system to track all
+  the moving parts, but the larger trackable tasks are not yet established anywhere (not
+  articulated in his head, not in the system). Establishing that model is the
+  prerequisite for any home screen and for any trustworthy priority list.
+- Direction proposed in reply (pending his reaction): (1) map the producer month FIRST:
+  Claude drafts the recurring responsibility tracks from repo knowledge, Daniel corrects
+  it like a mockup, result becomes a canon doc; (2) give each responsibility an explicit
+  trackable home (e.g. a booking board with states, where emails are attached evidence,
+  never the source of truth); (3) the home page is designed LAST, composed from the
+  tracks he actually uses; day-one home content = things Daniel authors himself (the
+  daily note).
+

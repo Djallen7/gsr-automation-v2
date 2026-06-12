@@ -28,11 +28,11 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-12 13:27:35 UTC (just now)._
+_Last updated 2026-06-12 13:27:35 UTC (57 minutes ago)._
 
-## Live sessions (snapshot 20 hours ago)
-- **-Users-claudefix** [Unknown] 20 hours ago
-- **-Users-claudefix** [Unknown] 20 hours ago
+## Live sessions (snapshot 21 hours ago)
+- **-Users-claudefix** [Unknown] 21 hours ago
+- **-Users-claudefix** [Unknown] 21 hours ago
 - **-Users-claudefix** [Unknown] 1 day ago
 - **-Users-claudefix** [Unknown] 1 day ago
 - **-Users-claudefix** [Unknown] 1 day ago
@@ -51,14 +51,15 @@ _Last updated 2026-06-12 13:27:35 UTC (just now)._
 **Summary:** UI FRESH START (2026-06-12 late): Daniel rescinded the liquid glass pick; all mocks + UI advice are archived in docs/_archive/2026-06-12-ui-fresh-start/ and are NOT guidance. Only visual rulebook: docs/_handoff/DESIGN-TASTE.md (no walls of numbers; visuals tell the story; numbers one tap deep). Structure stands confirmed: five places, 12-station pipeline, all gates. Plan of record: docs/_handoff/2026-06-12-dashboard-redesign-plan.md (sections 4-5 retired).
 **Done:** Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots. UI Foundation course module (m13) now teaches dashboard design from the ground up; its Lock step settles the UI direction (operational: per-role Today queue + Pipeline Matrix + mobile-first), backed by 4 cited research briefs now archived at docs/_archive/2026-06-12-ui-fresh-start/ui-research/ (non-guidance after the fresh start). 2026-06-12: Daniel rejected the current UI + the bake-off frame; liquid glass directive captured (canon s19); redesign build plan authored with IA, screen blueprints, R1-R5 sequencing; theme preview built from the world-mock synthesis. 2026-06-12 late: UI fresh start executed - 12 mock HTML files + 4 research briefs archived to docs/_archive/2026-06-12-ui-fresh-start/, DESIGN-TASTE.md created, canon/plan/lane/skill pointers rewritten.
 **To finish:**
-- R0 design pass (waiting on Daniel's go): research calm visual-story status surfaces + words-first Today-screen brainstorm with Daniel; NO new mockups until he says go.
+- R0 (waiting on Daniel's go): draft the producer month map for his correction FIRST, then the words-first screen-story brainstorm; home page composed LAST from the tracks he actually uses; NO new mockups until he says go.
 - Structural work allowed meanwhile (visually quiet): route consolidation + redirects, five-place nav shell, Today/Matrix data wiring, realtime (CL-018).
 - R1-R3 re-dated after R0: theme foundation per DESIGN-TASTE.md; Today + Pipeline Matrix on real data; Lower Thirds hub (gates unchanged).
 - R4 Distribution hub v1 + Rumble prep card 4.1a (~Jun 20 target holds).
 - R5 Guests reskin, episode workspace polish, redirects, m13 screenshots; slice-5 close re-dated after R0.
-**Blocked on:** Daniel's reaction to the fresh-start thoughts and his go for the R0 research pass.
+**Blocked on:** Daniel's reaction to the centralization-problem reply and his go for the month-map draft.
 **Files:** `docs/_handoff/2026-06-12-dashboard-redesign-plan.md`, `docs/_handoff/DESIGN-TASTE.md`, `docs/_handoff/GSR-WORKFLOW-CANON.md (s19)`, `docs/_archive/2026-06-12-ui-fresh-start/`
 **Recent activity:**
+- 2026-06-12 - Centralization problem captured (canon): Today-screen content reopened (only confirmed seed = his daily todo from his notes), home page decided LAST, booking needs an explicit tracker with email as evidence not source of truth, trust-by-evidence rules added to DESIGN-TASTE; R0 now starts with the producer month map.
 - 2026-06-12 - UI fresh start (late session): glass pick rescinded, all mocks + UI advice archived, DESIGN-TASTE.md created, plan sections 4-5 retired, R0 words-first design pass defined.
 - 2026-06-12 - Liquid glass directive captured (canon s19); redesign plan + theme preview authored; lane renamed from UI design direction.
 - 2026-06-08 - UI Foundation module (m13) built + 4 research briefs added; UI direction now lockable in-course

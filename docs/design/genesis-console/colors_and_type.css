@@ -1,0 +1,120 @@
+/* ============================================================
+   GENESIS CONSOLE — Design Foundations
+   "Cosmic liquid glass" — the instrument-grade, cool-only
+   subset of the Genesis Science Report (GSR) brand.
+   Base brand: David Rives Ministries / Genesis Science Network.
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700&family=Saira:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---- Core surface / cosmos ---- */
+  --space-0:        #06070B;   /* deep-space near-black base            */
+  --space-1:        #080A11;   /* one luminosity step up               */
+  --space-2:        #0C0F18;   /* panel field                          */
+  --space-3:        #121726;   /* raised field                         */
+
+  /* ---- Cool palette (the only hues allowed) ---- */
+  --ice:            #5BD0FF;   /* ice-blue — primary cool accent       */
+  --ice-soft:       #8FE0FF;
+  --teal:           #36D6C3;   /* teal — ready / confirmed             */
+  --teal-soft:      #6FE7DA;
+  --gold:           #C9A84C;   /* structural gold hairline ONLY        */
+  --gold-soft:      #E3C97A;
+
+  /* ---- Three preattentive status hues (the ONLY status colors) ---- */
+  --ok:             #36D6C3;   /* teal  — ready / confirmed / on-target */
+  --warn:           #C9A84C;   /* gold  — needs attention / tentative   */
+  --over:           #E8645B;   /* soft red — over / missing             */
+
+  /* ---- Foreground / text ladder (cool whites, never pure) ---- */
+  --fg-0:           #EAF3FB;   /* brightest — hero / headings           */
+  --fg-1:           #B7C6D6;   /* primary body                          */
+  --fg-2:           #7C8B9E;   /* secondary / labels                    */
+  --fg-3:           #4D5A6B;   /* faint / disabled / hairline text      */
+
+  /* ---- Glass material tokens ---- */
+  --glass-tint:     rgba(20, 30, 48, 0.42);   /* cool semi-transparent fill   */
+  --glass-tint-hi:  rgba(28, 42, 66, 0.58);   /* lifted (hover) fill          */
+  --glass-stroke:   rgba(120, 160, 200, 0.16);/* 1px hairline border          */
+  --glass-catch:    rgba(180, 220, 255, 0.42);/* brighter top-edge catch-light */
+  --glass-inset-hi: rgba(170, 210, 255, 0.10);/* inset top highlight          */
+  --glass-inset-lo: rgba(0, 0, 0, 0.45);      /* inset bottom shadow          */
+  --gold-hair:      rgba(201, 168, 76, 0.55); /* structural gold hairline     */
+
+  --blur:           12px;       /* backdrop blur 10–14px               */
+  --saturate:       130%;
+
+  /* ---- Radii (small, instrument-grade) ---- */
+  --r-xs:           3px;
+  --r-sm:           4px;
+  --r-md:           6px;
+  --r-pill:         999px;
+
+  /* ---- Spacing scale (4px base) ---- */
+  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
+  --s-5: 24px; --s-6: 32px; --s-7: 48px; --s-8: 64px;
+
+  /* ---- Elevation ---- */
+  --shadow-panel:  0 18px 48px -16px rgba(0,0,0,0.72);
+  --shadow-lift:   0 28px 70px -18px rgba(0,0,0,0.78);
+
+  /* ---- Type families ---- */
+  --font-display:  'Saira Condensed', sans-serif;  /* hero / headings    */
+  --font-body:     'Saira', sans-serif;            /* body / labels      */
+  --font-mono:     'IBM Plex Mono', monospace;     /* all numeric readouts */
+
+  /* ---- Motion ---- */
+  --ease-expo:     cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out:      cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+/* ============================================================
+   SEMANTIC TYPE ROLES
+   ============================================================ */
+
+/* Oversized hero numeral — hollow outline (TV title-card nod) */
+.t-hero {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--fg-0);
+  line-height: 0.9;
+}
+
+/* Display heading — condensed, tracked */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: var(--fg-0);
+}
+
+/* ALL-CAPS tracked micro-label */
+.t-micro {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+/* Numeric / data readout — tabular mono */
+.t-data {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+  color: var(--fg-0);
+}
+
+/* Body / row label */
+.t-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  color: var(--fg-1);
+}

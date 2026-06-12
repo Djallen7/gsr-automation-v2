@@ -1,0 +1,48 @@
+/* Genesis Console UI Kit — foundations (ported from The Genesis Console) */
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700&family=Saira:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --space-0:#06070B;--ice:#5BD0FF;--ice-soft:#8FE0FF;--teal:#36D6C3;--teal-soft:#6FE7DA;
+  --gold:#C9A84C;--gold-soft:#E3C97A;--ok:#36D6C3;--warn:#C9A84C;--over:#F0786E;
+  --fg-0:#EFF5FC;--fg-1:#BECEDE;--fg-2:#8494A8;--fg-3:#566476;
+  --glass-tint:rgba(26,38,60,0.40);--glass-tint-hi:rgba(36,52,80,0.56);
+  --glass-stroke:rgba(140,180,222,0.18);--glass-catch:rgba(200,230,255,0.55);
+  --font-display:'Saira Condensed',sans-serif;--font-body:'Saira',sans-serif;--font-mono:'IBM Plex Mono',monospace;
+  --ease-expo:cubic-bezier(0.16,1,0.3,1);
+}
+html,body{height:100%}
+body{background:var(--space-0);color:var(--fg-1);font-family:var(--font-body);-webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+.cosmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.cosmos__neb{position:absolute;inset:-12%;background:
+  radial-gradient(48% 40% at 76% 10%,rgba(54,214,195,.16),transparent 68%),
+  radial-gradient(54% 48% at 12% 20%,rgba(91,208,255,.18),transparent 66%),
+  radial-gradient(70% 60% at 84% 84%,rgba(110,91,255,.13),transparent 70%),
+  radial-gradient(64% 56% at 22% 92%,rgba(47,107,255,.14),transparent 72%);filter:saturate(125%) blur(2px)}
+.cosmos__bloom{position:absolute;left:50%;top:34%;width:1100px;height:1100px;transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(120,180,255,.12),rgba(110,91,255,.06) 38%,transparent 66%);filter:blur(14px)}
+.cosmos__stars i{position:absolute;border-radius:50%;background:#dcebff}
+.cosmos__vig{position:absolute;inset:0;background:radial-gradient(135% 130% at 50% 8%,transparent 58%,rgba(3,4,9,.55) 100%)}
+
+.glass{position:relative;background:radial-gradient(130% 100% at 50% -10%,rgba(120,170,235,.07),transparent 60%),var(--glass-tint);
+  -webkit-backdrop-filter:blur(15px) saturate(135%);backdrop-filter:blur(15px) saturate(135%);
+  border:1px solid var(--glass-stroke);border-radius:13px;overflow:hidden;
+  box-shadow:0 24px 60px -22px rgba(0,0,0,.62),0 2px 14px -6px rgba(80,140,220,.10),inset 0 1px 0 rgba(190,225,255,.16),inset 0 0 36px -16px rgba(120,180,255,.18),inset 0 -22px 32px -26px rgba(0,0,0,.5);
+  transition:background .5s var(--ease-expo),box-shadow .5s var(--ease-expo),border-color .5s var(--ease-expo)}
+.glass::before{content:"";position:absolute;left:7%;right:7%;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--glass-catch),transparent);opacity:.9;z-index:3}
+.glass.lift:hover{border-color:rgba(150,190,235,.26);box-shadow:0 30px 72px -22px rgba(0,0,0,.66),0 4px 22px -6px rgba(91,208,255,.16),inset 0 1px 0 rgba(190,225,255,.22),inset 0 0 44px -14px rgba(120,180,255,.24)}
+
+.micro{font-family:var(--font-body);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-2);white-space:nowrap}
+.disp{font-family:var(--font-display);font-weight:600;color:var(--fg-0);letter-spacing:.01em}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums;color:var(--fg-0)}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.pill{font-family:var(--font-body);font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:3px 8px;border-radius:999px;white-space:nowrap}
+.pill--onair{color:var(--teal-soft);background:rgba(54,214,195,.10);border:1px solid rgba(54,214,195,.3)}
+.pill--ready{color:var(--teal);background:rgba(54,214,195,.06)}
+.pill--hold{color:var(--gold-soft);background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.22)}
+.pill--draft{color:var(--fg-3)}
+.btn{font-family:var(--font-body);font-weight:600;font-size:11px;letter-spacing:.06em;padding:7px 14px;border-radius:8px;cursor:pointer;border:1px solid var(--glass-stroke);background:rgba(40,60,92,.3);color:var(--fg-1);transition:all .3s var(--ease-expo)}
+.btn:hover{border-color:rgba(150,190,235,.35);color:var(--fg-0)}
+.btn--ok{border-color:rgba(54,214,195,.35);color:var(--teal-soft);background:rgba(54,214,195,.08)}
+.btn--ok:hover{background:rgba(54,214,195,.16)}
+.btn--over{border-color:rgba(240,120,110,.35);color:var(--over);background:rgba(240,120,110,.06)}
+:focus-visible{outline:1px solid var(--ice);outline-offset:3px}

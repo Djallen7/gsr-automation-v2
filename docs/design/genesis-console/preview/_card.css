@@ -1,0 +1,38 @@
+/* Shared styles for Design System preview cards (≈700px wide) */
+@import url('https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700&family=Saira:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --space-0:#06070B;--ice:#5BD0FF;--ice-soft:#8FE0FF;--teal:#36D6C3;--teal-soft:#6FE7DA;
+  --gold:#C9A84C;--gold-soft:#E3C97A;--ok:#36D6C3;--warn:#C9A84C;--over:#F0786E;
+  --violet:#6E5BFF;--cobalt:#2F6BFF;
+  --fg-0:#EFF5FC;--fg-1:#BECEDE;--fg-2:#8494A8;--fg-3:#566476;
+  --font-display:'Saira Condensed',sans-serif;--font-body:'Saira',sans-serif;--font-mono:'IBM Plex Mono',monospace;
+  --glass-tint:rgba(26,38,60,0.40);--glass-stroke:rgba(140,180,222,0.18);--glass-catch:rgba(200,230,255,0.55);
+}
+html,body{height:100%}
+body{font-family:var(--font-body);color:var(--fg-1);background:var(--space-0);
+  background-image:
+    radial-gradient(60% 80% at 12% 8%, rgba(91,208,255,0.14), transparent 70%),
+    radial-gradient(70% 90% at 92% 96%, rgba(110,91,255,0.12), transparent 72%),
+    radial-gradient(50% 70% at 80% 4%, rgba(54,214,195,0.10), transparent 70%);
+  -webkit-font-smoothing:antialiased;display:flex;align-items:center;padding:22px 26px;overflow:hidden}
+.wrap{width:100%;display:flex;flex-direction:column;gap:14px}
+.row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.spread{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;width:100%}
+.micro{font-family:var(--font-body);font-weight:600;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-2)}
+.mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.cap{font-family:var(--font-mono);font-size:10px;color:var(--fg-3);letter-spacing:.02em}
+/* swatches */
+.sw{display:flex;flex-direction:column;gap:7px}
+.chip{width:104px;height:62px;border-radius:8px;border:1px solid var(--glass-stroke);position:relative;overflow:hidden}
+.chip::before{content:"";position:absolute;left:10%;right:10%;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--glass-catch),transparent)}
+.swlab{font-family:var(--font-body);font-size:11px;color:var(--fg-1);font-weight:500}
+.swhex{font-family:var(--font-mono);font-size:10px;color:var(--fg-3);letter-spacing:.02em}
+/* glass demo panel */
+.glass{background:radial-gradient(130% 100% at 50% -10%,rgba(120,170,235,0.07),transparent 60%),var(--glass-tint);
+  -webkit-backdrop-filter:blur(12px) saturate(135%);backdrop-filter:blur(12px) saturate(135%);
+  border:1px solid var(--glass-stroke);border-radius:13px;position:relative;
+  box-shadow:0 20px 48px -20px rgba(0,0,0,.6),inset 0 1px 0 rgba(190,225,255,.16),inset 0 0 34px -16px rgba(120,180,255,.18)}
+.glass::before{content:"";position:absolute;left:8%;right:8%;top:0;height:1px;background:linear-gradient(90deg,transparent,var(--glass-catch),transparent);opacity:.9}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.pill{font-family:var(--font-body);font-weight:600;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap}

@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Genesis Console — GSR Production Command</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700&family=Saira:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   THE GENESIS CONSOLE — cosmic liquid glass
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --space-0:#06070B; --space-1:#080A11; --space-2:#0C0F18; --space-3:#121726;
+  --ice:#5BD0FF; --ice-soft:#8FE0FF; --teal:#36D6C3; --teal-soft:#6FE7DA;
+  --gold:#C9A84C; --gold-soft:#E3C97A;
+  --ok:#36D6C3; --warn:#C9A84C; --over:#F0786E;
+  --violet:#6E5BFF; --cobalt:#2F6BFF;            /* soft ambient nebula ONLY */
+  --fg-0:#EFF5FC; --fg-1:#BECEDE; --fg-2:#8494A8; --fg-3:#566476;
+  --glass-tint:rgba(26,38,60,0.40); --glass-tint-hi:rgba(36,52,80,0.56);
+  --glass-stroke:rgba(140,180,222,0.18); --glass-catch:rgba(200,230,255,0.55);
+  --gold-hair:rgba(201,168,76,0.45);
+  --blur:15px; --sat:135%;
+  --r-sm:8px; --r-md:13px; --r-pill:999px;
+  --font-display:'Saira Condensed',sans-serif;
+  --font-body:'Saira',sans-serif;
+  --font-mono:'IBM Plex Mono',monospace;
+  --ease-expo:cubic-bezier(0.16,1,0.3,1);
+}
+
+html,body{height:100%}
+body{
+  background:var(--space-0);
+  color:var(--fg-1);
+  font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  min-height:100vh;
+}
+
+/* ---------- COSMOS (pure CSS) ---------- */
+.cosmos{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+/* layered nebula — luminous; violet→cobalt only as distant ambient starlight */
+.cosmos__neb{position:absolute;inset:-12%;
+  background:
+    radial-gradient(48% 40% at 76% 10%, rgba(54,214,195,0.16), transparent 68%),
+    radial-gradient(54% 48% at 12% 20%, rgba(91,208,255,0.18), transparent 66%),
+    radial-gradient(70% 60% at 84% 84%, rgba(110,91,255,0.13), transparent 70%),
+    radial-gradient(64% 56% at 22% 92%, rgba(47,107,255,0.14), transparent 72%),
+    radial-gradient(46% 40% at 50% 46%, rgba(54,214,195,0.07), transparent 70%);
+  filter:saturate(125%) blur(2px);
+}
+/* gentle central light bloom — the heavens, alive */
+.cosmos__bloom{position:absolute;left:50%;top:34%;width:1100px;height:1100px;
+  transform:translate(-50%,-50%);
+  background:radial-gradient(circle, rgba(120,180,255,0.12), rgba(110,91,255,0.06) 38%, transparent 66%);
+  filter:blur(14px)}
+.cosmos__stars{position:absolute;inset:0}
+.cosmos__stars i{position:absolute;border-radius:50%;background:#dcebff}
+/* faint grain */
+.cosmos__grain{position:absolute;inset:0;opacity:0.045;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+/* soft vignette to settle the edges — gentle, not heavy */
+.cosmos__vig{position:absolute;inset:0;
+  background:radial-gradient(135% 130% at 50% 8%, transparent 58%, rgba(3,4,9,0.55) 100%);
+}
+
+/* ---------- GLASS MATERIAL ---------- */
+.glass{
+  position:relative;
+  background:
+    radial-gradient(130% 100% at 50% -10%, rgba(120,170,235,0.07), transparent 60%),
+    var(--glass-tint);
+  -webkit-backdrop-filter:blur(var(--blur)) saturate(var(--sat));
+  backdrop-filter:blur(var(--blur)) saturate(var(--sat));
+  border:1px solid var(--glass-stroke);
+  border-radius:var(--r-md);
+  box-shadow:
+    0 24px 60px -22px rgba(0,0,0,0.62),
+    0 2px 14px -6px rgba(80,140,220,0.10),
+    inset 0 1px 0 rgba(190,225,255,0.16),
+    inset 0 0 36px -16px rgba(120,180,255,0.18),
+    inset 0 -22px 32px -26px rgba(0,0,0,0.5);
+  overflow:hidden;
+  transition:background .5s var(--ease-expo), box-shadow .5s var(--ease-expo),
+             transform .5s var(--ease-expo), border-color .5s var(--ease-expo);
+}
+/* brighter top-edge catch-light */
+.glass::before{content:"";position:absolute;left:7%;right:7%;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--glass-catch),transparent);
+  opacity:.9;pointer-events:none;z-index:3}
+/* pointer-tracked specular highlight */
+.glass::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;
+  background:radial-gradient(260px 260px at var(--mx,50%) var(--my,-40%),
+    rgba(160,210,255,0.13), transparent 60%);
+  opacity:0;transition:opacity .45s var(--ease-expo)}
+.glass:hover::after{opacity:1}
+.glass:hover{border-color:rgba(150,190,235,0.26);
+  box-shadow:
+    0 30px 72px -22px rgba(0,0,0,0.66),
+    0 4px 22px -6px rgba(91,208,255,0.16),
+    inset 0 1px 0 rgba(190,225,255,0.22),
+    inset 0 0 44px -14px rgba(120,180,255,0.24),
+    inset 0 -22px 32px -26px rgba(0,0,0,0.5)}
+
+.panel{padding:18px 20px}
+.panel__head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:14px}
+
+/* ---------- TYPE ---------- */
+.micro{font-family:var(--font-body);font-weight:600;font-size:10px;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--fg-2);white-space:nowrap}
+.micro--faint{color:var(--fg-3)}
+.data{font-family:var(--font-mono);font-variant-numeric:tabular-nums;
+  letter-spacing:.01em;color:var(--fg-0);font-weight:500}
+.disp{font-family:var(--font-display);font-weight:600;color:var(--fg-0);letter-spacing:.01em}
+
+/* ============================================================
+   TOP STRIP
+   ============================================================ */
+.shell{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;
+  padding:18px;gap:18px;max-width:1680px;margin:0 auto}
+
+.topstrip{display:flex;align-items:center;gap:0;padding:0}
+.topstrip__seg{display:flex;flex-direction:column;gap:3px;padding:14px 22px;position:relative;flex:none}
+.topstrip__seg + .topstrip__seg::before{content:"";position:absolute;left:0;top:22%;bottom:22%;width:1px;
+  background:linear-gradient(180deg,transparent,var(--gold-hair),transparent)}
+.topstrip__brand{padding:12px 36px 12px 22px}
+.brandmark{display:flex;align-items:center;gap:13px}
+.brandmark__txt{display:flex;flex-direction:column;gap:3px}
+.brandmark__ring{width:30px;height:30px;border-radius:50%;flex:none;
+  background:conic-gradient(from 210deg, var(--teal), var(--ice), #2a5d8a, var(--teal));
+  -webkit-mask:radial-gradient(circle 9px at 50% 50%, transparent 98%, #000 100%);
+          mask:radial-gradient(circle 9px at 50% 50%, transparent 98%, #000 100%);
+  transform:rotate(-18deg) skewX(-9deg);box-shadow:0 0 14px rgba(91,208,255,0.25)}
+.brandmark__name{font-family:var(--font-display);font-weight:600;font-size:15px;
+  letter-spacing:.05em;color:var(--fg-0);line-height:1;white-space:nowrap}
+.brandmark__sub{font-size:9.5px;letter-spacing:.30em;color:var(--ice);text-transform:uppercase;font-weight:600}
+.topstrip__val{font-family:var(--font-mono);font-size:15px;color:var(--fg-0);font-weight:500;letter-spacing:.02em;white-space:nowrap}
+.topstrip__val.disp{font-family:var(--font-display);font-size:18px;letter-spacing:.02em}
+.topstrip__spacer{flex:1}
+
+.statuschip{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-body);
+  font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-soft)}
+.statuschip__dot{width:7px;height:7px;border-radius:50%;background:var(--warn);
+  box-shadow:0 0 8px var(--warn)}
+
+/* breathing pulse — the ONLY thing that moves at rest */
+.pulse{position:relative}
+.pulse::after{content:"";position:absolute;inset:-5px;border-radius:50%;
+  background:var(--ok);opacity:.5;animation:breathe 3.4s var(--ease-expo) infinite}
+@keyframes breathe{0%,100%{transform:scale(0.6);opacity:.55}50%{transform:scale(1.7);opacity:0}}
+
+/* ============================================================
+   MAIN GRID
+   ============================================================ */
+.grid{display:grid;grid-template-columns:minmax(330px,0.95fr) minmax(420px,1.25fr) minmax(360px,1fr);
+  gap:18px;flex:1;align-items:start}
+.col{display:flex;flex-direction:column;gap:18px}
+
+/* ---------- HERO COUNTDOWN ---------- */
+.hero{padding:26px 24px 24px;display:flex;flex-direction:column;align-items:center;text-align:center}
+.hero__label{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.arc{position:relative;width:300px;height:300px;margin:6px 0 2px;display:grid;place-items:center}
+.arc svg{position:absolute;inset:0;transform:rotate(-90deg)}
+.arc__track{fill:none;stroke:rgba(120,160,200,0.12);stroke-width:3}
+.arc__fill{fill:none;stroke:url(#arcgrad);stroke-width:3.5;stroke-linecap:round;
+  filter:drop-shadow(0 0 9px rgba(91,208,255,0.5))}
+.hero__num{font-family:var(--font-mono);font-weight:500;font-size:64px;line-height:.9;
+  color:rgba(200,224,250,0.07);-webkit-text-stroke:1.3px var(--fg-0);font-variant-numeric:tabular-nums;
+  letter-spacing:.02em;text-shadow:0 0 26px rgba(120,180,255,0.40);
+  filter:drop-shadow(0 0 10px rgba(120,180,255,0.18))}
+.hero__sep{-webkit-text-stroke:1.3px var(--ice)}
+.hero__units{display:flex;gap:34px;margin-top:9px}
+.hero__unit{font-size:9px;letter-spacing:.22em;color:var(--fg-3);text-transform:uppercase;font-weight:600}
+.hero__foot{margin-top:18px;display:flex;align-items:center;gap:9px;font-family:var(--font-mono);
+  font-size:12px;color:var(--fg-2);letter-spacing:.04em}
+.hero__onair{display:inline-flex;align-items:center;gap:9px;padding:5px 12px;border-radius:var(--r-pill);
+  border:1px solid rgba(54,214,195,0.3);background:rgba(54,214,195,0.06);
+  font-family:var(--font-body);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal-soft)}
+
+/* ---------- RUNDOWN ---------- */
+.rundown{padding:18px 8px 12px 20px}
+.rd{list-style:none}
+.rd__row{position:relative;display:grid;grid-template-columns:30px 1fr auto;align-items:center;
+  gap:14px;padding:11px 12px 11px 0;cursor:default;border-radius:var(--r-sm);
+  transition:background .4s var(--ease-expo)}
+.rd__row::after{content:"";position:absolute;left:44px;right:12px;bottom:0;height:1px;
+  background:linear-gradient(90deg,rgba(120,160,200,0.10),transparent)}
+.rd__row:last-child::after{display:none}
+.rd__row:hover{background:rgba(40,60,92,0.30)}
+.rd__no{font-family:var(--font-mono);font-size:12px;color:var(--fg-3);text-align:right;font-weight:500}
+.rd__main{min-width:0}
+.rd__name{font-family:var(--font-body);font-weight:500;font-size:14.5px;color:var(--fg-1);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;gap:9px}
+.rd__sparks{display:flex;gap:3px;margin-top:7px;align-items:center}
+.rd__spark{height:3px;border-radius:2px;background:rgba(120,160,200,0.16)}
+.rd__right{display:flex;align-items:center;gap:12px}
+.rd__len{font-family:var(--font-mono);font-size:12px;color:var(--fg-3);letter-spacing:.02em}
+
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.dot--ok{background:var(--ok);box-shadow:0 0 7px rgba(54,214,195,0.5)}
+.dot--warn{background:var(--warn);box-shadow:0 0 7px rgba(201,168,76,0.5)}
+.dot--idle{background:var(--fg-3)}
+
+.pill{font-family:var(--font-body);font-weight:600;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;padding:3px 8px;border-radius:var(--r-pill);white-space:nowrap}
+.pill--onair{color:var(--teal-soft);background:rgba(54,214,195,0.10);border:1px solid rgba(54,214,195,0.30)}
+.pill--ready{color:var(--teal);background:rgba(54,214,195,0.06)}
+.pill--hold{color:var(--gold-soft);background:rgba(201,168,76,0.08);border:1px solid rgba(201,168,76,0.22)}
+.pill--draft{color:var(--fg-3)}
+
+/* progressive disclosure */
+.rd__detail{grid-column:1/-1;display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .5s var(--ease-expo),opacity .4s var(--ease-expo);opacity:0}
+.rd__row:hover .rd__detail,.rd__row:focus-within .rd__detail{grid-template-rows:1fr;opacity:1}
+.rd__detail>div{overflow:hidden;min-height:0}
+.rd__detailin{padding:11px 0 5px 0;display:flex;flex-wrap:wrap;gap:18px 26px;align-items:center}
+.kv{display:flex;flex-direction:column;gap:3px}
+.kv__k{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--fg-3);font-weight:600}
+.kv__v{font-family:var(--font-mono);font-size:12.5px;color:var(--fg-1)}
+.kv__v.note{font-family:var(--font-body);color:var(--fg-2);font-size:12.5px}
+
+/* ---------- BULLET GRAPHS (timing) ---------- */
+.bullets{display:flex;flex-direction:column;gap:13px;margin-top:2px}
+.bg{display:grid;grid-template-columns:108px 1fr 52px;align-items:center;gap:12px}
+.bg__lab{font-family:var(--font-body);font-size:12px;color:var(--fg-2);white-space:nowrap;
+  overflow:hidden;text-overflow:ellipsis}
+.bg__track{position:relative;height:11px}
+.bg__ghost{position:absolute;top:50%;transform:translateY(-50%);height:5px;border-radius:3px;
+  background:rgba(120,160,200,0.16)}
+.bg__actual{position:absolute;top:50%;transform:translateY(-50%);height:9px;border-radius:3px;
+  background:linear-gradient(90deg,rgba(54,214,195,0.55),var(--teal))}
+.bg__actual.over{background:linear-gradient(90deg,var(--teal) 60%, var(--over))}
+.bg__val{font-family:var(--font-mono);font-size:11.5px;color:var(--fg-2);text-align:right}
+.bg__val.over{color:var(--over)}
+
+.totalbar{margin-top:18px;padding-top:16px;position:relative;
+  border-top:1px solid rgba(201,168,76,0.18)}
+.totalbar__head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+.totalbar__track{position:relative;height:14px;border-radius:4px;background:rgba(120,160,200,0.10)}
+.totalbar__fill{position:absolute;left:0;top:0;bottom:0;border-radius:4px;
+  background:linear-gradient(90deg,rgba(54,214,195,0.4),var(--teal))}
+.totalbar__tick{position:absolute;top:-5px;bottom:-5px;width:1.5px;background:var(--gold)}
+.totalbar__tick span{position:absolute;bottom:-17px;left:50%;transform:translateX(-50%);
+  font-family:var(--font-mono);font-size:9.5px;color:var(--gold-soft);white-space:nowrap}
+
+/* ---------- BOOKING (opacity = stage) ---------- */
+.booking{display:flex;flex-direction:column;gap:0}
+.bk{display:grid;grid-template-columns:8px 1fr auto;align-items:center;gap:13px;padding:11px 0;
+  position:relative}
+.bk::after{content:"";position:absolute;left:21px;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,rgba(120,160,200,0.08),transparent)}
+.bk:last-child::after{display:none}
+.bk__name{font-family:var(--font-body);font-size:13.5px;color:var(--fg-0);font-weight:500;line-height:1.25;display:block}
+.bk__field{font-size:11px;color:var(--fg-2);margin-top:2px;letter-spacing:.01em;display:block}
+.bk__stage{font-family:var(--font-body);font-weight:600;font-size:9.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--fg-2);white-space:nowrap}
+.bk[data-stage="confirmed"]{opacity:1}
+.bk[data-stage="pending"]{opacity:.6}
+.bk[data-stage="pitch"]{opacity:.35}
+.bk[data-stage="confirmed"] .bk__stage{color:var(--teal)}
+.bk[data-stage="pending"] .bk__stage{color:var(--gold-soft)}
+
+/* ---------- EPISODE PIPELINE ---------- */
+.eps{display:flex;flex-direction:column;gap:0}
+.ep{display:grid;grid-template-columns:54px 1fr auto;align-items:center;gap:14px;padding:10px 0;
+  position:relative}
+.ep::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,rgba(120,160,200,0.08),transparent)}
+.ep:last-child::after{display:none}
+.ep__no{font-family:var(--font-mono);font-size:13px;color:var(--fg-1)}
+.ep__stage{font-family:var(--font-body);font-size:12px;color:var(--fg-2)}
+.ep__bar{height:4px;width:64px;border-radius:2px;background:rgba(120,160,200,0.12);position:relative;overflow:hidden}
+.ep__bar i{position:absolute;left:0;top:0;bottom:0;border-radius:2px}
+.ep--current{background:rgba(91,208,255,0.05);border-radius:var(--r-sm);
+  margin:0 -10px;padding:10px 10px}
+.ep--current .ep__no{color:var(--ice-soft)}
+.ep--current .ep__stage{color:var(--ice)}
+
+/* ---------- TASK QUEUE ---------- */
+.tasks{display:flex;flex-direction:column;gap:0}
+.task{display:grid;grid-template-columns:18px 1fr auto;align-items:center;gap:13px;padding:11px 0;position:relative}
+.task::after{content:"";position:absolute;left:31px;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,rgba(120,160,200,0.08),transparent)}
+.task:last-child::after{display:none}
+.task__box{width:15px;height:15px;border-radius:3px;border:1.5px solid var(--fg-3);
+  transition:border-color .3s,background .3s}
+.task:hover .task__box{border-color:var(--ice)}
+.task__txt{font-family:var(--font-body);font-size:13.5px;color:var(--fg-1)}
+.task__due{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.04em;color:var(--fg-3);
+  text-transform:uppercase}
+.task__due.today{color:var(--gold-soft)}
+
+/* ---------- entrance ---------- */
+.rise{opacity:0;transform:translateY(16px);
+  transition:opacity .7s var(--ease-expo),transform .7s var(--ease-expo)}
+.rise.in{opacity:1;transform:none}
+
+/* ---------- responsive ---------- */
+@media(max-width:1180px){
+  .grid{grid-template-columns:1fr 1fr}
+  .col--hero{grid-column:1/-1;flex-direction:row;flex-wrap:wrap}
+  .col--hero>*{flex:1;min-width:300px}
+}
+@media(max-width:860px){
+  .grid{grid-template-columns:1fr}
+  .col--hero{flex-direction:column}
+  .topstrip{flex-wrap:wrap}
+  .topstrip__spacer{display:none}
+  .hero__num{font-size:48px}
+}
+:focus-visible{outline:1px solid var(--ice);outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="cosmos" aria-hidden="true">
+  <div class="cosmos__neb"></div>
+  <div class="cosmos__bloom"></div>
+  <div class="cosmos__stars" id="stars"></div>
+  <div class="cosmos__grain"></div>
+  <div class="cosmos__vig"></div>
+</div>
+
+<main class="shell">
+
+  <!-- ================= TOP STRIP ================= -->
+  <header class="topstrip glass rise" aria-label="Show status bar">
+    <div class="topstrip__brand topstrip__seg">
+      <div class="brandmark">
+        <span class="brandmark__ring" aria-hidden="true"></span>
+        <span class="brandmark__txt">
+          <span class="brandmark__name">THE GENESIS SCIENCE REPORT</span>
+          <span class="brandmark__sub">Production Command</span>
+        </span>
+      </div>
+    </div>
+    <div class="topstrip__seg">
+      <span class="micro">Anchor</span>
+      <span class="topstrip__val disp">David Rives</span>
+    </div>
+    <div class="topstrip__seg">
+      <span class="micro">Show Clock</span>
+      <span class="topstrip__val" id="clock">00:00:00</span>
+    </div>
+    <div class="topstrip__spacer"></div>
+    <div class="topstrip__seg">
+      <span class="micro">Episode</span>
+      <span class="topstrip__val disp">EP&nbsp;214</span>
+    </div>
+    <div class="topstrip__seg">
+      <span class="micro">Air</span>
+      <span class="topstrip__val">FRI&nbsp;8:00P&nbsp;CT</span>
+    </div>
+    <div class="topstrip__seg">
+      <span class="micro">Runtime Target</span>
+      <span class="topstrip__val">26:30</span>
+    </div>
+    <div class="topstrip__seg">
+      <span class="micro">Status</span>
+      <span class="statuschip"><span class="statuschip__dot"></span>In Build</span>
+    </div>
+  </header>
+
+  <!-- ================= MAIN GRID ================= -->
+  <div class="grid">
+
+    <!-- ---------- COLUMN 1 : HERO + EPISODES ---------- -->
+    <div class="col col--hero">
+
+      <section class="hero glass rise" aria-label="Countdown to air">
+        <div class="hero__label">
+          <span class="micro">Time to Air</span>
+        </div>
+        <div class="arc">
+          <svg viewBox="0 0 300 300" aria-hidden="true">
+            <defs>
+              <linearGradient id="arcgrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#36D6C3"/>
+                <stop offset="1" stop-color="#5BD0FF"/>
+              </linearGradient>
+            </defs>
+            <circle class="arc__track" cx="150" cy="150" r="138"/>
+            <circle class="arc__fill" id="arcFill" cx="150" cy="150" r="138"/>
+          </svg>
+          <div>
+            <div class="hero__num"><span id="cd-h">00</span><span class="hero__sep">:</span><span id="cd-m">00</span><span class="hero__sep">:</span><span id="cd-s">00</span></div>
+            <div class="hero__units"><span class="hero__unit">Hrs</span><span class="hero__unit">Min</span><span class="hero__unit">Sec</span></div>
+          </div>
+        </div>
+        <div class="hero__onair"><span class="pulse" aria-hidden="true" style="width:7px;height:7px;border-radius:50%;background:var(--teal);display:inline-block"></span>Cold Open On Air</div>
+        <div class="hero__foot">Live-to-tape · FRI 8:00P CT</div>
+      </section>
+
+      <section class="glass panel rise" aria-label="Episode pipeline">
+        <div class="panel__head">
+          <h2 class="disp" style="font-size:15px">Episode Pipeline</h2>
+          <span class="micro micro--faint">212 → 217+</span>
+        </div>
+        <div class="eps">
+          <div class="ep"><span class="ep__no">212</span><span class="ep__stage">Aired</span><span class="ep__bar"><i style="width:100%;background:var(--teal)"></i></span></div>
+          <div class="ep"><span class="ep__no">213</span><span class="ep__stage">Aired</span><span class="ep__bar"><i style="width:100%;background:var(--teal)"></i></span></div>
+          <div class="ep ep--current"><span class="ep__no">214</span><span class="ep__stage">In Build · Fri</span><span class="ep__bar"><i style="width:64%;background:var(--ice)"></i></span></div>
+          <div class="ep"><span class="ep__no">215</span><span class="ep__stage">Booking</span><span class="ep__bar"><i style="width:34%;background:var(--gold)"></i></span></div>
+          <div class="ep"><span class="ep__no">216</span><span class="ep__stage">Research</span><span class="ep__bar"><i style="width:16%;background:rgba(120,160,200,0.4)"></i></span></div>
+          <div class="ep"><span class="ep__no">217+</span><span class="ep__stage">Open</span><span class="ep__bar"><i style="width:6%;background:rgba(120,160,200,0.25)"></i></span></div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ---------- COLUMN 2 : RUNDOWN ---------- -->
+    <div class="col">
+      <section class="glass rundown rise" aria-label="Episode rundown">
+        <div class="panel__head" style="padding:0 12px 6px 0">
+          <h2 class="disp" style="font-size:16px">Rundown · EP 214</h2>
+          <span class="micro micro--faint">9 Segments · 22:55</span>
+        </div>
+        <ul class="rd" id="rundown"><!-- rows injected --></ul>
+      </section>
+    </div>
+
+    <!-- ---------- COLUMN 3 : TIMING + BOOKING + TASKS ---------- -->
+    <div class="col">
+
+      <section class="glass panel rise" aria-label="Segment timing">
+        <div class="panel__head">
+          <h2 class="disp" style="font-size:15px">Segment Timing</h2>
+          <span class="micro micro--faint">vs 26:30</span>
+        </div>
+        <div class="bullets" id="bullets"><!-- injected --></div>
+        <div class="totalbar">
+          <div class="totalbar__head">
+            <span class="micro">Stacked Total</span>
+            <span class="data" style="font-size:13px;white-space:nowrap">22:55 <span style="color:var(--fg-3);font-size:11px">·&nbsp;−3:35</span></span>
+          </div>
+          <div class="totalbar__track">
+            <div class="totalbar__fill" style="width:76.4%"></div>
+            <div class="totalbar__tick" style="left:88.3%"><span>26:30 target</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="glass panel rise" aria-label="Booking pipeline">
+        <div class="panel__head">
+          <h2 class="disp" style="font-size:15px">Booking Pipeline</h2>
+          <span class="micro micro--faint">5 Guests</span>
+        </div>
+        <div class="booking" id="booking"><!-- injected --></div>
+      </section>
+
+      <section class="glass panel rise" aria-label="Producer task queue">
+        <div class="panel__head">
+          <h2 class="disp" style="font-size:15px">Task Queue</h2>
+          <span class="micro micro--faint">This Week</span>
+        </div>
+        <div class="tasks" id="tasks"><!-- injected --></div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<script>
+/* ========== STARFIELD (static, calm) ========== */
+(function(){
+  const host=document.getElementById('stars');
+  const n=130, frag=document.createDocumentFragment();
+  for(let i=0;i<n;i++){
+    const s=document.createElement('i');
+    const glow=Math.random()<0.10;
+    const sz=glow?2:(Math.random()<0.85?1:1.6);
+    s.style.width=sz+'px';s.style.height=sz+'px';
+    s.style.left=(Math.random()*100).toFixed(2)+'%';
+    s.style.top=(Math.random()*100).toFixed(2)+'%';
+    s.style.opacity=(0.12+Math.random()*0.55).toFixed(2);
+    if(glow){s.style.boxShadow='0 0 6px 1px rgba(150,200,255,0.7)';s.style.background='#bfe2ff';}
+    else if(Math.random()<0.15) s.style.background='#a9d6ff';
+    frag.appendChild(s);
+  }
+  host.appendChild(frag);
+})();
+
+/* ========== POINTER-TRACKED SPECULAR ========== */
+document.querySelectorAll('.glass').forEach(el=>{
+  el.addEventListener('pointermove',e=>{
+    const r=el.getBoundingClientRect();
+    el.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');
+    el.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%');
+  });
+});
+
+/* ========== LIVE SHOW CLOCK ========== */
+const clockEl=document.getElementById('clock');
+function tickClock(){
+  const d=new Date();
+  clockEl.textContent=[d.getHours(),d.getMinutes(),d.getSeconds()]
+    .map(v=>String(v).padStart(2,'0')).join(':');
+}
+tickClock();setInterval(tickClock,1000);
+
+/* ========== HERO COUNTDOWN + DEPLETION ARC ========== */
+const ARC_R=138, ARC_C=2*Math.PI*ARC_R;
+const arcFill=document.getElementById('arcFill');
+arcFill.style.strokeDasharray=ARC_C;
+const WINDOW=6*3600;                 // 6h pre-air build window for the arc scale
+let remaining=2*3600+14*60+37;       // 02:14:37
+const hEl=document.getElementById('cd-h'),mEl=document.getElementById('cd-m'),sEl=document.getElementById('cd-s');
+
+function paintCountdown(sec){
+  const h=Math.floor(sec/3600),m=Math.floor(sec%3600/60),s=Math.floor(sec%60);
+  hEl.textContent=String(h).padStart(2,'0');
+  mEl.textContent=String(m).padStart(2,'0');
+  sEl.textContent=String(s).padStart(2,'0');
+  const frac=Math.max(0,Math.min(1,sec/WINDOW));     // depletes toward 0 as air nears
+  arcFill.style.strokeDashoffset=ARC_C*(1-frac);
+}
+
+/* count-up reveal on the hero, then live count-down.
+   Driven by setInterval (wall clock) so it always paints — rAF stalls when
+   the tab/preview is backgrounded, which would leave the hero blank. */
+let liveTimer=null;
+function startTick(){
+  paintCountdown(remaining);
+  if(liveTimer) clearInterval(liveTimer);
+  liveTimer=setInterval(()=>{ if(remaining>0){remaining--; paintCountdown(remaining);} },1000);
+}
+function heroIntro(){
+  const target=remaining, dur=1300, t0=Date.now();
+  paintCountdown(0);
+  const anim=setInterval(()=>{
+    const p=Math.min(1,(Date.now()-t0)/dur);
+    const eased=1-Math.pow(1-p,3);
+    paintCountdown(Math.round(target*eased));
+    if(p>=1){ clearInterval(anim); startTick(); }
+  },40);
+}
+
+/* ========== RUNDOWN DATA ========== */
+const RUNDOWN=[
+  {no:'01',name:'Cold Open',status:'onair',dot:'ok',len:'0:35',pulse:true,
+   d:{Script:'Locked',L3:'2 lower-thirds',Note:'Teaser cut from soft-tissue B-roll'}},
+  {no:'02',name:'Monologue — Soft Tissue',status:'ready',dot:'ok',len:'4:10',
+   d:{Script:'Ready',L3:'5 lower-thirds',Note:'Schweitzer soft-tissue findings'}},
+  {no:'03',name:'L3 Package · 15ct',status:'ready',dot:'ok',len:'—',
+   d:{Script:'Ready',L3:'15 of 15 built · 2 pending approval',Note:'Lock today'}},
+  {no:'04',name:'Toss to Guest',status:'draft',dot:'idle',len:'0:20',
+   d:{Script:'Draft',Guest:'→ Dr. Houts',Note:'Bridge line into interview'}},
+  {no:'05',name:'Interview — Dr. Michael Houts',status:'hold',dot:'warn',len:'11:20',over:true,
+   d:{Guest:'Dr. Michael Houts',Affil:'NASA · Space Nuclear',Feed:'Remote uplink',Note:'Confirm uplink Wed · runs OVER target'}},
+  {no:'06',name:'Ministry Report',status:'draft',dot:'idle',len:'3:05',
+   d:{Script:'Draft',Source:'David Rives Ministries',Note:'Awaiting copy'}},
+  {no:'07',name:'GSM Toss',status:'draft',dot:'idle',len:'0:15',
+   d:{Script:'Draft',Note:'Toss to Genesis Science Minute'}},
+  {no:'08',name:'Scriptural Reflection (David)',status:'draft',dot:'idle',len:'2:15',
+   d:{Script:'Draft',Read:'David Rives',Note:'Closing reflection · Psalm passage'}},
+  {no:'09',name:'Closer + CTA',status:'draft',dot:'idle',len:'1:30',
+   d:{Script:'Draft',L3:'CTA card',Note:'Subscribe + GSN promo'}}
+];
+const PILL={onair:['pill--onair','On Air'],ready:['pill--ready','Ready'],
+            hold:['pill--hold','Hold'],draft:['pill--draft','Draft']};
+function sparkWidths(len){
+  // tiny inline length bar (resting state): proportional segments
+  const map={'0:35':[18],'4:10':[60],'—':[40],'0:20':[12],'11:20':[78],
+             '3:05':[46],'0:15':[10],'2:15':[34],'1:30':[24]};
+  return map[len]||[30];
+}
+function buildRundown(){
+  const host=document.getElementById('rundown');
+  RUNDOWN.forEach(r=>{
+    const li=document.createElement('li');
+    li.className='rd__row';li.tabIndex=0;
+    const pulse=r.pulse?'<span class="pulse" style="position:relative;width:8px;height:8px;border-radius:50%;background:var(--ok);display:inline-block"></span>':'';
+    const dotHtml=r.pulse?pulse:`<span class="dot dot--${r.dot}"></span>`;
+    const spark=sparkWidths(r.len).map(w=>`<span class="rd__spark" style="width:${w}px;background:${r.over?'linear-gradient(90deg,var(--teal),var(--over))':r.dot==='ok'?'rgba(54,214,195,0.5)':r.dot==='warn'?'rgba(201,168,76,0.5)':'rgba(120,160,200,0.16)'}"></span>`).join('');
+    const det=Object.entries(r.d).map(([k,v])=>`<div class="kv"><span class="kv__k">${k}</span><span class="kv__v ${k==='Note'?'note':''}">${v}</span></div>`).join('');
+    li.innerHTML=`
+      <span class="rd__no">${r.no}</span>
+      <div class="rd__main">
+        <span class="rd__name">${dotHtml}${r.name}</span>
+        <span class="rd__sparks">${spark}</span>
+      </div>
+      <span class="rd__right">
+        <span class="rd__len ${r.over?'':''}" style="${r.over?'color:var(--over)':''}">${r.len}</span>
+        <span class="pill ${PILL[r.status][0]}">${PILL[r.status][1]}</span>
+      </span>
+      <div class="rd__detail"><div><div class="rd__detailin">${det}</div></div></div>`;
+    host.appendChild(li);
+  });
+}
+buildRundown();
+
+/* ========== BULLET GRAPHS ========== */
+const SEG=[
+  {n:'Cold Open',t:40,a:35},
+  {n:'Monologue',t:270,a:250},
+  {n:'Interview',t:540,a:680,over:true},
+  {n:'Ministry Report',t:200,a:185},
+  {n:'Reflection',t:150,a:135},
+  {n:'Closer',t:90,a:90}
+];
+const SCALE=720; // 12:00 full width
+function mmss(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0')}
+function buildBullets(){
+  const host=document.getElementById('bullets');
+  SEG.forEach(s=>{
+    const row=document.createElement('div');row.className='bg';
+    row.innerHTML=`
+      <span class="bg__lab">${s.n}</span>
+      <span class="bg__track">
+        <span class="bg__ghost" style="width:${(s.t/SCALE*100).toFixed(1)}%"></span>
+        <span class="bg__actual ${s.over?'over':''}" style="width:${(s.a/SCALE*100).toFixed(1)}%"></span>
+      </span>
+      <span class="bg__val ${s.over?'over':''}">${mmss(s.a)}</span>`;
+    host.appendChild(row);
+  });
+}
+buildBullets();
+
+/* ========== BOOKING ========== */
+const BOOK=[
+  {n:'Dr. Michael Houts',f:'NASA · Space Nuclear',stage:'confirmed',label:'Confirmed'},
+  {n:'Tommy Lohman',f:'Paleontology',stage:'pending',label:'48h Pending'},
+  {n:'Dr. K. Sanford',f:'Genetics',stage:'pending',label:'48h Pending'},
+  {n:'R. Guliuzza',f:'Adaptation',stage:'pitch',label:'Pitch'},
+  {n:'Dr. J. Tomkins',f:'Genomes',stage:'pitch',label:'Pitch'}
+];
+function buildBooking(){
+  const host=document.getElementById('booking');
+  BOOK.forEach(b=>{
+    const dotColor=b.stage==='confirmed'?'var(--teal)':b.stage==='pending'?'var(--gold)':'var(--fg-3)';
+    const row=document.createElement('div');row.className='bk';row.dataset.stage=b.stage;
+    row.innerHTML=`
+      <span class="dot" style="background:${dotColor};box-shadow:0 0 7px ${dotColor}"></span>
+      <span><span class="bk__name">${b.n}</span><span class="bk__field">${b.f}</span></span>
+      <span class="bk__stage">${b.label}</span>`;
+    host.appendChild(row);
+  });
+}
+buildBooking();
+
+/* ========== TASKS ========== */
+const TASKS=[
+  {t:'Lock 15 lower-thirds',due:'Today',today:true},
+  {t:'Confirm Houts remote uplink',due:'Wed'},
+  {t:'Draft ministry report',due:'Thu'},
+  {t:'Send EP 215 pitch slug-lines',due:'Fri'}
+];
+function buildTasks(){
+  const host=document.getElementById('tasks');
+  TASKS.forEach(t=>{
+    const row=document.createElement('div');row.className='task';
+    row.innerHTML=`
+      <span class="task__box"></span>
+      <span class="task__txt">${t.t}</span>
+      <span class="task__due ${t.today?'today':''}">${t.due}</span>`;
+    host.appendChild(row);
+  });
+}
+buildTasks();
+
+/* ========== ORCHESTRATED ENTRANCE ========== */
+function runEntrance(){
+  const items=[...document.querySelectorAll('.rise')];
+  items.forEach((el,i)=>{
+    setTimeout(()=>el.classList.add('in'), 80+i*60);
+  });
+  setTimeout(heroIntro, 260);
+  /* failsafe: if the animation timeline is throttled (e.g. backgrounded tab),
+     cancel any stuck transition so content can never be trapped hidden. */
+  setTimeout(()=>{
+    document.querySelectorAll('.rise').forEach(el=>{
+      el.classList.add('in');
+      el.style.transition='none';
+    });
+  }, 1600);
+}
+if(document.readyState==='complete') runEntrance();
+else window.addEventListener('load',runEntrance);
+</script>
+</body>
+</html>

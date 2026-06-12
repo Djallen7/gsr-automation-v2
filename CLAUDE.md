@@ -87,7 +87,7 @@ This is **not** the Next.js your training data knows. Read `apps/dashboard/AGENT
 
 ## Context
 
-- Daniel Allen is the project owner and a non-developer; he builds everything through Claude Code. Plain English, no jargon, no em-dashes, recommend don't poll, never make him re-enter data that exists somewhere.
+- Daniel Allen is the project owner and a non-developer; he builds everything through Claude Code. **Talk developer-to-CLIENT, never developer-to-developer** (canon, 2026-06-12): plain English, no jargon (no squash/rebase/diff/migration talk in reports), no em-dashes, recommend don't poll, never make him re-enter data that exists somewhere. Reports = what works now in workflow terms, what broke and when it will be fixed, what you need from him. Test features with mock content BEFORE reporting them working; if a test needs his logins, give him a 30-second check instead.
 - Show: Genesis Science Report (GSR), Christian creation-science TV, ~58 min, weekly, Season 3, for David Rives Ministries.
 - David Rives is the on-screen talent and ministry director — protect anything that affects him on air.
 - Subagents: `gsr-architect` (`.claude/agents/`, the system-aware planner), `gsr-editorial` (`agents/gsr-editorial.md`, copy/voice review), and `gsr-health` (`.claude/agents/`, repo-health auditor).

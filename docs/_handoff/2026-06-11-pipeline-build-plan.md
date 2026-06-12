@@ -7,7 +7,7 @@ remaining ASSUMED are P2/P3 notes barred from build steps). Critique rounds appl
 2026-06-11 (red team 18 findings incl. 2 blockers fixed as items 1.0 + 10.0; gsr-health
 9; editorial 25). Mining changes are in Addendum v2 at the bottom; the urgent one is A1
 (Jun 15 headless credit split). Decisions 2/3/4/6 are DECIDED under the lead-agent
-directive; open and Daniel's alone: decision 1 (merge) and decision 5 (calendar).
+directive; decision 1 EXECUTED 2026-06-12 (Lane A, stack merged) and decision 5 RESOLVED 2026-06-12 (no meetings; one-tap question cards instead).
 
 Operating answers in force (starred defaults, run-notes 2026-06-11):
 1A 2A 3A 4A 5A 6A 7A 8B 9A 10A 11A 12B 13A 14A 15A 16A.
@@ -570,7 +570,7 @@ Cite: canon s15 ProPresenter authorization; CL-022 (no dry-run mode in the API, 
 
 ---
 
-## 4. Gated on Daniel's two working sessions (proposed week of Jun 22)
+## 4. Gated on Daniel's show decisions (RESOLVED FORMAT 2026-06-12: no meetings; delivered as batched one-tap question cards when each build slice needs them)
 
 **Graphics-decisions session (30-45 min)** unlocks: graphics-ai-gen-rules (the 1,737-graphic
 archive + tracking-archive philosophy scan, monologue + interview attention),
@@ -687,8 +687,8 @@ log in 1Password, close forever.**
 
 Daniel directed Claude to make every call it has a researched recommendation for. Result:
 decisions 2, 3, 4, and 6 below are DECIDED as recommended (recorded in canon, dated;
-ergut deferred with reason). Open and his alone: decision 1 (the merge) and decision 5
-(the calendar). Original text kept for the record:
+ergut deferred with reason). Decision 1 EXECUTED 2026-06-12 (Lane A); decision 5 RESOLVED 2026-06-12
+(no meetings; the graphics + timing questions go out as batched one-tap cards). Original text kept for the record:
 
 1. **Unbreak production: one of two lanes, your pick.** The deployed lower-thirds pages
    query a table that no longer exists (zero data at risk, but they error).

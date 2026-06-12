@@ -453,9 +453,12 @@ worksheet HTML files).
 - claude.ai/design sync: **build the real components first, then sync from the Mac**
   (this cloud session has no claude.ai/design connection; a skills folder is not a
   component library). CONFIRMED.
-- Liquid glass look: direction accepted with **adjustments pending** (Daniel to specify
-  what to change; structural build proceeds meanwhile, palette and polish fold his
-  changes in via the token layer).
+- Liquid glass look: **APPROVED (Daniel, one-tap, 2026-06-12 late session).** After the
+  skill-audit adjust pass, Daniel compared four styles side by side (liquid glass v2,
+  editorial minimal, Swiss print, soft structural — the latter three staged in
+  `docs/ui-mocks/alts/`) and picked **A · Liquid Glass**. The dark navy glass theme is
+  the dashboard's visual direction of record; the alternates stay in the repo as
+  reference only.
 - Note for the record: an earlier identical card round returned opposite answers on three
   items; the later, clarified round above governs (his latest word wins).
 

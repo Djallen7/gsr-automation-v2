@@ -252,7 +252,8 @@ body contrast on glass, status triple-encoded (color + glyph + word), 40px touch
 2. Navigation set (Today, Episodes, Lower Thirds, Distribution, Guests + reserved):
    **CONFIRMED.**
 3. The 12-station pipeline list as the one canonical stage vocabulary: **CONFIRMED.**
-4. Theme preview: direction accepted, **adjustments pending** — Daniel will specify what
-   to change; structural build (R1 scaffolding, R2 screens) proceeds meanwhile and his
-   adjustments land in the token layer. More example files remain welcome; the synthesis
-   absorbs them.
+4. Theme: **APPROVED — A · Liquid Glass** (Daniel's one-tap pick, 2026-06-12, chosen over
+   three skill-built alternates in `docs/ui-mocks/alts/`: editorial minimal, Swiss print,
+   soft structural). The adjusted glass preview
+   (`docs/ui-mocks/2026-06-12-liquid-glass-dashboard-preview.html`) is the visual contract
+   for the build. All four confirms are now settled; nothing in this plan awaits input.

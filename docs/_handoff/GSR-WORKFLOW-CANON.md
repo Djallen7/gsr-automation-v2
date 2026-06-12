@@ -44,7 +44,7 @@ Store each task's stage in `app_config`; defaults start at Manual/Handoff. Tasks
 3. Approved graphics drop into the **Graphics Tracker** for the design team
 4. Approve lower thirds (text)
 5. **Build the rundown** in Rundown Creator (only after graphics approved); **graphics push to RC, lower thirds do not**
-6. **ProPresenter gate:** a graphic is pulled from its folder and pushed to ProPresenter **only once its Graphics Tracker status flips to "Created" and the filename is entered.** The system surfaces a "ready to load" signal; a human does the push (ProPresenter stays off-limits to automation per the David Rule until David approves a tested path).
+6. **ProPresenter gate:** a graphic is pulled from its folder and pushed to ProPresenter **only once its Graphics Tracker status flips to "Created" and the filename is entered.** The system surfaces a "ready to load" signal; a human does the push (ProPresenter write commands stay off-limits to automation per the David Rule until David approves a tested path).
 
 ## 4. The Graphics Tracker (matches Daniel's live Google Sheet exactly)
 
@@ -88,7 +88,7 @@ _The Drive MCP can read Google Sheets/Docs/PDF directly. Use it to match real st
 - **VideoEdit server** is where pre-made assets live: `premade_library.server_file_path`, example `/GSR/Broll/Space/galaxy_flythrough_01.mp4` (`SUPABASE_SCHEMA_DESIGN.md:246,259`). Drive holds copies.
 - **B-roll source enum** today: `envato, storyblocks, nasa_svs, creation_com, own_production, other` (`migrations/20260528005100_add_premade_library.sql`). One-off finds also use Unsplash/Pixabay/Pexels/NASA public domain.
 - **Run-of-show** (15 segments) with prerecorded ones tagged: The Heavens Declare, Kids Corner, Q&A, Genesis Science Minute are **pre-produced roll-ins** (`SYSTEM-EVOLUTION.md:311-327`). Roll-in files named like `THD_390_DayYom`, `KC_S02_Ep021_Bobcats`; matched to the episode by filename pattern (`AUTOMATION_ROADMAP.md:128`).
-- **Team / roles:** Isaac (monologue + both interviews + owns the graphics tracker + edit/export), Jakob (roll-in segments), Jeremiah (b-roll + raw footage to Dropbox), Gabe (GSM roll-ins / edit list), Miryam (metadata, thumbnails, uploads, mark aired; Daniel's successor), David (on-air talent, writes graphics instructions into monologue scripts), Daniel (owner, scripts). **Jakob (editor) is NOT Jacob (footage transfer/THD)** - two people.
+- **Team / roles:** Daniel Allen (owner/producer, non-dev); David Rives (on-air talent, ministry director); Isaac (edit/export, owns the Graphics Tracker, monologue + both interviews); Jakob (roll-in segments THD/KC/Q&A/Featured Resource/GSM) -- NOT the same person as Jacob (footage/THD); Jeremiah (b-roll, raw footage to Dropbox); Gabe (GSM roll-ins); Miryam (metadata, thumbnails, uploads, mark-aired; Daniel's successor); interns (use the tracker, unrostered).
 
 **The only genuine gaps still needing Daniel (everything else is captured):**
 1. **VideoEdit server address / SMB share path.** The logical name and an example path exist, but no hostname/IP/mount path. Not needed until we link off local testing.
@@ -199,7 +199,7 @@ This registry is the durable, never-re-ask record of WHERE GSR episodes go and H
 
 **Short-form / social** lives in the `social_posts` enum (migration `..003200`), separate from `distributions`: `youtube_shorts, instagram, tiktok, facebook, x_twitter`. Clip tooling: **Vizard** (recommended, public API + scheduler) vs **Opus Clip** (API enterprise-gated, manual). Multi-post by URL: Upload-Post / Blotato (cover YT/TikTok/IG/FB/X, NOT Rumble).
 
-**Status of the pruned targets (Daniel, gospel 2026-06-06, CTN/WWN corrected same day):** 
+**Status of the pruned targets (Daniel, gospel 2026-06-06, CTN/WWN corrected same day):**
 - **GodTube: RETIRED, not used anymore.** Drop it.
 - **OTA broadcast is fed FROM Dropbox** -- Dropbox is the source for OTA; OTA is not a separate upload target, it is downstream of the Dropbox network-partner drop.
 - **TBN "Creation in the 21st Century" (c21c) is a finished show ARCHIVE** -- no longer filmed, every episode is already uploaded to Dropbox, no other action needed. Not an active GSR distribution target.
@@ -209,14 +209,14 @@ This registry is the durable, never-re-ask record of WHERE GSR episodes go and H
 
 **Stale claims to purge wherever they appear (all WRONG):** "Rumble mirrored via YouTube channel sync" (in `config/production.json`, `.env.example`, older SYSTEM-EVOLUTION/ADR text) -- the sync is broken; Rumble is manual. Fireside browser-automation via Playwright (Fireside is read-only -> handoff card / migrate). Odysee / the old Facebook/Instagram/Website "v1 platform" set (`production.json` admits it "was not the current plan").
 
-**Established facts to preserve (surfaced 2026-06-06; full detail cited in SYSTEM-EVOLUTION / config / style guide):** sponsor rule (S3 Ep1-24 carry a 60-sec sponsor, "Cedarville University"; Ep25 onward sponsor-free); the four locked verbatim lines + donation number **931-212-7990**; episode label format `S03EPxxx` and Dropbox file naming `{episode_label}_{descriptor}_{version}.{ext}`; the 14-task episode checklist with assignees (Daniel, Isaac, Jeremiah, Miryam); `creationsuperstore.com` as the spoken resource tie; the as-built `production_graphics.status` CHECK order is wrong in the DB (`Not Started, Created, In Progress, Loaded In`) vs the canon order `Not Started -> In Progress -> Created -> Loaded In`; producer email conflict (`dallen@davidrives.com` vs `daniel@davidrivesministries.org`); off-limits addresses GSN-PropRes 100.98.215.7, QNAP3 10.2.2.3, QNAP5 10.2.2.5; the 2026-05-20 security incident; b-roll source enum is missing Dreamstime.
+**Established facts to preserve (surfaced 2026-06-06; full detail cited in SYSTEM-EVOLUTION / config / style guide):** sponsor rule (S3 Ep1-24 carry a 60-sec sponsor, "Cedarville University"; Ep25 onward sponsor-free); the four locked verbatim lines + donation number **931-212-7990**; episode label format `S03EPxxx` and Dropbox file naming `{episode_label}_{descriptor}_{version}.{ext}`; the 14-task episode checklist with assignees (Daniel, Isaac, Jeremiah, Miryam); `creationsuperstore.com` as the spoken resource tie; the as-built `production_graphics.status` CHECK order is wrong in the DB (`Not Started, Created, In Progress, Loaded In`) vs the canon order `Not Started -> In Progress -> Created -> Loaded In`; producer email conflict (`dallen@davidrives.com` vs `daniel@davidrivesministries.org`); automation off-limits: GSN-PropRes 100.98.215.7 (write/control commands only); QNAP admin dashboard is off-limits via any method (the 2026-05-20 incident was caused by admin dashboard access, not Tailscale -- confirmed by David and Daniel, 2026-06-11); Tailscale read-only SMB to QNAP3 10.2.2.3 and QNAP5 10.2.2.5 is permitted; b-roll source enum is missing Dreamstime.
 
 **Crew (never re-ask):** Daniel Allen (owner/producer, non-dev); David Rives (on-air talent, ministry director); Isaac (edit/export, owns the Graphics Tracker, monologue + both interviews); Jakob (roll-in segments THD/KC/Q&A/Featured Resource/GSM) -- NOT the same person as Jacob (footage/THD); Jeremiah (b-roll, raw footage to Dropbox); Gabe (GSM roll-ins); Miryam (metadata, thumbnails, uploads, mark-aired; Daniel's successor); interns (use the tracker, unrostered).
 
 ## 12. Build decisions (Daniel, gospel 2026-06-06)
 
 - **Dropbox folder structure: FLAT, one folder per show** (resolves the long-standing flat-vs-per-episode conflict; the per-episode tree in `production.json` is NOT how it works today). **A separate folder for web-stream episodes still needs to be created.** The transcription + distribution watchers target the flat per-show folder.
-- **Mac <-> dashboard job transport: the Mac/worker POLLS a Supabase `jobs` table.** The dashboard (Vercel) writes a job row to trigger heavy work; the Mac polls every few seconds, runs pending jobs, and writes status back. No inbound connection to the Mac (Tailscale stays off-limits), no extra queue service. This is the control plane for all heavy media (uploads, transcription).
+- **Mac <-> dashboard job transport: the Mac/worker POLLS a Supabase `jobs` table.** The dashboard (Vercel) writes a job row to trigger heavy work; the Mac polls every few seconds, runs pending jobs, and writes status back. No inbound connection to the Mac needed (the Mac polls outbound). Tailscale is only restricted when writing to a server; read-only access via Tailscale is fine (Daniel, 2026-06-11). No extra queue service. This is the control plane for all heavy media (uploads, transcription).
 - **Course direction (locked):** FULL redesign of the crash-course, built around an always-visible pipeline diagram that traces ONE mock episode end-to-end, activity/predict-first per module, every game mapped 1:1 to a real pipeline decision. The course's EXPORT must be an agent-runnable build spec per module (status exists/new, depends-on, blocked-by, DB/route/API contracts, EARS acceptance criteria, verify commands, inlined locked UI design) plus a "Decisions & Setup" track that collects the remaining human-only inputs (credentials, Google audit, ProPresenter mapping, VideoEdit address, real YouTube playlist IDs) so a Claude agent team can build without stopping to ask.
 - **Course must surface TOOL SUGGESTIONS per stage (Daniel, 2026-06-06):** at each pipeline stage the course offers the best tool options per category (from the repo's tool list in `docs/OPEN_SOURCE_STACK.md`, RECONCILED to current truth below), which Daniel can opt INTO the exported build plan.
 - **Course must be genuinely ADAPTIVE (Daniel, 2026-06-06):** later modules must PROCESS earlier decisions and open/close lessons and sections accordingly (real gating, not cosmetic carryover). A decision/answer state object drives conditional rendering; choosing X in an early module unlocks/closes specific later content.
@@ -251,6 +251,11 @@ This registry is the durable, never-re-ask record of WHERE GSR episodes go and H
 
 **Interaction: present confirmations as one-tap choices (Daniel, 2026-06-08):** When Claude has items for Daniel to confirm or address, present them as one-tap choices (tappable options with the recommended option pre-marked), never open-ended homework. Daniel is often on mobile; the goal is to save his time. Recommend, do not poll.
 
+<<<<<<< HEAD
+=======
+**Basecamp = keep it, integrate it, two-way sync (Daniel, 2026-06-08).** Basecamp stays a first-class live source the team already uses; we do NOT ditch it. The dashboard integrates the existing Basecamp system. **Sync rule (Daniel, 2026-06-08):** every element we import SYNCS (stays current from Basecamp); TWO-WAY editing (writes back to Basecamp) is enabled ONLY for items meant to be checked off / marked complete: post-production episode status, to-dos, and card checklist items. Everything else is read-only (scripts and calendar are therefore read-only unless Daniel says otherwise; he earlier mentioned two-way for those, flagged for confirmation). **Out of scope (not imported):** message boards, chats/Campfire, the generic card table, activity feeds, and the Prayer Request + Aquarium projects. **Decisions locked (Daniel, 2026-06-08):** (a) ALL WWN elements are DEFERRED to future phases, out of the current build; (b) to-dos sync per person, each sees only their own, for **Daniel, Isaac, Myriam** only (interns get none for now); (c) calendar imports only events tagged **`PROD |`**; (d) **Isaac gets a GSR editing page built to mirror his Basecamp "Genesis Science Report" card board as closely as possible** (same columns `Triage -> Not now -> Recorded -> In Progress -> Editing -> Rendering -> Done`, same card feel) so it is instantly familiar with no learning curve, moving a card advances post-production status two-way. Full design + per-role inventory: `docs/2026-06-08-basecamp-dashboard-integration.md` (the review sheet `docs/2026-06-08-basecamp-import-review-sheet.md` captured the choices). **Embed the DATA, not Basecamp's pages:** Basecamp blocks iframing its own screens, so pull cards/to-dos/scripts/schedule through the API and render them in the dashboard's own UI with API write-back, so users never leave the dashboard and no "go to Basecamp" link is needed on the main flow (keep one escape-hatch link only for attachments/comments). **Conflicting episode databases are resolved by one owner per fact:** recommended = the Basecamp card is the system of record for production stage + tasks (the episode row stores the card id, not a competing status column), while Supabase owns dashboard-only data (lower thirds, metadata, distribution); two-way at the system level, single-owner at the field level. Production-stage owner is DECIDED (Daniel, 2026-06-08): **Basecamp owns stage** -- stages stay linked and two-way, one stored value (the card column), Basecamp wins any tie. Full per-role data inventory + approach: `docs/2026-06-08-basecamp-dashboard-integration.md`. The live pipeline is the **"Genesis Science Report"** card table in **"02_ Production"** (account **5805529**; columns `Triage -> Not now -> Recorded -> In Progress -> Editing -> Rendering -> Done`) plus the **"WWN"** card table; calendar + admin to-dos live in **"01_DRM Staff"**. Write-back is a live-team action: confirm-before-write + the David rule. This SUPERSEDES the earlier "Basecamp = read-only, later monologue-ingestion only" framing (e.g. handoff §11, tools-curriculum timeline); monologue ingestion is now one slice. Credentials verified working 2026-06-08 (`docs/2026-06-08-basecamp-env-diagnosis.md`).
+
+>>>>>>> origin/main
 ## 13. Findings-review decisions (Daniel, gospel 2026-06-08)
 
 From the export-archaeology triage (full record in `docs/_handoff/2026-06-08-review-decisions.md`; backlog in `export-archaeology-backlog.json`). These supersede any earlier conflicting note.
@@ -319,3 +324,39 @@ From the offline flight worksheet (answers pasted 2026-06-09). Full open-discuss
 - Kilauea: Daniel believes "Episode 48" is a count of past volcanic events in the article (not an episode number), to be reframed as a record-breaking figure; he asked to be fact-checked, so VERIFY against the article before using it on air.
 
 **Worksheet decision snapshot:** BUILD = monologue 5-beat arc, graphics-philosophy scan, ProPresenter QA-verification screen, ProPres MCP (preprod-only), 507-contact import (after email classification), Operator Runbook (pending Daniel seeing its value), fix the SessionStart hook, YouTube cat 28, Intro Graphic standardization. LATER = Signiant/RLN form auto-fill, OpusClip short-form. SKIP = "Create Episode L3 Package" bulk action, the 8-phase gfx-cue pipeline. DISCUSS (queue) = the rest.
+<<<<<<< HEAD
+=======
+
+## 15. Pipeline-mission authorizations + research doctrine (Daniel, gospel 2026-06-11)
+
+Stated in the 2026-06-11 session while commissioning the Fable 5 pipeline mission prompt (`docs/_handoff/2026-06-11-fable5-mission-prompt.md`).
+
+**Authorizations (supersede earlier, narrower framings where they conflict):**
+- For the pipeline mission, Daniel authorizes working beyond the default rule set, with two absolute conditions: **(1) never write to the QNAP server** (read-only SMB stands, no carve-out), and **(2) never operate on stale information** — always pull latest branch state and verify claims against current sources before acting on them.
+- **ProPresenter live rig:** Daniel authorizes designing AND wiring control of the live production ProPresenter (GSN-PropRes), including Tailscale for that path. Build and prove on the test machine first; every action against the LIVE rig requires a human "yes" in the moment (dry-run, show what will fire, wait). This extends s14's "preproduction only" line; the in-the-moment confirm is NOT waived.
+- Prompt-hygiene ruling: instructions that suppress the agent's visible reasoning or that "reframe safety constraints into executable commands" are rejected; strip them from any prompt before use.
+
+**Research doctrine (for the mission's research phases):**
+- **Optimistic intake:** community/video/hearsay claims may be provisionally assumed true so work keeps moving, BUT every claim adopted into a plan must immediately spawn a verification agent (official docs, changelog, or live test) and carry a status: ASSUMED -> VERIFIED / PARTIAL / REFUTED. Nothing REFUTED or still-ASSUMED ships in a final build step.
+- The research phase runs as a **continuous loop with a minimum 5-hour runtime**, checkpoint-committing findings as it goes.
+- Seed corpus: `docs/_handoff/2026-06-11-video-research-queue.json` (99 curated videos, Jan-Jun 2026, from Daniel's Q1/Q2 sheets).
+
+## 16. Security incident correction (Daniel + David, confirmed 2026-06-11)
+
+The 2026-05-20 security incident was caused by accessing the QNAP admin dashboard (tweaking server settings). **Tailscale was not the issue** -- David confirmed this explicitly. Prior docs that said "No Tailscale or direct server tools -- permanently off-limits" were wrong.
+
+Correct restrictions (as of 2026-06-11):
+- **QNAP admin dashboard** is off-limits via any access method (web UI, app, API).
+- **Tailscale for read-only SMB access to QNAP is permitted** from home, work, or anywhere.
+- Read-only SMB means you can browse and open files; no settings changes, no writes, no admin.
+- **NAS file-watchers are still barred** -- a persistent process sitting on shared NAS hardware creates unpredictable load regardless of read/write mode. Use a local Mac watcher instead (fswatch/Hazel watching a local folder after files arrive there).
+- **SYSTEM-EVOLUTION.md** contains outdated Tailscale restriction language throughout. It is superseded on these points by this canon (sections 16-17). A full doc-pass to correct SYSTEM-EVOLUTION is needed but not blocking.
+
+## 17. Infrastructure restriction updates (Daniel, 2026-06-11)
+
+- **ProPresenter (GSN-PropRes, Tailscale 100.98.215.7):** Read access is now permitted for mapping and testing. Daniel is enabling read access to map out and test the ProPresenter setup. Write and control commands require David's explicit approval; treat ProPresenter writes with caution. Not a hard ban on automation -- a caution gate.
+- **ATEM / Bitfocus Companion:** Hard blocker removed. Not a prohibited system. Treat as production hardware requiring care; confirm with David before any live broadcast-chain automation.
+- **QNAP:** Sensitive shared hardware. The rule is strict no write access and no admin dashboard access. Proceed with caution on anything touching QNAP. Tailscale for read access is always fine.
+- **Tailscale:** Only restricted when it would write to a server. Tailscale for read access is always permitted.
+- **Notion:** Wiki-only after ADR-0012 remains correct and unchanged.
+>>>>>>> origin/main

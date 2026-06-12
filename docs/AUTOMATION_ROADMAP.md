@@ -176,3 +176,21 @@ The `distributions` table is now live. **Recommendation:** After Feature 1 clear
 **What is left:** Write a later migration `<ts>_drop_youtube_scheduled_publish_at.sql` that does `ALTER TABLE episodes DROP COLUMN IF EXISTS youtube_scheduled_publish_at;`, regenerate types, run advisors.
 
 **HARD PRECONDITION (do not skip):** Run this ONLY AFTER this branch is merged to `main` and the new build is deployed to Vercel. The currently-deployed app and the `v_episode_workflow` view still reference `youtube_scheduled_publish_at`; dropping it before the deploy that stops referencing it would break production. Update `v_episode_workflow` to use the new column in the same later migration, then drop. Priority: low, but do it before the column drifts out of memory.
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+
+---
+
+## Deferred: Basecamp two-way sync integration (Daniel, 2026-06-08)
+
+**What it is:** Integrate the existing Basecamp system into the dashboard. Sync rule: every imported element syncs (stays current); two-way editing (write-back) is limited to check-off/complete items (post-production status, to-dos, checklist items), everything else read-only. Locked decisions (Daniel 2026-06-08): WWN deferred to future phases; to-dos sync per person for Daniel/Isaac/Myriam only; calendar imports only `PROD |` events; Isaac gets a GSR editing page mirroring his Basecamp card board. Out of scope: message boards, chats, the generic card table, activity feeds, Prayer Request + Aquarium. Full design: `docs/2026-06-08-basecamp-dashboard-integration.md`. Embed the DATA via the Basecamp API rendered in the dashboard's own UI (Basecamp blocks iframing its pages), so no "go to Basecamp" link is needed on the main flow. Resolve the conflicting episode databases with one owner per fact (recommended: the Basecamp card is the system of record for production stage + tasks, the episode row stores the card id; Supabase owns dashboard-only data). Per-role data inventory + approach: `docs/2026-06-08-basecamp-dashboard-integration.md`. Credentials verified working (`docs/2026-06-08-basecamp-env-diagnosis.md`).
+
+**Open decision (Daniel):** which side owns production stage, Basecamp or the dashboard. Recommend Basecamp. Everything else in the design follows from this.
+
+**Why deferred:** Sequenced with the per-role dashboards above (same preconditions: system designed, tested across mock episodes, real system imported). Display/placement is intentionally undecided. The earlier "Basecamp = read-only monologue ingestion, later feature" scope is superseded; monologue ingestion is now one slice of this broader two-way integration.
+
+**Guardrail:** two-way means the dashboard can write back into a tool the whole team uses live, so every dashboard-to-Basecamp write follows confirm-before-write + the David rule. Reads carry no such risk.
+>>>>>>> origin/main
+>>>>>>> origin/main

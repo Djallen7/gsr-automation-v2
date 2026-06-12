@@ -28,38 +28,41 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-11 21:55:19 UTC (6 hours ago)._
+_Last updated 2026-06-11 21:55:19 UTC (11 hours ago)._
 
-## Live sessions (snapshot 10 hours ago)
-- **-Users-claudefix** [Unknown] 10 hours ago
-- **-Users-claudefix** [Unknown] 11 hours ago
-- **-Users-claudefix** [Unknown] 18 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix-Downloads-GSN-Dashboard-Local-GSR-GraphicsPackage** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 22 hours ago
-- **-Users-claudefix** [Unknown] 22 hours ago
-- **-Users-claudefix** [Unknown] 22 hours ago
+## Live sessions (snapshot 16 hours ago)
+- **-Users-claudefix** [Unknown] 16 hours ago
+- **-Users-claudefix** [Unknown] 16 hours ago
+- **-Users-claudefix** [Unknown] 23 hours ago
+- **-Users-claudefix** [Unknown] 1 day ago
+- **-Users-claudefix** [Unknown] 1 day ago
+- **-Users-claudefix** [Unknown] 1 day ago
+- **-Users-claudefix** [Unknown] 1 day ago
+- **-Users-claudefix** [Unknown] 1 day ago
+- **-Users-claudefix-Downloads-GSN-Dashboard-Local-GSR-GraphicsPackage** [Unknown] 1 day ago
+- **-Users-claudefix** [Unknown] 1 day ago
+- **-Users-claudefix** [Unknown] 1 day ago
+- **-Users-claudefix** [Unknown] 1 day ago
 
 ---
 
-## Lane 1 - UI design direction
-**Status:** OPEN.
-**Summary:** Pick a UI direction from the bake-off, then build it into the real dashboard screens. Needs Daniel's decision.
-**Done:** Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots. UI Foundation course module (m13) now teaches dashboard design from the ground up; its Lock step settles the UI direction (operational: per-role Today queue + Pipeline Matrix + mobile-first), backed by 4 cited research briefs in docs/_handoff/ui-research/.
+## Lane 1 - Dashboard redesign (liquid glass)
+**Status:** IN PROGRESS.
+**Summary:** Daniel locked the direction 2026-06-12 (canon s19): scrap the current UI, rebuild nav around the actual workflow with only recent-canon features, liquid glass theme synthesized from his world mocks. Plan of record: docs/_handoff/2026-06-12-dashboard-redesign-plan.md.
+**Done:** Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots. UI Foundation course module (m13) now teaches dashboard design from the ground up; its Lock step settles the UI direction (operational: per-role Today queue + Pipeline Matrix + mobile-first), backed by 4 cited research briefs in docs/_handoff/ui-research/. 2026-06-12: Daniel rejected the current UI + the bake-off frame; liquid glass directive captured (canon s19); redesign build plan authored with IA, screen blueprints, R1-R5 sequencing; theme preview built from the world-mock synthesis.
 **To finish:**
-- Lock the UI direction via the UI Foundation module's Lock step (recommended), or pick from the bake-off.
-- Build the chosen direction into the real dashboard screens.
-- Render screenshots for review.
-**Blocked on:** Daniel's pick (now framed as the UI Foundation module's Lock step).
-**Files:** `docs/_handoff/gsr-automation-v2-course.html`, `docs/_handoff/ui-research/`, `docs/ui-mocks/preview-1..7-*.html`, `docs/_handoff/2026-06-07-gsr-ui-strategy.md`, `docs/_handoff/2026-06-07-gsr-ui-bakeoff-research.html`
+- R1 theme foundation: tokens, glass primitives, nav shell (Jun 13-14).
+- R2 Today + Pipeline Matrix on real data (Jun 15-16).
+- R3 Lower Thirds hub consolidating import/extract/upload/approved/ready, gates unchanged (Jun 16-18).
+- R4 Distribution hub v1 + Rumble prep card 4.1a (Jun 19-20).
+- R5 Guests reskin, episode workspace polish, redirects, m13 screenshots (Jun 21-23); slice-5 close by Jun 25.
+**Blocked on:** Nothing hard: Daniel one-taps the workflow statement, station list, and theme preview; build proceeds on the recommended defaults meanwhile.
+**Files:** `docs/_handoff/2026-06-12-dashboard-redesign-plan.md`, `docs/ui-mocks/2026-06-12-liquid-glass-dashboard-preview.html`, `docs/_handoff/GSR-WORKFLOW-CANON.md (s19)`, `docs/_handoff/ui-research/`
 **Recent activity:**
+- 2026-06-12 - Liquid glass directive captured (canon s19); redesign plan + theme preview authored; lane renamed from UI design direction.
 - 2026-06-08 - UI Foundation module (m13) built + 4 research briefs added; UI direction now lockable in-course
 - 2026-06-08 - course: expand m0 to Orientation + GitHub, add m13 Finish-the-Build handoff
-**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 1), the UI Foundation module (m13) in docs/_handoff/gsr-automation-v2-course.html, and the 4 briefs in docs/_handoff/ui-research/. Daniel's locked direction is: [FILL IN, default operational: per-role Today queue + Pipeline Matrix + mobile-first, one on-brand theme]. Build that into the real dashboard screens (Today queue, Pipeline Matrix, episode drill, graphics page) using the existing design tokens + shadcn components, render desktop + mobile screenshots, and report. Do not pick the direction yourself.`
+**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 1), canon s19, and docs/_handoff/2026-06-12-dashboard-redesign-plan.md (the plan of record). Build the next R-step in the plan sequence on the session branch: liquid glass tokens + primitives first, then screens in order, gates unchanged, mock-content tested, desktop + phone screenshots per step, tsc/eslint clean, draft PR. Do not resurrect the bake-off or the tool-named page set.`
 
 ## Lane 2 - Course modules
 **Status:** OPEN.

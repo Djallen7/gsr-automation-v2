@@ -421,3 +421,25 @@ slate. Use them when building or vetting guests and topics.
 Cross-reference, not duplicated here: confirmed is not booked; talking points only, never
 verbatim questions; chyron = 3 topic-relevant variations (s13).
 
+## 19. Dashboard redesign directive (Daniel, gospel 2026-06-12)
+
+Stated 2026-06-12 with example files attached (his "world" liquid-glass mocks 01, 05, 06,
+07, 08, 09, 10, plus the older pipeline v3 / bake-off research / course overview / flight
+worksheet HTML files).
+
+- **The current dashboard UI is rejected** ("atrocious") and was being designed from
+  outdated information. Scrap it.
+- **Feature scope = recent context only:** the redesign carries only the features and
+  elements Daniel has been talking about recently (canon s12-s15 + the 2026-06-11 pipeline
+  build plan), not older mock-era concepts.
+- **Visual direction = an elegant liquid glass theme**, designed by combining the most
+  intuitive and elegant aspects of all the supplied examples into one new design (not a
+  copy of any single file). More example files may arrive; fold them in.
+- **Navigation must match and fit the actual workflow** (the phase-one lower-thirds flow
+  and the wider pipeline), not tool-named pages.
+- **Supersedes:** the 7-direction bake-off as a decision frame, and the unstyled
+  "one on-brand theme" placeholder in answer 3A. The operational structure from 3A
+  (per-role Today queue + Pipeline Matrix, mobile-first) stands and is what the liquid
+  glass theme is applied to.
+- Plan of record: `docs/_handoff/2026-06-12-dashboard-redesign-plan.md`.
+

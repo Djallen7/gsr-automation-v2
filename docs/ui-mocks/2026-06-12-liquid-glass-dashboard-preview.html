@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GSR · Liquid Glass Dashboard Preview (2026-06-12)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Narrow:wght@600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --void:#04080f;
+  --s1:rgba(6,14,22,.58);
+  --s2:rgba(8,14,26,.72);
+  --hi:#c8dde8;
+  --mid:rgba(200,221,232,.55);
+  --dim:rgba(200,221,232,.28);
+  --accent:#E8A84C;
+  --accent-dim:rgba(232,168,76,.55);
+  --accent-faint:rgba(232,168,76,.16);
+  --ok:#34D07A; --warn:#FFD234; --danger:#FF3B5C; --hold:#4A9EFF; --draft:#8A9BB5; --violet:#9b78e0;
+  --edge:rgba(255,255,255,.10);
+  --edge-top:rgba(255,255,255,.16);
+  --r:6px;
+  --px:50%; --py:30%;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--void)}
+body{
+  font:400 13px/1.5 "Archivo",system-ui,sans-serif;color:var(--hi);
+  min-height:100vh;
+}
+/* background: near-flat deep space, no starfield behind data, never bg-attachment:fixed */
+#bg{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(110% 80% at 18% -10%, #0a2030 0%, transparent 55%),
+  radial-gradient(90% 70% at 100% 110%, rgba(60,38,12,.55) 0%, transparent 55%),
+  linear-gradient(170deg,#060d14 0%, var(--void) 60%);}
+#grain{position:fixed;inset:0;z-index:-1;opacity:.028;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");}
+.glass{
+  background:var(--s1);
+  -webkit-backdrop-filter:blur(12px) saturate(130%);backdrop-filter:blur(12px) saturate(130%);
+  border:1px solid var(--edge);border-top-color:var(--edge-top);border-radius:var(--r);
+  box-shadow:0 1px 0 0 rgba(255,255,255,.06) inset,0 -1px 0 0 rgba(0,0,0,.3) inset,0 8px 32px rgba(0,0,0,.55),0 2px 8px rgba(0,0,0,.4);
+}
+/* one shared specular sheen, root-driven (pointer:fine only) */
+.band{position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+  background:radial-gradient(560px 320px at var(--px) var(--py), rgba(200,230,248,.05), transparent 65%);}
+mono,.mono{font-family:"JetBrains Mono",monospace;font-variant-numeric:tabular-nums}
+
+/* ---------- header ---------- */
+header{position:sticky;top:0;z-index:50;display:flex;align-items:center;gap:18px;
+  padding:10px 16px;border-radius:0;border-left:0;border-right:0;border-top:0}
+.brand{display:flex;align-items:baseline;gap:10px;white-space:nowrap}
+.brand b{font:700 22px "Archivo Narrow";letter-spacing:.12em;color:transparent;-webkit-text-stroke:1.2px var(--accent)}
+.brand small{font-size:9.5px;letter-spacing:.22em;color:var(--dim);text-transform:uppercase}
+nav.dnav{display:flex;gap:6px;margin-left:auto}
+.navpill{font:600 10.5px "Archivo";letter-spacing:.14em;text-transform:uppercase;color:var(--mid);
+  background:transparent;border:1px solid transparent;border-radius:var(--r);padding:9px 13px;cursor:pointer;min-height:40px;transition:.2s}
+.navpill:hover{border-color:var(--edge);color:var(--hi)}
+.navpill.on{color:var(--accent);border-color:rgba(232,168,76,.4);background:var(--accent-faint)}
+.navpill.soon{opacity:.38;cursor:default}
+.hstat{display:flex;align-items:center;gap:12px;margin-left:6px}
+.clock{font:500 12px "JetBrains Mono";color:var(--mid);font-variant-numeric:tabular-nums}
+.live{display:flex;align-items:center;gap:6px;font:700 9.5px "Archivo";letter-spacing:.2em;color:var(--ok)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);animation:beat 2.2s infinite}
+@keyframes beat{0%{box-shadow:0 0 0 0 rgba(52,208,122,.45)}55%{box-shadow:0 0 0 7px rgba(52,208,122,0)}100%{box-shadow:0 0 0 0 rgba(52,208,122,0)}}
+
+/* ---------- layout ---------- */
+main{max-width:1240px;margin:0 auto;padding:16px 16px 96px}
+.screen{display:none}.screen.on{display:block}
+.band{padding:16px;margin-bottom:13px}
+.bt{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.bt em{font:500 10px "JetBrains Mono";color:var(--accent-dim);font-style:normal}
+.bt h2{font:600 12px "Archivo Narrow";letter-spacing:.28em;text-transform:uppercase;color:var(--mid)}
+.bt i{flex:1;height:1px;background:linear-gradient(90deg,var(--edge),transparent);font-style:normal}
+.bt .chip{margin-left:auto}
+
+/* chips: status triple-encoded (color + glyph + word) */
+.chip{display:inline-flex;align-items:center;gap:5px;font:500 9.5px "JetBrains Mono";letter-spacing:.1em;
+  text-transform:uppercase;padding:3px 8px;border-radius:3px;white-space:nowrap}
+.c-ok{background:rgba(52,208,122,.12);border:1px solid rgba(52,208,122,.35);color:var(--ok)}
+.c-warn{background:rgba(255,210,52,.10);border:1px solid rgba(255,210,52,.32);color:var(--warn)}
+.c-danger{background:rgba(255,59,92,.12);border:1px solid rgba(255,59,92,.4);color:var(--danger)}
+.c-hold{background:rgba(74,158,255,.12);border:1px solid rgba(74,158,255,.35);color:var(--hold)}
+.c-draft{background:rgba(138,155,181,.10);border:1px solid rgba(138,155,181,.3);color:var(--draft)}
+.c-gold{background:var(--accent-faint);border:1px solid rgba(232,168,76,.4);color:var(--accent)}
+.c-violet{background:rgba(155,120,224,.12);border:1px solid rgba(155,120,224,.35);color:var(--violet)}
+
+.btn{font:600 10.5px "Archivo";letter-spacing:.12em;text-transform:uppercase;color:var(--hi);
+  background:rgba(255,255,255,.04);border:1px solid var(--edge);border-radius:var(--r);
+  padding:11px 16px;min-height:40px;cursor:pointer;transition:.2s;white-space:nowrap}
+.btn:hover{border-color:var(--edge-top);box-shadow:0 4px 18px rgba(0,0,0,.45)}
+.btn.gold{color:var(--accent);border-color:rgba(232,168,76,.45);background:var(--accent-faint)}
+.btn.gold:hover{border-color:var(--accent-dim)}
+.btn[disabled]{opacity:.5;cursor:not-allowed}
+
+/* ---------- TODAY ---------- */
+.hero{padding:20px}
+.hero .lbl{font:600 9.5px "Archivo";letter-spacing:.3em;color:var(--dim);text-transform:uppercase}
+.hero h1{font:700 clamp(22px,3.4vw,30px) "Archivo Narrow";letter-spacing:.02em;margin:5px 0 2px}
+.hero .sub{color:var(--mid);font-size:12px}
+.herorow{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap}
+.herorow .grow{flex:1;min-width:230px}
+.cd{text-align:right}
+.cd .lbl{font:600 9px "Archivo";letter-spacing:.26em;color:var(--dim);text-transform:uppercase}
+.cd b{display:block;font:700 clamp(26px,4vw,36px)/1.1 "JetBrains Mono";color:var(--accent);font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:repeat(6,1fr);gap:9px;margin-bottom:13px}
+.kpi{background:var(--s2);border:1px solid var(--edge);border-top-color:var(--edge-top);border-radius:var(--r);padding:11px 12px}
+.kpi .l{font:600 8.5px "Archivo";letter-spacing:.18em;color:var(--dim);text-transform:uppercase}
+.kpi b{display:block;font:700 20px/1.25 "JetBrains Mono";color:var(--hi);font-variant-numeric:tabular-nums;margin:2px 0 1px}
+.kpi .s{font-size:10px;color:var(--mid)}
+.kpi.alert b{color:var(--danger)}
+details.tier{margin-bottom:13px}
+details.tier summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:13px 16px}
+details.tier summary::-webkit-details-marker{display:none}
+.tname{font:600 11.5px "Archivo Narrow";letter-spacing:.24em;text-transform:uppercase}
+.t-red .tname{color:var(--danger)}.t-amber .tname{color:var(--warn)}.t-dim .tname{color:var(--mid)}
+.tcount{font:700 10px "JetBrains Mono";padding:2px 7px;border-radius:9px}
+.t-red .tcount{background:rgba(255,59,92,.15);color:var(--danger)}
+.t-amber .tcount{background:rgba(255,210,52,.12);color:var(--warn)}
+.t-dim .tcount{background:rgba(138,155,181,.12);color:var(--draft)}
+.tarrow{margin-left:auto;color:var(--dim);transition:.2s}
+details[open] .tarrow{transform:rotate(90deg)}
+.q{display:flex;align-items:center;gap:14px;padding:13px 16px;border-top:1px solid rgba(255,255,255,.05)}
+.q .tx{flex:1;min-width:0}
+.q .t1{font-weight:600;font-size:13px}
+.q .t1 b{color:var(--accent);font-weight:600}
+.q .t2{font-size:11px;color:var(--mid)}
+.q .t2 mono{color:var(--hi)}
+.vmini{display:inline-flex;gap:4px;margin-left:6px}
+.vchip{font:600 9px "JetBrains Mono";padding:2px 6px;border-radius:3px;border:1px solid var(--edge);color:var(--mid);cursor:pointer}
+.vchip.on{border-color:rgba(232,168,76,.5);color:var(--accent);background:var(--accent-faint)}
+.deck{border-top:1px solid rgba(255,255,255,.05);padding:13px 16px}
+.deck .dk{font:600 9px "Archivo";letter-spacing:.2em;color:var(--dim);text-transform:uppercase;margin-bottom:6px}
+.deck .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.empty{color:var(--dim);font-size:11.5px;padding:4px 16px 12px;font-style:italic}
+
+/* ---------- EPISODES ---------- */
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:10px;color:var(--mid);padding:0 2px;margin-bottom:11px}
+.legend span{display:inline-flex;gap:5px;align-items:center}
+.gl{font-family:"JetBrains Mono";font-size:11px}
+.g-done{color:var(--ok)}.g-prog{color:var(--accent)}.g-none{color:var(--dim)}.g-bad{color:var(--danger)}.g-def{color:var(--violet)}
+.mwrap{overflow-x:auto}
+table.mx{width:100%;border-collapse:separate;border-spacing:0;font-size:11px;min-width:780px}
+.mx th{font:600 8.5px "Archivo";letter-spacing:.14em;color:var(--dim);text-transform:uppercase;padding:7px 4px;text-align:center;border-bottom:1px solid var(--edge)}
+.mx th:first-child{text-align:left;padding-left:10px}
+.mx td{padding:8px 4px;text-align:center;border-bottom:1px solid rgba(255,255,255,.045)}
+.mx td:first-child{text-align:left;padding-left:10px;white-space:nowrap}
+.mx .bandrow td{font:600 9px "Archivo";letter-spacing:.24em;color:var(--dim);text-transform:uppercase;text-align:left;background:rgba(255,255,255,.025);padding:6px 10px}
+.eplabel b{font:700 11.5px "JetBrains Mono";color:var(--hi)}
+.eplabel span{color:var(--mid);font-size:11px;margin-left:7px}
+.eplabel small{display:block;font-size:9.5px;color:var(--mid)}
+tr.alarm .eplabel b, tr.alarm .eplabel span{color:var(--danger)}
+tr.alarm td:first-child{box-shadow:inset 2px 0 0 var(--danger)}
+.cnt{font:500 8.5px "JetBrains Mono";color:var(--dim);display:block;margin-top:2px;text-transform:none;letter-spacing:0}
+.wsteaser{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.wsteaser .tx{flex:1;min-width:220px}
+.epcards{display:none}
+.epcard{background:var(--s2);border:1px solid var(--edge);border-radius:var(--r);padding:12px;margin-bottom:9px}
+.epcard .top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.segbar{display:flex;gap:2px;height:6px}
+.segbar i{flex:1;border-radius:1px;background:rgba(255,255,255,.08)}
+.segbar i.d{background:var(--ok)}.segbar i.p{background:var(--accent)}.segbar i.b{background:var(--danger)}
+
+/* ---------- LOWER THIRDS ---------- */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.tile{background:var(--s2);border:1px dashed var(--edge);border-radius:var(--r);padding:14px}
+.tile h4{font:600 10.5px "Archivo Narrow";letter-spacing:.2em;text-transform:uppercase;color:var(--mid);margin-bottom:4px}
+.tile p{font-size:11px;color:var(--mid)}
+.tile .btn{margin-top:10px}
+.segtabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.segtab{font:600 10px "Archivo";letter-spacing:.12em;text-transform:uppercase;color:var(--mid);border:1px solid var(--edge);border-radius:var(--r);padding:8px 12px;cursor:pointer;min-height:36px;background:transparent}
+.segtab.on{color:var(--accent);border-color:rgba(232,168,76,.45);background:var(--accent-faint)}
+.meter{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.meter .bar{flex:1;height:7px;border-radius:4px;background:rgba(255,255,255,.07);overflow:hidden}
+.meter .fill{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent-dim),var(--accent));transition:width 1.3s cubic-bezier(.16,1,.3,1)}
+.meter b{font:600 11px "JetBrains Mono";color:var(--mid)}
+.beat{display:flex;align-items:center;gap:12px;padding:11px 4px;border-top:1px solid rgba(255,255,255,.05);flex-wrap:wrap}
+.beat .no{font:500 10px "JetBrains Mono";color:var(--dim);width:20px}
+.beat .ty{width:118px}
+.beat .l3{flex:1;min-width:220px;font:600 12.5px "Archivo";letter-spacing:.04em}
+.cpill{font:700 9.5px "JetBrains Mono";padding:3px 8px;border-radius:3px}
+.cp-ok{background:rgba(52,208,122,.12);color:var(--ok)}
+.cp-warn{background:rgba(255,210,52,.10);color:var(--warn)}
+.cp-bad{background:rgba(255,59,92,.14);color:var(--danger)}
+.gate{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.receipt{font:500 11px "JetBrains Mono";color:var(--hi);background:rgba(52,208,122,.07);border:1px solid rgba(52,208,122,.25);border-radius:var(--r);padding:11px 14px}
+.receipt b{color:var(--ok)}
+.yes{font:700 13px "JetBrains Mono";letter-spacing:.3em;text-transform:uppercase;color:var(--hi);background:rgba(255,255,255,.04);border:1px solid var(--edge);border-radius:var(--r);padding:11px 14px;width:130px;text-align:center}
+.yes::placeholder{color:var(--dim)}
+.gnote{font-size:10.5px;color:var(--mid);flex-basis:100%}
+
+/* ---------- DISTRIBUTION ---------- */
+.plats{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:10px}
+.plat{background:var(--s2);border:1px solid var(--edge);border-top-color:var(--edge-top);border-radius:var(--r);padding:13px}
+.plat .top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:5px}
+.plat h4{font:600 12px "Archivo Narrow";letter-spacing:.14em;text-transform:uppercase}
+.plat p{font-size:10.5px;color:var(--mid)}
+.plat.wide{grid-column:span 2}
+.copyrow{display:flex;align-items:center;gap:8px;padding:6px 0;border-top:1px solid rgba(255,255,255,.05);font-size:11px}
+.copyrow .k{font:500 9px "JetBrains Mono";color:var(--dim);width:78px;text-transform:uppercase;letter-spacing:.1em}
+.copyrow .v{flex:1;color:var(--mid);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.copyrow button{font:600 8.5px "JetBrains Mono";letter-spacing:.1em;color:var(--accent);background:var(--accent-faint);border:1px solid rgba(232,168,76,.35);border-radius:3px;padding:4px 8px;cursor:pointer}
+
+/* ---------- GUESTS ---------- */
+.search{width:100%;font:400 12.5px "Archivo";color:var(--hi);background:rgba(255,255,255,.04);border:1px solid var(--edge);border-radius:var(--r);padding:12px 14px;margin-bottom:4px}
+.search::placeholder{color:var(--dim)}
+.grow2{display:flex;align-items:center;gap:12px;padding:13px 4px;border-top:1px solid rgba(255,255,255,.05);flex-wrap:wrap}
+.grow2 .tx{flex:1;min-width:200px}
+.grow2 .n{font-weight:600}
+.grow2 .a{font-size:11px;color:var(--mid)}
+
+/* ---------- footer / tabbar ---------- */
+.statusbar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:flex;gap:8px;justify-content:center;align-items:center;
+  padding:8px 16px;font:500 9.5px "JetBrains Mono";letter-spacing:.08em;color:var(--dim);text-transform:uppercase;border-radius:0;border-left:0;border-right:0;border-bottom:0}
+.statusbar b{color:var(--mid)}
+.statusbar i{font-style:normal;color:rgba(200,221,232,.18)}
+.tabbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:60;
+  padding:6px 8px calc(6px + env(safe-area-inset-bottom));border-radius:0;border-left:0;border-right:0;border-bottom:0}
+.tabbar button{flex:1;background:none;border:0;color:var(--mid);font:600 9px "Archivo";letter-spacing:.1em;text-transform:uppercase;padding:7px 2px;cursor:pointer;border-radius:var(--r)}
+.tabbar button .gl2{display:block;font:500 15px/1.2 "JetBrains Mono"}
+.tabbar button.on{color:var(--accent);background:var(--accent-faint)}
+
+/* reveal */
+[data-r]{opacity:0;transform:translateY(12px)}
+[data-r].in{opacity:1;transform:none;transition:opacity .55s cubic-bezier(.16,1,.3,1),transform .55s cubic-bezier(.16,1,.3,1)}
+
+@media (max-width:760px){
+  nav.dnav,.statusbar,.hstat .clock{display:none}
+  .tabbar{display:flex}
+  main{padding:12px 10px 96px}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .tiles{grid-template-columns:1fr}
+  .mwrap{display:none}.epcards{display:block}
+  .plat.wide{grid-column:auto}
+  .cd{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  .dot{animation:none}
+  [data-r]{opacity:1;transform:none;transition:none}
+  .meter .fill{transition:none}
+}
+</style>
+</head>
+<body>
+<div id="bg"></div><div id="grain"></div>
+
+<header class="glass">
+  <div class="brand"><b>GSR</b><small>Genesis Science Report · Liquid Glass Preview · Mock Data</small></div>
+  <nav class="dnav">
+    <button class="navpill on" data-nav="today">Today</button>
+    <button class="navpill" data-nav="episodes">Episodes</button>
+    <button class="navpill" data-nav="l3">Lower Thirds</button>
+    <button class="navpill" data-nav="distro">Distribution</button>
+    <button class="navpill" data-nav="guests">Guests</button>
+    <button class="navpill soon" title="Builds after the graphics decision cards">Graphics</button>
+  </nav>
+  <div class="hstat"><span class="clock" id="clock">00:00:00</span><span class="live"><span class="dot"></span>LIVE</span></div>
+</header>
+
+<main>
+
+<!-- ============ TODAY ============ -->
+<section class="screen on" id="s-today">
+  <div class="band glass hero" data-r>
+    <div class="herorow">
+      <div class="grow">
+        <div class="lbl">This week on air</div>
+        <h1>S03EP021 · Engineered Oceans</h1>
+        <div class="sub">Tuesday 8:00P CT &nbsp;·&nbsp; webstream Monday 4:00P ET</div>
+      </div>
+      <span class="chip c-ok">● ON TRACK</span>
+      <div class="cd"><div class="lbl">Next air</div><b id="cd">—</b></div>
+    </div>
+  </div>
+
+  <div class="kpis" data-r>
+    <div class="kpi"><span class="l">L3 Approved</span><b>12/15</b><span class="s">Monologue · EP022</span></div>
+    <div class="kpi"><span class="l">Held Extractions</span><b>2</b><span class="s">await your confirm</span></div>
+    <div class="kpi alert"><span class="l">YES Gates</span><b>1</b><span class="s">import waiting</span></div>
+    <div class="kpi"><span class="l">Guests Confirmed</span><b>3<span style="color:var(--dim)">/4</span></b><span class="s">June slate</span></div>
+    <div class="kpi"><span class="l">Webstream</span><b>MON 4P</b><span class="s">EP021 fan-out</span></div>
+    <div class="kpi"><span class="l">Next Taping</span><b>JUN 15</b><span class="s">Dr. Ming Wang · 9:30 arr</span></div>
+  </div>
+
+  <details class="tier glass band t-red" open data-r>
+    <summary><span class="tname">Blockers — needs you now</span><span class="tcount">2</span><span class="tarrow">›</span></summary>
+    <div class="q">
+      <div class="tx">
+        <div class="t1"><b>Type YES</b> to import 14 lower thirds — S03EP022</div>
+        <div class="t2">Dry-run: <mono>14 rows · 0 rejected</mono> · live import is gated on your YES</div>
+      </div>
+      <button class="btn gold">Type YES</button>
+    </div>
+    <div class="q">
+      <div class="tx">
+        <div class="t1"><b>Confirm</b> held extraction — Interview 2 · Dr. Tim Clarey</div>
+        <div class="t2"><mono>12</mono> candidates parsed from the saved script · nothing lands until you confirm</div>
+      </div>
+      <button class="btn">Review &amp; Confirm</button>
+    </div>
+  </details>
+
+  <details class="tier glass band t-amber" open data-r>
+    <summary><span class="tname">Due before Tuesday</span><span class="tcount">3</span><span class="tarrow">›</span></summary>
+    <div class="q">
+      <div class="tx">
+        <div class="t1"><b>Pick</b> the guest chyron — Dr. Tim Clarey
+          <span class="vmini"><span class="vchip on">P</span><span class="vchip">V1</span><span class="vchip">V2</span></span>
+        </div>
+        <div class="t2">3 topic-relevant variations · geology credential leads for this episode</div>
+      </div>
+      <button class="btn">Open</button>
+    </div>
+    <div class="q">
+      <div class="tx">
+        <div class="t1"><b>Approve</b> monologue lower thirds — <mono>12 of 15</mono></div>
+        <div class="t2">3 beats left · band check green on all drafted lines</div>
+      </div>
+      <button class="btn">Open</button>
+    </div>
+    <div class="q">
+      <div class="tx">
+        <div class="t1"><b>Review</b> the Rumble prep card — EP021</div>
+        <div class="t2">file · title · description · tags · thumbnail · schedule, all copy-ready</div>
+      </div>
+      <button class="btn">Open Card</button>
+    </div>
+  </details>
+
+  <details class="tier glass band t-dim" data-r>
+    <summary><span class="tname">FYI</span><span class="tcount">2</span><span class="tarrow">›</span></summary>
+    <div class="q"><div class="tx"><div class="t1">Transcript landed — EP020 (diarized, 4 speaker classes)</div></div></div>
+    <div class="q"><div class="tx"><div class="t1">Schedule synced — 3 PROD events updated from Basecamp</div></div></div>
+  </details>
+
+  <div class="band glass" data-r>
+    <div class="deck" style="border-top:0;padding-top:2px">
+      <div class="dk">Decision card · pre-filled (my suggestion) — tap to change</div>
+      <div class="row">
+        <div class="tx" style="flex:1;min-width:220px">Keep the 12-station pipeline list as the one stage vocabulary?</div>
+        <button class="btn gold">Keep — Recommended</button>
+        <button class="btn">Change</button>
+      </div>
+    </div>
+    <div class="empty">When the queue is empty: “Nothing needs you right now. Next air Tue 8:00p, on track.”</div>
+  </div>
+</section>
+
+<!-- ============ EPISODES ============ -->
+<section class="screen" id="s-episodes">
+  <div class="band glass" data-r>
+    <div class="bt"><em>01</em><h2>Pipeline Matrix</h2><i></i><span class="chip c-gold">◈ SEASON 3</span></div>
+    <div class="legend">
+      <span><span class="gl g-done">✓</span> done</span>
+      <span><span class="gl g-prog">◐</span> in progress</span>
+      <span><span class="gl g-none">○</span> not started</span>
+      <span><span class="gl g-bad">▪!</span> blocked / at risk</span>
+      <span><span class="gl g-def">◇</span> deferred</span>
+      <span style="margin-left:auto;color:var(--dim)">row flags red within 7 days of air if not at Distribute</span>
+    </div>
+    <div class="mwrap">
+    <table class="mx">
+      <thead><tr>
+        <th>Episode<span class="cnt">&nbsp;</span></th>
+        <th>Scr<span class="cnt">6/6</span></th><th>Gst<span class="cnt">5/6</span></th><th>L3<span class="cnt">3/6</span></th>
+        <th>Gfx<span class="cnt">3/6</span></th><th>Run<span class="cnt">3/6</span></th><th>PP<span class="cnt">2/6</span></th>
+        <th>Rec<span class="cnt">3/6</span></th><th>Edit<span class="cnt">2/6</span></th><th>Tx<span class="cnt">2/6</span></th>
+        <th>Meta<span class="cnt">1/6</span></th><th>Dist<span class="cnt">1/6</span></th><th>Air<span class="cnt">1/6</span></th>
+      </tr></thead>
+      <tbody>
+        <tr class="bandrow"><td colspan="13">In post</td></tr>
+        <tr>
+          <td class="eplabel"><b>EP019</b><span>Polar Vortex Design</span><small>aired Jun 9</small></td>
+          <td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td>
+        </tr>
+        <tr class="alarm">
+          <td class="eplabel"><b>EP020</b><span>The Cambrian Clock</span><small>airs Jun 16 · not at Distribute</small></td>
+          <td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-bad">▪!</td><td class="gl g-done">✓</td><td class="gl g-prog">◐</td><td class="gl g-none">○</td><td class="gl g-none">○</td>
+        </tr>
+        <tr>
+          <td class="eplabel"><b>EP021</b><span>Engineered Oceans</span><small>airs Jun 23</small></td>
+          <td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-prog">◐</td><td class="gl g-done">✓</td><td class="gl g-prog">◐</td><td class="gl g-prog">◐</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td>
+        </tr>
+        <tr class="bandrow"><td colspan="13">In production</td></tr>
+        <tr>
+          <td class="eplabel"><b>EP022</b><span>Flood Geology · Dr. Tim Clarey</span><small>tapes Jun 18</small></td>
+          <td class="gl g-done">✓</td><td class="gl g-done">✓</td><td class="gl g-prog">◐</td><td class="gl g-prog">◐</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td>
+        </tr>
+        <tr>
+          <td class="eplabel"><b>EP023</b><span>Sight &amp; Design · Dr. Ming Wang</span><small>tapes Jun 15</small></td>
+          <td class="gl g-prog">◐</td><td class="gl g-done">✓</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td>
+        </tr>
+        <tr>
+          <td class="eplabel"><b>EP024</b><span>Open slot</span><small>guest pending</small></td>
+          <td class="gl g-prog">◐</td><td class="gl g-bad">▪!</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-none">○</td><td class="gl g-def">◇</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="epcards">
+      <div class="epcard"><div class="top"><b class="mono">EP020</b><span style="color:var(--mid);font-size:11px">The Cambrian Clock</span><span class="chip c-danger" style="margin-left:auto">▪ BEHIND</span></div>
+        <div class="segbar"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="b"></i><i class="d"></i><i class="p"></i><i></i><i></i></div></div>
+      <div class="epcard"><div class="top"><b class="mono">EP021</b><span style="color:var(--mid);font-size:11px">Engineered Oceans</span><span class="chip c-ok" style="margin-left:auto">● ON TRACK</span></div>
+        <div class="segbar"><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="d"></i><i class="p"></i><i class="d"></i><i class="p"></i><i class="p"></i><i></i><i></i><i></i></div></div>
+      <div class="epcard"><div class="top"><b class="mono">EP022</b><span style="color:var(--mid);font-size:11px">Flood Geology</span><span class="chip c-warn" style="margin-left:auto">◐ WATCH</span></div>
+        <div class="segbar"><i class="d"></i><i class="d"></i><i class="p"></i><i class="p"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+    </div>
+  </div>
+
+  <div class="band glass" data-r>
+    <div class="bt"><em>02</em><h2>Episode workspace · EP022</h2><i></i><span class="chip c-warn">◐ LOWER THIRDS</span></div>
+    <div class="wsteaser">
+      <div class="tx">
+        <div style="font-weight:600">Current stage needs attention — Lower Thirds, <span class="mono">12 of 15</span> approved</div>
+        <div style="font-size:11px;color:var(--mid)">Tap any matrix row to open this view: script, lower thirds, guests, and distribution for one episode in one place. One focal action per screen.</div>
+      </div>
+      <button class="btn gold" data-nav="l3">Open Lower Thirds</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOWER THIRDS ============ -->
+<section class="screen" id="s-l3">
+  <div class="band glass" data-r>
+    <div class="bt"><em>01</em><h2>Intake</h2><i></i><span class="chip c-draft">DETERMINISTIC · GATED</span></div>
+    <div class="tiles">
+      <div class="tile"><h4>Upload script</h4><p>One script per segment (teleprompter text, or transcript for prerecorded roll-ins).</p><button class="btn">Upload</button></div>
+      <div class="tile"><h4>Import lower-thirds file</h4><p>Optional, separate file · importable any time for any uploaded segment · parsed without AI.</p><button class="btn">Choose File</button></div>
+      <div class="tile"><h4>Held extractions <span class="chip c-warn" style="margin-left:4px">2</span></h4><p>Interview 2 · Dr. Tim Clarey (12) &nbsp;·&nbsp; Ministry Report (6). Nothing lands until you confirm.</p><button class="btn">Review</button></div>
+    </div>
+  </div>
+
+  <div class="band glass" data-r>
+    <div class="bt"><em>02</em><h2>Review · S03EP022</h2><i></i></div>
+    <div class="segtabs">
+      <button class="segtab on">Opening Monologue · 12/15</button>
+      <button class="segtab">Interview 1</button>
+      <button class="segtab">Interview 2 · held</button>
+      <button class="segtab">Featured Resource ↻ rotation</button>
+    </div>
+    <div class="meter"><span class="bar"><span class="fill" data-w="80%"></span></span><b>12 / 15 APPROVED</b></div>
+
+    <div class="beat">
+      <span class="no">04</span><span class="ty"><span class="chip c-draft">DISCUSSION L3</span></span>
+      <span class="l3">FOSSIL GRAVEYARDS SPAN ENTIRE CONTINENTS</span>
+      <span class="cpill cp-ok">62 ✓</span>
+      <span class="vmini"><span class="vchip on">P</span><span class="vchip">V1</span><span class="vchip">V2</span></span>
+      <button class="btn" style="padding:8px 11px;min-height:36px">↻</button>
+    </div>
+    <div class="beat">
+      <span class="no">05</span><span class="ty"><span class="chip c-draft">GUEST CHYRON</span></span>
+      <span class="l3">DR. TIM CLAREY · GEOLOGIST · INSTITUTE FOR CREATION RESEARCH</span>
+      <span class="cpill cp-warn">54 LOW</span>
+      <span class="vmini"><span class="vchip">P</span><span class="vchip on">V1</span><span class="vchip">V2</span></span>
+      <button class="btn" style="padding:8px 11px;min-height:36px">↻</button>
+    </div>
+    <div class="beat">
+      <span class="no">06</span><span class="ty"><span class="chip c-draft">TOPIC L3</span></span>
+      <span class="l3">NEW SONAR MAPS REVEAL MEGASEQUENCES BURIED BENEATH EVERY OCEAN BASIN</span>
+      <span class="cpill cp-bad">71 BLOCKED</span>
+      <span class="vmini"><span class="vchip on">P</span><span class="vchip">V1</span><span class="vchip">V2</span></span>
+      <button class="btn" style="padding:8px 11px;min-height:36px">↻</button>
+    </div>
+  </div>
+
+  <div class="band glass" data-r>
+    <div class="bt"><em>03</em><h2>Send</h2><i></i><span class="chip c-hold">◍ HUMAN-GATED</span></div>
+    <div class="gate">
+      <span class="receipt">DRY-RUN: <b>14 ROWS</b> · <b>0 REJECTED</b> · ALL CAPS · BAND VALIDATED</span>
+      <input class="yes" placeholder="TYPE YES" maxlength="3" aria-label="Type YES to confirm">
+      <button class="btn gold" disabled>Send to ProPresenter</button>
+      <span class="gnote">Sends to the dedicated Lower Thirds presentation only. Lower thirds never go to Rundown Creator. The send unlocks after the test-machine path is proven (slice 10).</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DISTRIBUTION ============ -->
+<section class="screen" id="s-distro">
+  <div class="band glass" data-r>
+    <div class="bt"><em>01</em><h2>Webstream release · S03EP021</h2><i></i><span class="chip c-gold">MON 4:00P ET</span></div>
+    <p style="font-size:11.5px;color:var(--mid);margin:-6px 0 12px">One Monday milestone fans out to every platform below. Phase 1: the dashboard preps and tracks; uploads stay human-triggered.</p>
+    <div class="plats">
+      <div class="plat"><div class="top"><h4>YouTube</h4><span class="chip c-hold">◍ PRIVATE</span></div><p>Uploaded via API · flips public Monday · audit pending, stays private until cleared</p></div>
+      <div class="plat wide"><div class="top"><h4>Rumble · Prep Card</h4><span class="chip c-ok">● READY</span></div>
+        <div class="copyrow"><span class="k">File</span><span class="v">S03EP021_Master_v2.mp4</span><button>COPY</button></div>
+        <div class="copyrow"><span class="k">Title</span><span class="v">Engineered Oceans | Genesis Science Report</span><button>COPY</button></div>
+        <div class="copyrow"><span class="k">Description</span><span class="v">This week David Rives explores the engineering of ocean currents…</span><button>COPY</button></div>
+        <div class="copyrow"><span class="k">Tags</span><span class="v">creation science, oceans, David Rives, GSR</span><button>COPY</button></div>
+        <div class="copyrow"><span class="k">Schedule</span><span class="v">Mon Jun 22 · 4:00P ET</span><button>COPY</button></div>
+        <p style="margin-top:7px">Manual upload (vendor confirmed no working API) · Myriam drags, pastes, publishes · ~10 min saved, zero typos</p>
+      </div>
+      <div class="plat"><div class="top"><h4>Dropbox</h4><span class="chip c-ok">✓ DROPPED</span></div><p>Broadcast master · flat per-show folder · feeds partner stations + OTA</p></div>
+      <div class="plat"><div class="top"><h4>StreamHoster</h4><span class="chip c-warn">◐ QUEUED</span></div><p>One FTPS upload feeds Roku, Apple TV, iOS app, LG TV</p></div>
+      <div class="plat"><div class="top"><h4>Real Life Network</h4><span class="chip c-warn">◐ QUEUED</span></div><p>Signiant Media Shuttle · −20 LKFS check · 1200×1800 thumbnail</p></div>
+      <div class="plat"><div class="top"><h4>GSN</h4><span class="chip c-hold">◍ HANDOFF</span></div><p>genesissciencenetwork.com · handoff card · Roku feed proposed</p></div>
+      <div class="plat"><div class="top"><h4>Podcast</h4><span class="chip c-ok">● MP3 READY</span></div><p>RSS feeds Spotify + Apple automatically</p></div>
+      <div class="plat"><div class="top"><h4>CTN · WWN</h4><span class="chip c-draft">◌ LOW CADENCE</span></div><p>Real targets, slower rhythm · delivery path queued</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GUESTS ============ -->
+<section class="screen" id="s-guests">
+  <div class="band glass" data-r>
+    <div class="bt"><em>01</em><h2>Guests</h2><i></i><span class="chip c-draft">175 ON FILE</span></div>
+    <input class="search" placeholder="Search guests, affiliations, topics…">
+    <div class="grow2"><div class="tx"><div class="n">Dr. Tim Clarey</div><div class="a">Geologist · Institute for Creation Research</div></div><span class="chip c-ok">CHYRON ×3 ✓</span><span class="chip c-gold">EP022</span></div>
+    <div class="grow2"><div class="tx"><div class="n">Dr. Ming Wang</div><div class="a">Eye surgeon · Wang Vision Institute</div></div><span class="chip c-warn">◐ TAPING JUN 15</span><span class="chip c-draft">9:30 ARRIVAL</span></div>
+    <div class="grow2"><div class="tx"><div class="n">Dan Janzen</div><div class="a">Two affiliations on file · chyron follows the episode topic</div></div><span class="chip c-hold">◍ TOPIC-RELEVANT CHYRON</span></div>
+    <div class="grow2"><div class="tx"><div class="n">Dr. Jake Hebert</div><div class="a">Physicist · Institute for Creation Research</div></div><span class="chip c-draft">RESEARCH</span></div>
+    <div class="grow2"><div class="tx"><div class="n">Fuz Rana</div><div class="a">President/CEO · Reasons to Believe</div></div><span class="chip c-danger">▪ DO NOT BOOK — VETOED</span></div>
+    <p style="font-size:10.5px;color:var(--mid);margin-top:10px">Corrections and do-not-book flags surface loudly from the guest reference. Confirmed is not booked.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="statusbar glass">
+  <b>S03</b><i>·</i>AIR TUE 8:00P CT<i>·</i>WEBSTREAM MON 4:00P ET<i>·</i><b style="color:var(--ok)">SUPABASE LIVE</b><i>·</i>RUNDOWN CREATOR LIVE<i>·</i><span style="color:var(--accent)">LIQUID GLASS PREVIEW — MOCK DATA</span>
+</footer>
+
+<nav class="tabbar glass">
+  <button class="on" data-nav="today"><span class="gl2">◉</span>Today</button>
+  <button data-nav="episodes"><span class="gl2">▤</span>Episodes</button>
+  <button data-nav="l3"><span class="gl2">≡</span>L3</button>
+  <button data-nav="distro"><span class="gl2">⇗</span>Distro</button>
+  <button data-nav="guests"><span class="gl2">◎</span>Guests</button>
+</nav>
+
+<script>
+(function(){
+  var screens={today:"s-today",episodes:"s-episodes",l3:"s-l3",distro:"s-distro",guests:"s-guests"};
+  function reveal(scope){
+    var items=scope.querySelectorAll("[data-r]");
+    items.forEach(function(el,i){el.classList.remove("in");setTimeout(function(){el.classList.add("in")},60*i+40)});
+    scope.querySelectorAll(".fill").forEach(function(f){f.style.width="0";setTimeout(function(){f.style.width=f.dataset.w},180)});
+  }
+  function go(key){
+    document.querySelectorAll(".screen").forEach(function(s){s.classList.remove("on")});
+    var sc=document.getElementById(screens[key]);sc.classList.add("on");
+    document.querySelectorAll("[data-nav]").forEach(function(b){b.classList.toggle("on",b.dataset.nav===key)});
+    reveal(sc);window.scrollTo({top:0});
+  }
+  document.querySelectorAll("[data-nav]").forEach(function(b){b.addEventListener("click",function(){go(b.dataset.nav)})});
+  reveal(document.getElementById("s-today"));
+
+  // clock
+  var ck=document.getElementById("clock");
+  function tick(){var d=new Date();ck.textContent=d.toLocaleTimeString("en-US",{hour12:false})}
+  tick();setInterval(tick,1000);
+
+  // countdown to next Tuesday 8:00 PM (viewer-local stand-in for CT)
+  var cd=document.getElementById("cd");
+  function nextAir(){var d=new Date();var t=new Date(d);t.setDate(d.getDate()+((2-d.getDay()+7)%7));t.setHours(20,0,0,0);if(t<=d)t.setDate(t.getDate()+7);return t}
+  var target=nextAir();
+  function cdt(){var ms=target-new Date();if(ms<0){target=nextAir();return}
+    var s=Math.floor(ms/1e3),dd=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),x=s%60;
+    function p(n){return (n<10?"0":"")+n}
+    cd.textContent=dd+"D "+p(h)+":"+p(m)+":"+p(x);}
+  cdt();setInterval(cdt,1000);
+
+  // shared specular, root-level, fine pointers only
+  if(window.matchMedia("(pointer: fine)").matches){
+    var raf=null;
+    window.addEventListener("pointermove",function(e){
+      if(raf)return;
+      raf=requestAnimationFrame(function(){
+        document.documentElement.style.setProperty("--px",(e.clientX/innerWidth*100)+"%");
+        document.documentElement.style.setProperty("--py",(e.clientY/innerHeight*100)+"%");
+        raf=null;});
+    },{passive:true});
+  }
+})();
+</script>
+</body>
+</html>

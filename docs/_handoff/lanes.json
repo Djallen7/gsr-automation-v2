@@ -4,28 +4,34 @@
   "lanes": [
     {
       "id": 1,
-      "name": "UI design direction",
-      "status": "open",
-      "summary": "Pick a UI direction from the bake-off, then build it into the real dashboard screens. Needs Daniel's decision.",
+      "name": "Dashboard redesign (liquid glass)",
+      "status": "in progress",
+      "summary": "Daniel locked the direction 2026-06-12 (canon s19): scrap the current UI, rebuild nav around the actual workflow with only recent-canon features, liquid glass theme synthesized from his world mocks. Plan of record: docs/_handoff/2026-06-12-dashboard-redesign-plan.md.",
       "done": [
         "Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots.",
-        "UI Foundation course module (m13) now teaches dashboard design from the ground up; its Lock step settles the UI direction (operational: per-role Today queue + Pipeline Matrix + mobile-first), backed by 4 cited research briefs in docs/_handoff/ui-research/."
+        "UI Foundation course module (m13) now teaches dashboard design from the ground up; its Lock step settles the UI direction (operational: per-role Today queue + Pipeline Matrix + mobile-first), backed by 4 cited research briefs in docs/_handoff/ui-research/.",
+        "2026-06-12: Daniel rejected the current UI + the bake-off frame; liquid glass directive captured (canon s19); redesign build plan authored with IA, screen blueprints, R1-R5 sequencing; theme preview built from the world-mock synthesis."
       ],
       "to_finish": [
-        "Lock the UI direction via the UI Foundation module's Lock step (recommended), or pick from the bake-off.",
-        "Build the chosen direction into the real dashboard screens.",
-        "Render screenshots for review."
+        "R1 theme foundation: tokens, glass primitives, nav shell (Jun 13-14).",
+        "R2 Today + Pipeline Matrix on real data (Jun 15-16).",
+        "R3 Lower Thirds hub consolidating import/extract/upload/approved/ready, gates unchanged (Jun 16-18).",
+        "R4 Distribution hub v1 + Rumble prep card 4.1a (Jun 19-20).",
+        "R5 Guests reskin, episode workspace polish, redirects, m13 screenshots (Jun 21-23); slice-5 close by Jun 25."
       ],
-      "blocked_on": "Daniel's pick (now framed as the UI Foundation module's Lock step).",
+      "blocked_on": "Nothing hard: Daniel one-taps the workflow statement, station list, and theme preview; build proceeds on the recommended defaults meanwhile.",
       "files": [
-        "docs/_handoff/gsr-automation-v2-course.html",
-        "docs/_handoff/ui-research/",
-        "docs/ui-mocks/preview-1..7-*.html",
-        "docs/_handoff/2026-06-07-gsr-ui-strategy.md",
-        "docs/_handoff/2026-06-07-gsr-ui-bakeoff-research.html"
+        "docs/_handoff/2026-06-12-dashboard-redesign-plan.md",
+        "docs/ui-mocks/2026-06-12-liquid-glass-dashboard-preview.html",
+        "docs/_handoff/GSR-WORKFLOW-CANON.md (s19)",
+        "docs/_handoff/ui-research/"
       ],
-      "resume_prompt": "Read docs/_handoff/LANES.md (Lane 1), the UI Foundation module (m13) in docs/_handoff/gsr-automation-v2-course.html, and the 4 briefs in docs/_handoff/ui-research/. Daniel's locked direction is: [FILL IN, default operational: per-role Today queue + Pipeline Matrix + mobile-first, one on-brand theme]. Build that into the real dashboard screens (Today queue, Pipeline Matrix, episode drill, graphics page) using the existing design tokens + shadcn components, render desktop + mobile screenshots, and report. Do not pick the direction yourself.",
+      "resume_prompt": "Read docs/_handoff/LANES.md (Lane 1), canon s19, and docs/_handoff/2026-06-12-dashboard-redesign-plan.md (the plan of record). Build the next R-step in the plan sequence on the session branch: liquid glass tokens + primitives first, then screens in order, gates unchanged, mock-content tested, desktop + phone screenshots per step, tsc/eslint clean, draft PR. Do not resurrect the bake-off or the tool-named page set.",
       "recent_activity": [
+        {
+          "date": "2026-06-12",
+          "text": "Liquid glass directive captured (canon s19); redesign plan + theme preview authored; lane renamed from UI design direction."
+        },
         {
           "date": "2026-06-08",
           "text": "UI Foundation module (m13) built + 4 research briefs added; UI direction now lockable in-course"

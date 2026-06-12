@@ -236,13 +236,13 @@ body contrast on glass, status triple-encoded (color + glyph + word), 40px touch
 - **Not in scope here:** graphics page build (awaits decision cards), Basecamp schedule
   view (6.5), ProPresenter push (slice 10), Mac-worker surfaces (slice 7).
 
-## 8. One-tap confirms for Daniel
+## 8. One-tap confirms for Daniel — RESOLVED (one-tap cards, 2026-06-12 late session)
 
-1. Section 1 workflow statement: correct? (yes / corrections)
-2. Navigation set (Today, Episodes, Lower Thirds, Distribution, Guests + reserved): right
-   stations? (yes / change)
-3. The 12-station pipeline list as the one canonical stage vocabulary? (yes, recommended /
-   trim it)
-4. Theme preview (`docs/ui-mocks/2026-06-12-liquid-glass-dashboard-preview.html`): open on
-   phone — approve direction / adjust (more example files welcome; the synthesis absorbs
-   them).
+1. Section 1 workflow statement: **CONFIRMED correct.**
+2. Navigation set (Today, Episodes, Lower Thirds, Distribution, Guests + reserved):
+   **CONFIRMED.**
+3. The 12-station pipeline list as the one canonical stage vocabulary: **CONFIRMED.**
+4. Theme preview: direction accepted, **adjustments pending** — Daniel will specify what
+   to change; structural build (R1 scaffolding, R2 screens) proceeds meanwhile and his
+   adjustments land in the token layer. More example files remain welcome; the synthesis
+   absorbs them.

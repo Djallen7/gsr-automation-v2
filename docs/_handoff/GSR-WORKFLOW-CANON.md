@@ -443,3 +443,19 @@ worksheet HTML files).
   glass theme is applied to.
 - Plan of record: `docs/_handoff/2026-06-12-dashboard-redesign-plan.md`.
 
+**Confirmations (Daniel, one-tap cards, 2026-06-12 late session):**
+- The 7-step Phase-1 lower-thirds workflow statement (redesign plan section 1): **CONFIRMED correct.**
+- The five-station navigation, Today / Episodes / Lower Thirds / Distribution / Guests,
+  with Graphics + Schedule reserved: **CONFIRMED.**
+- The 12-station pipeline vocabulary (Script, Guests, Lower Thirds, Graphics, Rundown,
+  ProPresenter, Record, Edit, Transcript, Metadata, Distribution, Aired): **CONFIRMED
+  canonical.** Each role sees its relevant columns.
+- claude.ai/design sync: **build the real components first, then sync from the Mac**
+  (this cloud session has no claude.ai/design connection; a skills folder is not a
+  component library). CONFIRMED.
+- Liquid glass look: direction accepted with **adjustments pending** (Daniel to specify
+  what to change; structural build proceeds meanwhile, palette and polish fold his
+  changes in via the token layer).
+- Note for the record: an earlier identical card round returned opposite answers on three
+  items; the later, clarified round above governs (his latest word wins).
+

@@ -131,15 +131,15 @@ screens exist, what each absorbs, the gates each carries) are unchanged.
 
 ## 6. Build sequencing (revised for the fresh start)
 
-- **R0 — Month map + design pass (BLOCKS visual work; starts on Daniel's go):** FIRST
-  map the producer month: Claude drafts the recurring responsibility tracks from repo
-  knowledge (booking/guest pipeline, per-episode script + lower-thirds line, taping
-  days, post + weekly distribution rhythm, the monthly research/guest-selection cycle,
-  plus whatever has no home yet), Daniel corrects it the way he corrects a mockup; the
-  result becomes a canon doc. THEN the words-first screen-story brainstorm, one screen
-  at a time, home page LAST. Research on calm, glanceable, visual-story products feeds
-  both. Log every reaction in DESIGN-TASTE.md; only then mock ONE screen, on real data,
-  phone first.
+- **R0 — Build-on-paper first, model-by-use (2026-06-13 pivot; supersedes the upfront
+  month-map draft):** do NOT front-load a giant "map your whole month" session on Daniel
+  (too much lift, the churn pattern). Build the crew-facing trackers that stand on paper
+  (Distribution first, then Graphics, then Post) and the booking state-board. The producer
+  month map then ACCRETES: crew tracks fill from documents; Daniel's own tracks fill from
+  the system observing his actions, surfaced back as occasional 5-second confirmations.
+  The home page is composed LAST, from the tracks he actually uses. The visual rules
+  (DESIGN-TASTE.md: visuals tell the story, numbers one tap deep) apply when any surface
+  gets designed.
 - **Structural work that may proceed during/before R0 (visually quiet, default styling):**
   route consolidation + redirects, nav shell (five places + reserved slots), data wiring
   for Today/Matrix queries, realtime via the broadcast-from-database pattern (CL-018).

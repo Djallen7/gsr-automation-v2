@@ -303,31 +303,36 @@
     },
     {
       "id": 10,
-      "name": "Producer model (brain dumps -> month map)",
+      "name": "Producer model (build on paper, learn from use)",
       "status": "open",
-      "summary": "The enablement engine for Daniel's OWN tracking (the hard half of the centralization problem). Daily raw brain dumps land verbatim in docs/_handoff/PRODUCER-JOURNAL.md; extraction builds a three-layer working picture (ALWAYS / USUALLY / NOW) where every item carries a dated receipt of his words; contradictions are flagged and held as data, never silently resolved; every dump gets a max-5-line echo receipt; he is never asked anything the journal answers. Method doc: docs/_handoff/2026-06-12-rant-to-model-method.md (PROPOSED, awaiting his go). Crew tracks (Isaac/Myriam/intern: post, graphics, distribution) build in parallel in Lanes 1/9 because their info exists on paper.",
+      "summary": "The enablement engine for Daniel's OWN tracking, the hard half of centralization. 2026-06-13 PIVOT: stop modeling his brain upfront. Build surfaces that stand on paper-facts (crew tracks: distribution/graphics/post, then booking as a state-board with email as attached evidence). His workflow model ACCRETES from the system observing his actions, surfaced as occasional 5-second confirmations, never daily homework. The brain-dump journal (docs/_handoff/PRODUCER-JOURNAL.md) is demoted to an OPTIONAL zero-pressure inbox. Method: docs/_handoff/2026-06-12-rant-to-model-method.md (revised). Per the expert-in-the-room mandate, Claude leads here.",
       "done": [
         "Method designed + proposed (2026-06-12).",
         "PRODUCER-JOURNAL.md opened; Entry 1 = the recovered fragment of Daniel's lost dictation; Entry 2 = his enablement-plan statements (crew-first, daily rants, months-long commitment, contradiction warning)."
       ],
       "to_finish": [
-        "Daniel agrees or adjusts the method (his stated condition for investing the time).",
-        "On go: add a /braindump command so ANY session processes a dump by the method's exact rules (append raw, extract, flag conflicts, echo receipt, commit, push).",
-        "Process dumps as they arrive, daily; promote repeatedly-confirmed items to the month map / canon with journal pointers.",
-        "Month map v1: crew tracks filled confidently from paper sources, Daniel's tracks marked UNVERIFIED and filled by the journal over time; feeds Lane 1 (home page composed LAST).",
-        "Later: the Mac watches Daniel's pinned brain-dump Apple Note (same pattern as the transcription watcher) so dictations are loss-proof and auto-ingested."
+        "FIRST BUILD: Distribution tracker (stands on the s11 registry + air dates + the Mon 4PM ET rhythm; Myriam's lane, zero David risk; proves status-without-narration).",
+        "Then the booking state-board (email as attached evidence, never source of truth) - directly attacks the email/booking trust wound.",
+        "Then graphics + post crew trackers (stand on the Graphics Tracker sheet + Rundown Creator + export artifacts).",
+        "Build observation in: capture order/timing/dwell of Daniel's own actions, surface patterns back as 5-second confirmations.",
+        "Month map accretes from the above; the dashboard home page (Lane 1) is composed LAST from the tracks he actually uses.",
+        "Optional only if Daniel chooses to use the inbox: a /braindump command + a Mac watch on a pinned note so dictations are loss-proof."
       ],
-      "blocked_on": "Daniel's go (or adjustments) on the method.",
+      "blocked_on": "Nothing hard. Crew tracks were greenlit; Claude leads per the expert-in-the-room mandate. Open input: only Daniel's gut check on starting with Distribution vs another track.",
       "files": [
         "docs/_handoff/PRODUCER-JOURNAL.md",
         "docs/_handoff/2026-06-12-rant-to-model-method.md",
         "docs/_handoff/GSR-WORKFLOW-CANON.md (enablement plan + centralization problem entries)"
       ],
-      "resume_prompt": "Read docs/_handoff/2026-06-12-rant-to-model-method.md and docs/_handoff/PRODUCER-JOURNAL.md IN FULL, plus the canon enablement-plan and centralization-problem entries. If Daniel sends a brain dump: append it raw and dated to the journal (verbatim, never paraphrased in place), extract candidate items tagged ALWAYS/USUALLY/NOW each with his words as receipt, flag any conflict with existing items (keep both, dated; never silently resolve; recency wins only for plain facts), reply with a max-5-line echo receipt (logged / changed / conflicts), then commit and push. Never ask him anything the journal already answers. Do not activate beyond this until he has said go on the method.",
+      "resume_prompt": "Read docs/_handoff/2026-06-12-rant-to-model-method.md (revised), the canon 'Expert-in-the-room mandate + method pivot' entry, and docs/_handoff/PRODUCER-JOURNAL.md. DO NOT front-load a brain-mapping session on Daniel and do not run the journal as a daily chore. Build on paper-facts first: start with the Distribution tracker (s11 registry + air dates + Mon 4PM ET webstream rhythm), then the booking state-board (email = attached evidence, never source of truth), then graphics/post. Model Daniel's own workflow by observing his actions in the system, surfaced as occasional 5-second confirmations. Lead and give ONE clear recommendation; never just mirror his suggestions. All gates stand.",
       "recent_activity": [
         {
+          "date": "2026-06-13",
+          "text": "Expert-in-the-room mandate recorded (Claude leads on method/craft; CLAUDE.md + canon). Method PIVOTED away from the daily-rant journal (too much review burden) to build-on-paper + learn-from-use; journal demoted to optional inbox. First build set: Distribution tracker, then booking board."
+        },
+        {
           "date": "2026-06-12",
-          "text": "Lane opened. Method proposed; journal created with the recovered lost-dictation fragment as Entry 1 and the enablement-plan statements as Entry 2. Awaiting Daniel's go."
+          "text": "Lane opened. Method proposed; journal created with the recovered lost-dictation fragment as Entry 1 and the enablement-plan statements as Entry 2."
         }
       ]
     }

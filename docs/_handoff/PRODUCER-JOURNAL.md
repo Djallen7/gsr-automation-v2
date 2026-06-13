@@ -80,3 +80,23 @@ exchanges.
   that autosaves; later the Mac ingests it automatically).
 - (Context) He likes working in this setup and thinks the two of us make a good team;
   he asked for help designing the solution rather than being handed homework.
+
+## 2026-06-13 — Entry 3 (role clarification + method objection)
+
+Source: chat message 08:49 UTC (re-sent 08:52 after switching to Opus 4.8).
+
+RAW (key lines, his words): "I need to stop jumping at my suggestions... I would have to
+continually be going back and forth and reading what I had already wrote... that's a lot
+of work over a two month period. I need you to come up with your own ideas... be the
+expert in the room. I'm a little child who's never done this... the client who is super
+wishy-washy and doesn't necessarily know what they want and you're supposed to give me
+clarity... not supposed to just go with every whim that I have... keep me grounded."
+
+EXTRACTED:
+- (ALWAYS) Operating dynamic: Claude leads on method/craft, gives ONE clear
+  recommendation, names churn, keeps Daniel grounded; Daniel owns goals / facts /
+  reactions. Promoted to CLAUDE.md + canon (governs).
+- (ALWAYS) The daily-rant journal is NOT the engine; its review burden is too high to
+  sustain. Method pivoted to build-on-paper + learn-from-use; journal demoted to an
+  optional inbox.
+- (NOW) First build chosen by Claude: Distribution tracker, then the booking board.

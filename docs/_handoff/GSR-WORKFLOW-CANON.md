@@ -533,3 +533,35 @@ worksheet HTML files).
 - Raw intake lives in `docs/_handoff/PRODUCER-JOURNAL.md` (append-only). A dictation
   was lost to an incoming call on 2026-06-12; its recovered fragment is Entry 1.
 
+**THE EXPERT-IN-THE-ROOM MANDATE + METHOD PIVOT (Daniel, 2026-06-13 08:49 UTC — latest word, governs):**
+- Daniel stopped the process to correct the working dynamic itself: he has been "jumping
+  at his own suggestions" and watching Claude build them, and he does not want that. His
+  words: "I need you to come up with your own ideas... you are better at this than me and
+  I need you to be the expert in the room. I'm a little child who's never done this... the
+  client who is super wishy-washy and doesn't necessarily know what they want and you're
+  supposed to give me clarity... you're not supposed to just go with every whim that I
+  have, you're supposed to give me clarity and keep me grounded." Binding rule now in
+  CLAUDE.md (Expert-in-the-room mandate): Claude leads on HOW (method/craft), recommends
+  ONE path not a menu, names churn, keeps him grounded; Daniel owns WHAT (goals/facts).
+- He also rejected the daily-rant journal as the ENGINE: it would force him to keep
+  re-reading and correcting his own entries, too much to sustain over two months. Fair,
+  and it is the same churn pattern (glass -> rescind -> month-map -> journal, each needing
+  a big lift from him).
+- METHOD PIVOT (Claude's expert call, his to veto): stop trying to MODEL Daniel's brain
+  before building anything. Build the surfaces that stand on facts that already exist on
+  paper (crew tracks: distribution, graphics, post; then booking as a visible state-board
+  with email as attached evidence, never the source of truth). Daniel's own workflow model
+  then ACCRETES by the system observing his actions (order, timing, what sits where),
+  surfaced back as occasional 5-second "I noticed X, right?" confirmations, never daily
+  homework. The journal survives only as an OPTIONAL zero-pressure inbox. Honest limit:
+  the system learns what it can see; off-system decisions get rare quick confirmations.
+  Daniel's burden becomes "use the tools, correct them when wrong (seconds)," not "narrate
+  and review your life." Full method: `docs/_handoff/2026-06-12-rant-to-model-method.md`
+  (revised 2026-06-13).
+- FIRST BUILD (Claude's reasoned pick): the Distribution tracker. It stands entirely on
+  existing facts (the s11 platform registry, air dates, the Monday 4PM ET webstream
+  rhythm), it is Myriam's crew lane so there is zero on-air risk to David, and it is the
+  cleanest proof that the dashboard can show true status with nothing narrated. Booking
+  board is second, because that is where Claude's email-tracking failures have hurt
+  Daniel, and making it visible + checkable attacks the trust wound head-on.
+

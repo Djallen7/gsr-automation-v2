@@ -8,7 +8,7 @@ interface EpisodeRow {
   episode_number: number
   title: string | null
   scripts: { segment: string }[] | null
-  graphics: { status: string }[] | null
+  production_lower_thirds: { status: string }[] | null
 }
 
 export default async function LowerThirdsPage() {
@@ -20,7 +20,7 @@ export default async function LowerThirdsPage() {
 
   const { data: episodes } = await supabase
     .from('episodes')
-    .select('id, season, episode_number, title, scripts(segment), graphics(status)')
+    .select('id, season, episode_number, title, scripts(segment), production_lower_thirds(status)')
     .order('episode_number', { ascending: true })
 
   const rows = (episodes ?? []) as EpisodeRow[]
@@ -50,8 +50,8 @@ export default async function LowerThirdsPage() {
           {rows.map((ep) => {
             const label = `S${String(ep.season).padStart(2, '0')} Ep${String(ep.episode_number).padStart(3, '0')}`
             const scriptCount = ep.scripts?.length ?? 0
-            const pendingCount = ep.graphics?.filter((g) => g.status === 'pending_review').length ?? 0
-            const approvedCount = ep.graphics?.filter((g) => g.status === 'approved').length ?? 0
+            const pendingCount = ep.production_lower_thirds?.filter((g) => g.status === 'pending_review').length ?? 0
+            const approvedCount = ep.production_lower_thirds?.filter((g) => g.status === 'approved').length ?? 0
             const isEmpty = scriptCount === 0 && pendingCount === 0 && approvedCount === 0
 
             return (

@@ -114,6 +114,31 @@ export function GraphicCard({
 
   const isPendingReview = localStatus === 'pending_review'
 
+  // Canon length band (s13): under 55 too short (amber), 60-65 ideal (green),
+  // 66-70 over the sweet spot (amber), over 70 hard-blocked (red, not approvable).
+  const len = initialText.length
+  const overHardLimit = len > 70
+  const lenClass =
+    len > 70
+      ? 'text-red-600 font-semibold'
+      : len > 65
+        ? 'text-amber-500 font-semibold'
+        : len >= 60
+          ? 'text-green-600 dark:text-green-400'
+          : len >= 55
+            ? 'text-muted-foreground'
+            : 'text-amber-500 font-semibold'
+  const lenNote =
+    len > 70
+      ? ' over 70, shorten before approving'
+      : len > 65
+        ? ' over the 60-65 sweet spot'
+        : len >= 60
+          ? ' ideal length'
+          : len >= 55
+            ? ''
+            : ' too short'
+
   const cardBorder =
     localStatus === 'approved'
       ? 'border-green-500 bg-green-50 dark:bg-green-950/20'
@@ -143,8 +168,8 @@ export function GraphicCard({
             </span>
           </div>
           <p className="font-medium">{initialText}</p>
-          <p className={`text-xs tabular-nums ${initialText.length > 65 ? 'text-amber-500 font-semibold' : initialText.length < 55 ? 'text-amber-500 font-semibold' : 'text-muted-foreground'}`}>
-            {initialText.length}/65 chars{initialText.length > 65 ? ' — over sweet spot (60–65)' : initialText.length < 55 ? ' — too short' : ''}
+          <p className={`text-xs tabular-nums ${lenClass}`}>
+            {len} chars{lenNote}
           </p>
           <FontEditor
             graphicId={id}
@@ -164,7 +189,8 @@ export function GraphicCard({
           <Button
             size="sm"
             onClick={handleApprove}
-            disabled={isPending || regenerating}
+            disabled={isPending || regenerating || overHardLimit}
+            title={overHardLimit ? 'Over 70 characters. Shorten or regenerate before approving.' : undefined}
           >
             Approve
           </Button>

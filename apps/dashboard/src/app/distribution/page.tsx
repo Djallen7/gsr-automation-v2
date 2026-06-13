@@ -107,16 +107,36 @@ export default async function DistributionPage() {
 
   const now = getNow()
 
-  const sorted = [...episodes].sort((a, b) => {
-    const da = primaryDate(a)
-    const db = primaryDate(b)
-    if (da && db) return db.localeCompare(da)
-    if (da) return -1
-    if (db) return 1
-    return 0
-  })
+  // The tracker centers on current work: most-recently-aired episodes first
+  // (those are the ones actively being pushed to every platform), then the
+  // nearest upcoming, then anything undated.
+  const startOfToday = new Date(now)
+  startOfToday.setHours(0, 0, 0, 0)
+  const todayMs = startOfToday.getTime()
 
-  const board: EpisodeDist[] = sorted.slice(0, SHOWN).map((ep) => {
+  const dateMs = (ep: EpisodeRow): number | null => {
+    const d = primaryDate(ep)
+    if (!d) return null
+    const t = new Date(d).getTime()
+    return Number.isNaN(t) ? null : t
+  }
+
+  const aired = episodes
+    .filter((e) => {
+      const t = dateMs(e)
+      return t !== null && t <= todayMs
+    })
+    .sort((a, b) => (dateMs(b) ?? 0) - (dateMs(a) ?? 0))
+  const upcoming = episodes
+    .filter((e) => {
+      const t = dateMs(e)
+      return t !== null && t > todayMs
+    })
+    .sort((a, b) => (dateMs(a) ?? 0) - (dateMs(b) ?? 0))
+  const undated = episodes.filter((e) => dateMs(e) === null)
+  const ordered = [...aired, ...upcoming, ...undated]
+
+  const board: EpisodeDist[] = ordered.slice(0, SHOWN).map((ep) => {
     const stored = storedByEpisode.get(ep.id)
     const platforms: PlatformCell[] = PLATFORMS.map((p) => {
       const row = stored?.get(p.id)

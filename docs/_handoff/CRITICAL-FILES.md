@@ -146,6 +146,8 @@ The coverage audit skips these deliberately-disposable files:
 - `docs/_handoff/2026-06-09-build-task-1-schema-rename.md` — historical spec; the rename shipped 2026-06-12.
 - `docs/_handoff/gsr-flight-worksheet.html` — the offline worksheet; answers live in canon s14.
 - `docs/_handoff/guest-topic-brief-template.html` — reusable template, regenerable from the research repo's build script.
+- `docs/_handoff/PRODUCER-JOURNAL.md` — raw exploratory brain-dump intake (producer-model lane parked 2026-06-13); the durable statements were promoted to canon (Tier 0).
+- `docs/_handoff/2026-06-12-rant-to-model-method.md` — point-in-time enablement-method proposal (parked 2026-06-13; its superseded content lives in canon).
 <!-- audit:end -->
 
 ---

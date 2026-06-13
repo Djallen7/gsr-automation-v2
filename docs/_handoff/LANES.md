@@ -34,15 +34,15 @@ _Last updated 2026-06-12 13:27:35 UTC (1 day ago)._
 - **-Users-claudefix** [Unknown] 2 days ago
 - **-Users-claudefix** [Unknown] 2 days ago
 - **-Users-claudefix** [Unknown] 2 days ago
-- **-Users-claudefix** [Unknown] 2 days ago
-- **-Users-claudefix** [Unknown] 2 days ago
-- **-Users-claudefix** [Unknown] 2 days ago
-- **-Users-claudefix** [Unknown] 2 days ago
-- **-Users-claudefix** [Unknown] 2 days ago
-- **-Users-claudefix-Downloads-GSN-Dashboard-Local-GSR-GraphicsPackage** [Unknown] 2 days ago
-- **-Users-claudefix** [Unknown] 2 days ago
-- **-Users-claudefix** [Unknown] 2 days ago
-- **-Users-claudefix** [Unknown] 2 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix-Downloads-GSN-Dashboard-Local-GSR-GraphicsPackage** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
 
 ---
 
@@ -170,9 +170,9 @@ _Last updated 2026-06-12 13:27:35 UTC (1 day ago)._
 **Files:** `docs/_handoff/research-queue.md`
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 9), docs/_handoff/2026-06-11-pipeline-build-plan.md (the plan, v3), docs/_handoff/2026-06-11-mission-run-notes.md (goal checklist + corrections), and docs/_handoff/2026-06-11-claim-ledger.json. If transcripts exist in 2026-06-11-transcript-pull-kit/transcripts/, mine them per item 3.2 (statuses mined/rejected, claims ASSUMED->verified). If Daniel has answered section 7, append answers to canon dated and open the Phase B lanes the plan lists in section 9. Starred defaults stand unless he says otherwise. Never bypass canon s15 gates.`
 
-## Lane 10 - Producer model (build on paper, learn from use)
-**Status:** IN PROGRESS.
-**Summary:** The enablement engine for Daniel's OWN tracking, the hard half of centralization. 2026-06-13 PIVOT: stop modeling his brain upfront. Build surfaces that stand on paper-facts (crew tracks: distribution/graphics/post, then booking as a state-board with email as attached evidence). His workflow model ACCRETES from the system observing his actions, surfaced as occasional 5-second confirmations, never daily homework. The brain-dump journal (docs/_handoff/PRODUCER-JOURNAL.md) is demoted to an OPTIONAL zero-pressure inbox. Method: docs/_handoff/2026-06-12-rant-to-model-method.md (revised). Per the expert-in-the-room mandate, Claude leads here.
+## Lane 16 - Producer model (exploratory — not in the build-plan spine)
+**Status:** OPEN.
+**Summary:** PARKED 2026-06-13: re-centered on the established 2026-06-11 build plan, whose Slice 1 (lower-thirds vertical slice) is 'phase one'. The distribution tracker built this day maps to the plan's later social/distribution work (~slice 9), NOT phase one; it sits on the branch, unused, harmless. Original note kept: the enablement engine for Daniel's OWN tracking, the hard half of centralization; build-on-paper + learn-from-use; journal demoted to an optional inbox; method doc docs/_handoff/2026-06-12-rant-to-model-method.md.
 **Done:** Method designed + proposed (2026-06-12). PRODUCER-JOURNAL.md opened; Entry 1 = the recovered fragment of Daniel's lost dictation; Entry 2 = his enablement-plan statements (crew-first, daily rants, months-long commitment, contradiction warning). Distribution tracker v1 SHIPPED 2026-06-13 (5-day demo deadline): /distribution page + nav + inline status editing (server action upserts the distributions table); renders real episodes (YouTube Live on 17, rest To-do); tracking+prep only, reversible; tsc/eslint/build clean; on the session-branch PR #58 for Vercel preview.
 **To finish:**
 - Distribution tracker v2 (5-day deadline ~Jun 18): per-platform prep cards (Rumble copy-fields per s11 4.1a), surface the Monday 4PM ET webstream milestone, per-episode detail view, mobile pass + a recorded walkthrough as proof.

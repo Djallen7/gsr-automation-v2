@@ -302,10 +302,10 @@
       ]
     },
     {
-      "id": 10,
-      "name": "Producer model (build on paper, learn from use)",
-      "status": "in_progress",
-      "summary": "The enablement engine for Daniel's OWN tracking, the hard half of centralization. 2026-06-13 PIVOT: stop modeling his brain upfront. Build surfaces that stand on paper-facts (crew tracks: distribution/graphics/post, then booking as a state-board with email as attached evidence). His workflow model ACCRETES from the system observing his actions, surfaced as occasional 5-second confirmations, never daily homework. The brain-dump journal (docs/_handoff/PRODUCER-JOURNAL.md) is demoted to an OPTIONAL zero-pressure inbox. Method: docs/_handoff/2026-06-12-rant-to-model-method.md (revised). Per the expert-in-the-room mandate, Claude leads here.",
+      "id": 16,
+      "name": "Producer model (exploratory — not in the build-plan spine)",
+      "status": "open",
+      "summary": "PARKED 2026-06-13: re-centered on the established 2026-06-11 build plan, whose Slice 1 (lower-thirds vertical slice) is 'phase one'. The distribution tracker built this day maps to the plan's later social/distribution work (~slice 9), NOT phase one; it sits on the branch, unused, harmless. Original note kept: the enablement engine for Daniel's OWN tracking, the hard half of centralization; build-on-paper + learn-from-use; journal demoted to an optional inbox; method doc docs/_handoff/2026-06-12-rant-to-model-method.md.",
       "done": [
         "Method designed + proposed (2026-06-12).",
         "PRODUCER-JOURNAL.md opened; Entry 1 = the recovered fragment of Daniel's lost dictation; Entry 2 = his enablement-plan statements (crew-first, daily rants, months-long commitment, contradiction warning).",

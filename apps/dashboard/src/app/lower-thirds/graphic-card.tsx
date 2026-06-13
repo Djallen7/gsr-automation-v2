@@ -11,7 +11,28 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { FontEditor } from '@/components/font-editor'
+import { useRouter } from 'next/navigation'
 import { adoptVariation, approveGraphic, rejectGraphic } from './actions'
+
+const HARD_LIMIT = 70
+
+// Canon length band (s13): under 55 too short, 60-65 ideal, 66-70 over the
+// sweet spot, over 70 hard-blocked (not approvable).
+function bandClass(len: number): string {
+  if (len > 70) return 'text-red-600 font-semibold'
+  if (len > 65) return 'text-amber-500 font-semibold'
+  if (len >= 60) return 'text-green-600 dark:text-green-400'
+  if (len >= 55) return 'text-muted-foreground'
+  return 'text-amber-500 font-semibold'
+}
+
+function bandNote(len: number): string {
+  if (len > 70) return ' over 70, shorten before approving'
+  if (len > 65) return ' over the 60-65 sweet spot'
+  if (len >= 60) return ' ideal length'
+  if (len >= 55) return ''
+  return ' too short'
+}
 
 interface GraphicCardProps {
   id: string
@@ -23,6 +44,7 @@ interface GraphicCardProps {
   fontFamily: string | null
   fontSizePt: number | null
   fontColor: string | null
+  variations?: { variationNumber: number; text: string }[]
 }
 
 export function GraphicCard({
@@ -35,7 +57,9 @@ export function GraphicCard({
   fontFamily,
   fontSizePt,
   fontColor,
+  variations = [],
 }: GraphicCardProps) {
+  const router = useRouter()
   const [isPending, startTransition] = useTransition()
   const [localStatus, setLocalStatus] = useState(status)
   const [regenerating, setRegenerating] = useState(false)
@@ -112,32 +136,23 @@ export function GraphicCard({
     })
   }
 
-  const isPendingReview = localStatus === 'pending_review'
+  // 1.6 comparison: promote a stored variation to be the primary text.
+  function handleUseVariation(text: string) {
+    startTransition(async () => {
+      try {
+        await adoptVariation(id, text)
+        router.refresh()
+      } catch (err) {
+        toast.error(err instanceof Error ? err.message : 'Update failed.')
+      }
+    })
+  }
 
-  // Canon length band (s13): under 55 too short (amber), 60-65 ideal (green),
-  // 66-70 over the sweet spot (amber), over 70 hard-blocked (red, not approvable).
-  const len = initialText.length
-  const overHardLimit = len > 70
-  const lenClass =
-    len > 70
-      ? 'text-red-600 font-semibold'
-      : len > 65
-        ? 'text-amber-500 font-semibold'
-        : len >= 60
-          ? 'text-green-600 dark:text-green-400'
-          : len >= 55
-            ? 'text-muted-foreground'
-            : 'text-amber-500 font-semibold'
-  const lenNote =
-    len > 70
-      ? ' over 70, shorten before approving'
-      : len > 65
-        ? ' over the 60-65 sweet spot'
-        : len >= 60
-          ? ' ideal length'
-          : len >= 55
-            ? ''
-            : ' too short'
+  const isPendingReview = localStatus === 'pending_review'
+  const overHardLimit = initialText.length > HARD_LIMIT
+  const altVariations = variations.filter(
+    (v) => v.variationNumber >= 2 && v.text.trim().length > 0,
+  )
 
   const cardBorder =
     localStatus === 'approved'
@@ -168,9 +183,46 @@ export function GraphicCard({
             </span>
           </div>
           <p className="font-medium">{initialText}</p>
-          <p className={`text-xs tabular-nums ${lenClass}`}>
-            {len} chars{lenNote}
+          <p className={`text-xs tabular-nums ${bandClass(initialText.length)}`}>
+            {initialText.length} chars{bandNote(initialText.length)}
           </p>
+
+          {altVariations.length > 0 && (
+            <div className="mt-1 grid gap-2 rounded-md border bg-muted/20 p-2 sm:grid-cols-3">
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                  Primary
+                </span>
+                <span className="text-sm font-medium leading-snug">{initialText}</span>
+                <span className={`text-[11px] tabular-nums ${bandClass(initialText.length)}`}>
+                  {initialText.length} chars
+                </span>
+              </div>
+              {altVariations.map((v, i) => (
+                <div key={v.variationNumber} className="flex flex-col gap-1">
+                  <span className="text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                    Variation {i + 1}
+                  </span>
+                  <span className="text-sm leading-snug">{v.text}</span>
+                  <span className={`text-[11px] tabular-nums ${bandClass(v.text.length)}`}>
+                    {v.text.length} chars
+                  </span>
+                  {isPendingReview && (
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      className="mt-0.5"
+                      disabled={isPending || regenerating}
+                      onClick={() => handleUseVariation(v.text)}
+                    >
+                      Use this
+                    </Button>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
           <FontEditor
             graphicId={id}
             initial={{

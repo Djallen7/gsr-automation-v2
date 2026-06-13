@@ -11,6 +11,7 @@ const links = [
   { href: '/guests', label: 'Guests' },
   { href: '/workflow', label: 'Workflow' },
   { href: '/episodes', label: 'Episodes' },
+  { href: '/distribution', label: 'Distribution' },
   { href: '/upload', label: 'Upload' },
 ]
 

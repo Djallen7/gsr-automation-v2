@@ -28,7 +28,7 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-12 13:27:35 UTC (20 hours ago)._
+_Last updated 2026-06-12 13:27:35 UTC (1 day ago)._
 
 ## Live sessions (snapshot 2 days ago)
 - **-Users-claudefix** [Unknown] 2 days ago
@@ -171,11 +171,11 @@ _Last updated 2026-06-12 13:27:35 UTC (20 hours ago)._
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 9), docs/_handoff/2026-06-11-pipeline-build-plan.md (the plan, v3), docs/_handoff/2026-06-11-mission-run-notes.md (goal checklist + corrections), and docs/_handoff/2026-06-11-claim-ledger.json. If transcripts exist in 2026-06-11-transcript-pull-kit/transcripts/, mine them per item 3.2 (statuses mined/rejected, claims ASSUMED->verified). If Daniel has answered section 7, append answers to canon dated and open the Phase B lanes the plan lists in section 9. Starred defaults stand unless he says otherwise. Never bypass canon s15 gates.`
 
 ## Lane 10 - Producer model (build on paper, learn from use)
-**Status:** OPEN.
+**Status:** IN PROGRESS.
 **Summary:** The enablement engine for Daniel's OWN tracking, the hard half of centralization. 2026-06-13 PIVOT: stop modeling his brain upfront. Build surfaces that stand on paper-facts (crew tracks: distribution/graphics/post, then booking as a state-board with email as attached evidence). His workflow model ACCRETES from the system observing his actions, surfaced as occasional 5-second confirmations, never daily homework. The brain-dump journal (docs/_handoff/PRODUCER-JOURNAL.md) is demoted to an OPTIONAL zero-pressure inbox. Method: docs/_handoff/2026-06-12-rant-to-model-method.md (revised). Per the expert-in-the-room mandate, Claude leads here.
-**Done:** Method designed + proposed (2026-06-12). PRODUCER-JOURNAL.md opened; Entry 1 = the recovered fragment of Daniel's lost dictation; Entry 2 = his enablement-plan statements (crew-first, daily rants, months-long commitment, contradiction warning).
+**Done:** Method designed + proposed (2026-06-12). PRODUCER-JOURNAL.md opened; Entry 1 = the recovered fragment of Daniel's lost dictation; Entry 2 = his enablement-plan statements (crew-first, daily rants, months-long commitment, contradiction warning). Distribution tracker v1 SHIPPED 2026-06-13 (5-day demo deadline): /distribution page + nav + inline status editing (server action upserts the distributions table); renders real episodes (YouTube Live on 17, rest To-do); tracking+prep only, reversible; tsc/eslint/build clean; on the session-branch PR #58 for Vercel preview.
 **To finish:**
-- FIRST BUILD: Distribution tracker (stands on the s11 registry + air dates + the Mon 4PM ET rhythm; Myriam's lane, zero David risk; proves status-without-narration).
+- Distribution tracker v2 (5-day deadline ~Jun 18): per-platform prep cards (Rumble copy-fields per s11 4.1a), surface the Monday 4PM ET webstream milestone, per-episode detail view, mobile pass + a recorded walkthrough as proof.
 - Then the booking state-board (email as attached evidence, never source of truth) - directly attacks the email/booking trust wound.
 - Then graphics + post crew trackers (stand on the Graphics Tracker sheet + Rundown Creator + export artifacts).
 - Build observation in: capture order/timing/dwell of Daniel's own actions, surface patterns back as 5-second confirmations.
@@ -184,6 +184,7 @@ _Last updated 2026-06-12 13:27:35 UTC (20 hours ago)._
 **Blocked on:** Nothing hard. Crew tracks were greenlit; Claude leads per the expert-in-the-room mandate. Open input: only Daniel's gut check on starting with Distribution vs another track.
 **Files:** `docs/_handoff/PRODUCER-JOURNAL.md`, `docs/_handoff/2026-06-12-rant-to-model-method.md`, `docs/_handoff/GSR-WORKFLOW-CANON.md (enablement plan + centralization problem entries)`
 **Recent activity:**
+- 2026-06-13 - Distribution tracker v1 BUILT + shipped to the branch (5-day demo deadline). /distribution: per-episode cards, 9-platform status grid, inline status editing writing to the distributions table. tsc/eslint/build clean. Reversible, tracking+prep only.
 - 2026-06-13 - Expert-in-the-room mandate recorded (Claude leads on method/craft; CLAUDE.md + canon). Method PIVOTED away from the daily-rant journal (too much review burden) to build-on-paper + learn-from-use; journal demoted to optional inbox. First build set: Distribution tracker, then booking board.
 - 2026-06-12 - Lane opened. Method proposed; journal created with the recovered lost-dictation fragment as Entry 1 and the enablement-plan statements as Entry 2.
 **Resume prompt:** `Read docs/_handoff/2026-06-12-rant-to-model-method.md (revised), the canon 'Expert-in-the-room mandate + method pivot' entry, and docs/_handoff/PRODUCER-JOURNAL.md. DO NOT front-load a brain-mapping session on Daniel and do not run the journal as a daily chore. Build on paper-facts first: start with the Distribution tracker (s11 registry + air dates + Mon 4PM ET webstream rhythm), then the booking state-board (email = attached evidence, never source of truth), then graphics/post. Model Daniel's own workflow by observing his actions in the system, surfaced as occasional 5-second confirmations. Lead and give ONE clear recommendation; never just mirror his suggestions. All gates stand.`

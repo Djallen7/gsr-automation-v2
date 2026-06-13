@@ -9,7 +9,7 @@ import { TypeYesConfirm } from '@/components/type-yes-confirm'
 import { GraphicCard } from '../graphic-card'
 import { SEGMENTS } from '@/lib/segments'
 
-interface GraphicRow {
+export interface GraphicRow {
   id: string
   segment: string
   beat_number: number | null

@@ -128,3 +128,21 @@ EXTRACTED:
   handoff set = the north-star; subagents/gsr-architect = orchestration; /advisor = a free
   setting). Deferred to post-deadline: a gsr-health plain-English repo keep/delete map; a
   /advisor trial. Do not buy Lindy/Msty/Poe or a consultant for things already in hand.
+
+## 2026-06-14 — Entry 5 (trust / rapport affirmation)
+
+Source: chat 05:19 UTC, right after Claude held the line that the Perplexity tools were
+not worth acting on mid-deadline.
+
+RAW (his words, condensed): the reasoned pushback is the rapport he wants; telling him a
+version of what he wants to hear that costs him wasted time/energy/money erodes trust;
+thoughtful analysis that saves him time, headaches, energy, and money builds it. He will
+be open to the logic, will not always go 100% with the advice, but will "always respect
+you for speaking your mind." Trust grows when Claude is intentional, thorough, and
+maintains decent situational context, leading to better outcomes.
+
+EXTRACTED:
+- (ALWAYS) Trust model, in his words: honest reasoned pushback beats agreeable mirroring.
+  Confirms the expert-in-the-room + hold-your-ground mandates are the RIGHT operating
+  mode, not merely permitted. "Maintain decent situational context" is itself a named
+  trust factor: lean on the durable repo docs, do not drift or narrate from lost memory.

@@ -144,6 +144,8 @@ The coverage audit skips these deliberately-disposable files:
 - `docs/_handoff/2026-06-09-build-task-1-schema-rename.md` — historical spec; the rename shipped 2026-06-12.
 - `docs/_handoff/gsr-flight-worksheet.html` — the offline worksheet; answers live in canon s14.
 - `docs/_handoff/guest-topic-brief-template.html` — reusable template, regenerable from the research repo's build script.
+- `docs/_handoff/2026-06-14-repo-inventory.md` — dated repo-map + read-before-task snapshot; regenerable by re-surveying the tree.
+- `docs/_handoff/2026-06-14-five-day-plan.md` — dated parser build plan + day-1 prompt; point-in-time planning kit.
 <!-- audit:end -->
 
 ---

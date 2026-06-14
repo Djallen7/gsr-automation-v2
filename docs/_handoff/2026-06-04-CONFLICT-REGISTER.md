@@ -92,7 +92,7 @@
 
 ## 4. Confirmed CONSISTENT (no action - logged so the next pass does not re-litigate)
 
-Model `claude-opus-4-7` everywhere; the 12-value `graphic_segment` enum and 15-value `l3_type` CHECK match across all four route copies + DB; `@supabase/ssr` (no auth-helpers, no Pages Router) everywhere; RLS on every table; episodes 48 / guests 175 / graphics 0 match the live DB; the `lower_thirds`-phantom is described identically across the `_handoff` set; CTA phone `931-212-7990` correct everywhere (no `7900` exists); pg_cron/pg_net + the `on_script_save` trigger match authority.
+Model `claude-opus-4-7` everywhere; the 12-value `graphic_segment` enum and 15-value `l3_type` CHECK match across all four route copies + DB; `@supabase/ssr` (no auth-helpers, no Pages Router) everywhere; RLS on every table; guests 175 matches the live DB; the `lower_thirds`-phantom is described identically across the `_handoff` set; CTA phone `931-212-7990` correct everywhere (no `7900` exists); pg_cron/pg_net + the `on_script_save` trigger match authority. **STALE as of 2026-06-14 (see §6): "episodes 48" is now 49, and "graphics 0" is now 10 test rows. The 20-tables / 2-views claim remains correct.**
 
 ---
 
@@ -109,3 +109,41 @@ Model `claude-opus-4-7` everywhere; the 12-value `graphic_segment` enum and 15-v
 - **M10 Dashboard:** H-12, M-05, M-06.
 - **M11 Distribution:** H-03, H-10, H-16, M-06, M-11, M-12, L-08.
 - **doc-only / config:** H-14, H-15, the remaining M/L doc-pointer + banner items.
+
+---
+
+## 6. 2026-06-14 re-sweep (verified against the live DB this session)
+
+A five-agent deep read (branch archaeology, pipeline-state, repo inventory, repo-health, parser code-correctness) plus my own read-only Supabase queries (project `lafkbxypmciopebentxp`) on 2026-06-14. Authority order unchanged: Daniel's word > GSR-WORKFLOW-CANON > live enum/schema/DB > config > other docs. Items here are precise enough to act on in a later pass.
+
+### 6.1 Live-state drift (I ran the counts; these are facts, not inference)
+
+| ID | Claim in the docs | Live reality (2026-06-14) | Where to fix |
+|----|-------------------|---------------------------|--------------|
+| D-01 | `production_lower_thirds = 0` rows; "no live import has ever run; the real Stage 7 milestone." | **10 rows, all `pending_review`** — but ALL belong to a synthetic test episode **season 99 ep 1, "TEST - Pipeline Demo (Stage 7, safe to delete)", `source_doc='stage7_demo'`** (created 2026-06-14 00:12 UTC by a prior session). No REAL episode has imported. So the milestone still stands, but "0 rows" is literally false and the live DB carries test pollution. | `CLAUDE.md` Project State; `HANDOFF.md:36`; `SYSTEM-EVOLUTION.md:37`; `pipeline-build-plan.md:152` (item 1.4). Reword to "0 real rows; 10 labeled test rows under season-99, safe to delete." **Recommend deleting the season-99 test episode + its 10 rows before the first real import** (it would otherwise muddy the `count(*) > 0` milestone check, and `/api/import` upserts on `(season, episode_number)`). Deletion is a live write — leave it for Daniel's go. |
+| D-02 | `episodes = 48 rows`. | **49 rows** (Season 3 = 48, max ep 48; the 49th is the season-99 test row above). The "Season 3 = 48" claim is correct; the "episodes table = 48" claim is wrong. | Same docs as D-01 + `config/production.json:7`. Resolves once the test row is removed. |
+| D-03 | `48 migrations` (CLAUDE.md, HANDOFF, SYSTEM-EVOLUTION); `46` (this register §0); `43/45` (SCHEMA_DESIGN). | **50 applied** (live `list_migrations`) and **50 on disk** — they match each other (schema in sync). Two added after 2026-06-12: `advisor_security_hardening`, `advisor_hardening_public_revoke`. | Sweep every "48/46/45/43 migrations" → **50**. (Supersedes register L-01 / §0 note.) |
+| D-04 | (varies) | **20 base tables + 2 views = confirmed correct.** Not a conflict; logged so it is not re-litigated. Register C-2-style worries are unfounded. | none |
+| D-05 | LANES.md: "Dev branch: `claude/codebase-handoff-review-M9Aia`"; live-sessions snapshot "10 hours ago / -Users-claudefix". | Actual working branch is `claude/busy-feynman-ldw1oc`; the snapshot is stale. | `lanes.json` (LANES.md is generated). Refresh the branch line + session snapshot. |
+| D-06 | Code default model `claude-opus-4-7` (consistent everywhere). | Consistent across repo (not a conflict), but the hardcoded fallback is one minor version behind current Opus. The env var `ANTHROPIC_REGENERATE_MODEL` overrides it. | No file wrong vs another; flag for Daniel to confirm the model string on the next pass. |
+
+### 6.2 Code-health (parser-critical) — confirmed this session, with file:line
+
+Blocker / high items the parser push depends on. Several update or supersede earlier register IDs.
+
+- **CH-01 (blocker, updates L-07).** `/api/regenerate` returns `{ variations: [{text, variationNumber}] }` but the LIVE review grid `lower-thirds/review-grid.tsx:~227-230` reads top-level `data.text`/`data.variationNumber`. Regenerate silently shows nothing on the main `/lower-thirds` screen. L-07 called this "delete if unused" — it is NOT unused; upgrade to blocker. Fix: read `data.variations[0]`.
+- **CH-02 (blocker, supersedes H-17).** `/lower-thirds/[episode_id]` is linked from `lower-thirds/page.tsx:~60` but the dir has only `episode-workspace.tsx` and **no `page.tsx`** → the link 404s; the workspace component is dead until a `page.tsx` server wrapper is added. (H-18 — the one-click-import-without-gate — is now RESOLVED: the workspace goes dry-run → TypeYesConfirm → write, `episode-workspace.tsx:~259-316`.)
+- **CH-03 (high, David-Rule, updates M-05/L-04).** `upload/upload-form.tsx` still hardcodes an **11-value** segment list (missing `show_intro`) AND writes directly to `production_lower_thirds` + `lower_thirds_variations` from the **browser client** (`:~243-263`), bypassing `/api/import` and the mandatory dry-run + Type-YES gate. Now that the table holds real-shaped rows, this is a live ungated write path. Fix: import shared `SEGMENTS`; route through `/api/import`.
+- **CH-04 (high).** No DB unique constraint on `production_lower_thirds(episode_id, segment, beat_number)`. The import conflict-refusal is a read-then-insert (TOCTOU); concurrent or retried imports can duplicate beats. Fix: partial unique index + upsert.
+- **CH-05 (high, the big one).** Both extraction engines (`api/extract-lower-thirds/route.ts:151-209`, `functions/extract-on-script-save/index.ts:75-133`) **GENERATE** lower thirds from prose. Neither **PARSES** an existing lower-thirds block out of a pasted script (no boundary heuristic, no `L3:`/`LOWER THIRD:`/numbered marker grammar). The deterministic level-1 separator Daniel described does not exist yet. This reframes the build: grading a generator against the aired answer key will never match. Style guide §10 documents the parse behavior but it is wired into nothing.
+- **CH-06 (high, updates M-04).** RC passthrough trusts HTTP status + `res.json()` despite the canon rule "RC returns errors as HTTP 200, always read the body." `rc-explore/route.ts:38-46` and `rc-import/route.ts:52,66` have no body-error check and no try/catch → a 200-with-error-body throws a raw 500. RC GET routes are also still unauthenticated (M-04 open). Fix: read body, guard JSON.parse, assert array shapes, add the 401 gate; ideally the single RC adapter from build-plan item 6.1.
+- **CH-07 (high).** Chyron truncation `substring(0,62)+'...'` (`extract-lower-thirds/route.ts:89-90`, edge fn `:62-63`) emits a literal three-dot ellipsis (a banned end-punctuation pattern) and can cut mid-field. Model-generated lines have NO length enforcement; `/api/import` accepts up to 200 chars. Fix: never silently truncate a chyron (drop a field or reject); add a real 55-70 validator (per canon s13: sweet spot 60-65, hard block over 70). NOTE: the live extract prompt still says the **stale** "55-65, never over 65" (register M-02) — must not be propagated into the parser.
+- **CH-08 (medium).** Beat-contiguity and the 2+15 / positional-type rules are documented (style guide §5.5/§5.6) but enforced nowhere; `beat_number` comes straight from Claude. Gaps/dupes/misorder pass silently. Fix: validate 1..N contiguity + per-segment positional types in the dry-run summary.
+- **CH-09 (medium).** Variation back-fill in three paths (`import/route.ts:~321`, `confirm-extraction/route.ts:~152`, edge fn `:~342`) zips inserted rows to source by **array index**, assuming `INSERT ... RETURNING` preserves input order (not guaranteed). Risk: var_1/var_2 attach to the wrong chyron. Fix: match on a stable key.
+- **CH-10 (medium).** `extract-lower-thirds` caps `script_text` at 60,000 chars and `max_tokens` at 4096, while `/api/scripts` has no cap — a long script that saves can later fail extraction, and large packages can truncate the JSON output. Detect `stop_reason==='max_tokens'`; align caps.
+- **Resolved since 2026-06-04 (clear from the active list):** H-18 (one-click import gate) → fixed; L-03 (`__text_only__` double-define) → zero references remain. Build-plan item 1.0 / import gate hardening shipped (PR #55): `import-mode.ts` + `import/route.ts:~224` default to dry-run unless `confirm==='YES'`.
+
+### 6.3 Un-merged-branch conflicts (two valid versions exist; a plan must pick)
+
+- **BR-01.** Lower-thirds character limit: `fix/lt-merge-blockers` uses soft-warn-over-65 / 70-ceiling / 60-65 sweet spot; `claude/vigilant-ramanujan-kt4fdc` uses hard-block-over-70 (approve disabled). Neither contains the other. Canon s13 favors the soft-warn-with-hard-70 model. Decide before building the validator (CH-07).
+- **BR-02.** The var_1/var_2 → `lower_thirds_variations` preservation lives ONLY on `fix/lt-merge-blockers`; the freshest base (0 behind main) is `vigilant-ramanujan`, which lacks it. A plan must combine them.

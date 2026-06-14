@@ -86,6 +86,8 @@ reverse-engineering the live system, but you would not want to.
 - `docs/_handoff/lanes.json` — source of truth for the lanes tracker (LANES.md and lanes.html are generated from it).
 - `docs/_handoff/2026-06-11-claim-ledger.json` — the verified-claims ledger (VERIFIED/PARTIAL/REFUTED evidence base for every build decision).
 - `docs/_handoff/2026-06-11-pipeline-build-plan.md` — the build plan of record (slices 0-10 + addenda).
+- `docs/_handoff/2026-06-12-dashboard-redesign-plan.md` — the dashboard redesign plan of record (navigation IA + build sequence; the visual sections were retired by the 2026-06-12 UI fresh start).
+- `docs/_handoff/DESIGN-TASTE.md` — the ONLY visual design guidance (Daniel's reactions, append-only; all older mocks/UI advice live in `docs/_archive/2026-06-12-ui-fresh-start/` and are not guidance).
 - `docs/_handoff/2026-06-11-mission-run-notes.md` — mission decisions, verifier verdicts, incident retros, standing procedures.
 - `docs/_handoff/2026-06-11-fable5-mission-prompt.md` — the mission contract the research phase executed under.
 - `docs/_handoff/2026-06-08-review-decisions.md` — full record behind canon s13 (Daniel's gospel decisions).
@@ -144,6 +146,8 @@ The coverage audit skips these deliberately-disposable files:
 - `docs/_handoff/2026-06-09-build-task-1-schema-rename.md` — historical spec; the rename shipped 2026-06-12.
 - `docs/_handoff/gsr-flight-worksheet.html` — the offline worksheet; answers live in canon s14.
 - `docs/_handoff/guest-topic-brief-template.html` — reusable template, regenerable from the research repo's build script.
+- `docs/_handoff/PRODUCER-JOURNAL.md` — raw exploratory brain-dump intake (producer-model lane parked 2026-06-13); the durable statements were promoted to canon (Tier 0).
+- `docs/_handoff/2026-06-12-rant-to-model-method.md` — point-in-time enablement-method proposal (parked 2026-06-13; its superseded content lives in canon).
 <!-- audit:end -->
 
 ---

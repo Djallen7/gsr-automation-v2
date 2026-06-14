@@ -421,3 +421,177 @@ slate. Use them when building or vetting guests and topics.
 Cross-reference, not duplicated here: confirmed is not booked; talking points only, never
 verbatim questions; chyron = 3 topic-relevant variations (s13).
 
+## 19. Dashboard redesign directive (Daniel, gospel 2026-06-12)
+
+Stated 2026-06-12 with example files attached (his "world" liquid-glass mocks 01, 05, 06,
+07, 08, 09, 10, plus the older pipeline v3 / bake-off research / course overview / flight
+worksheet HTML files).
+
+- **The current dashboard UI is rejected** ("atrocious") and was being designed from
+  outdated information. Scrap it.
+- **Feature scope = recent context only:** the redesign carries only the features and
+  elements Daniel has been talking about recently (canon s12-s15 + the 2026-06-11 pipeline
+  build plan), not older mock-era concepts.
+- **Visual direction = an elegant liquid glass theme**, designed by combining the most
+  intuitive and elegant aspects of all the supplied examples into one new design (not a
+  copy of any single file). More example files may arrive; fold them in.
+- **Navigation must match and fit the actual workflow** (the phase-one lower-thirds flow
+  and the wider pipeline), not tool-named pages.
+- **Supersedes:** the 7-direction bake-off as a decision frame, and the unstyled
+  "one on-brand theme" placeholder in answer 3A. The operational structure from 3A
+  (per-role Today queue + Pipeline Matrix, mobile-first) stands; the visual treatment
+  applied to it is governed by `docs/_handoff/DESIGN-TASTE.md` (see the fresh-start
+  entry below).
+- Plan of record: `docs/_handoff/2026-06-12-dashboard-redesign-plan.md`.
+
+**Confirmations (Daniel, one-tap cards, 2026-06-12 late session):**
+- The 7-step Phase-1 lower-thirds workflow statement (redesign plan section 1): **CONFIRMED correct.**
+- The five-station navigation, Today / Episodes / Lower Thirds / Distribution / Guests,
+  with Graphics + Schedule reserved: **CONFIRMED.**
+- The 12-station pipeline vocabulary (Script, Guests, Lower Thirds, Graphics, Rundown,
+  ProPresenter, Record, Edit, Transcript, Metadata, Distribution, Aired): **CONFIRMED
+  canonical.** Each role sees its relevant columns.
+- claude.ai/design sync: **build the real components first, then sync from the Mac**
+  (this cloud session has no claude.ai/design connection; a skills folder is not a
+  component library). CONFIRMED.
+- Liquid glass look: one-tap approval **RESCINDED later the same day** (see the
+  fresh-start entry below, which governs).
+- Note for the record: an earlier identical card round returned opposite answers on three
+  items; the later, clarified round above governs (his latest word wins).
+
+**UI FRESH START (Daniel, 2026-06-12, latest word — governs over everything above):**
+- After living with the four mocks on his phone, Daniel rescinded the Liquid Glass pick.
+  Of the three alternates, **Soft Structural** felt best ("cleaner"), but **no mock is
+  approved** and he wants **no new mockups yet**.
+- Core design law, his words: he cannot look at walls of numbers without getting
+  overwhelmed. **Visual elements must tell the story on the dashboard's behalf; numbers
+  are detail, one tap deep.** Every element must exist for a stateable reason and the
+  whole must be cohesive. A generic/ugly template dashboard is equally rejected.
+- He declared a **fresh start on design guidance**: every mock and UI-advice doc was
+  archived to `docs/_archive/2026-06-12-ui-fresh-start/` (12 mock HTML files + the 4
+  ui-research briefs) and none of it is guidance anymore. The ONLY live visual guidance
+  is `docs/_handoff/DESIGN-TASTE.md` (his reactions, append-only). Redesign-plan
+  sections 4–5 (theme synthesis, donor map, token sheet, screen blueprints) are retired
+  with the archive.
+- Process, per Daniel: he cannot spec a look in words and question batteries don't work;
+  he specs by reacting ("no, I don't like that" is the data). Required loop: research +
+  planning first, then a words-first brainstorm with him, mockups only after that, one
+  screen at a time, on his real data, phone first, every reaction logged in
+  DESIGN-TASTE.md so nothing is re-asked.
+- Unchanged by the fresh start: the five-place navigation, the 12-station pipeline, all
+  gates, and the build-then-sync answer on claude.ai/design. Those are structure, not
+  styling, and remain CONFIRMED.
+
+**THE CENTRALIZATION PROBLEM (Daniel, 2026-06-12, second message — read with the fresh-start entry):**
+- The Today screen as previously conceived is NOT confirmed content. The only thing Daniel
+  knows he wants from a "today" surface is **his daily todo list synced from his notes**
+  (Apple Notes). A status grid of the five preproduction episodes on the home page:
+  probably not helpful either (the Episodes screen itself still stands; this is about
+  home-page content). His words: he has been going with "whatever makes the most sense to
+  have on the home page" instead of "what would actually be the most useful," and he has
+  NOT decided what he wants to see. Do not presume home-screen content.
+- Trust gap, stated plainly: Daniel does not yet trust Claude-built priority lists,
+  because Claude has not demonstrated understanding of his monthly work cycle, and has a
+  track record of **missing things in his email and getting confused tracking
+  communication and booking.** Treat this as a standing constraint: never build a feature
+  whose correctness depends on Claude silently reading email correctly. Trust is earned by
+  being checkable (evidence shown inline, one-tap correctable, corrections remembered),
+  not by claiming smartness.
+- The chicken-and-egg he named: a zoomed-out monthly view needs the system to track all
+  the moving parts, but the larger trackable tasks are not yet established anywhere (not
+  articulated in his head, not in the system). Establishing that model is the
+  prerequisite for any home screen and for any trustworthy priority list.
+- Direction proposed in reply (pending his reaction): (1) map the producer month FIRST:
+  Claude drafts the recurring responsibility tracks from repo knowledge, Daniel corrects
+  it like a mockup, result becomes a canon doc; (2) give each responsibility an explicit
+  trackable home (e.g. a booking board with states, where emails are attached evidence,
+  never the source of truth); (3) the home page is designed LAST, composed from the
+  tracks he actually uses; day-one home content = things Daniel authors himself (the
+  daily note).
+
+**THE ENABLEMENT PLAN (Daniel, 2026-06-12, third message — he agreed with the direction above and refined it):**
+- **Crew tracks first.** Isaac, Myriam, and the intern only need the big things tracked
+  (post-production, graphics tracking, distribution phases), and their information
+  "exists on paper instead of in their heads." These are the right early automation
+  targets: high volume but checkable against documents (Graphics Tracker, Rundown
+  Creator, the distribution registry, export artifacts).
+- **Daniel's own tracking is the long road, by his explicit choice.** Many moving
+  parts; the ORDER shifts month to month, so no single stored order can be right. His
+  chosen path: conversations every day, multiple times a day, where Claude extracts
+  tasks and ordering from his long rambles. He expects a long ramp and accepts it.
+- **His commitment + risk preference (governing value):** months more of his time if
+  needed; he would rather take two months of zero return than force a faster finish and
+  own a system he cannot fully trust. He invests ONLY against a method both sides agree
+  on. Method proposed: `docs/_handoff/2026-06-12-rant-to-model-method.md` (raw journal,
+  three-layer picture with receipts, contradictions held as data, echo receipts,
+  never-asked-twice, loss-proof capture). Awaiting his go.
+- **The contradiction warning (his words, standing constraint):** his style produces
+  apparent self-contradictions in long rambling paragraphs and will not change; careless
+  interpretation/logging would poison the records. Conflict handling per the method doc
+  is therefore mandatory whenever processing his dumps: raw first, receipts always,
+  conflicts flagged and held open, never argued, never silently resolved.
+- Raw intake lives in `docs/_handoff/PRODUCER-JOURNAL.md` (append-only). A dictation
+  was lost to an incoming call on 2026-06-12; its recovered fragment is Entry 1.
+
+**THE EXPERT-IN-THE-ROOM MANDATE + METHOD PIVOT (Daniel, 2026-06-13 08:49 UTC — latest word, governs):**
+- Daniel stopped the process to correct the working dynamic itself: he has been "jumping
+  at his own suggestions" and watching Claude build them, and he does not want that. His
+  words: "I need you to come up with your own ideas... you are better at this than me and
+  I need you to be the expert in the room. I'm a little child who's never done this... the
+  client who is super wishy-washy and doesn't necessarily know what they want and you're
+  supposed to give me clarity... you're not supposed to just go with every whim that I
+  have, you're supposed to give me clarity and keep me grounded." Binding rule now in
+  CLAUDE.md (Expert-in-the-room mandate): Claude leads on HOW (method/craft), recommends
+  ONE path not a menu, names churn, keeps him grounded; Daniel owns WHAT (goals/facts).
+- He also rejected the daily-rant journal as the ENGINE: it would force him to keep
+  re-reading and correcting his own entries, too much to sustain over two months. Fair,
+  and it is the same churn pattern (glass -> rescind -> month-map -> journal, each needing
+  a big lift from him).
+- METHOD PIVOT (Claude's expert call, his to veto): stop trying to MODEL Daniel's brain
+  before building anything. Build the surfaces that stand on facts that already exist on
+  paper (crew tracks: distribution, graphics, post; then booking as a visible state-board
+  with email as attached evidence, never the source of truth). Daniel's own workflow model
+  then ACCRETES by the system observing his actions (order, timing, what sits where),
+  surfaced back as occasional 5-second "I noticed X, right?" confirmations, never daily
+  homework. The journal survives only as an OPTIONAL zero-pressure inbox. Honest limit:
+  the system learns what it can see; off-system decisions get rare quick confirmations.
+  Daniel's burden becomes "use the tools, correct them when wrong (seconds)," not "narrate
+  and review your life." Full method: `docs/_handoff/2026-06-12-rant-to-model-method.md`
+  (revised 2026-06-13).
+- FIRST BUILD (Claude's reasoned pick): the Distribution tracker. It stands entirely on
+  existing facts (the s11 platform registry, air dates, the Monday 4PM ET webstream
+  rhythm), it is Myriam's crew lane so there is zero on-air risk to David, and it is the
+  cleanest proof that the dashboard can show true status with nothing narrated. Booking
+  board is second, because that is where Claude's email-tracking failures have hurt
+  Daniel, and making it visible + checkable attacks the trust wound head-on.
+
+**HOLD-YOUR-GROUND DIRECTIVE + the "vibe-code crisis" signal (Daniel, 2026-06-14):**
+- Daniel: be more decisive, confident, and "adversarial"; hold ground and push back when
+  he is commanding, bossy, single-minded, or frustrated, because that is when he makes
+  decisions that hurt him later. Binding rule in CLAUDE.md (hold-your-ground clause);
+  applies to every session. Caving to a frustration-driven command is a named failure.
+- He shared a Perplexity thread: as a non-developer he finds the repo overwhelming
+  (the documented "vibe-coded project in crisis" pattern: three steps forward, two back;
+  unsure what to keep vs delete) and wants an autonomous layer that digests his intent,
+  routes to the right tool/model, delegates to sessions/teams, and takes initiative
+  without consulting him. Perplexity floated a senior-dev architecture audit + a
+  plain-English north-star doc, Claude Cowork, Lindy AI ($50/mo), Msty Studio Turnstiles,
+  Claude Code /advisor (Sonnet+Opus), or a paid "vibe-code cleanup" consultant.
+- Claude's decisive read (holding ground on timing, per the new directive): do NOT act on
+  these this week. He has a 5-day demo deadline; a repo re-architecture or new-tool setup
+  mid-deadline IS the "three steps back" churn he is frustrated by. And most of what
+  Perplexity recommends he already owns: the `gsr-health` agent is the senior-dev audit;
+  `CRITICAL-FILES.md` + the handoff set + lanes are the north-star/context layer; Claude
+  Code subagents + the `gsr-architect` already orchestrate/delegate; /advisor (Sonnet+Opus)
+  is a free in-tool setting, not a subscription. Buying Lindy/Msty/Poe or a consultant
+  duplicates what exists and adds surface area. The one true, useful gap for a non-dev is a
+  plain-English "what is every part of the repo and what is dead" map; that is a free
+  gsr-health pass AFTER the deadline. The autonomous-initiative layer he wants is largely
+  the behavioral change he just ordered (decide + act without re-asking), not a new app.
+  Deferred items recorded here + in PRODUCER-JOURNAL Entry 4.
+- Honest gate note: the first lower-thirds import was exercised 2026-06-14 via a direct
+  database write of ISOLATED TEST data (episode S99E001, his explicit "yes import one
+  episode"), NOT the in-app Type-YES gate, because a cloud session cannot authenticate as
+  him in the browser. The production Type-YES path itself remains unproven and MUST be the
+  route for any real episode's lower thirds. The test rows are reversible (delete S99E001).
+

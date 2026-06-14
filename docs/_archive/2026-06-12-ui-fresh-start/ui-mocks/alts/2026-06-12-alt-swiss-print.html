@@ -1,0 +1,181 @@
+<!doctype html>
+<!-- GSR style alternate C: Swiss Industrial Print (from taste-skill/brutalist-skill,
+     Swiss Print archetype). Same Today-screen content; only the skin differs. -->
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSR Mission Control — Alt C: Swiss Print</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:wght@500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F4F4F0;--ink:#0B0B0B;--red:#E61919;--mute:#5a5a55;--line:#0B0B0B}
+*{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+body{background:var(--paper);color:var(--ink);font:500 14px/1.45 "Archivo",sans-serif}
+.mono{font-family:"JetBrains Mono",monospace}
+.samplebar{background:var(--ink);color:var(--paper);text-align:center;font:500 11px/1 "JetBrains Mono";letter-spacing:.14em;padding:9px;text-transform:uppercase}
+.frame{max-width:1080px;margin:24px auto 60px;border:2px solid var(--ink);background:var(--paper)}
+.grid{display:grid;gap:1px;background:var(--ink)}
+.cell{background:var(--paper)}
+header.cell{display:flex;justify-content:space-between;align-items:center;padding:14px 20px;flex-wrap:wrap;gap:8px}
+.brand{font:400 18px "Archivo Black";text-transform:uppercase;letter-spacing:-.01em}
+.brand span{color:var(--red)}
+.meta{font:500 11px "JetBrains Mono";letter-spacing:.1em;text-transform:uppercase}
+.meta b{color:var(--red)}
+.hero{display:grid;grid-template-columns:2fr 1fr;gap:1px;background:var(--ink)}
+.hero .main{padding:28px 20px 24px}
+.k{font:700 10px "JetBrains Mono";letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.k b{color:var(--ink)}
+h1{font:400 clamp(28px,5vw,52px)/0.95 "Archivo Black";text-transform:uppercase;letter-spacing:-.02em;margin:10px 0 10px;max-width:16ch}
+.sub{font:500 12px "JetBrains Mono";text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.cd{padding:28px 20px;display:flex;flex-direction:column;justify-content:center}
+.cd b{font:400 clamp(34px,4.5vw,52px)/1 "Archivo Black";letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--red)}
+.cd small{font:500 11px "JetBrains Mono";text-transform:uppercase;letter-spacing:.12em;margin-top:8px}
+.pipe{display:flex;border-top:1px solid var(--ink)}
+.pipe i{flex:1;height:14px;border-right:1px solid var(--ink);background:var(--paper)}
+.pipe i:last-child{border-right:0}
+.pipe i.done{background:var(--ink)}
+.pipe i.now{background:var(--red)}
+.pipek{padding:8px 20px;font:500 10px "JetBrains Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.pipek b{color:var(--red)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ink)}
+.kpi{background:var(--paper);padding:16px 20px 18px}
+.kpi .v{font:400 44px/1 "Archivo Black";letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:6px}
+.kpi .v small{font-size:20px;color:var(--mute)}
+.kpi .d{font:500 11px "JetBrains Mono";text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin-top:4px}
+.kpi .d.alert{color:var(--red)}
+.secthead{display:flex;justify-content:space-between;align-items:baseline;padding:14px 20px;flex-wrap:wrap;gap:6px}
+.secthead h2{font:400 20px "Archivo Black";text-transform:uppercase;letter-spacing:-.01em}
+.secthead .mono{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.rows{display:grid;gap:1px;background:var(--ink)}
+.row{background:var(--paper);display:flex;align-items:center;gap:16px;padding:16px 20px;flex-wrap:wrap}
+.tag{font:700 10px "JetBrains Mono";letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--ink);padding:4px 8px;min-width:92px;text-align:center}
+.tag.red{background:var(--red);border-color:var(--red);color:#fff}
+.what{flex:1;min-width:240px}
+.what b{font:700 15px "Archivo";text-transform:uppercase;letter-spacing:.01em}
+.what small{display:block;font:500 11px "JetBrains Mono";letter-spacing:.04em;color:var(--mute);text-transform:uppercase;margin-top:2px}
+.btn{background:var(--ink);color:var(--paper);border:1px solid var(--ink);font:700 11px "JetBrains Mono";letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;cursor:pointer}
+.btn:hover{background:var(--red);border-color:var(--red)}
+.btn:active{transform:translate(1px,1px)}
+.week{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ink)}
+.wcell{background:var(--paper);padding:18px 20px 20px}
+.wcell .big{font:400 34px/1 "Archivo Black";letter-spacing:-.02em;margin:8px 0 6px;font-variant-numeric:tabular-nums}
+.wcell .big small{font-size:15px;color:var(--mute)}
+.wcell p{font:500 11px "JetBrains Mono";letter-spacing:.04em;text-transform:uppercase;color:var(--mute);line-height:1.6}
+.meter{height:10px;border:1px solid var(--ink);margin-top:12px}
+.meter i{display:block;height:100%;background:var(--ink)}
+.plats{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.plats span{font:700 9.5px "JetBrains Mono";letter-spacing:.08em;border:1px solid var(--ink);padding:3px 7px;text-transform:uppercase}
+.plats .ok{background:var(--ink);color:var(--paper)}
+.plats .pend{border-color:var(--red);color:var(--red)}
+footer.cell{display:flex;justify-content:space-between;padding:10px 20px;font:500 10px "JetBrains Mono";letter-spacing:.1em;text-transform:uppercase;color:var(--mute);flex-wrap:wrap;gap:6px}
+footer .ok{color:var(--ink)}
+button:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+@media(max-width:760px){
+  .hero{grid-template-columns:1fr}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .week{grid-template-columns:1fr}
+  .cd{border-top:1px solid var(--ink)}
+}
+</style></head><body>
+<div class="samplebar">Style sample C of 3 · Swiss Industrial Print · same Today screen, different skin</div>
+
+<div class="frame">
+<div class="grid">
+
+  <header class="cell">
+    <div class="brand">GSR <span>///</span> Mission Control</div>
+    <div class="meta">[ THU 12 JUN 2026 ] · <span id="clk">—</span> CT · <b>SEASON 03</b> · REV 2.6</div>
+  </header>
+
+  <div class="cell" style="padding:0">
+    <div class="hero">
+      <div class="main cell">
+        <div class="k">NEXT AIR · <b>EPISODE 311</b> · DAYSTAR / SUN 19:30 CT</div>
+        <h1>The James Webb Telescope &amp; the Age of Light</h1>
+        <div class="sub">GUEST: DR. JASON LISLE · ASTROPHYSICIST · INTERVIEW TAPED · EDIT IN PROGRESS</div>
+      </div>
+      <div class="cd cell">
+        <div class="k">T-MINUS</div>
+        <b id="cd">3D 14:06:11</b>
+        <small>TO BROADCAST</small>
+      </div>
+    </div>
+    <div class="pipe" aria-label="Pipeline: 8 of 12 stations done">
+      <i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="now"></i><i></i><i></i><i></i>
+    </div>
+    <div class="pipek">SCRIPT / GUESTS / LOWER-THIRDS / GRAPHICS / RUNDOWN / PROPRES / RECORD / EDIT / <b>&gt;&gt;&gt; TRANSCRIPT</b> / METADATA / DISTRIBUTION / AIRED — UNIT 08/12</div>
+  </div>
+
+  <div class="cell" style="padding:0">
+    <div class="kpis">
+      <div class="kpi"><div class="k">DUE TODAY</div><div class="v">3</div><div class="d alert">1 DECISION REQ.</div></div>
+      <div class="kpi"><div class="k">THIS WEEK</div><div class="v">7<small>/12</small></div><div class="d">STATIONS CLEAR</div></div>
+      <div class="kpi"><div class="k">LOWER THIRDS</div><div class="v">14</div><div class="d">AWAIT APPROVAL</div></div>
+      <div class="kpi"><div class="k">SEASON 03</div><div class="v">11<small>/13</small></div><div class="d">DELIVERED</div></div>
+    </div>
+  </div>
+
+  <div class="cell" style="padding:0">
+    <div class="secthead"><h2>[ Due Today ]</h2><span class="mono">3 ITEMS · ITEM 01 = DECISION</span></div>
+    <div class="rows">
+      <div class="row">
+        <span class="tag red">DECISION</span>
+        <div class="what"><b>Approve 14 lower thirds — E311</b><small>EXTRACTED TUE · 2 FLAGGED SPELLINGS: “LISLE” / “ARCHAEOPTERYX”</small></div>
+        <button class="btn">REVIEW &gt;&gt;&gt;</button>
+      </div>
+      <div class="row">
+        <span class="tag">TODAY</span>
+        <div class="what"><b>E311 transcript to captioning</b><small>EDIT LOCKED 57:40 · STREAMHOSTER UPLOAD FOLLOWS</small></div>
+        <button class="btn">OPEN</button>
+      </div>
+      <div class="row">
+        <span class="tag">TODAY</span>
+        <div class="what"><b>Confirm E313 guest: Dr. Danny Faulkner</b><small>REPLY RECEIVED · NEEDS TAPING SLOT TUE/WED</small></div>
+        <button class="btn">OPEN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cell" style="padding:0">
+    <div class="secthead"><h2>[ This Week ]</h2><span class="mono">E311 AIR · E312 EDIT · E313 BOOKING</span></div>
+    <div class="week">
+      <div class="wcell">
+        <div class="k">LOWER THIRDS</div>
+        <div class="big">14 <small>PENDING</small></div>
+        <p>E311 SET EXTRACTED, AWAITING APPROVAL. E312 SCRIPT NOT SAVED.</p>
+        <div class="meter"><i style="width:62%"></i></div>
+      </div>
+      <div class="wcell">
+        <div class="k">GUESTS</div>
+        <div class="big">02 <small>ACTIVE</small></div>
+        <p>LISLE TAPED (E311). FAULKNER CONFIRMING (E313). JUNE PASS: 4/4 TOPICS PICKED.</p>
+        <div class="meter"><i style="width:50%"></i></div>
+      </div>
+      <div class="wcell">
+        <div class="k">DISTRIBUTION</div>
+        <div class="big">E310 <small>LIVE</small></div>
+        <p>E311 PACKAGES BUILD AFTER CAPTIONING CLEARS.</p>
+        <div class="plats">
+          <span class="ok">DAYSTAR</span><span class="ok">YOUTUBE</span>
+          <span class="pend">STREAMHOSTER</span><span class="pend">RLN</span><span class="pend">DROPBOX</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="cell">
+    <span><span class="ok">●</span> SUPABASE CONNECTED · <span class="ok">●</span> RUNDOWN CREATOR OK · LAST SYNC 14:41</span>
+    <span>SEARCH [ ⌘K ] · © DAVID RIVES MINISTRIES</span>
+  </footer>
+
+</div>
+</div>
+
+<script>
+const z=n=>String(n).padStart(2,'0');
+function tick(){const now=new Date();document.getElementById('clk').textContent=z(now.getHours())+':'+z(now.getMinutes());
+const air=new Date(now);air.setDate(air.getDate()+((7-air.getDay())%7||7));air.setHours(19,30,0,0);
+let s=Math.max(0,(air-now)/1000|0);const d=s/86400|0;s-=d*86400;const h=s/3600|0;s-=h*3600;const m=s/60|0;
+document.getElementById('cd').textContent=d+'D '+z(h)+':'+z(m)+':'+z(s-m*60);}
+tick();setInterval(tick,1000);
+</script>
+</body></html>

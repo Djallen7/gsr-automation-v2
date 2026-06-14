@@ -1,0 +1,181 @@
+<!doctype html>
+<!-- GSR style alternate B: Editorial Minimal (from taste-skill/minimalist-skill).
+     Same Today-screen content as the liquid glass preview; only the skin differs. -->
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GSR Mission Control — Alt B: Editorial Minimal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F7F6F3;--card:#FFFFFF;--line:#EAEAEA;
+  --ink:#2F3437;--mute:#787774;
+  --p-red-bg:#FDEBEC;--p-red:#9F2F2D;
+  --p-blue-bg:#E1F3FE;--p-blue:#1F6C9F;
+  --p-green-bg:#EDF3EC;--p-green:#346538;
+  --p-yellow-bg:#FBF3DB;--p-yellow:#956400;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.6 "Geist",-apple-system,sans-serif;padding-bottom:60px}
+.wrap{max-width:980px;margin:0 auto;padding:0 28px}
+.samplebar{background:var(--ink);color:#fff;text-align:center;font:500 11px/1 "JetBrains Mono";letter-spacing:.12em;padding:9px;text-transform:uppercase}
+header{display:flex;align-items:baseline;justify-content:space-between;padding:34px 0 22px;border-bottom:1px solid var(--line)}
+.brand{font:500 21px "Newsreader",serif;letter-spacing:-.01em}
+.brand em{font-style:italic;color:var(--mute)}
+.meta{font:500 11px "JetBrains Mono";letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+.fade{opacity:0;transform:translateY(12px);animation:in .6s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes in{to{opacity:1;transform:none}}
+.hero{padding:44px 0 36px;border-bottom:1px solid var(--line)}
+.hero .k{font:500 11px "JetBrains Mono";letter-spacing:.14em;color:var(--mute);text-transform:uppercase}
+.hero h1{font:500 clamp(30px,4.4vw,44px)/1.1 "Newsreader",serif;letter-spacing:-.025em;margin:10px 0 8px;max-width:18ch;text-wrap:balance}
+.hero .sub{color:var(--mute);max-width:60ch}
+.heror{display:flex;gap:40px;flex-wrap:wrap;align-items:flex-end;justify-content:space-between}
+.cd{text-align:right}
+.cd .k{font:500 11px "JetBrains Mono";letter-spacing:.14em;color:var(--mute);text-transform:uppercase}
+.cd b{display:block;font:500 40px/1.15 "Newsreader",serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.cd small{font:400 13px "Geist";color:var(--mute)}
+.pipe{display:flex;gap:5px;margin-top:22px;flex-wrap:wrap}
+.pipe span{width:30px;height:5px;border-radius:99px;background:var(--line)}
+.pipe span.done{background:var(--ink)}
+.pipe span.now{background:var(--p-yellow);outline:3px solid var(--p-yellow-bg)}
+.pipe-k{margin-top:8px;font:500 11px "JetBrains Mono";letter-spacing:.08em;color:var(--mute);text-transform:uppercase}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-bottom:1px solid var(--line)}
+.kpi{padding:22px 18px 24px;border-right:1px solid var(--line)}
+.kpi:first-child{padding-left:0}.kpi:last-child{border-right:0}
+.kpi .l{font:500 11px "JetBrains Mono";letter-spacing:.1em;color:var(--mute);text-transform:uppercase}
+.kpi .v{font:500 34px/1.2 "Newsreader",serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums;margin-top:4px}
+.kpi .d{font-size:13px;color:var(--mute)}
+.kpi .warn{color:var(--p-yellow)}
+h2{font:500 23px "Newsreader",serif;letter-spacing:-.02em;margin:38px 0 4px}
+.h2sub{color:var(--mute);font-size:13.5px;margin-bottom:18px}
+.due{border:1px solid var(--line);background:var(--card);border-radius:8px;overflow:hidden}
+.due .row{display:flex;align-items:center;gap:16px;padding:18px 24px;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.due .row:last-child{border-bottom:0}
+.tag{font:500 10.5px "JetBrains Mono";letter-spacing:.05em;text-transform:uppercase;padding:3px 10px;border-radius:9999px}
+.t-red{background:var(--p-red-bg);color:var(--p-red)}
+.t-blue{background:var(--p-blue-bg);color:var(--p-blue)}
+.t-yellow{background:var(--p-yellow-bg);color:var(--p-yellow)}
+.t-green{background:var(--p-green-bg);color:var(--p-green)}
+.due .what{flex:1;min-width:240px}
+.due .what b{font-weight:600}
+.due .what small{display:block;color:var(--mute);font-size:13px}
+.btn{background:#111;color:#fff;border:0;border-radius:6px;font:500 13px "Geist";padding:9px 18px;cursor:pointer;transition:background .2s,transform .15s}
+.btn:hover{background:#333}.btn:active{transform:scale(.98)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:24px;transition:box-shadow .2s}
+.card:hover{box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.card .ck{font:500 11px "JetBrains Mono";letter-spacing:.1em;color:var(--mute);text-transform:uppercase;margin-bottom:10px}
+.card .big{font:500 30px "Newsreader",serif;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.card p{font-size:13.5px;color:var(--mute);margin-top:6px}
+.bar{height:4px;border-radius:99px;background:var(--bg);margin-top:14px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--ink)}
+.plats{display:flex;gap:7px;margin-top:14px;flex-wrap:wrap}
+.foot{margin-top:46px;padding-top:18px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;font:400 12px "JetBrains Mono";color:var(--mute)}
+kbd{border:1px solid var(--line);border-radius:4px;background:var(--bg);font:500 11px "JetBrains Mono";padding:1px 6px}
+@media(max-width:760px){
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .kpi{padding-left:0;border-right:0;border-bottom:1px solid var(--line)}
+  .grid3{grid-template-columns:1fr}
+  .cd{text-align:left}
+}
+button:focus-visible{outline:2px solid var(--p-blue);outline-offset:2px}
+</style></head><body>
+<div class="samplebar">Style sample B of 3 · Editorial Minimal · same Today screen, different skin</div>
+<div class="wrap">
+
+<header class="fade">
+  <div class="brand">Genesis Science Report <em>Mission Control</em></div>
+  <div class="meta">Thu Jun 12 · <span id="clk">—</span> CT · Season 3</div>
+</header>
+
+<section class="hero fade" style="animation-delay:.06s">
+  <div class="heror">
+    <div>
+      <div class="k">Next air · Episode 311 · Daystar</div>
+      <h1>The James Webb Telescope &amp; the Age of Light</h1>
+      <div class="sub">Guest: Dr. Jason Lisle, astrophysicist · interview taped, edit in progress</div>
+    </div>
+    <div class="cd">
+      <div class="k">Airs in</div>
+      <b id="cd">3d 14:06:11</b>
+      <small>Sunday 7:30 PM Central</small>
+    </div>
+  </div>
+  <div class="pipe" aria-label="Pipeline: 8 of 12 stations done">
+    <span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="done"></span><span class="now"></span><span></span><span></span><span></span>
+  </div>
+  <div class="pipe-k">Script → Guests → Lower thirds → Graphics → Rundown → ProPresenter → Record → Edit → <b style="color:var(--p-yellow)">Transcript</b> → Metadata → Distribution → Aired</div>
+</section>
+
+<section class="kpis fade" style="animation-delay:.12s">
+  <div class="kpi"><div class="l">Due today</div><div class="v">3</div><div class="d warn">1 needs a decision</div></div>
+  <div class="kpi"><div class="l">This week</div><div class="v">7<span style="font-size:18px;color:var(--mute)">/12</span></div><div class="d">stations cleared</div></div>
+  <div class="kpi"><div class="l">Lower thirds</div><div class="v">14</div><div class="d">awaiting approval</div></div>
+  <div class="kpi"><div class="l">Season 3</div><div class="v">11<span style="font-size:18px;color:var(--mute)">/13</span></div><div class="d">episodes delivered</div></div>
+</section>
+
+<section class="fade" style="animation-delay:.18s">
+  <h2>Due today</h2>
+  <div class="h2sub">Three items. The first one is the decision.</div>
+  <div class="due">
+    <div class="row">
+      <span class="tag t-red">Decision</span>
+      <div class="what"><b>Approve 14 lower thirds for E311</b><small>Extraction confirmed Tuesday · 2 flagged spellings: “Lisle”, “archaeopteryx”</small></div>
+      <button class="btn">Review</button>
+    </div>
+    <div class="row">
+      <span class="tag t-yellow">Today</span>
+      <div class="what"><b>E311 transcript to captioning</b><small>Edit locked at 57:40 · StreamHoster upload follows</small></div>
+      <button class="btn">Open</button>
+    </div>
+    <div class="row">
+      <span class="tag t-blue">Today</span>
+      <div class="what"><b>Confirm E313 guest: Dr. Danny Faulkner</b><small>Reply received · needs a taping slot Tue or Wed</small></div>
+      <button class="btn">Open</button>
+    </div>
+  </div>
+</section>
+
+<section class="fade" style="animation-delay:.24s">
+  <h2>This week at a glance</h2>
+  <div class="h2sub">E311 to air · E312 in edit · E313 in booking</div>
+  <div class="grid3">
+    <div class="card">
+      <div class="ck">Lower thirds</div>
+      <div class="big">14<span style="font-size:16px;color:var(--mute)"> pending</span></div>
+      <p>E311 set extracted and waiting on approval. E312 script not yet saved.</p>
+      <div class="bar"><i style="width:62%"></i></div>
+    </div>
+    <div class="card">
+      <div class="ck">Guests</div>
+      <div class="big">2<span style="font-size:16px;color:var(--mute)"> active</span></div>
+      <p>Lisle taped for E311. Faulkner confirming for E313. June pass picked 4 of 4 topics.</p>
+      <div class="bar"><i style="width:50%"></i></div>
+    </div>
+    <div class="card">
+      <div class="ck">Distribution</div>
+      <div class="big">E310<span style="font-size:16px;color:var(--mute)"> live</span></div>
+      <p>E311 packages build after captioning clears.</p>
+      <div class="plats">
+        <span class="tag t-green">Daystar ✓</span><span class="tag t-green">YouTube ✓</span>
+        <span class="tag t-yellow">StreamHoster</span><span class="tag t-yellow">RLN</span><span class="tag t-yellow">Dropbox</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="foot fade" style="animation-delay:.3s">
+  <span>Supabase ● connected · Rundown Creator ● ok · last sync 2:41 PM</span>
+  <span>Search <kbd>⌘K</kbd></span>
+</div>
+
+</div>
+<script>
+const z=n=>String(n).padStart(2,'0');
+function tick(){const now=new Date();document.getElementById('clk').textContent=z(now.getHours())+':'+z(now.getMinutes());
+const air=new Date(now);air.setDate(air.getDate()+((7-air.getDay())%7||7));air.setHours(19,30,0,0);
+let s=Math.max(0,(air-now)/1000|0);const d=s/86400|0;s-=d*86400;const h=s/3600|0;s-=h*3600;const m=s/60|0;
+document.getElementById('cd').textContent=d+'d '+z(h)+':'+z(m)+':'+z(s-m*60);}
+tick();setInterval(tick,1000);
+</script>
+</body></html>

@@ -9,7 +9,7 @@ import { TypeYesConfirm } from '@/components/type-yes-confirm'
 import { GraphicCard } from '../graphic-card'
 import { SEGMENTS } from '@/lib/segments'
 
-interface GraphicRow {
+export interface GraphicRow {
   id: string
   segment: string
   beat_number: number | null
@@ -18,6 +18,7 @@ interface GraphicRow {
   font_family: string | null
   font_size_pt: number | null
   font_color: string | null
+  variations: { variationNumber: number; text: string }[]
 }
 
 interface ExtractedGraphic {
@@ -502,6 +503,7 @@ function SegmentSlot({
                   fontFamily={g.font_family}
                   fontSizePt={g.font_size_pt}
                   fontColor={g.font_color}
+                  variations={g.variations}
                 />
               ))}
             </div>

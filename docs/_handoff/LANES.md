@@ -28,38 +28,43 @@ Always read `/home/user/gsr-automation-v2/CLAUDE.md` and
 `docs/_handoff/GSR-WORKFLOW-CANON.md` before acting. All work lives in
 gsr-automation-v2 now (blueprint is retired). Dev branch: `claude/codebase-handoff-review-M9Aia`.
 
-_Last updated 2026-06-11 21:55:19 UTC (6 hours ago)._
+_Last updated 2026-06-12 13:27:35 UTC (1 day ago)._
 
-## Live sessions (snapshot 10 hours ago)
-- **-Users-claudefix** [Unknown] 10 hours ago
-- **-Users-claudefix** [Unknown] 11 hours ago
-- **-Users-claudefix** [Unknown] 18 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 21 hours ago
-- **-Users-claudefix-Downloads-GSN-Dashboard-Local-GSR-GraphicsPackage** [Unknown] 21 hours ago
-- **-Users-claudefix** [Unknown] 22 hours ago
-- **-Users-claudefix** [Unknown] 22 hours ago
-- **-Users-claudefix** [Unknown] 22 hours ago
+## Live sessions (snapshot 2 days ago)
+- **-Users-claudefix** [Unknown] 2 days ago
+- **-Users-claudefix** [Unknown] 2 days ago
+- **-Users-claudefix** [Unknown] 2 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix-Downloads-GSN-Dashboard-Local-GSR-GraphicsPackage** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
+- **-Users-claudefix** [Unknown] 3 days ago
 
 ---
 
-## Lane 1 - UI design direction
-**Status:** OPEN.
-**Summary:** Pick a UI direction from the bake-off, then build it into the real dashboard screens. Needs Daniel's decision.
-**Done:** Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots. UI Foundation course module (m13) now teaches dashboard design from the ground up; its Lock step settles the UI direction (operational: per-role Today queue + Pipeline Matrix + mobile-first), backed by 4 cited research briefs in docs/_handoff/ui-research/.
+## Lane 1 - Dashboard redesign
+**Status:** IN PROGRESS.
+**Summary:** UI FRESH START (2026-06-12 late): Daniel rescinded the liquid glass pick; all mocks + UI advice are archived in docs/_archive/2026-06-12-ui-fresh-start/ and are NOT guidance. Only visual rulebook: docs/_handoff/DESIGN-TASTE.md (no walls of numbers; visuals tell the story; numbers one tap deep). Structure stands confirmed: five places, 12-station pipeline, all gates. Plan of record: docs/_handoff/2026-06-12-dashboard-redesign-plan.md (sections 4-5 retired).
+**Done:** Mock iterations (v1/v2/v3) and a 7-direction bake-off (Calm Minimalism, Editorial Data-Density, Material 3, Neo-Brutalist, Bento, Humanist, Mission-Control) with screenshots. UI Foundation course module (m13) now teaches dashboard design from the ground up; its Lock step settles the UI direction (operational: per-role Today queue + Pipeline Matrix + mobile-first), backed by 4 cited research briefs now archived at docs/_archive/2026-06-12-ui-fresh-start/ui-research/ (non-guidance after the fresh start). 2026-06-12: Daniel rejected the current UI + the bake-off frame; liquid glass directive captured (canon s19); redesign build plan authored with IA, screen blueprints, R1-R5 sequencing; theme preview built from the world-mock synthesis. 2026-06-12 late: UI fresh start executed - 12 mock HTML files + 4 research briefs archived to docs/_archive/2026-06-12-ui-fresh-start/, DESIGN-TASTE.md created, canon/plan/lane/skill pointers rewritten.
 **To finish:**
-- Lock the UI direction via the UI Foundation module's Lock step (recommended), or pick from the bake-off.
-- Build the chosen direction into the real dashboard screens.
-- Render screenshots for review.
-**Blocked on:** Daniel's pick (now framed as the UI Foundation module's Lock step).
-**Files:** `docs/_handoff/gsr-automation-v2-course.html`, `docs/_handoff/ui-research/`, `docs/ui-mocks/preview-1..7-*.html`, `docs/_handoff/2026-06-07-gsr-ui-strategy.md`, `docs/_handoff/2026-06-07-gsr-ui-bakeoff-research.html`
+- R0 (Claude leads, per the expert mandate): build on paper-facts first via Lane 10 (Distribution tracker, then booking, then graphics/post). The month map and home page ACCRETE from use and are composed LAST. No upfront brain-mapping session; no mockups until a surface is ready to design (DESIGN-TASTE rules then apply).
+- Structural work allowed meanwhile (visually quiet): route consolidation + redirects, five-place nav shell, Today/Matrix data wiring, realtime (CL-018).
+- R1-R3 re-dated after R0: theme foundation per DESIGN-TASTE.md; Today + Pipeline Matrix on real data; Lower Thirds hub (gates unchanged).
+- R4 Distribution hub v1 + Rumble prep card 4.1a (~Jun 20 target holds).
+- R5 Guests reskin, episode workspace polish, redirects, m13 screenshots; slice-5 close re-dated after R0.
+**Blocked on:** The producer month map grows via Lane 10 (home page is composed LAST). Meanwhile: visually-quiet structural work, and the crew-facing tracks (distribution, graphics, post) per the enablement plan.
+**Files:** `docs/_handoff/2026-06-12-dashboard-redesign-plan.md`, `docs/_handoff/DESIGN-TASTE.md`, `docs/_handoff/GSR-WORKFLOW-CANON.md (s19)`, `docs/_archive/2026-06-12-ui-fresh-start/`
 **Recent activity:**
+- 2026-06-12 - Centralization problem captured (canon): Today-screen content reopened (only confirmed seed = his daily todo from his notes), home page decided LAST, booking needs an explicit tracker with email as evidence not source of truth, trust-by-evidence rules added to DESIGN-TASTE; R0 now starts with the producer month map.
+- 2026-06-12 - UI fresh start (late session): glass pick rescinded, all mocks + UI advice archived, DESIGN-TASTE.md created, plan sections 4-5 retired, R0 words-first design pass defined.
+- 2026-06-12 - Liquid glass directive captured (canon s19); redesign plan + theme preview authored; lane renamed from UI design direction.
 - 2026-06-08 - UI Foundation module (m13) built + 4 research briefs added; UI direction now lockable in-course
 - 2026-06-08 - course: expand m0 to Orientation + GitHub, add m13 Finish-the-Build handoff
-**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 1), the UI Foundation module (m13) in docs/_handoff/gsr-automation-v2-course.html, and the 4 briefs in docs/_handoff/ui-research/. Daniel's locked direction is: [FILL IN, default operational: per-role Today queue + Pipeline Matrix + mobile-first, one on-brand theme]. Build that into the real dashboard screens (Today queue, Pipeline Matrix, episode drill, graphics page) using the existing design tokens + shadcn components, render desktop + mobile screenshots, and report. Do not pick the direction yourself.`
+**Resume prompt:** `Read docs/_handoff/LANES.md (Lane 1), docs/_handoff/DESIGN-TASTE.md (the ONLY visual guidance), the canon s19 fresh-start entry, and redesign plan sections 1-3 + 6. Visual direction is OPEN: do not design from docs/_archive/2026-06-12-ui-fresh-start/ and do not build mockups unless Daniel has said go after the words-first brainstorm. If he has not, do the visually-quiet structural work in plan section 6 or advance the R0 design pass in words.`
 
 ## Lane 2 - Course modules
 **Status:** OPEN.
@@ -70,7 +75,7 @@ _Last updated 2026-06-11 21:55:19 UTC (6 hours ago)._
 - Embed the chosen-UI screenshots into the UI Foundation module once a direction is built (Lane 1).
 - Final polish + adaptive-gating review.
 **Blocked on:** Nothing for the rebuild (decisions are captured). Lane 1 only blocks embedding the eventual UI screenshots.
-**Files:** `docs/_handoff/gsr-automation-v2-course.html`, `docs/_handoff/ui-research/`, `docs/_handoff/2026-06-08-gsr-course-overview.html`
+**Files:** `docs/_handoff/gsr-automation-v2-course.html`, `docs/_archive/2026-06-12-ui-fresh-start/`, `docs/_handoff/2026-06-08-gsr-course-overview.html`
 **Recent activity:**
 - 2026-06-08 - 19-agent archaeology sweep of the Claude data export (407 convs + projects + memories) -> 90-item backlog; Daniel triaged all 90 (24 build / 9 later / 29 skip / 28 discuss) and resolved 14 conflicts; decisions captured to canon section 13 + 2026-06-08-review-decisions.md. Course rebuild queued for tomorrow.
 - 2026-06-08 - Built the UI Foundation module (m13) + 4 cited research briefs; handoff renumbered to m14
@@ -164,6 +169,25 @@ _Last updated 2026-06-11 21:55:19 UTC (6 hours ago)._
 - Graphics + segment-timing questions go out as one-tap card batches when slices need them (decision 5 resolved).
 **Files:** `docs/_handoff/research-queue.md`
 **Resume prompt:** `Read docs/_handoff/LANES.md (Lane 9), docs/_handoff/2026-06-11-pipeline-build-plan.md (the plan, v3), docs/_handoff/2026-06-11-mission-run-notes.md (goal checklist + corrections), and docs/_handoff/2026-06-11-claim-ledger.json. If transcripts exist in 2026-06-11-transcript-pull-kit/transcripts/, mine them per item 3.2 (statuses mined/rejected, claims ASSUMED->verified). If Daniel has answered section 7, append answers to canon dated and open the Phase B lanes the plan lists in section 9. Starred defaults stand unless he says otherwise. Never bypass canon s15 gates.`
+
+## Lane 16 - Producer model (exploratory — not in the build-plan spine)
+**Status:** OPEN.
+**Summary:** PARKED 2026-06-13: re-centered on the established 2026-06-11 build plan, whose Slice 1 (lower-thirds vertical slice) is 'phase one'. The distribution tracker built this day maps to the plan's later social/distribution work (~slice 9), NOT phase one; it sits on the branch, unused, harmless. Original note kept: the enablement engine for Daniel's OWN tracking, the hard half of centralization; build-on-paper + learn-from-use; journal demoted to an optional inbox; method doc docs/_handoff/2026-06-12-rant-to-model-method.md.
+**Done:** Method designed + proposed (2026-06-12). PRODUCER-JOURNAL.md opened; Entry 1 = the recovered fragment of Daniel's lost dictation; Entry 2 = his enablement-plan statements (crew-first, daily rants, months-long commitment, contradiction warning). Distribution tracker v1 SHIPPED 2026-06-13 (5-day demo deadline): /distribution page + nav + inline status editing (server action upserts the distributions table); renders real episodes (YouTube Live on 17, rest To-do); tracking+prep only, reversible; tsc/eslint/build clean; on the session-branch PR #58 for Vercel preview.
+**To finish:**
+- Distribution tracker v2 (5-day deadline ~Jun 18): per-platform prep cards (Rumble copy-fields per s11 4.1a), surface the Monday 4PM ET webstream milestone, per-episode detail view, mobile pass + a recorded walkthrough as proof.
+- Then the booking state-board (email as attached evidence, never source of truth) - directly attacks the email/booking trust wound.
+- Then graphics + post crew trackers (stand on the Graphics Tracker sheet + Rundown Creator + export artifacts).
+- Build observation in: capture order/timing/dwell of Daniel's own actions, surface patterns back as 5-second confirmations.
+- Month map accretes from the above; the dashboard home page (Lane 1) is composed LAST from the tracks he actually uses.
+- Optional only if Daniel chooses to use the inbox: a /braindump command + a Mac watch on a pinned note so dictations are loss-proof.
+**Blocked on:** Nothing hard. Crew tracks were greenlit; Claude leads per the expert-in-the-room mandate. Open input: only Daniel's gut check on starting with Distribution vs another track.
+**Files:** `docs/_handoff/PRODUCER-JOURNAL.md`, `docs/_handoff/2026-06-12-rant-to-model-method.md`, `docs/_handoff/GSR-WORKFLOW-CANON.md (enablement plan + centralization problem entries)`
+**Recent activity:**
+- 2026-06-13 - Distribution tracker v1 BUILT + shipped to the branch (5-day demo deadline). /distribution: per-episode cards, 9-platform status grid, inline status editing writing to the distributions table. tsc/eslint/build clean. Reversible, tracking+prep only.
+- 2026-06-13 - Expert-in-the-room mandate recorded (Claude leads on method/craft; CLAUDE.md + canon). Method PIVOTED away from the daily-rant journal (too much review burden) to build-on-paper + learn-from-use; journal demoted to optional inbox. First build set: Distribution tracker, then booking board.
+- 2026-06-12 - Lane opened. Method proposed; journal created with the recovered lost-dictation fragment as Entry 1 and the enablement-plan statements as Entry 2.
+**Resume prompt:** `Read docs/_handoff/2026-06-12-rant-to-model-method.md (revised), the canon 'Expert-in-the-room mandate + method pivot' entry, and docs/_handoff/PRODUCER-JOURNAL.md. DO NOT front-load a brain-mapping session on Daniel and do not run the journal as a daily chore. Build on paper-facts first: start with the Distribution tracker (s11 registry + air dates + Mon 4PM ET webstream rhythm), then the booking state-board (email = attached evidence, never source of truth), then graphics/post. Model Daniel's own workflow by observing his actions in the system, surfaced as occasional 5-second confirmations. Lead and give ONE clear recommendation; never just mirror his suggestions. All gates stand.`
 
 ---
 

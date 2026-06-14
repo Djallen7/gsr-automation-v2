@@ -565,3 +565,33 @@ worksheet HTML files).
   board is second, because that is where Claude's email-tracking failures have hurt
   Daniel, and making it visible + checkable attacks the trust wound head-on.
 
+**HOLD-YOUR-GROUND DIRECTIVE + the "vibe-code crisis" signal (Daniel, 2026-06-14):**
+- Daniel: be more decisive, confident, and "adversarial"; hold ground and push back when
+  he is commanding, bossy, single-minded, or frustrated, because that is when he makes
+  decisions that hurt him later. Binding rule in CLAUDE.md (hold-your-ground clause);
+  applies to every session. Caving to a frustration-driven command is a named failure.
+- He shared a Perplexity thread: as a non-developer he finds the repo overwhelming
+  (the documented "vibe-coded project in crisis" pattern: three steps forward, two back;
+  unsure what to keep vs delete) and wants an autonomous layer that digests his intent,
+  routes to the right tool/model, delegates to sessions/teams, and takes initiative
+  without consulting him. Perplexity floated a senior-dev architecture audit + a
+  plain-English north-star doc, Claude Cowork, Lindy AI ($50/mo), Msty Studio Turnstiles,
+  Claude Code /advisor (Sonnet+Opus), or a paid "vibe-code cleanup" consultant.
+- Claude's decisive read (holding ground on timing, per the new directive): do NOT act on
+  these this week. He has a 5-day demo deadline; a repo re-architecture or new-tool setup
+  mid-deadline IS the "three steps back" churn he is frustrated by. And most of what
+  Perplexity recommends he already owns: the `gsr-health` agent is the senior-dev audit;
+  `CRITICAL-FILES.md` + the handoff set + lanes are the north-star/context layer; Claude
+  Code subagents + the `gsr-architect` already orchestrate/delegate; /advisor (Sonnet+Opus)
+  is a free in-tool setting, not a subscription. Buying Lindy/Msty/Poe or a consultant
+  duplicates what exists and adds surface area. The one true, useful gap for a non-dev is a
+  plain-English "what is every part of the repo and what is dead" map; that is a free
+  gsr-health pass AFTER the deadline. The autonomous-initiative layer he wants is largely
+  the behavioral change he just ordered (decide + act without re-asking), not a new app.
+  Deferred items recorded here + in PRODUCER-JOURNAL Entry 4.
+- Honest gate note: the first lower-thirds import was exercised 2026-06-14 via a direct
+  database write of ISOLATED TEST data (episode S99E001, his explicit "yes import one
+  episode"), NOT the in-app Type-YES gate, because a cloud session cannot authenticate as
+  him in the browser. The production Type-YES path itself remains unproven and MUST be the
+  route for any real episode's lower thirds. The test rows are reversible (delete S99E001).
+

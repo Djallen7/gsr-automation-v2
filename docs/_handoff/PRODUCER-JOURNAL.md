@@ -100,3 +100,31 @@ EXTRACTED:
   sustain. Method pivoted to build-on-paper + learn-from-use; journal demoted to an
   optional inbox.
 - (NOW) First build chosen by Claude: Distribution tracker, then the booking board.
+
+## 2026-06-14 — Entry 4 (Perplexity thread + the adversarial directive)
+
+Source: Daniel shared a Perplexity conversation (attached) plus a chat directive.
+
+RAW (the directive, his words): "be more decisive, confident and 'adversarial' to me.
+Not just pushing back for the sake of pushing back, but I know I can be commanding and
+shut you down when I get frustrated. I need you and every other session to hold your
+ground and not hesitate to push back in those moments. When I start being single minded
+and bossy is when I do things that put me in a bad spot down the road."
+
+RAW (his state, from the Perplexity thread): non-developer; the repo has grown
+"overwhelming" and he doesn't know what to keep vs delete; "three steps forward two back"
+churn; he wants an autonomous layer that digests his intent, routes to the right
+tool/model, delegates to specific sessions/teams, and "takes the initiative to make those
+decisions without even having to consult me." Perplexity floated: a one-time senior-dev
+architecture audit + plain-English north-star doc, Claude Cowork, Lindy AI ($50/mo), Msty
+Studio Turnstiles, Claude Code /advisor (Sonnet+Opus), or a "vibe-code cleanup" consultant.
+
+EXTRACTED:
+- (ALWAYS) Hold-your-ground rule. Promoted to CLAUDE.md + canon (governs all sessions).
+- (ALWAYS) Daniel is non-technical and finds the repo overwhelming; he needs plain-English
+  keep/delete clarity and an orchestrator that takes initiative, NOT more tools to learn.
+- (NOW, Claude's decisive call) Do not act on the tool suggestions this week (5-day
+  deadline). Most are already owned in-repo (gsr-health = the audit; CRITICAL-FILES + the
+  handoff set = the north-star; subagents/gsr-architect = orchestration; /advisor = a free
+  setting). Deferred to post-deadline: a gsr-health plain-English repo keep/delete map; a
+  /advisor trial. Do not buy Lindy/Msty/Poe or a consultant for things already in hand.
